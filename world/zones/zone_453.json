@@ -24,8 +24,9 @@
      "description": "To the east lies The Southern Mira Retrum."
     }
    },
-   "description": "From the crest the land below spreads out like a map. Rocks break\nthrough the thin soil of the slope. Ways lead north and east.",
-   "placeholder": true
+   "description": "Black shingle crunches under your boots at the landing, where the island\nclimbs steeply out of the grey water. Steam rises from cracks between\nthe stones, and the sea nearby is warm and cloudy with minerals. Above,\na ragged slope of cinder climbs toward a smoking rim. The path leads\nnorth up the slope, while east lies the grinding pack ice you came\nacross.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49401": {
    "vnum": 49401,
@@ -49,8 +50,9 @@
      "description": "To the south lies Entering a Volcanic Island."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
-   "placeholder": true
+   "description": "A rough path, scratched into the black slope by the feet of those who\ncame before, climbs the island's flank. Loose cinders skid underfoot,\nand thin smoke seeps from the stones on either side. The stink of\nsulphur grows stronger with each step. The path rises north toward the\nrim and drops south to the landing.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49402": {
    "vnum": 49402,
@@ -78,8 +80,9 @@
      "description": "To the south lies On the Rough Path."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "You reach the lip of the crater, a ridge of cracked black rock hot\nenough to feel through your soles. Beyond it the land falls away into\nsmoke. Wind whips grit against your face, and the sky is a smear of\nyellow haze. The rim runs north and east, and the path goes down south\nto the landing.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49403": {
    "vnum": 49403,
@@ -103,8 +106,9 @@
      "description": "To the south lies On the Rim."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Yellow crystals of sulphur crust the cracks along the rim, glittering\nlike spilled salt. The stone is brittle and rings hollowly when you\ntread on it. A low hiss comes from a vent beside the path, and the steam\nfrom it stings the eyes. The rim runs north and south.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49404": {
    "vnum": 49404,
@@ -128,8 +132,9 @@
      "description": "To the south lies On the Rim."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The rim widens into a flat of cracked slabs, tilted like the plates of a\nsmashed pavement. Between them grow tough, pale lichens, the only life\nfor a long way. Heat shimmers off the stones, and a veil of grey smoke\ndrifts across the path. North and south the rim winds on.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49405": {
    "vnum": 49405,
@@ -153,8 +158,9 @@
      "description": "To the south lies On the Rim."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "The rim turns a sharp corner here, with a broken wall of black rock\nrising to shelter the path from the wind. In its lee the air is still\nand thick with fumes that catch in your throat. Ash lies in drifts,\nscuffed with the prints of small clawed feet. The rim turns east, and\ngoes back south.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49406": {
    "vnum": 49406,
@@ -182,8 +188,15 @@
      "description": "To the west lies On the Rim."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A rubble slope falls away south from the rim here to the crater floor, a\nmass of loose clinker that slides with every step. The crater beyond is\na wide bowl of black stone veined with red. Smoke rolls up from its\ndepths and hangs in the air. The rim continues east and west.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645300,
+     "max": 1
+    }
+   ]
   },
   "49407": {
    "vnum": 49407,
@@ -211,8 +224,9 @@
      "description": "To the west lies On the Rim."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The rim stands high above the crater here, and from the edge you can see\nacross the whole bowl, scarred with cracks that glow a dull orange. The\nheat on your face is like an open oven door. A smell of burnt metal and\nrotten eggs is thick on the air. The rim goes east and west, and a steep\nscree slope runs south to the floor.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49408": {
    "vnum": 49408,
@@ -236,8 +250,9 @@
      "description": "To the west lies On the Rim."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead south and west.",
-   "placeholder": true
+   "description": "The rim bends here and begins to run along the far side of the crater.\nThe rock underfoot is rust-red and crumbles into grit. A steam vent\nwhistles somewhere nearby on a thin, wavering note. The way leads south\nalong the rim, and back west.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49409": {
    "vnum": 49409,
@@ -261,8 +276,9 @@
      "description": "To the south lies On the Rim."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A stretch of rim as narrow as a wall-walk, with the crater on one side\nand a plunge to the sea on the other. Grey smoke wraps round you and\nblots out the view. The stone sweats beads of yellow moisture that stain\nyour gloves. You can follow the rim north or south.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49410": {
    "vnum": 49410,
@@ -286,8 +302,9 @@
      "description": "To the south lies On the Rim."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Fresh rockfalls have scoured the rim here, leaving a mess of jagged\nslabs with hollows between them. Each hollow holds a puddle of green,\nbitter-smelling water that steams slowly. The rock is brittle and sharp,\nand it rasps at your boots. Northward and southward the broken rim goes\non.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49411": {
    "vnum": 49411,
@@ -311,8 +328,15 @@
      "description": "To the west lies On the Rim."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The rim curves toward a cluster of stunted, twisted bushes, the only\nplants that grow on the crest. Their leaves are stained yellow and\ncurled with the fumes. Strings of small bones hang from the branches,\nclicking in the wind. The rim goes north, and bends west toward a high\nplace.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645300,
+     "max": 1
+    }
+   ]
   },
   "49412": {
    "vnum": 49412,
@@ -340,8 +364,9 @@
      "description": "To the west lies On the Rim."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The rim rises here to a knuckle of black rock, with a steep, hacked\nstair leading south to a high perch over the crater. Bright feathers and\nstrings of teeth dangle from posts along the stair. The smell of burnt\nherbs mixes with the sulphur on the air. The rim runs east and west.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49413": {
    "vnum": 49413,
@@ -361,8 +386,15 @@
      "description": "To the north lies On the Rim."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
-   "placeholder": true
+   "description": "A ledge of black rock juts out over the crater, hung with skulls and\nscraps of bright metal and ringed by a rail of sharp stakes. The whole\ncrater lies beneath, its lake and its glowing cracks spread out like a\nmap. A fire of strange green flame smoulders in a clay bowl. The only\nway back is north to the rim.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645306,
+     "max": 1
+    }
+   ]
   },
   "49414": {
    "vnum": 49414,
@@ -386,8 +418,9 @@
      "description": "To the west lies On the Rim."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The rim here is crossed by an old landslide, a fan of rubble that you\npick your way over. The stones are warm and shift with a chink. Beyond\nthe slide the way is smoother and the haze thinner. The rim continues\neast and west past the slide.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49415": {
    "vnum": 49415,
@@ -415,8 +448,9 @@
      "description": "To the south lies On the Crater Floor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A wide crack runs across the floor, lit from beneath by a dull red glow,\nand a steady hiss comes from it. The stone near its edge is too hot for\nbare skin. A scorched smell hangs over everything. The rim lies north,\nand the floor goes on east and south.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49416": {
    "vnum": 49416,
@@ -448,8 +482,9 @@
      "description": "To the west lies On the Crater Floor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The floor slopes up toward the rim here in a ramp of black rubble. Heat\npours down over the edge, and the haze makes the sun a dim coin. Stained\nboulders from the old eruptions lie scattered about. The rim stands\nnorth, with the floor extending east, south and west.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49417": {
    "vnum": 49417,
@@ -477,8 +512,9 @@
      "description": "To the west lies On the Crater Floor."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "You step off the rubble onto the crater floor, a plain of black stone\ncracked into plates like a dried riverbed. Orange light glows in the\ncracks, and heat shimmers up through them. The air stinks of sulphur and\nscalded earth. The rim lies north, and the floor spreads south and west.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49418": {
    "vnum": 49418,
@@ -506,8 +542,9 @@
      "description": "To the south lies On the Crater Floor."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Flows of old, cold lava lie here in heaped, twisted ridges, their\nsurfaces dull and pitted. The air is still and heavy, and every breath\ntastes of metal. Specks of green stone glint in the cracks. The floor\ngoes on north, east and south.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49419": {
    "vnum": 49419,
@@ -527,8 +564,15 @@
      "description": "To the north lies In the Tube."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
-   "placeholder": true
+   "description": "You stand in the throat of a lava tube, a round tunnel of glassy black\nrock that runs off ahead into darkness. The walls are smooth and ribbed\nlike the inside of a gullet, and warm to the touch. The air is close and\nsmells of hot stone. The tube goes north into the dark.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645302,
+     "max": 1
+    }
+   ]
   },
   "49420": {
    "vnum": 49420,
@@ -552,8 +596,15 @@
      "description": "To the west lies In the Tube."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
-   "placeholder": true
+   "description": "The tube bends here, its roof sagging in long drips of frozen black rock\nlike candle wax. The floor is smooth but gritty with fine cinder. A\nfaint rhythmic ticking of cooling stone comes from the walls. The tube\nleads south and west.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645303,
+     "max": 1
+    }
+   ]
   },
   "49421": {
    "vnum": 49421,
@@ -581,8 +632,9 @@
      "description": "To the south lies In a Tube."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A junction in the tubes, where three bores meet under a low dome. The\nwalls are scratched with deep claw marks and smeared with a dried,\nsticky film. A warm, musty smell like a reptile pen drifts from the\nnorth, thick and sour. Tubes lead east and south, and the way north\nopens onto a hatchery.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "49422": {
    "vnum": 49422,
@@ -602,8 +654,15 @@
      "description": "To the south lies In the Tube."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "A broad dome in the rock, floored with heaped sand and warm ash, where a\nscore of leathery eggs lie in shallow scrapes. The heat is strong and\nsticky, and the walls sweat. Shell fragments crunch underfoot, and the\nhot reek of the place clogs your throat. The way out is the tube south.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645302,
+     "max": 1
+    }
+   ]
   },
   "49423": {
    "vnum": 49423,
@@ -627,8 +686,9 @@
      "description": "To the down lies In a Tube."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and down.",
-   "placeholder": true
+   "description": "The tube steepens, and its floor becomes a ramp of ridged stone. Veins\nof orange mineral run through the walls and give barely enough light to\nsee by. Water drips from the roof and hisses where it falls on hot rock.\nThe tube goes north, and drops down into the dark.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "49424": {
    "vnum": 49424,
@@ -652,8 +712,9 @@
      "description": "To the west lies In a Tube."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "A wide chamber where several tubes have run together, its floor strewn\nwith cooled blobs of black glass. Drip-formed spikes hang from the\nceiling, sharp as spears. The air is warm and silent apart from a\ndistant hissing. Tubes lead south and west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "49425": {
    "vnum": 49425,
@@ -677,8 +738,9 @@
      "description": "To the south lies The Hatchery."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "A tube of black glass so smooth it mirrors the glimmer of your light.\nThe floor is warm and strewn with scraps of eggshell, pale and brittle.\nA deep thrumming, felt more than heard, comes through the rock. The tube\nleads east, and the way south opens onto a hatchery.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "49426": {
    "vnum": 49426,
@@ -698,8 +760,15 @@
      "description": "To the north lies In a Tube."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "The second hatching ground is a low, hot cavern floored with fine grey\nsand sifted deep into nests. Eggs lie in heaps there, some cracked and\nleaking, and the air steams with the reek of reptile. Claw-marks line\nthe walls from floor to roof. The only exit is the tube north.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645305,
+     "max": 1
+    }
+   ]
   },
   "49427": {
    "vnum": 49427,
@@ -723,8 +792,9 @@
      "description": "To the down lies In the Tube."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and down.",
-   "placeholder": true
+   "description": "The tube plunges steeply here, the floor ridged and glassy and awkward\nto stand on. Heat rises from below, and the air thickens until each\nbreath hurts. The scratches of claws show on the walls at head height.\nThe tube leads back north and drops further down.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "49428": {
    "vnum": 49428,
@@ -748,8 +818,19 @@
      "description": "To the west lies In the Tube."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "A forking in the tube, where the walls are smooth and black as polished\njet. Crusts of yellow sulphur gather on the roof, and drips fall from\nthem with soft ticks. A damp breeze flows from the east, smelling of\nstagnant water. Passages lead east and west.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645302,
+     "max": 1
+    },
+    {
+     "vnum": 645303,
+     "max": 1
+    }
+   ]
   },
   "49429": {
    "vnum": 49429,
@@ -773,8 +854,9 @@
      "description": "To the west lies In the Tube."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "The tube widens and the floor turns damp and slimy underfoot. A greenish\nglow ahead shows the way east, and the air carries a stench like a bog.\nPale growths cling to the walls, soft as sponge. The tube leads east\ntoward the glow and west back the way you came.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "49430": {
    "vnum": 49430,
@@ -798,8 +880,9 @@
      "description": "To the down lies A Small Chamber."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and down.",
-   "placeholder": true
+   "description": "The tube ends in a blunt, round wall where a crack opens in the floor.\nSooty marks show where torches once burned. The rock is cooler here and\nbeaded with damp. Back east is the main tube, and the crack leads down.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "49431": {
    "vnum": 49431,
@@ -819,8 +902,9 @@
      "description": "To the up lies In the Tube."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads up.",
-   "placeholder": true
+   "description": "A small round chamber, barely high enough to stand in, with a floor of\nfine black sand. The walls are covered in crude pictures scratched with\na claw, showing long-snouted figures around a fire. Old gnawed bones lie\npiled in a corner. A crack leads up to the tube.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "49432": {
    "vnum": 49432,
@@ -844,8 +928,15 @@
      "description": "To the down lies Entry into the Darkness."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and down.",
-   "placeholder": true
+   "description": "A great cavern holds a lake of foul water, green-black and scummed,\nsteaming and giving off a gagging stink. A narrow shelf of slimy rock\nruns around its edge. Bubbles rise and burst from deep within. A steep\nstair of rock climbs north toward a high perch, and a black crack in the\nfloor leads down into the dark.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645304,
+     "max": 1
+    }
+   ]
   },
   "49449": {
    "vnum": 49449,
@@ -881,8 +972,15 @@
      "description": "To the down lies In the Tube."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south, west and\ndown.",
-   "placeholder": true
+   "description": "A round hole yawns in the floor here, its lip smooth and glassy, the\nmouth of a long tube that bores down into the rock. Warm air wells up\nout of it, smelling of hot stone and something older. Scratches mark the\nedge where claws have worn it. The floor runs off in all four\ndirections, and the hole leads down.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645301,
+     "max": 1
+    }
+   ]
   },
   "49450": {
    "vnum": 49450,
@@ -910,8 +1008,9 @@
      "description": "To the west lies On the Crater Floor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A pool of bubbling yellow mud lies steaming beside the way, popping and\nblowing slow blisters. The ground near it is crusted with pale salts\nthat crunch underfoot. Every few moments a gout of steam spits from a\ncrack and hisses away. The floor runs north, south and west.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49451": {
    "vnum": 49451,
@@ -935,8 +1034,9 @@
      "description": "To the east lies On the Crater Floor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "The crater's far wall rises here as a ring of crumbling cliffs, banded\nin yellow and red and grey. Fumaroles pepper the rock face and puff\ntheir white clouds up into the dim light. Loose scree lies at the foot,\nwarm and noisy. The floor leads north and east.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49452": {
    "vnum": 49452,
@@ -964,8 +1064,9 @@
      "description": "To the west lies On the Crater Floor."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A field of ropy, twisted rock stretches around you, each coil frozen\nwhere it cooled, glittering like black glass. Thin vents puff pale steam\namong them in little fountains. Small shells and bits of bone lie in the\ncracks, bleached white. The floor goes north, east and west.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49453": {
    "vnum": 49453,
@@ -989,8 +1090,15 @@
      "description": "To the west lies On the Crater Floor."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The floor ends here against a wall of smooth, glassy rock, streaked\nblack and green where an old flow stopped. Its face is hot to the touch.\nA rust-coloured stain runs down it from a crack above. The way leads\nback north, and west along the foot of the wall.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645301,
+     "max": 1
+    }
+   ]
   },
   "49454": {
    "vnum": 49454,
@@ -1018,8 +1126,9 @@
      "description": "To the west lies On the Rim."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A scatter of black boulders litters the rim here, each as big as a cart,\nflung out in some old eruption. Their sides are pitted like sponge and\nstill faintly warm. Between them a trail of small, clawed tracks wanders\noff. The rim goes east and west, and a slope drops south to the crater\nfloor.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49455": {
    "vnum": 49455,
@@ -1043,8 +1152,9 @@
      "description": "To the west lies On the Rim."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "Little clay bowls of ash and bone chips sit on flat stones along the\nrim, set there as offerings. A pair of crossed bones is painted in red\non a boulder, the paint still tacky. The ground is scuffed by many small\nfeet and a dragged tail. The rim goes east and west.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49456": {
    "vnum": 49456,
@@ -1068,8 +1178,9 @@
      "description": "To the south lies On the Rim."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A gap in the haze opens here, giving a brief view of the island dropping\naway to the sea, grey and steaming. Near your feet the rim is split by a\ncrack so deep that it glows. Warm wind pours up out of it, carrying the\nsting of sulphur. From here the rim leads north and south.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "49457": {
    "vnum": 49457,
@@ -1093,11 +1204,356 @@
      "description": "To the south lies On the Rim."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The rim here is a narrow spine of fused stone no wider than a cart, with\na long drop on either side. Ropes of glassy black rock lie frozen where\nthe molten flow once cooled. A hot breath rises from the crater, tasting\nof struck matches. The rim goes on north and south.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645300,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "645300": {
+   "vnum": 645300,
+   "name": "kobold sentry scout",
+   "short_desc": "a kobold sentry",
+   "long_desc": "A kobold sentry in a patched hide vest squints along the rim, spear in hand.",
+   "description": "A scaly, dog-faced creature no taller than a child, with yellow eyes and\na mouth full of small sharp teeth. It wears bones in its ears, and\nchatters shrilly at any intruder.",
+   "level": 9,
+   "alignment": -300,
+   "hp_dice": "9d8+118",
+   "damage_dice": "3d6+4",
+   "armor_class": 70,
+   "exp": 515,
+   "gold": 108,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745300,
+     "chance": 20
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "645301": {
+   "vnum": 645301,
+   "name": "cinder crab black",
+   "short_desc": "a black cinder crab",
+   "long_desc": "A black cinder crab scuttles across the cracked floor, claws clicking.",
+   "description": "A crab the size of a shield, its shell crusted with black grit and warm\nto the eye. It lives in the steam vents, and pinches hard with claws\nlike blacksmith's tongs.",
+   "level": 8,
+   "alignment": 0,
+   "hp_dice": "8d8+91",
+   "damage_dice": "3d6+3",
+   "armor_class": 73,
+   "exp": 460,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745301,
+     "chance": 20
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "645302": {
+   "vnum": 645302,
+   "name": "lizard hatchling young",
+   "short_desc": "a lizard hatchling",
+   "long_desc": "A lizard hatchling hisses from a scrape in the warm sand, snapping at the air.",
+   "description": "A leathery young reptile as big as a hound, all teeth and appetite. Its\nskin is mottled brown and orange, and it hisses and lunges at anything\nthat comes near the nests.",
+   "level": 10,
+   "alignment": 0,
+   "hp_dice": "10d8+112",
+   "damage_dice": "3d6+6",
+   "armor_class": 67,
+   "exp": 570,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "645303": {
+   "vnum": 645303,
+   "name": "salamander ember fire",
+   "short_desc": "an ember salamander",
+   "long_desc": "An ember salamander clings to the tube wall, its flanks glowing red.",
+   "description": "A long, wet-skinned salamander with a back that glows like coals in a\ngrate. It drinks the heat of the tubes, and it spits scalding sparks at\nthose who disturb it.",
+   "level": 16,
+   "alignment": 0,
+   "hp_dice": "16d8+267",
+   "damage_dice": "5d6+10",
+   "armor_class": 44,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745302,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645304": {
+   "vnum": 645304,
+   "name": "lurker lake thing pale",
+   "short_desc": "a pale lake lurker",
+   "long_desc": "A pale lake lurker stirs the scummy water, its blind head turning toward you.",
+   "description": "A bloated, bone-white thing with a lamprey's mouth and a long fringed\ntail. It has grown fat in the foul lake and hunts by feeling the ripples\nof anything that moves along the shore.",
+   "level": 16,
+   "alignment": 0,
+   "hp_dice": "16d8+267",
+   "damage_dice": "5d6+10",
+   "armor_class": 44,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745302,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645305": {
+   "vnum": 645305,
+   "name": "brood-mother broodmother lizard giant hatchery",
+   "short_desc": "the hatchery brood-mother lizard",
+   "long_desc": "The hatchery brood-mother lizard lies coiled over her eggs, her slit eyes following you.",
+   "description": "A giant lizard as long as a wagon, her hide plated in ridged scales the\ncolour of cold iron. She is fiercely quick to defend her clutch, and her\njaws can snap a spear in two.",
+   "level": 17,
+   "alignment": 0,
+   "hp_dice": "17d8+285",
+   "damage_dice": "5d6+11",
+   "armor_class": 41,
+   "exp": 955,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745303,
+     "chance": 35
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645306": {
+   "vnum": 645306,
+   "name": "zikrak kobold shaman",
+   "short_desc": "Zikrak, the Kobold Shaman",
+   "long_desc": "Zikrak, the Kobold Shaman, capers on his perch, shaking a staff hung with skulls.",
+   "description": "A wizened kobold with a crown of feathers and an ash-grey cloak that\nsmokes at the hem. He calls fire from the crater with a thin, cracked\nvoice, and the whole island answers him.",
+   "level": 18,
+   "alignment": -600,
+   "hp_dice": "18d8+240",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 216,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745304,
+     "chance": 35
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "745300": {
+   "vnum": 745300,
+   "name": "buckler hide kobold",
+   "short_desc": "a patched hide buckler",
+   "room_desc": "A patched hide buckler lies here.",
+   "description": "A small round shield of stretched lizard hide on a frame of bent bone. It is crude, but the hide shrugs off sparks and heat.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 9,
+   "wear_slot": "shield",
+   "armor": 3,
+   "weight": 6,
+   "value": 210
+  },
+  "745301": {
+   "vnum": 745301,
+   "name": "bracers crab shell cinder",
+   "short_desc": "a pair of crab-shell bracers",
+   "room_desc": "A pair of crab-shell bracers lies here.",
+   "description": "Two curved plates of black shell, drilled and laced with sinew to fit about the forearm. They are light and tough and stay faintly warm.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 9,
+   "wear_slot": "arms",
+   "armor": 2,
+   "weight": 2,
+   "value": 210
+  },
+  "745302": {
+   "vnum": 745302,
+   "name": "gloves scale salamander red",
+   "short_desc": "a pair of ember-scaled gloves",
+   "room_desc": "A pair of ember-scaled gloves lies here, warm to the eye.",
+   "description": "Supple gloves stitched with small red scales that glow faintly in the dark. They keep the hands safe from heat and seem to add a little bite to every grip.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 16,
+   "wear_slot": "hands",
+   "armor": 3,
+   "weight": 2,
+   "value": 350,
+   "affects": [
+    {
+     "type": "str",
+     "value": 1
+    }
+   ]
+  },
+  "745303": {
+   "vnum": 745303,
+   "name": "fang brood mother curved dagger",
+   "short_desc": "a curved brood-mother fang",
+   "room_desc": "A curved fang as long as a dagger lies here.",
+   "description": "A tooth as long as a man's forearm, ground to a point and fitted with a grip of wrapped hide. It is sharp enough to pierce plate.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 17,
+   "damage_dice": "2d6",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 465,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ]
+  },
+  "745304": {
+   "vnum": 745304,
+   "name": "staff skull shaman feathered",
+   "short_desc": "a skull-crowned shaman's staff",
+   "room_desc": "A skull-crowned staff lies here, hung with feathers.",
+   "description": "A knotted staff of black wood topped with a tiny skull whose eye-sockets glow dull orange. It crackles faintly when swung, and it strikes like a hammer.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 18,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 490,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

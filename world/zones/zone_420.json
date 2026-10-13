@@ -30,8 +30,8 @@
      "description": "To the west lies In The Halls Of Fameland."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Tall pillars of white marble flank the gate of Fameland, their capitals\nwreathed in carved laurel and gilded at the edges. A pair of bronze\ndoors, green with age and sealed by a heavy bar, stand shut on the\nnorth, and beyond them lies a path no living foot has trodden in years.\nEast, a door leads back to the Temple Library, while the hall continues\nwest beneath a vaulted ceiling. Braziers of white fire burn in niches on\neither side.",
+   "extra_descs": {}
   },
   "15202": {
    "vnum": 15202,
@@ -55,8 +55,8 @@
      "description": "To the west lies Intersection To Adventure."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long gallery of polished marble stretches ahead, its floor so smooth\nthat the flames of the wall braziers shine twice over. Alcoves in the\nwalls hold statues of armoured figures, each plinth bearing a name in\ngold leaf. The air is cool and still and tastes faintly of incense. The\ngate lies east, and the gallery runs on west.",
+   "extra_descs": {}
   },
   "15203": {
    "vnum": 15203,
@@ -84,8 +84,8 @@
      "description": "To the south lies The Room Of Mercy."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Three halls meet here on a floor inlaid with a great golden compass rose\nset in black and white stone. A tall statue of a hero with a raised\nsword stands at the centre, his shadow thrown long by the surrounding\nbraziers. Pale banners hang from the vault, their embroidered devices\nfaded past reading. The gallery leads east back toward the gate, one\nhall runs north into splendour, and another south toward quieter\nchambers.",
+   "extra_descs": {}
   },
   "15204": {
    "vnum": 15204,
@@ -109,8 +109,8 @@
      "description": "To the south lies Intersection To Adventure."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Halls of Victory begin with a broad avenue of red-veined marble,\nlined by pairs of bronze pillars crowned with laurel. Captured standards\nhang from the walls in long, stiff folds, their poles crossed over\npainted shields. A drum the height of a man rests on a stone plinth\nbearing the date of some forgotten triumph. The hall runs on north, and\nback south it meets the great crossing.",
+   "extra_descs": {}
   },
   "15205": {
    "vnum": 15205,
@@ -134,8 +134,8 @@
      "description": "To the west lies The Halls Of Victory."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "Here the hall turns, and a magnificent trophy wall rises to the roof,\nhung with broken spears, dented helms and the blades of defeated\nenemies. Beneath each trophy a small marble plaque records the battle\nwhere it was won. Torches in golden sconces burn with a steady flame\nthat gives no smoke. The hall leads south toward the crossing and bends\nwest.",
+   "extra_descs": {}
   },
   "15206": {
    "vnum": 15206,
@@ -159,8 +159,8 @@
      "description": "To the west lies The Halls Of Victory."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long corridor stands lined on both sides with carved panels depicting\ncharge, siege and rout in fine marble relief. Wreaths of bronze laurel\nhave been fixed above every door frame, gone black with age. The faint\nsmell of old oil and polished stone lingers, and somewhere a sound like\ndistant trumpets seems to fade as you listen. The hall continues east\nand west.",
+   "extra_descs": {}
   },
   "15207": {
    "vnum": 15207,
@@ -184,8 +184,8 @@
      "description": "To the south lies Chamber Of The Fallen Ones."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and south.",
-   "placeholder": true
+   "description": "The victory halls end in a chamber with a vaulted ceiling painted with a\ngolden sunrise over a field of banners. Beneath it a marble plinth holds\na laurel crown cast in bronze, set before a carved roll listing the\nvictors by rank. The air is cold enough to raise a shiver. The hall runs\nback east, and a dark archway leads south into the Chamber of the Fallen\nOnes.",
+   "extra_descs": {}
   },
   "15209": {
    "vnum": 15209,
@@ -205,8 +205,8 @@
      "description": "To the west lies Chamber Of The Fallen Ones."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "A small stone alcove, its walls hung with torn pennants of regiments\nlong disbanded. A bench of cold marble faces a carved roll where each\nname has a single date beside it. A bowl of white sand holds a few\nburnt-down incense sticks left by earlier visitors. The only way out is\nthe archway west into the chamber.",
+   "extra_descs": {}
   },
   "15210": {
    "vnum": 15210,
@@ -238,8 +238,8 @@
      "description": "To the west lies Chamber Of The Fallen Ones."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A round chamber of grey stone, hushed and solemn, with a cenotaph of\nblack marble at its heart. Names of the fallen are carved up the walls\nin tight rows, some freshly cut and some worn almost smooth. Candles in\niron holders gutter though no draught stirs. Archways open east and west\ninto smaller niches, the way north returns to the victory halls, and a\npassage runs south into the Chambers of Sorrow.",
+   "extra_descs": {}
   },
   "15211": {
    "vnum": 15211,
@@ -259,8 +259,8 @@
      "description": "To the east lies Chamber Of The Fallen Ones."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
-   "placeholder": true
+   "description": "A narrow alcove, tucked away from the grand chamber, where a single\nstone sarcophagus has been set into the wall. The inscription on its\nface is half rubbed away, as if many hands had touched it. A small lamp\nwith a flame the colour of pearl burns on a ledge. The only way out is\neast, back into the Chamber of the Fallen Ones.",
+   "extra_descs": {}
   },
   "15212": {
    "vnum": 15212,
@@ -288,8 +288,8 @@
      "description": "To the west lies The Chambers Of Sorrow."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Soft grey light seeps from lamps behind frosted glass, falling on walls\ninscribed with laments in flowing letters. Marble weeping figures kneel\nin niches, their faces veiled in carved cloth. The chamber is cold and\nits echo is strange, as if it answered a few moments late. The Chamber\nof the Fallen Ones lies north, the passage runs south, and an arch opens\nwest.",
+   "extra_descs": {}
   },
   "15213": {
    "vnum": 15213,
@@ -313,8 +313,8 @@
      "description": "To the south lies The Chambers Of Sorrow."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow passage of dark stone, its floor worn into two shallow channels\nby the passage of mourners. Black ribbons hang from iron hooks along the\nwalls, brittle with age and rustling faintly. Each hook has a name\nstamped on a tiny brass tag, though many have gone green and are\nunreadable. The passage runs north and south.",
+   "extra_descs": {}
   },
   "15214": {
    "vnum": 15214,
@@ -338,8 +338,8 @@
      "description": "To the west lies The Chambers Of Sorrow."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and west.",
-   "placeholder": true
+   "description": "A slow bend in the passage, with a low alcove cut into the wall where a\nlamp burns before a stone urn. Dry petals lie scattered around its base,\nstill faintly fragrant after years. The walls are lined with rows of\nlittle tablets, each carved with a single word of farewell. The passage\ngoes back north and turns west.",
+   "extra_descs": {}
   },
   "15215": {
    "vnum": 15215,
@@ -371,8 +371,8 @@
      "description": "To the west lies The Halls Of Eternity."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four passages meet here beneath a low dome whose underside is painted\nwith a night sky of silver stars. A fountain with no water in it stands\nin the middle, its basin filled with white pebbles left by mourners.\nFaint singing from nowhere seems to drift through the stone. Ways lead\nnorth to a small chamber, east into the Chambers of Sorrow, south toward\nthe corridors, and west into the Halls of Eternity.",
+   "extra_descs": {}
   },
   "15216": {
    "vnum": 15216,
@@ -396,8 +396,8 @@
      "description": "To the south lies The Chambers Of Sorrow."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "A small, bare chamber with a single stone bench and a candle in a niche,\nkept for those who wish to grieve alone. The walls are plain except for\na narrow band of carved lilies running around at shoulder height. The\nsilence is deep enough to hear your own breath. The doorways lead north\nand south.",
+   "extra_descs": {}
   },
   "15217": {
    "vnum": 15217,
@@ -425,8 +425,8 @@
      "description": "To the west lies The Halls Of Eternity."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The passage widens into a hall of tall pillars, each carved with the\nfigure of a mourning woman holding a lamp. A lintel above the arch is\ninscribed with the words of a lament that fade into the stone as you\nread. Cold air breathes in from the way west, and the dust on the floor\nlies undisturbed. A door leads east, an archway leads south into a\nlittle chamber, and the hall opens west into the Halls of Eternity.",
+   "extra_descs": {}
   },
   "15218": {
    "vnum": 15218,
@@ -450,8 +450,8 @@
      "description": "To the south lies The Corridors Of Remembrance."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A plain corridor with a low ceiling, kept dim so that the letters on the\nwalls gleam in the little light there is. Rows of oblong plaques\ncommemorate the dead of some old war, and their names are arranged by\ncompany. A bench is set into the wall for those who wish to read slowly.\nThe corridor leads north to the Chambers of Sorrow and south to a\njunction.",
+   "extra_descs": {}
   },
   "15219": {
    "vnum": 15219,
@@ -479,8 +479,8 @@
      "description": "To the west lies The Halls Of Eternity."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A narrow corridor of grey stone runs along a wall of memorial tablets,\neach carved with a name and a line of remembrance. Small lamps burn\nbeneath them, and many have been replenished with fresh oil. The passage\nforks here, one way leading north, another west to the Halls of\nEternity, and a broad arch opening east into the Chambers of Heroes.",
+   "extra_descs": {}
   },
   "15220": {
    "vnum": 15220,
@@ -508,8 +508,8 @@
      "description": "To the west lies The Corridors Of Remembrance."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Here the chambers of the heroes begin, a great high-roofed hall lined\nwith life-sized bronze statues on stone pedestals. Each hero is shown in\nthe pose of a famous moment, sword drawn or banner raised or hand\nreaching out to a fallen friend. A banner of yellow silk hangs above the\ndoorway, bordered with gold fringes. The hall runs north and south, and\nan arch leads west to the corridors.",
+   "extra_descs": {}
   },
   "15221": {
    "vnum": 15221,
@@ -533,8 +533,8 @@
      "description": "To the east lies The Way Of Heroes."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and east.",
-   "placeholder": true
+   "description": "The corner of the Chambers of Heroes is dominated by a colossal statue\nof a woman in plate, her visor raised and her sword planted before her\nlike a cross. Fresh lamps burn at her feet in a ring, and the floor\naround her is polished by kneeling. Her carved eyes seem to follow\nwhoever approaches. A passage runs north, and the way east leads to the\nWay of Heroes.",
+   "extra_descs": {}
   },
   "15222": {
    "vnum": 15222,
@@ -558,8 +558,8 @@
      "description": "To the west lies Chambers Of Heroes."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "This is the Way of Heroes itself, a broad processional road of white\nstone between rows of pillars, each pillar topped by a statue facing the\nway. Gold leaf runs in the grooves of the paving, worn thin by centuries\nof walking. A deep, ceremonial hush lies over everything. The way leads\neast into a chamber and west into another.",
+   "extra_descs": {}
   },
   "15223": {
    "vnum": 15223,
@@ -583,8 +583,8 @@
      "description": "To the west lies The Way Of Heroes."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The hall opens into a splendid chamber whose floor is inlaid with an\nimmense laurel wreath in gold. Statues in the niches around it hold\nlamps aloft, giving a warm, steady light. A plaque at the entrance names\nthe fallen who held this very spot. A doorway north leads to the Room of\nMercy, and the way continues west toward a famous road.",
+   "extra_descs": {}
   },
   "15224": {
    "vnum": 15224,
@@ -612,8 +612,8 @@
      "description": "To the south lies Chambers Of Heroes."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The Room of Mercy is round and white-walled, lit by a high oculus that\ncasts a pillar of cold light on a stone altar. Offerings of ribbons,\ncoins and small carved charms lie on its surface. A bronze bowl for\ntears stands beside it, polished by many hands. Doorways lead north,\neast and south.",
+   "extra_descs": {}
   },
   "15225": {
    "vnum": 15225,
@@ -637,8 +637,8 @@
      "description": "To the west lies Chambers Of Heroes."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
-   "placeholder": true
+   "description": "The statues give way to a wall of hanging shields, hundreds of them,\neach painted with the device of a family or order. Some are cracked,\nsome gilded, and some covered with a black cloth where the house has\ndied out. A low rail in front keeps the curious from touching. The\nchamber turns here, with a doorway south into the Room of Mercy and the\nhall going west.",
+   "extra_descs": {}
   },
   "15226": {
    "vnum": 15226,
@@ -662,8 +662,8 @@
      "description": "To the west lies Chambers Of Heroes."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "A wide avenue of statues stretches through the chamber, set in pairs\nfacing each other across the polished floor. Each pair is a champion and\nthe foe who nearly bested them, carved with equal respect. A wall of\nhonour plaques runs behind them, spaced with painted heraldry. The hall\nruns east and west.",
+   "extra_descs": {}
   },
   "15227": {
    "vnum": 15227,
@@ -687,8 +687,8 @@
      "description": "To the south lies Chambers Of Heroes."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "Marble statues of four heroes stand shoulder to shoulder in this corner\nof the hall, their cloaks carved so fine they seem to ripple. At their\nfeet lies a stone shield, scored by the blows of a real fight, set into\nthe floor as a memorial. The braziers at either end give a light like\nmelted amber. The hall turns here, running east and back south.",
+   "extra_descs": {}
   },
   "15228": {
    "vnum": 15228,
@@ -712,8 +712,8 @@
      "description": "To the west lies The Room Of Mercy."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "A small, serene chamber where the walls are covered in soft grey drapery\nand the floor is strewn with rushes. A carved bench runs round three\nsides beneath a frieze of open hands. The flames in the brazier are low\nand bluish, giving a hush to the room. The room opens north and west.",
+   "extra_descs": {}
   },
   "15229": {
    "vnum": 15229,
@@ -746,8 +746,8 @@
      "description": "To the south lies The Room Of Mercy."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Pale marble in the shape of a kneeling figure fills an alcove in this\nroom, one hand outstretched in forgiveness. Candle stubs gather in a\nheap around its base, melted into fantastic shapes. A heavy oak door\neast is bound with brass and marked with a wreath. The passage runs\nnorth and back south.",
+   "extra_descs": {}
   },
   "15230": {
    "vnum": 15230,
@@ -789,8 +789,8 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Doors in three directions open from this crossing of the Halls of Mercy,\neach framed by an arch of pale stone and a polished brass plate. The\nfloor is laid with a mosaic of a dove carrying an olive branch, its\ncolours kept fresh by regular scrubbing. A faint draught flutters the\ncandle flames. Ways lead north and south, and doors lead east and west\ninto honour rooms.",
+   "extra_descs": {}
   },
   "15231": {
    "vnum": 15231,
@@ -823,8 +823,8 @@
      "description": "To the west lies The Room Of Mercy."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The passage ends in a dead-end hall with a high ceiling hung with paper\nlanterns, each inscribed with a wish for the departed. They sway\nslightly, though nothing moves the air. A heavy wooden door to the east\nis carved with a laurel wreath. The hall leads back south, and an\narchway opens west into the Room of Mercy.",
+   "extra_descs": {}
   },
   "15232": {
    "vnum": 15232,
@@ -848,8 +848,8 @@
      "description": "To the east lies Through The Halls Of Mercy."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "A quiet, shadowed hall of tall narrow windows set with milky glass,\nthrough which comes a soft diffused light. A long rug of faded rose\nleads between two rows of benches, towards a lectern. The walls are bare\nexcept for a single plaque reading a verse on kindness. The hall runs\nnorth to the crossing and east toward the Halls of Mercy.",
+   "extra_descs": {}
   },
   "15233": {
    "vnum": 15233,
@@ -873,8 +873,8 @@
      "description": "To the south lies The Halls Of Eternity."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "The Halls of Eternity begin in a long hall of dark green marble,\npolished until it mirrors the braziers that never go out. Rows of\nstatues stand along the walls, each with a plaque naming its deeds in\nletters of gold. The air hums faintly, like a held note. The hall opens\neast into the Chambers of Sorrow and turns south.",
+   "extra_descs": {}
   },
   "15234": {
    "vnum": 15234,
@@ -902,8 +902,8 @@
      "description": "To the west lies The Halls Of Eternity."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Three wide ways meet in a small court of pale stone, where a single\nflame burns in a bronze bowl on a pedestal. Its light throws the shadows\nof the surrounding statues long across the floor, so that they appear to\nlean toward you. A scroll of beaten gold hangs on the wall, listing\nthose who kept faith. The halls lead north, south and west.",
+   "extra_descs": {}
   },
   "15235": {
    "vnum": 15235,
@@ -927,8 +927,8 @@
      "description": "To the east lies The Chambers Of Sorrow."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and east.",
-   "placeholder": true
+   "description": "A short hall of white marble ends at a wall where a vast mosaic shows a\nprocession of heroes climbing toward a golden door. The tiles glitter in\nthe light of two tall braziers that have burned since before anyone's\ngrandfather. A bench of polished stone invites you to rest, though the\nstone is cold as a river. The hall runs north, and an archway leads east\ninto the Chambers of Sorrow.",
+   "extra_descs": {}
   },
   "15236": {
    "vnum": 15236,
@@ -952,8 +952,8 @@
      "description": "To the south lies The Halls Of Eternity."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "The hall turns a corner here between two great pillars wrapped in carved\nivy and bearing the names of heroes at their feet. A banner of deep blue\nsilk, embroidered with a silver star, hangs from an iron pole and stirs\nthough the air is still. The flagstones are worn pale along the centre\nby pilgrims' feet. The hall leads east toward the court and south along\na gallery.",
+   "extra_descs": {}
   },
   "15237": {
    "vnum": 15237,
@@ -977,8 +977,8 @@
      "description": "To the south lies The Halls Of Eternity."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A straight gallery of dark stone, with statues standing on either side\nlike soldiers on parade. Each wears a different harness and holds a\ndifferent weapon, but all have the same calm, unseeing eyes. Their\nplaques bear dates in ancient numerals, and a thin layer of dust lies\nover everything but the floor. The gallery runs north and south.",
+   "extra_descs": {}
   },
   "15238": {
    "vnum": 15238,
@@ -1002,8 +1002,8 @@
      "description": "To the south lies The Halls Of Eternity."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "Gilded honour rolls fill the walls of this stretch of the hall, line\nupon line of names with the title and deed set beside each. A brazier on\na tripod burns at either end, the flames white and steady, unflickering\nin any breath. The cold seems to gather around the lowest panels, where\nthe newest names have been cut. The gallery goes north and south.",
+   "extra_descs": {}
   },
   "15239": {
    "vnum": 15239,
@@ -1027,8 +1027,8 @@
      "description": "To the east lies The Halls Of Eternity."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "The gallery bends beside a tall window of coloured glass, which throws\ncrimson and gold across the marble. Beneath it a stone trough holds a\nheap of withered garlands laid by mourners long gone. A line of small\nbronze lamps burns along the sill, each marked with a name. The hall\nleads back north and goes on east.",
+   "extra_descs": {}
   },
   "15240": {
    "vnum": 15240,
@@ -1052,8 +1052,8 @@
      "description": "To the west lies The Halls Of Eternity."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A broad vaulted passage, its ceiling painted midnight blue and spangled\nwith golden stars. Trophies of old campaigns fill the wall niches: a\ncracked drum, a bent trumpet, a captain's helm with its plume rotted\naway. The floor is inlaid with a long strip of laurel leaves in green\nstone. The passage runs east and west.",
+   "extra_descs": {}
   },
   "15241": {
    "vnum": 15241,
@@ -1077,8 +1077,8 @@
      "description": "To the west lies The Halls Of Eternity."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "The hall ends in a pair of high pillars crowned with winged victories of\nbronze, their wings dark with age. Between them a floor of black and\nwhite squares leads on like a great game board. A faint scent of lilies\nhangs in the air, though no flower grows in this place. The way leads\nwest back along the hall, and east into the corridors.",
+   "extra_descs": {}
   },
   "15242": {
    "vnum": 15242,
@@ -1098,8 +1098,8 @@
      "description": "To the east lies Through The Halls Of Mercy."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "Banners of a vanished kingdom hang here in fading ranks, their crowns\nand lions barely visible. A marble table holds a book of names bound in\nblack leather, chained to its stand and open to a page with a ribbon.\nThe room is bitterly cold, as if winter had settled in the corners. The\nonly door leads east.",
+   "extra_descs": {}
   },
   "15243": {
    "vnum": 15243,
@@ -1119,8 +1119,8 @@
      "description": "To the west lies Through The Halls Of Mercy."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "A small private shrine for a single hero, its walls hung with a tapestry\nof a battlefield at dawn. A stone sarcophagus stands in the centre, the\nlid carved with a recumbent figure with hands crossed on a sword.\nEternal candles burn in four brass stands around it. The only way out is\nthe door west.",
+   "extra_descs": {}
   },
   "15244": {
    "vnum": 15244,
@@ -1140,8 +1140,8 @@
      "description": "To the west lies Through The Halls Of Mercy."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "This honour room is a low vault, its walls lined with niches that each\nhold a small bronze urn and a palm leaf of carved stone. A single lamp\nburns in the middle of the floor, on a pedestal wrapped in brass vines.\nThe names on the urns are in an old tongue, and the air smells of cedar.\nThe door west leads back to the Halls of Mercy.",
+   "extra_descs": {}
   },
   "15245": {
    "vnum": 15245,
@@ -1161,11 +1161,10 @@
      "description": "To the west lies The Room Of Mercy."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "A grander honour room, its walls panelled in dark wood and hung with\nportraits of heroes in oils, their eyes dark and attentive. Crossed\nswords are mounted over a stone fireplace in which no fire has been laid\nfor generations. Velvet chairs stand around a table set with a goblet of\ndry dust. The heavy door leads west.",
+   "extra_descs": {}
   }
  },
  "mobs": {},
- "objects": {},
- "sealed": true
+ "objects": {}
 }

@@ -1,0 +1,892 @@
+{
+ "job": "z509",
+ "rooms": {
+  "13145": {
+   "look": "mine",
+   "description": "Rough timbers frame the mouth of the mines, and the air here is cold and dry and tastes of old stone. A rusted ore-trolley sits on warped rails beside a heap of splintered crates. Shift tallies are chalked along the wall in a dozen hands, the latest long faded. A ladder of iron rungs climbs up toward the Shaft, a passage opens east onto the Dump, and the main way runs north into Ore Storage."
+  },
+  "13146": {
+   "look": "mine",
+   "description": "Long bins of rough planking line this storage cavern, each heaped with chunks of grey ore that nobody came back to haul. Dust lies thick as flour on the sorting tables, marked only by a single line of old bootprints. Iron scales hang from a ceiling beam, their pans tarnished green. Tunnels lead away north and east, and the way south returns to the mine entrance."
+  },
+  "13147": {
+   "look": "mine",
+   "description": "The tunnel bends here where two diggings met, and the roof is propped with squared pit-props gone black with age. Narrow rails run along the floor, their ties rotted to crumbs. The passage leads on north into deeper workings, back south toward Ore Storage, and west along a branch that slopes gently away. A cold draught breathes steadily from somewhere ahead."
+  },
+  "13148": {
+   "look": "mine",
+   "description": "Pick marks scar every surface of this narrow gallery, each stroke laid in the same slanting rhythm by miners long dead. An iron lamp-hook juts from the wall at shoulder height, still blackened by smoke. The tunnel runs straight, north toward a turn and south toward the meeting of diggings. Water seeps from a crack in the roof and beads along the ribs of the rock."
+  },
+  "13149": {
+   "look": "mine",
+   "description": "The gallery turns a corner here, and the wall is polished smooth where generations of shoulders brushed it. Pale threads of salt crust the rock in feathery patterns. The way back runs south, and the passage continues west, where the roof lowers a little. Somewhere far off, stone ticks and settles in the dark."
+  },
+  "13150": {
+   "look": "mine",
+   "description": "A line of iron staples driven into the wall once carried a guide-rope through the dark, and rust has eaten them to red stumps. The floor is gritty with powdered stone, and every footfall echoes oddly short. To the east the tunnel winds back toward a corner, while to the west it opens toward a meeting of ways."
+  },
+  "13151": {
+   "look": "mine",
+   "description": "Three tunnels meet in a ragged chamber whose roof is held up by a single massive timber, cracked along its length. Arrows and crosses are chalked on the walls to mark routes nobody has walked in years. Ways lead east, south and west, each as black as the others. A smell of wet iron hangs in the stale air."
+  },
+  "13152": {
+   "look": "mine",
+   "description": "The tunnel falls in a gentle grade here, and runoff has cut a shallow channel down the middle of the rails. Stout beams cross the roof every few paces, some of them sagging dangerously. The junction lies back north, and to the south the passage widens toward a crossing. Flecks of mica glitter in the rock like scattered coins."
+  },
+  "13153": {
+   "look": "mine",
+   "description": "Four tunnels cross in a wide vaulted space where the miners once turned their carts. Scratches in the floor show where wheels swung round, and a crooked signpost stands in the middle of it all, its lettering worn smooth. Tunnels run north, east and south, while the western arm ends quickly in a blind face. The air is dead still."
+  },
+  "13154": {
+   "look": "mine",
+   "description": "A low connecting gallery where the roof presses close enough to make a tall man stoop. Soot stains the ceiling above a row of lamp niches carved into the wall. The tunnel runs east along a shallow rise and west into the wide crossing. Pebbles trickle from a crack now and then with a faint dry whisper."
+  },
+  "13155": {
+   "look": "mine",
+   "description": "Rust-red stains streak the wall where the seam ran rich in iron, and the whole passage smells of old coins. Rail spikes still stand in a few sleepers, bent and brittle. The way north returns to the crossing, while south the tunnel continues in a long dark line. Overhead, a fallen beam hangs by one end and does not so much as sway."
+  },
+  "13156": {
+   "look": "mine",
+   "description": "A slide of rubble has spilled across half the floor here, leaving only a narrow path along the cleaner wall. Dust still hangs thickly in the air above it, as though the stone settled only yesterday. The passage leads north toward the crossing and south to a junction of tunnels. Hammered wedges stick out of the roof like broken teeth."
+  },
+  "13157": {
+   "look": "mine",
+   "description": "A broad junction where an old powder-store was cut into the wall, its iron door standing open on empty shelves. Cart tracks curve into each of the three ways out. Tunnels go north, south toward a dead end, and west along a passage that climbs a little. The silence has a weight to it, as if the rock were listening."
+  },
+  "13158": {
+   "look": "mine",
+   "description": "The tunnel ends in a blank wall of grey stone where the miners simply stopped digging. Half-drilled holes ring the face in a neat circle, never filled and never fired. Soot-blackened props stand wedged against the rock, holding up nothing at all. The only way out is back north to the junction, and cold gathers in this dead end like water in a bowl."
+  },
+  "13159": {
+   "look": "mine",
+   "description": "A cramped passage with a ceiling of crumbling shale that sheds flakes at the slightest tremor. Rails run down the centre, doubled where an old siding branched off and was torn up. To the east lies the junction, and to the west the tunnel narrows toward its end. The air tastes of damp slate."
+  },
+  "13160": {
+   "look": "mine",
+   "description": "The passage dies against a face of fractured stone, split by a vein of pale quartz that no pick ever finished. Points of white glint in the crack whenever any light touches it. A stub of rail ends a few paces short of the wall. The only way back is east along the tunnel."
+  },
+  "13190": {
+   "look": "mine",
+   "description": "A short stub of tunnel ending in a collapsed face, where the roof once came down and was never cleared. Timbers lie broken among the rubble like snapped ribs. The crossing is just back east. A thin trickle of cold air still finds its way through the stones, whistling faintly."
+  },
+  "13180": {
+   "look": "mine",
+   "description": "A tall narrow gallery whose walls lean together overhead, following a seam that was dug out and abandoned. Rope ladders hang from a ledge above, ending in frayed strands that sway in no wind. The tunnel runs north into the dark and east to the three-way junction. Drops of water fall steadily somewhere unseen, counting out the slow minutes."
+  },
+  "13181": {
+   "look": "mine",
+   "description": "Long grooves in the floor show where a heavy cart was dragged, again and again, over the same stretch of stone. The walls are dark with soot above head height. The passage leads north and south, straight as a ruler. Cobwebs as thick as cloth drape the corners of the roof."
+  },
+  "13182": {
+   "look": "mine",
+   "description": "The tunnel narrows to a crawl on one side, where a rockfall took half the width and left only a slim lane against the opposite wall. Splintered shoring pokes out of the heap like the bones of some great beast. Passages continue north and south from here. A pale fungus greys the rubble and gives off a faint sweetness."
+  },
+  "13183": {
+   "look": "mine",
+   "description": "The gallery turns sharply, its corner worn smooth and bright as though by countless passing hands. A rusted lantern bracket juts from the rock at head height. South the way returns along the straight tunnel, and west it runs on toward a wider chamber. The floor underfoot is gritty with fine black dust."
+  },
+  "13184": {
+   "look": "mine",
+   "description": "A long corridor with a floor of tamped gravel, laid so that laden carts could roll without jolting. Iron rings are sunk into the wall at intervals where haulers were once tethered. East the tunnel turns back along its gallery, and west it opens into Ore Storage. Chalk tallies mark the wall in tidy fives."
+  },
+  "13185": {
+   "look": "mine",
+   "description": "Great timber hoppers loom in this wide storage hall, their chutes jammed with ore that never reached the carts. A gantry of rope and blocks hangs overhead, motionless. Tunnels lead north and south, and a corridor runs east toward the long gallery. The floor is grey with stone dust, deep enough to hold a footprint for years."
+  },
+  "13186": {
+   "look": "mine",
+   "description": "The tunnel climbs a shallow ramp here, the floor cut into rough steps for the hauling teams. Lamp soot stains the roof in black tongues. South lies Ore Storage, and north the ramp ends at a stout archway that leads to the Under-Mines. A cold mineral breath rises from the dark ahead."
+  },
+  "13187": {
+   "look": "mine",
+   "description": "A wide archway of squared blocks frames a stair of worn stone that spirals down into the Under-Mines. Iron brackets on the walls once held torches, and a warning is cut deep above the arch, forbidding entry to the lower works. The tunnel leads back south, and the stair goes down into the dark. A damp chill rises from below."
+  },
+  "13191": {
+   "look": "mine",
+   "description": "The stair ends in a low, rough-cut hollow of black stone, where the lower workings begin. The ceiling is crude and unbraced, hacked out in haste by hands more afraid of the dark than of the rock. A stair climbs up to the entrance, while passages run north and south through the stone. Water drips from the roof in a slow, uneven beat."
+  },
+  "13192": {
+   "look": "mine",
+   "description": "The walls here glisten with moisture and carry the faint sheen of a seam of dark metal. Narrow footholds are chipped into the floor where it slopes. A dark way continues to the north, and another leads south. The smell of wet earth and old smoke clings to everything."
+  },
+  "13193": {
+   "look": "mine",
+   "description": "A ribbed gallery, each rib a squat timber arch set into the rock, marching away into the dark in both directions. Several arches have buckled and leaned together like drunkards. Ways lead north and south. A faint knocking, far below, comes and goes without pattern."
+  },
+  "13194": {
+   "look": "mine",
+   "description": "A crossroads of rough tunnels, the roof sloping low where the diggers followed a vein that tapered to nothing. A heavy timber door-frame stands to the north with an iron-banded door set in it, and a ragged opening leads east into an unfinished cut. Crude arrows scratched at knee height point every which way. The way south returns along the ribbed gallery."
+  },
+  "13219": {
+   "look": "mine",
+   "description": "A stout oak door, its iron bands weeping rust, hangs open on the south side of this small chamber, guarding the lower works. The walls are dressed stone, damp and furred with pale mould. A passage leads north toward a long access tunnel. Scratches on the inside of the door suggest that someone once tried very hard to get out."
+  },
+  "13218": {
+   "look": "mine",
+   "description": "A long accessway of dressed stone runs between the lower works and the great chimney, wide enough for two ore-carts to pass. Rail grooves are worn deep into the paving. The air moves through the passage with a hollow moaning. The way continues north, and south it ends at a door."
+  },
+  "13217": {
+   "look": "mine",
+   "description": "The accessway widens, and the ceiling of black stone gives way to a raw natural fissure high above. A thin breath of colder air falls from it. Long streaks of soot show where lamp smoke was drawn upward for generations. The passage runs north toward the first level of the chimney, and south along the accessway."
+  },
+  "13216": {
+   "look": "mine",
+   "description": "You stand on the first ledge of Durgan's Chimney, a vast natural shaft whose walls vanish into darkness above and below. A rusted railing runs along the lip, and a rope-and-pulley hoist hangs unmoving over the drop. A stair of iron and stone winds down to the second level, while the old mine road runs east and a passage leads south. Cold air rises steadily from the depths."
+  },
+  "13215": {
+   "look": "mine",
+   "description": "The old mine road begins here as a broad paved way, its slabs scored by iron wheels. Fluted pillars of rock stand to either side, dressed by craftsmen who cared for more than ore. West the road opens onto the chimney's ledge, and east it runs on into the long dark. A thin skin of dust has settled over everything."
+  },
+  "13214": {
+   "look": "mine",
+   "description": "Cart ruts, deep as a man's forearm, mark the paving of the old road, and shards of cracked stone lie along the edges where wheels struck them. Signal lanterns hang from hooks overhead, their glass long gone. The road continues east and west without a bend. A smell of cold iron lingers in the air."
+  },
+  "13213": {
+   "look": "mine",
+   "description": "The old road runs between smoothed walls here, with niches cut at intervals for statues that were never raised. Their plinths stand bare and square. East lies the open meeting of Dael's Pass, and west the road falls back toward the chimney. The stale air stirs a little, as though something had just passed."
+  },
+  "13212": {
+   "look": "mine",
+   "description": "Dael's Pass is a wide meeting of ways under a high rough roof, where four tunnels split from the old mine road. A carved dwarven rune marks each arch, though the oldest are worn nearly flat. Roads lead north along the old road, east into the tunnels of the first deep, south into the Mines of Khukal, and west the way you came. A wind blows through the pass with a thin, tuneless whistle."
+  },
+  "13211": {
+   "look": "mine",
+   "description": "The old road runs straight here between rock walls trimmed so square that they might line a street in a buried town. Mile-markers cut in dwarven numerals count off the distance to places that are long dust. The pass lies south, and the road continues north. Dead lamps hang on iron arms, trailing cobwebs."
+  },
+  "13210": {
+   "look": "mine",
+   "description": "Two ruts filled with grey powder follow the middle of the road. The walls are scorched in patches, black glassy streaks where something burned hot and fast. The road stretches on to the north, and behind you to the south. A stale smell of burnt stone fills the passage."
+  },
+  "13209": {
+   "look": "mine",
+   "description": "The paving buckles upward in the middle, heaved by the weight of the stone above. Cracks branch from the rise and split the walls, sifting dust. The road leads north and south, passing over the swell with care. A single fallen pillar blocks one edge of the way."
+  },
+  "13208": {
+   "look": "mine",
+   "description": "The road is dry here, almost clean, as though a draught from some hidden shaft sweeps it constantly. Painted dwarven lettering on the wall, mostly flaked away, once named this stretch. The road leads north and south. Your steps ring clearly on the old stone and are answered by faint echoes."
+  },
+  "13207": {
+   "look": "mine",
+   "description": "Heavy wooden gates, wrenched from their hinges and thrown aside, once barred this stretch of road. The great hinge pins still jut from the wall, bent like crooked fingers. A wider space lies north where the roads cross, and the road runs south behind you. Dark stains mark the stone beside the gateposts."
+  },
+  "13206": {
+   "look": "mine",
+   "description": "Four roads meet beneath a domed ceiling where a stone lamp-stand, cracked in two, marks the centre of the crossing. A wide archway to the west opens on the Hall of Scribes, its lintel carved with quills and scrolls. The old road runs north and south, and a rough tunnel leads east into the first deep. Letters cut into the floor spiral outward from the middle of the junction."
+  },
+  "13205": {
+   "look": "mine",
+   "description": "The road bends here around a great rib of black rock that the builders refused to cut. Pale stains creep up the pillar and across the arch. East the road continues, and south it returns to the crossing. Bits of broken tile crunch underfoot where a mosaic once stood."
+  },
+  "13204": {
+   "look": "mine",
+   "description": "A straight stretch of road with a low stone kerb on either side, as if this passage had once been a street. Footworn dips in the paving mark where a threshold once lay. The road leads east and west. The silence is thick enough to feel."
+  },
+  "13203": {
+   "look": "mine",
+   "description": "The old road turns here between walls blackened by the smoke of ancient forges. Slag crusts the corners in glassy lumps, green and dull. The road leads north, and west it runs back the way it came. Heat seems to linger in the stone even now, a ghost of fire."
+  },
+  "13202": {
+   "look": "mine",
+   "description": "The road narrows to a twisting lane, its paving broken by roots of pale mineral that have forced up between the slabs. The air is thick with the smell of cold ashes. A way leads south, and the road runs on west. Shallow alcoves along the walls are packed with dust."
+  },
+  "13201": {
+   "look": "mine",
+   "description": "A heavy iron-bound door of black wood stands at the end of the road, its panels carved with rows of marching dwarves. Deep gouges cross the carving, as though axes were tried on it in anger. The old road runs back east. Beyond the door lies the War Chamber, and from beneath it comes a stir of cold air."
+  },
+  "13294": {
+   "look": "mine",
+   "description": "A great vaulted war chamber stretches around you, its floor inlaid with a map in coloured stone that has cracked across the border country. Racks along the walls stand empty of weapons, and a long table of black oak is split down the middle. A grand stair rises up toward the higher halls, and the door south leads back to the mine road. Chill lies on every surface."
+  },
+  "13199": {
+   "look": "mine",
+   "description": "A wide stair of pale stone climbs steeply through the rock, each step worn into a shallow dish by dwarven boots. Carved balusters line the sides, many of them broken, and murals of battle march along the walls, their paint faded to ghosts. The stair leads up toward the halls of Durmandel and down to the War Chamber. A faint draught of warmer air comes from above."
+  },
+  "13238": {
+   "look": "mine",
+   "description": "A raw tunnel, hewn with none of the old road's elegance, leads from the crossing into the first deep. The ceiling is low and ribbed with pick marks, and the floor is rutted by cart wheels. West the tunnel returns to the junction, and east it runs on toward a branching. Fine dust drifts in the slow air."
+  },
+  "13237": {
+   "look": "mine",
+   "description": "Three tunnels branch from a bulge in the rock where the miners once parked their carts. The walls carry black handprints, a mine's worn signature. Tunnel mouths gape to the east, the south and the west. A cold seep trickles down the rock into a stone-lined drain."
+  },
+  "13239": {
+   "look": "mine",
+   "description": "The tunnel passes through a seam of crumbling red rock that stains the air with rust. A single iron rail gleams, worn silver, along the floor. West is the junction, and east the tunnel runs on to a bend. A thin runnel of water bleeds in a ribbon across the stone."
+  },
+  "13240": {
+   "look": "mine",
+   "description": "The tunnel bends around a jutting shoulder of rock that has been chipped and chipped until it is hardly there. Hard black flint shows in the cut. The way west leads back to the straight, and south the tunnel continues around the turn. The air smells of old smoke."
+  },
+  "13241": {
+   "look": "mine",
+   "description": "In this tight bend the roof comes down to meet the walls in a smooth arch, worked by water rather than tools. Pale mineral drapery hangs in stiff folds. The way north returns to the previous bend, and east the passage goes on. Drips fall with a hollow, patient sound."
+  },
+  "13242": {
+   "look": "mine",
+   "description": "Stout pit-props line this bend in pairs, set so close together that the passage feels like a hall of black pillars. Between them the wall is dry, powdery and cold to the hand. The tunnel leads south and west. Somewhere ahead a bit of stone clicks as it falls and clatters away."
+  },
+  "13243": {
+   "look": "mine",
+   "description": "The bend ends in a rough-hewn chamber where two tunnels were joined by a misjudged cut, leaving a step in the floor. A scatter of coal-black clinker crunches underfoot. North the passage runs back around the bend, and west it leads toward a junction. Cool air sinks along the floor."
+  },
+  "13228": {
+   "look": "mine",
+   "description": "A junction cut square and tidy, with a round iron plate set into the ceiling and bolted shut. Faded signs painted on boards direct carters in several directions. The tunnels lead east, south and west. A smell of old lamp-oil lingers on the walls."
+  },
+  "13227": {
+   "look": "mine",
+   "description": "Narrow tracks, repaired with mismatched timber, run down the middle of this tunnel, and the sleepers have been renewed many times. The rock is dark-grained and streaked with coal. The tunnel runs north to a junction and south into the deeper workings. Tools have left bright scratches in the stone."
+  },
+  "13226": {
+   "look": "mine",
+   "description": "The tunnel is slightly wider here, and the roof is held up by a row of heavy arches of squared stone rather than timber. Each arch bears a mason's mark in the shape of a hammer. Passages run north and south. Dust lies unmarked in the corners, but the middle of the floor is scuffed bare."
+  },
+  "13225": {
+   "look": "mine",
+   "description": "The rock turns from grey to a dark green here, and the walls shine with a waxy lustre. The old shoring is stained with white blooms of salt. The passage runs north, and south it opens onto a wide crossing. Even the dust seems tinted green."
+  },
+  "13224": {
+   "look": "mine",
+   "description": "A broad junction where four tunnels meet under a pocked ceiling, with a great timber lintel across each mouth. Tally marks in tar run along the beams, thousands upon thousands of them. Each of the four tunnels is a mouth of black, leading north, east, south or west. The floor is polished to a dull shine by countless wheels."
+  },
+  "13244": {
+   "look": "mine",
+   "description": "A bare tunnel with a smooth floor and rails set in neat double lines, cut for heavy traffic. Soot lies in drifts along the foot of each wall. West the tunnel opens onto a crossing, and east it carries on toward a junction. A distant dripping keeps a slow time."
+  },
+  "13245": {
+   "look": "mine",
+   "description": "Slabs of slate have been stacked into a rough retaining wall along one side, holding back a slow slump of loose rock. Fine grit trickles through gaps in the stack. The tunnel leads east toward another junction and west the way you came. The air tastes of chalk."
+  },
+  "13246": {
+   "look": "mine",
+   "description": "A tight junction where three tunnels merge, the roof bowed as though the rock above were pressing down. Cracks run through the old plaster of the walls. Ways lead north to a larger crossing, east around a bend, and west along the tunnel. Fine white powder sifts from the ceiling."
+  },
+  "13247": {
+   "look": "mine",
+   "description": "Four tunnels meet here beneath a ceiling that glitters faintly with flecks of pale green glass. The western passage opens on the Halls of Green Glass, where the walls give back a sickly shine. Other ways lead north and east around bends, and south to the junction. A sweetish, metallic smell drifts in the air."
+  },
+  "13250": {
+   "look": "mine",
+   "description": "The bend is sharp and awkward, its inner corner worn to a smooth bulge by cart hubs. Splashes of green glaze coat the lower wall. The tunnel leads south to the crossing and west toward a junction. A hollow tapping, as of a distant hammer, seems to come from the rock itself."
+  },
+  "13251": {
+   "look": "mine",
+   "description": "Three passages meet in a small chamber where the stone is veined with glassy green streaks. A narrow ledge, perhaps a miner's bench, is cut along one wall. Ways lead east around a bend, west along a tunnel, and south into the Halls of Green Glass. The air is faintly sweet and very still."
+  },
+  "13252": {
+   "look": "cave",
+   "description": "Walls of fused green glass shine all around you, melted by some old heat into smooth, rippling sheets. Every surface throws the dim light back in broken fragments, so the hall seems twice its size. Sharp-edged slivers glitter on the floor. Passages lead north to a junction and east to a crossing of tunnels."
+  },
+  "13253": {
+   "look": "mine",
+   "description": "A winding stretch where the tunnel is little more than a crack widened by picks. The walls press close and are slick with damp. North the passage climbs to a bend, and east it runs on to a junction. Old rope marks groove the rock at shoulder height."
+  },
+  "13248": {
+   "look": "mine",
+   "description": "A bend lined with hammered iron plates, bolted to the rock in rows, many flaking away in rust-red scales. Beyond them the stone is raw and splintered. The tunnel leads south around the corner and west to the crossing. A hot, dry smell lingers, like a long-dead forge."
+  },
+  "13249": {
+   "look": "mine",
+   "description": "The tunnel curls like a ram's horn here, the walls chipped into long spiral grooves by wheel hubs. A broken signboard, its paint illegible, hangs from a single nail. North the bend goes on to join another, and west the way leads to a junction. Pebbles click underfoot."
+  },
+  "13254": {
+   "look": "mine",
+   "description": "A plain stretch of tunnel with a ceiling of grey shale, flaking in thin layers like the pages of a book. Heaps of fallen flakes lie at the foot of the walls. North is a wide crossing, and south the passage goes on. The air is cool and tastes of dust."
+  },
+  "13255": {
+   "look": "mine",
+   "description": "A line of old cart-tracks runs under a thick crust of rust-coloured scale. The walls are scarred with scratches in sets of four, deeper than any pick would leave. The tunnel runs north and south, straight for a long way. Little sound reaches here except the faint hum of moving air."
+  },
+  "13256": {
+   "look": "mine",
+   "description": "A junction chamber with an arch over each exit, every one cut with a different mason's sign. A cracked stone water-trough stands dry against one wall. Tunnels lead out in every direction, north, east, south and west. The floor is worn into shallow dips by long-dead feet."
+  },
+  "13257": {
+   "look": "mine",
+   "description": "A cart-wide tunnel where a guide rope threaded through iron rings runs along the wall at waist height, worn bright by gripping hands. Chunks of pale rock litter the corners. West is the junction, and east the way bends off. The silence is filled with the faint tick of cooling stone."
+  },
+  "13258": {
+   "look": "mine",
+   "description": "The bend is shored with hardwood beams that have shrunk and cracked with age, their joints gaping. Fine yellow grit drifts down from the cracks. North the tunnel goes on around, and west it leads back to a straight run. Dust hangs in the air, motionless."
+  },
+  "13259": {
+   "look": "mine",
+   "description": "A narrow elbow of tunnel where generations of boot heels have worn a smooth patch into the inner corner. Strips of old cloth are caught on a splinter of rock. The tunnel runs east and south. The air has a faint smell of mushrooms."
+  },
+  "13260": {
+   "look": "mine",
+   "description": "The tunnel zigzags here, each short run ending in a sharp turn that hides what lies ahead. Candle wax has hardened in long ridges below a ledge in the wall. North, a turn leads to a larger chamber, and west the passage runs back. Water falls somewhere with a soft, steady patter."
+  },
+  "13261": {
+   "look": "mine",
+   "description": "The tunnel bends before a stout wooden door set into the western wall, its planks stained with old ale and smoke. Rings left by barrels mark the floor where kegs were rolled through. The passage leads south back around the bends and east toward a further turn. A smell of stale hops still clings to the stone."
+  },
+  "13262": {
+   "look": "mine",
+   "description": "A shallow bend where the roof has been braced with split logs lashed together by iron strapping. The wedge marks of the splitting axes are still sharp on the wood. West, the tunnel returns to the door of the tavern cellar, and south it carries on. The air has a thin, bitter tang of old smoke."
+  },
+  "13263": {
+   "look": "mine",
+   "description": "A long straight tunnel, braced every dozen paces with a squared beam carved with a number. Water has etched pale lines down the walls in streaks. Daylight has never reached the passage, which runs on north and south into black stillness. A heavy chill pools along the floor and numbs the ankles."
+  },
+  "13264": {
+   "look": "mine",
+   "description": "The bend swings round a pillar of unmined stone left to hold up the roof, its sides worn smooth by shoulders. Tiny crystals sparkle in the seams. North, the tunnel returns to a straight run, and west it twists onward. The ground underfoot is damp and gritty."
+  },
+  "13265": {
+   "look": "mine",
+   "description": "A tangled corner where two diggings were joined crookedly, leaving a ceiling that dips and rises in waves. Chisel marks cover the walls in rows. Here the tunnel turns back east and drops away south. A smell of wet stone fills the air, and a slow drip keeps the count of the minutes."
+  },
+  "13266": {
+   "look": "mine",
+   "description": "A junction chamber carved in an oval, with a low bench of stone around its edge where crews once rested. A black patch on the roof shows where lamps burned above it. Ways lead north, south and west. Cold lingers in the hollow of the bench."
+  },
+  "13267": {
+   "look": "mine",
+   "description": "The tunnel makes an awkward double turn, so that no one can see more than a few paces ahead. Fallen chips of rock lie in a fan across the floor. The way north leads to the junction chamber, and west it goes on toward another crossing. A thin odour of damp soot rises from the walls."
+  },
+  "13268": {
+   "look": "mine",
+   "description": "Three tunnels converge on a squat chamber with a floor of beaten earth, grooved by turning carts. A rail switch of rusted iron sits seized in the middle of the track. Ways lead north, east and west. The ceiling drips with condensation."
+  },
+  "13275": {
+   "look": "mine",
+   "description": "A junction where a seam of dark ore once forked and drew the miners three ways. The scars of their picks make the walls look clawed. Tunnels fork off to the east, the south and the west. The air is warm and oddly still, with a faint taste of hot metal."
+  },
+  "13274": {
+   "look": "mine",
+   "description": "This stretch has been shored with timbers laid close as the planks of a ship, a waste of good wood by a worried foreman. Many have bowed and split under the weight. The tunnel leads east toward a junction and west toward another. A sour smell of rot hangs in the damp."
+  },
+  "13273": {
+   "look": "mine",
+   "description": "Three tunnels meet in a chamber where a wrecked ore-cart lies on its side, axle snapped, its load of grey rock spilled across the floor. Scorch marks blacken the roof above it. Ways lead north to a crossing, east along a tunnel, and south to a further junction. A cold draught moves between them."
+  },
+  "13272": {
+   "look": "mine",
+   "description": "Three tunnels meet beneath a ceiling blackened by a hundred years of lamp smoke. The floor is rutted with parallel grooves where carts were hauled by hand when the rails failed. Ways lead north to a junction, south around a bend, and west along a narrow gallery. Somewhere in the rock a trickle of water runs on and on."
+  },
+  "13271": {
+   "look": "mine",
+   "description": "A bend in which the rock bulges inward from the wall like a knuckle, forcing a stoop. Soot and grease have polished it dark where hands steadied against it. North the tunnel rises to a junction, and east it winds on around the turn. A faint smell of charred wood is caught in the air."
+  },
+  "13270": {
+   "look": "mine",
+   "description": "The tunnel kinks sharply here, and heavy cross-timbers have been wedged across the bend to keep the wall from sliding in. Their ends are split and soft with rot. The passage leads north and west. A pale, chalky film has settled on every ledge."
+  },
+  "13269": {
+   "look": "mine",
+   "description": "Gouges as long as a man's arm score the wall at this corner, the marks of some tool or claw that the miners never explained. Black seams of coal shine wetly in the cuts. East the tunnel opens toward a junction, and south it winds back around a bend. The dust here is soft as ash."
+  },
+  "13276": {
+   "look": "mine",
+   "description": "The tunnel runs close beside an old drain-cut, a stone-lined channel now clogged with silt and cracked slabs. A damp coolness rises from it. The way north leads on through the workings, and east the passage returns to a junction. Drops fall from the roof in bright threads, hissing faintly into the silt."
+  },
+  "13277": {
+   "look": "mine",
+   "description": "A long straight stretch where the miners laid two sets of rails side by side, and one set has been torn up for scrap. The bare ties show pale in the dust. The tunnel leads north to a bend and south to another. An odd stillness settles over the passage, broken only by your own steps."
+  },
+  "13278": {
+   "look": "mine",
+   "description": "A corner where the passage squeezes between a wall of raw rock and a stack of old timber blocks, left from some halted repair. Heaps of wet clay shine in the lamp-glow. The tunnel leads east to a great junction and south along a straight run. A smell of mud and mildew fills the air."
+  },
+  "13200": {
+   "look": "mine",
+   "description": "A low cellar of vaulted brick, cold and dry, with empty barrel-racks standing along every wall. A trapdoor above is bolted shut from the other side, and a ladder climbs up toward it into the Back Room. Heavy doors lead east to the tunnels and west to Northeast Hold. The floor is stained dark with long-spilled ale."
+  },
+  "13295": {
+   "look": "mine",
+   "description": "This was a hold for guards in the old days: a bare vault of dressed stone, with arrow-slits blocked up and a hearth cold for years. A rack of rotten spear-shafts leans against the wall. The only way out is the heavy door east. Frost-pale cobwebs sag from the vaulting."
+  },
+  "13223": {
+   "look": "mine",
+   "description": "A well-kept tunnel, its walls shaved flat by skilled hands and its floor laid with fitted flagstones. Rail sockets are sunk neatly into the stone, though the rails themselves are gone. East lies a wide junction, and west the tunnel stretches on. The dust is so fine here that it hangs like smoke when disturbed."
+  },
+  "13222": {
+   "look": "mine",
+   "description": "A numbered brass plate is bolted to the wall at eye height, so tarnished that only a few digits show. Below it hangs a lamp-hook, worn bright by use. The tunnel leads east and west, the same in either direction. The dry air smells faintly of bitter almonds."
+  },
+  "13221": {
+   "look": "mine",
+   "description": "The roof here bears a long fresh-looking crack that runs from wall to wall, and fine sand trickles from it in a thin stream. Timbers have been jammed under it at a slant. From here the tunnel runs east toward the junction and west toward the pass. Each step stirs the sand into small eddies."
+  },
+  "13220": {
+   "look": "mine",
+   "description": "A broad mouth of rough-hewn rock where the tunnels of the first deep begin. Wooden signs, faded and leaning, once listed the shifts and wages. West the way opens into Dael's Pass, and east the tunnel runs on into the deep. A steady draught blows through, smelling of damp earth."
+  },
+  "13229": {
+   "look": "mine",
+   "description": "A tunnel of mismatched work, where one crew cut square and another oval, and the join is a ragged step. Candle-niches stand empty along the wall, still black above. East lies a junction, and west the tunnel goes on toward another. A faint wet sound drifts through the tunnel, like slow breathing."
+  },
+  "13230": {
+   "look": "mine",
+   "description": "A three-way meeting of tunnels in a drab chamber, its roof held by a single squat pillar left uncut. Smoke stains radiate from the pillar's top like a dark flower. Tunnels depart to the north, the east and the south. The ground is gritty with shattered stone."
+  },
+  "13236": {
+   "look": "mine",
+   "description": "A narrow tunnel in which the roof sags in a long shallow curve, as if the weight above pressed it down like a hand. Heavy braces have been added in a hurry, and pale chalk crosses mark the weakest. The way leads north and south. The air is cold and smells of rain on stone."
+  },
+  "13231": {
+   "look": "mine",
+   "description": "Glittering threads of fool's gold run through the walls here, catching the light in tiny pinpricks. The miners must have cursed the false hope of it. The tunnel leads north to a junction and south to another. Dust drifts gently across the floor in the faint draught."
+  },
+  "13232": {
+   "look": "mine",
+   "description": "A junction where one tunnel splits into two and a third joins from the side, making a knot of passages around a worn pillar. Painted arrows on boards, long ago blackened, point toward the deeper works. Passages depart to the north, to the east and to the south. A distant booming, like a door shutting far below, rolls faintly through the stone."
+  },
+  "13233": {
+   "look": "mine",
+   "description": "The tunnel bends here around a deep alcove where an old pump once stood, leaving only a rusted flange bolted to the rock. Streaks of green mark where water once ran down. The way south leads to the smelting halls, and west the tunnel returns to a junction. The air grows warmer, as though from a distant furnace."
+  },
+  "13234": {
+   "look": "mine",
+   "description": "A broad hall where the old smelters once began their work, its floor stained with pale slag and its roof black with soot. A stair of cracked stone winds down into the Second Deep from the middle of the floor. North the way returns to a bend in the tunnel, and west a passage leads on. A dry heat breathes up from below."
+  },
+  "13235": {
+   "look": "mine",
+   "description": "A tunnel of fitted stone that has been swept by some long gale of ash and left grey and powdery. Hooks in the wall show where tools once hung. The way north climbs to a junction, and east it leads toward the entrance of the smelting halls. A bitter smell of old burning hangs here."
+  },
+  "13296": {
+   "look": "mine",
+   "description": "Rows of stone desks fill this hall, each carved with a little channel for ink, each long dry. Racks of pigeonholes line the walls, and a few curled scraps of vellum still lie in them, crumbling when the air moves. The only way out is the archway east to the old road. A lectern at the far end is stained with old black ink."
+  },
+  "13279": {
+   "look": "mine",
+   "description": "The Mines of Khukal begin in a ragged chamber whose walls are pocked with hundreds of drill holes. An iron-shod cart stands at the end of a short length of rail, its wheels rusted to the track. The old pass lies north, while tunnels lead east, south and west. A sharp smell of mineral dust hangs in the air."
+  },
+  "13280": {
+   "look": "mine",
+   "description": "A dead-end tunnel in which the walls close together like the mouth of a funnel. Splintered pit-props lie crossed on the floor, stained by long years of damp. The way south descends toward other diggings, and west the passage leads to the first chamber. Cold water pools in a hollow."
+  },
+  "13281": {
+   "look": "mine",
+   "description": "A cramped gallery where the miners worked on their knees, leaving the ceiling just high enough for a crouch. Knee-marks are worn into the floor in pairs. North lies a short passage, and west a wider chamber opens. The air is stifling and tastes of old smoke."
+  },
+  "13282": {
+   "look": "mine",
+   "description": "A crossroads of four narrow tunnels, the central chamber dominated by a wooden windlass that once hauled ore up from some lower seam. Its rope is rotted to a stump. Narrow tunnels depart in all four directions, north, east, south and west. Echoes wander among the passages and come back changed."
+  },
+  "13285": {
+   "look": "mine",
+   "description": "The tunnel passes beneath a stretch of unsupported roof where the rock sags into smooth bulges like melted wax. Dust trickles from it constantly. Passages lead north toward a crossing, east, and west. A sickly sweet smell rises faintly from the floor."
+  },
+  "13286": {
+   "look": "mine",
+   "description": "A wide chamber with four exits, its floor scored by the tracks of heavy wagons that once turned here in a slow circle. Tarnished brass lamp-casings hang in a row from the ceiling, all empty. Passages lead north, east, south and west. The chamber is cold as a cellar."
+  },
+  "13284": {
+   "look": "mine",
+   "description": "A short link between two chambers, its walls blackened as though a fire once swept through. Charred stumps of props stand like burnt fingers. The way north leads on, and east the tunnel opens toward a crossing. Ash stirs in the corners with every breath of air."
+  },
+  "13283": {
+   "look": "mine",
+   "description": "A turn in the rock where the passage slips from one gallery to another, narrow and low. Someone has scratched a tally of days into the wall, hundreds of strokes long, ending abruptly. The tunnel leads east to the chamber at the pass and south along a short stretch. A damp chill clings to the rock."
+  },
+  "13289": {
+   "look": "mine",
+   "description": "Three galleries of the Mines of Khukal meet in a roughly square chamber, its walls hung with festoons of old rope. A cracked leather bellows is nailed to one post, long past use. Galleries lead off to the north, the east and the south. The air carries the flat metallic taste of worked ore."
+  },
+  "13290": {
+   "look": "mine",
+   "description": "A tight angle of tunnel where the rock glitters with a thousand tiny facets of dark crystal. The floor slopes in a smooth curve, rubbed hollow by sledges. The way south runs on, and west the gallery leads back to a chamber. Thin dust sparkles in the air."
+  },
+  "13291": {
+   "look": "mine",
+   "description": "The tunnel opens into a damp chamber where a wide stone-rimmed shaft lies to the south, its mouth ringed with old iron bolts. Ropes and chains hang over the rim, rusted into one solid mass. A passage leads north and another west. Water echoes below with a hollow note."
+  },
+  "13293": {
+   "look": "mine",
+   "description": "Mahal's Well is a round stone-lined shaft, wide as a cart, its rim worn smooth by centuries of ropes. A rusted windlass stands crooked over it, its crank snapped. Iron rungs set into the lining lead down into the black water far below. The tunnel runs back north, and the air that rises from the well is cold and mineral-sweet."
+  },
+  "13297": {
+   "description": "You float on black, still water in a narrow shaft, with a ring of stone rising sheer on every side. A faint grey disk of light marks the opening high above, and the rungs of an iron ladder climb toward it. The water is icy and tastes of iron. Ripples spread from your movement and slap quietly against the walls, and then everything is silent again."
+  },
+  "13292": {
+   "look": "mine",
+   "description": "A corner of the diggings where the seam ran out, leaving a smooth wall of plain grey rock with nothing worth taking. Chalked on it in a shaking hand is a long list of names, the last few smudged. The tunnel leads north to a chamber and east toward the well. The floor is slick with seeping water."
+  },
+  "13287": {
+   "look": "mine",
+   "description": "A dead-end alcove at the edge of the Khukal diggings, its walls scraped raw in long lines. A single pick, snapped at the haft and set upright in a crack, serves as a grim marker. The only way out is east. The stale air is thick with the smell of old dust."
+  },
+  "13195": {
+   "look": "mine",
+   "description": "An unfinished tunnel, begun with great care but abandoned within a dozen paces. Guide lines scratched into the ceiling show the arch that was meant to be, and the rough rock below them shows what was. Cold, dry air flows steadily through. The only way back is west."
+  },
+  "13196": {
+   "look": "mine",
+   "description": "A low hollow of black stone where the lower workings narrow to a throat. The roof is hung with rough stalactites of mineral that have dripped slowly for ages. The way north climbs back toward the stair, and south a shabbier tunnel continues. A smell of stagnant water fills the dark."
+  },
+  "13197": {
+   "look": "mine",
+   "description": "A rough-cut dead end, left in mid-swing, with half a column of rock still standing where a pillar was being hollowed. Loose rubble covers the floor in a smooth drift. The tunnel leads back north. The stillness here feels watchful."
+  },
+  "13188": {
+   "look": "mine",
+   "description": "A straight tunnel with a gravel floor and a drain-cut running along one side, built to serve the storage hall. Scraps of rope and rotting sacking cling to the iron rings in the wall. North is the hall of Ore Storage, and south the tunnel ends. The air is dry and bitter."
+  },
+  "13189": {
+   "look": "mine",
+   "description": "The tunnel ends in a rough barrier of tightly packed stone, laid deliberately and mortared with clay. Faint scratches mark the near side as though someone worked at it from within. The way out is north. Chill creeps from the mortar."
+  },
+  "13162": {
+   "look": "mine",
+   "description": "A hauling tunnel, broad and low, the floor laid with iron plates still bearing the shapes of wheel-flanges. Hooks hang in rows from the roof for lantern chains. West is Ore Storage, and east the tunnel runs on. The air smells of cold grease."
+  },
+  "13163": {
+   "look": "mine",
+   "description": "A dim straight passage where the walls have been whitewashed to make the lamplight go further. The wash is flaking in great grey curls. You can follow the tunnel either east or west from here. Rock dust hangs in the still air, and the lamplight dies a few paces off in both directions."
+  },
+  "13164": {
+   "look": "mine",
+   "description": "The tunnel tilts slightly under your feet as if the rock had shifted a little since the miners left. Rail ties lie loose and out of true along the floor. West the tunnel returns along its straight run, and east it opens onto a junction. A fine seep of water has laid down a skin of orange stain on the stone."
+  },
+  "13165": {
+   "look": "mine",
+   "description": "A three-way junction with a squat iron cart-turner set into the floor, its plate scraped bare to the metal. The scars of wheels radiate from it like spokes. Tunnels lead north, south and west. A cold sourness lies on the air."
+  },
+  "13168": {
+   "look": "mine",
+   "description": "A tunnel with a dressed stone floor and a plastered ceiling, painted in faded ochre. The plaster has fallen in places, showing raw rock behind. North the passage turns toward a corner, and south it returns to the junction. Pale threads of mould reach out across the wall."
+  },
+  "13169": {
+   "look": "mine",
+   "description": "A tight corner of the tunnel where the miners hung a shrine in a niche, a plain stone tablet scratched with a crude pick and star. Dead flowers of dried grey lichen are heaped before it. The passage leads east and south. The air is hushed, as in a vault."
+  },
+  "13170": {
+   "look": "mine",
+   "description": "A steep and slippery length of tunnel in which narrow steps have been cut into the floor and edged with iron to catch boots. Beads of cold water stand on the walls. North the passage climbs toward a junction, and west it leads back to the corner. A sharp tang of iron hangs in the air."
+  },
+  "13171": {
+   "look": "mine",
+   "description": "Three tunnels meet at a landing of heavy timber, from which hang several long iron chains that once supported lifts and swings. The wood groans slightly underfoot. Ways lead east, south and west. A heavy, brooding quiet lies over everything."
+  },
+  "13172": {
+   "look": "mine",
+   "description": "The roof is hung with long beards of pale fungus that sway slightly in the breeze, and the walls ooze with a clear, cold slime. The footing is treacherous. The tunnel leads north and west. Clinging damp makes the air heavy to breathe."
+  },
+  "13173": {
+   "look": "mine",
+   "description": "A gallery whose ceiling has fallen and been shored up again so many times that it is a patchwork of old and new timber. Broken planks lean against the walls. The tunnel leads north toward a junction and south around a bend. A cold draught carries a faint smell of something rotten."
+  },
+  "13174": {
+   "look": "mine",
+   "description": "The tunnel opens at the edge of a huge dark presence: the Black Rock looms beyond an arch to the north, a mass of glassy stone that drinks the light. Cracked, uneven steps lead toward it, scattered with fragments. Another tunnel runs west, and south the way leads back along the gallery. The air is thick, and dread settles in the chest."
+  },
+  "13175": {
+   "look": "mine",
+   "description": "The Black Rock fills this chamber, a colossal boulder of glassy stone, wet-black and veined with dull red, which the miners dug around but never through. The floor around it is gnawed and cratered, strewn with splinters of bone and broken tools. Gouges ring its base where something has fed. The only way out is the tunnel south, and the air is heavy with the smell of fresh dust and old blood."
+  },
+  "13176": {
+   "look": "mine",
+   "description": "A narrow passage whose floor has been worn to a groove by sledges dragging great blocks of ore. The walls are shiny with a dark film of old oil. East lies a junction, and west the tunnel goes on. A low hum, like a far-off bell, sometimes seems to come from the stone."
+  },
+  "13177": {
+   "look": "mine",
+   "description": "The tunnel makes a hard turn around a pillar of living rock, scarred with a hundred chisel tests. A line of dim ochre handprints climbs the pillar, some very small. East the passage returns toward a junction, and south it runs along a straight stretch. A heavy silence presses on the ears."
+  },
+  "13178": {
+   "look": "mine",
+   "description": "A narrow tunnel whose floor has been laid with timber planks, now warped and split by damp. Gaps between them show black water far below. The passage leads on to the north and the south. Every step creaks loudly in the quiet, and the sound runs ahead of you down the tunnel."
+  },
+  "13179": {
+   "look": "mine",
+   "description": "A short passage ending at a heavy door-frame whose door has been ripped away, leaving only twisted hinges. Splintered planks lie beyond it, and deep claw marks run down the posts. The way north leads along the straight, and east lies the junction. The air tastes of rust and rot."
+  },
+  "13166": {
+   "look": "mine",
+   "description": "A dark tunnel whose roof is so low that tall folk walk bent double. The walls are packed with the gleam of a metal ore, dull as lead. North lies a junction, and south the passage ends in a stub. The silence seems to bend sound around the corners."
+  },
+  "13167": {
+   "look": "mine",
+   "description": "A bare dead end of crushed grey stone, where the vein pinched out and the miners gave up. A line of sunken drill-holes marks the last day's work. The only way out is north. The cold lies on the rock like frost."
+  },
+  "13161": {
+   "look": "mine",
+   "description": "The Dump is a wide cavern heaped with waste rock, broken carts and rotted baskets, tipped in layers over the years. Rails run to the lip of a great slope of tailings, where a rusted tipping-frame still hangs. The way west leads back to the mine entrance. A sharp smell of damp spoil drifts up from the heap."
+  }
+ },
+ "extras": {
+  "13153": [
+   {
+    "keywords": "signpost sign post",
+    "description": "The signpost carries four boards, each pointing down a tunnel. The painted names are so worn that only the dwarvish stroke for ore can still be made out."
+   }
+  ],
+  "13187": [
+   {
+    "keywords": "warning inscription arch",
+    "description": "Deep dwarvish letters above the arch read that no soul may pass without a lamp and a rope. Beneath, someone has scratched a smaller line in the common tongue: they did not listen."
+   }
+  ],
+  "13212": [
+   {
+    "keywords": "rune runes arch",
+    "description": "The runes name the roads in the old dwarven script: the road, the deep, the mines and the way of the stair. Fingers of dust fill each stroke."
+   }
+  ],
+  "13294": [
+   {
+    "keywords": "map floor inlay",
+    "description": "The inlaid map shows the mountains and the roads under them, with little chips of red stone marking mines that fell. A great black stone is set into the map at one place, ringed with notches."
+   }
+  ],
+  "13252": [
+   {
+    "keywords": "glass walls green",
+    "description": "The glass is thick and green as a bottle, with bubbles caught in it like frozen breath. Something dark and curled lies deep within one sheet, too far inside to make out."
+   }
+  ],
+  "13283": [
+   {
+    "keywords": "tally strokes scratches",
+    "description": "The strokes run in careful rows of five, filling the wall from knee to shoulder. The last row is unfinished, and the final scratch trails off into a long gouge."
+   }
+  ],
+  "13200": [
+   {
+    "keywords": "ladder trapdoor",
+    "description": "A ladder of grey, worn rungs rises to a trapdoor of black oak. Light shows around its edges in thin bright lines, but it will not shift from this side."
+   }
+  ],
+  "13175": [
+   {
+    "keywords": "rock black boulder stone",
+    "description": "The Black Rock is cold to the touch, and your fingers come away dusted with a fine black glitter. Deep within it, a dull red line pulses very slowly, like a sleeping heart."
+   }
+  ],
+  "13293": [
+   {
+    "keywords": "well windlass",
+    "description": "Dwarvish letters run around the rim of the well: Mahal drew water here and none was ever found wanting. The windlass has not turned in generations."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "z509-skeleton-miner",
+   "keywords": "skeleton miner dwarf bones",
+   "short_desc": "a skeleton miner",
+   "long_desc": "A skeleton miner in rotted leather scrapes a pick along the wall, as though still at work.",
+   "description": "The bones of a dwarf, still wearing the shreds of a miner's leather apron and a dented lamp-helm. Its empty sockets turn toward the light, and the pick in its fist never stops moving.",
+   "kind": "undead",
+   "level": 41,
+   "aggressive": true,
+   "alignment": -300,
+   "sectors": [
+    "inside",
+    "city",
+    "forest"
+   ],
+   "count": 10,
+   "drops": [
+    {
+     "item": "z509-miners-pick",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "z509-mine-ghoul",
+   "keywords": "ghoul mine tunnel",
+   "short_desc": "a gaunt mine ghoul",
+   "long_desc": "A gaunt mine ghoul crouches in the dust, gnawing at something it does not wish to share.",
+   "description": "A long-limbed thing that was once a miner, its skin grey as the rock and its fingers worn to hooked, black claws. It moves with a low, crawling hunger.",
+   "kind": "undead",
+   "level": 43,
+   "aggressive": true,
+   "alignment": -500,
+   "sectors": [
+    "inside",
+    "city",
+    "forest"
+   ],
+   "count": 8,
+   "drops": [
+    {
+     "item": "z509-ghoul-vest",
+     "chance": 18
+    }
+   ]
+  },
+  {
+   "id": "z509-rock-worm",
+   "keywords": "worm rock tunnel",
+   "short_desc": "a pale rock worm",
+   "long_desc": "A pale rock worm as thick as a barrel coils in the shadows, grinding stone between its teeth.",
+   "description": "A blind white worm the length of a cart, its ringed hide crusted with stone dust. A ring of grinding plates opens in its head, wet and enormous.",
+   "kind": "monster",
+   "level": 44,
+   "aggressive": true,
+   "alignment": -200,
+   "sectors": [
+    "inside",
+    "city",
+    "forest"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "z509-foreman-helm",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "z509-khukal-foreman",
+   "keywords": "foreman wight khukal",
+   "short_desc": "the Khukal wight foreman",
+   "long_desc": "A Khukal wight foreman stalks the diggings with a rusted whistle at its lips, driving the dead to work.",
+   "description": "A tall dwarf in a rotted coat, its beard a tangle of grave-cloth, a cold light burning behind its eyes. Its whistle makes no sound that you can hear, and yet the dead obey.",
+   "kind": "undead",
+   "level": 47,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "Mines Of Khukal"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "z509-foreman-helm",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "z509-razorleg-spider",
+   "keywords": "spider razorleg giant",
+   "short_desc": "a razorleg spider",
+   "long_desc": "A razorleg spider the size of a pony clings to the roof, its blade-like legs ticking on the rock.",
+   "description": "A hulking black spider whose forelegs end in broad, serrated blades, built for cutting through stone as well as flesh. Its eyes gleam like polished beads.",
+   "kind": "animal",
+   "level": 46,
+   "aggressive": true,
+   "alignment": -100,
+   "rooms": [
+    "The Under-Mines",
+    "Entrance To The Under-Mines",
+    "An Unfinished Tunnel"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "z509-ghoul-vest",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "z509-thane-oskar",
+   "keywords": "oskar thane skeleton warlord ironbrow",
+   "short_desc": "Thane Oskar Ironbrow, the skeleton warlord",
+   "long_desc": "Thane Oskar Ironbrow, a skeleton warlord in cracked war-plate, stands guard over the empty tables of the war chamber.",
+   "description": "The bones of the dwarf who commanded the mine garrison, clad in black war-plate and wielding a great two-handed axe. A circlet of iron crowns his skull, and from it his sockets burn with an angry light.",
+   "kind": "undead",
+   "level": 46,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The War Chamber"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "z509-ironbrow-shield",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "z509-gorrakh",
+   "keywords": "gorrakh troll rock-eater stone devourer",
+   "short_desc": "Gorrakh the Rock-Eater, a stone troll",
+   "long_desc": "Gorrakh the Rock-Eater, a vast stone troll, crouches against the Black Rock, jaws working at a mouthful of bone.",
+   "description": "A huge troll whose hide has hardened into plates of black stone, its shoulders broader than a tunnel. Its jaws can crack granite, and the floor around it is littered with what is left of the miners.",
+   "kind": "monster",
+   "level": 49,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "The Black Rock"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "z509-rockeater-maul",
+     "chance": 35
+    },
+    {
+     "item": "z509-ironbrow-shield",
+     "chance": 20
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "z509-miners-pick",
+   "keywords": "pick miners dwarven axe",
+   "short_desc": "a dwarven miner's pick",
+   "room_desc": "A dwarven miner's pick lies here, its head pitted with rust.",
+   "description": "A heavy pick with a stout ash haft worn smooth by years of gripping. Its pointed head has been sharpened until it is more weapon than tool.",
+   "kind": "weapon",
+   "level": 41,
+   "weapon_type": "pierce",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "z509-ghoul-vest",
+   "keywords": "vest leather ghoul-hide hide",
+   "short_desc": "a ghoul-hide vest",
+   "room_desc": "A stiff vest of grey hide lies here.",
+   "description": "A vest stitched from tough grey hide, stiff as boiled leather and cold to the touch. It smells faintly of the grave.",
+   "kind": "armor",
+   "level": 43,
+   "wear_slot": "body",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "z509-foreman-helm",
+   "keywords": "helm helmet foreman lamp",
+   "short_desc": "a foreman's lamp-helm",
+   "room_desc": "A dented iron helm with a lamp-bracket lies here.",
+   "description": "A dented iron helm with a brass bracket on the brow for a lamp. Strokes of white chalk mark a foreman's rank on the rim.",
+   "kind": "armor",
+   "level": 46,
+   "wear_slot": "head",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "z509-ironbrow-shield",
+   "keywords": "shield ironbrow war round iron",
+   "short_desc": "Ironbrow's war shield",
+   "room_desc": "A cracked, heavy iron shield lies here.",
+   "description": "A round iron shield, its face scarred by a hundred blows and its boss shaped into a scowling dwarven face. It still carries the weight of the old garrison's pride.",
+   "kind": "armor",
+   "level": 46,
+   "wear_slot": "shield",
+   "bonus": {
+    "hp": 15
+   }
+  },
+  {
+   "id": "z509-rockeater-maul",
+   "keywords": "maul rock-eater stone hammer",
+   "short_desc": "the Rock-Eater's maul",
+   "room_desc": "A huge maul of black stone lies here.",
+   "description": "A maul hewn from a single block of glassy black rock, bound with iron straps to a thick haft. It is far too heavy for most, but it breaks whatever it strikes.",
+   "kind": "weapon",
+   "level": 49,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  }
+ ]
+}

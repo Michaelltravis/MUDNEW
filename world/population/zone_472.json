@@ -1,0 +1,142 @@
+{
+ "zone": 472,
+ "_about": "Mount Ravenmist (levels 16-26): outcast scouts who help each other and walk the mountain path, mountain trolls, the rock wyverns as elites, and the Wyvern Matriarch on the mountain top bringing down rockfalls and calling her brood.",
+ "creatures": {
+  "647201": {
+   "helpers": {
+    "group": "outcasts",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The scout gives a sharp whistle: outcasts close in!"
+   },
+   "why": "outcast scouts"
+  },
+  "647202": {
+   "helpers": {
+    "group": "mountain_trolls",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The troll roars, and another answers from the rocks!"
+   },
+   "why": "trolls"
+  },
+  "647203": {
+   "rank": "elite",
+   "why": "a rock wyvern"
+  },
+  "47250": {
+   "name": "wyvern matriarch",
+   "short_desc": "the Wyvern Matriarch",
+   "long_desc": "The Wyvern Matriarch crouches on the summit, wings half-spread, tail lashing.",
+   "description": "A grey-green wyvern twice the size of the others, her hide scarred by a century of storms and her barbed tail thick as a man. Every wyvern on Ravenmist hatched from her eggs.",
+   "level": 26,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "wyvern",
+   "rank": "boss",
+   "alignment": -300,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Wyvern Matriarch screams, and the mountain answers!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Wing Buffet",
+      "telegraph": "The Wyvern Matriarch rears up and beats her great wings!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Venom Sting",
+      "telegraph": "The Wyvern Matriarch arches her barbed tail!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Diving Strike",
+      "telegraph": "The Wyvern Matriarch launches into the air and wheels to dive!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 647201,
+   "route": [
+    16110,
+    16112,
+    16113,
+    16114,
+    16115,
+    16117,
+    16119,
+    16120,
+    16121,
+    16122,
+    16128,
+    16129,
+    16130,
+    16131,
+    16132,
+    16133,
+    16134,
+    16135,
+    16136,
+    16137,
+    16138,
+    16139
+   ],
+   "why": "an outcast scout walks the mountain path"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 47250,
+   "room": 16107,
+   "why": "the Wyvern Matriarch on the mountain top",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Rockfall",
+     "school": "physical",
+     "every": 9,
+     "radius": 2.5,
+     "last": 6,
+     "pct": 0.05,
+     "why": "rocks loosed by her wings: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "647203": 1
+     },
+     "shout": "The Wyvern Matriarch screams, and a rock wyvern dives out of the mist!",
+     "why": "her brood"
+    }
+   ]
+  }
+ ]
+}

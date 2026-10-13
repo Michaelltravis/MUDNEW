@@ -26,8 +26,9 @@
      "description": "To the up lies The Hole."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and up.",
-   "placeholder": true
+   "description": "A slope of broken stone fills the passage, jammed between the walls\nwhere some old collapse brought the roof down. A gap just wide enough to\nsqueeze through winds between the biggest slabs, and the dust you kick\nup hangs in the dark like smoke. Far above, a pale scrap of daylight\nmarks the way up toward The Hole. The tunnel runs on south into deeper\nblackness, and a cold draught creeps up it smelling of wet stone.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "20601": {
    "vnum": 20601,
@@ -41,9 +42,29 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 20600,
+     "description": "To the north lies Through The Rubble."
+    },
+    "south": {
+     "to_room": 20602,
+     "description": "To the south lies The Tunnels Of Darkness."
+    }
+   },
+   "description": "The tunnel narrows to a crooked bore of dark stone, its ceiling propped\nhere and there by timbers gone soft with rot. Pick marks scar the walls\nin long, tired rows, abandoned in the middle of a swing. Your light\nshrinks to a small yellow bubble, and the dark presses close beyond it.\nSomewhere ahead, stones tick and settle as though the mountain were\nturning over in its sleep.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646403,
+     "max": 1
+    },
+    {
+     "vnum": 646404,
+     "max": 1
+    }
+   ]
   },
   "20602": {
    "vnum": 20602,
@@ -57,9 +78,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 20601,
+     "description": "To the north lies The Tunnels Of Darkness."
+    },
+    "east": {
+     "to_room": 20603,
+     "description": "To the east lies The Tunnels Of Darkness."
+    }
+   },
+   "description": "Here the passage forks into blind pockets and half-dug alcoves, each one\nending in a wall of raw, unworked rock. A rusted wheelbarrow lies on its\nside with one wheel missing, its iron rim bent as if by a great hand.\nFine grey dust coats every surface, unmarked save for a single trail\nthat leads nowhere you can see. The air is thin and still and tastes of\nold copper.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "20603": {
    "vnum": 20603,
@@ -73,9 +104,25 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 20602,
+     "description": "To the west lies The Tunnels Of Darkness."
+    },
+    "east": {
+     "to_room": 20605,
+     "description": "To the east lies The Tunnels Of Darkness."
+    }
+   },
+   "description": "A tangle of broken props and splintered boards chokes this stretch of\ntunnel, leaving only a crooked path through the wreckage. Water seeps\nfrom a crack overhead and drips into a puddle black as ink, each drop\nringing out too loudly. Scratches mark the wall at shoulder height, as\nif someone had counted the days in the dark. You find yourself listening\nharder than you meant to.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646402,
+     "max": 1
+    }
+   ]
   },
   "20604": {
    "vnum": 20604,
@@ -89,9 +136,15 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 20610,
+     "description": "To the south lies Tunnels End."
+    }
+   },
+   "description": "The tunnel opens a little here into a low, ragged chamber where several\ndiggings meet, and the rock overhead glitters faintly with flecks of\nmica. Rails of rusted iron run out of the gloom and stop at an ore cart\ntipped on its side, its load of rubble spilled across the floor. An old\nlantern hangs from a hook in the wall, cold and empty. A smell of damp\nearth and something sourer drifts through the stale air.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "20605": {
    "vnum": 20605,
@@ -105,9 +158,25 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 20603,
+     "description": "To the west lies The Tunnels Of Darkness."
+    },
+    "east": {
+     "to_room": 20606,
+     "description": "To the east lies The Tunnels Of Darkness."
+    }
+   },
+   "description": "The walls are slick with a pale crust that glimmers wetly, and the floor\ndips toward a shallow trench worn by years of seepage. A pair of rusted\nshackles hangs from a ring bolted to the rock, though nothing about the\nplace says what they were meant to hold. Your footsteps die at once in\nthe heavy air. The dark ahead seems thicker than the dark behind.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646402,
+     "max": 1
+    }
+   ]
   },
   "20606": {
    "vnum": 20606,
@@ -121,9 +190,28 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 20607
+    },
+    "west": {
+     "to_room": 20605,
+     "description": "To the west lies The Tunnels Of Darkness."
+    },
+    "east": {
+     "to_room": 20609,
+     "description": "To the east lies The Tunnels Of Darkness."
+    }
+   },
+   "description": "A great vein of dull grey stone has been chiselled out of the wall here,\nleaving a ragged hollow like an open mouth. Chisels and wedges still\nstand in their cracks, furred with rust, and a crooked peg beside them\nholds a miner's leather cap, stiff with age. Long gouges score the rock\naround the hollow, far too deep and wide for any pick. A faint scraping\ndrifts up from somewhere below.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646403,
+     "max": 1
+    }
+   ]
   },
   "20607": {
    "vnum": 20607,
@@ -141,10 +229,23 @@
     "down": {
      "to_room": 20533,
      "description": "To the down lies On The Ladder."
+    },
+    "south": {
+     "to_room": 20606
+    },
+    "east": {
+     "to_room": 20608
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads down.",
-   "placeholder": true
+   "description": "A square opening yawns in the floor where a ladder of black timber\nclimbs down into the deep places below. Its rungs are worn smooth by\nages of hands and boots, and a rope tied to the topmost one hangs slack\ninto the dark. Cold air rises from the way down, carrying a hollow echo\nand the faraway smell of old stone. The tunnel itself ends here in a\nheap of dust and flaked rock.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646402,
+     "max": 1
+    }
+   ]
   },
   "20608": {
    "vnum": 20608,
@@ -158,9 +259,16 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 20607
+    }
+   },
+   "description": "The roof drops so low here that you must stoop, and the walls crowd\nclose on either side, rough with the marks of hurried digging. Long\nstrings of old cobweb sag from the timbers, grey and heavy with dust. A\nring of melted candle stubs sits in the middle of a crude chalk circle,\nits lines smeared by something dragged across it. The silence is thick\nenough to feel on your skin.",
+   "look": "mine",
+   "extra_descs": {
+    "circle chalk stubs": "The chalk circle is drawn in a hurried, shaking hand, with signs around\nthe edge that you do not know. A deep, curved scrape cuts across it as\nif something heavy had been hauled away."
+   }
   },
   "20609": {
    "vnum": 20609,
@@ -174,9 +282,24 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch.",
-   "placeholder": true
+   "exits": {
+    "east": {
+     "to_room": 20610
+    },
+    "west": {
+     "to_room": 20606,
+     "description": "To the west lies The Tunnels Of Darkness."
+    }
+   },
+   "description": "This is the deepest and oldest stretch of the workings, where the walls\nare not cut stone but a glassy black rock that drinks the light. Faint\nveins of dull silver thread through it, pulsing so slightly you cannot\nbe sure you see them. The floor is warm underfoot, and the air hums with\na note just below hearing. Whatever the miners were digging for, they\nfound it here, and left in a hurry.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646402,
+     "max": 1
+    }
+   ]
   },
   "20610": {
    "vnum": 20610,
@@ -198,10 +321,20 @@
     "south": {
      "to_room": 20615,
      "description": "To the south lies Cavern Entrance."
+    },
+    "west": {
+     "to_room": 20609
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The long tunnel finally ends in a ragged archway of mortared stone,\nwhere lamplight spills thinly from the town beyond. Dust-furred timbers\nbrace the arch, and the stale air of the workings gives way to cooking\nsmoke and warm iron. Back up the passage to the north, the darkness\nwaits like a held breath. To the south the way opens into the Cavern\nEntrance, and the sounds of the town grow clear.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646405,
+     "max": 1
+    }
+   ]
   },
   "20615": {
    "vnum": 20615,
@@ -233,8 +366,9 @@
      "description": "To the west lies The Shopping District."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "You step out of the tunnel into the vast cavern that holds the town, its\nroof lost in gloom far above. Lanterns on iron poles throw wavering\nrings of light across a floor of beaten grit and trodden stone. Behind\nyou the tunnel mouth breathes cold air back up the passage to the north.\nThe cavern stretches south toward its centre, a lane leads east along\nthe rear wall, and shop fronts line the way west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "20616": {
    "vnum": 20616,
@@ -266,8 +400,15 @@
      "description": "To the west lies Cavern Entrance."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Along the rear wall of the cavern the rock is smoothed and whitewashed\nin patches, and a few narrow doorways have been cut straight into it. A\nhand-lettered sign on a post points north to Spaymoore's Diner, from\nwhich come the clatter of plates and the smell of frying onions. The\nlane goes on east past more houses and back west toward the entrance,\nwhile south the ground opens toward a raised pedestal of stone. Soot has\npainted the ceiling above in long black streaks.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646400,
+     "max": 1
+    }
+   ]
   },
   "20617": {
    "vnum": 20617,
@@ -299,8 +440,15 @@
      "description": "To the west lies The Back Of The Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The lane here runs hard along the rear of the cavern, where a stoop of\nworn steps leads north to a miner's front door. Pale stalactites hang\nfrom the roof like frozen candle wax, dripping slowly onto the grit.\nEast the wall bends toward a corner of the cavern, while south the lane\nopens into the middle of the town, and west it returns toward the diner.\nA chorus of distant hammering echoes off the stone.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646400,
+     "max": 1
+    }
+   ]
   },
   "20618": {
    "vnum": 20618,
@@ -338,8 +486,8 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A miner's living room, snug and low, with a threadbare rug over the bare\nstone and a hearth glowing with banked coals. Two sagging armchairs face\nthe fire, and a shelf above holds a row of chipped mugs and a small\ncarved figure of a bearded dwarf. Pick handles lean beside the door\nsouth to the cavern lane. A doorway north leads into a hallway, and a\nplank door east opens on the kitchen.",
+   "extra_descs": {}
   },
   "20619": {
    "vnum": 20619,
@@ -359,8 +507,8 @@
      "description": "To the west lies The Living Room."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A small kitchen where a black iron stove squats against the wall, its\npipe running up through a hole bored in the ceiling rock. Copper pans\nhang over a scrubbed table, and a sack of meal slumps in a corner beside\na cask of salted pork. The room smells of bread, smoke and damp stone.\nThe only door lies west, back to the living room.",
+   "extra_descs": {}
   },
   "20620": {
    "vnum": 20620,
@@ -384,8 +532,8 @@
      "description": "To the up lies Upstairs In A Miner's House."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and up.",
-   "placeholder": true
+   "description": "A narrow hallway runs between close walls of limewashed rock, hung with\na row of iron pegs for coats and lamps. A steep wooden stair climbs up\ninto the dark of the upper floor, its treads dished by years of heavy\nboots. The room to the south is the living room, and from there comes\nthe murmur of the fire. The floor is swept clean, a point of pride in a\ntown so full of dust.",
+   "extra_descs": {}
   },
   "20621": {
    "vnum": 20621,
@@ -403,8 +551,8 @@
      "description": "To the down lies The Hallway."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads down.",
-   "placeholder": true
+   "description": "Under a slanting ceiling of raw stone, a pair of narrow beds stand\nagainst opposite walls, each with a thin blanket folded at its foot. A\nlittle shuttered niche lets in a dim glow from the lanterns of the town\nbelow. Boots stand in a row beside a battered chest, and the air smells\nof tallow and sleeping men. The stair leads down to the hallway.",
+   "extra_descs": {}
   },
   "20622": {
    "vnum": 20622,
@@ -434,8 +582,9 @@
      "description": "To the west lies The Back Of The Cavern."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "In the corner of the cavern the walls close in at a sharp angle, and\nlantern light pools thickly where rock meets rock. A tiled passage leads\nnorth to the gents' washroom, another east to the ladies', and the lane\nruns south along the cavern's edge. Water trickles down the stone in a\nbright thread to a gutter, and the whole corner smells of lye soap.\nWest, the lane returns toward the back of the cavern.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "20623": {
    "vnum": 20623,
@@ -465,8 +614,9 @@
      "description": "To the west lies Middle Of The Cavern."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "The cavern's eastern flank rises here as a sheer curtain of dark rock,\nstreaked with mineral stains in orange and green. Lantern hooks have\nbeen hammered into the stone at head height, and a long bench of split\nlogs sits beneath them where workers rest. A door to the east leads into\nthe newsroom, where a press clatters, while the lane runs north toward a\ncorner and south toward another. West, the wide middle of the cavern\nopens out.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "20624": {
    "vnum": 20624,
@@ -498,8 +648,15 @@
      "description": "To the west lies The Overseer's Pedestal."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The floor is worn into shallow ruts by cartwheels here, and the roof\nsoars so high that lamplight never reaches it. Handcarts stand abandoned\nalong the edge of the lane, their shafts propped on stones. To the west\nrises the overseer's pedestal, a dark stump against the glow of the\nlamps. Lanes lead north to the back of the cavern, east to the far wall,\nand south to the Great Escape.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646400,
+     "max": 1
+    }
+   ]
   },
   "20625": {
    "vnum": 20625,
@@ -533,8 +690,10 @@
      "description": "To the up lies Atop the Pedestal."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south, west and up.",
-   "placeholder": true
+   "description": "A squat pillar of fitted stone rises from the cavern floor, its flat top\nreached by a spiral of worn steps cut into its side. From up there the\noverseer once watched every lane and every hammer, and the iron rail\naround the rim is polished by his gloves. Lanes branch north toward the\nback of the cavern, east to the middle, south to a building site, and\nwest to the centre. A chill breeze with no source stirs around the base.",
+   "extra_descs": {
+    "steps spiral rail": "The steps are cut shallow and narrow, so that anyone climbing must watch\nhis feet. The iron rail at the top is rubbed bright where the overseer\nonce leaned."
+   }
   },
   "20626": {
    "vnum": 20626,
@@ -552,8 +711,14 @@
      "description": "To the down lies The Overseer's Pedestal."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. A way leads\ndown.",
-   "placeholder": true
+   "description": "The flat top of the pedestal gives a commanding view over the whole\ncavern, from the tunnel mouth in the rear wall to the huge stone gates\nfar below. An iron rail rings the rim, and in the middle stands a heavy\nchair of black oak with arms worn by clenching hands. A cold wind stirs\nhere that no cavern should have, and the lamps below seem very small.\nThe stair winds down to the ground.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646406,
+     "max": 1
+    }
+   ]
   },
   "20627": {
    "vnum": 20627,
@@ -585,8 +750,15 @@
      "description": "To the west lies The Middle Of The Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The great open heart of the cavern, where lanes meet beneath a roof so\nhigh it is lost in shadow. The ground is stamped smooth by generations\nof boots, and four tall lamp-posts of black iron burn at its points. The\nentrance lies north, the pedestal east, the huge stone gates south, and\nthe fountain district west. A low murmur of voices and hammers fills the\nair like the sea.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646400,
+     "max": 1
+    }
+   ]
   },
   "20628": {
    "vnum": 20628,
@@ -618,8 +790,9 @@
      "description": "To the west lies The Stone Fountain."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A broad, gently sloping stretch of packed grit lies beneath the western\nhalf of the vault, patched with puddles from the roof's constant drip.\nHandcarts have worn twin ruts across it, leading north toward the\nshopping district. The wall of the cavern lies south, the centre of the\ntown east, and the splash of the stone fountain carries clearly from the\nwest.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "20629": {
    "vnum": 20629,
@@ -649,8 +822,16 @@
      "description": "To the west lies The Extreme Western Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "The stone fountain stands at the heart of the cavern town, a wide basin\nof grey rock where water pours from the mouth of a carved, bearded face.\nSpray beads on the rim and runs in rills down the grooves of the\npavement. Miners stop to rinse the dust from their hands and throats,\nand the splash covers the hammering from elsewhere. Lanes lead north to\nthe shops, east to the middle of the cavern, south along the cavern\nwall, and west to the edge of the town.",
+   "extra_descs": {
+    "face fountain spout basin": "The carved face is a bearded miner with his mouth wide open, the water\npouring from it in a clear, cold stream. Generations of coins lie green\nat the bottom of the basin."
+   },
+   "mob_resets": [
+    {
+     "vnum": 646401,
+     "max": 1
+    }
+   ]
   },
   "20630": {
    "vnum": 20630,
@@ -680,8 +861,8 @@
      "description": "To the west lies The Doctor's Waiting Room."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Along the extreme western edge of the cavern the rock face is dark and\ndamp, and a long channel cut in the floor carries a thin stream of water\naway into the shadows. Shuttered shop-fronts and low doors line the\nlane. North stands the entrance to the treasury, south the lane drops to\na corner, east the fountain plays, and west a door leads to the doctor's\nwaiting room.",
+   "extra_descs": {}
   },
   "20631": {
    "vnum": 20631,
@@ -721,8 +902,8 @@
      }
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast, south and west.",
-   "placeholder": true
+   "description": "A heavy iron door set in a frame of dressed stone is the entrance to the\ntown's treasury, studded with bolts and flanked by two lamps in wire\ncages. The ground before it is swept clean and marked with a pale line\nwhere visitors must wait. A side door north is lettered for the treasury\nmaster, a second door west leads into the vault itself, and lanes run\neast to the front of the shops and south along the wall.",
+   "extra_descs": {}
   },
   "20632": {
    "vnum": 20632,
@@ -742,8 +923,8 @@
      "description": "To the east lies Entrance To The Treasury."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
-   "placeholder": true
+   "description": "A low vault of seamless stone, its walls lined with iron-bound chests\nand shelves of ingots stamped with the town's mark. A balance of brass\npans hangs from a beam, and a chalk tally on the wall counts bars and\ncoin in careful columns. The air is cold and still as a tomb. The only\nway out is the iron door east.",
+   "extra_descs": {}
   },
   "20633": {
    "vnum": 20633,
@@ -773,8 +954,14 @@
      "description": "To the west lies Entrance To The Treasury."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "A cobbled apron stretches before a row of shopfronts, where hand-painted\nsigns advertise everything from rope to ribbons. A bench of rough planks\nsits against the rock, polished by the seats of gossips. A narrow\ndoorway to the north is marked Bits and Pieces, a lane leads east to the\nshopping district, and the fountain's water can be heard south. West\nstands the grim iron-bound door of the treasury.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646401,
+     "max": 1
+    }
+   ]
   },
   "20634": {
    "vnum": 20634,
@@ -804,8 +991,14 @@
      "description": "To the west lies In Front Of The Shops."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "A bustling lane lined with shopfronts cut into the rock, each with a\npainted wooden sign swinging over its door. Awnings of patched canvas\nshade tables of tools, lamp oil and dried food, and the cobbles are\nslick with spilled wash-water. A doorway marked with a painted boot\nleads north into Drapor's Shoe Fayre, and the lane runs east to the\ncavern entrance, south toward the middle of the town, and west past more\nshops.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646401,
+     "max": 1
+    }
+   ]
   },
   "20635": {
    "vnum": 20635,
@@ -825,8 +1018,8 @@
      "description": "To the south lies In Front Of The Shops."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
-   "placeholder": true
+   "description": "Every inch of this crammed shop holds something: coils of rope, odd\ngloves, cracked lanterns, bent spoons and a hundred keys that fit\nnothing. Narrow aisles twist between the stacks, and a counter at the\nback is buried under a drift of receipts and string. Dust lies on\neverything, and a smell of old metal and machine oil lingers. The only\nway out is the doorway south, back to the front of the shops.",
+   "extra_descs": {}
   },
   "20636": {
    "vnum": 20636,
@@ -856,8 +1049,9 @@
      "description": "To the west lies The Warehouse."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Where the cavern wall bends into its southwestern pocket, the rock leans\nin over the lane and the lamp-light turns amber. A low shed with a tin\nroof squats to the south, ringing with the sound of hammers on metal.\nEast the lane follows the wall, north it runs up beside the western edge\nof the town, and west a wide doorway opens on a warehouse.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "20637": {
    "vnum": 20637,
@@ -879,8 +1073,8 @@
      "description": "To the west lies The Rift In Space."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long, cluttered warehouse of stacked crates, barrels and coils of\nrope, its rafters hung with dusty lamps. Narrow paths wind between the\nstacks, and everything wears a skin of grey dust. At the western end the\nair seems to ripple and shimmer, like heat over a summer road. The wide\ndoorway east leads back to the cavern, and a strange passage waits west.",
+   "extra_descs": {}
   },
   "20638": {
    "vnum": 20638,
@@ -896,10 +1090,17 @@
     "west": {
      "to_room": 203050,
      "description": "To the west lies The Warehouse."
+    },
+    "east": {
+     "to_room": 20637,
+     "description": "To the east lies The Warehouse."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. A way leads west.",
-   "placeholder": true
+   "description": "The air hangs torn here, a long rent in the world that shimmers pale and\ncold in the gloom. Beyond its edge you glimpse a warehouse far away, lit\nby honest daylight and smelling of sawdust and tar. The ground trembles\ngently, and loose pebbles rise a finger's breadth and fall again. To the\nwest the rift opens onto Garathorm, and a warehouse waits at its end,\nthe only way out of this lonely place.",
+   "look": "cave",
+   "extra_descs": {
+    "rift tear rent": "The rent hangs in the air at about the height of a door, its edges\nrippling like silk in a draught. Through it you can see sunlight and\nwooden crates."
+   }
   },
   "20639": {
    "vnum": 20639,
@@ -931,8 +1132,9 @@
      "description": "To the west lies The South Western Corner."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The town presses up against the foot of a streaked rock wall here, and\nnarrow lamps are bracketed into the stone at even intervals. A faded\nnotice is nailed to a post, its edges curled by the damp. The lane leads\nnorth to the fountain, east along the wall, and west toward a corner,\nwhile a battered door to the south stands slightly ajar on an empty\nhouse.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "20640": {
    "vnum": 20640,
@@ -969,8 +1171,15 @@
      "description": "To the west lies The Cavern Wall."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A stretch of the cavern wall stained rust-red by seeping water, with a\nrow of iron rings set into the rock for tethering pack mules. Hoofprints\nand cart tracks cross the grit, leading east toward the huge stone\ngates. North the ground rises toward the middle of the cavern, west the\nwall continues, and a sturdy door to the south opens on the guard house.\nA smell of horse and wet stone hangs in the air.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646400,
+     "max": 1
+    }
+   ]
   },
   "20641": {
    "vnum": 20641,
@@ -1000,8 +1209,10 @@
      "description": "To the west lies The Cavern Wall."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Two enormous gates of dressed stone, taller than any ten men, stand in\nthe cavern wall, their iron-banded leaves swung wide on hinges thick as\nbarrels. Beyond them a broad stone bridge runs out over a gulf toward\nthe deep halls of Moria. Cold air breathes through the opening and stirs\nthe dust at your feet. Lanes go north to the cavern centre, east to the\nconstruction site and west along the wall, and the open gates lead south\ntoward the bridge.",
+   "extra_descs": {
+    "gates hinges leaves": "The gates are carved with rows of marching dwarves and strange letters,\nworn almost smooth. They have been left standing open for as long as\nanyone here can remember."
+   }
   },
   "20642": {
    "vnum": 20642,
@@ -1021,8 +1232,8 @@
      "description": "To the north lies The Cavern Wall."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "Dust lies thick on the floor of this abandoned miner's house,\nundisturbed except by the tracks of mice. The hearth is cold, the table\nbare, and a single chair has toppled onto its back as though the owner\nrose in sudden alarm. Faint scratches mark the inside of the door, low\ndown. The only way out is north, to the cavern wall.",
+   "extra_descs": {}
   },
   "20643": {
    "vnum": 20643,
@@ -1052,8 +1263,14 @@
      "description": "To the west lies By The Huge Stone Gates."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Half-raised walls of fitted stone stand around a field of rubble and\nsledge-marked slabs, and timber scaffolds creak against the rock. A\nstack of unused blocks has been chalked with numbers by a builder who\nnever came back to finish. Dust hangs thick enough to taste. Lanes lead\nnorth to the pedestal, east to the Great Escape and west to the huge\nstone gates, and a rough slope drops away south into the Hole.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646400,
+     "max": 1
+    }
+   ]
   },
   "20644": {
    "vnum": 20644,
@@ -1083,8 +1300,15 @@
      "description": "To the west lies The Construction Site."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "This wide junction of lanes takes its name from an old joke among the\nminers, who call it the nearest thing to freedom in the depths. A\ntrodden square of packed grit is ringed by lamp poles, and a rusty bell\nhangs from a post at its middle. The smell of stale beer drifts from\nMagluff's Tavern to the south. Lanes run north toward the middle of the\ncavern, east to a corner, and west to the construction site.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646400,
+     "max": 1
+    }
+   ]
   },
   "20645": {
    "vnum": 20645,
@@ -1116,8 +1340,8 @@
      "description": "To the west lies The Great Escape."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Where the cavern curves around at its southern end, the town crowds into\na pocket of tight lanes and shuttered doorways. Cold light from a\nhanging lamp falls on a brass plate by the east door, worn nearly smooth\nby thumbs. A narrow stair of stone leads south down to the miners' rest,\nand the way north goes back along the wall. West, the lane runs toward\nthe Great Escape.",
+   "extra_descs": {}
   },
   "20646": {
    "vnum": 20646,
@@ -1145,8 +1369,8 @@
      "description": "To the west lies The South Eastern Corner."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A square, well-kept room where the overseer hears the miners'\ngrievances, with a heavy desk of black oak set before a hard chair. Maps\nof the workings hang on the walls, pinned with coloured tacks, and a\nledger stands open on a lectern. Thick curtains of felt muffle every\nsound from outside. Doors lead north to a study and east to an orangery,\nwhile the way west returns to the lanes of the town.",
+   "extra_descs": {}
   },
   "20647": {
    "vnum": 20647,
@@ -1166,8 +1390,8 @@
      "description": "To the west lies The Overseer's Consultation Room."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
-   "placeholder": true
+   "description": "Panes of glass, tinted green with age, wall in a small hothouse that\nsomehow keeps a few stubborn orange trees alive in the lamplight of the\ndepths. Their leaves are pale and their fruit small and hard, but the\nscent is sweet after the dust of the tunnels. Troughs of black soil line\nthe walls, tended with surprising care. The only way out is the door\nwest, back to the consultation room.",
+   "extra_descs": {}
   },
   "20648": {
    "vnum": 20648,
@@ -1191,8 +1415,8 @@
      "description": "To the up lies The Upstairs Bedroom."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and up.",
-   "placeholder": true
+   "description": "Shelves of bound surveys and brittle rolled plans cover every wall of\nthis book-lined study, and a green-shaded lamp stands on a desk piled\nwith correspondence. The air smells of leather and candle smoke. A\nnarrow stair in the corner climbs up to the overseer's bedroom, and the\ndoorway south opens onto the consultation room. One shelf has been swept\nbare, leaving a clean rectangle in the dust, as if something was taken\nin haste.",
+   "extra_descs": {}
   },
   "20649": {
    "vnum": 20649,
@@ -1212,8 +1436,8 @@
      "description": "To the down lies The Study."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads down.",
-   "placeholder": true
+   "description": "A heavy four-poster bed with moth-eaten hangings dominates this chamber\nunder a low ceiling of dressed stone. A wardrobe stands open and empty,\nand the pillow still holds the shape of a head. Scratches mar the floor\naround the bed, as if something had been dragged out from under it. The\nstair leads down to the study, and a thin chill hangs in the room\ndespite the heavy blankets.",
+   "extra_descs": {}
   },
   "20651": {
    "vnum": 20651,
@@ -1233,8 +1457,8 @@
      "description": "To the north lies The Great Escape."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "A smoky, low-beamed tavern, its floor strewn with sawdust and its walls\nhung with dented tankards and old mining tools. A long bar of scarred\noak runs along one side, and barrels bristle with spigots behind it.\nLamps burn low in the haze, and a fiddle sits silent on a stool in the\ncorner. The only door leads north, back to the Great Escape.",
+   "extra_descs": {}
   },
   "20652": {
    "vnum": 20652,
@@ -1252,8 +1476,9 @@
      "description": "To the north lies The Construction Site."
     }
    },
-   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. A way leads north.",
-   "placeholder": true
+   "description": "A rough pit gapes in the cavern floor, its sides a jumble of torn rock\nand loose gravel that slides underfoot. Cold air stirs from below,\nsmelling faintly of rain and distant leaves, though the opening is far\ntoo narrow to squeeze through. Marks of picks and wedges ring the rim\nwhere someone began widening it and gave up. The only way back is north,\nto the construction site.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "20654": {
    "vnum": 20654,
@@ -1271,8 +1496,8 @@
      "description": "To the north lies The South Western Corner."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads north.",
-   "placeholder": true
+   "description": "A low shed of corrugated tin and timber, open on one side to the cavern,\nsmelling of grease and hot iron. Broken picks, bent rails and cracked\nwheels lie sorted in piles along the wall, and a forge in the corner\nglows a sullen orange. An anvil stands scarred and ready. The only way\nout is north, back to the corner of the cavern.",
+   "extra_descs": {}
   },
   "20655": {
    "vnum": 20655,
@@ -1292,8 +1517,8 @@
      "description": "To the south lies Entrance To The Treasury."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads south.",
-   "placeholder": true
+   "description": "A cramped office lined with ledgers bound in black cloth, where a high\ndesk stands under a single hooded lamp. A small iron safe is bolted to\nthe floor, its dial worn bright. The air is dry and smells of ink,\nsealing wax and fear. The only way out is the door south, back to the\ntreasury entrance.",
+   "extra_descs": {}
   },
   "20656": {
    "vnum": 20656,
@@ -1311,8 +1536,8 @@
      "description": "To the south lies The Shopping District."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads south.",
-   "placeholder": true
+   "description": "Boots and shoes cover every wall of this narrow shop, from heavy\nhobnailed miners' boots strung by their laces to soft slippers hung from\nthe rafters like bats. The smell of leather, wax and tallow is strong\nenough to taste. A cobbler's bench stands under the lamp, its wooden\nlasts lined up like small feet. The only way out is the door south, onto\nthe shopping lane.",
+   "extra_descs": {}
   },
   "20657": {
    "vnum": 20657,
@@ -1343,8 +1568,8 @@
      "description": "To the west lies The Dining Area."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, south\nand west.",
-   "placeholder": true
+   "description": "Plank tables crowd a low room hollowed into the stone, each one scored\nby years of knives and mugs. A long counter with a brass urn stands at\nthe rear, and the air is thick with grease, onion and pipe smoke. Tin\nlamps swing from hooks overhead, throwing restless shadows across the\nbenches. Through a swinging door north lies the kitchen, an open arch\nleads west to the dining area, and the cavern lane lies south.",
+   "extra_descs": {}
   },
   "20658": {
    "vnum": 20658,
@@ -1364,8 +1589,8 @@
      "description": "To the south lies Spaymoore's Diner."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "A cramped kitchen of blackened stone is dominated by a vast iron range,\nits flue vanishing up a chimney drilled through the rock. Pots and\nladles of every size hang from hooks along the walls, and a deep sink of\ngrey slate drips steadily in the corner. The floor is gritty with flour\nand coal dust. The only way out is the door south, back to the diner.",
+   "extra_descs": {}
   },
   "20659": {
    "vnum": 20659,
@@ -1383,8 +1608,8 @@
      "description": "To the north lies The South Eastern Corner."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads north.",
-   "placeholder": true
+   "description": "A long, low hall lined with bunks of plain boards, where off-shift\nminers sleep in turns through the dim hours. Grey blankets lie rumpled,\nand a rack along one wall is hung with boots left to dry. Someone has\nstrung a garland of dried flowers over the door as a small act of\ndefiance. The only way out is north, to the corner of the cavern.",
+   "extra_descs": {}
   },
   "20660": {
    "vnum": 20660,
@@ -1402,8 +1627,8 @@
      "description": "To the south lies The North-Eastern Corner."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. A way leads south.",
-   "placeholder": true
+   "description": "A bare tiled room with a long trough of stone along one wall, fed by a\npipe that clanks whenever anyone tugs the chain. Hooks line the opposite\nwall, hung with rough towels gone grey with use. A cracked mirror of\npolished tin shows only a smear of lamplight. The only way out is the\narch south to the corner of the cavern.",
+   "extra_descs": {}
   },
   "20661": {
    "vnum": 20661,
@@ -1430,8 +1655,8 @@
      "description": "To the west lies The North-Eastern Corner."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and west.",
-   "placeholder": true
+   "description": "A tidy washroom with a row of brass basins set into a long stone shelf,\neach polished until it shines even in the weak light. A dish of yellow\nsoap sits beside them, and a sprig of dried heather hangs from a nail to\nsweeten the damp air. A narrow door in the far wall leads north to a\nprivate cubicle, and the arch west returns to the corner of the cavern.",
+   "extra_descs": {}
   },
   "20662": {
    "vnum": 20662,
@@ -1460,8 +1685,8 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "Rows of hard benches face a counter where a harassed attendant once\nrecorded names, and the whole room smells of vinegar and lamp oil. A\nshelf of chipped jars and a rolled cloth of bandages hangs by the door.\nPale faces seem to linger in the shadows between the lamps. A heavy\ncurtain to the west leads to the surgery, and the arch east opens back\non the lane.",
+   "extra_descs": {}
   },
   "20663": {
    "vnum": 20663,
@@ -1479,8 +1704,8 @@
      "description": "To the east lies The Doctor's Waiting Room."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads east.",
-   "placeholder": true
+   "description": "A scrubbed table of pale wood stands under a cluster of hanging lamps,\nsurrounded by trays of knives, saws and curved needles laid out in\norder. Cabinets of tiny drawers line the walls, each labelled in a\nsmall, crabbed script. The room smells strongly of spirits and herbs,\nand a stained leather apron hangs from a peg. The only way out is east,\nto the waiting room.",
+   "extra_descs": {}
   },
   "20664": {
    "vnum": 20664,
@@ -1498,8 +1723,8 @@
      "description": "To the west lies The Far Eastern Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads west.",
-   "placeholder": true
+   "description": "Racks of ink-stained type and a squat iron press fill this cramped room,\nand sheets of rough paper hang drying on lines strung from wall to wall.\nThe press stands silent now, a half-printed broadsheet still pinned in\nits frame. Ink and oil mingle in a sharp smell, and a stool sits worn\nsmooth beside a slanted desk. The only door leads west, back out to the\ncavern's rim.",
+   "extra_descs": {}
   },
   "20665": {
    "vnum": 20665,
@@ -1517,8 +1742,8 @@
      "description": "To the east lies Spaymoore's Diner."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. A way leads\neast.",
-   "placeholder": true
+   "description": "Long benches and a few round tables fill this wide alcove, where off-\nshift miners eat shoulder to shoulder with their elbows out. Whitewash\nflakes from the low ceiling, and a chalkboard on the wall lists the\nday's stew and ale in smudged capitals. A lamp hangs over every table,\neach trimmed to a different height, so that the light pools unevenly.\nThe only way back is east, to Spaymoore's Diner.",
+   "extra_descs": {}
   },
   "20666": {
    "vnum": 20666,
@@ -1536,8 +1761,8 @@
      "description": "To the south lies The Ladies' Washroom."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. A way leads south.",
-   "placeholder": true
+   "description": "A tiny stall closed by a plank door, hardly wider than a man's\nshoulders, with a wooden seat over a deep pit that drops away into\ndarkness. Someone has scratched a verse into the wall in a neat hand,\nand a tin lamp burns in a niche above. The draught from below is cool\nand smells of nothing good. The door opens south onto the washroom.",
+   "extra_descs": {}
   },
   "20722": {
    "vnum": 20722,
@@ -1555,11 +1780,379 @@
      "description": "To the north lies The Cavern Wall."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads north.",
-   "placeholder": true
+   "description": "A bare stone room with a plank table, a rack of spears and a bench worn\nsmooth by years of watchmen. A tally of days has been scratched into the\nwall beside a narrow barred window, and the ashes of a small fire sit\ncold in the grate. Keys hang from a ring by the door, and a heavy bar\nstands ready to drop across it. The only way out is the door north, to\nthe cavern wall.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "646400": {
+   "vnum": 646400,
+   "name": "miner dwarf man",
+   "short_desc": "a tired miner",
+   "long_desc": "A tired miner trudges past with a pick over his shoulder, coughing into his sleeve.",
+   "description": "A broad, grey-faced man with soot in the lines of his hands and a lamp\nstrapped to his cap. He moves like one who has hauled stone all his life\nand expects no thanks.",
+   "level": 14,
+   "alignment": 100,
+   "hp_dice": "14d8+182",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 168,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746400,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "646401": {
+   "vnum": 646401,
+   "name": "shopkeeper townsman woman",
+   "short_desc": "a dusty shopkeeper",
+   "long_desc": "A dusty shopkeeper straightens her wares and watches the lane with weary eyes.",
+   "description": "A stout woman in a flour-streaked apron, with a ring of keys at her belt\nand a cautious eye for strangers. She has plainly seen more than she\ncares to say about the tunnels.",
+   "level": 14,
+   "alignment": 150,
+   "hp_dice": "14d8+182",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 168,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": []
+  },
+  "646402": {
+   "vnum": 646402,
+   "name": "spider tunnel pale",
+   "short_desc": "a pale tunnel spider",
+   "long_desc": "A pale tunnel spider clings to the rock, its legs twitching in the dark.",
+   "description": "A bloated, bone-white spider as large as a dog, with eyes like tiny\nblack pearls. Its fangs drip a sour fluid that eats at the stone beneath\nit.",
+   "level": 16,
+   "alignment": -200,
+   "hp_dice": "16d8+182",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746401,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "646403": {
+   "vnum": 646403,
+   "name": "wight miner undead rubble",
+   "short_desc": "a rubble wight",
+   "long_desc": "A rubble wight drags itself along the tunnel, stone dust spilling from its gaunt frame.",
+   "description": "The withered corpse of a long-dead miner, shrouded in grey dust and\nstill gripping the splintered haft of a pick. Cold light flickers in the\nhollows where its eyes should be.",
+   "level": 22,
+   "alignment": -600,
+   "hp_dice": "22d8+342",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746402,
+     "chance": 25
+    },
+    {
+     "vnum": 746403,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "646404": {
+   "vnum": 646404,
+   "name": "troll cave tunnel",
+   "short_desc": "a hulking tunnel troll",
+   "long_desc": "A hulking tunnel troll squats in the rubble, gnawing a splintered beam.",
+   "description": "A huge, hunched troll with skin the colour of wet slate and arms that\nhang to its knees. Rock dust clings to its warty hide, and its small red\neyes follow you hungrily.",
+   "level": 23,
+   "alignment": -500,
+   "hp_dice": "23d8+402",
+   "damage_dice": "6d6+17",
+   "armor_class": 23,
+   "exp": 1285,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746402,
+     "chance": 30
+    },
+    {
+     "vnum": 746401,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "646405": {
+   "vnum": 646405,
+   "name": "foreman brakk hollow",
+   "short_desc": "Brakk the Hollow Foreman",
+   "long_desc": "Brakk the Hollow Foreman stalks the end of the tunnels, a ghastly lamp burning in his chest.",
+   "description": "Once the foreman of the deepest dig, Brakk is now a gaunt, grey thing\nwith a lantern of cold fire where his heart should be. His cracked voice\nstill barks orders to a crew long dead.",
+   "level": 21,
+   "alignment": -700,
+   "hp_dice": "21d8+324",
+   "damage_dice": "6d6+11",
+   "armor_class": 34,
+   "exp": 1175,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746403,
+     "chance": 35
+    },
+    {
+     "vnum": 746401,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "646406": {
+   "vnum": 646406,
+   "name": "overseer harrok corrupted",
+   "short_desc": "Overseer Harrok the Corrupted",
+   "long_desc": "Overseer Harrok the Corrupted looms atop his pedestal, black veins crawling beneath his skin.",
+   "description": "The old overseer of Brethrenmere stands rigid as a statue, his coat\nrotting and his eyes lit with the same dull silver as the deepest\ntunnels. Whatever he found in the dark has made him its master and\nservant at once.",
+   "level": 24,
+   "alignment": -800,
+   "hp_dice": "24d8+334",
+   "damage_dice": "7d6+12",
+   "armor_class": 25,
+   "exp": 1340,
+   "gold": 288,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746404,
+     "chance": 35
+    },
+    {
+     "vnum": 746403,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "746400": {
+   "vnum": 746400,
+   "name": "miner's helm iron cap",
+   "short_desc": "a dented miner's helm",
+   "room_desc": "A dented miner's helm lies here.",
+   "description": "A stout iron cap with a bracket for a lamp, dented by many a fall of rock. It is heavy but wears well.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 14,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 310
+  },
+  "746401": {
+   "vnum": 746401,
+   "name": "shard darkglass black glass",
+   "short_desc": "a shard of darkglass",
+   "room_desc": "A shard of black glass glints here.",
+   "description": "A sliver of glassy black rock with veins of silver that seem to pulse. Jewellers in the cities would pay well for it.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 16,
+   "weight": 1,
+   "value": 505
+  },
+  "746402": {
+   "vnum": 746402,
+   "name": "gauntlets stone rubble gloves",
+   "short_desc": "a pair of stone-plated gauntlets",
+   "room_desc": "A pair of stone-plated gauntlets lies here.",
+   "description": "Leather gloves studded with chips of grey stone, still dusty from the tunnels. They grip a haft as if it were part of the hand.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 22,
+   "wear_slot": "hands",
+   "armor": 3,
+   "weight": 2,
+   "value": 470,
+   "affects": [
+    {
+     "type": "str",
+     "value": 1
+    }
+   ]
+  },
+  "746403": {
+   "vnum": 746403,
+   "name": "pick foreman's pick iron",
+   "short_desc": "the foreman's iron pick",
+   "room_desc": "An iron pick with a cold gleam lies here.",
+   "description": "A long-hafted iron pick with a head worn narrow by years of use. A faint chill runs along the metal.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 21,
+   "damage_dice": "2d6",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 565,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "746404": {
+   "vnum": 746404,
+   "name": "chain overseer's chain silver",
+   "short_desc": "the overseer's silver chain",
+   "room_desc": "A heavy silver chain of office lies here.",
+   "description": "A heavy chain of linked silver, worn by the overseers of Brethrenmere. Dark threads run through the links, and it is cold against the skin.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 24,
+   "wear_slot": "neck1",
+   "armor": 2,
+   "weight": 1,
+   "value": 510,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  }
+ }
 }

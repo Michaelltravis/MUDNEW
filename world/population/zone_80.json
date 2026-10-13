@@ -1,0 +1,70 @@
+{
+ "zone": 80,
+ "_about": "The Dragon's Domain (levels 30-50): the dragon-kin and fire elementals who serve Scorathax answer each other; the dragon-kin warrior is an elite; Scorathax the Red Dragon, in the Treasure Cavern, sets the floor burning and calls his elementals.",
+ "creatures": {
+  "8001": {
+   "rank": "elite",
+   "helpers": {
+    "group": "dragon_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes off the rock: the dragon's servants come!"
+   },
+   "why": "the dragon-kin warrior"
+  },
+  "8002": {
+   "helpers": {
+    "group": "dragon_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes off the rock: the dragon's servants come!"
+   },
+   "why": "a fire elemental"
+  },
+  "8003": {
+   "rank": "boss",
+   "why": "Scorathax"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 8001,
+   "route": [
+    8001,
+    8002
+   ],
+   "why": "the dragon-kin keeps the pass and the gate"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 8003,
+   "room": 8003,
+   "why": "Scorathax in the Treasure Cavern",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Dragonfire",
+     "school": "fire",
+     "every": 9,
+     "radius": 3.0,
+     "last": 10,
+     "pct": 0.05,
+     "why": "burning ground: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "8002": 1
+     },
+     "shout": "Scorathax roars, and a fire elemental bursts out of the molten gold!",
+     "why": "his elementals"
+    }
+   ]
+  }
+ ]
+}

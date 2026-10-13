@@ -1,0 +1,169 @@
+{
+ "zone": 514,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Moloch, the Ancient Demon Lord as the boss.",
+ "creatures": {
+  "651400": {
+   "helpers": {
+    "group": "z514_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a giant ember beetle"
+  },
+  "651401": {
+   "helpers": {
+    "group": "z514_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a cinder imp"
+  },
+  "651402": {
+   "helpers": {
+    "group": "z514_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a mirror wraith"
+  },
+  "651403": {
+   "helpers": {
+    "group": "z514_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a pale cultist"
+  },
+  "651404": {
+   "helpers": {
+    "group": "z514_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking magma golem",
+   "rank": "elite"
+  },
+  "651405": {
+   "helpers": {
+    "group": "z514_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a pale knight",
+   "rank": "elite"
+  },
+  "651406": {
+   "helpers": {
+    "group": "z514_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Imrael, the Pale High Priest",
+   "rank": "sub-boss"
+  },
+  "651407": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Moloch, the Ancient Demon Lord",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Moloch, the Ancient Demon Lord rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Moloch, the Ancient Demon Lord gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+13",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Moloch, the Ancient Demon Lord raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+11",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Moloch, the Ancient Demon Lord begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+18",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 651400,
+   "route": [
+    13852,
+    13850,
+    13849,
+    13882,
+    13881,
+    13880,
+    13879,
+    13878,
+    13872,
+    13873
+   ],
+   "why": "a giant ember beetle walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 651407,
+   "room": 13859,
+   "why": "Moloch, the Ancient Demon Lord in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "651401": 2
+     },
+     "shout": "Moloch, the Ancient Demon Lord calls, and a cinder imps come!",
+     "why": "its brood"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

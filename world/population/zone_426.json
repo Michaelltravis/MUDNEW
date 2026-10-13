@@ -1,0 +1,160 @@
+{
+ "zone": 426,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Hrungar the hill giant as the boss.",
+ "creatures": {
+  "642600": {
+   "helpers": {
+    "group": "z426_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a skulking troglodyte scavenger"
+  },
+  "642601": {
+   "helpers": {
+    "group": "z426_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a hulking troglodyte warrior"
+  },
+  "642602": {
+   "helpers": {
+    "group": "z426_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale cave lizard"
+  },
+  "642603": {
+   "helpers": {
+    "group": "z426_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a scarred troglodyte warden",
+   "rank": "elite"
+  },
+  "642604": {
+   "helpers": {
+    "group": "z426_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a swollen puffer spider",
+   "rank": "elite"
+  },
+  "642605": {
+   "helpers": {
+    "group": "z426_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Vorzug the Slave Master",
+   "rank": "sub-boss"
+  },
+  "642606": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Hrungar the hill giant",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Hrungar the hill giant rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Hrungar the hill giant gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+4",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Hrungar the hill giant raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Hrungar the hill giant begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+5",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 642600,
+   "route": [
+    20301,
+    20302,
+    20303,
+    20304,
+    20310,
+    20312,
+    20313,
+    20314,
+    20315,
+    20316
+   ],
+   "why": "a skulking troglodyte scavenger walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 642606,
+   "room": 20309,
+   "why": "Hrungar the hill giant in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "642600": 2
+     },
+     "shout": "Hrungar the hill giant calls, and a skulking troglodyte scavengers come!",
+     "why": "its brood"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

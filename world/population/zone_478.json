@@ -1,0 +1,155 @@
+{
+ "zone": 478,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Machk-Gyi, the fire lord as the boss.",
+ "creatures": {
+  "647801": {
+   "helpers": {
+    "group": "z478_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a flickering ember imp"
+  },
+  "647802": {
+   "helpers": {
+    "group": "z478_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a huge cinder spider"
+  },
+  "647803": {
+   "helpers": {
+    "group": "z478_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a whip-scarred overseer"
+  },
+  "647804": {
+   "helpers": {
+    "group": "z478_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a royal flame guard",
+   "rank": "elite"
+  },
+  "647805": {
+   "helpers": {
+    "group": "z478_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking magma ogre",
+   "rank": "elite"
+  },
+  "647806": {
+   "helpers": {
+    "group": "z478_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "Gorrak, the fire gigas",
+   "rank": "sub-boss"
+  },
+  "647807": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Machk-Gyi, the fire lord",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Machk-Gyi, the fire lord rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Machk-Gyi, the fire lord gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Machk-Gyi, the fire lord raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Machk-Gyi, the fire lord begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+9",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 647800,
+   "route": [
+    24281,
+    24280,
+    24286,
+    24287,
+    24295
+   ],
+   "why": "a cinder-scarred slave walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 647807,
+   "room": 24275,
+   "why": "Machk-Gyi, the fire lord in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "647801": 2
+     },
+     "shout": "Machk-Gyi, the fire lord calls, and a flickering ember imps come!",
+     "why": "its brood"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

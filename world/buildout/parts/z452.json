@@ -1,0 +1,423 @@
+{
+ "job": "z452",
+ "rooms": {
+  "1100": {
+   "look": "cave",
+   "description": "The lair is a broad, low chamber where the floor has been trodden into a hollow of black mud and scattered gnawed bones. Greasy scales, shed in long grey sheets, litter the slope toward a heap of torn weed and rotten matting in the middle. The air is thick and warm and tastes of spoiled fish. A heavy door in the north wall leads back to a waterlogged corridor, while a rough opening to the east runs toward a damper passage under the ocean."
+  },
+  "1101": "Ankle-deep water fills this corridor from wall to wall, black and perfectly still until a drip from the ceiling sets rings spreading across it. The blocks of the walls are furred with green slime to the height of your chest. Behind you to the south hangs the heavy door of the lair, and the corridor goes on north through the murk. Every footstep slaps and echoes along the stone.",
+  "1102": "The water runs deeper here, lapping against your shins, and a cold current tugs along the floor. Pale mineral crusts hang from the vaulted roof like frozen candle-wax, dripping steadily. Cracked carvings of coiling lizards march along the wall at eye level, their scales worn smooth by wet and time. The corridor continues north toward a bend, and back south toward the lair.",
+  "1103": "The corridor bends sharply here, the flooded floor giving way on the east side to a raised shelf of stone above the water. A rusted iron ring hangs from the wall, green with age, where some long-dead keeper once moored a boat. Echoes of dripping seem to arrive from every side at once. You can follow the shelf east onto a ledge or wade back south down the corridor.",
+  "1104": "A narrow ledge of wet stone runs along the edge of a black drop, glossy with slime and treacherous underfoot. Below the lip the water of the temple's drowned lower halls shivers in the dark. To the north an archway glimmers with the faint yellow light of candles, while the ledge goes on east and returns west to the bend. Cling to the wall and take small steps.",
+  "1105": "A small shrine fills this alcove, built around the stone figure of a lizardine warrior standing with a notched blade held across its chest. Stubs of black candles gutter on the shelf at its feet beside dishes of dried blood and fish scales. The carved eyes catch the flame and seem to follow you across the damp floor. The only way out is the archway south onto the ledge.",
+  "1106": "The ledge narrows to little more than a foot's width, and spray from somewhere below leaves the stone as slick as soap. A thin stream trickles down the wall to join the dark water beneath. Ahead the passage opens east into a tunnel mouth, while the way west leads back toward the shrine. A fall here would mean a cold, black drenching.",
+  "1107": {
+   "look": "cave",
+   "description": "The ledge ends where the wall is broken by a ragged hole, the beginning of a tunnel hacked roughly through the living rock. Scratch marks of claws and crude chisels cover the jambs. Cold air breathes out of the dark, smelling of moss and standing water. The tunnel climbs on north, and the ledge lies back west."
+  },
+  "1108": {
+   "look": "cave",
+   "description": "The tunnel squeezes so tight that your shoulders brush the rock on either side, wet and cold as a cellar. Water seeps from every crack and gathers in a rill running along the floor. The roof is low enough to make you stoop at every step. It winds on north into blackness and south toward the entrance."
+  },
+  "1109": {
+   "look": "cave",
+   "description": "Here the tunnel widens a little and the floor is scored with long drag marks, as if heavy sacks had been hauled through. Pale threads of fungus glow dimly in the cracks of the rock. A brackish smell drifts down from the north, where the passage opens out. Back south the squeeze continues toward the ledge."
+  },
+  "1110": {
+   "look": "cave",
+   "description": "A flat shelf of rock juts out over an underground pool, its surface beaded with damp and stained with old green streaks. The pool is wide, still and black, and the roof above is lost in darkness. West the platform drops to the water's edge, where a rotting mooring post leans out over the water. South the tunnel climbs away into the rock."
+  },
+  "1111": "You drift on the black water of an underground pool, the surface smooth as glass except for the rings left by your own passage. Overhead the roof is hung with pale stone teeth that drip steadily into the dark. A rock platform lies east, and open water stretches west and south. The air is cold and smells of old stone and weed.",
+  "1146": "The pool narrows here against a wall of dark rock that rises sheer from the water, slick with moisture. Your raft turns slowly in a faint eddy as if something beneath had stirred. Small bubbles rise now and then and burst with a soft sound. The water opens north back toward the middle of the pool and west across a darker stretch.",
+  "1147": "A low arch of rock stands at the pool's edge, and beyond it to the west a ledge of mud and worked stone leads into a lair. The water here is thick with floating weed that trails against your raft. A rank, warm smell drifts out of the arch, laced with something like rotten eggs. Open water lies north and east.",
+  "1112": "A great flight of weathered steps rises out of the pool to a pair of massive gates. No torch burns here, but pale fungus on the stonework gives a greenish gleam by which carved scales and claws can be made out. The swell of your passage slaps loudly against the lowest step. East and south the water darkens into the cavern, while the gates stand to the north.",
+  "1113": "Two colossal stone gates, carved with writhing lizard-gods and dripping with condensation, tower over a landing at the water's edge. Their surfaces are scarred where claws have scraped for centuries. A smaller door set into the north gate stands ajar, letting out a draught of damp air from the temple within. South the pool glimmers dark and cold beneath the steps.",
+  "1138": "Water drips from the vault in a hundred places, plinking into puddles that cover the floor of this crossing. Passages lead east and west, and a door stands open in the south wall onto the great gates. A worn mosaic of coiling serpents decorates the floor under the grime. The echo of each drop wanders off down the corridors.",
+  "1137": "The passageway lies half under water, the floor sloping gently so that the flood deepens with each step east. Rotting wooden brackets in the walls once held torches and now hold only knots of pale fungus. Ripples spread from your wake and bump against the far wall. West stands the intersection, dry by comparison.",
+  "1136": "The flooded passage turns north here, deep enough that you must float rather than wade. The water is cold and tea-dark, and the stone walls on either side drop sheer into it. Faint scratches near the waterline mark where the level has risen and fallen over the years. The way back west leads to a shallower passage, and the bend continues north.",
+  "1135": "Your raft slides around a second bend where the passage swings west again toward drier stone. A rotted portcullis, its bars thick with weed, hangs half raised from the ceiling. Bubbles seep up from a crack in the flooded floor and pop against the hull. South the water deepens, and a faint draught from the west carries a smell of incense.",
+  "1134": "Here the floor rises from the flood to a drowned walkway of cracked flagstones, wet and green. The water laps at the edge of the stone to the east, where the passage drops into a bend. A line of niches in the wall holds only sodden ash and a few clay shards. West the way continues toward a faint flicker of light.",
+  "1133": "Dry enough to stand easily, this stretch of passage is lined with pillars carved into rearing serpents, their fangs bared. The floor still glistens, and in places shallow pools reflect a trembling light from the west. You hear a low chanting there, thin and sibilant. East the passage dives back toward the water.",
+  "1116": "A pair of tall bronze doors, green with verdigris and pushed open on corroded hinges, mark the entrance to the temple proper. Braziers of black iron burn with a sullen red glow on either side, throwing long shadows over the wet floor. North opens the great hall of Zaebos, and a low archway to the west leads into a guard room. East the passage runs back toward the flooded halls.",
+  "1120": "The nave of the temple stretches away in the gloom, its high pillars carved in spirals of scales and rising into smoky dimness. The flagstones are polished by generations of bare, clawed feet, and rows of low stone benches face the front. To the north, steps climb toward an altar. Aisles run east and west among the columns, and the gates lie south.",
+  "1118": "A massive altar of black stone dominates this end of the hall, its top channelled and stained dark with old sacrifice. Above it a gilded relief shows the God King of the lizardfolk crowned and coiled, his jewelled eyes glinting. A door of dull bronze stands in the north wall behind the altar, and the aisles of the temple lead east and west. South the nave opens out.",
+  "1123": "A narrow stair of black stone begins here, winding down into the rock around a thick central pillar. The steps are worn into shallow dishes by long use and slick with seeping water. The bronze door you came through lies south, back in the altar hall. The air grows warmer and fainter with each turn downward.",
+  "1124": "The staircase here is inlaid with gold, its rail and risers sparkling dully where the damp has not dulled the metal. Tiny gilded scales run along the banister, each polished by countless palms. Light glows from somewhere far below and wavers on the curving wall. The stair climbs up toward the altar door and winds down toward the glow.",
+  "1125": "The spiral ends in a round chamber floored with pale marble veined with gold. A tall mirror of polished bronze stands against the wall, throwing the glow of the corridor back at you. The staircase rises behind you into the dark, and a magnificent corridor opens north. The air is warm and dry and smells faintly of cedar and old parchment.",
+  "1126": "Tall pillars of white stone march down this corridor, their capitals gilded and carved as scaly lilies. A long runner of faded crimson silk covers the floor, frayed at the edges. Oil lamps hang from silver chains and shed a soft glow on frescoes of lizard kings at war. The corridor goes on north, and the staircase chamber lies south.",
+  "1127": "The corridor turns here, and the frescoes on the walls change from war to feasting: great tables laden with fruit, fish and wine for scaled lords. Many of the painted faces have been scored away by claws. Fine gold dust lies in the gutters of the mouldings. Southward the way runs back to the staircase, and it bends on east.",
+  "1128": "A glass-fronted case, long since emptied and cracked, stands in an alcove at this corner of the corridor. The marble floor is clean here, as if lately swept, and the lamps have been trimmed. A faint scent of old incense hangs in the still air. The corridor runs north toward a junction of doors and back west around the turn.",
+  "1129": "At this junction the corridor ends in a handsome door of pale wood inlaid with a sunburst, and an open archway to the east shows shelves of books. The pillars here are ringed with bands of gold leaf. Lamplight shimmers on the polished floor. The way south returns along the corridor, while the north door promises a brighter room.",
+  "1131": "The walkway glows with a soft radiance that seems to come from the very stones, pale as moonlight on water. Mirrors of polished silver set at angles along its sides fling the glow back and forth until there are no shadows. The floor is a strip of white crystal worn smooth. It runs north to a shining chamber, and the door lies behind you to the south.",
+  "1132": "Every wall of this small round chamber is sheathed in beaten silver and polished until it dazzles, so that you see yourself a hundred times over. In the middle stands an empty pedestal of crystal, its top hollowed as if for a bowl or a crown. The light is nearly painful and the air still and warm. The only way out is the walkway south.",
+  "1130": "Shelves of dark wood reach to the ceiling, crowded with scrolls, clay tablets and rotting books in a script of hooks and curls. A reading desk stands under a hanging lamp, its surface scratched with claw marks. The pages smell of damp and old glue, and many have swollen and stuck together. The archway west leads back to the corridor.",
+  "1122": "This corner of the temple is a side chapel hung with ragged banners of green and gold, stirring in a draught from nowhere. Benches of stone line the walls, and a shallow font of stagnant water stands beside a pillar. Green mould creeps up the hangings from the floor. The nave continues south and the altar lies west.",
+  "1119": "The side aisle of the temple lies in deep shadow between rows of stout pillars, each wound with a carved serpent. Offerings of dried fish and tarnished coins are heaped in the gaps between them. The floor slopes slightly, and water gathers in the lowest flags. The aisle leads north toward a chapel and west back into the great nave.",
+  "1121": "A tall niche in the wall holds a faded mosaic of a lizard host marching into a sunrise, its tiles cracked and missing. Cobwebs hang in the corners above a row of cold, empty braziers. The altar stands east, lit by its own dull gleam, and the nave runs south. A sour smell of old incense clings to the stones.",
+  "1117": "The western end of the temple narrows where a wide archway leads out into a corridor. Clusters of cold candle stubs fill the sconces, and the stones beneath your feet are slick with wax and wet. A rack of rusted spears leans in the corner, long forgotten. The floor runs north into a shrine corner and east into the nave.",
+  "1151": "Stone blocks sweat in this plain corridor, which has none of the grandeur of the hall behind. Water seeps from the joints of the masonry and collects in a channel along the floor. A line of torches has burned down to blackened stumps in iron brackets. To the east the temple opens out, and to the west the passage goes on.",
+  "1152": "The corridor corners here with a sharp turn, and the damp is thick enough to bead on your sleeves. A smear of green algae climbs the stones from floor to knee. Someone has scratched a tally of days into the wall in neat rows. East the corridor returns toward the temple, while a draughty passage leads south.",
+  "1142": "The stonework of the corridor gives way by degrees to bare rock, and the walls begin to look gnawed rather than cut. Ropes of pale fungus hang from the roof and brush your face. The floor tilts downward ahead into a damp hollow, and the dressed stone of the temple passage lies north behind you. A steady drip counts out the seconds.",
+  "1140": {
+   "look": "cave",
+   "description": "The cavern is a lumpy hollow in the rock, its roof hung with dripping spikes and its floor a mat of mud and trampled reeds. Strings of beads and bone charms are tied across an opening in the west wall, marking the sleeping chambers. Water trickles down the walls and collects in cracks, and the air is thick and warm. North a passage leads toward the temple, and the cavern continues south."
+  },
+  "1141": {
+   "look": "cave",
+   "description": "Broken ground slopes through this part of the cavern, pocked with puddles that mirror the pale glimmer of fungus overhead. A heap of sleeping mats and rushes lies against the west wall by a low opening. The rock walls are sticky with moisture and ring with distant dripping. A crevice at the southern end leads on, and the cavern runs north."
+  },
+  "1168": {
+   "look": "cave",
+   "description": "The cavern shrinks to a crack barely wide enough to squeeze into, ending in a pocket of dry rock. Faint scrawls of claws mark the stone, and a few small bones lie in the dust. The air does not move, and the sound of dripping is muffled. The only way out is back north into the cavern."
+  },
+  "1153": "A low chamber lined with beds of dried reeds and old sacking, each arranged in a neat row along the wall. Blankets of coarse, scaled hide are folded at the head of every bed. The air is warm and stale and smells of musk. Round shields hang on pegs beside a rough opening that leads east back to the damp cavern.",
+  "1154": "Rows of narrow stone slabs serve as beds in this chamber, each padded with a litter of dried weed gone brown and brittle. Small clay lamps, burnt dry, sit in niches above the pillows. Claw marks cover the rock where sleepers have scratched the days away. The only way out is the opening east into the damp cavern.",
+  "1149": "A bare square room off the gates, where the guards of the temple are quartered. A rough table of stone stands in the middle, scored with game-lines and knife cuts, and racks along the walls hold nothing but rust. A hearth in the corner is choked with cold ash. The only way out is the archway east to the gates.",
+  "1115": {
+   "look": "cave",
+   "description": "Moisture beads the low roof of this tunnel and falls in a steady patter that never stops. The floor is rough rock with a trough worn down the middle by many feet. The tunnel goes on west into the dark, and east it opens onto a dripping intersection."
+  },
+  "1139": {
+   "look": "cave",
+   "description": "The tunnel bends here around a rounded knob of stone, rubbed smooth by passing shoulders. A pale slime coats the lower walls, and the floor is crusted with white mineral growths. Cold air flows up from a slope to the south. East the passage returns toward a crossing of corridors."
+  },
+  "1114": {
+   "look": "cave",
+   "description": "A rough slope of loose rock and gravel drops away steeply into the earth, treacherous when wet. Rusted pitons have been hammered into the wall to serve as handholds. The air below smells older, drier and stranger. The tunnel lies north above you, and the slope goes down into the dark."
+  },
+  "1155": {
+   "look": "cave",
+   "description": "The slope ends in a blank wall of dressed stone, which seems a dead end until you notice the thin line of a narrow door in the west face. Grit crunches underfoot, and the dust lies thick on everything but the threshold. A faint draught slides under the door. The slope climbs back up behind you."
+  },
+  "1156": "A small hidden room with no windows, its walls plastered and faded with the ghost of old paintings. A cracked table and an overturned stool are the only furniture, and a heap of rotted cloth lies in a corner. The door to the east stands open on the dead end, while a rough passage leads west. Dust hangs motionless in the air.",
+  "1157": "The corridor here is bare rock, chiselled square and left unfinished, with tool marks still plain on the walls. A pair of iron brackets hold the black stubs of torches. The floor is dry, a relief after the wet halls above. It runs east toward the hidden room and west into further corridor.",
+  "1158": {
+   "look": "dungeon",
+   "description": "Iron-bound doors face one another in the walls of this corridor, their small grilles dark. The air here is cold and carries a sour tang of rust and old straw. Chains dangle from rings in the roof. A heavy door in the north wall leads to a cell, and the corridor runs east and west."
+  },
+  "1163": {
+   "look": "dungeon",
+   "description": "A bare prison cell of rough stone, scarcely wide enough to lie down in. Iron rings are set in the wall at ankle height, and the floor is worn into a shallow dip where unnumbered prisoners have sat. Scratched words, too faint to read, cover the stone. Nothing moves in the heavy silence."
+  },
+  "1159": "The corridor widens into a crossing here, with a heavy door set into the wall to the south. Dust lies deep, but a trail of clawed prints runs to the door and back. The ceiling is low and the air is dry and slightly sweet, like old coins. Passages run east and west into the dim.",
+  "1162": "Chests of rotten oak lie smashed open along the walls of this strongroom, and a scatter of tarnished coins glints in the dust. An iron-banded vault door hangs from a single hinge. The ceiling is stained black by smoke, as if the place had been burned out long ago. The only exit is the door north into the corridor.",
+  "1160": "The corridor ends here against a heavy door in the north wall, studded with iron bolts as thick as thumbs. A candle stub in a niche has long since drowned in its own wax. The floor is grooved where the door has been dragged open many times. The passage runs back east toward a crossing.",
+  "1161": {
+   "look": "dungeon",
+   "description": "A stone cell fitted with a rusted cage of iron bars bolted to the floor, just large enough for one crouching prisoner. A plate bearing a lizard glyph hangs from a chain, scorched with old fingermarks. The stone is slick with cold sweat, and the silence presses in. Rusted manacles lie in a heap beside the bars."
+  },
+  "1148": {
+   "look": "cave",
+   "description": "A wide, hot cavern, its floor strewn with glistening nests of mud and reeds, serves as the home of the Vraal. Cracked eggshells and scraps of hide lie everywhere, and the smell of musk and brine is overpowering. A stair of crude stone steps leads up to a warmer chamber. The pool lies east beyond a ledge of mud."
+  },
+  "1150": {
+   "look": "cave",
+   "description": "Steam curls from cracks in the rock, filling this small chamber with a heavy, tropical warmth. The walls drip with condensation and the floor is smeared with soft yellow clay. A thick mat of moss covers the corner, still holding the shape of a large body. The only way out is the steps down into the lair."
+  },
+  "1165": {
+   "look": "cave",
+   "description": "The passage descends into a drowned gallery where the roar of the ocean is heard faintly through the rock overhead. Sheets of salt have dried on the walls like frost. Pools of seawater lie in hollows of the floor, shivering whenever the sea booms. The way west leads back to the lair, and the passage goes on east."
+  },
+  "1166": {
+   "look": "cave",
+   "description": "A cave beneath the sea opens wide here, its walls thick with barnacles and the empty tubes of worms. Weed hangs in dark ropes from the roof, dripping brine. The deep thud of waves comes through the rock like a slow heartbeat. Sandy ground rises to the east, and the way west returns to the gallery."
+  },
+  "1167": {
+   "look": "cave",
+   "description": "The cave narrows to a mouth half choked with drifted sand, where the floor climbs toward grey light. Shells and wrack litter the sand, and the air smells of salt and sun. A steep passage rises above you toward a sea cave and the open world. The way west leads back into the dark beneath the ocean."
+  }
+ },
+ "extras": {
+  "1116": [
+   {
+    "keywords": "bronze doors verdigris",
+    "description": "The doors are twice the height of a man, cast with scaled figures that kneel before a crowned serpent. Time has turned the bronze a mottled green."
+   }
+  ],
+  "1118": [
+   {
+    "keywords": "relief god king",
+    "description": "The gilded relief shows a crowned, coiling lizard with garnet eyes, the God King Zaebos is said to serve. Its claws are raised over a heap of small, carved skulls."
+   }
+  ],
+  "1125": [
+   {
+    "keywords": "mirror bronze",
+    "description": "The bronze has been polished so long it gives back a warm, wavering image. A crack runs across one corner."
+   }
+  ],
+  "1132": [
+   {
+    "keywords": "pedestal crystal",
+    "description": "The crystal pedestal is hollowed on top and stained green at the bottom of the hollow. Whatever once rested there has been taken."
+   }
+  ],
+  "1152": [
+   {
+    "keywords": "tally scratches rows",
+    "description": "Hundreds of tiny strokes, grouped in fives, march across the stone in tidy rows. The last row stops abruptly, mid-count."
+   }
+  ],
+  "1105": [
+   {
+    "keywords": "statue figure warrior",
+    "description": "The lizardine warrior is carved from green-black stone, one clawed foot forward and its jaws half open in a battle cry. Its blade is notched in seven places, each notch filled with a pinch of red wax."
+   }
+  ],
+  "1162": [
+   {
+    "keywords": "chests coins",
+    "description": "The chests were split open by axes, and the coins that remain are too worn and corroded to spend. Whoever came before took everything of weight."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "z452-lizardman-guard",
+   "keywords": "lizardman guard lizardfolk scaled",
+   "short_desc": "a scaled lizardman guard",
+   "long_desc": "A scaled lizardman guard stands on watch here, a barbed spear in its claws.",
+   "description": "Broad shoulders and a ridged tail mark this guard as a temple warrior of Zaebos. Its green hide is crossed with old scars and its yellow eyes never blink. It hisses as you meet its gaze.",
+   "kind": "humanoid",
+   "level": 10,
+   "aggressive": true,
+   "alignment": -300,
+   "sectors": [
+    "inside"
+   ],
+   "rooms": [
+    "Gates to the Temple",
+    "A Guard Room",
+    "A Magnificent Corridor",
+    "A Temple Corridor",
+    "A Rough Corridor"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "z452-lizardman-spear",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "z452-lizardfolk-cultist",
+   "keywords": "cultist lizardfolk priest acolyte",
+   "short_desc": "a lizardfolk cultist",
+   "long_desc": "A lizardfolk cultist in a tattered green robe mutters prayers to the God King.",
+   "description": "This smaller lizardfolk wears a robe stitched with scales of gilded tin. Its tongue flicks in and out between muttered words. A string of clay beads hangs at its neck.",
+   "kind": "humanoid",
+   "level": 9,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "Temple of Zaebos",
+    "Altar of God King",
+    "Sleeping Chambers",
+    "A Small Library"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "z452-zaebos-idol",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "z452-pool-snake",
+   "keywords": "snake water serpent pool",
+   "short_desc": "a pale water snake",
+   "long_desc": "A pale water snake glides across the surface of the pool, its eyes like black pins.",
+   "description": "The snake is as thick as your arm and nearly as long as a boat oar. Its belly is the colour of old bone. It coils and sways, watching you.",
+   "kind": "animal",
+   "level": 8,
+   "aggressive": true,
+   "alignment": 0,
+   "sectors": [
+    "water_noswim"
+   ],
+   "count": 2,
+   "drops": []
+  },
+  {
+   "id": "z452-cave-crocodile",
+   "keywords": "crocodile cave reptile",
+   "short_desc": "a blind cave crocodile",
+   "long_desc": "A blind cave crocodile lies half in the shallows, jaws parted and listening.",
+   "description": "Long years in the dark have bleached this crocodile white and left its eyes as milky pearls. Its snout tilts toward every sound. The jaws are lined with broken yellow teeth.",
+   "kind": "animal",
+   "level": 12,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "A Waterlogged Corridor",
+    "A Damp Cavern",
+    "Slippery Ledge",
+    "Further Along the Ledge"
+   ],
+   "count": 2,
+   "drops": []
+  },
+  {
+   "id": "z452-scaled-champion",
+   "keywords": "champion lizardfolk warrior scaled",
+   "short_desc": "a lizardfolk champion",
+   "long_desc": "A lizardfolk champion in a harness of gilded scales watches the temple with cold eyes.",
+   "description": "Taller than any guard, this warrior wears plates of tarnished gold and carries a heavy serrated blade. Its crest is dyed a bloody red. The scars on its snout tell of many duels.",
+   "kind": "humanoid",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Temple of Zaebos",
+    "Altar of God King",
+    "A Magnificent Corridor"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "z452-lizardman-spear",
+     "chance": 25
+    },
+    {
+     "item": "z452-zaebos-idol",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "z452-temple-basilisk",
+   "keywords": "basilisk lizard monster",
+   "short_desc": "a temple basilisk",
+   "long_desc": "A temple basilisk crouches in the shadows, its eight legs scraping on the stone.",
+   "description": "This squat, heavy lizard is covered in pitted grey scales, and a crest of horn runs the length of its back. Its eyes shine a baleful yellow in the dark. Dribbles of venom hang from its jaws.",
+   "kind": "monster",
+   "level": 17,
+   "aggressive": true,
+   "alignment": -200,
+   "rooms": [
+    "Walkway of Light",
+    "A Shining Chamber",
+    "Secret Treasury"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "z452-beast-hide-armor",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "z452-khessa-vraal-mother",
+   "keywords": "khessa vraal mother priestess lizardfolk",
+   "short_desc": "Khessa, the Vraal Mother",
+   "long_desc": "Khessa, the Vraal Mother, tends her clutch of eggs, her crested head swaying.",
+   "description": "Khessa is an ancient lizardfolk priestess, her scales faded to grey and her crest feathered with white. She wears a collar of green stone and bone fetishes. Her voice is a rasp of old reeds as she calls the God King's blessing upon you.",
+   "kind": "humanoid",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "Lair of the Vraal"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "z452-vraal-torque",
+     "chance": 35
+    },
+    {
+     "item": "z452-beast-hide-armor",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "z452-scaled-beast-zaebos",
+   "keywords": "scaled beast zaebos crocodile monster horror",
+   "short_desc": "the Scaled Beast of Zaebos",
+   "long_desc": "The Scaled Beast of Zaebos, a monstrous crocodilian horror, coils across the floor of its lair.",
+   "description": "This is a creature of nightmare, long as a longship and armoured in plates the colour of wet slate. Its jaws could take a horse. The lizardfolk feed it and call it the god's own voice.",
+   "kind": "monster",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "The Lair of a Scaled Beast"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "z452-beast-fang-blade",
+     "chance": 35
+    },
+    {
+     "item": "z452-beast-hide-armor",
+     "chance": 30
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "z452-beast-fang-blade",
+   "keywords": "fang blade beast serrated",
+   "short_desc": "a serrated beast-fang blade",
+   "room_desc": "A long serrated blade, hewn from an enormous fang, lies here.",
+   "description": "A tooth of the Scaled Beast, ground to a sawing edge and bound at the base with wet leather. It is heavier than it looks and cold to the hand.",
+   "kind": "weapon",
+   "level": 18,
+   "weapon_type": "slash",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "z452-beast-hide-armor",
+   "keywords": "hide armor beast scaled breastplate",
+   "short_desc": "a breastplate of beast-hide",
+   "room_desc": "A breastplate of thick scaled hide lies here.",
+   "description": "Plates of pitted slate-coloured hide are laced onto a leather harness. It smells faintly of the marsh and turns a blade like a shield.",
+   "kind": "armor",
+   "level": 17,
+   "wear_slot": "body",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "z452-vraal-torque",
+   "keywords": "torque vraal bone green stone",
+   "short_desc": "a torque of green stone and bone",
+   "room_desc": "A torque of green stone and bone fetishes lies here.",
+   "description": "Chips of green stone and small yellowed bone charms are strung on a bronze wire. It hums faintly when held.",
+   "kind": "armor",
+   "level": 15,
+   "wear_slot": "neck",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "z452-lizardman-spear",
+   "keywords": "spear barbed lizardman",
+   "short_desc": "a barbed lizardman spear",
+   "room_desc": "A barbed spear lies here, its shaft stained green.",
+   "description": "A spear with a wide, barbed head, its shaft wrapped in snakeskin for grip. The balance is odd for human hands but sound.",
+   "kind": "weapon",
+   "level": 10,
+   "weapon_type": "pierce"
+  },
+  {
+   "id": "z452-zaebos-idol",
+   "keywords": "idol zaebos gilded lizard",
+   "short_desc": "a gilded idol of Zaebos",
+   "room_desc": "A small gilded idol of a coiled lizard lies here.",
+   "description": "A palm-sized idol of the God King, cast in gilt bronze, with garnet chips for eyes. A collector would pay well for it.",
+   "kind": "treasure",
+   "level": 13
+  }
+ ]
+}

@@ -1,0 +1,139 @@
+{
+ "zone": 9,
+ "_about": "Minos River Island (levels 4-26): King Minos's court already stands in the island rooms by the Plains (zone 60) and keeps its helpers there; the Pit of Minos, now written, is where the bull-king himself waits on his throne of horns, a boss, his henchmen Franz and Hanz charging in as he weakens.",
+ "creatures": {
+  "900": {
+   "helpers": {
+    "group": "minos_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A bull-roar shakes the island: the court of Minos answers!"
+   },
+   "why": "the court of Minos"
+  },
+  "901": {
+   "helpers": {
+    "group": "minos_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A bull-roar shakes the island: the court of Minos answers!"
+   },
+   "why": "the court of Minos"
+  },
+  "902": {
+   "helpers": {
+    "group": "minos_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A bull-roar shakes the island: the court of Minos answers!"
+   },
+   "why": "the court of Minos"
+  },
+  "903": {
+   "helpers": {
+    "group": "minos_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A bull-roar shakes the island: the court of Minos answers!"
+   },
+   "why": "the court of Minos"
+  },
+  "905": {
+   "helpers": {
+    "group": "minos_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A bull-roar shakes the island: the court of Minos answers!"
+   },
+   "why": "the court of Minos"
+  },
+  "906": {
+   "helpers": {
+    "group": "minos_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A bull-roar shakes the island: the court of Minos answers!"
+   },
+   "why": "the court of Minos"
+  },
+  "904": {
+   "rank": "sub-boss",
+   "why": "General Woundwort"
+  },
+  "907": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "memory",
+    "helper",
+    "no_charm",
+    "no_summmon",
+    "no_bash",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "King Minos bellows: \"You will never leave my pit!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Stampede",
+      "telegraph": "King Minos paws the ground and lowers his horns!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Gore",
+      "telegraph": "King Minos drives his horns at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Labyrinth Roar",
+      "telegraph": "King Minos throws back his head to roar!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "King Minos"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 907,
+   "room": 934,
+   "why": "King Minos on his throne of horns",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "905": 1,
+      "906": 1
+     },
+     "shout": "King Minos roars, and his henchmen come charging into the pit!",
+     "why": "Franz and Hanz"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,185 @@
+{
+ "zone": 53,
+ "_about": "The Great Pyramid (levels 5-44): mummies that answer each other in the tombs, the sphinxes, the djinn and the efreeti as elites, Kharzul the Necromancer raising mummies in his golden crypt, Ramses the Damned whose curse starves all who stand still, and Aurexus the Bronze Dragon under the sand, breathing lightning.",
+ "creatures": {
+  "5307": {
+   "helpers": {
+    "group": "pyramid_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A dry wind moans through the tomb, and the dead stir!"
+   },
+   "why": "mummies"
+  },
+  "5308": {
+   "helpers": {
+    "group": "sandstorm",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The sand rises, and more sandmen take shape!"
+   },
+   "why": "sandmen"
+  },
+  "5316": {
+   "rank": "elite",
+   "why": "a guardian of the pyramid"
+  },
+  "5315": {
+   "rank": "elite",
+   "why": "a guardian of the pyramid"
+  },
+  "5314": {
+   "rank": "elite",
+   "why": "a guardian of the pyramid"
+  },
+  "5311": {
+   "rank": "elite",
+   "why": "a guardian of the pyramid"
+  },
+  "5309": {
+   "rank": "elite",
+   "why": "a guardian of the pyramid"
+  },
+  "5310": {
+   "rank": "elite",
+   "why": "a guardian of the pyramid"
+  },
+  "5317": {
+   "rank": "boss",
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_blind",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Ramses tears away his wrappings: \"None shall leave my tomb!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Curse of the Pharaohs",
+      "telegraph": "Ramses raises his crook, and the tomb fills with whispering!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+9",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Flail of Ages",
+      "telegraph": "Ramses swings his golden flail!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+7",
+      "dodge": true
+     },
+     {
+      "name": "Eternal Sleep",
+      "telegraph": "Ramses begins the rite of eternal sleep!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+12",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "Ramses the Damned"
+  },
+  "5318": {
+   "rank": "boss",
+   "why": "Kharzul the Necromancer"
+  },
+  "5360": {
+   "rank": "boss",
+   "why": "Aurexus the Bronze Dragon"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 5304,
+   "route": [
+    5325,
+    5333,
+    5334,
+    5335,
+    5336,
+    5342,
+    5343,
+    5344,
+    5345
+   ],
+   "why": "a tomb thief creeps through the tombs"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 5317,
+   "room": 5332,
+   "why": "Ramses in his tomb",
+   "mechanics": [
+    {
+     "type": "hunger",
+     "every": 3,
+     "pct": 0.025,
+     "stamina": 10,
+     "warn": "The curse of Ramses drains all who stand still. Keep moving!",
+     "why": "the curse starves the still"
+    },
+    {
+     "type": "gloom",
+     "max": 0.7,
+     "why": "the tomb darkens"
+    }
+   ]
+  },
+  {
+   "vnum": 5318,
+   "room": 5350,
+   "why": "Kharzul in the Golden Crypt",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "5307": 2
+     },
+     "shout": "Kharzul chants, and mummies lurch from their niches!",
+     "why": "mummies at 66% and 33%"
+    }
+   ]
+  },
+  {
+   "vnum": 5360,
+   "room": 5359,
+   "why": "Aurexus under the sand",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Lightning Breath",
+     "school": "lightning",
+     "every": 9,
+     "radius": 2.8,
+     "last": 8,
+     "pct": 0.05,
+     "why": "charged ground: step out"
+    }
+   ]
+  }
+ ]
+}

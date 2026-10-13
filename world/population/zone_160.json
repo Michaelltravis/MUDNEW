@@ -1,0 +1,107 @@
+{
+ "zone": 160,
+ "_about": "The Plane of Eternal Chaos (levels 29-50): imps, spawn, hell hounds and lesser demons who answer each other, chaos cultists, the chaos horror, the succubus and the pit fiend as elites, the balor on the Spire Summit a sub-boss, and Kaleidos the Prismatic Dragon breathing every colour of ruin while the plane's light flickers out.",
+ "creatures": {
+  "16001": {
+   "helpers": {
+    "group": "chaos_host",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shriek tears across the plane, and the host of chaos answers!"
+   },
+   "why": "the host of chaos"
+  },
+  "16002": {
+   "helpers": {
+    "group": "chaos_host",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shriek tears across the plane, and the host of chaos answers!"
+   },
+   "why": "the host of chaos"
+  },
+  "16003": {
+   "helpers": {
+    "group": "chaos_host",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shriek tears across the plane, and the host of chaos answers!"
+   },
+   "why": "the host of chaos"
+  },
+  "16010": {
+   "helpers": {
+    "group": "chaos_host",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shriek tears across the plane, and the host of chaos answers!"
+   },
+   "why": "the host of chaos"
+  },
+  "16007": {
+   "helpers": {
+    "group": "chaos_host",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shriek tears across the plane, and the host of chaos answers!"
+   },
+   "why": "the host of chaos"
+  },
+  "16005": {
+   "rank": "elite",
+   "why": "a power of the plane"
+  },
+  "16004": {
+   "rank": "elite",
+   "why": "a power of the plane"
+  },
+  "16008": {
+   "rank": "elite",
+   "why": "a power of the plane"
+  },
+  "16009": {
+   "rank": "sub-boss",
+   "why": "the balor"
+  },
+  "16025": {
+   "rank": "boss",
+   "why": "Kaleidos"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 16006,
+   "route": [
+    16002,
+    16001,
+    16003
+   ],
+   "why": "a chaos elemental drifts between the dominions"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 16025,
+   "room": 16025,
+   "why": "Kaleidos in the Prismatic Dragon Lair",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Prismatic Breath",
+     "school": "arcane",
+     "every": 8,
+     "radius": 3.0,
+     "last": 10,
+     "pct": 0.05,
+     "why": "every colour of ruin: step out"
+    },
+    {
+     "type": "gloom",
+     "max": 0.75,
+     "shout": "The colours of the plane flicker and die...",
+     "why": "the plane darkens"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "zone": 504,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and no boss (a peaceful place).",
+ "creatures": {
+  "650406": {
+   "rank": "sub-boss",
+   "why": "the captain of the guard"
+  },
+  "650404": {
+   "rank": "elite",
+   "why": "an elven archmage"
+  },
+  "650405": {
+   "rank": "elite",
+   "why": "an elven warmaster"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 650400,
+   "route": [
+    1418,
+    1420,
+    1422,
+    1432,
+    1442,
+    1444,
+    1445,
+    1447
+   ],
+   "why": "a slender elf walks its ground"
+  }
+ ]
+}

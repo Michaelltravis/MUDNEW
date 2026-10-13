@@ -199,6 +199,62 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.evaluate(me => MH.sendCommand(`restore ${me}`, false), me);
   }
 
+  if (MODE === 'sunken') {
+    // the Sunken Ruins of Atal'narath: drowned streets and temples under the sea, and who lives there
+    for (const [v, name] of [[13010, 'plaza'], [13011, 'temple'], [13005, 'kelp'], [13015, 'throne']]) {
+      check(await goto(v), `in ${name} (${v})`);
+      await sleep(3500);
+      const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look, sector: r.data.sector,
+        mobs: [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === r.vnum).map(e => e.data.name) }; });
+      console.log(v, JSON.stringify(info));
+      await page.screenshot({ path: path.join(OUT, `sunken-${name}.png`) });
+    }
+  }
+
+  if (MODE === 'garathorm') {
+    // Garathorm and its districts: the watch in the streets, the wall, the cathedral and its bishop, Fameland
+    for (const [v, name] of [[3014, 'market'], [2913, 'wall'], [4408, 'churchyard'], [4422, 'greathall'], [4472, 'ossuary'],
+                             [4430, 'altar'], [4452, 'belfry'], [15222, 'firsthero'], [2815, 'fencing']]) {
+      check(await goto(v), `in ${name} (${v})`);
+      await sleep(3500);
+      const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look, sector: r.data.sector,
+        mobs: [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === r.vnum).map(e => e.data.name) }; });
+      console.log(v, JSON.stringify(info));
+      await page.screenshot({ path: path.join(OUT, `garathorm-${name}.png`) });
+    }
+  }
+
+  if (MODE === 'rooms') {
+    // any rooms, from PROBE_ROOMS=vnum,vnum,...: its look, the creatures there and their plates
+    for (const v of (process.env.PROBE_ROOMS || '').split(',').filter(Boolean).map(Number)) {
+      check(await goto(v), `in ${v}`);
+      await sleep(3500);
+      const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look,
+        mobs: [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === r.vnum).map(e => e.data.name),
+        plates: [...document.querySelectorAll('.plate')].map(p => p.className).filter(c => /boss|elite/.test(c)) }; });
+      console.log(v, JSON.stringify(info));
+      await page.screenshot({ path: path.join(OUT, `room-${v}.png`) });
+    }
+  }
+
+  if (MODE === 'gates') {
+    // just outside the gates: the Rat King, Black Jory, the Barrow King, the dracolich, the Alpha Wolf, Redferne
+    for (const [v, name] of [[7320, 'ratking'], [19742, 'jory'], [8690, 'barrowking'], [5011, 'dracolich'], [20009, 'alphawolf'], [7911, 'redferne'],
+                             [2590, 'summoner'], [5406, 'thalos'], [4044, 'grondar'], [3519, 'grukthar'], [12204, 'highpriest'], [8892, 'carcosa'],
+                             [5141, 'lloth'], [3605, 'blackking'], [15017, 'welmar'], [14027, 'morthul'], [14030, 'verdraxx'], [4652, 'hrimgar'],
+                             [16252, 'lordofchaos'], [16258, 'island'], [9901, 'ghenna'], [9937, 'deepdragon'],
+                             [6411, 'rand'], [3375, 'aglandiir'], [6259, 'elstar'], [5332, 'ramses'], [11000, 'elves'],
+                             [8003, 'scorathax'], [7352, 'mindflayer'], [8742, 'barrowwight'], [8357, 'blackpriest'], [18629, 'minotaur']]) {
+      check(await goto(v), `in ${name} (${v})`);
+      await sleep(3500);
+      const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look,
+        mobs: [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === r.vnum).map(e => e.data.name),
+        plates: [...document.querySelectorAll('.plate')].map(p => p.className) }; });
+      console.log(v, JSON.stringify(info));
+      await page.screenshot({ path: path.join(OUT, `gates-${name}.png`) });
+    }
+  }
+
   if (MODE === 'castlelife') {
     // the castle is alive: the Bone Marshal (a sub-boss) at the junction, sentries in the halls
     check(await goto(14139), 'at the Junction of the Inner Halls (14139)');

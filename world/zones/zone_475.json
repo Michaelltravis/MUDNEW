@@ -29,8 +29,8 @@
      }
     }
    },
-   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead east and south.",
-   "placeholder": true
+   "description": "A large log cabin squats on a bare shoulder of hillside, its walls grey\nwith weather and its shutters nailed fast. A narrow path winds east into\nthe mist toward the high mountain path. The grass here grows in pale,\nwrong tufts, and no bird sings anywhere. A heavy door in the cabin wall\nstands a little ajar to the south, and the roofline leans like a thing\nthat is listening.",
+   "extra_descs": {}
   },
   "16201": {
    "vnum": 16201,
@@ -50,8 +50,8 @@
      "description": "To the east lies The Front Door Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "Shelves of dark wood climb to the ceiling and beyond it, so that the\nhighest rows are lost in shadow, and a ladder leans against them with\nits feet on nothing. A reading desk stands in the middle of the floor\nwith a lantern burning low upon it. The books smell of damp leather and\nold ink. The door east leads back to the hall, though from here it looks\nsmaller than it should.",
+   "extra_descs": {}
   },
   "16202": {
    "vnum": 16202,
@@ -93,8 +93,8 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A narrow front hall of dark pine boards, hung with coat pegs that hold\nonly shadows. The floor is polished so smooth that the lamplight slides\nalong it like oil. A door north opens back onto the hillside, a door\neast leads to a living room, and another west into a library, while the\nhall itself goes on south. The beams overhead sit a hand's breadth too\nlow at one end and too high at the other.",
+   "extra_descs": {}
   },
   "16203": {
    "vnum": 16203,
@@ -114,8 +114,8 @@
      "description": "To the west lies The Front Door Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "A broad living room with a cold hearth of fieldstone and chairs drawn up\naround it as though for a gathering that never came. The chairs have too\nmany legs for their size, or too few, and your eye will not settle on\nwhich. A threadbare rug lies under dust as thick as felt. The only way\nout is the door back west into the hall.",
+   "extra_descs": {}
   },
   "16204": {
    "vnum": 16204,
@@ -135,8 +135,8 @@
      "description": "To the east lies The South Part Of The Hall."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "A cold iron range fills one wall of this kitchen, its pots hanging above\nin rows from hooks, all swaying very slightly although the air is still.\nA pail of black water stands by the hearth and holds the reflection of a\nceiling that is not above you. The tiles underfoot are greasy and\nuneven. The only way out is the door east, back into the hall.",
+   "extra_descs": {}
   },
   "16205": {
    "vnum": 16205,
@@ -183,8 +183,8 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The hall bends here into its lower reach, where the floorboards run\ncrosswise to the ones behind you and the lamps burn a dull orange. Doors\nstand east and west, one to a bedroom and one to a kitchen, and a third\ndoor south gives onto a room that glitters. The front of the hall lies\nnorth. The wallpaper repeats a pattern of tiny closed eyes, and the\nquiet in this place seems to lean toward you.",
+   "extra_descs": {}
   },
   "16206": {
    "vnum": 16206,
@@ -204,8 +204,8 @@
      "description": "To the west lies The South Part Of The Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A bedroom with a tall bed hung in rotting curtains, its coverlet pulled\nsmooth as if no one had ever slept in it. The wardrobe stands against\nthe wall at a tilt that should send it crashing down, yet it does not. A\ncandle stub has melted into the sill in a long pale tongue, and the\nwindow shows only a flat grey that is not sky. The door west is the only\nway back to the hall.",
+   "extra_descs": {}
   },
   "16207": {
    "vnum": 16207,
@@ -229,8 +229,8 @@
      "description": "To the south lies In A Room Filled With Mirrors."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "Mirrors cover every wall, the ceiling and even the floor, set in black\nframes that crowd edge to edge. Your reflection steps a moment after you\ndo, and the room beyond the glass is always longer than the one you\nstand in. A pale doorway lies north, back to the hall, and an identical\none waits south. You cannot tell which of the two reflected doors is the\nreal one.",
+   "extra_descs": {}
   },
   "16208": {
    "vnum": 16208,
@@ -259,8 +259,8 @@
      "description": "To the south lies In A Room Filled With Mirrors."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
-   "placeholder": true
+   "description": "Mirrors again, but cracked now, each pane showing a different slice of\nthe room and none of them whole. A fine red dust lies in the cracks like\ndried wine. The door north leads out, though in the glass you see it\nstanding on every side at once. South the chamber seems to go on,\nfolding back upon itself until it ends where it began.",
+   "extra_descs": {}
   },
   "16209": {
    "vnum": 16209,
@@ -280,8 +280,8 @@
      "description": "To the east lies The South Part Of The Hall."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "A kitchen of stone, with a sink worn hollow and a pump whose spout drips\na thin red thread that never fills the basin. Shelves hold jars of\nsomething pale and cloudy, each sealed with wax. A long table is scored\nwith knife cuts, laid in patterns that look like maps. The door east\nreturns you to the hall, and the smell of vinegar follows you out.",
+   "extra_descs": {}
   },
   "16210": {
    "vnum": 16210,
@@ -323,8 +323,8 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "This stretch of the hall is a second copy of the first, but wrong in\nsmall ways: the lamps hang on the left wall instead of the right, and\nthe boards smell of cold ash. Doors stand east and west, one to a\nbedroom and one to a kitchen. The hall runs north toward a front door,\nand south an open archway shows a pale glimmer of glass. Somewhere a\nclock ticks, backward, you would swear.",
+   "extra_descs": {}
   },
   "16211": {
    "vnum": 16211,
@@ -344,8 +344,8 @@
      "description": "To the west lies The South Part Of The Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "A narrow room with a narrow bed, its blanket folded in thirds and its\npillow dented by a head that has not been there for years. A looking\nglass on the dresser has been turned to face the wall. A trunk stands at\nthe foot of the bed with its lid shut and its lock bright as new. The\ndoor west leads back to the hall.",
+   "extra_descs": {}
   },
   "16212": {
    "vnum": 16212,
@@ -365,8 +365,8 @@
      "description": "To the east lies The Front Door Hall."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "Shelves rise in a spiral from the floor, curving around the room so that\nthe volumes seem to lead you in while the door recedes. Every book is\nbound in grey cloth with no title, and when you open one the pages are\nblank. A single candle in a dish gives a light just strong enough to\nshow how dim it is. The only door lies east, back to the hall.",
+   "extra_descs": {}
   },
   "16213": {
    "vnum": 16213,
@@ -413,8 +413,8 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The front hall again, narrower than before, and its pegs are hung with\nlong grey cloaks that keep their shape with nobody inside them. A door\nnorth opens on a covered threshold, a door east on the living room, and\na door west on the library. The hall continues south. The floor tilts a\nfew degrees to one side, and cold air creeps beneath every door.",
+   "extra_descs": {}
   },
   "16214": {
    "vnum": 16214,
@@ -434,8 +434,8 @@
      "description": "To the west lies The Front Door Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "A second living room, larger than the first and twice as empty, with a\nsofa whose cushions have sunk into hollows that no one has filled.\nPicture frames cover one wall, each holding only a pale rectangle where\na picture used to be. A clock on the mantel has no hands, and yet it\nticks. The door west leads to the hall.",
+   "extra_descs": {}
   },
   "16215": {
    "vnum": 16215,
@@ -459,8 +459,8 @@
      "description": "To the south lies The Front Door Hall."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow vestibule roofed in blackened boards, where the cabin's outer\nwall seems to have turned itself inside out. Lamp brackets jut from the\nplanks at the height of your knee, and the floor is worn into a shallow\ntrough by feet you cannot picture. The door south leads back into the\nfront hall. Northward the vestibule opens on a road of pale, glinting\nbone.",
+   "extra_descs": {}
   },
   "16216": {
    "vnum": 16216,
@@ -482,8 +482,8 @@
      "description": "To the south lies Outside A Large Cabin."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and south.",
-   "placeholder": true
+   "description": "The path begins in earnest here, a road laid of skulls set jaw to jaw,\nthousands of them, polished by weather to the colour of old teeth. It\ncomes up from the cabin porch to the south and turns to run east across\na plain of broken grey ground. The sky above is the flat red of a wound\nclosing. Every skull faces the same way, and it is not toward you.",
+   "extra_descs": {}
   },
   "16217": {
    "vnum": 16217,
@@ -505,8 +505,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "Thigh bones, long and yellow, are laid side by side in a herringbone,\neach end driven into the earth so that the path rings faintly hollow\nbeneath your tread. On either hand the ground is cracked into grey\nplates with nothing growing in the seams. The way runs on east, and\nbehind you it bends back west toward the cabin. A smell of old cellars\nrises through the gaps.",
+   "extra_descs": {}
   },
   "16218": {
    "vnum": 16218,
@@ -528,8 +528,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "Great curved ribcages have been planted along the road in pairs, arching\nover it like the ribs of some vast ruined hall. Between them the paving\nis a mosaic of vertebrae, each knob worn smooth by passing feet. A thin\nwind threads the arches and makes a whistling that is almost a tune. The\npath goes on east, and the arches lead back west.",
+   "extra_descs": {}
   },
   "16219": {
    "vnum": 16219,
@@ -551,8 +551,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "Bone dust lies ankle deep over the paving here, fine and white as flour,\nand rises in slow clouds at every step. Faint tracks of other travellers\nshow in it, then fill and vanish. Ahead the road widens toward a\ncrossing, and the dust blows across it in long pale ribbons. West the\nway goes back toward the arches, a dry rattle trailing after you.",
+   "extra_descs": {}
   },
   "16220": {
    "vnum": 16220,
@@ -578,8 +578,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, south\nand west.",
-   "placeholder": true
+   "description": "Four roads of bone meet here, though one of them has fallen away, and at\nthe crossing a wheel of skulls has been set into the ground with the\neyes all turned inward. Black cracks run out from the wheel like spokes.\nA path runs north, another south toward a gap in the paving, and the one\nyou came by lies west. The hum you felt in your teeth is louder at this\ncrossing.",
+   "extra_descs": {}
   },
   "16221": {
    "vnum": 16221,
@@ -601,8 +601,8 @@
      "description": "To the south lies Junction Of Bone."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
-   "placeholder": true
+   "description": "A single spine, a monstrous one, has been laid lengthwise down the\nmiddle of the road, its great knuckled links forming a raised ridge that\nyou must step over. On either side lie scattered ribs, broken short. The\nground beyond is a dead grey crust that crackles under the wind. The\nroad runs north to another crossing and south to the one behind you.",
+   "extra_descs": {}
   },
   "16222": {
    "vnum": 16222,
@@ -628,8 +628,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, south\nand west.",
-   "placeholder": true
+   "description": "A crossing of bone pavements, rutted and sunken, where a thick black\npillar leans out of the broken ground at an angle that should have\ntoppled it long ago. The pillar hums, a low note that you feel in your\nbelly rather than hear. Paths run north and south, and a third leads\nwest under a drift of knucklebones. Dust lies in unmoving heaps on the\npillar's windless side.",
+   "extra_descs": {}
   },
   "16223": {
    "vnum": 16223,
@@ -651,8 +651,8 @@
      "description": "To the west lies A Baffling Sight."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "Knucklebones lie scattered over the road like dice thrown by a careless\ngiant, and some of them roll a little when you are not looking. A\ncrossing of bone pavements lies east, and the odd, shimmering sight is\nback west. Beside the path a low outcrop of black rock sweats a dark\nmoisture into a runnel of dust. Overhead the sky is the colour of a\nbruise fading.",
+   "extra_descs": {}
   },
   "16224": {
    "vnum": 16224,
@@ -674,8 +674,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "A baffling sight meets you here: the road ahead seems to climb and to\nfall at once, and the horizon shows twice, one above the other like a\nreflection hung in the air. A black pillar stands far off, upside down,\nits point resting on the ground. The bones in the paving lie in patterns\nthat your eye reads as a face, then as a map, then as nothing at all.\nThe path runs east and west.",
+   "extra_descs": {}
   },
   "16225": {
    "vnum": 16225,
@@ -697,8 +697,8 @@
      "description": "To the east lies A Baffling Sight."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "Small skulls, none bigger than a fist, have been mortared into low banks\non both sides of the path, rank upon rank of hollow stares. The road\nitself is bare packed earth worn smooth, as if the bones were saved for\nthe walls. North the path climbs back toward a bend, and east it\ndescends toward a place where the view goes strange. A chill moves along\nthe ground and does not rise.",
+   "extra_descs": {}
   },
   "16226": {
    "vnum": 16226,
@@ -720,8 +720,8 @@
      "description": "To the south lies On A Path Of Bones."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and south.",
-   "placeholder": true
+   "description": "At this corner the road is paved with pelvic bones, wide and winged,\nfitted together like the plates of a great shell. In a hollow beside the\nverge a shallow pool of red water lies perfectly still, and no wind\nripples it. One path leads east along the bone road and another south\ntoward a lower stretch of broken ground. The air tastes faintly of iron.",
+   "extra_descs": {}
   },
   "16227": {
    "vnum": 16227,
@@ -743,8 +743,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "The paving is made of finger bones, millions of them, set on end in\ntight whorls so that the road looks tiled in pale grass. Walking on it\nraises a dry whispering like wheat in a breeze. Cracked black earth\nshows to either hand, dotted with thorn stumps that have never borne a\nleaf. The path runs east and west, and the same whisper follows you both\nways.",
+   "extra_descs": {}
   },
   "16228": {
    "vnum": 16228,
@@ -766,8 +766,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "Tusks and curving horns have been set upright at the edges of the path,\na crooked guard of ivory that bristles on either hand. The paving\nbetween them is flat shoulder blades, laid like scales, rocking a little\nunderfoot. The road runs east toward a bend and west toward another\nstretch of the same. A smell of old copper hangs over everything.",
+   "extra_descs": {}
   },
   "16229": {
    "vnum": 16229,
@@ -789,8 +789,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead south and\nwest.",
-   "placeholder": true
+   "description": "The road turns a corner here between low heaps of jawbones, thousands of\nthem, stacked with the teeth outward like rows of tiny fence posts. Grey\ngrass pokes through them in wiry tufts. One path leads south toward a\ncrossing and the other west along the bone road. The sky is a smear of\nrust and soot, and nothing at all crosses it.",
+   "extra_descs": {}
   },
   "16230": {
    "vnum": 16230,
@@ -812,8 +812,8 @@
      "description": "To the south lies Path Of Bones."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The bone paving has been torn up here, leaving a long wound of bare red\nclay across the road. Bones lie in heaps at its edges as though thrown\naside in haste. Rust-coloured water wells slowly into the deepest part\nof the gap. The road resumes at a crossing north of here, and a stretch\nof bone continues south beyond the clay.",
+   "extra_descs": {}
   },
   "16231": {
    "vnum": 16231,
@@ -835,8 +835,8 @@
      "description": "To the east lies On A Path Of Bones."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand east.",
-   "placeholder": true
+   "description": "The road turns a corner here, paved with teeth set in black mortar,\nmolars and fangs in rows, like an enormous mouth lying open to the sky.\nA shallow ditch runs along one side, filled with grey slag. The path\nleads north to a break in the paving and bends away east. A thin high\nhumming runs through the ground and sets the teeth in your head buzzing.",
+   "extra_descs": {}
   },
   "16232": {
    "vnum": 16232,
@@ -858,8 +858,8 @@
      "description": "To the west lies Path Of Bones."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "On each side stand shin bones driven upright in two close rows, a\npalisade of pale stakes as high as your waist. Between them the road is\nlaid with long ribs lying flat, rattling underfoot. A low mist clings to\nthe ground and hides your boots. The path leads east and west between\nthe rows, narrow and straight.",
+   "extra_descs": {}
   },
   "16233": {
    "vnum": 16233,
@@ -881,8 +881,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
-   "placeholder": true
+   "description": "Every skull in the pavement here has an iron nail driven through its\nbrow, rusted red, so that the ground looks freckled with old blood.\nBlack thorn bushes crowd the margins, twisted into the shapes of\nreaching hands. East and west the road runs on, straight and hard. No\nsound rises from it but the tick of your own steps.",
+   "extra_descs": {}
   },
   "16234": {
    "vnum": 16234,
@@ -904,8 +904,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead south and west.",
-   "placeholder": true
+   "description": "At this bend antlers have been woven into a low barricade along the\nouter edge, their tines locked together like fingers. The paving is a\nrubble of hip and shoulder bones, loose and treacherous. A pool of dark\nstagnant water fills a hollow, and it mirrors a sky of a different\ncolour than the one overhead. The path turns south, while west leads\nback along the road.",
+   "extra_descs": {}
   },
   "16235": {
    "vnum": 16235,
@@ -927,8 +927,8 @@
      "description": "To the east lies A Break In The Path."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and east.",
-   "placeholder": true
+   "description": "Curling horns have been set into the road like rosettes, one at every\npace, and small bones fill the gaps between them. A low ridge of black\nrock has risen here out of the broken ground and hides the view. The\nroad comes in from the north and bends away east toward a break in the\npaving. Cold dew beads on the bone and runs into the cracks.",
+   "extra_descs": {}
   },
   "16236": {
    "vnum": 16236,
@@ -950,8 +950,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "The road has sunk into a shallow pit, its bones slumped and half buried\nin silt the colour of dried blood. Planks of bleached wood are laid\nacross the worst of it, creaking and bowing when you step. East the bone\npaving resumes on firmer ground. West it runs back toward a corner, and\na dry wind pushes dust down the length of the pit.",
+   "extra_descs": {}
   },
   "16237": {
    "vnum": 16237,
@@ -973,8 +973,8 @@
      "description": "To the west lies A Break In The Path."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nwest.",
-   "placeholder": true
+   "description": "Collarbones, thin and curved, lie in overlapping rows like roof slates,\nand they click like shingles under your tread. A black pillar stands a\nlittle way off the verge, taller than a house, humming so steadily that\nthe dust trembles in time. The road turns here, leading north toward a\nstraight stretch and west to a sunken place. Something in the air makes\nyour skin crawl.",
+   "extra_descs": {}
   },
   "16238": {
    "vnum": 16238,
@@ -996,8 +996,8 @@
      "description": "To the south lies On A Path Of Bones."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A straight stretch of road runs between two long ditches filled with\nbone dust, and beyond them rise black pillars at even spaces, each as\nthick as an oak and humming on a different note. Together the notes make\na slow chord that presses on your ears. The path leads north toward a\ngate and south back along the bone road. Nothing moves in the pale haze.",
+   "extra_descs": {}
   },
   "16239": {
    "vnum": 16239,
@@ -1019,8 +1019,8 @@
      "description": "To the south lies On A Path Of Bones."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and south.",
-   "placeholder": true
+   "description": "The road ends in a circle of paving made of skulls, every one turned\ninward, while the way ahead is blocked by a wall of pale stone that\nrises crooked against the sky. A gate stands east, tall and leaning, and\nits shadow falls across the bones. The path you came by lies south. The\nhumming is loud here, and the stone seems to answer it.",
+   "extra_descs": {}
   },
   "16240": {
    "vnum": 16240,
@@ -1047,8 +1047,8 @@
      "description": "To the west lies On A Path Of Bones."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
-   "placeholder": true
+   "description": "A deformed gate rises before you, its arch pinched at one side and\nswollen at the other, the posts of unequal thickness and neither one\nquite upright. The doorway beneath it is too narrow at the top and too\nwide at the bottom, as though drawn by a child. Beyond it the walls of a\nvast pale building lean away with windows of every size. The bone road\nlies west, and the gate opens east.",
+   "extra_descs": {}
   },
   "16241": {
    "vnum": 16241,
@@ -1080,8 +1080,8 @@
      "description": "To the west lies Outside A Deformed Gate."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Just inside the gate, the passage opens into a cramped chamber where the\nwalls lean together overhead and the floor slopes toward one corner.\nCorridors run along the outer wall north and south, and a wide archway\non the east side opens onto a hall of pillars. The gate you came through\nlies west. Lamplight pools on the flags and then somehow fails to light\nthe rest.",
+   "extra_descs": {}
   },
   "16242": {
    "vnum": 16242,
@@ -1105,8 +1105,8 @@
      "description": "To the east lies By A Door In The Wall."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and east.",
-   "placeholder": true
+   "description": "Two walls meet in a corner that is not a right angle, and the floor has\nbeen laid to follow it in a long spreading wedge of flagstones. The gate\nchamber lies north. A door in the wall waits east. A shelf of grey stone\nis built into the plaster at about the height of your chest, with\nnothing on it but a ring of old soot.",
+   "extra_descs": {}
   },
   "16243": {
    "vnum": 16243,
@@ -1143,8 +1143,8 @@
      "description": "To the west lies Along The Wall Of The Building."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A door of black wood stands in the wall here, set so that it seems to\nlean out into the passage. Dust lies on the lintel in a perfect layer,\nas if nothing had touched it since the building was dreamed. The hall of\npillars lies north, a corridor runs east and west along the wall, and\nsouth the door opens on a winding stair. A cold wind comes under it,\nthough the air elsewhere is still.",
+   "extra_descs": {}
   },
   "16244": {
    "vnum": 16244,
@@ -1172,8 +1172,8 @@
      "description": "To the west lies By A Door In The Wall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A single smoking lamp hangs here from a chain that rises into darkness\nwithout ever reaching a ceiling. Its light shows a corridor of cold\nplaster, with the hall of pillars opening to the north and the passage\nrunning on east and west. The floor is worn into two shallow grooves, as\nthough a cart had passed again and again. A smell of tallow and damp\nstone clings to the air.",
+   "extra_descs": {}
   },
   "16245": {
    "vnum": 16245,
@@ -1197,8 +1197,8 @@
      "description": "To the west lies Along The Wall Of The Building."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "The passage ends in a blunt corner of plaster stained with long dark\nruns, as if the wall itself had wept. North the corridor reaches a large\ndecorated door, and west it runs back along the wall. The corner is not\nsquare, and when you stand in it your shoulder feels a gentle pressure.\nSomewhere a dripping counts out a slow, uneven time.",
+   "extra_descs": {}
   },
   "16246": {
    "vnum": 16246,
@@ -1235,8 +1235,8 @@
      "description": "To the west lies Hall Of Pillars."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A large decorated door stands in the wall here, carved with coiling\nshapes that begin as vines and end as writhing hands. It is set at an\nangle to the wall and yet seems flush with it. The corridor runs north\nand south alongside, and the hall of pillars opens west. The door itself\nleads east to a red and ruined shore, and a faint smell of blood comes\nthrough the planks.",
+   "extra_descs": {}
   },
   "16247": {
    "vnum": 16247,
@@ -1260,8 +1260,8 @@
      "description": "To the west lies Along The Wall Of The Building."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and west.",
-   "placeholder": true
+   "description": "The corridor bends along the wall, where the floor is paved in black and\nwhite tiles that do not make a pattern but only a mess. Candles gutter\nin niches, burning with flames that stand perfectly straight. A large\ndecorated door lies south, and the corridor runs back west the way it\ncame. The tiles at your feet seem to shift when watched.",
+   "extra_descs": {}
   },
   "16248": {
    "vnum": 16248,
@@ -1289,8 +1289,8 @@
      "description": "To the west lies By A Door In The Wall."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The outer corridor passes here beneath a row of narrow slit windows\nthrough which you can see only more wall. The plaster is damp and cold,\nand it smells of wet stone and old wax. East and west the passage\ncontinues along the wall, and a gap in the south side opens on the hall\nof pillars. A small draught moves, though no door is open.",
+   "extra_descs": {}
   },
   "16249": {
    "vnum": 16249,
@@ -1322,8 +1322,8 @@
      "description": "To the west lies Along The Wall Of The Building."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A heavy door of black wood is set in the wall here, its handle at an\nawkward height and its hinges on the wrong side. The corridor runs east\nand west along the wall, and south a wide opening shows the columns of a\ngreat hall. North, a door leads to a place where the stairs wind. The\nfloor is laid in flags of every size, none matching.",
+   "extra_descs": {}
   },
   "16250": {
    "vnum": 16250,
@@ -1347,8 +1347,8 @@
      "description": "To the south lies Inside The Deformed Gate."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "A narrow passage runs along the outer wall of the building, whose\nplaster is scored with long scratches in groups of five. The ceiling is\nlower than it should be, and the lamps in their iron brackets throw\ncrooked shadows. East the corridor continues toward a door set in the\nwall, and south it returns to the gate chamber. Your own steps come back\nfrom the wrong direction.",
+   "extra_descs": {}
   },
   "16251": {
    "vnum": 16251,
@@ -1380,8 +1380,8 @@
      "description": "To the west lies Inside The Deformed Gate."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Black columns thick as ancient trees rise in rows from the floor into a\nceiling lost in gloom, and each one hums its own low note. The floor\nbetween them is smooth and faintly warm, like the flank of a sleeping\nthing. Doors lie north and south among the columns, the hall goes on\neast, and west a leaning arch opens toward the gate chamber. Your voice\ndies a pace from your lips.",
+   "extra_descs": {}
   },
   "16252": {
    "vnum": 16252,
@@ -1413,8 +1413,8 @@
      "description": "To the west lies Hall Of Pillars."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "More pillars, but these stand crooked and unequal, some no thicker than\na man's arm and others broad as a cart, and a few lean on their\nneighbours like tired drunks. Their surfaces are marked with scratches\nthat might be letters. Passages open north and south toward the wall\ncorridors, a large decorated door lies east, and the forest of columns\ngoes on west. The hum swells and fades like breathing.",
+   "extra_descs": {}
   },
   "16253": {
    "vnum": 16253,
@@ -1443,8 +1443,8 @@
      "description": "To the up lies Outside A Large Cabin."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and up.",
-   "placeholder": true
+   "description": "A mindboggling staircase winds up from here, its steps turning in a\nspiral that seems to climb and drop at once, and each turn looks back on\nthe last. Wooden rails are bolted to walls that bulge outward in places\nand sink in others. Far above, a square of grey light promises a way\nout, and the stair leads there. The door south opens back to the\ncorridor of the wall.",
+   "extra_descs": {}
   },
   "16254": {
    "vnum": 16254,
@@ -1464,8 +1464,8 @@
      "description": "To the north lies By A Door In The Wall."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "The winding staircase that began behind the door has been walled in, its\nsteps vanishing under smooth plaster at the first turn. Chisel marks\ncross the plaster in anxious lines, as if someone had tried to dig back\nin. The air is close and smells of wet lime. The only way out is the\ndoor north into the wall passage.",
+   "extra_descs": {}
   },
   "16255": {
    "vnum": 16255,
@@ -1495,8 +1495,9 @@
      "description": "To the west lies By A Large Decorated Door In The Wall."
     }
    },
-   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The door in the wall opens on a ridge of dark gravel, and beyond it a\nlake of red water laps without a sound. The sky above is a low, bruised\ncopper, and the air carries a warm smell like a butcher's yard. A shore\nruns north and south along the water's edge, while to the east the lake\nspreads away, thick and slow. The wall of the building towers behind you\nto the west.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16256": {
    "vnum": 16256,
@@ -1526,8 +1527,8 @@
      "description": "To the west lies On The Shore Of A Lake Of Blood."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Pale bubbles rise at intervals through the red water, and each breaks\nwith a small flat sound like a sigh. The raft turns a half circle and\nsettles again, its logs creaking. Not far west a dark shingle slopes up\nfrom the lake, and the wall above it is a blind grey cliff. The lake\nruns on north, south and east, quiet and enormous under the copper sky.",
+   "extra_descs": {}
   },
   "16257": {
    "vnum": 16257,
@@ -1557,8 +1558,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The water here is shallow enough that you see, far below, the pale\nshapes of rocks standing on the lake bed like the stumps of a ruined\ntown. Red mist drifts across the surface in slow rafts of its own. An\nisland lies near, to the east, a low heap of stone in the haze. North,\nsouth and west the lake spreads away, and nothing moves on it.",
+   "extra_descs": {}
   },
   "16258": {
    "vnum": 16258,
@@ -1592,8 +1593,8 @@
      "description": "To the down lies City Limits Of Ghenna."
     }
    },
-   "description": "A narrow path winds between the hillocks. Gorse and heather cling to the\nwindy rise. Ways lead north, east, south, west and down.",
-   "placeholder": true
+   "description": "The raft grinds ashore on a small island in the middle of the lake, a\nknoll of grey stone and dead thorn rising a few paces above the red\nwater. The ground is cracked and pitted, and in its centre a ragged\nmouth opens between the rocks, with rough steps cut down into the dark.\nA warm, stale breath rises from it, smelling of ash and old bones, and\nthe stair leads down toward a ruined city far below. The lake lies all\naround, and the swell runs away in every direction.",
+   "extra_descs": {}
   },
   "16259": {
    "vnum": 16259,
@@ -1623,8 +1624,8 @@
      "description": "To the west lies On A Small Island In The Middle Of The Lake."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Close at hand to the west a low island rises from the red water, a rough\nknoll of grey stones with a few dead thorns on its crown. Ripples wander\nout from its edge in perfect rings, though nothing causes them. The lake\nlies open to the north and south, and eastward a bank of broken rock\nslopes into the swell. The air smells of rust and cold ash.",
+   "extra_descs": {}
   },
   "16260": {
    "vnum": 16260,
@@ -1654,8 +1655,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A heavy swell lifts the raft and sets it down, and the red water beneath\nlooks thick enough to walk on. The stony bank lies close at hand east,\nand above it the sky glows a dull copper. A trail of pale froth\nstretches away across the surface, behind the raft. North, south and\nwest the lake goes on.",
+   "extra_descs": {}
   },
   "16261": {
    "vnum": 16261,
@@ -1681,8 +1682,9 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Rocks like a broken stair lead down to the lake, and half-buried among\nthem lie the great curved ribs of something that died here long ago,\ntheir tips sticking up like the masts of a wreck. The red water breaks\nagainst them in slow, oily folds. The shore runs north and south along\nthe water, and the lake lies west, wide and utterly still. The wind\ncarries a taste of rust.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16262": {
    "vnum": 16262,
@@ -1708,8 +1710,9 @@
      "description": "To the south lies By A Huge Black Pillar."
     }
    },
-   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A strip of grey shingle runs between the building's blind wall and the\nlake, and the red water clicks against it in tiny waves. Dead reeds lean\nover the margin, their tips dipped in blood-coloured scum. The shore\nleads north toward the door and south to a dark pillar. To the east the\nwater opens, still and wide, under a copper sky.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16263": {
    "vnum": 16263,
@@ -1739,8 +1742,8 @@
      "description": "To the west lies On The Shore Of A Lake Of Blood."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Under the raft the lake is utterly silent, and the red surface reflects\nthe sky with a stain of its own, so that the heavens look cut and\nbleeding. West a wide strip of grey shingle runs up to a wall of pale\nstone, and south a bank of black rocks curves in. The swell is slow and\nlong. North and east the water stretches into haze.",
+   "extra_descs": {}
   },
   "16264": {
    "vnum": 16264,
@@ -1770,8 +1773,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The raft drifts on a patch of water that is paler than the rest, a\npinkish shade like weak wine, and in it floats a ring of tiny pale\nbubbles that circles without stopping. To the south the rocks of the\nbank rise near and sharp. North, east and west the lake spreads, wide\nand quiet. A faint hum shivers through the logs.",
+   "extra_descs": {}
   },
   "16265": {
    "vnum": 16265,
@@ -1801,8 +1804,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "An island lies just ahead to the north, a rough heap of stone and thorn,\nand the red water laps at its edge in long sticky strokes. Behind and\naround you the lake runs wide, and south the broken rocks of the bank\nslope down to the water. The swell here carries a smell of old copper\nand wet earth. A pale crust of salt rings the island like the line in an\nempty cup.",
+   "extra_descs": {}
   },
   "16266": {
    "vnum": 16266,
@@ -1832,8 +1835,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The lake is darkest here, almost black, with veins of crimson running\nthrough it like blood in a bruise. The raft moves with a slow, unwilling\nsway. A stony beach rises close to the south, and the water spreads away\nto the north, east and west under a low copper sky. Far across the\nwater, a tall pillar stands against the haze and hums.",
+   "extra_descs": {}
   },
   "16267": {
    "vnum": 16267,
@@ -1863,8 +1866,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Close to the raft on the east side the bank climbs in black blocks, and\na huge dark pillar towers over the far corner. The water here is warmer\nthan elsewhere, and a thin red steam rises from it in curling ropes.\nSouth a stony bank lies near as well, and the lake runs on west and\nnorth. Every few moments the swell gives a deep, slow heave.",
+   "extra_descs": {}
   },
   "16268": {
    "vnum": 16268,
@@ -1890,8 +1893,9 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The shore here is a litter of black glass and shattered stone, as if\nlightning had once struck the ground repeatedly. Where the glass meets\nthe lake it has melted into long smooth shelves, glossy under a film of\nred. The shore leads north to a bend and south to a dark pillar. To the\nwest the lake lies open and silent, and the sky above it is copper and\nsoot.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16269": {
    "vnum": 16269,
@@ -1913,8 +1917,8 @@
      "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "From the crest the land below spreads out like a map. Gorse and heather\ncling to the windy rise. Ways lead north and east.",
-   "placeholder": true
+   "description": "A huge black pillar stands at the foot of the wall, and the shingle\naround its base is melted smooth into glass. The hum comes through the\nsoles of your boots and sets your jaw aching. A path of scattered stones\nleads north along the shore and east along a rockier edge of the lake.\nBeyond, far across the water, the pale hump of an island floats in the\nhaze.",
+   "extra_descs": {}
   },
   "16270": {
    "vnum": 16270,
@@ -1940,8 +1944,9 @@
      "description": "To the west lies By A Huge Black Pillar."
     }
    },
-   "description": "Rocks break through the thin soil of the slope. From the crest the land\nbelow spreads out like a map. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A rubble bank of black stone, tangled with dead roots like grey knotted\nrope, holds back a little bay of red water. The surface of the bay\nshivers continually, though no wind stirs. A huge dark pillar stands\nwest, and the shore leads back east. North the lake opens and the haze\ncloses in, hiding the other side.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16271": {
    "vnum": 16271,
@@ -1967,8 +1972,9 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "From the crest the land below spreads out like a map. The ground rises\nand falls in grassy folds. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Here the rocks climb a little, forming a small bluff above the lake from\nwhich the red water seems very far away and strangely flat. Pale lichen\ngrows on the stone in the shapes of handprints, large and small. The\nshore runs east and west along the bluff's foot. North the lake extends\nto a pale smudge that might be an island.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16272": {
    "vnum": 16272,
@@ -1994,8 +2000,9 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. From the crest the land below\nspreads out like a map. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The shore is a low ridge of pale pebbles that clink like coins under\nyour feet, and between them runs a thin stream of red water, braiding\nback to the lake. A bare thorn stands crooked at the margin with its\nbranches all bent the same way. East and west the shore goes on, while\nnorth the lake spreads to the far haze. The air is damp and tastes of\ncopper.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16273": {
    "vnum": 16273,
@@ -2021,8 +2028,9 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "Rocks break through the thin soil of the slope. From the crest the land\nbelow spreads out like a map. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A strip of blackened gravel runs between the lake and a bank of broken\nground, strewn with the splintered planks of some long-wrecked boat. The\nribs of its hull stick up from the shingle, grey and rotten. You can\nfollow the shore east or west, and north the lake lies still, the colour\nof a fresh cut. Tiny crystals of salt glitter on the stones.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16274": {
    "vnum": 16274,
@@ -2048,8 +2056,9 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Heavy slabs of rock lie tumbled along the water here, split and\novergrown with a stiff red moss that crackles when touched. A huge black\npillar stands where the shore climbs east, and the way runs on west\nacross more rubble. North the lake extends, the surface smooth as a\nmirror and as dark. The sound of the water is soft and lazy, like breath\nin sleep.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16275": {
    "vnum": 16275,
@@ -2071,8 +2080,8 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "A narrow path winds between the hillocks. Gorse and heather cling to the\nwindy rise. Ways lead north and west.",
-   "placeholder": true
+   "description": "A huge black pillar stands at the lake's lower corner, rooted in the\nstones, humming a note that rises and falls with the slow swell of the\nwater. Its base is ringed with a cairn of small bones, heaped there by\nwho knows what hand. A path runs north along the rocks and west along\nthe bottom shore. The red water slaps against the pillar's foot and\nleaves no mark.",
+   "extra_descs": {}
   },
   "16276": {
    "vnum": 16276,
@@ -2098,8 +2107,9 @@
      "description": "To the south lies On The Shore Of A Lake Of Blood."
     }
    },
-   "description": "A narrow path winds between the hillocks. From the crest the land below\nspreads out like a map. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A narrow beach of black grit slopes down to the lake, and the red water\nslides over it in long, slow tongues that leave stains. Weed the colour\nof liver clings to the stones. The shore runs north toward a tall dark\npillar and south back along the wall of the building. The lake itself\nlies out to the east, and nothing floats on it.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16277": {
    "vnum": 16277,
@@ -2129,8 +2139,8 @@
      "description": "To the west lies On The Shore Of A Lake Of Blood."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Your raft rides low on the Lake of Blood, and the water presses against\nits logs in a thick, unhurried swell. Close by to the west the grey\nshore slopes into the red, and a pale ridge of rock hides the wall\nbeyond it. The surface carries a skin of scum that parts ahead of the\nraft and closes behind. North a rocky bank lies near, while south and\neast the lake runs on.",
+   "extra_descs": {}
   },
   "16278": {
    "vnum": 16278,
@@ -2160,8 +2170,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The red water here is calm and heavy, and the raft turns slowly on it,\nas if it could not decide which way to drift. A film of oily bubbles\ngathers against the logs and pops without a sound. To the north the\nrocks of the bank loom close, and to the east and south the lake goes\non, dark and unmoving. A low hum comes across the surface from the\npillars on the far bank.",
+   "extra_descs": {}
   },
   "16279": {
    "vnum": 16279,
@@ -2191,8 +2201,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A slow current tugs the raft toward the south, where a small island\nrises low from the lake, its pale stones just visible in the haze. The\nwater is the colour of fresh blood near the surface and of old blood\nbelow. A rocky bank lies north, and the lake lies open east and west. A\nfaint steam lifts from the swell and beads on your skin.",
+   "extra_descs": {}
   },
   "16280": {
    "vnum": 16280,
@@ -2222,8 +2232,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The raft wallows in a hollow where the swell comes at it from two\ndirections at once, and the red water slaps and chuckles around the\nlogs. The air above is warm and sweet and sticks in your throat. North\nthe bank of broken rock stands a short pole's length away. East and west\nthe lake stretches out, and south it opens toward a wide red emptiness.",
+   "extra_descs": {}
   },
   "16281": {
    "vnum": 16281,
@@ -2253,8 +2263,8 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Here the lake narrows toward the rocks, and the raft glides through\nwater that is nearly black, with lazy threads of crimson turning on its\nsurface. The pillar at the far corner of the lake sends a slow hum\nthrough the logs and into your boots. The bank lies close to the north\nand a stony beach to the east. West and south the lake falls away in\nlong unbroken swells.",
+   "extra_descs": {}
   },
   "16282": {
    "vnum": 16282,
@@ -2280,8 +2290,9 @@
      "description": "To the west lies On The Lake Of Blood."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. From the crest the land below\nspreads out like a map. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The ground here is a bank of dark gravel pitted with little holes, as\nthough the lake had breathed on it, and from the pits rises a thin red\nmist. A huge black pillar stands north, close enough for its hum to\nshake the grit loose. The shore runs south along the water, and to the\nwest the lake opens, wide and dark. A sour smell like old pennies fills\nthe air.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16283": {
    "vnum": 16283,
@@ -2303,8 +2314,8 @@
      "description": "To the south lies On The Shore Of A Lake Of Blood."
     }
    },
-   "description": "From the crest the land below spreads out like a map. A narrow path\nwinds between the hillocks. Ways lead east and south.",
-   "placeholder": true
+   "description": "A huge black pillar rises from the broken ground at the water's edge, as\nwide as a tower and taller than the eye can follow, and it hums so\ndeeply that the pebbles at its foot shiver. The stone is slick, as if\nfreshly wet, and shows no seam. The shore runs east along the lake and\nsouth toward a gentler beach. Overhead the clouds sit low and red.",
+   "extra_descs": {}
   },
   "16284": {
    "vnum": 16284,
@@ -2330,8 +2341,9 @@
      "description": "To the west lies By A Huge Black Pillar."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. Rocks break through the thin\nsoil of the slope. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Jagged rocks, black and wet, jut out along the water's edge, and the red\nlake sucks at their feet with a small clinging sound. A huge dark pillar\nrises to the west, its hum running along the stones like a fever. The\nshore continues east, and south the lake lies open, its surface slow and\nthick. Crusted salt stains the rocks in rust-coloured rings.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16285": {
    "vnum": 16285,
@@ -2357,8 +2369,9 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A broken terrace of grey boulders steps down to the lake here, each slab\ntilted at a different angle, so that walking it is a matter of leaping\nfrom one to the next. Rust-red lichen coats the stone in patches that\nlook like old wounds. The shore leads east and west along the water, and\nsouth the lake spreads out, still and heavy. A cold, metallic smell\nrolls off the surface.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16286": {
    "vnum": 16286,
@@ -2384,8 +2397,9 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. Rocks break through the thin\nsoil of the slope. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The rocks are smaller here, scree and shingle slick with a red film, and\nthey shift and clink under your boots. A dead tree, bleached and\ntwisted, stands at the water's lip with its roots in the lake, and its\nbranches dip into the red as though drinking. You can follow the shore\neast or west. South the lake is wide and quiet, with a faint steam on\nit.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16287": {
    "vnum": 16287,
@@ -2411,8 +2425,9 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "From the crest the land below spreads out like a map. Rocks break\nthrough the thin soil of the slope. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A wide shelf of flat rock reaches out into the lake, cracked into\nplates, and in the cracks stand pools of water so red they look like\nspilled paint. The air here is thick and sweet. East and west the shore\nruns on, and the lake lies south, motionless but for slow rings that\nspread from nowhere. The sky overhead has the dull gleam of old copper.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16288": {
    "vnum": 16288,
@@ -2438,8 +2453,9 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. A narrow path winds between\nthe hillocks. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The shore narrows to a ledge here, hemmed on one side by broken ground\nand on the other by the lake, which gnaws at the stone with a patient\nlapping. A mooring post, grey and split, leans from a crack with a loop\nof frayed rope still wound about it. A huge black pillar looms east\nwhere the ledge widens, and the shore runs back west. South the lake\nstretches away, dark red and still.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "16289": {
    "vnum": 16289,
@@ -2461,11 +2477,10 @@
      "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. A narrow path winds between\nthe hillocks. Ways lead south and west.",
-   "placeholder": true
+   "description": "A huge black pillar stands at the corner of the lake, rising out of a\nheap of fallen rocks, and its hum is so low that your heartbeat falls\ninto step with it. The surface of the stone is polished and unmarked,\nand your face looks up from it, stretched. The shore runs south down the\nlake's far edge and west along the rocks. A crust of dried red stains\nthe ground around its foot.",
+   "extra_descs": {}
   }
  },
  "mobs": {},
- "objects": {},
- "sealed": true
+ "objects": {}
 }

@@ -1,0 +1,229 @@
+{
+ "zone": 25,
+ "_about": "The High Tower of Magic (levels 7-25): masters who fight with spell and summoning, mages and teachers who come to each other's alarm, guardians that wake together, the Mad Alchemist a sub-boss, and the Master Summoner in his Pentagram Chamber, tearing glyphs into the floor and calling demons through.",
+ "creatures": {
+  "2504": {
+   "helpers": {
+    "group": "tower",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The mage shouts a word of alarm, and the tower answers!"
+   },
+   "why": "the tower's mages"
+  },
+  "2525": {
+   "helpers": {
+    "group": "tower",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The mage shouts a word of alarm, and the tower answers!"
+   },
+   "why": "the tower's mages"
+  },
+  "2521": {
+   "helpers": {
+    "group": "tower",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The mage shouts a word of alarm, and the tower answers!"
+   },
+   "why": "the tower's mages"
+  },
+  "2523": {
+   "helpers": {
+    "group": "tower",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The mage shouts a word of alarm, and the tower answers!"
+   },
+   "why": "the tower's mages"
+  },
+  "2527": {
+   "helpers": {
+    "group": "tower",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The mage shouts a word of alarm, and the tower answers!"
+   },
+   "why": "the tower's mages"
+  },
+  "2529": {
+   "helpers": {
+    "group": "tower",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The mage shouts a word of alarm, and the tower answers!"
+   },
+   "why": "the tower's mages"
+  },
+  "2512": {
+   "helpers": {
+    "group": "guardians",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The guardians of the tower stir as one!"
+   },
+   "why": "guardians"
+  },
+  "2513": {
+   "helpers": {
+    "group": "guardians",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The guardians of the tower stir as one!"
+   },
+   "why": "guardians"
+  },
+  "2539": {
+   "helpers": {
+    "group": "guardians",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The guardians of the tower stir as one!"
+   },
+   "why": "guardians"
+  },
+  "2503": {
+   "rank": "elite",
+   "why": "a master of the tower"
+  },
+  "2532": {
+   "rank": "elite",
+   "why": "a master of the tower"
+  },
+  "2534": {
+   "rank": "elite",
+   "why": "a master of the tower"
+  },
+  "2538": {
+   "rank": "elite",
+   "why": "a master of the tower"
+  },
+  "2536": {
+   "rank": "sub-boss",
+   "why": "the Mad Alchemist"
+  },
+  "2537": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Master Summoner laughs as the pentagram blazes: \"Come forth, my servants!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Brimstone Burst",
+      "telegraph": "The Master Summoner thrusts his staff into the pentagram, and it flares red!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Hellbolt",
+      "telegraph": "The Master Summoner levels a smoking finger at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Open the Gate",
+      "telegraph": "The Master Summoner begins the great invocation!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the tower's boss"
+  },
+  "25100": {
+   "name": "demon summoned lesser",
+   "short_desc": "a lesser demon",
+   "long_desc": "A lesser demon crouches in the smoke, horns lowered.",
+   "description": "A hunched, red-skinned thing with a goat's horns and a lizard's tail, dragged through the pentagram and furious about it.",
+   "level": 18,
+   "flags": [
+    "aggressive"
+   ],
+   "race": "demon",
+   "alignment": -800
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 2504,
+   "route": [
+    2513,
+    2515,
+    2530,
+    2531,
+    2534,
+    2538,
+    2540,
+    2543,
+    2545,
+    2547,
+    2548,
+    2550,
+    2551,
+    2553,
+    2555,
+    2556,
+    2558,
+    2560,
+    2562,
+    2563,
+    2566,
+    2568,
+    2569
+   ],
+   "why": "a mage walks the tower's halls"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 2537,
+   "room": 2590,
+   "why": "the Master Summoner in the Pentagram Chamber",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Burning Glyph",
+     "school": "fire",
+     "every": 10,
+     "radius": 2.3,
+     "last": 12,
+     "pct": 0.04,
+     "why": "glyphs burned into the floor: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "25100": 2
+     },
+     "shout": "The pentagram roars, and demons claw their way through!",
+     "why": "demons at 66% and 33%"
+    }
+   ]
+  }
+ ]
+}

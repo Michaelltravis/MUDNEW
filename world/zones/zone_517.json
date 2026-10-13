@@ -22,8 +22,8 @@
      "description": "To the east lies Inside the School House."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "A narrow office smelling of beeswax and old paper, with a broad desk\nscarred by decades of ink rings. Framed certificates hang crooked above\na shelf of leather-bound registers, and a brass bell-pull dangles by the\nwindow. A single hard chair sits before the desk, polished smooth by\nnervous sitters. The only way out is the door east into the school's\nmain hall.",
+   "extra_descs": {}
   },
   "2801": {
    "vnum": 2801,
@@ -67,8 +67,8 @@
      "description": "To the up lies Upstairs Hallway."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth, west and up.",
-   "placeholder": true
+   "description": "The great hall of the school house is a bustle of boots on scuffed\nboards, with the lesson bell hanging from a rope beside the stairs. Rows\nof pegs hold forgotten caps and satchels, and slates are stacked in\nleaning towers against the wall. Doors lead east to the janitor's office\nand west to the principal's, while the hallway runs on north past the\nclassrooms. Stairs climb up to the floor above, and the entrance porch\nlies south.",
+   "extra_descs": {}
   },
   "2802": {
    "vnum": 2802,
@@ -88,8 +88,8 @@
      "description": "To the west lies Inside the School House."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "A cluttered cupboard of a room smelling of lye, turpentine and wet rope.\nMops hang from hooks, brooms lean in a bristly bunch, and a great ring\nof keys hangs on a nail above a bench littered with screws and tins of\npolish. A cot is folded against the wall under a shelf of oilcans. The\nonly door leads west back to the main hall.",
+   "extra_descs": {}
   },
   "2803": {
    "vnum": 2803,
@@ -109,8 +109,8 @@
      "description": "To the west lies Downstairs Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A small, calm room where the noise of the school seems far away. Two\nsoft chairs face each other over a faded rug, and a kettle sits on a\nlittle spirit stove beside a jar of honey. Shelves hold storybooks and a\nbox of carved wooden animals, and a potted fern droops in the window.\nThe door west leads out to the hallway.",
+   "extra_descs": {}
   },
   "2804": {
    "vnum": 2804,
@@ -142,8 +142,8 @@
      "description": "To the west lies Classroom."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Chalk dust hangs in the air of this long hallway, drifting through\nslanting light from a high window. Pegs line the wall at child height,\nand a worn runner of rag carpet muffles little of the noise. A door east\nbears a small brass plate for the counselor, while an open doorway west\nshows a classroom. The hallway goes on north, and south it opens back\ninto the main hall.",
+   "extra_descs": {}
   },
   "2805": {
    "vnum": 2805,
@@ -161,8 +161,8 @@
      "description": "To the east lies Downstairs Hallway."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads east.",
-   "placeholder": true
+   "description": "Neat rows of desks face a board ruled with lines for practising\nhandwriting, each stroke looped and slanted just so. Quills stand in a\njar on the teacher's table beside a pot of sand for blotting. Copybooks\nlie open on the desks, blotted and crossed out in a variety of styles.\nLight from a high window falls on a single door east, which leads to the\nhallway.",
+   "extra_descs": {}
   },
   "2806": {
    "vnum": 2806,
@@ -180,8 +180,8 @@
      "description": "To the east lies Downstairs Hallway."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads east.",
-   "placeholder": true
+   "description": "A narrow plank outhouse, leaning slightly, with a crescent moon cut high\nin the door and a draught whistling through the knots. A long bench with\ntwo holes sits above a bucket of lime, and squares of cloth hang on a\nnail. The graffiti of passing generations is scratched into the boards,\nmuch of it misspelled. The door opens east into the school hallway.",
+   "extra_descs": {}
   },
   "2807": {
    "vnum": 2807,
@@ -213,8 +213,8 @@
      "description": "To the west lies Outhouse."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Slates hang from nails along this stretch of hallway, each chalked with\na name and a sum gone wrong. The floorboards are worn into a shallow\ngroove down the middle by years of hurrying feet. East, a classroom door\nstands ajar, and west a plank door with a crescent cut in it leads out\nto the outhouse. A draught carries a whiff of lye soap from that way,\nand the hall continues north and south.",
+   "extra_descs": {}
   },
   "2808": {
    "vnum": 2808,
@@ -232,8 +232,8 @@
      "description": "To the west lies Downstairs Hallway."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads west.",
-   "placeholder": true
+   "description": "Beads strung on wooden frames stand along the sills of this counting\nroom, and a tall abacus clacks gently in the draught. Sums in a looping\nhand cover the board, with one smudged correction in red. Stools stand\nin a ragged ring around a table piled with pebbles and tally sticks. The\ndoor west opens to the hallway.",
+   "extra_descs": {}
   },
   "2809": {
    "vnum": 2809,
@@ -251,8 +251,8 @@
      "description": "To the west lies Downstairs Hallway."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. A way leads\nwest.",
-   "placeholder": true
+   "description": "Maps of coasts and kingdoms hang from rollers over the board of this\nclassroom, their edges curling with age. A big painted globe stands on a\ntripod by the window, with one dent in its ocean where a careless elbow\nmet it. A tin of coloured chalk, a rail of pointers and a table of salt-\ndough hills complete the room. The door west leads to the hallway.",
+   "extra_descs": {}
   },
   "2810": {
    "vnum": 2810,
@@ -284,8 +284,8 @@
      "description": "To the west lies Classroom."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Two doors face each other across the hallway here, one east and one\nwest, both propped open with doorstops made from old iron weights. A\ntall cabinet against the wall holds rolled maps and a dented globe. The\nair is thick with the smell of ink and damp wool. Muddy bootprints cross\nthe boards in all directions, and the hall continues north and south.",
+   "extra_descs": {}
   },
   "2811": {
    "vnum": 2811,
@@ -303,8 +303,8 @@
      "description": "To the east lies Downstairs Hallway."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. A way leads\neast.",
-   "placeholder": true
+   "description": "A sing-song classroom, with a tall wooden stand holding a tuning fork\nand a dented brass horn. Benches are arranged in tiers facing a lectern,\nand songsheets lie scattered across the boards in curling pages. The\nwalls are hung with rhymes copied out in big, wobbly letters. A door\neast returns to the hallway.",
+   "extra_descs": {}
   },
   "2812": {
    "vnum": 2812,
@@ -328,8 +328,8 @@
      "description": "To the east lies Downstairs Hallway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and east.",
-   "placeholder": true
+   "description": "A cramped office cluttered with whistles, stopwatches and leather balls\ngone hard as stone. A battered desk is buried under rosters, and a cork\nboard bristles with pinned team lists and faded ribbons. The place\nsmells of boiled sweets and rubbing oil. A door north leads into the\nfencing hall, and another east opens on the hallway.",
+   "extra_descs": {}
   },
   "2813": {
    "vnum": 2813,
@@ -361,8 +361,8 @@
      "description": "To the west lies Coach's Office."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The hallway smells of liniment and leather here, and a rack of wooden\npractice swords leans by the wall. Scuffed mats are stacked at the foot\nof the plaster beside a bucket of sand. A hand-painted sign on the west\ndoor announces the coach's office, while the classroom door east is\nplain oak. The hall goes on north toward the rear of the school and back\nsouth the way you came.",
+   "extra_descs": {}
   },
   "2814": {
    "vnum": 2814,
@@ -380,8 +380,8 @@
      "description": "To the west lies Downstairs Hallway."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads west.",
-   "placeholder": true
+   "description": "Rows of sloped wooden desks fill this classroom, each with an inkwell\nand a carved groove for pens. A high stool stands before a slate board\ncovered with the alphabet in careful copperplate. A string of picture\ncards runs along one wall, and a bucket of damp sponges waits beneath\nit. The only door opens west onto the hallway.",
+   "extra_descs": {}
   },
   "2815": {
    "vnum": 2815,
@@ -405,8 +405,8 @@
      "description": "To the south lies Coach's Office."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "A long, bare hall with a floor of pale boards chalked with lunge lines\nand the footwork of a hundred lessons. Wooden foils and padded jackets\nhang in tidy rows along a rack, and a tall mirror, flecked with age,\nthrows back the light from the high windows. Prize ribbons droop from\nthe rafters. An arch east leads back to the hallway, and a narrow door\nsouth opens on the coach's office.",
+   "extra_descs": {}
   },
   "2816": {
    "vnum": 2816,
@@ -439,8 +439,8 @@
      "description": "To the west lies Fencing Hall."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The hallway ends in a heavy back door, rattling slightly in its frame,\nwhich opens north onto the yard behind the school. Cold air creeps\nbeneath it and stirs the dust on the boards. To the west a wide arch\ngives onto the fencing hall, from which the clack of practice blades\nsometimes echoes. A coat of tarred canvas hangs stiff with old rain on a\npeg, and the hallway runs back south.",
+   "extra_descs": {}
   },
   "2817": {
    "vnum": 2817,
@@ -466,8 +466,8 @@
      "description": "To the south lies Downstairs Hallway."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east\nand south.",
-   "placeholder": true
+   "description": "A trampled yard lies behind the school house, bare of grass where\ngenerations of boots have packed it to hard earth. A scrubbed stone\ntrough stands by the wall and a rain barrel gurgles under the eave. The\ntimber back door leads south into the hallway, a cinder path leads on\nnorth to a covered track, and the stable's wide doors face east. Washing\nlines sag across the corner, hung with a few forgotten scarves.",
+   "extra_descs": {}
   },
   "2818": {
    "vnum": 2818,
@@ -489,8 +489,8 @@
      "description": "To the west lies Behind The School House."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and west.",
-   "placeholder": true
+   "description": "The stable is a tall, dim barn of timber with stalls along either side,\ntheir half-doors gnawed at the top by bored teeth. Straw lies deep on\nthe floor and a sweet smell of oats and leather fills the air. A saddle\nrack and a bucket of brushes sit by the entrance. The yard behind the\nschool lies west through the wide doors, and a covered track leads\nnorth.",
+   "extra_descs": {}
   },
   "2819": {
    "vnum": 2819,
@@ -514,8 +514,8 @@
      "description": "To the south lies Behind The School House."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "A dirt track runs beneath a long timber awning propped on rough posts,\nits beaten earth rutted by cartwheels. Rain-stained beams overhead drip\nfaintly onto a row of upturned buckets. The covered way bends here, with\nthe yard behind the school lying south and the track continuing east. A\nsmell of hay and harness drifts along it.",
+   "extra_descs": {}
   },
   "2820": {
    "vnum": 2820,
@@ -539,8 +539,8 @@
      "description": "To the west lies Dirt Track."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The covered track ends against the stable wall, its earth churned soft\nby hooves and scattered with strands of straw. Harness hooks stud the\nposts, each hung with a bridle gone stiff with age. The stable stands\nsouth through a wide arch, while the track runs back west. Light falls\nin dusty bars through gaps in the roof boards.",
+   "extra_descs": {}
   },
   "2821": {
    "vnum": 2821,
@@ -568,8 +568,8 @@
      "description": "To the down lies Inside the School House."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and down.",
-   "placeholder": true
+   "description": "At the head of the stairs the upper hallway opens, its boards creaking\nat every step. A banister rubbed glossy by hands curves around the\nstairwell, which descends to the main hall below. East, a door carved\nwith a laurel wreath marks the philosophy classroom, and the hallway\nruns on north. A skylight pours pale light over a long bench where\nlatecomers wait.",
+   "extra_descs": {}
   },
   "2822": {
    "vnum": 2822,
@@ -587,8 +587,8 @@
      "description": "To the west lies Upstairs Hallway."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads west.",
-   "placeholder": true
+   "description": "A bare, quiet room where the benches are set in a circle instead of\nrows. A single question is chalked on the board, with a scatter of\narguments crossed out beneath it. Cushions have been worn flat by long\nthinking, and a sundial hangs oddly on the wall as if time were a puzzle\ntoo. The only door leads west to the hallway.",
+   "extra_descs": {}
   },
   "2823": {
    "vnum": 2823,
@@ -606,8 +606,8 @@
      "description": "To the west lies Upstairs Hallway."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. A way leads west.",
-   "placeholder": true
+   "description": "A classroom for languages and speechmaking, with a raised lectern at one\nend and rows of benches facing it. Lists of foreign words are chalked in\ncolumns on the board, with their meanings left blank for the unwary. A\nsmall mirror hangs by the lectern so that a nervous speaker may watch\ntheir own face. The door west opens onto the hallway.",
+   "extra_descs": {}
   },
   "2824": {
    "vnum": 2824,
@@ -639,8 +639,8 @@
      "description": "To the west lies Woodcrafting Workshop."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Sawdust drifts along the hallway from the workshop door west, and the\nsweet scent of cut pine mingles with chalk. A row of coat hooks carved\ninto the shapes of acorns and owls lines the wall, clumsy and proud.\nEast, a plain door opens on a classroom. The hallway continues north and\nback south.",
+   "extra_descs": {}
   },
   "2825": {
    "vnum": 2825,
@@ -660,8 +660,8 @@
      "description": "To the east lies Upstairs Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "The workshop is loud with the memory of mallets, and its floor is a\ndrift of curled shavings. Workbenches carry vices, planes and chisels in\nneat racks, while half-built stools and toy boats wait on the shelves\nfor glue to dry. A pot of hot resin sits over a tiny brazier. The only\ndoor leads east to the upstairs hallway.",
+   "extra_descs": {}
   },
   "2826": {
    "vnum": 2826,
@@ -681,8 +681,8 @@
      "description": "To the east lies Upstairs Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
-   "placeholder": true
+   "description": "Slate boards cover three walls of the mathematics classroom, packed with\ntriangles, circles and long columns of figures. Wooden models of cones\nand cubes sit on the sills beside a pair of giant brass compasses. A\nchalk line has been drawn across the floor and labelled the equator, for\nreasons nobody remembers. The door east leads out to the hallway.",
+   "extra_descs": {}
   },
   "2827": {
    "vnum": 2827,
@@ -710,8 +710,8 @@
      "description": "To the west lies Mathematics Classroom."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A tall window lets grey light fall across a mural of numbers painted\nalong the wall, from one to a hundred, with tiny grinning faces drawn\ninside the zeros. West, a door with a brass plate showing a compass and\nset square opens on the mathematics classroom. The hallway runs on north\ntoward more doors and back south.",
+   "extra_descs": {}
   },
   "2828": {
    "vnum": 2828,
@@ -743,8 +743,8 @@
      "description": "To the west lies Classroom."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The hallway ends in a small landing where three doors meet. The door\nnorth has a chipped glass window and a smell of vinegar and burnt\nsulphur seeping through it, while east a faded timeline of kings is\ntacked to the frame of the history room. The west door stands plain\nbeside a fire bucket, and the hallway leads back south.",
+   "extra_descs": {}
   },
   "2829": {
    "vnum": 2829,
@@ -764,8 +764,8 @@
      "description": "To the west lies Upstairs Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A long timeline is painted along the wall of this room, from cave\npaintings to the founding of the city, with dates scrawled beside it in\nchalk. A sand table holds a model of a siege, its toy walls toppled by\nmany a reenactment. Cracked plaster busts of old rulers stare down from\na shelf. The door west returns to the hallway.",
+   "extra_descs": {}
   },
   "2830": {
    "vnum": 2830,
@@ -785,8 +785,8 @@
      "description": "To the south lies Upstairs Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "Benches scarred with acid burns run the length of this laboratory,\ncrowded with stoppered jars of coloured salts and cloudy liquids. A\nbrass microscope sits under a glass dome beside a tray of pressed ferns\nand a hanging prism that scatters rainbows over the ceiling. The air\ntastes faintly of sulphur. The only door leads south to the hallway.",
+   "extra_descs": {}
   },
   "2831": {
    "vnum": 2831,
@@ -804,8 +804,8 @@
      "description": "To the east lies Upstairs Hallway."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads east.",
-   "placeholder": true
+   "description": "Easels and drawing boards crowd this bright classroom, and charcoal\nsmudges every surface from the sills to the ceiling beams. A still life\nof apples, a jug and a tarnished candlestick sits on a stool, drawn a\nhundred times over. Pinned sketches curl on a line of string. The door\neast leads back to the hallway.",
+   "extra_descs": {}
   },
   "2832": {
    "vnum": 2832,
@@ -834,11 +834,10 @@
      "description": "To the south lies Before the Garathorm School House."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The entrance porch is a draughty square of worn tiles with a boot\nscraper by the doorpost and a rack for wet cloaks. Heavy double doors\nstand open south onto the dirt track outside, and a notice board by them\nbristles with timetables and curling reminders. A brass handbell for\nvisitors sits on a ledge. A door north leads into the main hall of the\nschool.",
+   "extra_descs": {}
   }
  },
  "mobs": {},
- "objects": {},
- "sealed": true
+ "objects": {}
 }

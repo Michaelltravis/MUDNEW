@@ -1,0 +1,373 @@
+{
+ "job": "z480",
+ "rooms": {
+  "6614": "The morgue is a low tiled room that smells of lye, cold stone and something sweeter underneath. Steel drawers line the far wall, a few of them standing open and empty. A ledger lies on a desk, its last entries scrawled in a shaking hand and then abandoned. The autopsy room lies through a door to the north, a heavy door leads east into the freezer, and the square waits back south.",
+  "6617": "A single steel table sits under a hooded lamp in the middle of this bare, tiled chamber, its drain stained dark. Instruments are laid out on a tray in a neat row, as if the doctor meant to return in a moment. The air is chill and still, and the tiles sweat in the lamplight. The only way out is south, back into the morgue.",
+  "6615": {
+   "description": "Cold bites the moment you step through the heavy door, and your breath hangs before you in grey puffs. Rows of steel shelves hold long shapes under stained sheeting, some of them fallen askew. A failing machine hums somewhere behind the walls, and the floor is slick with old damp. The morgue lies back west, and the room narrows toward a deeper cold in the east.",
+   "look": "crypt"
+  },
+  "6616": {
+   "description": "The last of the cold rooms is little more than a closet of white-painted steel, its shelves bent as if something heavy had thrown itself against them. A handprint, brown and dry, smears the inner wall at the height of a man's shoulder. The bulb overhead has burst and left only grey dark. The only way out is west, into the freezer, and the cold follows you at every step.",
+   "look": "crypt"
+  },
+  "206612": "Summon Square is the little heart of the town, a patch of worn cobbles with a dry fountain and a bench nobody sits on. The church stands to the east with its doors closed and its bell silent, while the low brick morgue squats to the north behind a plain door. Tudor Street runs off west, and East Tudor Street leads away south. Every window around the square has its curtains drawn tight, though it is midday.",
+  "206613": "Rows of dark pews fill the nave of the little white church, their hymnals scattered and swollen with damp. Dust lies thick on the altar, and the cross above it hangs crooked on a single nail. Coloured light from a cracked window falls in broken pieces across the aisle. The door lies at the back, west of the last pew, and it is the only way out.",
+  "206611": "East Tudor Street runs between two rows of neat clapboard houses with deep porches and steps that nobody has swept in weeks. A porch swing creaks on a single chain. Dead leaves pile against the doors, and a milk jug on the nearest step has gone sour and green. The street leads north back to Summon Square and on south past more silent houses.",
+  "206606": "The street widens at the crossing with McKnight's Gap Road, which lies just south, and a lamp post leans over a pitted kerb. An open door in the east wall of the nearest house gives onto a deserted home with its curtains hanging in rags. To the west a sagging porch looks out over the street, and north the way runs back toward the square. A dog bowl lies overturned beside the lamp post.",
+  "206607": "Dust sheets hide the furniture of this small parlour, and a wall clock has stopped at ten past three. Wallpaper curls from the corners in long brown tongues. A cold supper sits on the dining table, black with mould and set for four. The front door, the only way out, opens west onto the street.",
+  "206605": "McKnight's Gap Road is a hard-packed road rutted by wagon wheels, with a plank walk running beside it. A tall hedge guards the garden gate on the south side, which stands shut. The road runs on east toward the edge of town and west to the intersection, while a side street turns north toward the houses. Hitching rails stand empty along the walk, and nothing has passed in a long while.",
+  "206601": "Two shopfronts face each other across the road here, the souvenir shop to the north with painted wooden trinkets in its window and the hardware store to the south with its shutters half drawn. A sign above each door swings gently, though there is no wind. The road runs east to the town line and west back toward the heart of town. Gravel crunches under every step, loud in the silence.",
+  "206602": "Shelves of painted mugs, carved wooden bears and little tin spires crowd this small shop, all of them furred with dust. A glass counter holds picture cards faded nearly white, and a brass bell hangs above the door. Something has gone through the back stock and left shards scattered over the floor. The way out lies south, onto the road.",
+  "206600": "A weathered post marks the town line, its lettering scoured by rain until only a few strokes remain. A lane climbs north toward the Dusty Road and the tollhouse there, past an iron-barred gate whose chain now hangs loose and open. Weeds grow thick in the verge, and the town lies behind you to the west. Nobody has come this way in a long time, and nobody seems to be leaving.",
+  "206603": "Narrow aisles of nail bins, coiled rope and rusted tools lead back through the dim hardware store. A counter at the front still holds a ledger and a scale, and shovel handles stand in a barrel like a bundle of spears. Cold air breathes from a trapdoor at the back, whose steps lead down into the cellar. The door to the road opens north.",
+  "206604": "The cellar is a low, damp room of fieldstone and packed earth, its ceiling beams close overhead. Barrels of nails and crates of straw-packed lamp glass line the walls, and a tangle of cord hangs in one corner. A stair of rough planks climbs up to the shop. The air tastes of mould and old iron, and the dark presses close beyond the lamplight.",
+  "6630": "The town garden is a square of tended lawns gone to seed, with a stone birdbath cracked down the middle and rose beds choked with weeds. Gravel paths wander between benches whose paint has flaked to grey. A gate to the north opens on McKnight's Gap Road, and the path runs south toward the Hatch-Schell. The roses still bloom, dark red and heavy, in the stillness.",
+  "6631": "The Hatch-Schell is an open-fronted shell of curved timber standing on a trodden clearing, like a bandstand, its plank steps scuffed by long-ago dances. A ladder of iron rungs climbs up to the cat walks above the stage. North, the garden path runs back to the lawns, and west a low passage leads under a bridge. Bunting hangs in faded tatters from the roof.",
+  "6636": "The ground dips beneath the dark underside of an old timber bridge, where the beams drip and the stones are slick with moss. Initials are carved into the posts, and a few rusted nails jut from the planks. The Hatch-Schell lies back east, while west the way pushes into a tangle of brush. A cold draught slides under the bridge, smelling of earth.",
+  "6637": "Brambles and young birches crowd together here, their branches knitted so tightly that daylight comes down in scraps. The ground is soft with years of leaf mould, and thorny runners snag at your cloak. A trodden path leads north to the Town Common, and east the dark underside of the bridge waits. Somewhere in the undergrowth a twig snaps, and then there is nothing.",
+  "6638": "The common is a wide trampled green with a bare flagpole whose rope slaps against the mast, and a pair of cattle troughs gone green with slime. The Do-Drop Inn stands to the north, its sign hanging by one chain. The way east returns to McKnight's Gap Intersection, and a rise to the west climbs to Look Out Point. Beyond the grass, thorny scrub shows where the thicket begins.",
+  "6639": "A covered porch runs along the front of the inn, with rocking chairs lined up and tipped forward as though the sitters left in haste. Lanterns hang unlit from hooks, and a notice board is thick with curling papers. The inn's door stands north, and the steps lead south down to the Town Common. The boards underfoot are damp with the night's dew.",
+  "6640": "The common room of the Do-Drop Inn is long and low, with a hearth gone to cold ash and tables still set with half-drunk mugs. A fiddle hangs on the wall above the bar, its strings slack. Rough stairs rise up to the rooms and the flight deck, while the door south leads out to the porch. The room smells of stale ale and shut-in air.",
+  "6641": "A timber hall under the roof ridge holds the flight deck, with four open archways leading out to the mounting platforms. Leather harnesses hang from pegs, and straw and old feathers are scattered on the boards. North is the griffin deck, east the dragon deck, south the beetle deck and west the pegasi deck, while the stair goes down to the inn. A high draught carries the smell of beasts long gone.",
+  "6695": "The griffin deck is a broad platform of weathered planks jutting out from the roof, with a high perch of black iron at its edge. Great scratches score the boards where talons once gripped, and tufts of tawny down cling to the rail. Wind pulls at the loose canvas shades overhead. The only way back is south, into the flight deck.",
+  "6690": "The dragon deck is a squat platform of blackened stone ringed by iron chain posts as thick as a man's arm. Scorch marks fan across the flags, and a broken saddle strap trails over the edge. The view reaches over the rooftops to the dark farmland beyond. Only one way leads off the platform, west, back to the flight deck.",
+  "6685": "The beetle deck is a low, stained ramp of planks smeared with dried amber, where huge shell-backed mounts were once harnessed and fed. Hooked poles lean against the rail, and a split barrel of sugar mash sours in the open. The way back north leads into the flight deck. Beyond the rail the town lies hushed under a pale sky.",
+  "6680": "The pegasi deck is a graceful curved balcony of white-painted wood, with stalls for winged horses set into its back wall. Hay has long since gone to dust in the mangers, and a silver bridle hangs from a hook, tarnished black. A soft breeze stirs the loose feathers drifting across the boards. The flight deck lies east, the only way off.",
+  "6629": "Four ways meet at the intersection. West Tudor Street heads north between tall elms, McKnight's Gap Road runs east, a covered bridge lies to the south, and the Town Common opens west. A weathered signpost points the ways, its arrows swinging loose. The elm shade is deep and cool even at noon, and the leaves rustle with no wind to stir them.",
+  "6628": "West Tudor Street passes between two old houses here: the schoolmaster's home to the east behind a picket fence, and an abandoned house to the west with its gate off its hinges. The road runs north toward the square and south to the intersection. Ivy has pulled down part of a porch roof. Ruts in the road dust show no tracks but those of the wind.",
+  "6622": "A great oak stands beside the road, one thick limb carrying a ladder of nailed boards up to a treehouse. Picket fences run to either side, the whitewash peeling in long strips. The street leads north to the square and south toward the intersection. Acorns crunch underfoot, and the oak's shadow lies black across the road.",
+  "6620": "Tudor Square is a small cobbled place with a granite memorial at its centre, its names half hidden under moss. The doctor's office faces the memorial on the north side, its door painted green and shut tight. Tudor Street leads off east, and West Tudor Street runs south. A pair of benches face each other like quarrelling neighbours, and nobody has sat on either.",
+  "6621": "A small waiting room gives onto a cluttered consulting desk, where bottles of coloured tonic stand corked in rows. The doctor's diploma hangs crooked, and a bag of instruments yawns open on a chair. Bloodied cloths soak in a basin, long since dried to rust. The door to the square is south, behind you.",
+  "6618": "Tudor Street is the old main street, lined with brick shopfronts whose signs have lost their paint. The little school stands to the south behind a low iron fence, its bell rope motionless. The street runs east to Summon Square and west to Tudor Square. Boards cover a few windows, and a saucer of milk by one door has dried to a crust.",
+  "6619": "Rows of small desks face a blackboard still scrawled with a half-finished lesson, the chalk worn to a nub on the ledge. A cold stove stands in one corner beside a bucket of kindling, and a map of the realm curls on the wall. The windows are shuttered against the day, and coats still hang on pegs by the door. The only door opens north to the street.",
+  "6623": "Rough planks make a floor among the great limbs, and leaves press at the gaps between the boards. A rope-hung lantern, a tin box of marbles and a child's drawing of a smiling sun are the only furnishings. A vine runs from a window gap east and out along a branch. The ladder down leads back to the street.",
+  "6624": "You are out on a thick vine strung from the oak across the gardens, swaying above the weeds below. The bark of the branch is slick with moss, and leaves whisper all around. The vine ends east at a patch of grass, a little way down. The treehouse lies behind you.",
+  "206610": "A narrow back yard of patchy grass lies behind the neighbour's home, with a rusted swing and a washline hung with sheets that have gone stiff and grey. Wild morning glories strangle the fence. A back door stands in the house wall east of the grass, hanging ajar. Overhead, the vine you came by sags toward the oak.",
+  "206609": "The kitchen is a tidy ruin: pots hang over a cold range, a plate sits half-washed in a basin, and the table is laid for a meal that never came. Curtains of heavy blue cloth are pinned shut over every window. A back door opens west onto the yard, while a front hall runs east to the porch. The air is stale and smells faintly of cloves.",
+  "206608": "A wide wooden porch wraps around the front of the house, its rail loose and its boards soft with rot. A rocking chair sits turned toward the wall, and a wind chime hangs silent. Steps lead east down to East Tudor Street, and the front door stands west, ajar on a dark hall.",
+  "6625": "Books crowd every shelf of the schoolmaster's front room, and a lectern holds a Bible and a heap of marked slates. A pipe lies on the arm of a reading chair, still faintly sweet with old smoke. The curtains have been nailed shut with long, bent nails. The door to the street is west, and a feeling of being watched lingers by it.",
+  "6626": "The front room of the abandoned house is bare of furniture but for a rotted settee, and the floor has been scuffed by many feet. Plaster hangs from the ceiling in wet strips, and scratches mark the doorframe at knee height. A narrow door in the north wall opens on a closet, and the front door lies east. A cold draught moves through the room, smelling of damp earth.",
+  "6627": "The closet is hardly wider than a man's shoulders, lined with bare shelves and a hook or two for coats. Scratches and dark stains cover the inside of the door. A tattered blanket is wadded in one corner, as though someone hid here a long while. The only way out is back south into the house.",
+  "6644": "The old covered bridge is a long, barn-dark tunnel of weathered planks, its floor booming hollowly with each step. Names and hearts are cut into the walls, many worn smooth by hands. Gaps in the siding let thin bars of light fall on the boards, and somewhere below, water mutters over stones. The bridge leads north to the intersection and south toward the lower end of Tudor Street.",
+  "6645": "The last houses of the town stand here, small and shabby, with their back gardens already gone to corn. Wheel ruts run on toward the fields, and a leaning lantern post stands at the end of the lane. The covered bridge is behind you to the north, and the road gives way south into rows of tall corn.",
+  "6646": "Tall corn rises on every hand, its dry leaves rattling like paper. The rows lead north to the last houses of Tudor Street, east to a pasture of cropped grass, south into deeper corn, and west to another grazing field. A heap of cornshocks leans against a rotten stake, bound with twine. The stalks cut off the sky to a thin strip.",
+  "6666": "A rough pasture slopes here, grazed to stubble and dotted with dry dung and thistles. A broken fence rail lies in the grass. The field runs south toward more pasture, and west it ends in the wall of the corn. Black feathers lie scattered on the ground like dropped ink.",
+  "6665": "Long grass whips about the posts of a ruined fence here, and a rusted water trough stands cracked and dry. The pasture continues north and south along the fence line, while west the corn closes in again. A low stone marks a boundary between the fields, its lichens grey and orange. The air smells of cut hay and, faintly, of something burnt.",
+  "6664": "The ground rises here toward a great dark house, and the grass grows thin on the slope. A rutted carriage track runs up to the porch of Tudor Manor, whose door lies west across the weeds, standing ajar. Fence posts trail off north and south along the pasture. Chimneys stand black against the sky above the roof.",
+  "6663": "A shallow hollow in the pasture holds a puddle ringed with cracked mud, and the grass around it is flattened as if something had lain there. The pasture runs north and south along an old wall of piled stones. Thistles bloom purple among the stones, and a lone gate hangs from one hinge. Wind brings the smell of cut stalks from the corn.",
+  "6662": "The field narrows here against a thorn hedge, thick and black with age. A shallow path turns from the north to the west along the hedge, trodden by hooves and boots. A gnarled apple tree stands alone in the grass, its fruit rotting on the ground. A sweet, sour smell hangs over the pasture.",
+  "6660": "Three paths of flattened grass meet at a stump that serves as a mounting block. East the pasture runs toward the hedge, south it dips to the stable yard, and west it falls away toward the corn. Cowpats dried to grey discs speckle the ground, and a broken bucket lies in the thistles.",
+  "6661": "A trodden yard of mud and straw lies before the stable, its doors hanging open to the east. A mounting block and a rusted horseshoe nailed to a post speak of busier days. North the field stretches off over rough pasture. The straw underfoot smells sour.",
+  "6653": "Empty stalls line the stable, their half doors splintered and the nameplates scratched out. Old harness hangs from pegs, stiff with mould, and a pitchfork leans in the corner. The straw is trampled flat, and dark stains cling to the post at the end of the row. The wide door to the yard lies west.",
+  "6659": "A hard-trodden pasture spreads here with an iron plough abandoned in the weeds, its share rusted solid. The corn rises thickly to the north, and the field runs east toward a mounting stump. Hoofprints are dried into the mud in tangled rows. The grass is long and wet, and your boots darken with it.",
+  "6650": "The corn stands head-high around a trampled clearing in the rows. A red barn looms to the east, its great door open a hand's width, and the stalks lead north deeper into the field, south to a pasture, and west to another. Crumpled leaves and snapped stalks mark where something heavy has passed. The air is thick with the smell of ripe grain and damp.",
+  "6649": "A narrow aisle between the corn runs north and south, its floor hard clay, its walls dry stalks that whisper together. A ragged cloth bag lies in the dirt where someone dropped it in haste. The ears hang heavy and unpicked, some already rotting black on the stalk. Little light finds the ground.",
+  "6648": "The rows open into a crossing of paths where the corn has been flattened in a ring. A pole stands in the middle with a cross-brace and tatters of cloth, a scarecrow stripped of its coat. The corn leads south and east into deeper stands, west to open pasture, and north the stalks give out onto grass. Droppings whiten the pole, and the rags hang very still.",
+  "6654": "The pasture here is bordered by a ditch choked with nettles and old rainwater. A wooden stile stands over the ditch to nowhere. East the field meets the corn, west it runs on toward more grass, and south a rank of stalks stands like a wall. Larks once nested in this grass, but the air is silent now.",
+  "6655": "A pair of weathered fence posts lean toward each other in the grass, their wire long since snapped and rusted away. The field slopes south toward a low enclosure, while the pasture runs east to meet more of the same. Mist lies in the hollow in the early hours and has not quite lifted. Burrows pock the bank, black and empty.",
+  "6656": "Close to the pen the grass is churned to mud and ringed with stakes. A wooden gate in the south leads into a fenced yard, and the pasture lies north. East, the rows of corn begin. A trough, green with algae, stands beside the gate, and a chain of rusting bells hangs from the post.",
+  "6651": "The pen is a square yard of trampled mud walled by split rails, with a feeding rack along one side and a gate at either end. Posts are scored with old claw marks, and the rails are splashed with dried rust-brown stains. A gate in the north leads to the grazing field, another south to a second pasture. The ground is churned deep, as if a herd had been driven round and round.",
+  "6657": "Wet grass grows knee-high around the pen's gate. East the corn begins its tall ranks, and the pasture runs on south, rough and rutted. A rope hangs from a fence rail, tied in a noose and swaying slightly. The field is hushed as you pass.",
+  "6658": "The pasture ends in a thicket of bramble and fallen stone. A cracked well-head stands here with its bucket and chain gone, and the grass around it is yellow. The only way back is north, along the churned track. A faint chill rises from the well.",
+  "6647": "The corn is thickest here, its leaves closing overhead and shutting out most of the daylight. The ground slopes slightly down, and a low mound of fresh earth rises between the rows, raw and unplanted. Paths lead north toward the lane, east to a pasture, and west into more corn. The stalks do not rustle, and the air is oddly warm.",
+  "6652": "Hay bales climb the walls of the great red barn nearly to the rafters, and a loft ladder rots in its place. Slanting bars of light fall through gaps in the siding onto a floor of pale straw. Farm tools hang in rows, their edges bright and clean as if someone had honed them. The wide door at the barn's side opens west to the corn.",
+  "6667": "A tall hall of dark panelling opens beyond the manor door, its floor black and white tile gone grey with dust. A coat stand holds a single moth-eaten cloak, and a mirror stands cracked and clouded. Doors and passages lead deeper into the great house. The front door, the way you came, opens east onto the pasture.",
+  "6642": "A bare knoll at the town's edge gives a view across the roofs, the church spire and the fields beyond. An iron rail and a stone bench stand at the brink. The house on the hill stands black against the clouds across the valley, its windows catching a last light. The only path back runs east to the Town Common.",
+  "6632": "A narrow plank gallery runs along the rafters above the stage, creaking with every step. Ropes and pulleys hang here, with the stale smell of old paint, and a rail of lamps sits dark. A ladder leads down to the Hatch-Schell, and the walk goes on east. Dust shakes down in drifts.",
+  "6633": "The walk is only three planks wide here, with a thin rope for a rail. Painted flats hang from the beams, showing a country village that looks eerily like the town below. The planks run east on toward the centre, and west they return to the ladder. A dead lamp swings by its chain.",
+  "6634": "The gallery widens into a little platform at the stage's centre, hung with a velvet curtain gone moth-eaten and dark. A single stool stands there with a prompt book open on it. From the platform you can see the whole shell below and the empty benches beyond. The only path leads back west along the walk.",
+  "6668": "Tall windows are shuttered in the manor's living room, and heavy furniture sits under sheets like sleeping beasts. A great stone fireplace holds a heap of old ash, and a portrait above it has been slashed from corner to corner. Doors lead north to a recreation room and south to a dining room, the entryway is east, and a broad stair climbs to the upper floor.",
+  "6669": "A billiard table dominates the recreation room, its green cloth torn and the balls scattered like fallen eggs. Cues hang in a rack, one snapped in half. A card table is set with four hands face-down, and the dust on them is undisturbed. The only exit is south, back to the living room.",
+  "6670": "A long table of black oak runs the length of the dining room, laid with silver and candle stubs for a feast. The plates are crusted with something dark, and the chairs lie overturned. Heavy drapes seal the windows. The way back is north, into the living room.",
+  "6671": "A long carpeted hallway runs from the head of the stairs, its runner worn thin and stained. Doors stand to the south and west, and the passage goes on north. The stair descends to the living room. Portraits line the walls, each turned to face the plaster.",
+  "6674": "The hallway ends at a double door of dark wood to the west, carved with thorns and roses. A narrow window at the end is boarded over, and one board has been prised loose to let in a single finger of light. The hall runs back south toward the stair. Cold air seeps from under the door.",
+  "6675": "A great four-poster stands in the middle of the master bedroom, its curtains drawn and its linen yellowed. A dressing table holds an array of dusty bottles and a mirror turned to the wall. Wardrobes stand open and empty. The door out lies east, onto the hall.",
+  "6672": "Small beds stand in a row in the children's room, their covers neatly turned back, and a rocking horse waits against the wall with one rocker snapped. Toys lie scattered around, and a lullaby seems to hang in the air. A panel in the wainscot stands open on a hidden stair that leads down. The door north returns to the hallway.",
+  "6676": "A narrow stair of bare stone winds down inside the wall, so tight your shoulders brush both sides. Cobwebs hang in grey curtains, and each step has a worn dip in the middle. Cold air flows up from below. The stair climbs up to the children's room and goes on down.",
+  "6677": "The stair ends in a landing of damp flagstones before an arch. The walls sweat, and the air smells of earth and old blood. Beyond the arch the steps drop into the vault. An iron lamp bracket hangs empty, and the dark below is thick.",
+  "6678": {
+   "description": "Stone shelves hold iron-bound coffers, and a row of stone coffins stands against the walls with their lids shifted. The vault is cold and dry and ancient, its arched ceiling sooty. Chains and manacles hang from rings in the masonry. A heavy door in the north wall leads on to the basement.",
+   "look": "crypt"
+  },
+  "6679": {
+   "description": "The basement is a broad cellar of rough earth and old brick, its floor dark with stains and strewn with bones. A great chair of black wood sits on a dais, and a ladder runs up through a rotten hatch toward the corn above. The air is heavy and close, and the dark seems to listen. A heavy door opens south to the vault.",
+   "look": "crypt"
+  },
+  "6673": "A narrow room of herbs and jars, its beams hung with drying bundles brittle as bone. A cot with a thin blanket stands under the window, and a tray of knives lies beside a basin of cold black water. A cradle in one corner rocks slowly with no hand upon it. The door east returns to the hallway."
+ },
+ "extras": {
+  "6629": [
+   {
+    "keywords": "signpost arrows sign",
+    "description": "The old signpost has three arrows, each hand-lettered: Tudor Street, The Covered Bridge, The Common. Someone has scratched a fourth arrow into the wood pointing toward the hill, and gouged out the name."
+   }
+  ],
+  "6614": [
+   {
+    "keywords": "ledger",
+    "description": "The ledger lists the dead of the town by date. In the last week the names stop, and the final lines are only tally marks, many of them struck through."
+   }
+  ],
+  "6620": [
+   {
+    "keywords": "memorial granite names",
+    "description": "The granite is carved with the names of the town's sons lost in the old border wars. A newer name has been chiselled at the bottom, roughly, in a hand that was not a mason's."
+   }
+  ],
+  "6648": [
+   {
+    "keywords": "scarecrow pole rags",
+    "description": "The scarecrow's coat has been taken, and the pole is bound with fresh twine. The knots are tied by someone who knew how, and the cross-brace is stained at the ends."
+   }
+  ],
+  "6668": [
+   {
+    "keywords": "portrait painting",
+    "description": "The portrait shows a pale man in black, one hand resting on a book. The face has been slashed, but the eyes are untouched and seem to follow you."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "frightened-townsman",
+   "keywords": "townsman man villager frightened",
+   "short_desc": "a frightened townsman",
+   "long_desc": "A frightened townsman hugs the wall, watching the shadows with wide eyes.",
+   "description": "A thin man in a work apron, he has bolted his door every night for a week and has the look of someone who has not slept. He flinches at any noise and clutches a wooden cross.",
+   "kind": "humanoid",
+   "level": 12,
+   "aggressive": false,
+   "alignment": 300,
+   "sectors": [
+    "city"
+   ],
+   "count": 4,
+   "drops": []
+  },
+  {
+   "id": "pale-villager",
+   "keywords": "villager pale turned",
+   "short_desc": "a pale villager",
+   "long_desc": "A pale villager stands in the doorway, staring and swaying on bare feet.",
+   "description": "The villager's skin is the colour of candle wax, and two small marks show on the throat. The eyes are bright and hungry, and the lips are drawn back from sharpened teeth.",
+   "kind": "undead",
+   "level": 15,
+   "aggressive": true,
+   "alignment": -500,
+   "sectors": [
+    "inside",
+    "city"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "ash-stake",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "hollow-farmhand",
+   "keywords": "farmhand hand ghoul hollow",
+   "short_desc": "a hollow-eyed farmhand",
+   "long_desc": "A hollow-eyed farmhand shambles between the corn rows with a scythe dragging behind.",
+   "description": "Earth clings to the farmhand's clothes and nails, as though he had climbed up from a grave. His eyes are black and wet, and he moves with a stiff, silent patience.",
+   "kind": "undead",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -500,
+   "sectors": [
+    "forest",
+    "field"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "farmhand-scythe",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "carrion-crow",
+   "keywords": "crow raven carrion black",
+   "short_desc": "a black crow",
+   "long_desc": "A black crow perches on a fence post, watching you with one bright eye.",
+   "description": "The crow is large and glossy, with a hooked beak stained red. It has been feeding on things in the fields that no crow should find.",
+   "kind": "animal",
+   "level": 12,
+   "aggressive": true,
+   "alignment": -100,
+   "sectors": [
+    "field",
+    "forest"
+   ],
+   "count": 3,
+   "drops": []
+  },
+  {
+   "id": "grave-ghoul",
+   "keywords": "ghoul grave morgue hungry",
+   "short_desc": "a hunched grave ghoul",
+   "long_desc": "A hunched grave ghoul crouches over a steel drawer, gnawing quietly.",
+   "description": "Long-limbed and grey, the ghoul sits hunched with a face like cracked leather. Its claws are black and its breath smells of the cold room.",
+   "kind": "undead",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "The Morgue",
+    "Autopsy Room",
+    "The Freezer",
+    "Back Freezer"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "ash-stake",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "vampire-thrall",
+   "keywords": "thrall vampire servant pale",
+   "short_desc": "a vampire thrall",
+   "long_desc": "A vampire thrall stands guard in the hall, its fangs bared and its gaze fixed on you.",
+   "description": "Once a hired hand of the manor, the thrall now serves its master without will. Its skin is chalk-white, and it moves with a speed that does not suit its heavy frame.",
+   "kind": "undead",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "Manor Living Room",
+    "Upstairs Hallway",
+    "The Lord's Vault",
+    "Manor Dining Room"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "ash-stake",
+     "chance": 25
+    },
+    {
+     "item": "thrall-gloves",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "mother-sorrel",
+   "keywords": "mother sorrel midwife vampire hag",
+   "short_desc": "Mother Sorrel, the Midwife",
+   "long_desc": "Mother Sorrel, the Midwife, rocks the cradle and smiles with too many teeth.",
+   "description": "Once the town midwife, Sorrel brought half its folk into the world and has now begun taking them out of it. Her hands are long, her eyes are silver, and she hums softly while she watches you.",
+   "kind": "undead",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "The Midwife's Quarters"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "midwife-shawl",
+     "chance": 35
+    },
+    {
+     "item": "ash-stake",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "lord-tudor",
+   "keywords": "lord tudor vampire master pale",
+   "short_desc": "Lord Aldric Tudor, the Pale Master",
+   "long_desc": "Lord Aldric Tudor, the Pale Master, sits upon the black chair in the dark, his eyes alight.",
+   "description": "Tall, gaunt and elegantly dressed in the fashion of another age, the master of the manor is a vampire older than the town. He smiles politely and does not blink, and the dark in the cellar bends around him.",
+   "kind": "undead",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -1000,
+   "rooms": [
+    "The Basement"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "tudor-signet",
+     "chance": 35
+    },
+    {
+     "item": "midwife-shawl",
+     "chance": 20
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "farmhand-scythe",
+   "keywords": "scythe farm",
+   "short_desc": "a grave-dirt scythe",
+   "room_desc": "A scythe crusted with grave dirt lies here.",
+   "description": "A long-hafted scythe with a notched blade, black with earth. It cuts as cleanly as it ever did.",
+   "kind": "weapon",
+   "level": 16,
+   "weapon_type": "slash"
+  },
+  {
+   "id": "ash-stake",
+   "keywords": "ash stake",
+   "short_desc": "a sharpened ash stake",
+   "room_desc": "A sharpened ash stake lies here.",
+   "description": "A stake of pale ash wood as long as a forearm, its point hardened in fire and bound with a strip of blessed cloth.",
+   "kind": "weapon",
+   "level": 18,
+   "weapon_type": "pierce",
+   "bonus": {
+    "hitroll": 1
+   }
+  },
+  {
+   "id": "thrall-gloves",
+   "keywords": "gloves leather grey",
+   "short_desc": "a pair of grey leather gloves",
+   "room_desc": "A pair of grey leather gloves lies here.",
+   "description": "Supple gloves sewn for a hand that did not tire. A line of silver thread runs across each knuckle.",
+   "kind": "armor",
+   "level": 20,
+   "wear_slot": "hands"
+  },
+  {
+   "id": "midwife-shawl",
+   "keywords": "shawl midwife grey",
+   "short_desc": "the midwife's grey shawl",
+   "room_desc": "A grey woollen shawl lies here.",
+   "description": "A heavy shawl that smells of herbs and grave dust. It wraps close and keeps off both cold and fear.",
+   "kind": "armor",
+   "level": 21,
+   "wear_slot": "about",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "tudor-signet",
+   "keywords": "signet ring tudor lord",
+   "short_desc": "the Tudor signet ring",
+   "room_desc": "A heavy black signet ring lies here.",
+   "description": "A ring of black iron set with a crimson stone, bearing a crest of thorns and a rose. It is cold as the vault it came from.",
+   "kind": "armor",
+   "level": 22,
+   "wear_slot": "finger",
+   "bonus": {
+    "damroll": 2
+   }
+  }
+ ]
+}

@@ -1,0 +1,526 @@
+{
+ "job": "z474",
+ "rooms": {
+  "4664": {
+   "description": "This is the highest and rawest corner of the cavern, where a spiral of worn stone steps climbs into darkness toward a chamber far above. Cold air drifts down the stair carrying the smell of dead leaves and moss. The floor is bare grit, and the rock overhead glitters with damp. The cavern opens on to the west, where a faint glow of lantern light seems to lie.",
+   "look": "cave"
+  },
+  "4665": {
+   "description": "A broad junction of the cavern, where three passages meet beneath a roof hung with pale stalactites. Flowstone has run down the rock in frozen curtains, and drip water rings in a shallow stone basin. The way east leads back toward the stair, the cavern goes on west into the dark, and a damper passage slopes south toward the sound of lapping water.",
+   "look": "cave"
+  },
+  "4677": {
+   "description": "The floor of the cavern slopes down to a shore of black wet shingle, where the underground lake begins. Water laps in the dark and the air tastes of cold iron and minerals. A rotted landing of planks juts out over the water to the south, and the cavern narrows back toward a drier passage to the north.",
+   "look": "cave"
+  },
+  "4678": "You drift on the black water of the underground lake, the shingle shore of the cavern fading into the gloom to the north. Ripples spread from your craft and vanish into the dark. Far overhead the roof of the cave is lost in shadow, hung with pale stalactites that drip into the lake with a slow, steady plink. The open water stretches on east, cold and silent.",
+  "4679": "Out in the middle of the lake the dark is nearly complete, and the only light is a pale shimmer on the swell. The water here is deep and unnaturally still, and it smells of stone and old rain. You can hear your own breath come back from the far walls of the great cave. The lake runs on both east and west of you.",
+  "4680": "The swell is shorter here, slapping at the rock where the lake narrows toward a ragged shore. Glints of mica in the stone catch what little light there is and wink like drowned stars. A damp cavern mouth opens on the shore to the north, and the dark water behind you leads back west.",
+  "4681": {
+   "description": "A narrow beach of gravel and broken shell lies at the water's edge, where the lake gives way to a cavern floor stained green with algae. The rock rises steeply on every side and drips constantly. Water slops softly against the shingle to the south, and a dry passage climbs away north into the cavern.",
+   "look": "cave"
+  },
+  "4682": {
+   "description": "The cavern here is long and narrow, a natural gallery shaped by water over ages, its roof studded with pale knobs of rock. Scuffed footprints in the silt show that this passage is used, and not by friends of strangers. The air is damp and still, and the cavern runs on north, while a faint smell of the lake comes up from the south.",
+   "look": "cave"
+  },
+  "4683": {
+   "description": "A wide chamber of grey stone where the passage splits around a great fallen slab of rock. A low opening leads north into a smaller hollow, and the cavern stretches west toward a brighter, drier darkness. Tiny crystals sparkle in the roof like scattered frost. The way south goes back down toward the lake.",
+   "look": "cave"
+  },
+  "4684": {
+   "description": "A small, round hollow, hardly bigger than a cell, where the roof sweeps down so low that you must stoop. The floor is dry sand and the rock around you has been rubbed smooth by many shoulders. A few black scorch marks on the ceiling show where someone once kept a fire. The only way out is back south into the larger cavern.",
+   "look": "cave"
+  },
+  "4685": {
+   "description": "A long, level cavern with a floor of packed earth, trodden into a faint path between its two ends. Thin veins of quartz thread the rock overhead and glimmer faintly when the air stirs. Somewhere a trickle of water echoes. The path runs east toward a split in the rock and west deeper into the cave.",
+   "look": "cave"
+  },
+  "4686": {
+   "description": "Three ways meet in a rough chamber whose roof is propped by a thick pillar of natural stone. The pillar is scratched with old tally marks and the crude sign of an open eye. A passage heads north through the rock, another runs east, and a third winds on west toward a wilder, darker cavern.",
+   "look": "cave"
+  },
+  "4687": {
+   "description": "The cavern narrows to a crooked throat, its sides pinched in like folds of cloth. Droplets fall from the ceiling in a thin rain and the floor is slick with mud. Torch scars blacken the rock at shoulder height, as if guards once stood watch here. The passage leads north toward a heavier darkness and south toward the pillared chamber.",
+   "look": "cave"
+  },
+  "4688": {
+   "description": "A last stretch of rough cavern ends at an iron-banded door set into a frame of cut stone, the first sign of true masonry among the raw rock. The door is old, black with age, and its hinges are well greased. The cavern behind you slopes back to the south, and the door leads on north into a hewn tunnel.",
+   "look": "cave"
+  },
+  "4689": {
+   "description": "Beyond the iron door the cavern gives way to a tunnel hacked out by picks, its rough walls still showing the bite of every blow. The floor is level and swept clean, and iron rings are set in the stone for lanterns. The passage is narrow enough that two armed folk could hardly pass. It runs back south to the door and the caverns beyond.",
+   "look": "cave"
+  },
+  "4676": {
+   "description": "A hushed cavern where the floor has been worn into shallow grooves by passing feet. Stalagmites stand in a crooked row like the teeth of some buried beast, and water seeps down the rock in glistening threads. A passage opens east into a chamber with a thick pillar, while the cavern runs south toward a darker junction.",
+   "look": "cave"
+  },
+  "4674": {
+   "description": "Three passages meet at this crossing of the cave, and the roof above is domed like an old chapel. Pale crusts of mineral cling to the stone in the shape of petals. A narrow side-cave opens east, the main cavern runs west, and the way north climbs gently toward a pillared chamber.",
+   "look": "cave"
+  },
+  "4675": {
+   "description": "A tiny side-cave, little more than a pocket in the rock, with a ceiling you can touch. Someone has swept the floor and laid a ring of stones as a hearth, long cold now, its ashes grey and old. Soot still stains the rock above it. The only exit is back west into the main cavern.",
+   "look": "cave"
+  },
+  "4672": {
+   "description": "The cavern floor is cluttered here with fallen rock, and you pick your way between the boulders by feel and by lantern gleam. A narrow gap opens north into a small chamber, and the main passage turns east and south. Cool air stirs, bringing a smell of wet clay and distant smoke.",
+   "look": "cave"
+  },
+  "4673": {
+   "description": "A small cavern with a ceiling of pitted rock, where the echo is odd and flat as if the stone itself were swallowing sound. Hundreds of tiny cracks run through the floor, and a few thin white roots have forced their way down from far above. Only one passage leads out, running south into the main cavern.",
+   "look": "cave"
+  },
+  "4669": {
+   "description": "A great vaulted cavern, its dark ceiling hung with long fangs of stone, spreads around you in all directions that matter. The floor drops in a wide ledge toward a bowl of shadow in the middle. Ways lead north to a rock-strewn chamber, east to another cavern, and south toward a wider hall. Your footsteps return from far-off ranks of rock.",
+   "look": "cave"
+  },
+  "4668": {
+   "description": "A low cavern of dark brown rock, its roof sagging in a heavy curve above a floor of damp sand. Strange ripples in the sand show where some thin stream once ran across it. The passage leads south toward a larger junction and west into a vaster cave. The air is close and warm, like breath.",
+   "look": "cave"
+  },
+  "4666": {
+   "description": "A junction in the great cavern, where tunnels of grey stone fan out beneath a low shelf of rock. Shadows pool along the base of every wall, and a gentle draught moves between the ways like a sigh. A passage turns north into a sandy hollow, another goes east toward the lake side, and the third runs west toward a distant dim glow.",
+   "look": "cave"
+  },
+  "4667": {
+   "description": "The cavern floor tilts here toward an arch of dressed stone that someone has carved into the living rock to the west. Beyond it a pale orange light flickers on the ceiling, and you can smell oil and woodsmoke. Back to the east the cavern stays wild, and a way leads north into a high-roofed chamber. The rock around the arch is carved with a ring of knotted lines.",
+   "look": "cave"
+  },
+  "21782": {
+   "description": "The last wild cavern before the cave elves' threshold is swept clean, its roof blackened by torch smoke. A heavy door of iron-bound black timber stands in the stone to the south, with a spyhole in it at the height of an elf's eye. Fresh lantern oil stains the floor beneath a bracket. The cavern opens back east, rough and unlit.",
+   "look": "cave"
+  },
+  "21700": "You stand in a stone gatehall at the threshold of the Cave Elf Kingdom, a vaulted room cut from the living rock and lit by a lantern hung from every pillar. Tall doors lie to the north, a broad hallway of pale polished stone leads south toward the heart of the realm, and a low archway opens west into a guardroom. The floor is inlaid with a silver pattern of leaves and knives.",
+  "21702": "A long, grand hallway runs south toward the throne, its high ceiling lost in glimmering dark and its floor laid with slabs of black stone veined in silver. Tall lanterns of coloured glass throw jewelled light on carved pillars. Back north lies the gatehall, a stair rises into the dark to the west, and a heavy grate opens east onto steps that lead down. The hall's far end glows with the light of the king's court.",
+  "21704": {
+   "description": "A narrow chamber of iron and chipped stone, where the hallway's grandeur ends in the grim business of the dungeons. A stair winds down through a barred archway in the floor, and cold rises from it, smelling of old straw and wet iron. Chains hang from hooks along the stone. The way west leads back out to the guarded hallway.",
+   "look": "dungeon"
+  },
+  "21753": {
+   "description": "At the foot of the dungeon staircase the stone is worn into hollows by generations of prisoners dragged down it. A single lantern burns in an iron cage, guttering in the damp. The air is thick and cold, and the steps climb up behind you toward the hallway above, while a dim passage leads west into the cells.",
+   "look": "dungeon"
+  },
+  "21754": {
+   "description": "A guard passage in the dungeon, its low roof shored by black beams and its floor lined with rushes gone foul and brown. Keys and manacles hang from a rack on the stone, rusted but well oiled at their hinges. The stair back up lies east, a door opens west into the keeper's office, and the passage continues south between cells.",
+   "look": "dungeon"
+  },
+  "21757": {
+   "description": "A crossing of dungeon passages where the stone is stained dark with centuries of damp. Heavy doors of iron-studded timber face each other east and west, each pierced by a narrow grille at the height of a face. A lantern on a hook sways in the draught and sets the shadows crawling. The passage runs on north toward the stair and south between more cells.",
+   "look": "dungeon"
+  },
+  "21758": {
+   "description": "A cramped cell of black stone, hardly three paces across, with a shelf of rock for a bed and a drain in the floor. Scratches cover the wall, tallies of days and names of those who despaired. The air is stale and cold, and the thick door swings shut on the passage to the west.",
+   "look": "dungeon"
+  },
+  "21760": {
+   "description": "Here the dungeon passage is lined with a long iron rail where prisoners were once chained for questioning. The floor slopes slightly toward a central gutter that runs with a thin trickle of foul water. Doors stand east and west, their locks heavy and clean of rust. More passage runs north and south along the cells.",
+   "look": "dungeon"
+  },
+  "21761": {
+   "description": "A tiny stone cell, its single window a slit that looks only onto the bare rock of the passage. Straw lies in a rotted heap in the corner and a rusted ring is set into the wall at knee height. The door on the west side gives the only way out.",
+   "look": "dungeon"
+  },
+  "21763": {
+   "description": "A broad stretch of the dungeon where the ceiling rises to a rough vault, and chains dangle from rings above a stained flagstone. Grilled doors face one another east and west. A smell of tallow and old sweat lingers, and a draught moves along the passage that goes north and south from here.",
+   "look": "dungeon"
+  },
+  "21764": {
+   "description": "A narrow cell with a ceiling so low that even a short elf must bow. The walls sweat, and a broken wooden bowl lies by a rough pallet of stone. Someone has carved a crooked picture of the sun above the bed, and then, in a different hand, scratched it out. The door leads out to the west.",
+   "look": "dungeon"
+  },
+  "21766": {
+   "description": "The passage widens into a small guard post, with a plank table bolted to the floor and a bench worn smooth by waiting. A board on the wall bears a column of chalked numbers, one for each cell. Doors face each other east and west, and the dungeon runs north toward the stair and south toward larger rooms.",
+   "look": "dungeon"
+  },
+  "21767": {
+   "description": "An airless cell with walls of grey stone, damp beneath your fingers and furred with pale mould. A rusting bucket stands in one corner and a fringe of old chain lies on the floor like a dead snake. The cell door opens west onto the passage.",
+   "look": "dungeon"
+  },
+  "21769": {
+   "description": "The dungeon passage ends in a broader hall lit by torches in iron cressets, whose heat is a welcome change from the cold cells. The floor is trampled flat and sprinkled with sand, as if to soak up blood. A chamber opens east and another west, both leading toward the roar of the arena, and the cells lie back north.",
+   "look": "dungeon"
+  },
+  "21770": "A bare holding chamber where those bound for the arena wait, with stone benches ringed by iron staples and a rack of blunt practice weapons along the rock. The sand underfoot is stained rust brown, and the noise of the crowd comes down the tunnel to the south like the beat of a great drum. The dungeon lies back west. Nothing here is meant to be comfortable.",
+  "21772": "A long, sloping tunnel of rough stone leads toward the sand of the arena, its roof low and its floor scattered with sawdust. Torches smoke in their brackets and every footstep rings. The hall of the holding chamber lies north, and the tunnel opens west onto a blaze of lantern light and a rumble of voices. The air smells of sweat, oil and sand.",
+  "21793": "The Arena of Champions is a vast oval pit of pale sand ringed by rising tiers of carved seats, all lit by great lanterns hung from chains in the cavern roof. The floor is scarred with old sword cuts and dark stains, and the voices of a thousand watchers seem to hang in the stone. Tunnels open to the east and west, and a heavy trapdoor leads down into the Hall of Champions beneath the sand.",
+  "21771": "This sloping tunnel is the champions' way to the sand, its walls polished by the shoulders of heroes. Banners of the king's household hang from iron poles, stiff with dust. The tunnel opens east onto the arena floor, while a passage leads north back to the holding chambers. Even here you hear the crowd's roar like surf.",
+  "21768": "A second holding chamber, smaller than the other, with a ring of iron stools and a long table scattered with whetstones and rags. Oil lamps burn low in niches, and the floor is hard-packed earth. A passage opens east toward the dungeon hall, and another heads south down to the champion's tunnel.",
+  "21794": "Below the arena lies the Hall of Champions, a long hall of black marble where the names of victors are cut into the walls in silver. Lamps burn on tall stands, throwing a warm shine over the polished floor. Behind you a stair climbs up to the sand, and the hall stretches on east between rows of carved pillars.",
+  "21795": "A stretch of the hall where life-size statues of cave elf champions stand in niches, each holding the weapon that won him fame. Their stone eyes are inlaid with chips of jet that catch the lamplight. The silver names beneath each figure are worn from the touch of hopeful hands. The hall continues east and west.",
+  "21796": "The hall's middle length is hung with trophies: shields cloven in two, broken swords, and the horned helms of beaten giants. A long mosaic in the floor shows the first duel in the arena in tiny coloured stones. Soft lamplight shimmers on the pillars. You may walk on east or turn back west.",
+  "21797": "Here the hall's floor rises in a shallow step and the air grows quieter, as if the stone were listening. Alcoves on either side hold small stone benches where old fighters once sat to rest. Incense has soaked into the walls, faint and sweet. The hall leads on east toward a brighter light, and back west to the arena stair.",
+  "21798": "The end of the hall is a great arch carved with a design of crossed swords and a rising sun. Two braziers burn on either side of it, their flames tinted blue with salts. The floor is clean and the air smells of resin. East lies the shrine itself, and the long hall runs back west.",
+  "21799": "The Shrine to Devram is a small round chamber domed like an inverted bowl, with a polished slab of black stone at its centre. Candle stubs by the hundred crowd its edges, left by champions seeking a god's favour. A carving of a bearded warrior with a drawn blade looks down from the dome. The only way out is back west along the hall.",
+  "21765": {
+   "description": "A dismal cell whose walls are pocked where something sharp was driven in again and again. A heap of mouldering straw fills one corner and a pair of rusting shackles dangles from the wall. Dim light from the passage creeps in through the grille. The door lies to the east.",
+   "look": "dungeon"
+  },
+  "21762": {
+   "description": "The smallest of the dungeon cells, hardly big enough to lie down in. Water collects in a corner where the stone has cracked, and a thin green moss grows in the damp. A rough bench has been hacked from the rock, and the walls are scored with prayers in an elf script. The door opens east.",
+   "look": "dungeon"
+  },
+  "21759": {
+   "description": "A cell that seems newer than its neighbours, its stone still sharp and its straw still fairly clean. A bucket and a tin cup rest by the door, and a thin blanket lies folded on a bench. Someone has tried to scratch a window into the rock above the bed, without success. The door leads east.",
+   "look": "dungeon"
+  },
+  "21756": {
+   "description": "A bleak cell with an iron grille set high in the wall and a floor of broken flags. The floor carries a bitter smell of old smoke, and burn marks scar the stone in one corner. There is a rack of iron hooks by the door, which opens east onto the passage.",
+   "look": "dungeon"
+  },
+  "21755": {
+   "description": "The dungeon keeper's office is a cluttered cell with a heavy desk of black wood and a ledger bound in cracked leather. Keys hang by the hundred on pegs along the stone, and a squat iron stove warms the room. A worn chair with a split cushion sits behind the desk. The door opens east onto the dungeon passage.",
+   "look": "dungeon"
+  },
+  "21706": "A tall antechamber with a floor of green marble stands before the great doors of the king's court. Banners of black and silver hang from the vaulted roof, and tall lamps of crystal throw dancing sparks across the polished stone. A passage goes north to the guarded hallway, an arched door opens east, another west, and the grand doorway leads on south into the court.",
+  "21707": "The War Advisor's office is a plain, orderly room lined with maps of tunnels drawn on cured hide and pinned to the stone. A long table holds carved markers of every rank, set out in some half-finished battle plan. A lamp with a green shade burns beside a heap of dispatches. The door opens west onto the antechamber.",
+  "21709": "The entrance to the King's Court is a lofty hall of white stone and silver, its roof carried on slender pillars carved like trees. A carpet of deep blue runs the length of it toward the throne, and lantern light shimmers in the polished floor. The doors north lead back to the antechamber, and the court spreads east, west and south.",
+  "21710": "In this corner of the court a tall window-shaped niche is inlaid with coloured crystal that glows from a lamp set behind it. A bench of dark wood waits beneath it for petitioners. The floor is a pattern of silver and green tiles. The court's entrance lies west, and the side of the court runs on south.",
+  "21715": "Along the east side of the court, tall pillars carved with climbing vines support a gallery of smoky shadow. Between them hang tapestries of cave elf hunts and long marches beneath the earth. The court's centre lies west, the corner north, and more of the side runs south. A wide corridor opens east, lit by a row of lamps.",
+  "21716": "The Royal Corridor begins here as a wide gallery of pale stone, its walls hung with long banners of silver thread. Lamps in glass globes burn at even spaces and make the floor shine like water. The court lies open to the west, and the corridor continues east toward a turn. The air smells of beeswax and polish.",
+  "21717": "At a bend in the Royal Corridor the stone is carved with a frieze of cave elf hunters pursuing pale stags through a forest of crystal. A tall lantern of wrought silver hangs from the roof, and its light shifts as the draught moves. The corridor comes in from the west and turns to run south. The floor is soft with a thick runner of blue wool.",
+  "21722": "A straight reach of the Royal Corridor with a vaulted roof painted deep blue and dotted with gilt stars. Narrow doors of dark wood, locked and shuttered, stand in the walls like unspoken secrets. Each of your steps is muffled by the long carpet. The corridor runs north back to the bend and south toward the arena.",
+  "21727": "Here the corridor is lined with plinths holding busts of past kings, each with a circlet of beaten silver and a face cold with pride. The lamps burn lower in this stretch, and the shadows between the plinths seem to stir. A cold breath comes up the corridor from the arena, which lies south, while the way north returns toward the court.",
+  "21732": "The Royal Corridor bends again, and a faint roar rolls down it from the arena like thunder in a distant sky. A great mural of a duel on white sand covers the wall, its colours dim with soot. A rack of unlit torches stands beside it. The corridor comes in from the north and runs west toward the sound.",
+  "21731": "A short passage ends at a heavy arched doorway where the corridor opens onto the noise and light of the balcony. Rich curtains of black velvet are tied back with silver cord, and the floor changes from tile to boards of dark polished wood. The corridor runs east, and the balcony stretches before you to the west. Voices drift up from below.",
+  "21779": "This is the heart of the balcony overlooking the arena, a gallery of carved stone rail and deep cushioned benches. Far below, the pale sand of the arena shines in the light of great hanging lanterns, and the roar of the crowd breaks over you in waves. A passage runs north toward the royal entrance, another south to the balcony's corner, and the corridor lies east.",
+  "21780": "The Royal Entrance to the Balcony is a small arch of gilded stone, guarded by a pair of pillars wrapped in carved vines. A rail of polished wood looks down on the arena in the cavern's gloom. The stage by the throne lies north, the balcony runs south, and a row of royal seats stretches west.",
+  "21726": "A raised stage of black marble, spread with a rich carpet, curves around one flank of the throne. Brass candlesticks taller than a man burn at its edge, and a low rail of silver chain keeps off petitioners. Behind you the steps lead south to the balcony, and the throne itself rises just west.",
+  "21725": "The Throne of the Cave Elf King stands on a high dais of white stone, a great seat of black iron inlaid with silver and set with a ring of sapphires that glow in the lamplight. Wall-hangings of crimson and violet frame it, and a stair of nine steps descends to the court. Stage platforms lie to the east and west, while a small iron-banded door behind the throne leads south.",
+  "21720": "Before the Throne the court's floor is laid with a great mosaic of silver and jet, a spreading tree whose roots reach down toward the dais. Tall lamps stand at every pillar, and a thin haze of incense hangs in the air. The throne rises just south, the centre of the court lies north, and the court's sides spread east and west.",
+  "21714": "In the centre of the King's Court a ring of pale pillars rises to a roof that shines with embedded crystal like a sky of stars. The floor is a vast mosaic of black and silver, and a fountain of carved stone spills clear water into a basin in the middle. The entrance lies north, the throne south, and the sides of the court east and west.",
+  "21713": "The west side of the court has a long bench of carved black wood beneath a row of tall thin windows set with coloured glass, behind which lamps are lit. The glass paints green and violet bars across the floor. The centre of the court lies east, the corner north, and more of the side runs south, while a corridor leads on west.",
+  "21708": "In this far corner of the court there is a tall cabinet of dark wood, behind its glass door a row of ceremonial daggers on red velvet. A tall lamp on a wrought tripod gives off a steady golden light. The entrance of the court lies east, and the side of the court continues south.",
+  "21719": "In this back corner of the court a narrow table holds a silver bowl of dried petals, whose sweet smell fills the air. Lamps hang from the roof in a low arc, and the stone floor is warm underfoot, as though heated from beneath. The side of the court runs north, and the area before the throne lies east.",
+  "21712": "A long corridor lined with gilt-framed portraits of cave elf nobility, each face turned a little aside as though listening. A lamp stands beneath every painting, trimmed low and burning blue. The corridor opens east onto the court's west side and runs on west toward a bend. The scent of old paint hangs in the air.",
+  "21711": "At the corner of the Royal Corridor the stone gives a deep echo, as though a hollow lies beneath. A wall of rough black basalt is carved with a long poem in elf script, picked out in gold. The corridor goes east toward the court's side and turns south from here. Draughts creep through the pillars and make the lamp flames lean.",
+  "21718": "Here the Royal Corridor passes between a pair of round windows glazed with thick green crystal, through which the lamplight of hidden rooms glimmers. The floor is of narrow black and white boards, laid like a chessboard. Cold drifts up from the stone, and the corridor runs north to a corner and south toward the arena side.",
+  "21723": "A quiet stretch of the Royal Corridor with a ceiling of fluted ribs, each carved with a leaf and a blade. Tall urns of glazed blue clay stand in the corners, filled with dried reeds. Sound is muffled to nothing. The corridor goes north back toward the corner and south toward a bend.",
+  "21728": "The corridor turns a corner here, and the lamps on the turn are brighter, shining on a tall mirror of polished silver. In it you see yourself small and dim against the vault. A faint roar from the arena comes down the passage that heads east, and the way north leads back along the corridor.",
+  "21729": "The corridor ends in a short run of steps worn by the feet of nobles on their way to the games. Torches in rings of black iron light the stone, and a coloured pennant hangs at the head of the passage. The corridor runs west, and the balcony opens to the east in a wash of noise.",
+  "21774": "On this stretch of the balcony the carved rail looks down on the arena, and the pale sand glints far below in the lantern light. Plush benches, worn at the edges, face the sands in tiers. The noise of the crowd rolls up the stone, loud enough to numb the ear. The balcony runs north toward the royal entrance and south toward a corner, and the corridor lies west.",
+  "21775": "The Royal Entrance to the Balcony is a gilded archway with a pair of great doors thrown open and fixed with chains. A thick carpet of crimson leads toward the stage near the throne in the north, while a row of seats opens east. The balcony lies to the south. The smell of oil and sweat from the arena drifts up.",
+  "21724": "On the stage beside the throne the carpet is thick and dark, and a high-backed chair of carved ebony stands vacant against the curtained wall. Silver candelabra stand on every side, and the wax drips in long ropes. The throne lies east, and a stair leads south to the royal entrance of the balcony.",
+  "21777": "The Royal Seats are a row of cushioned chairs of dark leather set along the balcony rail, each with its own small table of black glass. A canopy of dark silk hangs overhead, tasselled with silver. The arena glitters below, and a rumble of the crowd reaches the high seats. The entrance to the balcony lies on either side, east and west.",
+  "21773": "At this corner of the balcony the rail curves in a quarter-circle above the arena, and the carvings on it are worn smooth by the leaning arms of onlookers. A single lantern hangs from the roof. The sand glimmers far below, and the noise of the games is lessened by the corner's curve. The balcony continues north and east.",
+  "21776": "A long, straight reach of the balcony, with benches of cold stone set back from the rail. Faded pennants hang from the ceiling, black and silver, stirring in the drafts. The sand of the arena glimmers far below. The balcony runs east to its corner and west to the opposite corner.",
+  "21778": "At the farthest corner of the balcony the rail turns back on itself, and a shabby bench is wedged into the angle. A lantern in a cage of iron gives the only light, and the roar of the arena sounds hollow. Cobwebs hang from the rail. The balcony runs north and west.",
+  "21721": "In this angle of the court a statue of a cave elf huntress stands on a plinth, her stone bow strung and aimed at the gloom. Tall lamps burn on either side of it and shine on the floor of silver and jet. The side of the court runs north, and the area before the throne lies west.",
+  "21730": "Behind the throne a narrow stairwell of black stone curls upward in the dark, its steps worn and shallow. The walls are close and smell of lamp oil and age. A door of iron-banded oak stands open at the north end, leading back to the throne room, and the steps rise steeply above you.",
+  "21733": "At the head of the secret stair a tiny landing of black stone is lit by a single hooded lamp. The air here is warmer and smells of musk and clean linen, a world away from the stairwell's chill. The steps lead down behind you, and a short passage opens ahead to the north, where the king's household keeps its watch. Faint footsteps patrol beyond the stone.",
+  "21734": "A Heavily Guarded Landing, floored with thick carpet and walled in panels of dark wood carved with watching eyes. Two tall stands hold racks of long polearms, and the lamps above are shuttered against any who might hide in their glare. A heavy door of black oak and silver leads north to the royal chamber, while the secret stair lies south.",
+  "21736": "The Royal Bed Chamber is a lofty room hung with drapes of deep violet and silver, its vast bed set on a platform of pale wood. Soft rugs cover the floor and a hearth of carved stone holds the red ashes of last night's fire. Doors lead east to the queen's rooms and west to the nursery, while the landing lies south.",
+  "21737": "The Queen's Private Chamber is a delicate room of pearl-grey stone, softened by silks the colour of dusk and cushions embroidered with moths. A mirror in a silver frame shows the room's lamps as pale stars, and a table is spread with little glass bottles of scent. The door west leads back to the royal bed chamber.",
+  "21735": "The Royal Nursery is a hushed room with a ceiling painted as a night sky and a cradle of carved white wood hanging from silver chains. Small wooden toys, painted with scarlet and gold, lie on a rug of thick wool. A night lamp burns low in a glass dish, and the only door opens east to the royal bed chamber.",
+  "21705": "The Guards Barracks is a long room lined with double bunks of dark wood, each with its small chest and a hook for a cloak. Racks of spears stand along one wall, and a trestle table is scarred with knife marks and dice. The room smells of leather, oil and boiled barley. The only way out is the door to the east, which leads to the king's antechamber.",
+  "21703": "A narrow stair rises through a shaft of fitted stone, its steps polished to a shine by countless feet. Lanterns hang from hooks at each turn, throwing long shadows up the shaft. The guarded hallway lies to the east, and the stair continues up to the realm's upper level.",
+  "21738": "At the top of the stair a broad landing opens onto the upper level of the Cave Elf Kingdom, where the roof soars higher and the lamps are many. A statue of an elven huntress stands in an alcove, her cloak carved in rippling stone. Polished steps lead down behind you, and a lamplit street opens east.",
+  "21739": "The Streets of Leisure begin here, a wide lane of pale flagstones lit by hanging lamps of coloured glass in the cavern's high ceiling. Fronts of carved stone line the street, their windows glowing, and the sound of a distant lute drifts by. A stair lies west, and the street runs on south toward a busier crossing. The air is cool and sweet with spiced smoke.",
+  "21741": "A crossing in the heart of the Streets of Leisure, where a fountain in the shape of a stone fish spills water into a wide basin. Strings of paper lanterns criss-cross the cavern air, and the cobbles are worn smooth. A tavern lies east, the baths west, the trading halls south, and the street goes back north.",
+  "21742": "Glork's Taverna is a low, warm room full of round tables and mismatched stools, its beams hung with copper pots and dried mushrooms. A bar of dark rock runs along one side, shining with spilled drink, and a fire of glowing coals burns in a pit at the room's heart. The smell of roast meat, fungus ale and woodsmoke is heavy. The only door opens west onto the street.",
+  "21745": "The Trading Chambers open here into a high hall divided by pillars of pale stone and lit by hanging lanterns. Stalls and counters line the floor, laden with cloth, tools and glassware. Voices haggle in the elven tongue and coins ring on stone. A shop opens south, the street lies north, and the chambers run on east and west.",
+  "21746": "A busy chamber in the market, where the floor is strewn with straw from unpacked crates and the roof is hung with brass scales. Banners over the stalls mark the guilds of the cave elves in black, green and silver. The chambers continue east and west, and a doorway south leads to a seller of magic.",
+  "21747": "At the market's far end the hall narrows, and the stalls give way to a row of sacks and barrels stacked to the roof. A porter's trolley rests against a pillar, its wheels thick with mud. The chambers lead west, and a low door to the south opens on an inn with a sign of a crescent moon.",
+  "21752": "Mythelarin's Resthouse is a quiet chamber of beds with curtains of grey wool, each in its own recess in the stone. The floor is covered in rush mats, and a lamp of horn and brass burns on a high shelf. A sleeper's cough or a snore sounds now and then through the curtains. The door north leads out into the trading chambers.",
+  "21751": "Lanthar's Magics is a shop crowded with shelves of bottles, stoppered jars and bundles of dried herbs. Lamps of green crystal give a sickly glow, and a heavy volume lies open on a stand by the counter. The air tingles, smelling of sulphur and cold iron. The way out is north into the trading chambers.",
+  "21750": "Valorin's Armours is a smithy-shop where mail shirts hang from a beam like gleaming fish and shields of beaten bronze line the stone. A bellows stands cold in one corner next to an anvil scarred with hammer-marks. The smell of oil and hot metal lingers. The door leads north to the trading chambers.",
+  "21744": "A trading hall with an arched ceiling where the stalls sell dyes, spices and little boxes of carved bone. Dust shines in the lamp beams, and the cobbles are worn into gentle hollows. The chambers continue east and west, while a door south opens on a seller of arms.",
+  "21749": "Questor's Weapons is a cramped shop crowded with blades, spears and bows, hung upon every inch of the stone. A grindstone stands by the counter with a puddle of dark water beneath it, and a rack of arrows bristles from a barrel. The smell of steel and oil is sharp. The door north leads out to the trading chambers.",
+  "21743": "At the far end of the market the stalls thin out, and a ragged curtain of leather hangs from a rail over an alcove of half-seen goods. The cavern wall curves round here, damp and glinting. The chambers lead east, and a plain door south opens on a dealer in oddities.",
+  "21748": "Mythor's Specialities is a jumble of odd wares: stuffed cave fish, glass eyes, lacquered bones and maps of tunnels no one has walked. Shelves climb to the ceiling and a rolling ladder rests against them. Dust motes drift in a single beam of lamplight. The door north returns to the trading chambers.",
+  "21740": "The Swimming Baths are a great pool of clear green water in a hall of white tile, steaming faintly from some hot spring below. Benches of smooth stone line the edge and towels of grey linen hang on pegs. The water laps softly and the echo is warm and humid. The only way out is east, back to the street.",
+  "21701": "The Sentry Post is a bare guardroom with a rack of crossbows, a table of dice and a brazier burning low. A narrow slit in the stone looks over the gatehall, and a horn of black ivory hangs on the wall to sound the alarm. The floor is covered in boot-scuffs and spilled ale. The only way out is east, to the gatehall."
+ },
+ "extras": {
+  "21700": [
+   {
+    "keywords": "pattern inlay leaves knives",
+    "description": "The silver inlay shows a ring of leaves, each leaf shaped like a knife-blade, around a closed eye."
+   }
+  ],
+  "21799": [
+   {
+    "keywords": "carving warrior dome devram",
+    "description": "The carved warrior wears no helm and has a rising sun on his breast. Beneath his feet is cut a single word in elf script: Devram."
+   }
+  ],
+  "21725": [
+   {
+    "keywords": "throne sapphires dais",
+    "description": "The sapphires are set in a ring around the throne's back, one for each king of the line. The newest is smaller than the rest and stained at the edge."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "cave-spider",
+   "keywords": "giant cave spider",
+   "short_desc": "a pale cave spider",
+   "long_desc": "A pale cave spider the size of a dog creeps along the rock, its eyes glinting in the dark.",
+   "description": "Its bloated body is the colour of old bone and its long legs are tipped with hooked claws. Strands of fine silk trail from its spinnerets across the stone.",
+   "kind": "animal",
+   "level": 11,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "In A Large Cavern",
+    "In A Small Cavern"
+   ],
+   "count": 6
+  },
+  {
+   "id": "cave-elf-sentry",
+   "keywords": "cave elf sentry guard",
+   "short_desc": "a cave elf sentry",
+   "long_desc": "A cave elf sentry stands at watch, his dark eyes fixed on every shadow.",
+   "description": "He is lean and grey-skinned, in dark leather studded with silver. A crossbow hangs at his hip and a spear is in his hands. His look says that outsiders are not welcome here.",
+   "kind": "humanoid",
+   "level": 13,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Sentry Post",
+    "The Entrance to the Cave Elf Kingdom",
+    "The Guarded Hallway to the Throne.",
+    "Guards Barracks"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "sentry-spear",
+     "chance": 20
+    },
+    {
+     "item": "glow-lantern",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "dungeon-jailer",
+   "keywords": "dungeon jailer keeper",
+   "short_desc": "a surly jailer",
+   "long_desc": "A surly jailer prowls the passage, a ring of keys jangling at his belt.",
+   "description": "He is broad for a cave elf, heavy-browed and pale as a cellar mushroom. A short club swings at his waist and a lantern on a hook lights his sullen face.",
+   "kind": "humanoid",
+   "level": 14,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "In the Dungeon",
+    "Entrance to the Dungeons",
+    "The Office of the Dungeon Keeper"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "glow-lantern",
+     "chance": 20
+    },
+    {
+     "item": "sentry-spear",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "arena-gladiator",
+   "keywords": "arena gladiator fighter",
+   "short_desc": "an arena gladiator",
+   "long_desc": "An arena gladiator limbers up, swinging a heavy blade with easy strength.",
+   "description": "Scars cross his arms and chest, and he wears a half-cuirass of studded black leather. He grins as you look him over, eager for any fight.",
+   "kind": "humanoid",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Arena Holding Chamber",
+    "Challenger's Tunnel to the Arena",
+    "Champion's Tunnel to the Arena",
+    "The Arena of Champions"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "gladiator-mail",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "cave-elf-citizen",
+   "keywords": "cave elf citizen merchant",
+   "short_desc": "a cave elf citizen",
+   "long_desc": "A cave elf citizen strolls past, eyeing you with cool disdain.",
+   "description": "He is slim and grey-skinned, in a coat of fine dark wool buttoned with silver. He keeps his hands well away from his purse and gives you a wide berth.",
+   "kind": "humanoid",
+   "level": 10,
+   "aggressive": false,
+   "alignment": -100,
+   "rooms": [
+    "The Streets of Leisure",
+    "The Trading Chambers"
+   ],
+   "count": 3
+  },
+  {
+   "id": "royal-guard",
+   "keywords": "royal guard cave elf elite",
+   "short_desc": "a cave elf royal guard",
+   "long_desc": "A cave elf royal guard stands rigid, a long halberd gleaming in his hands.",
+   "description": "He wears silver-chased black plate and a helm with a visor like a closed eye. He does not blink, and he does not seem to breathe.",
+   "kind": "humanoid",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Before the Throne",
+    "A Heavily Guarded Landing"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "sentry-spear",
+     "chance": 30
+    },
+    {
+     "item": "gladiator-mail",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "royal-warmage",
+   "keywords": "royal war mage cave elf elite",
+   "short_desc": "a royal war mage",
+   "long_desc": "A royal war mage waits in a swirl of dusk-coloured robes, sparks gathering on his fingers.",
+   "description": "His robes are the colour of the deep cave and his eyes shine pale violet. A staff of blackened wood crackles with threads of light in his grip.",
+   "kind": "humanoid",
+   "level": 17,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Before the King's Court",
+    "The Entrance to the King's Court"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "glow-lantern",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "arena-champion",
+   "keywords": "champion vharel unbroken arena",
+   "short_desc": "Vharel the Unbroken",
+   "long_desc": "Vharel the Unbroken, champion of the arena, stands in the sand with a bloodied blade resting on his shoulder.",
+   "description": "He is tall and lean, his grey skin a map of old scars and his hair bound in a silver cord. Dozens of chains hang about his neck, each one for a rival who fell. His smile is calm and cold.",
+   "kind": "humanoid",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "The Arena of Champions"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "champion-mace",
+     "chance": 35
+    },
+    {
+     "item": "gladiator-mail",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "cave-elf-king",
+   "keywords": "cave elf king ilvareth",
+   "short_desc": "Ilvareth, the Cave Elf King",
+   "long_desc": "Ilvareth, the Cave Elf King, sits upon his black iron throne, watching you with cold, patient eyes.",
+   "description": "The king is tall and gaunt, in robes of violet and silver and a mantle of black spider silk. A thin circlet of silver crowns his white hair, and his gaze is old and merciless. A slender sword rests across his knees.",
+   "kind": "humanoid",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "At the Throne of the Cave Elf King"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "king-circlet",
+     "chance": 35
+    },
+    {
+     "item": "champion-mace",
+     "chance": 20
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "sentry-spear",
+   "keywords": "spear steel cave elf",
+   "short_desc": "a cave elf spear",
+   "room_desc": "A slender cave elf spear lies here.",
+   "description": "A long spear with a head of dark steel and a shaft bound in grey leather. A leaf is etched near the point.",
+   "kind": "weapon",
+   "level": 13,
+   "weapon_type": "pierce"
+  },
+  {
+   "id": "glow-lantern",
+   "keywords": "lantern glow glass",
+   "short_desc": "a glowstone lantern",
+   "room_desc": "A glowstone lantern burns softly here.",
+   "description": "A small lantern of silver and green glass holding a pale stone that gives a steady light.",
+   "kind": "light",
+   "level": 12
+  },
+  {
+   "id": "gladiator-mail",
+   "keywords": "mail cuirass studded black",
+   "short_desc": "a studded black cuirass",
+   "room_desc": "A studded black cuirass lies here.",
+   "description": "A tough cuirass of black leather studded with silver, its edges worn by many blows.",
+   "kind": "armor",
+   "level": 16,
+   "wear_slot": "body",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "champion-mace",
+   "keywords": "mace spiked champion silver",
+   "short_desc": "a spiked silver mace",
+   "room_desc": "A spiked silver mace lies here.",
+   "description": "A heavy mace with a head of hammered silver bristling with short black spikes. Notches mark the haft, one for each victory.",
+   "kind": "weapon",
+   "level": 18,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  },
+  {
+   "id": "king-circlet",
+   "keywords": "circlet silver crown sapphire",
+   "short_desc": "a sapphire circlet",
+   "room_desc": "A silver circlet set with sapphires lies here.",
+   "description": "A thin circlet of old silver set with one deep blue sapphire above the brow. It is cold to the touch.",
+   "kind": "armor",
+   "level": 20,
+   "wear_slot": "head",
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}

@@ -1,0 +1,134 @@
+{
+ "zone": 521,
+ "_about": "The Winterwood (levels 8-20): winter wolves hunt in packs and one ranges the path, the frost troll in its cave a sub-boss, and the Winter Witch at the end of the Winterwood laying killing frost and calling her wolves.",
+ "creatures": {
+  "652102": {
+   "helpers": {
+    "group": "winter_wolves",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The winter wolf howls, and the pack answers through the snow!"
+   },
+   "why": "winter wolves"
+  },
+  "652103": {
+   "rank": "sub-boss",
+   "why": "the frost troll"
+  },
+  "52150": {
+   "name": "winter witch",
+   "short_desc": "the Winter Witch",
+   "long_desc": "The Winter Witch stands among the frozen trees, her breath hanging in the air like smoke.",
+   "description": "Tall and white as the snow, in a gown of frost and a cloak of winter-wolf fur, with eyes of pale blue ice. Where she walks, the Winterwood freezes deeper.",
+   "level": 20,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "boss",
+   "alignment": -500,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Winter Witch laughs, and the cold bites deeper!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Blizzard",
+      "telegraph": "The Winter Witch raises her hands, and the snow begins to whirl!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Ice Lance",
+      "telegraph": "The Winter Witch conjures a lance of ice!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Deep Freeze",
+      "telegraph": "The Winter Witch begins to freeze your blood!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 652102,
+   "route": [
+    12407,
+    12408,
+    12409,
+    12410,
+    12411,
+    12412,
+    12413,
+    12414,
+    12415,
+    12416,
+    12417,
+    12418,
+    12419,
+    12420,
+    12421,
+    12422,
+    12423,
+    12424,
+    12425,
+    12426,
+    12427,
+    12428,
+    12429
+   ],
+   "why": "a winter wolf ranges the path"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 52150,
+   "room": 12447,
+   "why": "the Winter Witch at the end of the Winterwood",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Killing Frost",
+     "school": "frost",
+     "every": 10,
+     "radius": 2.5,
+     "last": 12,
+     "pct": 0.04,
+     "why": "killing frost: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "652102": 2
+     },
+     "shout": "The Winter Witch whistles, and winter wolves lope out of the trees!",
+     "why": "her wolves"
+    }
+   ]
+  }
+ ]
+}

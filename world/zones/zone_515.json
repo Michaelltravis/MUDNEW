@@ -27,8 +27,8 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
-   "placeholder": true
+   "description": "A cold vestibule of black basalt lies before the temple proper, its\nfloor worn into shallow dips by the feet of the faithful. Cressets burn\nwith a greasy violet flame, and incense hangs heavy over a fainter,\nsweeter smell of rot. A heavy bronze door stands in the north wall,\ncarved with a grinning skull in a crown of horns. It is not locked;\nOrcus has never feared visitors.",
+   "extra_descs": {}
   },
   "13901": {
    "vnum": 13901,
@@ -50,8 +50,8 @@
      "description": "To the south lies Before The Temple."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
-   "placeholder": true
+   "description": "A tall arch of black stone frames the entranceway, its keystone carved\ninto a leering skull with ram's horns. Draughts breathe through it\nsmelling of incense laid over something rotten and sweet. Worn\nflagstones lead north out into the courtyard under a bruised, starless\nsky, while the door south shuts off the vestibule. Somewhere ahead a\nwoman is singing softly, without words.",
+   "extra_descs": {}
   },
   "13902": {
    "vnum": 13902,
@@ -81,8 +81,8 @@
      "description": "To the west lies In The Courtyard."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Four paths of chequered black and bone-white flags meet at a broad basin\nof dark water, its rim carved with a ring of weeping skulls. The water\nnever ripples, though the air is full of whispers. Incense smoke from\nhanging censers curls across the yard and gathers in the corners. The\npath south returns to the entranceway, and the others run west, east and\nnorth into the rest of the courtyard.",
+   "extra_descs": {}
   },
   "13903": {
    "vnum": 13903,
@@ -104,8 +104,14 @@
      "description": "To the west lies In The Courtyard."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and west.",
-   "placeholder": true
+   "description": "The courtyard's edge is a ragged strip of paving where a stunted yew\nbends over a bench of pale stone. Its needles are black and lie thick\nunderfoot, giving off a smell like cold smoke. A line of narrow slit\nwindows in the temple wall lets out a bar of dim violet light. The\npaving runs north toward the corner with the oak door and west toward\nthe basin.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651500,
+     "max": 1
+    }
+   ]
   },
   "13904": {
    "vnum": 13904,
@@ -136,8 +142,14 @@
      "description": "To the west lies In The Courtyard."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east, south\nand west.",
-   "placeholder": true
+   "description": "A studded door of black oak, banded with rusted iron, stands in this\ncorner of the courtyard and opens east into a corridor. Before it the\nflags are scuffed by the passing of many robed feet, and a gutter beside\nthem stains the stone rust-brown. A cracked urn holds a few blackened\nstalks. The courtyard continues south and west from here.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651503,
+     "max": 1
+    }
+   ]
   },
   "13905": {
    "vnum": 13905,
@@ -163,8 +175,8 @@
      "description": "To the west lies In The Courtyard."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east, south\nand west.",
-   "placeholder": true
+   "description": "The courtyard ends here against a high wall of fitted black blocks, hung\nwith a thicket of dead thorn that rattles even when there is no wind.\nIron braziers stand in a row below it, each burning with a low violet\nlight. A pair of kneeling stone figures with their faces worn smooth\nflank the flagged way. Paths lead east and west along the wall and south\nback toward the basin.",
+   "extra_descs": {}
   },
   "13906": {
    "vnum": 13906,
@@ -186,8 +198,8 @@
      "description": "To the south lies In The Courtyard."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and south.",
-   "placeholder": true
+   "description": "A shrine niche in the wall holds a statue of a veiled woman, her hands\ncupped as if to catch tears, though the face behind the veil is bare\nbone. Candle stubs gutter at her feet in drifts of old wax. The flags\nare damp here and carpeted with soft grey moss. The yard opens east\nalong the wall and south toward the stable side.",
+   "extra_descs": {}
   },
   "13907": {
    "vnum": 13907,
@@ -218,8 +230,18 @@
      }
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east and west.",
-   "placeholder": true
+   "description": "A hitching rail of blackened oak runs along the wall here, its rings\npolished by years of leather reins. Spilled straw and the sharp smell of\nhorses mingle with the incense drifting across the yard. A low door\nleads west into the stable, and its hinges groan whenever the wind\nstirs. The yard turns back north toward the shrine niche and runs east\ntoward the basin.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651500,
+     "max": 1
+    },
+    {
+     "vnum": 651503,
+     "max": 1
+    }
+   ]
   },
   "13908": {
    "vnum": 13908,
@@ -237,8 +259,8 @@
      "description": "To the east lies In The Courtyard."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads east.",
-   "placeholder": true
+   "description": "Long stalls of black timber line the stable, their gates hanging open\nand their mangers packed with hay gone grey as cobweb. Harness hangs\nfrom pegs, the leather stiff and cracked, and a single lantern throws\nshifting shadows up into the rafters. The cobbles are strewn with straw\nnobody has swept in years. A faint singing drifts in from the yard, and\nthe only way out is back east through the door.",
+   "extra_descs": {}
   },
   "13910": {
    "vnum": 13910,
@@ -262,8 +284,8 @@
      "description": "To the west lies In The Courtyard."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The corridor begins at the oak door, a narrow passage of damp black\nstone lit by torches in iron claws. Their smoke has blackened the\nceiling into a low, greasy vault. Faded tapestries of writhing figures\nhang between the torches, and the floor is covered by a runner of worn\ncrimson cloth. The passage leads north into the temple's heart, and the\ndoor west gives onto the courtyard.",
+   "extra_descs": {}
   },
   "13911": {
    "vnum": 13911,
@@ -287,8 +309,8 @@
      "description": "To the south lies In The Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Niches cut into the walls hold human skulls, each with a stub of candle\nburning in its crown. The light makes the hollows of their eyes seem to\nfollow you along the passage. The air is thick and warm, and the incense\nhas a cloying edge. The corridor runs on north, and back south toward\nthe oak door.",
+   "extra_descs": {}
   },
   "13912": {
    "vnum": 13912,
@@ -312,8 +334,8 @@
      "description": "To the west lies In The Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The corridor turns here in a square corner, and the torches are fewer,\nso that long stretches lie in gloom. Bronze plaques on the wall list\nnames in a spidery script, and some have been scratched out with a\nblade. The carpet is wet underfoot with something that does not smell\nlike water. The passage goes west deeper into the temple, or south the\nway you came.",
+   "extra_descs": {}
   },
   "13913": {
    "vnum": 13913,
@@ -346,8 +368,14 @@
      "description": "To the west lies At The Foot Of The Stair To Salvation."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Three ways meet in a small square hall under a vault painted with a\nnight sky of silver stars. The sweetness in the air is strongest here,\nand with it comes the clear, lovely voice of a woman, drifting from\nbehind a lacquered door in the south wall. The door is carved with roses\nand has no handle but a pull of silk cord. The corridor leads east back\ntoward the corner, and west to a great stair.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651500,
+     "max": 1
+    }
+   ]
   },
   "13914": {
    "vnum": 13914,
@@ -371,8 +399,10 @@
      "description": "To the up lies On The Stair."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and up.",
-   "placeholder": true
+   "description": "The corridor ends at the foot of a broad stair of black stone, its steps\nhollowed by countless climbing feet. Above the first tread, letters are\ncut into the wall in a flowing hand, and a rope of braided hair serves\nas a banister. Cold air comes down from the heights, carrying the smell\nof burning oils. The stair rises up into shadow, and the corridor lies\nback east.",
+   "extra_descs": {
+    "letters inscription wall": "The letters read, in a flowing hand: Climb, and be saved from the\nwearying world. Beneath, in smaller scratches, a later hand has added:\nDo not."
+   }
   },
   "13915": {
    "vnum": 13915,
@@ -405,8 +435,8 @@
      "description": "To the down lies At The Foot Of The Stair To Salvation."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, up and down.",
-   "placeholder": true
+   "description": "The stair turns here onto a narrow landing lit by a single hanging lamp\nwhose glass is black with soot. Handprints, some of them small, are\npressed into the grime of the wall as though someone climbed in the\ndark. A plain wooden door leads east to the disciples' rooms, and low\nchanting hums behind it. The stair climbs on above, or descends to its\nfoot.",
+   "extra_descs": {}
   },
   "13916": {
    "vnum": 13916,
@@ -439,8 +469,14 @@
      "description": "To the down lies On The Stair."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, up and down.",
-   "placeholder": true
+   "description": "A second landing opens off the stair, its floor tiled in a pattern of\ninterlocking snakes that seem to move when you glance away. A carved\ndoor with a bronze knocker shaped like a clutching hand opens east into\nthe priests' quarters. The air is warmer here, thick with myrrh and\ncandle-fat. Steps run down to the lower landing and up toward a darker\nheight.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651501,
+     "max": 1
+    }
+   ]
   },
   "13917": {
    "vnum": 13917,
@@ -458,8 +494,8 @@
      "description": "To the west lies On The Stair."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. A way leads\nwest.",
-   "placeholder": true
+   "description": "Fine beds with posts carved as twisting serpents stand in a row, hung\nwith curtains of faded purple velvet. A long table is set with silver\ngoblets stained dark at the bottom and a scatter of illuminated books.\nPerfumed oil burns in hanging lamps, and its sweetness cannot quite\ncover the stench rising from beneath the floor. The door west leads out\nonto the stair.",
+   "extra_descs": {}
   },
   "13918": {
    "vnum": 13918,
@@ -477,8 +513,8 @@
      "description": "To the west lies On The Stair."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. A way leads west.",
-   "placeholder": true
+   "description": "Rows of narrow pallets of straw line this long, low room, each with a\nfolded grey robe and a wooden bowl at its foot. Scourges of knotted cord\nhang on pegs, their ends stiff with old stains. A rack of tallow candles\nburns down in the draught, and the walls are scrawled with chalk prayers\nin a dozen cramped hands. The only way out is the door west to the\nstair.",
+   "extra_descs": {}
   },
   "13919": {
    "vnum": 13919,
@@ -516,8 +552,8 @@
      "description": "To the down lies On The Stair."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "The stair ends at a small gallery under the roof beams, where thick\nblack curtains shut out the world. A door of dark red wood to the east\nis banded with silver and carries the sigil of a skull in a circle. A\nplainer door of iron to the west opens on a long hall. Cold draughts\nstir the curtains, and the stair falls away below.",
+   "extra_descs": {}
   },
   "13920": {
    "vnum": 13920,
@@ -535,8 +571,8 @@
      "description": "To the west lies Top Of The Stair."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. A way leads west.",
-   "placeholder": true
+   "description": "A vast bed with a canopy of black silk dominates the chamber, heaped\nwith furs and pillows that sag as if recently left. Shelves of grimoires\nbound in pale leather line the wall, beside a reliquary whose glass is\nclouded from within. Rugs of beast hide cover the floor, and a great\nbrass brazier glows with coals that give no warmth. The door west is the\nonly way back to the top of the stair.",
+   "extra_descs": {}
   },
   "13921": {
    "vnum": 13921,
@@ -556,8 +592,8 @@
      "description": "To the west lies Hallway To Destiny."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "A long hall begins beyond the iron door, a gallery of black pillars\njoined by arches of fitted stone. Each pillar bears a carved face with\nits mouth open in a silent cry, and the lamps hang from those mouths on\nchains. The floor is a mosaic of tiny tiles, forming a road that runs on\nwest. From somewhere far ahead comes a low, steady drone like a hundred\nvoices.",
+   "extra_descs": {}
   },
   "13922": {
    "vnum": 13922,
@@ -581,8 +617,18 @@
      "description": "To the west lies Hallway To Destiny."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The mosaic underfoot shows a procession of hooded souls walking in\nsingle file down a winding stair toward a throne of bones. The lamps\nhere burn with a sickly green flame, and the pillars lean close above\nthem. Cold seeps through your boots from the tiles. The hall stretches\non west, and the way back lies east.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651501,
+     "max": 1
+    },
+    {
+     "vnum": 651502,
+     "max": 1
+    }
+   ]
   },
   "13923": {
    "vnum": 13923,
@@ -606,8 +652,8 @@
      "description": "To the west lies Hallway To Destiny."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "Wax has run down the carved faces of the pillars in thick, yellow tears,\nand pools on the floor in glistening puddles. The chanting is clearer\nnow, a cadence of words in a tongue that makes the teeth ache. A bronze\nbrazier stands in an alcove, full of cold embers and what look like\nsmall knucklebones. The hall continues west, while east is the way back.",
+   "extra_descs": {}
   },
   "13924": {
    "vnum": 13924,
@@ -631,8 +677,8 @@
      "description": "To the west lies Hallway To Destiny."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The ceiling drops lower here, and long banners of crimson cloth hang\nlimp, each stitched with the horned skull of Orcus. Black veins of damp\nrun through the cracked flagstones, and the smell of rot rises thick\nthrough the incense. A draught moves along the hall, as if the temple\nwere breathing. You can go on west, or return east.",
+   "extra_descs": {}
   },
   "13925": {
    "vnum": 13925,
@@ -656,8 +702,14 @@
      "description": "To the west lies Hallway To Destiny."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "Half the mosaic has been torn up here, leaving a rough trough of earth\nthrough the tiles, as though something dragged itself up from beneath.\nThe lamps are few and burn low, and the gaps between them are very dark.\nA wind pulls steadily at your clothes from the end of the hall. The way\ngoes on west, and east leads back.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651501,
+     "max": 1
+    }
+   ]
   },
   "13926": {
    "vnum": 13926,
@@ -681,8 +733,14 @@
      "description": "To the west lies Sanctuary Of Orcus."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
-   "placeholder": true
+   "description": "A great archway of bone-white stone ends the hall, ringed with sigils\nthat crawl and shift in the lamplight. Two tall bronze braziers flank\nit, their flames burning backward toward the threshold as though drawn\nthrough. The incense is almost solid here, and the drone swells to a\nroar that you feel in your chest. West through the arch lies the\nsanctuary, and east the long hall behind you.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651502,
+     "max": 1
+    }
+   ]
   },
   "13927": {
    "vnum": 13927,
@@ -700,8 +758,16 @@
      "description": "To the down lies Near The Prime Material Plane."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. A way leads down.",
-   "placeholder": true
+   "description": "A great round sanctuary opens beneath a dome that is no ceiling at all\nbut a swirling dark, flecked with pale sparks like dying stars. At its\ncentre rises a black altar carved with the horned skull of Orcus, its\nchannels crusted with old offerings. Rows of bone-white pews ring it,\nand the incense is thick enough to taste. In the floor beside the altar\na ragged pit yawns open, and a stair of rough steps leads down into the\nvoid and the dark tunnels waiting below.",
+   "extra_descs": {
+    "altar black skull": "The altar is cut from a single block of black stone, and the skull of\nOrcus grins from its front, ram's horns curling to the floor. The\nchannels in its top run down to a bowl that has never been allowed to\ndry."
+   },
+   "mob_resets": [
+    {
+     "vnum": 651505,
+     "max": 1
+    }
+   ]
   },
   "13929": {
    "vnum": 13929,
@@ -721,8 +787,16 @@
      "description": "To the north lies In The Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
-   "placeholder": true
+   "description": "Silk hangs from every wall in soft waves of rose and cream, and a\nhundred candles burn in silver stands, so that the room glows like a\nsummer dawn. A tall mirror in a gilded frame leans against one wall, and\na harp rests beside a cushioned couch, its strings trembling as if just\ntouched. Everything is lovely and everything is wrong: the silk is\nrotten at the hems, and small bones lie scattered in its folds. The\nvoice is sweet and close, coaxing you to stay forever, and the only way\nout is the door north.",
+   "extra_descs": {
+    "mirror gilded frame": "The mirror shows the room as it should be, warm and fair, with a slender\nwoman standing just behind your shoulder. When you turn, nobody is\nthere, and the glass in the frame is cold as grave dirt."
+   },
+   "mob_resets": [
+    {
+     "vnum": 651504,
+     "max": 1
+    }
+   ]
   },
   "13930": {
    "vnum": 13930,
@@ -740,11 +814,366 @@
      "description": "To the east lies Before The Temple."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. A way leads\neast.",
-   "placeholder": true
+   "description": "You stand at the edge of the temple's own undoing, where the floor frays\naway into a darkness without stars or sound. Wisps of pale light drift\npast, never settling, and the air tastes of cold iron and old prayers.\nThere is no ground beyond your feet, only the sense of falling that\nnever ends. A faint glow of violet lamplight marks the only path,\nrunning east back to the vestibule before the temple.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "651500": {
+   "vnum": 651500,
+   "name": "cultist orcus robed",
+   "short_desc": "a black-robed cultist of Orcus",
+   "long_desc": "A black-robed cultist of Orcus murmurs a litany, fingering a chain of knucklebones.",
+   "description": "The cultist wears a hood of black wool, and his pale eyes shine with a\nfeverish joy. A skull-shaped brand is burned into his palm, and he\nsmells of incense and old blood.",
+   "level": 46,
+   "alignment": -800,
+   "hp_dice": "46d8+774",
+   "damage_dice": "12d6+26",
+   "armor_class": -20,
+   "exp": 2550,
+   "gold": 552,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751500,
+     "chance": 25
+    },
+    {
+     "vnum": 751501,
+     "chance": 15
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651501": {
+   "vnum": 651501,
+   "name": "skeleton robed acolyte bones",
+   "short_desc": "a robed skeleton",
+   "long_desc": "A robed skeleton stands in the shadows with a rusted censer swinging from its fingers.",
+   "description": "Tatters of grey acolyte's robe hang from the yellowed bones, and a point\nof green light burns in each empty socket. It moves in a soft clatter,\nas if still keeping to the temple's old hours.",
+   "level": 47,
+   "alignment": -700,
+   "hp_dice": "47d8+899",
+   "damage_dice": "12d6+28",
+   "armor_class": -20,
+   "exp": 2605,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751501,
+     "chance": 20
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651502": {
+   "vnum": 651502,
+   "name": "templar guard knight black armoured",
+   "short_desc": "a black-armoured templar guard",
+   "long_desc": "A black-armoured templar guard stands rigid at his post, a spiked mace across his chest.",
+   "description": "The templar's helm is wrought into a horned skull and shows no face\nbehind it. His armour is hung with chains of tiny teeth that chime\nsoftly as he breathes.",
+   "level": 52,
+   "alignment": -900,
+   "hp_dice": "52d8+920",
+   "damage_dice": "14d6+28",
+   "armor_class": -20,
+   "exp": 2880,
+   "gold": 624,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751502,
+     "chance": 25
+    },
+    {
+     "vnum": 751500,
+     "chance": 15
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651503": {
+   "vnum": 651503,
+   "name": "gargoyle stone winged",
+   "short_desc": "a hulking stone gargoyle",
+   "long_desc": "A hulking stone gargoyle crouches on the rim of the wall, its wings folded, watching.",
+   "description": "The gargoyle is carved in the likeness of a horned demon, with cracked\ngrey wings and talons like chisels. Dust trickles from its joints when\nit moves, and its stare never wavers.",
+   "level": 51,
+   "alignment": -600,
+   "hp_dice": "51d8+1119",
+   "damage_dice": "13d6+37",
+   "armor_class": -20,
+   "exp": 2825,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751501,
+     "chance": 25
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651504": {
+   "vnum": 651504,
+   "name": "maid beautiful ghost spirit woman lure",
+   "short_desc": "the ghost of the Beautiful Maid",
+   "long_desc": "The ghost of the Beautiful Maid sits by the harp, singing a song that pulls at your heart.",
+   "description": "She is lovely in the way a painting is lovely: pale, perfect and still,\nwith eyes that follow you a moment too long. Where the light falls\nthrough her, you see a hollow of rot and bone, and her song never stops.",
+   "level": 53,
+   "alignment": -900,
+   "hp_dice": "53d8+1063",
+   "damage_dice": "14d6+29",
+   "armor_class": -20,
+   "exp": 2935,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751503,
+     "chance": 35
+    },
+    {
+     "vnum": 751500,
+     "chance": 20
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651505": {
+   "vnum": 651505,
+   "name": "high priest orcus malgrath",
+   "short_desc": "Malgrath, High Priest of Orcus",
+   "long_desc": "Malgrath, High Priest of Orcus, stands before the black altar with his arms raised to the void.",
+   "description": "The high priest is tall and gaunt, robed in layers of black and crimson,\nwith a ram-horned mitre upon his bald head. His eyes are pits of violet\nlight, and the air around him sighs like a mouth.",
+   "level": 55,
+   "alignment": -1000,
+   "hp_dice": "55d8+996",
+   "damage_dice": "14d6+32",
+   "armor_class": -20,
+   "exp": 3045,
+   "gold": 660,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751504,
+     "chance": 35
+    },
+    {
+     "vnum": 751503,
+     "chance": 15
+    },
+    {
+     "vnum": 751501,
+     "chance": 30
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "751500": {
+   "vnum": 751500,
+   "name": "dagger skull cultist",
+   "short_desc": "a skull-hilted dagger",
+   "room_desc": "A skull-hilted dagger lies here.",
+   "description": "The hilt is carved as a tiny grinning skull. The blade is stained dark to the guard.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 46,
+   "damage_dice": "2d10",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 1190
+  },
+  "751501": {
+   "vnum": 751501,
+   "name": "censer silver incense",
+   "short_desc": "a tarnished silver censer",
+   "room_desc": "A tarnished silver censer lies here, trailing a thread of smoke.",
+   "description": "A censer on a chain, pierced with a pattern of leering faces. It still smells of that sweet, rotten incense.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 48,
+   "weight": 1,
+   "value": 1465
+  },
+  "751502": {
+   "vnum": 751502,
+   "name": "helm horned skull templar",
+   "short_desc": "a horned skull helm",
+   "room_desc": "A horned skull helm lies here.",
+   "description": "A heavy black helm wrought into the shape of a horned skull. Tiny teeth are strung along its rim.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 51,
+   "wear_slot": "head",
+   "armor": 6,
+   "weight": 3,
+   "value": 1050,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  },
+  "751503": {
+   "vnum": 751503,
+   "name": "veil silk maiden rose",
+   "short_desc": "a rose-coloured silk veil",
+   "room_desc": "A rose-coloured silk veil lies here.",
+   "description": "A veil of the finest silk, soft and faintly warm to the touch. It carries a distant scent of roses and a few notes of song.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 53,
+   "wear_slot": "about",
+   "armor": 5,
+   "weight": 3,
+   "value": 1090,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 1
+    }
+   ]
+  },
+  "751504": {
+   "vnum": 751504,
+   "name": "mace orcus horned black",
+   "short_desc": "the Mace of Orcus",
+   "room_desc": "A black-headed mace lies here, its horned head cold to the eye.",
+   "description": "A heavy mace whose head is cast as the horned skull of Orcus. It hums faintly in the hand and hungers for a blow.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 55,
+   "damage_dice": "2d11",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 1415,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

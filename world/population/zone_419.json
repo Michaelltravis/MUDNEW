@@ -1,0 +1,157 @@
+{
+ "zone": 419,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Maelgrim the Pale, high priest of the cult as the boss.",
+ "creatures": {
+  "641901": {
+   "helpers": {
+    "group": "z419_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a gaunt grey wolf"
+  },
+  "641902": {
+   "helpers": {
+    "group": "z419_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a hooded cultist"
+  },
+  "641903": {
+   "helpers": {
+    "group": "z419_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a blackened cult enforcer",
+   "rank": "elite"
+  },
+  "641904": {
+   "helpers": {
+    "group": "z419_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a bone warden skeleton",
+   "rank": "elite"
+  },
+  "641905": {
+   "helpers": {
+    "group": "z419_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Deacon Orrin Vash",
+   "rank": "sub-boss"
+  },
+  "641906": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Maelgrim the Pale, high priest of the cult",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Maelgrim the Pale, high priest of the cult rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Maelgrim the Pale, high priest of the cult gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Maelgrim the Pale, high priest of the cult raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Maelgrim the Pale, high priest of the cult begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 641900,
+   "route": [
+    208002,
+    208003,
+    8004,
+    8005,
+    8006,
+    8007,
+    8008,
+    8016,
+    8024,
+    8032,
+    8041,
+    8049,
+    8057,
+    8056
+   ],
+   "why": "a wary townsman walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 641906,
+   "room": 8080,
+   "why": "Maelgrim the Pale, high priest of the cult in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      641902
+     ],
+     "shout": "Maelgrim the Pale, high priest of the cult calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

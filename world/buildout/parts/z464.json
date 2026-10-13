@@ -1,0 +1,402 @@
+{
+ "job": "z464",
+ "rooms": {
+  "20600": {
+   "look": "mine",
+   "description": "A slope of broken stone fills the passage, jammed between the walls where some old collapse brought the roof down. A gap just wide enough to squeeze through winds between the biggest slabs, and the dust you kick up hangs in the dark like smoke. Far above, a pale scrap of daylight marks the way up toward The Hole. The tunnel runs on south into deeper blackness, and a cold draught creeps up it smelling of wet stone."
+  },
+  "20601": {
+   "look": "mine",
+   "description": "The tunnel narrows to a crooked bore of dark stone, its ceiling propped here and there by timbers gone soft with rot. Pick marks scar the walls in long, tired rows, abandoned in the middle of a swing. Your light shrinks to a small yellow bubble, and the dark presses close beyond it. Somewhere ahead, stones tick and settle as though the mountain were turning over in its sleep."
+  },
+  "20602": {
+   "look": "mine",
+   "description": "Here the passage forks into blind pockets and half-dug alcoves, each one ending in a wall of raw, unworked rock. A rusted wheelbarrow lies on its side with one wheel missing, its iron rim bent as if by a great hand. Fine grey dust coats every surface, unmarked save for a single trail that leads nowhere you can see. The air is thin and still and tastes of old copper."
+  },
+  "20603": {
+   "look": "mine",
+   "description": "A tangle of broken props and splintered boards chokes this stretch of tunnel, leaving only a crooked path through the wreckage. Water seeps from a crack overhead and drips into a puddle black as ink, each drop ringing out too loudly. Scratches mark the wall at shoulder height, as if someone had counted the days in the dark. You find yourself listening harder than you meant to."
+  },
+  "20604": {
+   "look": "mine",
+   "description": "The tunnel opens a little here into a low, ragged chamber where several diggings meet, and the rock overhead glitters faintly with flecks of mica. Rails of rusted iron run out of the gloom and stop at an ore cart tipped on its side, its load of rubble spilled across the floor. An old lantern hangs from a hook in the wall, cold and empty. A smell of damp earth and something sourer drifts through the stale air."
+  },
+  "20605": {
+   "look": "mine",
+   "description": "The walls are slick with a pale crust that glimmers wetly, and the floor dips toward a shallow trench worn by years of seepage. A pair of rusted shackles hangs from a ring bolted to the rock, though nothing about the place says what they were meant to hold. Your footsteps die at once in the heavy air. The dark ahead seems thicker than the dark behind."
+  },
+  "20606": {
+   "look": "mine",
+   "description": "A great vein of dull grey stone has been chiselled out of the wall here, leaving a ragged hollow like an open mouth. Chisels and wedges still stand in their cracks, furred with rust, and a crooked peg beside them holds a miner's leather cap, stiff with age. Long gouges score the rock around the hollow, far too deep and wide for any pick. A faint scraping drifts up from somewhere below."
+  },
+  "20607": {
+   "look": "mine",
+   "description": "A square opening yawns in the floor where a ladder of black timber climbs down into the deep places below. Its rungs are worn smooth by ages of hands and boots, and a rope tied to the topmost one hangs slack into the dark. Cold air rises from the way down, carrying a hollow echo and the faraway smell of old stone. The tunnel itself ends here in a heap of dust and flaked rock."
+  },
+  "20608": {
+   "look": "mine",
+   "description": "The roof drops so low here that you must stoop, and the walls crowd close on either side, rough with the marks of hurried digging. Long strings of old cobweb sag from the timbers, grey and heavy with dust. A ring of melted candle stubs sits in the middle of a crude chalk circle, its lines smeared by something dragged across it. The silence is thick enough to feel on your skin."
+  },
+  "20609": {
+   "look": "mine",
+   "description": "This is the deepest and oldest stretch of the workings, where the walls are not cut stone but a glassy black rock that drinks the light. Faint veins of dull silver thread through it, pulsing so slightly you cannot be sure you see them. The floor is warm underfoot, and the air hums with a note just below hearing. Whatever the miners were digging for, they found it here, and left in a hurry."
+  },
+  "20610": {
+   "look": "mine",
+   "description": "The long tunnel finally ends in a ragged archway of mortared stone, where lamplight spills thinly from the town beyond. Dust-furred timbers brace the arch, and the stale air of the workings gives way to cooking smoke and warm iron. Back up the passage to the north, the darkness waits like a held breath. To the south the way opens into the Cavern Entrance, and the sounds of the town grow clear."
+  },
+  "20615": {
+   "look": "cave",
+   "description": "You step out of the tunnel into the vast cavern that holds the town, its roof lost in gloom far above. Lanterns on iron poles throw wavering rings of light across a floor of beaten grit and trodden stone. Behind you the tunnel mouth breathes cold air back up the passage to the north. The cavern stretches south toward its centre, a lane leads east along the rear wall, and shop fronts line the way west."
+  },
+  "20616": {
+   "look": "cave",
+   "description": "Along the rear wall of the cavern the rock is smoothed and whitewashed in patches, and a few narrow doorways have been cut straight into it. A hand-lettered sign on a post points north to Spaymoore's Diner, from which come the clatter of plates and the smell of frying onions. The lane goes on east past more houses and back west toward the entrance, while south the ground opens toward a raised pedestal of stone. Soot has painted the ceiling above in long black streaks."
+  },
+  "20657": "Plank tables crowd a low room hollowed into the stone, each one scored by years of knives and mugs. A long counter with a brass urn stands at the rear, and the air is thick with grease, onion and pipe smoke. Tin lamps swing from hooks overhead, throwing restless shadows across the benches. Through a swinging door north lies the kitchen, an open arch leads west to the dining area, and the cavern lane lies south.",
+  "20658": "A cramped kitchen of blackened stone is dominated by a vast iron range, its flue vanishing up a chimney drilled through the rock. Pots and ladles of every size hang from hooks along the walls, and a deep sink of grey slate drips steadily in the corner. The floor is gritty with flour and coal dust. The only way out is the door south, back to the diner.",
+  "20665": "Long benches and a few round tables fill this wide alcove, where off-shift miners eat shoulder to shoulder with their elbows out. Whitewash flakes from the low ceiling, and a chalkboard on the wall lists the day's stew and ale in smudged capitals. A lamp hangs over every table, each trimmed to a different height, so that the light pools unevenly. The only way back is east, to Spaymoore's Diner.",
+  "20617": {
+   "look": "cave",
+   "description": "The lane here runs hard along the rear of the cavern, where a stoop of worn steps leads north to a miner's front door. Pale stalactites hang from the roof like frozen candle wax, dripping slowly onto the grit. East the wall bends toward a corner of the cavern, while south the lane opens into the middle of the town, and west it returns toward the diner. A chorus of distant hammering echoes off the stone."
+  },
+  "20618": "A miner's living room, snug and low, with a threadbare rug over the bare stone and a hearth glowing with banked coals. Two sagging armchairs face the fire, and a shelf above holds a row of chipped mugs and a small carved figure of a bearded dwarf. Pick handles lean beside the door south to the cavern lane. A doorway north leads into a hallway, and a plank door east opens on the kitchen.",
+  "20620": "A narrow hallway runs between close walls of limewashed rock, hung with a row of iron pegs for coats and lamps. A steep wooden stair climbs up into the dark of the upper floor, its treads dished by years of heavy boots. The room to the south is the living room, and from there comes the murmur of the fire. The floor is swept clean, a point of pride in a town so full of dust.",
+  "20621": "Under a slanting ceiling of raw stone, a pair of narrow beds stand against opposite walls, each with a thin blanket folded at its foot. A little shuttered niche lets in a dim glow from the lanterns of the town below. Boots stand in a row beside a battered chest, and the air smells of tallow and sleeping men. The stair leads down to the hallway.",
+  "20619": "A small kitchen where a black iron stove squats against the wall, its pipe running up through a hole bored in the ceiling rock. Copper pans hang over a scrubbed table, and a sack of meal slumps in a corner beside a cask of salted pork. The room smells of bread, smoke and damp stone. The only door lies west, back to the living room.",
+  "20622": {
+   "look": "cave",
+   "description": "In the corner of the cavern the walls close in at a sharp angle, and lantern light pools thickly where rock meets rock. A tiled passage leads north to the gents' washroom, another east to the ladies', and the lane runs south along the cavern's edge. Water trickles down the stone in a bright thread to a gutter, and the whole corner smells of lye soap. West, the lane returns toward the back of the cavern."
+  },
+  "20660": "A bare tiled room with a long trough of stone along one wall, fed by a pipe that clanks whenever anyone tugs the chain. Hooks line the opposite wall, hung with rough towels gone grey with use. A cracked mirror of polished tin shows only a smear of lamplight. The only way out is the arch south to the corner of the cavern.",
+  "20661": "A tidy washroom with a row of brass basins set into a long stone shelf, each polished until it shines even in the weak light. A dish of yellow soap sits beside them, and a sprig of dried heather hangs from a nail to sweeten the damp air. A narrow door in the far wall leads north to a private cubicle, and the arch west returns to the corner of the cavern.",
+  "20666": "A tiny stall closed by a plank door, hardly wider than a man's shoulders, with a wooden seat over a deep pit that drops away into darkness. Someone has scratched a verse into the wall in a neat hand, and a tin lamp burns in a niche above. The draught from below is cool and smells of nothing good. The door opens south onto the washroom.",
+  "20623": {
+   "look": "cave",
+   "description": "The cavern's eastern flank rises here as a sheer curtain of dark rock, streaked with mineral stains in orange and green. Lantern hooks have been hammered into the stone at head height, and a long bench of split logs sits beneath them where workers rest. A door to the east leads into the newsroom, where a press clatters, while the lane runs north toward a corner and south toward another. West, the wide middle of the cavern opens out."
+  },
+  "20664": "Racks of ink-stained type and a squat iron press fill this cramped room, and sheets of rough paper hang drying on lines strung from wall to wall. The press stands silent now, a half-printed broadsheet still pinned in its frame. Ink and oil mingle in a sharp smell, and a stool sits worn smooth beside a slanted desk. The only door leads west, back out to the cavern's rim.",
+  "20645": "Where the cavern curves around at its southern end, the town crowds into a pocket of tight lanes and shuttered doorways. Cold light from a hanging lamp falls on a brass plate by the east door, worn nearly smooth by thumbs. A narrow stair of stone leads south down to the miners' rest, and the way north goes back along the wall. West, the lane runs toward the Great Escape.",
+  "20646": "A square, well-kept room where the overseer hears the miners' grievances, with a heavy desk of black oak set before a hard chair. Maps of the workings hang on the walls, pinned with coloured tacks, and a ledger stands open on a lectern. Thick curtains of felt muffle every sound from outside. Doors lead north to a study and east to an orangery, while the way west returns to the lanes of the town.",
+  "20648": "Shelves of bound surveys and brittle rolled plans cover every wall of this book-lined study, and a green-shaded lamp stands on a desk piled with correspondence. The air smells of leather and candle smoke. A narrow stair in the corner climbs up to the overseer's bedroom, and the doorway south opens onto the consultation room. One shelf has been swept bare, leaving a clean rectangle in the dust, as if something was taken in haste.",
+  "20649": "A heavy four-poster bed with moth-eaten hangings dominates this chamber under a low ceiling of dressed stone. A wardrobe stands open and empty, and the pillow still holds the shape of a head. Scratches mar the floor around the bed, as if something had been dragged out from under it. The stair leads down to the study, and a thin chill hangs in the room despite the heavy blankets.",
+  "20647": "Panes of glass, tinted green with age, wall in a small hothouse that somehow keeps a few stubborn orange trees alive in the lamplight of the depths. Their leaves are pale and their fruit small and hard, but the scent is sweet after the dust of the tunnels. Troughs of black soil line the walls, tended with surprising care. The only way out is the door west, back to the consultation room.",
+  "20659": "A long, low hall lined with bunks of plain boards, where off-shift miners sleep in turns through the dim hours. Grey blankets lie rumpled, and a rack along one wall is hung with boots left to dry. Someone has strung a garland of dried flowers over the door as a small act of defiance. The only way out is north, to the corner of the cavern.",
+  "20644": {
+   "look": "cave",
+   "description": "This wide junction of lanes takes its name from an old joke among the miners, who call it the nearest thing to freedom in the depths. A trodden square of packed grit is ringed by lamp poles, and a rusty bell hangs from a post at its middle. The smell of stale beer drifts from Magluff's Tavern to the south. Lanes run north toward the middle of the cavern, east to a corner, and west to the construction site."
+  },
+  "20624": {
+   "look": "cave",
+   "description": "The floor is worn into shallow ruts by cartwheels here, and the roof soars so high that lamplight never reaches it. Handcarts stand abandoned along the edge of the lane, their shafts propped on stones. To the west rises the overseer's pedestal, a dark stump against the glow of the lamps. Lanes lead north to the back of the cavern, east to the far wall, and south to the Great Escape."
+  },
+  "20625": "A squat pillar of fitted stone rises from the cavern floor, its flat top reached by a spiral of worn steps cut into its side. From up there the overseer once watched every lane and every hammer, and the iron rail around the rim is polished by his gloves. Lanes branch north toward the back of the cavern, east to the middle, south to a building site, and west to the centre. A chill breeze with no source stirs around the base.",
+  "20643": "Half-raised walls of fitted stone stand around a field of rubble and sledge-marked slabs, and timber scaffolds creak against the rock. A stack of unused blocks has been chalked with numbers by a builder who never came back to finish. Dust hangs thick enough to taste. Lanes lead north to the pedestal, east to the Great Escape and west to the huge stone gates, and a rough slope drops away south into the Hole.",
+  "20652": {
+   "look": "cave",
+   "description": "A rough pit gapes in the cavern floor, its sides a jumble of torn rock and loose gravel that slides underfoot. Cold air stirs from below, smelling faintly of rain and distant leaves, though the opening is far too narrow to squeeze through. Marks of picks and wedges ring the rim where someone began widening it and gave up. The only way back is north, to the construction site."
+  },
+  "20641": "Two enormous gates of dressed stone, taller than any ten men, stand in the cavern wall, their iron-banded leaves swung wide on hinges thick as barrels. Beyond them a broad stone bridge runs out over a gulf toward the deep halls of Moria. Cold air breathes through the opening and stirs the dust at your feet. Lanes go north to the cavern centre, east to the construction site and west along the wall, and the open gates lead south toward the bridge.",
+  "20627": {
+   "look": "cave",
+   "description": "The great open heart of the cavern, where lanes meet beneath a roof so high it is lost in shadow. The ground is stamped smooth by generations of boots, and four tall lamp-posts of black iron burn at its points. The entrance lies north, the pedestal east, the huge stone gates south, and the fountain district west. A low murmur of voices and hammers fills the air like the sea."
+  },
+  "20628": {
+   "look": "cave",
+   "description": "A broad, gently sloping stretch of packed grit lies beneath the western half of the vault, patched with puddles from the roof's constant drip. Handcarts have worn twin ruts across it, leading north toward the shopping district. The wall of the cavern lies south, the centre of the town east, and the splash of the stone fountain carries clearly from the west."
+  },
+  "20634": "A bustling lane lined with shopfronts cut into the rock, each with a painted wooden sign swinging over its door. Awnings of patched canvas shade tables of tools, lamp oil and dried food, and the cobbles are slick with spilled wash-water. A doorway marked with a painted boot leads north into Drapor's Shoe Fayre, and the lane runs east to the cavern entrance, south toward the middle of the town, and west past more shops.",
+  "20656": "Boots and shoes cover every wall of this narrow shop, from heavy hobnailed miners' boots strung by their laces to soft slippers hung from the rafters like bats. The smell of leather, wax and tallow is strong enough to taste. A cobbler's bench stands under the lamp, its wooden lasts lined up like small feet. The only way out is the door south, onto the shopping lane.",
+  "20633": "A cobbled apron stretches before a row of shopfronts, where hand-painted signs advertise everything from rope to ribbons. A bench of rough planks sits against the rock, polished by the seats of gossips. A narrow doorway to the north is marked Bits and Pieces, a lane leads east to the shopping district, and the fountain's water can be heard south. West stands the grim iron-bound door of the treasury.",
+  "20635": "Every inch of this crammed shop holds something: coils of rope, odd gloves, cracked lanterns, bent spoons and a hundred keys that fit nothing. Narrow aisles twist between the stacks, and a counter at the back is buried under a drift of receipts and string. Dust lies on everything, and a smell of old metal and machine oil lingers. The only way out is the doorway south, back to the front of the shops.",
+  "20629": "The stone fountain stands at the heart of the cavern town, a wide basin of grey rock where water pours from the mouth of a carved, bearded face. Spray beads on the rim and runs in rills down the grooves of the pavement. Miners stop to rinse the dust from their hands and throats, and the splash covers the hammering from elsewhere. Lanes lead north to the shops, east to the middle of the cavern, south along the cavern wall, and west to the edge of the town.",
+  "20639": {
+   "look": "cave",
+   "description": "The town presses up against the foot of a streaked rock wall here, and narrow lamps are bracketed into the stone at even intervals. A faded notice is nailed to a post, its edges curled by the damp. The lane leads north to the fountain, east along the wall, and west toward a corner, while a battered door to the south stands slightly ajar on an empty house."
+  },
+  "20640": {
+   "look": "cave",
+   "description": "A stretch of the cavern wall stained rust-red by seeping water, with a row of iron rings set into the rock for tethering pack mules. Hoofprints and cart tracks cross the grit, leading east toward the huge stone gates. North the ground rises toward the middle of the cavern, west the wall continues, and a sturdy door to the south opens on the guard house. A smell of horse and wet stone hangs in the air."
+  },
+  "20722": "A bare stone room with a plank table, a rack of spears and a bench worn smooth by years of watchmen. A tally of days has been scratched into the wall beside a narrow barred window, and the ashes of a small fire sit cold in the grate. Keys hang from a ring by the door, and a heavy bar stands ready to drop across it. The only way out is the door north, to the cavern wall.",
+  "20642": "Dust lies thick on the floor of this abandoned miner's house, undisturbed except by the tracks of mice. The hearth is cold, the table bare, and a single chair has toppled onto its back as though the owner rose in sudden alarm. Faint scratches mark the inside of the door, low down. The only way out is north, to the cavern wall.",
+  "20636": {
+   "look": "cave",
+   "description": "Where the cavern wall bends into its southwestern pocket, the rock leans in over the lane and the lamp-light turns amber. A low shed with a tin roof squats to the south, ringing with the sound of hammers on metal. East the lane follows the wall, north it runs up beside the western edge of the town, and west a wide doorway opens on a warehouse."
+  },
+  "20630": "Along the extreme western edge of the cavern the rock face is dark and damp, and a long channel cut in the floor carries a thin stream of water away into the shadows. Shuttered shop-fronts and low doors line the lane. North stands the entrance to the treasury, south the lane drops to a corner, east the fountain plays, and west a door leads to the doctor's waiting room.",
+  "20631": "A heavy iron door set in a frame of dressed stone is the entrance to the town's treasury, studded with bolts and flanked by two lamps in wire cages. The ground before it is swept clean and marked with a pale line where visitors must wait. A side door north is lettered for the treasury master, a second door west leads into the vault itself, and lanes run east to the front of the shops and south along the wall.",
+  "20655": "A cramped office lined with ledgers bound in black cloth, where a high desk stands under a single hooded lamp. A small iron safe is bolted to the floor, its dial worn bright. The air is dry and smells of ink, sealing wax and fear. The only way out is the door south, back to the treasury entrance.",
+  "20632": "A low vault of seamless stone, its walls lined with iron-bound chests and shelves of ingots stamped with the town's mark. A balance of brass pans hangs from a beam, and a chalk tally on the wall counts bars and coin in careful columns. The air is cold and still as a tomb. The only way out is the iron door east.",
+  "20662": "Rows of hard benches face a counter where a harassed attendant once recorded names, and the whole room smells of vinegar and lamp oil. A shelf of chipped jars and a rolled cloth of bandages hangs by the door. Pale faces seem to linger in the shadows between the lamps. A heavy curtain to the west leads to the surgery, and the arch east opens back on the lane.",
+  "20663": "A scrubbed table of pale wood stands under a cluster of hanging lamps, surrounded by trays of knives, saws and curved needles laid out in order. Cabinets of tiny drawers line the walls, each labelled in a small, crabbed script. The room smells strongly of spirits and herbs, and a stained leather apron hangs from a peg. The only way out is east, to the waiting room.",
+  "20654": "A low shed of corrugated tin and timber, open on one side to the cavern, smelling of grease and hot iron. Broken picks, bent rails and cracked wheels lie sorted in piles along the wall, and a forge in the corner glows a sullen orange. An anvil stands scarred and ready. The only way out is north, back to the corner of the cavern.",
+  "20637": "A long, cluttered warehouse of stacked crates, barrels and coils of rope, its rafters hung with dusty lamps. Narrow paths wind between the stacks, and everything wears a skin of grey dust. At the western end the air seems to ripple and shimmer, like heat over a summer road. The wide doorway east leads back to the cavern, and a strange passage waits west.",
+  "20638": {
+   "look": "cave",
+   "description": "The air hangs torn here, a long rent in the world that shimmers pale and cold in the gloom. Beyond its edge you glimpse a warehouse far away, lit by honest daylight and smelling of sawdust and tar. The ground trembles gently, and loose pebbles rise a finger's breadth and fall again. To the west the rift opens onto Garathorm, and a warehouse waits at its end, the only way out of this lonely place."
+  },
+  "20626": "The flat top of the pedestal gives a commanding view over the whole cavern, from the tunnel mouth in the rear wall to the huge stone gates far below. An iron rail rings the rim, and in the middle stands a heavy chair of black oak with arms worn by clenching hands. A cold wind stirs here that no cavern should have, and the lamps below seem very small. The stair winds down to the ground.",
+  "20651": "A smoky, low-beamed tavern, its floor strewn with sawdust and its walls hung with dented tankards and old mining tools. A long bar of scarred oak runs along one side, and barrels bristle with spigots behind it. Lamps burn low in the haze, and a fiddle sits silent on a stool in the corner. The only door leads north, back to the Great Escape."
+ },
+ "extras": {
+  "20629": [
+   {
+    "keywords": "face fountain spout basin",
+    "description": "The carved face is a bearded miner with his mouth wide open, the water pouring from it in a clear, cold stream. Generations of coins lie green at the bottom of the basin."
+   }
+  ],
+  "20641": [
+   {
+    "keywords": "gates hinges leaves",
+    "description": "The gates are carved with rows of marching dwarves and strange letters, worn almost smooth. They have been left standing open for as long as anyone here can remember."
+   }
+  ],
+  "20608": [
+   {
+    "keywords": "circle chalk stubs",
+    "description": "The chalk circle is drawn in a hurried, shaking hand, with signs around the edge that you do not know. A deep, curved scrape cuts across it as if something heavy had been hauled away."
+   }
+  ],
+  "20638": [
+   {
+    "keywords": "rift tear rent",
+    "description": "The rent hangs in the air at about the height of a door, its edges rippling like silk in a draught. Through it you can see sunlight and wooden crates."
+   }
+  ],
+  "20625": [
+   {
+    "keywords": "steps spiral rail",
+    "description": "The steps are cut shallow and narrow, so that anyone climbing must watch his feet. The iron rail at the top is rubbed bright where the overseer once leaned."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "brethren-miner",
+   "keywords": "miner dwarf man",
+   "short_desc": "a tired miner",
+   "long_desc": "A tired miner trudges past with a pick over his shoulder, coughing into his sleeve.",
+   "description": "A broad, grey-faced man with soot in the lines of his hands and a lamp strapped to his cap. He moves like one who has hauled stone all his life and expects no thanks.",
+   "kind": "humanoid",
+   "level": 14,
+   "aggressive": false,
+   "alignment": 100,
+   "rooms": [
+    "The Back Of The Cavern",
+    "The Cavern Centre",
+    "The Great Escape",
+    "The Construction Site",
+    "The Cavern Wall",
+    "Middle Of The Cavern"
+   ],
+   "count": 7,
+   "drops": [
+    {
+     "item": "miners-helm",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "brethren-townsfolk",
+   "keywords": "shopkeeper townsman woman",
+   "short_desc": "a dusty shopkeeper",
+   "long_desc": "A dusty shopkeeper straightens her wares and watches the lane with weary eyes.",
+   "description": "A stout woman in a flour-streaked apron, with a ring of keys at her belt and a cautious eye for strangers. She has plainly seen more than she cares to say about the tunnels.",
+   "kind": "humanoid",
+   "level": 14,
+   "aggressive": false,
+   "alignment": 150,
+   "rooms": [
+    "The Shopping District",
+    "In Front Of The Shops",
+    "The Stone Fountain"
+   ],
+   "count": 3,
+   "drops": []
+  },
+  {
+   "id": "tunnel-spider",
+   "keywords": "spider tunnel pale",
+   "short_desc": "a pale tunnel spider",
+   "long_desc": "A pale tunnel spider clings to the rock, its legs twitching in the dark.",
+   "description": "A bloated, bone-white spider as large as a dog, with eyes like tiny black pearls. Its fangs drip a sour fluid that eats at the stone beneath it.",
+   "kind": "animal",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -200,
+   "rooms": [
+    "The Tunnels Of Darkness"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "darkglass-shard",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "rubble-wight",
+   "keywords": "wight miner undead rubble",
+   "short_desc": "a rubble wight",
+   "long_desc": "A rubble wight drags itself along the tunnel, stone dust spilling from its gaunt frame.",
+   "description": "The withered corpse of a long-dead miner, shrouded in grey dust and still gripping the splintered haft of a pick. Cold light flickers in the hollows where its eyes should be.",
+   "kind": "undead",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Tunnels Of Darkness"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "rubble-gauntlets",
+     "chance": 25
+    },
+    {
+     "item": "foremans-pick",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "tunnel-troll",
+   "keywords": "troll cave tunnel",
+   "short_desc": "a hulking tunnel troll",
+   "long_desc": "A hulking tunnel troll squats in the rubble, gnawing a splintered beam.",
+   "description": "A huge, hunched troll with skin the colour of wet slate and arms that hang to its knees. Rock dust clings to its warty hide, and its small red eyes follow you hungrily.",
+   "kind": "monster",
+   "level": 23,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Through The Rubble",
+    "The Tunnels Of Darkness"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "rubble-gauntlets",
+     "chance": 30
+    },
+    {
+     "item": "darkglass-shard",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "foreman-brakk",
+   "keywords": "foreman brakk hollow",
+   "short_desc": "Brakk the Hollow Foreman",
+   "long_desc": "Brakk the Hollow Foreman stalks the end of the tunnels, a ghastly lamp burning in his chest.",
+   "description": "Once the foreman of the deepest dig, Brakk is now a gaunt, grey thing with a lantern of cold fire where his heart should be. His cracked voice still barks orders to a crew long dead.",
+   "kind": "undead",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "Tunnels End"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "foremans-pick",
+     "chance": 35
+    },
+    {
+     "item": "darkglass-shard",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "overseer-harrok",
+   "keywords": "overseer harrok corrupted",
+   "short_desc": "Overseer Harrok the Corrupted",
+   "long_desc": "Overseer Harrok the Corrupted looms atop his pedestal, black veins crawling beneath his skin.",
+   "description": "The old overseer of Brethrenmere stands rigid as a statue, his coat rotting and his eyes lit with the same dull silver as the deepest tunnels. Whatever he found in the dark has made him its master and servant at once.",
+   "kind": "humanoid",
+   "level": 24,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "Atop the Pedestal"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "overseers-chain",
+     "chance": 35
+    },
+    {
+     "item": "foremans-pick",
+     "chance": 20
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "miners-helm",
+   "keywords": "miner's helm iron cap",
+   "short_desc": "a dented miner's helm",
+   "room_desc": "A dented miner's helm lies here.",
+   "description": "A stout iron cap with a bracket for a lamp, dented by many a fall of rock. It is heavy but wears well.",
+   "kind": "armor",
+   "wear_slot": "head",
+   "level": 14
+  },
+  {
+   "id": "darkglass-shard",
+   "keywords": "shard darkglass black glass",
+   "short_desc": "a shard of darkglass",
+   "room_desc": "A shard of black glass glints here.",
+   "description": "A sliver of glassy black rock with veins of silver that seem to pulse. Jewellers in the cities would pay well for it.",
+   "kind": "treasure",
+   "level": 16
+  },
+  {
+   "id": "rubble-gauntlets",
+   "keywords": "gauntlets stone rubble gloves",
+   "short_desc": "a pair of stone-plated gauntlets",
+   "room_desc": "A pair of stone-plated gauntlets lies here.",
+   "description": "Leather gloves studded with chips of grey stone, still dusty from the tunnels. They grip a haft as if it were part of the hand.",
+   "kind": "armor",
+   "wear_slot": "hands",
+   "level": 22,
+   "bonus": {
+    "str": 1
+   }
+  },
+  {
+   "id": "foremans-pick",
+   "keywords": "pick foreman's pick iron",
+   "short_desc": "the foreman's iron pick",
+   "room_desc": "An iron pick with a cold gleam lies here.",
+   "description": "A long-hafted iron pick with a head worn narrow by years of use. A faint chill runs along the metal.",
+   "kind": "weapon",
+   "weapon_type": "pierce",
+   "level": 21,
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "overseers-chain",
+   "keywords": "chain overseer's chain silver",
+   "short_desc": "the overseer's silver chain",
+   "room_desc": "A heavy silver chain of office lies here.",
+   "description": "A heavy chain of linked silver, worn by the overseers of Brethrenmere. Dark threads run through the links, and it is cold against the skin.",
+   "kind": "armor",
+   "wear_slot": "neck",
+   "level": 24,
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}

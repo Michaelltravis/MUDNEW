@@ -29,8 +29,8 @@
      "description": "To the west lies By A Tall Tower Wall."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead north and west.",
-   "placeholder": true
+   "description": "The crevice splits the mountainside into two cold walls of dark rock, so\nnarrow that your shoulders brush stone on either hand. Bone-white lichen\ncrusts the cracks, and a thin wind whistles through carrying a smell of\nsmoke and old blood. The way west opens back onto the path by the tall\ntower wall, while to the north a door woven of black thorn and hung with\nknotted cords stands ajar on the thicket.",
+   "extra_descs": {}
   },
   "24601": {
    "vnum": 24601,
@@ -60,8 +60,18 @@
      "description": "To the west lies In The Manigua Thicket."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "You stand where the crevice gives way to the entrance of the Manigua\nThicket, a green mouth of knotted briar and twisted trunks. Pale cords\nstrung with bird skulls sway from the lowest boughs and click softly in\nthe breeze. Narrow tunnels of leaves lead north, east and west into the\nthicket, and the thorn door south leads back to the crevice.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647600,
+     "max": 1
+    },
+    {
+     "vnum": 647601,
+     "max": 1
+    }
+   ]
   },
   "24602": {
    "vnum": 24602,
@@ -73,9 +83,26 @@
    },
    "sector_type": "forest",
    "flags": [],
-   "exits": {},
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 24601,
+     "description": "To the south lies In The Entrance To The Manigua Thicket."
+    },
+    "east": {
+     "to_room": 24603,
+     "description": "To the east lies In The Manigua Thicket."
+    },
+    "north": {
+     "to_room": 24605,
+     "description": "To the north lies In The Manigua Thicket."
+    },
+    "west": {
+     "to_room": 24608,
+     "description": "To the west lies In The Manigua Thicket."
+    }
+   },
+   "description": "Thorned branches knit overhead so tightly that the daylight comes down\ngreen and broken. The ground is a mat of rotted leaves, scored with the\ndeep gouges of tusks. Every way you turn looks the same, a wall of briar\nand bent trunks, and somewhere close a branch snaps and goes still.",
+   "extra_descs": {}
   },
   "24603": {
    "vnum": 24603,
@@ -87,9 +114,28 @@
    },
    "sector_type": "forest",
    "flags": [],
-   "exits": {},
-   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 24602,
+     "description": "To the west lies In The Manigua Thicket."
+    },
+    "north": {
+     "to_room": 24604,
+     "description": "To the north lies In The Manigua Thicket."
+    }
+   },
+   "description": "A fallen oak lies rotting across the thicket here, its bark stripped and\nstained brown with something that is not sap. Brambles have grown up\nthrough the split trunk and hook at your cloak whenever you shift your\nweight. The air is thick and sweetish, and the faint beat of a far drum\nseems to travel through the roots.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647600,
+     "max": 1
+    },
+    {
+     "vnum": 647601,
+     "max": 1
+    }
+   ]
   },
   "24604": {
    "vnum": 24604,
@@ -101,9 +147,20 @@
    },
    "sector_type": "forest",
    "flags": [],
-   "exits": {},
-   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 24603,
+     "description": "To the south lies In The Manigua Thicket."
+    }
+   },
+   "description": "The briars part into a low hollow where the earth is trampled flat and\nringed with small cairns of river stones. Strips of faded red cloth hang\nfrom the thorns, each one knotted by a careful hand. Moss on the nearest\nstones is black and crusted, and a cold breath stirs the leaves though\nno wind reaches this deep.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647600,
+     "max": 1
+    }
+   ]
   },
   "24605": {
    "vnum": 24605,
@@ -115,9 +172,18 @@
    },
    "sector_type": "forest",
    "flags": [],
-   "exits": {},
-   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 24602,
+     "description": "To the south lies In The Manigua Thicket."
+    },
+    "north": {
+     "to_room": 24606,
+     "description": "To the north lies In The Manigua Thicket."
+    }
+   },
+   "description": "Slender spears of light find their way through the canopy and pick out a\nweb as wide as a cart wheel strung between two trunks. It is hung with\nthe dry husks of small beasts, turning slowly. Thorns the length of a\nfinger rake the air on every side, and the ground squelches softly\nunderfoot.",
+   "extra_descs": {}
   },
   "24606": {
    "vnum": 24606,
@@ -129,9 +195,24 @@
    },
    "sector_type": "forest",
    "flags": [],
-   "exits": {},
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 24605,
+     "description": "To the south lies In The Manigua Thicket."
+    }
+   },
+   "description": "A rutted game trail winds through the thickest part of the Manigua, so\nlow that you must stoop beneath the arching canes. Fresh mud is churned\nalong it, and the bark of the nearby trunks is rubbed raw to the height\nof your hip. A humming you feel more than hear rises from the earth, as\nif great stones lay buried close by.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647600,
+     "max": 1
+    },
+    {
+     "vnum": 647601,
+     "max": 1
+    }
+   ]
   },
   "24607": {
    "vnum": 24607,
@@ -169,8 +250,8 @@
      "description": "To the down lies The Stone Portal."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north, east, south, west, up and\ndown.",
-   "placeholder": true
+   "description": "A broad flat of trampled grass opens before a ring of grey monoliths,\neach taller than three men and cut with spiral grooves. No matter which\nway you turn, north, east, south, west, up or down, the only road is\nthrough the Stone Portal. The stones hum low and steady, and the grass\nat their feet is stained a rusty brown.",
+   "extra_descs": {}
   },
   "24608": {
    "vnum": 24608,
@@ -182,9 +263,17 @@
    },
    "sector_type": "forest",
    "flags": [],
-   "exits": {},
-   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 24609
+    },
+    "east": {
+     "to_room": 24602,
+     "description": "To the east lies In The Manigua Thicket."
+    }
+   },
+   "description": "The thicket is at its densest here, the trunks so close that the way is\na crawl under dripping boughs. Cobwebs bind the branches together, and\nthe leaf litter is deep, soft and pale with fungus. A trail of crushed\nbracken leads onward toward a lighter patch of ground.",
+   "extra_descs": {}
   },
   "24609": {
    "vnum": 24609,
@@ -204,10 +293,13 @@
     "down": {
      "to_room": 24610,
      "description": "To the down lies The Lair Of The Thicket Beast."
+    },
+    "north": {
+     "to_room": 24608
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead east and down.",
-   "placeholder": true
+   "description": "The thicket opens into a small clearing of bare, churned earth, ringed\nwith piles of gnawed bones and rough brush walls. In its centre a hole\nyawns, its edges worn smooth by a heavy body, and a hot, rank breath\nrises from it. The way east leads back into the thicket, and a steep\npassage descends into the dark.",
+   "extra_descs": {}
   },
   "24610": {
    "vnum": 24610,
@@ -231,8 +323,15 @@
      "description": "To the down lies The Stone Portal."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead up and down.",
-   "placeholder": true
+   "description": "The beast's lair is a low, ragged cavity in the rock, its floor strewn\nwith broken bones and wads of matted fur. The stone walls are rubbed\nsmooth and glossy by a huge body passing to and fro, and a sour musk\nfills the air. A rough passage climbs up to the clearing in the thicket,\nand another leads down toward the Stone Portal.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647606,
+     "max": 1
+    }
+   ]
   },
   "24612": {
    "vnum": 24612,
@@ -252,10 +351,26 @@
     "west": {
      "to_room": 24613,
      "description": "To the west lies The Avenue."
+    },
+    "up": {
+     "to_room": 24610,
+     "description": "To the up lies The Lair Of The Thicket Beast."
+    },
+    "south": {
+     "to_room": 24607,
+     "description": "To the south lies The Stone Entrance."
+    },
+    "east": {
+     "to_room": 24607,
+     "description": "To the east lies The Stone Entrance."
+    },
+    "down": {
+     "to_room": 24607,
+     "description": "To the down lies The Stone Entrance."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and west.",
-   "placeholder": true
+   "description": "The Stone Portal is a gateway of two vast uprights capped by a lintel,\nblack with old smoke and slick with a greasy sheen. Rust-red handprints\nclimb the pillars as high as a man could reach. A paved avenue leads\nwest into the stone city, while a trodden strip of grass to the north\ncurls round and returns to the portal. Drums pulse faintly through the\nsoles of your boots.",
+   "extra_descs": {}
   },
   "24613": {
    "vnum": 24613,
@@ -271,10 +386,14 @@
     "west": {
      "to_room": 24614,
      "description": "To the west lies At The Slaughter Stone."
+    },
+    "east": {
+     "to_room": 24612,
+     "description": "To the east lies The Stone Portal."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. A way leads west.",
-   "placeholder": true
+   "description": "A wide avenue of grey flagstones runs west between rows of squat stone\nhouses, their doorways hung with hides and strings of bone. The paving\nis dished by countless feet and stained dark in long channels along the\ngutters. Ahead, the avenue ends at a low, broad rock, and a heavy smell\nof copper drifts back along it.",
+   "extra_descs": {}
   },
   "24614": {
    "vnum": 24614,
@@ -296,8 +415,16 @@
      "description": "To the east lies The Avenue."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "The Slaughter Stone squats here, a waist-high slab of black rock with a\nshallow bowl worn in its top and grooves running to its edges. Long\nyears of sacrifice have turned the ground around it to a hard crust the\ncolour of rust. Iron rings are set into its flanks. The avenue lies back\nto the east, and the great ring of the circle begins to the north.",
+   "extra_descs": {
+    "slaughter stone bowl rings": "The black slab is hollowed like a basin, and the grooves in it run to a\nnotch on the lowest edge. The iron rings are polished bright on the\ninside where ropes and chains have rubbed them."
+   },
+   "mob_resets": [
+    {
+     "vnum": 647607,
+     "max": 1
+    }
+   ]
   },
   "24615": {
    "vnum": 24615,
@@ -319,8 +446,8 @@
      "description": "To the south lies At The Slaughter Stone."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Here the great ring begins: a curve of standing stones, each carved with\na face whose mouth hangs open as if caught mid-scream. Dried herbs and\nragged feathers are tied about their bases. The path runs north along\nthe inside of the circle, and the Slaughter Stone lies a few paces\nsouth, still reeking of old sacrifice.",
+   "extra_descs": {}
   },
   "24616": {
    "vnum": 24616,
@@ -342,8 +469,8 @@
      "description": "To the south lies The Beginning Of The Stone Circle."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "The stones here lean slightly inward, as if listening, their flanks\nscabbed with yellow lichen. A drainage groove cut into the path carries\na thin dark trickle toward the Slaughter Stone. Chimes of knuckle and\nrib hang from a crossbar between two uprights and knock together in the\ndraught. The path goes on north around the circle and back south toward\nits beginning.",
+   "extra_descs": {}
   },
   "24617": {
    "vnum": 24617,
@@ -365,8 +492,8 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "A drum frame of lashed antlers stands against the inner edge of the\npath, its skin head stretched taut and dyed with red palm prints. It is\nsilent now, but the stone beside it still seems to tremble. Weeds grow\nin the cracks of the paving, and the track runs on north and south\naround the ring.",
+   "extra_descs": {}
   },
   "24618": {
    "vnum": 24618,
@@ -388,8 +515,10 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
-   "placeholder": true
+   "description": "Two standing stones lean together here to make a crooked arch, and the\nground beneath is bare and packed hard as a threshing floor. Scratched\ninto the lower stone are tally marks in rows, hundreds upon hundreds.\nThe circle bends sharply ahead to the north, and the way south runs back\nalong the ring.",
+   "extra_descs": {
+    "tally marks scratches": "Row on row of short strokes, scratched with a flint and grouped in\nfives. Whoever kept the count never finished it."
+   }
   },
   "24619": {
    "vnum": 24619,
@@ -411,8 +540,8 @@
      "description": "To the west lies The First Altar Of The Stones."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead south and\nwest.",
-   "placeholder": true
+   "description": "The circle turns sharply here, the path hugging a stone so broad that it\nthrows a deep shadow well into the day. A smaller track breaks off west\ntoward the First Altar Of The Stones, and the way south follows the ring\nback. Long scars mark the great stone, as though something once clawed\nor chained itself against it.",
+   "extra_descs": {}
   },
   "24620": {
    "vnum": 24620,
@@ -428,10 +557,14 @@
     "north": {
      "to_room": 24621,
      "description": "To the north lies A Sharp Bend In The Stone Circle."
+    },
+    "east": {
+     "to_room": 24619,
+     "description": "To the east lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. A way leads north.",
-   "placeholder": true
+   "description": "The First Altar is a low table of rough rock, the top hollowed and\ncrusted with dried black offerings. Bundles of thorn and bleached bone\nlie heaped at its foot, and the air is heavy with the sour reek of burnt\nfat. The stones around it hum, a low note that settles in your teeth.\nThe only way out is north, back to the bend in the circle.",
+   "extra_descs": {}
   },
   "24621": {
    "vnum": 24621,
@@ -453,8 +586,14 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth and west.",
-   "placeholder": true
+   "description": "The path swings around a corner stone carved with a coiling serpent\nwhose scales are worn smooth by passing hands. A short track dips south\nto the First Altar Of The Stones. The circle continues west, and a cold\ndraught comes along it smelling of wet earth and woodsmoke.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647602,
+     "max": 1
+    }
+   ]
   },
   "24622": {
    "vnum": 24622,
@@ -476,8 +615,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "Flat paving slabs lie here in a neat row, each cut with a spiral from\nedge to centre and rubbed dark in the middle. Flecks of straw and dried\nblood cling to the seams between them. Tall stones stand on either side\nof the path, which runs east and west along the ring.",
+   "extra_descs": {}
   },
   "24623": {
    "vnum": 24623,
@@ -499,8 +638,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "The ground rises a little on a low bank of turf, and the stones above it\nwear collars of rope hung with small clay faces. A soot-black stain\nstreaks down the nearest upright from a hollow near its crown. Wind\nsighs through the gaps between the stones as the way runs east and west.",
+   "extra_descs": {}
   },
   "24624": {
    "vnum": 24624,
@@ -522,8 +661,8 @@
      "description": "To the west lies By The Pit Stones."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "Ahead, the ground dips toward a squat building of heaped slabs, and the\nair grows closer and ranker. Piles of antlers and split bones lie by the\nroadside, bleached by the weather. The path east follows the ring, while\nthe way west leads into the Pit Stones.",
+   "extra_descs": {}
   },
   "24625": {
    "vnum": 24625,
@@ -547,8 +686,8 @@
      "description": "To the west lies In The Middle Of The Pit Stones."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "Massive slabs have been leaned together to roof a long, low hall, and\nthe air inside is cold, close and smelling of old straw. Torches of\npitch-soaked reed smoulder in iron brackets, laying a red light on the\nrough walls. Deep scratches score the floor, which slopes gently toward\nthe west. The way east leads out to the circle.",
+   "extra_descs": {}
   },
   "24626": {
    "vnum": 24626,
@@ -581,8 +720,8 @@
      "description": "To the west lies By The Pit Stones."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "In the middle of the Pit Stones the floor falls away into a shallow\ntrough ringed with stout posts, the hard earth packed with old blood and\nsawdust. Smoky torches burn along the walls, and the shadows of the\nposts crawl across the roof slabs. Passages lead east and west through\nthe hall, and a heavy door of dark wood stands in the north wall.",
+   "extra_descs": {}
   },
   "24627": {
    "vnum": 24627,
@@ -622,8 +761,8 @@
      }
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "The High Priest's quarters are a wide room of dressed stone hung with\ntanned hides and trophies of horn and tooth. A great bed of furs fills\none corner, and a fire pit glows red in the middle of the floor. Doors\nof iron-bound oak open east to a vault and west to a dark office, and\nthe way south returns to the pit hall. A curtained archway on the north\nside only loops back into the same room.",
+   "extra_descs": {}
   },
   "24628": {
    "vnum": 24628,
@@ -643,8 +782,8 @@
      "description": "To the west lies The Quarters Of The High Priest."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "The vault is a squat chamber of fitted stone, its ceiling so low that\nyou stoop to enter. Iron-banded chests, long since smashed open and\nemptied, line the walls, and the dust holds the ghost-shapes of a\nvanished hoard. A single dry brazier hangs from a chain. The only way\nout is west, back to the priest's quarters.",
+   "extra_descs": {}
   },
   "24629": {
    "vnum": 24629,
@@ -664,8 +803,8 @@
      "description": "To the east lies The Quarters Of The High Priest."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "Narrow slits let in almost no light, and the office stays dim even at\nnoon. Shelves of clay tablets and knotted record-cords climb the walls,\nand a table of black stone is scored with columns of accounts in a\ncramped hand. A cold smell of tallow and old ink clings to everything.\nThe only door leads east to the High Priest's quarters.",
+   "extra_descs": {}
   },
   "24630": {
    "vnum": 24630,
@@ -689,8 +828,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "At this end of the Pit Stones the roof slabs rise higher, and a grey\nlight creeps in from the way west, where the hall opens onto the ring.\nPiles of knucklebones and broken clay cups lie in the corners, and a\nrank smell of sweat and straw hangs about. The trough floor lies back to\nthe east.",
+   "extra_descs": {}
   },
   "24631": {
    "vnum": 24631,
@@ -712,8 +851,8 @@
      "description": "To the west lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "A fire-blackened stone stands beside the path with a ring of ash at its\nfoot, still faintly warm. Strings of wolf teeth are tied to a post by\nthe track and rattle with every gust. The low hall of the Pit Stones\nlies east, and the way west leads to a turn in the circle.",
+   "extra_descs": {}
   },
   "24632": {
    "vnum": 24632,
@@ -735,8 +874,10 @@
      "description": "To the south lies The Second Altar Of The Stones."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and south.",
-   "placeholder": true
+   "description": "The ring turns here at a stone split down the middle by lightning, its\ntwo halves blackened and leaning apart. Beneath it a path leads south to\nthe Second Altar Of The Stones, and the circle runs back east. Charred\nsplinters lie scattered across the beaten earth, and the smell of\nscorched rock lingers.",
+   "extra_descs": {
+    "split stone lightning": "The stone is cleft from crown to root, and the heart of it is glassy\nwhere the fire passed through. Priests say the sky itself once struck\nhere in anger."
+   }
   },
   "24633": {
    "vnum": 24633,
@@ -752,10 +893,14 @@
     "west": {
      "to_room": 24634,
      "description": "To the west lies A Sharp Bend In The Stone Circle."
+    },
+    "north": {
+     "to_room": 24632,
+     "description": "To the north lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nwest.",
-   "placeholder": true
+   "description": "The Second Altar is a drum-shaped block of stone, its sides carved with\nlines of kneeling figures bearing bowls. The top is stained in dark\nrings, one atop another, like the growth of a tree. Rags and braided\nhair are knotted about its posts, and the air hums sharply. The only\npath leads west back to the bend.",
+   "extra_descs": {}
   },
   "24634": {
    "vnum": 24634,
@@ -777,8 +922,8 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "The path bends around a squat boulder shaped like a hunched old man, its\nface worn almost away. East, a short track leads to the Second Altar Of\nThe Stones, and the ring carries on south. Dry thistles rattle in the\ncracks of the paving, and the hum of the stones is thin and high.",
+   "extra_descs": {}
   },
   "24635": {
    "vnum": 24635,
@@ -800,8 +945,8 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A horned skull the size of a cart wheel is mounted on a pole beside the\npath, its eye sockets packed with red clay. Beyond it the stones stand\nin a crooked row, their tops furred with moss. The path runs north to a\nbend and south along the ring.",
+   "extra_descs": {}
   },
   "24636": {
    "vnum": 24636,
@@ -823,8 +968,14 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "Rain has pooled in the ruts of the path, and the water has a rusty tint\nwhere it laps the paving. A tall stone beside it is pitted with hollows\nwhere the hands of worshippers have pressed. The ring runs north and\nsouth, and the air hums faintly around the monoliths.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647602,
+     "max": 1
+    }
+   ]
   },
   "24637": {
    "vnum": 24637,
@@ -846,8 +997,8 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A standing stone lies toppled across the verge, half buried in nettles,\nand the others seem to crowd closer to fill the gap. Its underside,\nturned up to the light, is covered with carved spirals gone green with\nmoss. The circle path continues north and south, packed hard by\ngenerations of feet.",
+   "extra_descs": {}
   },
   "24638": {
    "vnum": 24638,
@@ -869,8 +1020,8 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "Rows of tiny cairns, no bigger than a fist, line both edges of the path,\neach topped with a single tooth or chip of bone. Between them the grass\nhas been trodden away by slow processions. The stones loom close on one\nhand, and the path leads north and south around the ring.",
+   "extra_descs": {}
   },
   "24639": {
    "vnum": 24639,
@@ -892,8 +1043,10 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "A flat stone the size of a cart bed has been laid over a round hole in\nthe path, and a sour, cold air breathes from the gaps around it. Iron\nstaples hold it down, rusted red. The way runs north and south, and the\nnearby stones hum at a deeper pitch than elsewhere.",
+   "extra_descs": {
+    "flat stone hole staples": "The slab is held down with six iron staples, and a pale scratch along\none edge shows where someone has tried to prise it up."
+   }
   },
   "24640": {
    "vnum": 24640,
@@ -915,8 +1068,8 @@
      "description": "To the south lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Tattered banners of tanned hide hang from the uprights here, painted\nwith crude suns, serpents and open hands. They snap in the wind,\nrattling the bone beads sewn along their hems. The path leads north\naround the ring and south to a sharp bend.",
+   "extra_descs": {}
   },
   "24641": {
    "vnum": 24641,
@@ -938,8 +1091,8 @@
      "description": "To the east lies The Third Altar Of The Stones."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and east.",
-   "placeholder": true
+   "description": "The circle makes a sharp turn at a stone wrapped in a collar of red-dyed\nwool. A narrow track leads east to the Third Altar Of The Stones, and\nthe ring runs back north. The ground is pocked with the holes of old\nstakes, and an iron smell lingers in the air.",
+   "extra_descs": {}
   },
   "24642": {
    "vnum": 24642,
@@ -955,10 +1108,14 @@
     "south": {
      "to_room": 24643,
      "description": "To the south lies A Sharp Bend In The Stone Circle."
+    },
+    "west": {
+     "to_room": 24641,
+     "description": "To the west lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads south.",
-   "placeholder": true
+   "description": "The Third Altar rises on three steps of rough stone, its top flat and\nscorched black by fires lit upon it. Ladders of chain hang from a wooden\nframe at its side, rusted and crusted with something dark. The humming\nhere is almost a voice. The only way out is south, to the bend in the\ncircle.",
+   "extra_descs": {}
   },
   "24643": {
    "vnum": 24643,
@@ -980,8 +1137,8 @@
      "description": "To the east lies Around the Stone Circle."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand east.",
-   "placeholder": true
+   "description": "The path turns past a corner stone wrapped in a rope of dried vines,\nhung with little bundles of hair. A short track climbs north to the\nThird Altar Of The Stones, and the circle runs on east. The ground is\nhard and pale, scuffed by generations of dancing feet.",
+   "extra_descs": {}
   },
   "24644": {
    "vnum": 24644,
@@ -1003,8 +1160,10 @@
      "description": "To the west lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "Eyes have been carved into the face of the nearest standing stone,\ndozens of them in staring rows, each rimmed with red ochre. It is easy\nto feel watched here. The circle path runs east and west, bordered by\nclumps of thistle.",
+   "extra_descs": {
+    "eyes carved stone ochre": "No two of the carved eyes are alike. Some weep grooves of red, and some\nare crossed out with a single hard stroke."
+   }
   },
   "24645": {
    "vnum": 24645,
@@ -1026,8 +1185,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "A row of sharpened stakes, grey with age, stands along the edge of the\npath, each topped with a rag of cloth. The stones behind them are black\nwith smoke, and the ground between is scattered with trodden embers. The\nway leads east and west around the ring.",
+   "extra_descs": {}
   },
   "24646": {
    "vnum": 24646,
@@ -1067,8 +1226,14 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Here the path meets two doors set into squat stone buildings that crowd\nthe inner side of the ring, one to the north and one to the south, each\nframed by a massive carved lintel. The north door is stamped with signs\nof flame, wave, wind and rock. The ring runs on east and west, and the\npavement underfoot is cleaner swept than elsewhere.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647602,
+     "max": 1
+    }
+   ]
   },
   "24647": {
    "vnum": 24647,
@@ -1108,8 +1273,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The path passes two doors here, the one to the north painted white and\nthe one to the south painted black, both bearing alchemical signs in\nsilver and soot. Between them the pavement is stained with spilled\nreagents in every colour. The ring leads east and west, and a sharp,\nbitter fume hangs on the air.",
+   "extra_descs": {}
   },
   "24648": {
    "vnum": 24648,
@@ -1149,8 +1314,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Two iron-studded doors face each other across the path here, one on the\nnorth side and one on the south, each with a narrow grille at head\nheight. Scratches mark the stone about the frames, and a stale smell of\nold straw and sweat seeps through. The ring runs on east to a bend and\nwest along the path.",
+   "extra_descs": {}
   },
   "24649": {
    "vnum": 24649,
@@ -1172,8 +1337,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and west.",
-   "placeholder": true
+   "description": "The ring turns again here beside a lopsided stone that tilts over the\npath like a bowed head. Burnt-down sticks of incense are stuck in every\ncrack, and soot streaks the rock above. The Altar Of The Sun lies north,\nand the circle runs on west.",
+   "extra_descs": {}
   },
   "24650": {
    "vnum": 24650,
@@ -1195,8 +1360,10 @@
      "description": "To the south lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "The Altar Of The Sun is a wide disc of yellow stone set flat in the\nearth, its surface carved with rays and rimmed with gutters stained\ndark. A stout post stands at its centre, black with old burns. The\npaving is warm underfoot. Paths lead east to the bend of the circle and\nsouth to another turn.",
+   "extra_descs": {
+    "sun disc altar post": "The carved rays run out from the central post like the spokes of a\nwheel. Each gutter ends in a notch at the disc's edge, as if to let\nsomething drain away."
+   }
   },
   "24651": {
    "vnum": 24651,
@@ -1218,8 +1385,8 @@
      "description": "To the west lies The Altar Of The Sun."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nwest.",
-   "placeholder": true
+   "description": "The circle bends sharply around a stone cut with a great sunburst, its\nrays picked out in ochre that still glows in the light. A flight of\nsteps leads west to the Altar Of The Sun, and the ring runs north. The\npaving is warm and dry, and a smell of burnt herbs lingers.",
+   "extra_descs": {}
   },
   "24652": {
    "vnum": 24652,
@@ -1241,8 +1408,8 @@
      "description": "To the south lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "A tall pole stands in the verge of the path, hung with the dry, curling\nskins of long-dead beasts and topped with a rack of antlers. The wind\nsets the skins clapping like a distant crowd. The way runs north along\nthe ring and south to a sharp bend.",
+   "extra_descs": {}
   },
   "24653": {
    "vnum": 24653,
@@ -1264,8 +1431,8 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "A weathered monolith here is crowned with a ring of ragged rope and\nshells, and the path at its foot is strewn with broken pottery. Sherds\ncrunch underfoot as the track continues north and south along the\ncircle. The humming of the stones rises and falls like breathing.",
+   "extra_descs": {}
   },
   "24654": {
    "vnum": 24654,
@@ -1287,8 +1454,8 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
-   "placeholder": true
+   "description": "Hung from a gibbet of lashed timber beside the path is an empty iron\ncage, its door open and its bars worn bright where hands have gripped\nthem. The stones beyond it are blackened at their feet by long-dead\nfires. The path runs north and south around the ring.",
+   "extra_descs": {}
   },
   "24655": {
    "vnum": 24655,
@@ -1310,8 +1477,14 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Thick white roots, thin as ropes, have forced up the paving here and\nbroken it into tilted plates. The stones on both sides lean outward,\ngiving the path a cramped, tunnelled feel. The ring runs north to a bend\nand south along the circle.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647602,
+     "max": 1
+    }
+   ]
   },
   "24656": {
    "vnum": 24656,
@@ -1333,8 +1506,8 @@
      "description": "To the west lies The Altar Of Hydroglix."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead south and\nwest.",
-   "placeholder": true
+   "description": "The circle swings round a corner stone stained green along its lower\nhalf, as if it stood often in water. The path drops a little here, and\nthe earth is soft and cold. A track leads west to the Altar Of\nHydroglix, and the way south follows the ring.",
+   "extra_descs": {}
   },
   "24657": {
    "vnum": 24657,
@@ -1356,8 +1529,8 @@
      "description": "To the east lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and east.",
-   "placeholder": true
+   "description": "The Altar Of Hydroglix is a ring of blue-green stone around a shallow\nbasin, its rim carved with rippling waves and the long, whiskered faces\nof river spirits. The basin holds a stagnant, still pool, covered with a\nskin of green. A path leads north to a bend in the circle and another\neast along the ring.",
+   "extra_descs": {}
   },
   "24658": {
    "vnum": 24658,
@@ -1379,8 +1552,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth and west.",
-   "placeholder": true
+   "description": "The ring bends sharply at a tall corner stone crowned with a skull of\nsome great horned beast, its sockets filled with moss. South, a short\ntrack leads to the Altar Of Hydroglix, and the circle continues west.\nThe grass here is flattened in long strips, as though heavy sledges have\nbeen dragged across it.",
+   "extra_descs": {}
   },
   "24659": {
    "vnum": 24659,
@@ -1402,8 +1575,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east and west.",
-   "placeholder": true
+   "description": "A broad stone stands at the path's edge, plastered with the dry mud of\nmany hands and sprouting small ferns from its crevices. A pair of bone\nflutes, long and thin, hang from a thong at its side, swaying and\nwhistling. The path runs west along the ring, and east it bends sharply.",
+   "extra_descs": {}
   },
   "24660": {
    "vnum": 24660,
@@ -1425,8 +1598,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "The turf beside the path has been trodden into a perfect circle, bare\nand hard, where some great dance must be held at night. Stakes at its\nedge bear faded streamers, and the ground rings faintly underfoot. The\nring path goes on east and west.",
+   "extra_descs": {}
   },
   "24661": {
    "vnum": 24661,
@@ -1448,8 +1621,8 @@
      "description": "To the west lies Around the Stone Circle."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
-   "placeholder": true
+   "description": "Faces are carved along the lower flanks of the stones here, each a flat\ngrinning mask with sunken eyes, and a few have been daubed with fresh\nred paint. Dust lies thick in the creases, and a cold, scratching\ndraught moves between the monoliths. The path runs east and west along\nthe ring.",
+   "extra_descs": {}
   },
   "24662": {
    "vnum": 24662,
@@ -1471,8 +1644,8 @@
      "description": "To the west lies A Sharp Bend in the Stone Circle."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long cord strung between two uprights holds a row of dried gourds,\nhollow and rattling with seeds, that clack together in the wind. The\npath below is polished by bare feet and ringed with the pale scuffs of\ndancers. The ring of stones runs east and west.",
+   "extra_descs": {}
   },
   "24663": {
    "vnum": 24663,
@@ -1494,8 +1667,8 @@
      "description": "To the south lies The Altar of Zacchariath."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "The circle bends here around a stone with a deep bowl hollowed in its\ncrown, a small pool of rainwater trembling in it. Handfuls of grain and\nwithered flowers lie scattered at its foot. The track runs east along\nthe ring, and a short way south lies the Altar of Zacchariath.",
+   "extra_descs": {}
   },
   "24664": {
    "vnum": 24664,
@@ -1517,8 +1690,8 @@
      "description": "To the west lies A Sharp Bend In The Stone Circle."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nwest.",
-   "placeholder": true
+   "description": "The Altar of Zacchariath is a squat stone table veined with red, flanked\nby two pillars crowned with ram's horns. Black candle stubs crust its\nedges, and a ladder of notches is cut down one side, one for each\noffering made. The hum of the stone is slow and heavy here. A path leads\nnorth to a bend in the circle, and another west to the lane at the\ncorner stone.",
+   "extra_descs": {}
   },
   "24665": {
    "vnum": 24665,
@@ -1540,8 +1713,14 @@
      "description": "To the south lies Inside The Stone City."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "A sharp bend turns the stone circle, the path pressed between a huge\ncorner stone and a ditch grown with tall grass. The corner stone is\ncarved with the figure of a kneeling woman, her arms raised as if in\npleading. A track leads east to the Altar of Zacchariath, and the lane\nsouth returns to the stone city.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647602,
+     "max": 1
+    }
+   ]
   },
   "24666": {
    "vnum": 24666,
@@ -1563,8 +1742,8 @@
      "description": "To the south lies Inside The Stone City."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "The lane narrows between two high slabs, so that only a thin strip of\nsky shows overhead. Strands of dried gut are hung between the stones,\nrattling like old chimes. The lane leads north to a turn in the circle,\nand south into the stone city.",
+   "extra_descs": {}
   },
   "24667": {
    "vnum": 24667,
@@ -1586,8 +1765,8 @@
      "description": "To the south lies The Altar Of Power."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Tall slabs of weathered stone line a broad lane here, each one carved\nwith a hunched, wide-mouthed face. The ground is hard, dark and pocked\nwith the marks of heavy feet. The lane runs north deeper into the stone\ncity, and south toward the Altar Of Power.",
+   "extra_descs": {}
   },
   "24668": {
    "vnum": 24668,
@@ -1609,8 +1788,14 @@
      "description": "To the east lies The Altar Of Arms."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "The Altar Of Power is a high seat hewn from a single block, with arms\ncarved as the coiled bodies of serpents. A ring of broad steps surrounds\nit, worn hollow at the centre. Cold light falls from a gap in the sky\nabove, and the air hums like a plucked string. A way leads north into\nthe stone city, and another east to the Altar Of Arms.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647605,
+     "max": 1
+    }
+   ]
   },
   "24669": {
    "vnum": 24669,
@@ -1632,8 +1817,8 @@
      "description": "To the west lies The Altar Of Power."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth and west.",
-   "placeholder": true
+   "description": "Rusted blades, cracked shields and broken spears are set in rows upon\nthis long altar, offerings from battles fought and lost long ago. The\nstone beneath them is stained a deep brown. The Great Altar Of The\nEclipse lies to the south, and a narrower way leads west to the Altar Of\nPower.",
+   "extra_descs": {}
   },
   "24670": {
    "vnum": 24670,
@@ -1660,8 +1845,20 @@
      }
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "A vast round altar of black stone fills this chamber, its top inlaid\nwith a disc of polished black glass that gives back no reflection. Pale\nscratches crowd the floor around it in long arcs. A door leads east to\nthe Great Stone, and the way north leads on to the Altar Of Arms.",
+   "extra_descs": {
+    "black glass disc altar": "The disc is flawless and cold to the touch. Its surface shows only the\ndark, and the faint outline of your own hand against it."
+   },
+   "mob_resets": [
+    {
+     "vnum": 647604,
+     "max": 1
+    },
+    {
+     "vnum": 647605,
+     "max": 1
+    }
+   ]
   },
   "24671": {
    "vnum": 24671,
@@ -1683,8 +1880,14 @@
      "description": "To the west lies The Great Altar Of The Eclipse."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "You stand in a great hollow within the Great Stone, a passage lit only\nby what spills in from the path, its walls carved with long processions\nof figures bearing burdens. The air is cool and still, and the hum of\nthe stone is almost unbearable here. The path lies back east, and the\nGreat Altar Of The Eclipse waits west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647604,
+     "max": 1
+    }
+   ]
   },
   "24672": {
    "vnum": 24672,
@@ -1706,8 +1909,8 @@
      "description": "To the west lies Inside The Great Stone."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "The path squeezes between two blocks of stone so close that they brush\nyour sleeves, then widens again. Red ochre has been smeared on both\nwalls at head height in broad sweeps. The path leads east, while west it\nends at the great mass of the Great Stone.",
+   "extra_descs": {}
   },
   "24673": {
    "vnum": 24673,
@@ -1729,8 +1932,8 @@
      "description": "To the west lies Through The Path."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and west.",
-   "placeholder": true
+   "description": "A paved path runs here with ditches on either side, each choked with\ntrampled reeds and fallen branches. Poles topped with skulls mark its\nedges and lean at drunken angles. The city lies north, and the path goes\non west.",
+   "extra_descs": {}
   },
   "24674": {
    "vnum": 24674,
@@ -1756,8 +1959,14 @@
      "description": "To the south lies Through The Path."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east and south.",
-   "placeholder": true
+   "description": "Narrow lanes of fitted stone wind between low walls blackened by smoke,\nthe gutters running dark. Hides are pegged out to dry on frames beside\nthe doorways. The Plaza lies north, a low opening leads east into the\nBurrow In The Altar, and the lane goes on south as a path.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647602,
+     "max": 1
+    }
+   ]
   },
   "24675": {
    "vnum": 24675,
@@ -1777,8 +1986,8 @@
      "description": "To the west lies Inside The City Of Sacrifice."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads west.",
-   "placeholder": true
+   "description": "A cramped hollow lies in the side of a huge altar block, lined with\nmatted straw and furs where someone has long made a bed. The walls are\nsmooth and cold, and the smell is musty, of damp fur and old meat. The\nonly way out is west.",
+   "extra_descs": {}
   },
   "24676": {
    "vnum": 24676,
@@ -1804,8 +2013,8 @@
      "description": "To the south lies Inside The City Of Sacrifice."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east and south.",
-   "placeholder": true
+   "description": "This part of the plaza is dominated by a squat platform of scorched\nstone, blackened at the edges where fires have been lit. Smoke-stained\npillars stand about the open ground. An arched entrance rises to the\nnorth, the plaza continues east, and a lane leads south into the City Of\nSacrifice.",
+   "extra_descs": {}
   },
   "24678": {
    "vnum": 24678,
@@ -1831,8 +2040,8 @@
      "description": "To the west lies The Plaza."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north, east\nand west.",
-   "placeholder": true
+   "description": "The paving of the plaza is cut with great concentric rings, and in the\nshallow grooves between them dark stains have gathered. Stunted weeds\ngrow where the stones have heaved. The Golden Fountain splashes to the\nnorth, more rings stretch west across the Plaza, and a corner lies east.",
+   "extra_descs": {}
   },
   "24679": {
    "vnum": 24679,
@@ -1854,8 +2063,8 @@
      "description": "To the west lies The Plaza."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nwest.",
-   "placeholder": true
+   "description": "At this corner of the plaza a rank of low stone benches faces inward,\ntheir seats black with old grease. A pole painted in red and white bands\nrises from the paving, its tip hung with a tangle of feathers. The way\nnorth follows the edge of the plaza, and the way west leads on into the\nopen Plaza.",
+   "extra_descs": {}
   },
   "24680": {
    "vnum": 24680,
@@ -1877,8 +2086,8 @@
      "description": "To the west lies The Golden Fountain."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead south and west.",
-   "placeholder": true
+   "description": "The plaza turns here in a neat corner marked by a squat pillar, its top\ncarved with a grinning sun. Weeds push up between the flagstones, and\nthe wind carries a smell of woodsmoke and roasting meat. Open ground\nlies back west toward the Golden Fountain, and the paving runs south to\nanother corner.",
+   "extra_descs": {}
   },
   "24681": {
    "vnum": 24681,
@@ -1913,8 +2122,8 @@
      "description": "To the west lies The Arched Entrance."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "The Golden Fountain rises from a ring of cracked paving, a basin of\ngilded stone whose spout is carved as a roaring mouth. The water that\npours from it is murky and tinged red. A door in the north leads into\nthe Guards Hall, an arched entrance lies west, a corner of the plaza\nspreads east, and the Plaza itself opens south.",
+   "extra_descs": {}
   },
   "24682": {
    "vnum": 24682,
@@ -1945,8 +2154,8 @@
      }
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east, south\nand west.",
-   "placeholder": true
+   "description": "A tall arch of dark stone spans the way here, carved with writhing vines\nand open mouths. A door of heavy planks stands to the west, and beyond\nit you can glimpse a ring of altars. The murmur of the Golden Fountain\ncomes from the east, and the plaza lies south.",
+   "extra_descs": {}
   },
   "24683": {
    "vnum": 24683,
@@ -1975,8 +2184,14 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "A broad desk of scarred oak fills most of this cramped office, its top\ncut with knife marks and ringed by the stains of many mugs. Keys hang on\na board by the door, and a rack of spiked clubs leans against the wall.\nThe air is warm and smells of leather and tallow. A passage leads east\nto the Guards Hall, and a door south opens on the cell block.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647603,
+     "max": 1
+    }
+   ]
   },
   "24684": {
    "vnum": 24684,
@@ -2005,8 +2220,14 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "Long trestle tables run the length of this stone hall, scarred by dice\nand daggers, with benches worn smooth by years of sitting. A hearth at\none end holds a heap of cold ash, and spears are racked along the wall\nunder cheap tallow lamps. A door leads west to the Chief Guard's Office,\nand the way south opens onto the Golden Fountain.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647603,
+     "max": 1
+    }
+   ]
   },
   "24685": {
    "vnum": 24685,
@@ -2036,8 +2257,8 @@
      "description": "To the west lies Tunnel Inside The Altar."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Stone altars stand in a ring about a shallow sunken court, each carved\nwith a different beast's head. The floor is polished by years of bare\nfeet, and the air is thick with incense. The Silver Altar lies north,\nthe Golden Altar south, a dark tunnel opens west, and the arched\nentrance lies back east.",
+   "extra_descs": {}
   },
   "24686": {
    "vnum": 24686,
@@ -2055,8 +2276,8 @@
      "description": "To the south lies The Circle Of The Altars."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads south.",
-   "placeholder": true
+   "description": "The Silver Altar is a block of pale stone sheathed in tarnished plates\nof silver, beaten with wolf and moon patterns. Dried sprigs of mistletoe\nlie scattered across its top, and the ground is stained with old\nlibations. The only way out is south, to the circle of altars.",
+   "extra_descs": {}
   },
   "24687": {
    "vnum": 24687,
@@ -2074,8 +2295,8 @@
      "description": "To the north lies The Circle Of The Altars."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads north.",
-   "placeholder": true
+   "description": "The Golden Altar glints dully, its top plated with a thin leaf of gold\nthat peels from the stone in curls. Horns and ribs are bound with red\ncords at its corners, and a heavy sweetness hangs in the air. The way\nout lies north, to the circle of altars.",
+   "extra_descs": {}
   },
   "24688": {
    "vnum": 24688,
@@ -2087,9 +2308,22 @@
    },
    "sector_type": "city",
    "flags": [],
-   "exits": {},
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand.",
-   "placeholder": true
+   "exits": {
+    "east": {
+     "to_room": 24699,
+     "description": "To the east lies Tunnel Inside The Altar."
+    }
+   },
+   "description": "The Grand Stone of Jostoricath stands in a ring of bare earth, a\nmonolith twice the height of any other, its surface covered in writhing\nglyphs that seem to gleam when you look away. The ground around it is\npolished pale as bone. The hum that runs through the whole circle seems\nto rise from here, and the air tastes of metal.",
+   "extra_descs": {
+    "glyphs grand stone jostoricath": "The glyphs crawl in tight, interlocking lines, and your eye keeps losing\nits place among them. One symbol, a wide-open eye, recurs near the top."
+   },
+   "mob_resets": [
+    {
+     "vnum": 647602,
+     "max": 1
+    }
+   ]
   },
   "24689": {
    "vnum": 24689,
@@ -2109,8 +2343,8 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
-   "placeholder": true
+   "description": "Four bowls of different stone stand in the corners of this round\nchamber, one holding a low flame, one dark water, one pale grit and one\na coil of drifting smoke. The ceiling is domed and the walls are painted\nwith swirling bands of colour. The air is oddly still and smells of rain\nand hot metal. The only door leads south.",
+   "extra_descs": {}
   },
   "24691": {
    "vnum": 24691,
@@ -2130,8 +2364,8 @@
      "description": "To the north lies Around the Stone Circle."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "A round chamber with a domed ceiling painted gold, and a great sun disc\nset in the floor, ringed with spokes of inlaid brass. The walls are hung\nwith faded yellow banners, and the air is warm and dry as a summer noon.\nA dull light seems to come from the ceiling itself. The only door leads\nnorth.",
+   "extra_descs": {}
   },
   "24692": {
    "vnum": 24692,
@@ -2151,8 +2385,8 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads south.",
-   "placeholder": true
+   "description": "The chamber is scrubbed and pale, with shelves of glass flasks, clay\njars and wax-sealed pots lining the walls. A long bench of white stone\nholds a still, its coils green with verdigris. The air smells of vinegar\nand clean linen. The only way out is south.",
+   "extra_descs": {}
   },
   "24693": {
    "vnum": 24693,
@@ -2172,8 +2406,8 @@
      "description": "To the north lies Around the Stone Circle."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "The black-walled chamber is crowded with crooked shelves of stoppered\nbottles, bones and dried roots, and a smoky lamp throws long, crawling\nshadows. A table of dark stone is stained in many colours, and a sticky\nresidue thickens the floor. The air burns the nose. The only way out is\nnorth.",
+   "extra_descs": {}
   },
   "24694": {
    "vnum": 24694,
@@ -2197,8 +2431,15 @@
      "description": "To the south lies Around the Stone Circle."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A stone passage runs between low barred doors, each hiding a bare cell\nwith a heap of rotten straw. Chains hang from rings in the walls, and\nthe floor drains toward a central gutter that runs foul. Torchlight\nbarely reaches the end, where a door leads north to the Chief Guard's\nOffice. The way south returns to the circle.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647603,
+     "max": 1
+    }
+   ]
   },
   "24695": {
    "vnum": 24695,
@@ -2218,8 +2459,15 @@
      "description": "To the north lies Around the Stone Circle."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
-   "placeholder": true
+   "description": "A short passage between barred cell doors, each hiding a bare cell with\na heap of rotten straw. Iron rings in the walls still hold lengths of\nrusted chain, and a cracked bucket stinks in a corner. The torchlight is\nlow and yellow. The only way out is north, back to the circle.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647603,
+     "max": 1
+    }
+   ]
   },
   "24699": {
    "vnum": 24699,
@@ -2237,13 +2485,440 @@
     "west": {
      "to_room": 24688,
      "description": "To the west lies The Grand Stone Of Jostoricath."
+    },
+    "east": {
+     "to_room": 24685,
+     "description": "To the east lies The Circle Of The Altars."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads west.",
-   "placeholder": true
+   "description": "The tunnel is hewn through the heart of the altar stones, so low that\nyou must stoop, and its walls are slick with damp. Handholds and tallow\nstubs mark where generations of priests have passed. The passage leads\nwest toward a pale glow.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "647600": {
+   "vnum": 647600,
+   "name": "boar thicket tusker",
+   "short_desc": "a bristling thicket boar",
+   "long_desc": "A bristling thicket boar snorts and paws at the leaf litter, its tusks stained dark.",
+   "description": "This boar is as big as a pony, its coat a mat of thorns and dried mud.\nIts tusks are yellow and curved, and one is notched from fighting in the\nbriars.",
+   "level": 18,
+   "alignment": 0,
+   "hp_dice": "18d8+208",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747600,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647601": {
+   "vnum": 647601,
+   "name": "spider thorn web weaver",
+   "short_desc": "a thorn-backed spider",
+   "long_desc": "A thorn-backed spider hangs motionless in its web, watching with a ring of dull eyes.",
+   "description": "A spider as broad as a shield, its long legs bristling with barbs like\nthe briars it lives among. Its pale belly is mottled with rust red.",
+   "level": 19,
+   "alignment": 0,
+   "hp_dice": "19d8+221",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747600,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647602": {
+   "vnum": 647602,
+   "name": "cultist stone painted",
+   "short_desc": "a red-painted cultist",
+   "long_desc": "A red-painted cultist stands muttering in the shadow of a standing stone, a bone knife in his hand.",
+   "description": "A lean, wild-eyed worshipper with his skin smeared in red and white\nclay. He wears a kilt of hide and a necklace of knucklebones.",
+   "level": 21,
+   "alignment": -500,
+   "hp_dice": "21d8+286",
+   "damage_dice": "6d6+11",
+   "armor_class": 34,
+   "exp": 1175,
+   "gold": 252,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747600,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "647603": {
+   "vnum": 647603,
+   "name": "guard cell jailer",
+   "short_desc": "a scarred cell guard",
+   "long_desc": "A scarred cell guard keeps watch here, a spiked club slung over one shoulder.",
+   "description": "A thick-necked guard in a patched leather jerkin, his knuckles bruised\nand his eyes half closed with boredom. A ring of iron keys hangs at his\nbelt.",
+   "level": 22,
+   "alignment": -300,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747601,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "647604": {
+   "vnum": 647604,
+   "name": "troll stone hulking",
+   "short_desc": "a hulking stone troll",
+   "long_desc": "A hulking stone troll squats in the gloom, its grey hide indistinguishable from the rock around it.",
+   "description": "A troll built like a boulder, its skin cracked and pitted like granite\nand furred with moss. Its eyes are small and red, and its fists are the\nsize of anvils.",
+   "level": 25,
+   "alignment": -600,
+   "hp_dice": "25d8+444",
+   "damage_dice": "7d6+17",
+   "armor_class": 17,
+   "exp": 1395,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747601,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "647605": {
+   "vnum": 647605,
+   "name": "priest cultist blood bloodied",
+   "short_desc": "a bloodied cultist priest",
+   "long_desc": "A bloodied cultist priest chants low beside the altar, a curved blade raised in both hands.",
+   "description": "A gaunt priest in a robe stiff with old gore, his face daubed with ochre\nand his hair matted with grease. His eyes burn with a fierce, glazed\nlight.",
+   "level": 26,
+   "alignment": -800,
+   "hp_dice": "26d8+368",
+   "damage_dice": "7d6+15",
+   "armor_class": 19,
+   "exp": 1450,
+   "gold": 312,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747602,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "647606": {
+   "vnum": 647606,
+   "name": "thicket beast grummash",
+   "short_desc": "Grummash, the thicket beast",
+   "long_desc": "Grummash, the thicket beast, crouches over a heap of bones, huge and bristling, its hot breath rolling in clouds.",
+   "description": "A monstrous thing of fur, thorn and muscle, bigger than a wagon, with\ntusks like sabres and a hide matted with briars. Old spear shafts jut\nfrom its back, and its small eyes burn.",
+   "level": 26,
+   "alignment": -300,
+   "hp_dice": "26d8+465",
+   "damage_dice": "7d6+19",
+   "armor_class": 14,
+   "exp": 1450,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747603,
+     "chance": 35
+    },
+    {
+     "vnum": 747600,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "647607": {
+   "vnum": 647607,
+   "name": "druid high ulgrathar",
+   "short_desc": "Ulgrathar, the High Druid",
+   "long_desc": "Ulgrathar, the High Druid, stands at the Slaughter Stone with a sickle gleaming in his hand.",
+   "description": "A tall druid in a cloak of black feathers and bark, his white beard\nbraided with finger bones. Blood runs to his elbows, and the stones hum\nwith his every word.",
+   "level": 27,
+   "alignment": -900,
+   "hp_dice": "27d8+386",
+   "damage_dice": "7d6+16",
+   "armor_class": 16,
+   "exp": 1505,
+   "gold": 324,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747604,
+     "chance": 35
+    },
+    {
+     "vnum": 747602,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "747600": {
+   "vnum": 747600,
+   "name": "tusk charm boar bone",
+   "short_desc": "a carved boar-tusk charm",
+   "room_desc": "A carved boar-tusk charm lies here.",
+   "description": "A curved tusk, scratched with spirals and strung on a leather thong. Cultists wear them to mark a kill.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 18,
+   "weight": 1,
+   "value": 565
+  },
+  "747601": {
+   "vnum": 747601,
+   "name": "maul stone troll club",
+   "short_desc": "a chipped stone maul",
+   "room_desc": "A chipped stone maul lies here.",
+   "description": "A slab of granite lashed to a stout oak haft with rawhide. It is heavy and brutal, and the head is pitted with old stains.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 24,
+   "damage_dice": "2d7",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 640
+  },
+  "747602": {
+   "vnum": 747602,
+   "name": "amulet bloodstone red",
+   "short_desc": "a bloodstone amulet",
+   "room_desc": "A bloodstone amulet lies here.",
+   "description": "A dark green stone flecked with red, set in a ring of tarnished copper. It is warm and seems to pulse faintly against the skin.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 25,
+   "wear_slot": "neck1",
+   "armor": 2,
+   "weight": 1,
+   "value": 530,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "747603": {
+   "vnum": 747603,
+   "name": "mantle hide cloak thicket",
+   "short_desc": "a thorny hide mantle",
+   "room_desc": "A thorny hide mantle lies here.",
+   "description": "A shaggy cloak cut from the hide of a monstrous beast, still stiff with burrs and briars. It smells of the thicket and keeps out wind and rain.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 26,
+   "wear_slot": "about",
+   "armor": 3,
+   "weight": 3,
+   "value": 550,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  },
+  "747604": {
+   "vnum": 747604,
+   "name": "sickle druid curved",
+   "short_desc": "a moon-bright druid's sickle",
+   "room_desc": "A moon-bright druid's sickle lies here.",
+   "description": "A curved blade of pale metal with a handle bound in black feathers. The edge is keen and faintly hums, as the stones of the circle do.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 27,
+   "damage_dice": "2d7",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 715,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

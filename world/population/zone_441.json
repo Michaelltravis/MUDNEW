@@ -1,0 +1,105 @@
+{
+ "zone": 441,
+ "_about": "King's Forest (levels 6-16): the furtive poacher in his hiding place a sub-boss, a fox on the rocky path, and the barrow wight in the Barrow Mound, raising the barrow's dead.",
+ "creatures": {
+  "644102": {
+   "rank": "sub-boss",
+   "why": "the poacher"
+  },
+  "644103": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "boss",
+    "undead"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The barrow wight hisses: \"Join the barrow!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Grave Chill",
+      "telegraph": "The barrow wight exhales a breath of grave-cold!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+4",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Barrow Blade",
+      "telegraph": "The barrow wight raises its rusted blade!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Draining Touch",
+      "telegraph": "The barrow wight reaches for you with a pale hand!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+5",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the barrow wight"
+  },
+  "44150": {
+   "name": "barrow skeleton",
+   "short_desc": "a barrow skeleton",
+   "long_desc": "A barrow skeleton stands among the grave goods, rusted sword in hand.",
+   "description": "The bones of some old chieftain's guard, still in rotted mail, still keeping watch over the barrow.",
+   "level": 10,
+   "flags": [
+    "aggressive",
+    "undead"
+   ],
+   "race": "undead",
+   "alignment": -600
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 644101,
+   "route": [
+    8665,
+    8666,
+    8667,
+    8668,
+    8669
+   ],
+   "why": "a fox runs the rocky path"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 644103,
+   "room": 8742,
+   "why": "the barrow wight in the Barrow Mound",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "44150": 2
+     },
+     "shout": "The barrow wight shrieks, and skeletons climb out of the grave goods!",
+     "why": "the barrow's dead"
+    }
+   ]
+  }
+ ]
+}

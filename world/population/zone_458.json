@@ -1,0 +1,155 @@
+{
+ "zone": 458,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Lord Aldric Varok, a vampire as the boss.",
+ "creatures": {
+  "645800": {
+   "helpers": {
+    "group": "z458_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a gaunt grey wolf"
+  },
+  "645801": {
+   "helpers": {
+    "group": "z458_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a skeletal servant"
+  },
+  "645802": {
+   "helpers": {
+    "group": "z458_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a waltzing ghost"
+  },
+  "645803": {
+   "helpers": {
+    "group": "z458_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a pale vampire spawn",
+   "rank": "elite"
+  },
+  "645804": {
+   "helpers": {
+    "group": "z458_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a stone gargoyle",
+   "rank": "elite"
+  },
+  "645805": {
+   "helpers": {
+    "group": "z458_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Lady Seraphine Varok, a vampire",
+   "rank": "sub-boss"
+  },
+  "645806": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "Lord Aldric Varok, a vampire",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Lord Aldric Varok, a vampire rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Lord Aldric Varok, a vampire gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Lord Aldric Varok, a vampire raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Lord Aldric Varok, a vampire begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 645800,
+   "route": [
+    105748,
+    105782,
+    105760,
+    105765,
+    105769,
+    105775,
+    105777,
+    105779,
+    105773
+   ],
+   "why": "a gaunt grey wolf walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 645806,
+   "room": 105709,
+   "why": "Lord Aldric Varok, a vampire in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "645801": 2
+     },
+     "shout": "Lord Aldric Varok, a vampire calls, and a skeletal servants come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,147 @@
+{
+ "zone": 33,
+ "_about": "The Three of Swords (levels 5-30): the bandits of the caves help each other, their guards as elites and Duwick their chief a sub-boss; the cyclopes are elites; and Aglandiir the Dragon Prince in his lair, breathing fire and calling the bandits who serve him.",
+ "creatures": {
+  "3315": {
+   "helpers": {
+    "group": "bandits33",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The bandit shouts, and his fellows come running down the passage!"
+   },
+   "why": "bandits"
+  },
+  "3316": {
+   "rank": "elite",
+   "helpers": {
+    "group": "bandits33",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The bandit shouts, and his fellows come running down the passage!"
+   },
+   "why": "a bandit guard"
+  },
+  "3308": {
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "bandits33",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The bandit shouts, and his fellows come running down the passage!"
+   },
+   "why": "Duwick, chief of the bandits"
+  },
+  "3306": {
+   "rank": "elite",
+   "why": "a cyclops"
+  },
+  "3305": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Aglandiir spreads his wings: \"You will burn, little thief!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Dragonfire",
+      "telegraph": "Aglandiir rears back, flame building in his throat!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+7",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Rending Claw",
+      "telegraph": "Aglandiir raises a great claw!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+6",
+      "dodge": true
+     },
+     {
+      "name": "Inferno",
+      "telegraph": "Aglandiir draws in a breath that makes the lair roar!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+10",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Dragon Prince"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 3315,
+   "route": [
+    3317,
+    3318,
+    3331,
+    3332,
+    3333,
+    3334,
+    3335,
+    3336,
+    3337,
+    3338,
+    3339,
+    3340
+   ],
+   "why": "a bandit walks the cave passage"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 3305,
+   "room": 3375,
+   "why": "Aglandiir in the Lair",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Dragonfire",
+     "school": "fire",
+     "every": 9,
+     "radius": 2.8,
+     "last": 10,
+     "pct": 0.05,
+     "why": "burning ground: step out"
+    },
+    {
+     "type": "call_guards",
+     "at": [
+      60,
+      30
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      3315
+     ],
+     "shout": "Aglandiir roars, and his bandits come running!",
+     "why": "the bandits serve him"
+    }
+   ]
+  }
+ ]
+}

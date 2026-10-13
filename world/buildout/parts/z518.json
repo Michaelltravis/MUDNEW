@@ -1,0 +1,420 @@
+{
+ "job": "z518",
+ "rooms": {
+  "4200": {
+   "description": "The iron grille that once barred the tunnel hangs open, its chains cut and its padlock rusted through. Black timbers shore the low roof, bowed with age, and the tunnel runs on north into the mountain. Back south a door leads out to the mine shed and the open air. A sour green glimmer on the wet rock ahead is the first sign that this mine is not as dead as it looks.",
+   "look": "mine"
+  },
+  "4201": {
+   "description": "The tunnel descends gently, its roof held up by props whose bark has rotted to grey felt. Rusted rails run down the middle of the floor and end suddenly in splinters. A cold sickly light seeps from fungus on the walls, and the air stinks of grave-earth. North the tunnel opens toward a crossroads, and south it climbs back toward the entrance.",
+   "look": "mine"
+  },
+  "4202": {
+   "description": "Three tunnels meet here beneath a broad timbered roof, the old miners' crossroads, still marked with a painted board whose letters have flaked away. A dim green glow comes from the tunnel east, and from the tunnel west comes the groan of a rope in a shaft. Pick-marks cover the walls, old and new. Scrape-marks on the floor suggest something heavy has been dragged this way again and again.",
+   "look": "mine"
+  },
+  "4205": "A low tunnel hacked through grey rock, so dark that the faint green glow far ahead looks like the eye of some beast. Chisel-marks run in long shallow furrows along the walls. The floor is littered with flakes of stone that crunch underfoot. The tunnel runs east into the gloom and west back toward the crossroads.",
+  "4206": "The tunnel narrows here until your shoulders brush the walls on both sides. Water drips on stone with a slow patient rhythm, and a lone iron hook juts from the wall with no lantern on it. A smell of old decay hangs in the air. East the way opens up toward a junction, and west it runs back along the tunnel.",
+  "4207": "Four ways meet at this junction in the dark tunnel. A dimly lit hallway leads north, a dead-end chamber lies east, a large chamber opens south, and the tunnel runs back west. Someone has swept the floor clean in neat curved strokes, and at each opening a symbol is scratched into the rock at head height. The green light grows stronger the further north you look.",
+  "4208": "A hallway of cut stone, finer than the rough tunnels behind, lit by sconces holding stubs of green wax that burn with a cold flame. A small glowing room opens on either hand, one east and one west, and the hall runs on north. South it returns to the intersection. The floor is smooth and swept, and the flames cast no warmth.",
+  "4209": "The hallway grows richer here, its plastered walls painted with a procession of black-robed figures bearing bundles. Doors of dark wood open east to a common room and west to a large bedchamber. The hall ends a short way north, and south it returns toward the smaller glowing rooms. Green candlelight wavers though no draught stirs.",
+  "4212": "The hallway ends at a pair of tall double doors thrown open, inlaid with silver that has tarnished black. Beyond them to the north a green radiance pulses like a slow heartbeat. The air is thick and sweet with the smell of embalming oils. Behind you the hallway runs back south.",
+  "4213": "A great round chamber, its walls and domed roof set with crystals that burn with a sickly green light, so that every shadow is cast upward. At its heart a circle of pale runes is inlaid in the floor, with a high stone chair beside it. An arch west leads to a chamber of grim work, a stair spirals down to a corridor, and the double doors stand south. The air hums softly, like a held note.",
+  "4223": {
+   "description": "Stone slabs stand in rows across this chamber, each fitted with iron cuffs and a channel for draining blood. Jars of green liquid line the shelves, and saws and hooks of bone and steel hang from a rack. The stench of spirits and corruption is nearly unbearable. The only way out is east, back to the glowing room.",
+   "look": "crypt"
+  },
+  "4214": "A corridor of damp stone, lit by lamps of green fire that bob slowly overhead. Whispers and soft shuffling come from the dark ahead. A stair climbs back up to the glowing room, a small study lies north, and the corridor continues west. The floor is gritty with grave-dirt and bone-dust.",
+  "4227": "A cramped study with a writing desk eaten by worm, shelves of mouldering books and a skull used as a candle-holder. Papers cover the desk: diagrams of limbs, and lists of names with lines struck through. The green candle burns steady and never gutters. The only way out is south, to the corridor.",
+  "4224": "A junction in the eerie corridor, with dark cells opening north and south behind iron-banded doors. The walls are slimed with green mould and scratched with tally-marks by prisoners long dead. A length of chain trails across the floor. East the corridor goes back toward the stair, and west it runs on.",
+  "4225": {
+   "description": "A narrow cell with a floor of damp straw and a rusted ring set in the wall for chaining a captive. Scratch marks cover every inch of the stonework, counting days and then something else. A green glow seeps under the door, the only light there is. The way out is the door to the south.",
+   "look": "dungeon"
+  },
+  "4226": {
+   "description": "A tiny cell, so narrow that a man could not lie full length, with a stone shelf for a bed and a drain-hole in the floor. Dark stains mark the walls at head and hand height. The air tastes of old fear. The door north is the only way out.",
+   "look": "dungeon"
+  },
+  "4228": "The corridor bends here, its ceiling dropping so low that you must duck beneath hanging roots of green fungus. The walls seem to breathe, damp with a faint fetid heat. A cell door stands in the south wall, and the corridor leads north toward its end and east back to the junction. Far off there is a slow, wet chanting.",
+  "4230": "The corridor ends in a small stone antechamber where a black door leads west to a study and an archway north opens on an altar. Torches burn with green flame in iron brackets. The floor is polished by countless dragged feet and the walls are scribed with sigils in dried blood. The corridor runs back south.",
+  "4231": {
+   "description": "A slab of black stone stands in the middle of this chamber, grooved to carry blood into a basin beneath, with shackles at each corner. The floor around it is stained a deep brown. A bowl of green flame hangs over the altar, lighting it from above. The one way out is the archway south.",
+   "look": "crypt"
+  },
+  "4232": "The master's study is lined with shelves of grimoires bound in grey skin, and a great desk carved with skulls takes up one wall. A brazier of green fire burns beside it, and the smell of burnt hair hangs over everything. Maps of the mine are pinned to the stone, with names crossed off by the hundred. The door east is the only way out.",
+  "4229": {
+   "description": "A cell choked with stale straw and the dry bones of its last occupant. Chains are bolted to the wall, bright from handling where all the rest is rusted. A small iron grating in the door lets in a bar of green light. The door to the north is the way out.",
+   "look": "dungeon"
+  },
+  "4253": "A long common room where the necromancer's servants once gathered, with trestle tables and stools set about a cold hearth. Mugs and bowls lie where they were dropped, filmed with mould. A green lamp hangs low from the beams, swinging slightly. The doorway west opens on the hallway.",
+  "4217": "A bedchamber of dead splendour, with a great four-poster whose hangings have rotted to cobweb and a rug eaten bare by moths. A chest at the foot of the bed gapes open and empty. Green light filters through a window of coloured glass set into the rock, though no sun can ever reach it. The doorway east leads to the hall.",
+  "4211": "A tiny room barely large enough to turn around in, its walls veined with luminous green stone. The glow is gentle and sick, and anything held in it looks drowned. Dust lies thick on a stool in the corner. The only way out is the doorway west to the hall.",
+  "4210": "A second small chamber, its roof so low you must stoop, glimmering with pale green mould that grows in rings on the walls. A bucket rusts in one corner and a rag pallet lies against the wall. It feels like a place where someone waited and was forgotten. The doorway east leads back to the hall.",
+  "4216": {
+   "description": "A square chamber carved out of the grey rock and left unfinished, its far wall still showing the marks of picks. Rubble lies in a drift beneath the cut, and a broken wheelbarrow rusts beside it. The green glow barely reaches this place. The only way out is west, to the junction of the dark tunnel.",
+   "look": "mine"
+  },
+  "4215": {
+   "description": "A large chamber of rough rock, its roof held up by two thick pillars left standing by the diggers. Old crates, broken and stained, are stacked against one wall. Boot-prints cross the dust in a tight, restless pattern, as though something paced here. The only way out is north, to the tunnel junction.",
+   "look": "mine"
+  },
+  "4203": {
+   "description": "A wide shaft drops through the floor of this chamber, with a rickety timber platform and winch frame hanging over the black opening. A frayed rope sways in the dark. The crossroads lies east, and a ladder of rotten rungs descends into the gloom. Cold air rises from below, smelling of ore and graves.",
+   "look": "mine"
+  },
+  "4204": {
+   "description": "The shaft ends in a floor of trampled rubble, slimed and cold. A broken ore cart lies on its side, its wheels rusted to the axles. A ladder climbs the wall into darkness, and a lower tunnel leads south. The green glow is stronger here, as if something below were feeding it.",
+   "look": "mine"
+  },
+  "4218": {
+   "description": "A tunnel cut straight down through the rock, wider than the upper workings and shored with thick black timbers. Rails run along its floor, pitted with rust. The green light here comes from veins in the rock itself, throbbing slowly. North the tunnel leads to the foot of the shaft, and south it goes on down.",
+   "look": "mine"
+  },
+  "4219": "The tunnel opens into a wide junction where the miners once split their crews. Pickaxes lie broken against the wall, and the rails fork here into three. A working face lies east, a second to the west, and the main way continues south to a tunnel's end. The air is stale and thick with the smell of old death.",
+  "4249": {
+   "description": "A working face of seamed rock, scored with the shallow bites of picks and drills. Chunks of ore lie where they fell, dull with green dust. A bent lamp-hook is driven into a crack, bright with use. A side passage leads north to a break room, the face runs on east, and the way back is west.",
+   "look": "mine"
+  },
+  "4251": {
+   "description": "A rough alcove where the miners ate and rested, with plank benches against the walls and a rack for coats. Chalked tallies of shifts survive on a board, the last dated a century ago. The green gloom is not quite dark enough to hide the long stains on the floor. A small kitchen opens east, and the passage south returns to the workings.",
+   "look": "mine"
+  },
+  "4252": "A small kitchen with an iron stove cold and rusted, and copper pots hanging from hooks like green bells. A table scarred by a thousand knife cuts holds the stub of a candle. The smell of old grease mixes with grave-dust. The only way out is west, to the break room.",
+  "4250": {
+   "description": "The tunnel dies in a wall of unbroken rock, scored by one last desperate swing of the pick. Black stains run up the stone as if something wept here. The air is very still. The only way back is west, to the working face.",
+   "look": "mine"
+  },
+  "4233": {
+   "description": "The main tunnel comes to an end in a wide trampled space where the floor has been broken through into a natural hollow beneath. A rope-ladder hangs from a rusty spike, leading down into the dark. To the east the tunnel opens on a stinking nest, and north it climbs back to the junction. The air reeks of rats.",
+   "look": "cave"
+  },
+  "4220": {
+   "description": "A foul nest of shredded rags, bones and filth heaped against the rock, where the cave rats breed. Gnawed bones crunch underfoot, and tiny claws scratch inside the walls. The reek of ammonia stings the eyes. The nest runs east to a deeper heap, and west it leads back to the tunnel's end.",
+   "look": "cave"
+  },
+  "4221": {
+   "description": "The nest deepens here into a mound of matted hair and chewed cloth as high as your waist, riddled with burrows. Droppings carpet the floor and a thin squeak sounds from every side. Gnaw-marks cover a fallen timber like lace. A larger burrow leads north to the queen's chamber, and west the nest drops back to the entrance heap.",
+   "look": "cave"
+  },
+  "4222": {
+   "description": "The queen's chamber is a domed hollow packed with warm, rancid nesting, its walls polished by countless passing bodies. Fragments of bone and glittering green scrap are woven into the nest like trophies. The squealing is deafening. The only way out is south through the lesser nest.",
+   "look": "cave"
+  },
+  "4234": {
+   "description": "A natural cave beneath the mine, a low hollow of pale limestone dripping with water. Stalactites hang like teeth from the roof, and a dull green fungus lines the floor. Echoes here return changed, as though from a larger space. The rope-ladder climbs up to the tunnel's end.",
+   "look": "cave"
+  },
+  "4236": {
+   "description": "A broad working tunnel heading into the mountain, where the seam of ore shines like a vein of green glass in the walls. Barrows lie tipped on their sides, and the ruts of their wheels run deep into the floor. A scrape of metal echoes ahead. East it runs back to the junction, and west it leads on to a branching.",
+   "look": "mine"
+  },
+  "4237": {
+   "description": "The tunnel splits in a T, one arm leading north and another south, with the way east running back toward the main junction. A signboard, long weathered, points toward the ore stores in the north arm. A frayed rope is slung from wall to wall, a miner's guide in the dark. A smell of damp wool and old sweat hangs in the air.",
+   "look": "mine"
+  },
+  "4238": {
+   "description": "A wide gallery shored by thick props, its walls gouged by picks in long ribbons. A storeroom opens east, the gallery leads west along the workings, and south it falls back to the T-junction. The floor is thick with fine green dust that muffles every step.",
+   "look": "mine"
+  },
+  "4248": {
+   "description": "A storeroom lined with shelves of rotted sacks, coils of cord gone to powder and barrels stove in by time. The air is musty and sweet with the smell of old oil. A heap of broken timbers fills the corner. The only way out is west, to the gallery.",
+   "look": "mine"
+  },
+  "4239": {
+   "description": "The gallery turns a corner, and the working splits again, one tunnel climbing north and another dropping south to a low corner. Chains hang from the ceiling, still holding the stumps of lanterns. Green mould crawls across the walls. East the gallery returns to the wider workings.",
+   "look": "mine"
+  },
+  "4243": {
+   "description": "A long straight tunnel, its walls slick and gleaming where water has run for centuries. Shallow graves have been dug beside the wall, empty, with the earth heaped beside them. A faint scraping carries along the rock, steady as breathing. The tunnel runs north, and south it returns to the corner.",
+   "look": "mine"
+  },
+  "4244": {
+   "description": "The tunnel narrows here, the roof sagging under an ancient cave-in that has been dug out and propped with bones. Rusted tools lie in an orderly line along one wall. The green light fails entirely for a stretch, leaving only dark. North the tunnel goes on toward its end, and south it runs back.",
+   "look": "mine"
+  },
+  "4246": {
+   "description": "The tunnel ends in a small chamber where a rich seam was exhausted, leaving a rough hollow glittering with specks of green. A heap of crude wooden crosses lies in the corner. The air is cold and silent, and the quiet feels watchful. The only way out is south, along the tunnel.",
+   "look": "mine"
+  },
+  "4242": {
+   "description": "A cramped corner where two tunnels meet at an awkward angle, the roof low enough to touch. A ragged hole in the floor drops into darkness, where cold air breathes upward. Gouge-marks on the rim show that something large squeezed through. One tunnel leads north to the gallery and another east.",
+   "look": "mine"
+  },
+  "4240": {
+   "description": "A damp tunnel running with water along its floor, where the timbers have collapsed in places and been propped with bones. The rock sweats a greenish mineral slime. Lantern hooks stand empty at intervals. North it meets the T-junction, and west it bends to a corner.",
+   "look": "mine"
+  },
+  "4247": {
+   "description": "A narrow crawl through raw earth and loose stone, so tight you must wriggle on your elbows. Water trickles down the sides and the air tastes of old minerals. A faint green shimmer lies ahead to the north, and behind you the hole leads up to the corner.",
+   "look": "cave"
+  },
+  "4245": {
+   "description": "A dark cavern of natural rock, its roof lost in blackness and its floor strewn with fallen slabs. Pale fish bones lie in a dry pool. A seam of green crystal runs through the far wall, humming faintly. The only way out is south, through the small hole.",
+   "look": "cave"
+  }
+ },
+ "extras": {
+  "4202": [
+   {
+    "keywords": "board painted letters",
+    "description": "The board once named the workings, one to a tunnel. Only a few letters survive, and someone has scratched a new name over the largest: a name in a hand that is not a miner's."
+   }
+  ],
+  "4213": [
+   {
+    "keywords": "runes circle floor",
+    "description": "The runes are inlaid in pale bone, each the size of a hand. They glow brightest when you look away."
+   }
+  ],
+  "4231": [
+   {
+    "keywords": "altar slab shackles",
+    "description": "The slab is worn hollow in the middle by long use. The shackles are bright steel, newer than anything else in the mine."
+   }
+  ],
+  "4246": [
+   {
+    "keywords": "crosses wooden heap",
+    "description": "Dozens of small crosses, each made of two split laths tied with twine. A name is burnt into every one, and there are more than the mine ever employed."
+   }
+  ],
+  "4232": [
+   {
+    "keywords": "maps pinned names",
+    "description": "The maps show every gallery, drawn with care. A cross marks each place where men were buried, and a line leads from the marks to this very room."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "corpse-miner",
+   "keywords": "zombie miner corpse shambling",
+   "short_desc": "a shambling corpse-miner",
+   "long_desc": "A shambling corpse-miner scrapes a pick along the wall, its head tilted as if listening.",
+   "description": "A dead miner on his feet, his skin the grey of wet clay and his eyes lit with a dull green spark. A leather cap is nailed to his skull, and the pick in his hands is still wrapped with a worker's tape.",
+   "kind": "undead",
+   "level": 14,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "A Dark Tunnel",
+    "Eastern Mine",
+    "Western Mine",
+    "North-Western Mine",
+    "Northern Mine",
+    "South-Western Mine",
+    "Further Down the Tunnel",
+    "A Lower Tunnel in the Mine",
+    "T-Intersection in the Western Mine"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "miners-pick",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "cave-rat",
+   "keywords": "rat cave giant",
+   "short_desc": "a giant cave rat",
+   "long_desc": "A giant cave rat sits up on its haunches, whiskers twitching, red eyes fixed on you.",
+   "description": "A rat as large as a hound, with matted dun fur and yellow incisors worn to chisels. Its tail drags behind it like a bundle of rope.",
+   "kind": "animal",
+   "level": 12,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "A Cave Rat Nest",
+    "The End of the Tunnel",
+    "A Dark Cave"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "ratfur-cloak",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "black-robed-cultist",
+   "keywords": "cultist black robed necromancer acolyte",
+   "short_desc": "a black-robed cultist",
+   "long_desc": "A black-robed cultist murmurs over a bone charm, green light dripping from his fingers.",
+   "description": "A pale, shaven man in a robe of black wool stitched with sigils. His eyes are rimmed with grey ash and his lips move constantly in prayer to the dead.",
+   "kind": "humanoid",
+   "level": 17,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "An Eerie Corridor",
+    "A Dimly Lit Hallway",
+    "The End of the Eerie Corridor",
+    "A Common Room"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "cultist-cowl",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "skeleton-overseer",
+   "keywords": "skeleton overseer mine foreman",
+   "short_desc": "a skeleton overseer",
+   "long_desc": "A skeleton overseer in a rotted foreman's coat paces the shaft, a green lantern in its bony hand.",
+   "description": "The bones of a mine foreman held together by green fire and spite. A rotted coat hangs from its shoulders, and the whistle at its neck is still blown, though it makes no sound the living can hear.",
+   "kind": "undead",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Bottom of the Mine Shaft",
+    "A Lower Tunnel in the Mine"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "ghostlight-lantern",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "stitched-ogre",
+   "keywords": "ogre stitched flesh golem",
+   "short_desc": "a stitched flesh ogre",
+   "long_desc": "A stitched flesh ogre stands motionless between two slabs, thick black thread binding its limbs.",
+   "description": "A vast body sewn together from the dead of the mine, with arms too long and a head sewn on crooked. It breathes with a soft wet rattle, and its hands are as big as shovels.",
+   "kind": "monster",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "A Re-Animation Chamber"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "ghostlight-lantern",
+     "chance": 15
+    },
+    {
+     "item": "necromancers-bone-staff",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "gnawmother-rat-queen",
+   "keywords": "gnawmother rat queen cave",
+   "short_desc": "Gnawmother, the Cave Rat Queen",
+   "long_desc": "Gnawmother, the Cave Rat Queen, lies bloated in her nest, a ring of lesser rats at her feet.",
+   "description": "A rat the size of a pony, swollen with age and fed on the miners' dead. Her fur is white along the muzzle and her tail is knotted with rings of old tin.",
+   "kind": "animal",
+   "level": 17,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "Cave Rat Queen Chamber"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "ratfur-cloak",
+     "chance": 35
+    },
+    {
+     "item": "necromancers-bone-staff",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "malvoran-necromancer",
+   "keywords": "malvoran necromancer master lich",
+   "short_desc": "Malvoran, the Master Necromancer",
+   "long_desc": "Malvoran, the Master Necromancer, stands in the green radiance, his hands raised to the roof.",
+   "description": "A tall gaunt man in robes of grey and black, his eyes burning with cold green light. He wears a crown of finger bones, and the air about him is heavy with the sweetness of the grave.",
+   "kind": "humanoid",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -950,
+   "rooms": [
+    "A Large Glowing Room"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "necromancers-bone-staff",
+     "chance": 35
+    },
+    {
+     "item": "ghostlight-lantern",
+     "chance": 20
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "miners-pick",
+   "keywords": "pick miner dead pickaxe",
+   "short_desc": "a dead miner's pick",
+   "room_desc": "A battered pick with a dark handle lies here.",
+   "description": "A heavy iron pick with a haft darkened by a century of sweat. The head still has an edge, and it swings true.",
+   "kind": "weapon",
+   "weapon_type": "pierce",
+   "level": 13
+  },
+  {
+   "id": "ratfur-cloak",
+   "keywords": "cloak rat fur matted",
+   "short_desc": "a cloak of cave-rat fur",
+   "room_desc": "A matted fur cloak lies here.",
+   "description": "A cloak stitched from dozens of rat pelts, dun and grey. It smells of the nest, but it is thick and warm.",
+   "kind": "armor",
+   "wear_slot": "about",
+   "level": 12
+  },
+  {
+   "id": "cultist-cowl",
+   "keywords": "cowl black hood sigils",
+   "short_desc": "a black sigil-stitched cowl",
+   "room_desc": "A black cowl stitched with sigils lies here.",
+   "description": "A deep black cowl of wool, the seams embroidered with tiny silver runes. It darkens the face and makes your whispers sound like others'.",
+   "kind": "armor",
+   "wear_slot": "head",
+   "level": 17,
+   "bonus": {
+    "int": 1
+   }
+  },
+  {
+   "id": "ghostlight-lantern",
+   "keywords": "lantern ghostlight green",
+   "short_desc": "a ghostlight lantern",
+   "room_desc": "A lantern that burns with a green flame lies here.",
+   "description": "An iron lantern with a pane of green glass. The flame within burns without oil and lights the dark in a cold, steady glow.",
+   "kind": "light",
+   "level": 20
+  },
+  {
+   "id": "necromancers-bone-staff",
+   "keywords": "staff bone necromancer",
+   "short_desc": "a necromancer's bone staff",
+   "room_desc": "A long staff of fused bone lies here, topped with a skull.",
+   "description": "A staff made of spine-bones fused together into a single length, its head a small skull set with green stones. It is colder than the air around it.",
+   "kind": "weapon",
+   "weapon_type": "pound",
+   "level": 22,
+   "bonus": {
+    "damroll": 2
+   }
+  }
+ ]
+}

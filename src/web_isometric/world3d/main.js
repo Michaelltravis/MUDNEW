@@ -400,7 +400,7 @@ async function runGame() {
     const dark = L.dark || ['dungeon', 'crypt', 'sewer'].includes(L.theme);
     const night = hour >= 20 || hour < 5, dusk = hour >= 18 || hour < 7;
     const mood = rock ? 'cave' : dark ? 'crypt' : L.theme === 'inside' ? 'interior'
-      : L.theme === 'volcanic' ? 'volcanic' : night ? 'night' : dusk ? 'dusk'
+      : L.theme === 'volcanic' ? 'volcanic' : L.theme === 'underwater' ? 'underwater' : night ? 'night' : dusk ? 'dusk'
       : L.theme === 'desert' ? 'desert' : L.theme === 'snow' ? 'snow' : L.theme === 'forest' ? 'forest' : 'day';
     engine.setMood(mood);
   }

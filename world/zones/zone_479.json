@@ -24,8 +24,8 @@
      "description": "To the west lies Entrance To The Wild Valley."
     }
    },
-   "description": "The ground rises and falls in grassy folds. A narrow path winds between\nthe hillocks. Ways lead east and west.",
-   "placeholder": true
+   "description": "Green vines and thick undergrowth choke the valley floor, and your boots\nsink into leaf mold that has not been trampled in an age. To the west\nthe land rises toward a scorched iron gate and the way out of the\nvalley. Eastward the greenery thins and gives way to a strange uprising\nof grey stone. The air is close and humid, and it smells of moss and old\nrain.",
+   "extra_descs": {}
   },
   "205502": {
    "vnum": 205502,
@@ -47,8 +47,8 @@
      "description": "To the west lies Wild Valley."
     }
    },
-   "description": "From the crest the land below spreads out like a map. Gorse and heather\ncling to the windy rise. Ways lead east and west.",
-   "placeholder": true
+   "description": "You stand before Ancalador, a dragon of petrified stone whose limbs are\nhalf buried where the earth has filled the crevices between them. Huge\noaks have taken root along its flanks and are dwarfed by it all the\nsame. A vague evil seems to rise from the once-living rock that\nterrorized nations long ago. The wild valley lies back to the west, and\nto the east a vast stone head gapes open.",
+   "extra_descs": {}
   },
   "205503": {
    "vnum": 205503,
@@ -72,8 +72,9 @@
      "description": "To the west lies Before The Dragon."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "Rows of stone teeth as tall as trolls line the walls of this vast mouth,\nand stone molars as broad as iron shields crouch behind them. The floor\nis a tongue of pitted rock, cold and dry as a dead riverbed. Daylight\nspills in from the valley to the west and fails quickly. The tongue\nleads on east, toward a darker place where the roof closes in.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205504": {
    "vnum": 205504,
@@ -97,8 +98,9 @@
      "description": "To the down lies Throat Of Stone."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead west and down.",
-   "placeholder": true
+   "description": "Two great lumps of grey stone bulge from the walls on either side,\nfolded and pitted like old sponge. The passage narrows between them and\ntips sharply, and a cold draught breathes up from below. Back to the\nwest lies the mouth and its ranks of teeth. Ahead the floor falls away\ndown into the throat.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205505": {
    "vnum": 205505,
@@ -122,8 +124,9 @@
      "description": "To the down lies Further Down The Dragon's Throat."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead up and down.",
-   "placeholder": true
+   "description": "The floor is uneven here, the middle of the passage lower than the\nsides, which rise in smooth curves to meet the walls. The whole throat\nis graded, sloping steadily down into the dark. Behind you the stone\nclimbs back toward the tonsils. Somewhere far below the rock seems to\nhum, as with a very slow breath.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205506": {
    "vnum": 205506,
@@ -147,8 +150,9 @@
      "description": "To the up lies Throat Of Stone."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and up.",
-   "placeholder": true
+   "description": "The tunnel loses its steepness and merely runs on, level, toward the\neast. The shapes of what might be petrified muscle ridge the walls in\nlong ropes and bands. Up the slope behind you the throat climbs back\ntoward the tonsils. A faint warmth wafts along the passage and touches\nyour face.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205507": {
    "vnum": 205507,
@@ -180,8 +184,9 @@
      "description": "To the west lies Further Down The Dragon's Throat."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four passages meet in a round chamber whose walls ripple with ribs of\ngrey stone. A tunnel leaves north, another south, and a third runs east,\nwhile the throat you came down slopes away west. Ridges in the floor\npulse faintly under your boots, slow as a heartbeat. The air is warm and\ncarries a hint of char.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205508": {
    "vnum": 205508,
@@ -205,8 +210,9 @@
      "description": "To the up lies Dragon Lung."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead south and up.",
-   "placeholder": true
+   "description": "This circular passage of smooth stone curves gently upward toward a\nplace of great light and heat. Each step brings a fiercer glow from\nabove, and the rock under your palm grows warm. To the south the way\ndrops back to the round chamber of the junction. The walls glisten as\nthough they sweat.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205509": {
    "vnum": 205509,
@@ -226,8 +232,9 @@
      "description": "To the down lies Stone Tunnel."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads down.",
-   "placeholder": true
+   "description": "Ancient fires burn here in a vast ribbed hollow, banked low and waiting\nfor the rebirth of their master. Red light pulses from fissures in the\nrock, and the heat presses on your chest like a heavy hand. Curved ribs\nof stone arch overhead, and you half expect them to swell and fall. The\nonly way out is the tunnel leading down.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205511": {
    "vnum": 205511,
@@ -251,8 +258,9 @@
      "description": "To the up lies Dragon Lung."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and up.",
-   "placeholder": true
+   "description": "This stone passage is lit by a great light and fierce heat from its far\nend, which lies above. The floor tilts upward in a long curve, and the\nwalls are warm as a baker's oven. The way north leads back to the\njunction of tunnels, and the glare ahead pulses slow and red.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205512": {
    "vnum": 205512,
@@ -272,8 +280,9 @@
      "description": "To the down lies Stone Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads down.",
-   "placeholder": true
+   "description": "The nuclear fires that gave the dragon its frightful breath burn here,\nand though they have smoldered for so very long, they scorch you and\nmake you rue wearing metal armor. Cracks of white heat run through the\nvaulted stone. The tunnel descends from this furnace, the only way out.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205513": {
    "vnum": 205513,
@@ -301,8 +310,9 @@
      "description": "To the down lies Acid Forest."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "The tunnel ends on a ledge at the rim of an immense cavern, the dragon's\nstomach, where mists boil far below. A wooden bridge leaves the ledge\neastward over the void, and the tunnel you came through runs back west.\nA steep, crumbling slope leads down off the ledge to the cavern floor.\nStalagmites crowd the depths like a forest of spears, and the air stings\nthe nose.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205514": {
    "vnum": 205514,
@@ -326,8 +336,9 @@
      "description": "To the west lies Ancalagor's Stomach."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "You cannot imagine who would want to build a bridge in this fantastic\ncavern. Large stalagmites rise beneath the planks, and eerie lights seem\nto move in the mists below. The boards are damp and creak under your\nweight. The bridge continues east, and the ledge lies behind you to the\nwest.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205515": {
    "vnum": 205515,
@@ -351,8 +362,9 @@
      "description": "To the west lies Wooden Bridge."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
-   "placeholder": true
+   "description": "You are in the middle of the wooden bridge, which sways a little on its\nlong span. Great stalagmites rise around you, and the eerie lights dance\non in the mists below. Planks stretch away into the haze both east and\nwest. A faint sour hiss comes up from the depths.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205516": {
    "vnum": 205516,
@@ -376,8 +388,9 @@
      "description": "To the west lies Wooden Bridge."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The wood here is old and acid-eaten, pitted and soft like the rest of\nthe bridge. Deadly stalagmites jut up from below, and more of the green\nand yellow light moves slowly in the mists. A small plateau waits at the\nbridge's end to the east. The span behind you runs back west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205518": {
    "vnum": 205518,
@@ -399,8 +412,9 @@
      "description": "To the south lies Acid Forest."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east and south.",
-   "placeholder": true
+   "description": "Needle-sharp stalagmites rise in thickets from the stone, nourished by\nmineral ichors that drip from the dark. Pools of acid collect in every\ncrevice, and the rock steams where they meet. The cavern wall presses\nclose here, running with green slime. The way on leads east and south.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205519": {
    "vnum": 205519,
@@ -426,8 +440,9 @@
      "description": "To the west lies Acid Forest."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The stalagmites here are tall and banded in rainbow colors, like jesters\nstiff in their finery. Shallow puddles of stomach acid stand between\nthem, shivering as drops fall from the dark above. The cavern opens to\nthe east, south and west. A sharp tang of vinegar hangs in the mist.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205520": {
    "vnum": 205520,
@@ -449,8 +464,9 @@
      "description": "To the west lies Acid Forest."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead south and west.",
-   "placeholder": true
+   "description": "Sharp stalagmites reach upward, grown from the mineral ichors that drip\noff stalactites far above. Pools of acid fill every crevice of the\ncraggy cavern floor, and the stone around them is bitten and pocked. The\ncavern floor falls away south and west into the mist.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205521": {
    "vnum": 205521,
@@ -480,8 +496,9 @@
      "description": "To the up lies Ancalagor's Stomach."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east, south and\nup.",
-   "placeholder": true
+   "description": "You stand before an amazing sight. Wrapped within the mists on the\ncavern floor is a forest of oddly shaped stalagmites, surrounded\neverywhere by puddles of what must be the remnants of the dragon's\nstomach acid. The cavern spreads north, east and south, and a rough\nslope leads up to the ledge above.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205522": {
    "vnum": 205522,
@@ -511,8 +528,9 @@
      "description": "To the west lies Acid Forest."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "You are in the center of the dragon's stomach cavern. A wooden bridge\npasses far overhead, a thin line against the dark roof. Sharp\nstalagmites stand ready here to meet any that might drop from it. Acid\npools between them, and paths of the cavern lead off in every direction.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205523": {
    "vnum": 205523,
@@ -538,8 +556,9 @@
      "description": "To the west lies Acid Forest."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north, south\nand west.",
-   "placeholder": true
+   "description": "The stalagmites here are large and rainbow-hued, like giants in jesters'\ngarb, and they stand thick on the cavern floor. Puddles of weak stomach\nacid are pooled in every hollow, hissing faintly. Mist drifts between\nthe pillars. The cavern stretches on north, south and west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205524": {
    "vnum": 205524,
@@ -561,8 +580,9 @@
      "description": "To the east lies Acid Forest."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and east.",
-   "placeholder": true
+   "description": "Mists swirl around strange crystal egg shells here, their domed halves\nglittering and long since emptied. Stalagmites crowd close beside them,\nand slick stone slopes underfoot. The cavern continues north and east. A\nsweet, sickly smell clings to the mist.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205525": {
    "vnum": 205525,
@@ -588,8 +608,9 @@
      "description": "To the west lies Acid Forest."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Sharp, narrow stalagmites crowd this part of the cavern, grown by the\nslow drip of minerals from stalactites far overhead. The floor is craggy\nand wet, with acid gathered in every crack. You pick your way north,\neast and west among the spikes. The hiss of the pools never quite stops.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205526": {
    "vnum": 205526,
@@ -611,8 +632,9 @@
      "description": "To the west lies Acid Forest."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north and west.",
-   "placeholder": true
+   "description": "The stalagmites here are large and rainbow-hued, like giants in jesters'\ngarb, and the largest of them leans over a wide puddle. Weak stomach\nacid has eaten channels through the floor. The cavern stretches to the\nnorth and west along the curve of the wall, where the stone runs wet and\ngreen.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205527": {
    "vnum": 205527,
@@ -645,8 +667,11 @@
      "description": "To the down lies Acid Forest."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "The wooden bridge ends here on a broad plateau high above the cavern\nfloor, which overlooks the whole forest of acid and stone below. In the\nwall to the east a tunnel has been shored up with a barricade of plaster\nand bones, and two very large skull-knobbed doors are set in it. A steep\nway leads down from the plateau's edge into the forest. The bridge runs\nback west.",
+   "look": "cave",
+   "extra_descs": {
+    "doors skull-knobbed skull doors barricade plaster bones": "Two huge doors of grey wood, each knobbed with a grinning skull, are set\nin a wall of plaster packed with bones. The workmanship is crude but\nstrong, and it is plainly meant to keep something in or out."
+   }
   },
   "205528": {
    "vnum": 205528,
@@ -674,8 +699,11 @@
      "description": "To the down lies Cold Storage."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and down.",
-   "placeholder": true
+   "description": "You are in an oddly shaped chamber, what might once have been some foul\norgan of Ancalador. A yellowish light fills the room from nowhere, as if\nby the dragon's will alone. The feeling of malignant evil is great here,\nmade worse by the large sign overhead. A door leads north back to the\ncorridor, an opening is worked into the wall to the east, and a stair of\ngrey stone spirals down.",
+   "look": "cave",
+   "extra_descs": {
+    "sign memento mori": "A large sign hangs overhead, lettered in dull black: Memento Mori. In\nthe common tongue it means: Remember to Die."
+   }
   },
   "205529": {
    "vnum": 205529,
@@ -699,8 +727,9 @@
      "description": "To the west lies Stone Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "You enter a featureless tunnel, the beginning of the dragon's small\nintestine, its walls smooth and faintly glossy. Small piles of human\nbones and bits of armor have been left in its corners. The tunnel\ncontinues north. To the west a rougher passage leads back toward the\nplaster-and-bone corridor.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205530": {
    "vnum": 205530,
@@ -724,8 +753,9 @@
      "description": "To the south lies Small Intestine."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
-   "placeholder": true
+   "description": "The tunnel twists here in a smooth bend of blank stone. One arm leads\neast and the other south, and your footsteps come back doubled from\nboth. A thin sourness hangs in the still air. The stone underfoot is\nfaintly warm, as if something close by had only just stopped breathing.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205531": {
    "vnum": 205531,
@@ -749,8 +779,9 @@
      "description": "To the west lies Small Intestine."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The smooth tunnel curves from the west toward the south, its walls tight\nand rounded like the inside of a pipe. The floor is faintly damp.\nNothing marks the stone, and the dark ahead looks exactly like the dark\nbehind.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205532": {
    "vnum": 205532,
@@ -774,8 +805,9 @@
      "description": "To the south lies Small Intestine."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The blank walls of the tunnel run away north and south in an unbroken\ntube. Here and there the stone puckers in shallow folds, as if it had\nonce moved. A slow draught drifts through, carrying the dull smell of\nold iron.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205533": {
    "vnum": 205533,
@@ -799,8 +831,9 @@
      "description": "To the down lies Small Intestine."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and down.",
-   "placeholder": true
+   "description": "The tunnel comes down from the north and dips sharply here, the floor\ntilting away into the gut of the dragon. The stone underfoot is polished\nsmooth, and you must brace yourself against the walls to keep from\nsliding. The way leads down.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205534": {
    "vnum": 205534,
@@ -824,8 +857,9 @@
      "description": "To the up lies Small Intestine."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and up.",
-   "placeholder": true
+   "description": "The featureless tunnel leads up the slope behind you and onward north.\nEchoes bounce off the blank walls, and whether they come from near or\nfar you cannot tell. The floor levels out here after the steep dip, and\nthe walls close in again to the same blank, smooth curve. A dull,\nregular thud seems to come through the soles of your boots.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205535": {
    "vnum": 205535,
@@ -849,8 +883,9 @@
      "description": "To the south lies Small Intestine."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "Bits of broken equipment from long-dead adventurers have been swept\ntogether against the wall here: a dented helm, a snapped blade, rusted\nlinks of mail. The tunnel runs on north and south past the little heap.\nThe stone is stained dark in streaks.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205536": {
    "vnum": 205536,
@@ -874,8 +909,9 @@
      "description": "To the south lies Small Intestine."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "The tunnel bends from the south toward the east. You imagine the remains\nof many a brave warrior who dared the dragon came this way, torn and\nunmourned. A scattering of old bone-dust lies in the angle of the wall.\nThe air grows heavier as the passage turns.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205537": {
    "vnum": 205537,
@@ -899,8 +935,9 @@
      "description": "To the west lies Small Intestine."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
-   "placeholder": true
+   "description": "The blank walls of the tunnel lead west and south, narrowing slightly as\nthey go. Fine grit crunches under your feet. The stone here is dull and\nwithout luster, as though long past any feeling. No light touches it,\nand the dark seems to press close against the skin.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205538": {
    "vnum": 205538,
@@ -928,8 +965,9 @@
      "description": "To the south lies Large Intestine."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The smooth tunnel contracts to the south into a new, rougher bore. North\nand east, passages wind away through the same blank stone, each as\nfeatureless as the last. A dry scrape of dust stirs in the throat of the\nnarrowing.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205541": {
    "vnum": 205541,
@@ -953,8 +991,9 @@
      "description": "To the east lies Large Intestine."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "Unlike the small intestine, the walls here have a nook-and-cranny\nquality, rough and crowded with little hollows. Dust fills many of the\nspaces and puffs up with each step. The smooth passage lies back to the\nnorth, and this tunnel runs on east.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205542": {
    "vnum": 205542,
@@ -978,8 +1017,9 @@
      "description": "To the west lies Large Intestine."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The smell of dust is thick in this section of the tunnel, which runs to\nthe west and to the north. Ridges of rough rock crowd the walls, and a\ngritty haze hangs in the air. Your breathing sounds loud in the narrow\nspace.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205543": {
    "vnum": 205543,
@@ -1003,8 +1043,9 @@
      "description": "To the south lies Large Intestine."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The rough walls of the tunnel scrape your armor and cut your exposed\nskin as you travel north or south. Sharp ledges of stone stand out like\nthe edges of broken tiles. The dust here lies in drifts along the floor.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205544": {
    "vnum": 205544,
@@ -1028,8 +1069,9 @@
      "description": "To the south lies Large Intestine."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "The floor of the tunnel drops away toward the east, but you find many\nhandholds among the nooks and crannies of the wall. Grit trickles from\nthe ceiling each time you shift your weight. South, the passage runs\nback toward a dustier stretch.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205545": {
    "vnum": 205545,
@@ -1053,8 +1095,9 @@
      "description": "To the west lies Large Intestine."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "The roughly hewn tunnel constricts to the south, the walls drawing in\nuntil they almost touch. Dust is packed deep in the cracks. West, the\npassage opens a little and winds back the way you came. Splinters of\nrock lie loose across the floor, and every step seems to dislodge more\nof them.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205546": {
    "vnum": 205546,
@@ -1078,8 +1121,9 @@
      "description": "To the east lies Dragon's Tail."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "You are in a narrow tunnel, barely able to walk upright without knocking\nyour head on the stone. A breeze from the east swirls the dust and cools\nyour face, and you begin to believe that safety is not far off. Behind\nyou to the north the rough passage of the large intestine winds away\ninto the dark. The walls here are worn almost smooth by some long\npassage of wind.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205547": {
    "vnum": 205547,
@@ -1097,8 +1141,8 @@
      "description": "To the west lies Before The Dragon."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. A way leads west.",
-   "placeholder": true
+   "description": "The dragon's stone tail tapers out here into open air, a long grey spur\nlying half buried in leaf mold and ferns. Oaks have grown tall around\nit, and daylight slants green through their branches. Moss has crept up\nthe scaled flank of the stone, and the last of the cave-damp fades from\nyour clothes. The path winds west through the trees, around the great\nbody toward the dragon's head.",
+   "extra_descs": {}
   },
   "205550": {
    "vnum": 205550,
@@ -1122,8 +1166,9 @@
      "description": "To the down lies Kennel Of The Demised."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead west and down.",
-   "placeholder": true
+   "description": "Shaking shrubs and quivering palms surround a few skeletal trees in this\ngruesome garden. The shriveled plants stand in niches within the\ndeformed chamber walls, and all seem to have died and come back from the\nafterlife somehow. Pale fungus glows on the soil between them. Openings\nin the petrified organ wall lead west and down.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205551": {
    "vnum": 205551,
@@ -1148,8 +1193,9 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads west.",
-   "placeholder": true
+   "description": "This small room seems to have been carved by hand from the pancreas of\nAncalador. It has some amenities, like a soft bed and a small\nalchemist's workbench strewn with stained glassware. If the dragon is\never freed from his stone prison, he will surely be quite unhappy about\nthis. The only way out is the door to the west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205552": {
    "vnum": 205552,
@@ -1177,8 +1223,9 @@
      "description": "To the down lies Operating Room."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "Tiers of curved stone benches rise in a half ring around an open well,\nfrom which one may look down upon the operating room below. Everything\nis bone-grey and worn smooth by the seats of patient watchers. Candles\ngutter in sconces shaped like fingers. A door to the east leads to\nprivate chambers, and a broad archway to the west opens onto the temple.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205553": {
    "vnum": 205553,
@@ -1202,8 +1249,9 @@
      "description": "To the down lies Guild Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and down.",
-   "placeholder": true
+   "description": "A hall of black stone, hung with funeral drapes, rises about a dais\nwhere the guild offers its prayers to death. Rows of tall candles burn\nwith a flame that gives no warmth. Carved skulls grin from every pillar,\nand the air tastes of ash. The amphitheater lies east, and a stairway of\npale steps descends into the guildhall below.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "205554": {
    "vnum": 205554,
@@ -1227,8 +1275,11 @@
      "description": "To the up lies The Dragon's Pancreas."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and up.",
-   "placeholder": true
+   "description": "The stink of this storage chamber makes you balk at once. Through your\nnausea you make out cadavers kept cool in niches in the stone walls, row\nupon row of them. Barrels of dust and decanters of blood fill the floor.\nA stair rises up toward the pancreas, and a passage runs south to the\nguildhall.",
+   "look": "crypt",
+   "extra_descs": {
+    "scrawl ink wall writing": "On the wall, in some dark ink, is scrawled: That dreamless sleep."
+   }
   },
   "205555": {
    "vnum": 205555,
@@ -1252,8 +1303,11 @@
      "description": "To the up lies Undead Garden."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and up.",
-   "placeholder": true
+   "description": "This chamber of hard stone is empty save for a sturdy iron ring set into\nthe floor. A large, heavy chain is fastened to the ring, with a collar\nat its free end. The floor around it is scored by claws and scuffed\nbare. A stairway climbs up toward the garden, and a low archway leads\nsouth.",
+   "look": "cave",
+   "extra_descs": {
+    "collar chain ring": "The heavy chain is bolted to an iron ring in the floor, its collar worn\nfrom long use. Small print on the collar reads: Quietus."
+   }
   },
   "205556": {
    "vnum": 205556,
@@ -1277,8 +1331,9 @@
      "description": "To the up lies Macabre Amphitheater."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and up.",
-   "placeholder": true
+   "description": "This circular chamber is dominated by a large stone slab in the center,\nbearing the stains of countless horrible experiments. Trays of knives\nand saws stand fixed on stone shelves around the curved wall. The cruel\nwork that goes on here is generally watched from the amphitheater above\nby guild apprentices and patrons. The kennel lies to the north.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205557": {
    "vnum": 205557,
@@ -1311,8 +1366,9 @@
      "description": "To the up lies Temple To Death."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, west and up.",
-   "placeholder": true
+   "description": "The guildhall is a long, low chamber lit by black candles, its walls\nhung with the banners of the Bloodstone. Heavy tables and high-backed\nchairs stand about a great hearth that gives off only cold. A stair\nclimbs up to the temple above. North lies the way into the cold storage,\nand a door of black iron stands in the west wall.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205558": {
    "vnum": 205558,
@@ -1336,8 +1392,11 @@
      "description": "To the down lies The Darken Pit."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and down.",
-   "placeholder": true
+   "description": "You stand before the horrific Altar of Annihilation, where the magic of\nextinguishment and dissolution is explored. Countless ceremonies of\nextinction have left a gloom that hangs over the stone. The altar looks\nlike a huge rib cage centered on a demon's skull. Before it, a black\niron grating covers a dark pit where the ebb of life is glorified in\nsacrifice. The guildhall lies east, and the grating gives way down.",
+   "look": "crypt",
+   "extra_descs": {
+    "altar skull rib grating": "The altar is a great rib cage of pale bone, set round a demon's skull.\nBefore it, a black iron grating covers the pit below, its bars worn\nbright where hands have gripped it."
+   }
   },
   "205559": {
    "vnum": 205559,
@@ -1357,8 +1416,9 @@
      "description": "To the up lies The Altar Of Annihilation."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads up.",
-   "placeholder": true
+   "description": "The very evil of this place seeks to extinguish your light, as if the\ngloom had a nefarious soul of its own. The walls of the pit are slick\nand black, and there is no sound but your own breath. You know true fear\nas something moves in the darkness, toward you. The only way out is up,\nback to the altar.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "205560": {
    "vnum": 205560,
@@ -1382,8 +1442,9 @@
      "description": "To the west lies Intestinal Junction."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The dragon's throat continues east and west on a path that neither rises\nnor falls. The walls are smooth and faintly ribbed, cool except where a\ndeep warmth seeps from one side. With it comes a feeling of pure evil,\nlike a hand laid on the back of the neck. West the passage runs back to\nthe junction, and east it opens onto a larger space.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "205561": {
    "vnum": 205561,
@@ -1416,11 +1477,11 @@
      "description": "To the west lies End Of The Stomach."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "You are in a circular tunnel of stone, its walls irregular and\npockmarked as if gnawed. The skull-knobbed doors stand to the west,\nclosed behind you. The corridor goes on east toward a smoother, narrower\nbore. In the south wall a heavy door of dark wood is set, studded with\nbone.",
+   "look": "cave",
+   "extra_descs": {}
   }
  },
  "mobs": {},
- "objects": {},
- "sealed": true
+ "objects": {}
 }

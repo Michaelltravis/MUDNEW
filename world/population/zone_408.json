@@ -1,0 +1,297 @@
+{
+ "zone": 408,
+ "_about": "The Trade Road and the country it crosses (levels 3-30): road wardens patrol the Trade Road and the Caravan Road, outlaws whistle each other in, the outlaw captain, the wandering ogre and the road wraith are elites, Black Jory the highwayman captain holds the clearing by the Great Northern Bridge, and the Barrow King stirs under the Ruined City.",
+ "creatures": {
+  "640803": {
+   "helpers": {
+    "group": "outlaws",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A sharp whistle: the outlaws of the road close in!"
+   },
+   "why": "outlaws"
+  },
+  "640811": {
+   "helpers": {
+    "group": "outlaws",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A sharp whistle: the outlaws of the road close in!"
+   },
+   "why": "outlaws"
+  },
+  "640818": {
+   "helpers": {
+    "group": "outlaws",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A sharp whistle: the outlaws of the road close in!"
+   },
+   "why": "outlaws"
+  },
+  "640805": {
+   "rank": "elite",
+   "helpers": {
+    "group": "outlaws",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A sharp whistle: the outlaws of the road close in!"
+   },
+   "why": "the outlaw captain"
+  },
+  "640826": {
+   "rank": "elite",
+   "why": "an elite of the far road"
+  },
+  "640827": {
+   "rank": "elite",
+   "why": "an elite of the far road"
+  },
+  "640821": {
+   "helpers": {
+    "group": "road_wardens",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The warden blows a horn: wardens of the road, to me!"
+   },
+   "why": "the outer-town watch"
+  },
+  "640813": {
+   "helpers": {
+    "group": "road_wardens",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The warden blows a horn: wardens of the road, to me!"
+   },
+   "why": "the village watch"
+  },
+  "40800": {
+   "name": "warden road",
+   "short_desc": "a warden of the road",
+   "long_desc": "A warden of the road rides by, lance upright, scanning the verges.",
+   "description": "A mounted soldier in a green surcoat over mail, the crossed keys of the Trade Road's toll-guild on the shield. The wardens keep the roads open, and they do not like outlaws.",
+   "level": 16,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": 500,
+   "helpers": {
+    "group": "road_wardens",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The warden blows a horn: wardens of the road, to me!"
+   }
+  },
+  "40801": {
+   "name": "caravan master",
+   "short_desc": "a caravan master",
+   "long_desc": "A caravan master walks beside his laden mules, checking the ropes.",
+   "description": "Weathered, loud and shrewd, with a purse on a chain and a cudgel through the belt. He has walked this road a hundred times and lost only two loads.",
+   "level": 12,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": 300,
+   "helpers": {
+    "group": "road_wardens",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The warden blows a horn: wardens of the road, to me!"
+   }
+  },
+  "40810": {
+   "name": "jory black highwayman captain",
+   "short_desc": "Black Jory, the highwayman captain",
+   "long_desc": "Black Jory lounges against a stone here, flipping a gold coin and watching the road.",
+   "description": "A tall man in a long black coat and a feathered hat, two swords at his hip and a smile that never reaches his eyes. Half the outlaws of the northern road answer to his whistle, and there is a price on his head in three cities.",
+   "level": 24,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "sub-boss",
+   "alignment": -500,
+   "helpers": {
+    "group": "outlaws",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Black Jory whistles once, long and sharp: \"Lads! Company!\""
+   }
+  },
+  "40820": {
+   "name": "barrow king",
+   "short_desc": "the Barrow King",
+   "long_desc": "The Barrow King rises from his stone seat, a crown of rusted iron on his skull.",
+   "description": "An ancient king of the ruined city, dead a thousand years and not resting. Grave-light burns in his eye sockets; the ghouls of the plains are his court.",
+   "level": 30,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "undead"
+   ],
+   "race": "undead",
+   "rank": "boss",
+   "alignment": -1000,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Barrow King lifts his crown: \"This city is MINE!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Grave Wind",
+      "telegraph": "The Barrow King breathes out, and a cold grave-wind fills the ruins!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+7",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Iron Sword",
+      "telegraph": "The Barrow King raises his notched iron sword!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+6",
+      "dodge": true
+     },
+     {
+      "name": "Barrow Curse",
+      "telegraph": "The Barrow King begins to chant a curse in a dead tongue!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+10",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 40810,
+   "rooms": [
+    19742
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 40800,
+   "route": [
+    9768,
+    9723,
+    9737,
+    9708,
+    9712,
+    9713,
+    9734,
+    9789,
+    9790,
+    9791,
+    9792,
+    9702,
+    9781,
+    9765,
+    15068,
+    15064,
+    15065,
+    15066,
+    15070
+   ],
+   "why": "the Trade Road under the walls, gatehouse to gatehouse"
+  },
+  {
+   "vnum": 40800,
+   "route": [
+    8209,
+    8210,
+    8213,
+    8226,
+    8229,
+    8232,
+    8233,
+    8231,
+    8300,
+    8301,
+    8302,
+    8303,
+    8488,
+    8489,
+    8490,
+    8491,
+    8492,
+    8493,
+    8494,
+    8495,
+    8496,
+    8497,
+    8498,
+    8499
+   ],
+   "why": "the Caravan Road"
+  },
+  {
+   "vnum": 40801,
+   "route": [
+    2300,
+    2301,
+    2302,
+    2303,
+    2304,
+    2305,
+    2306,
+    2309,
+    2316,
+    2317,
+    2318,
+    2319,
+    2320,
+    2321,
+    2322,
+    2323,
+    2324,
+    2325,
+    2326,
+    2327
+   ],
+   "why": "a caravan on the Dusty Road"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 40820,
+   "room": 8690,
+   "why": "the Barrow King in the Ruined City",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      70,
+      40
+     ],
+     "adds": {
+      "640824": 2
+     },
+     "shout": "The Barrow King strikes the ground, and ghouls claw up out of the rubble!",
+     "why": "his court at 70% and 40%"
+    },
+    {
+     "type": "gloom",
+     "max": 0.7,
+     "shout": "Grave-mist rolls over the ruins and the daylight fades...",
+     "why": "grave-mist as he weakens"
+    }
+   ]
+  }
+ ]
+}

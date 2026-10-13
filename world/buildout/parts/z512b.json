@@ -1,0 +1,781 @@
+{
+ "job": "z512b",
+ "rooms": {
+  "13687": "A long hallway of black-veined stone runs through the heart of the temple, lit by iron braziers burning a sullen red. Heavy doors stand east and west, each marked with a clawed sigil, and an archway south opens upon the sanctuary where incense hangs thick in the air. The hallway goes on north into deeper gloom. Your footsteps ring on flagstones worn into shallow dips.",
+  "13691": "A cramped chamber of bare stone where the temple priests sleep on pallets of grey wool. A bronze lamp hangs from a chain, throwing a smoky light over a wall hung with ritual knives and a faded black cloth. A chest bound in iron stands at the foot of each pallet. The only way out is the door west, back to the hallway.",
+  "13692": "Tall pillars carved as screaming horned faces hold up the sanctuary's vaulted roof, and the air is heavy with bitter incense. A broad altar of black basalt squats in the middle of the floor, its surface stained by the offerings of many years. A door in the far wall leads south into the inner sanctum, while the hallway lies back north. A red glow pulses from iron bowls set high in the walls.",
+  "13693": "A small round chamber where the god's secret rites are kept, its walls covered in spiral carvings that seem to turn when you look away. A single black candle burns upon a stone stand and never gutters. The way south stands open now, a dark archway through which a cold draught breathes from some deeper place beyond the temple. The door north leads back to the sanctuary.",
+  "13690": "This narrow cell holds a rough bed, a washstand with a cracked bowl and a shelf of mouldering prayer-scrolls. Somebody has scratched tally marks along the wall beside the pillow, hundreds upon hundreds of them. A thin curtain of black wool is tied back from the doorway east into the hallway. The stone is cold and damp underfoot.",
+  "13689": "Rows of straw pallets lie crowded along the walls of this long low room, each with a folded blanket and a small clay lamp. A worn drill-board hangs near the door, scored with chalked lessons in a crooked orcish script. The room smells of tallow, sweat and cold stone. The only door opens east onto the temple hallway.",
+  "13677": {
+   "description": "The tunnel here is a low square bore, its walls hacked by pick and chisel and shored at intervals with blackened timbers. A stair of rough-cut steps climbs up into the dark toward an old portal room. Iron rings are set in the rock to hang lanterns, though only one still holds a cold stub of tallow. The passage runs south from the foot of the steps.",
+   "look": "mine"
+  },
+  "13676": {
+   "description": "A tight bend in the narrow bore, where the roof drops so low that a tall traveller must stoop. Water has stained long green streaks down the wall, and a puddle shines in a pit of the floor. Pick marks cover the stone on every side. The way runs north toward a stair and west along the bore.",
+   "look": "mine"
+  },
+  "13675": {
+   "description": "A hole gapes in the floor of the tunnel here, its edges worn smooth by many boots, with footholds cut into the rock leading down. Below, the passage drops toward a bend in the deeper tunnels. The bore runs east and west past a pile of broken props. A stale draught rises from the shaft smelling of wet stone.",
+   "look": "mine"
+  },
+  "13674": {
+   "description": "The small tunnel ends in a steep climb, with footholds chipped into the rock rising to the grey tunnels above. Dust lies thick on the ledges, and a rusted pick head sits wedged in a crack where some miner left it. The passage returns east. Far off, something drips with the patience of ages.",
+   "look": "mine"
+  },
+  "13673": {
+   "description": "Here the cut tunnels give way to the natural grey rock of the deeps, smooth as old bone and streaked with pale mineral veins. A cold air stirs from a crossway ahead to the north, carrying the faint boom of distant drums. At your feet a scramble of handholds drops into the miners' small tunnel. The roof is lost in blackness above.",
+   "look": "cave"
+  },
+  "13752": {
+   "description": "The tunnel makes a hard bend here, one arm running east and the other south, and the ceiling rises into a cleft where a hole to the upper level opens. Grit crunches underfoot. The walls glisten with a skin of seep-water that mirrors any light like black glass. A rope of braided hide, long rotted, dangles from the climb.",
+   "look": "cave"
+  },
+  "13751": {
+   "description": "A sharp elbow of the tunnel, where the passage swings in from the west toward a longer run north. Orc claws have scored crude arrows and slashes into the rock, marking some claim or warning. The floor is churned to mud by countless iron-shod feet. A sour animal reek hangs in the air.",
+   "look": "cave"
+  },
+  "13750": {
+   "description": "A straight, narrow gut of tunnel runs north and south here between walls that sweat with damp. Old torch smoke has blackened the ceiling in long streaks, and a spent brand lies in a niche. The footing is treacherous with loose gravel. Somewhere ahead, running water mutters in the dark.",
+   "look": "cave"
+  },
+  "13749": {
+   "description": "The tunnel turns here, from the south round toward the west, and in its floor a steep slope falls away to a rocky shore far below. Cold air rises from that slope, tasting of mineral water and mould. Rough steps have been hacked into the stone by some patient hand. The roof is hung with pale dripstones.",
+   "look": "cave"
+  },
+  "13748": {
+   "description": "A cramped passage runs east and west, so low that its roof scrapes at the shoulders. Chisel work has left the walls in flat facets, rough with the grime of ages. A thin line of white salt crusts the base of the rock where seepage dries. The smell of damp lingers.",
+   "look": "cave"
+  },
+  "13747": {
+   "description": "The tunnel widens as it nears a junction ahead to the west, and its floor is worn into a shallow groove by traffic. Bones of small beasts, gnawed clean, lie heaped in a corner. The walls are dark, wet and faintly warm to the touch. The sound of dripping echoes and doubles back.",
+   "look": "cave"
+  },
+  "13737": {
+   "description": "Four tunnels meet in a ragged chamber, its roof held up by a single fat pillar of natural stone. North the way climbs gently toward the sound of water, south it falls into a long dark run, east it is cut narrow, and west it opens upon a calm cavern. A cairn of skulls is heaped in the pillar's shadow like a boundary mark.",
+   "look": "cave"
+  },
+  "13739": {
+   "description": "The tunnel slopes gently and the air grows moist and cold, for a lake lies close ahead to the north. The floor is wet pebble and silt, ribbed by old high-water lines. Hooks of iron are hammered into the wall, from which a net once hung. The way back south leads to a junction of tunnels.",
+   "look": "cave"
+  },
+  "13742": {
+   "description": "A narrow beach of black pebbles and broken rock lies along the edge of an underground river that slides past in the dark. Slow water laps the stones with a soft sucking sound, and mist hangs low over it. A rotting boat is drawn up on the shingle, its planks sprung. The river flows away east beyond reach of any light, and the tunnel lies back south.",
+   "look": "shore"
+  },
+  "13743": "You drift on the black current of an underground river, hemmed by walls that sweat and glisten overhead. Mist curls from the water, and the pebbled beach slips away behind you. The current tugs gently onward to the east. A cold wind travels along the water, smelling of far-off rock.",
+  "13744": "The river narrows between sheer walls and runs faster, slapping at the stone in hollow, echoing gulps. Spray flecks your face, and the roof is so low that dripstones trail almost to the water. Your craft rocks and spins before the current steadies and bears you east. A thin whistling of wind comes from somewhere ahead.",
+  "13745": "The river widens into a dim hall of water, where tall columns rise out of the dark and vanish overhead. Your craft turns slowly in a lazy eddy before the current takes it east toward a cliff face. Pale fish with no eyes flash beneath the surface. A smell of old rain and iron hangs on the air.",
+  "13746": "A great wall of rock rises sheer from the water here, shining with moisture and veined with quartz that catches your light. The river tumbles over a lip in a short fall and the current draws you down toward the open lake beneath. Foam gathers in a pale ring at the foot of the cliff. The air roars with the water's fall.",
+  "13756": "The river pours out into a vast lake whose far shores are lost in blackness, and the roof overhead is a distant mystery. Dark water heaves in slow swells, and the roar of the fall is never quite lost, high above you. You can steer east across the open lake or south along the rocky margin. Cold breath rises from the depths.",
+  "13760": "You float at the crossing of the lake, where the black water spreads in every direction and no shore shows anywhere. A broken stone pillar stands out of the water close by, topped with a crust of old bat droppings. Long slow swells roll under your craft from the west and run on east, while open water also lies north and south. The air is cold and tastes of copper.",
+  "13759": "A shelf of shallows lies close beside you here, where pale weed waves like hair in the current and the water turns the colour of tea. A wall of dripping rock closes in on the near side. The deeper lake lies east and south, black and quiet. Now and then a bubble rises and bursts with a small wet sound.",
+  "13768": "Drops fall steadily from the unseen roof, each one ringing out on the water in a widening circle. The lake lies open all around, with water leading north, east, south and west alike. Streaks of pale glowing fungus float on the surface in loose rafts, throwing a sickly green light on the swell.",
+  "13769": "The lake narrows toward a corner of the cavern where the roof comes down close above the water in a mass of grey stalactites. A rotted raft of lashed logs wallows half-sunk beside you, its ropes trailing in the current. Open water lies east, and the lake spreads away south. The echo of every splash comes back twice.",
+  "13770": "You drift into the farthest corner of the lake, where the black water laps against a sheer wall of dark stone. A long scar of rust-red mineral runs down the wall, as if the rock itself had bled. There is no landing here, only water south and water west. The air is still and thick, and the silence presses on your ears.",
+  "13771": "Mist lies thick on the water, and your light dwindles to a smear a few strides across. Water lies open north toward a corner of the lake and south along its edge, and west toward the centre. On the other side the rock rises sheer and slick with moss. Somewhere unseen a large thing breaks the surface and sinks again.",
+  "13772": "A tall column of fused stone rises from the water here, wider than a house, its sides ribbed like melted wax. You skirt it slowly, the swell slapping against its base. Open water runs north and south along the face of the rock, and west toward the middle of the lake. A rusted iron ring, thick as an arm, is sunk into the column above the waterline.",
+  "13773": "A stony shore shows dimly to the east, a shelf of tumbled boulders where the lake gives out its last strength in small waves. Lake water leads on north, south and west into the dark. A line of old stakes, black with age, leans out of the water as though a landing stage once stood here. The wind carries a smell of smoke and sour meat from the land.",
+  "13775": {
+   "description": "A rocky shore of tumbled boulders and coarse grit, where the cold waves of the lake wash out against the stones. Scraps of rope and a broken oar lie among the wrack. The lake lies west, black and endless, while a tunnel mouth opens east, its walls scorched with old torch smoke. Rough boot prints, long dried, cross the grit toward it.",
+   "look": "shore"
+  },
+  "13776": {
+   "description": "The tunnel runs east from the lakeshore toward a wider space, and its floor has been trodden hard and flat. Soot streaks the ceiling above the stump of a torch bracket, and bone splinters are ground into the grit. A smell of ashes and tanned hide grows stronger as you go. The cold of the lake fades behind you.",
+   "look": "cave"
+  },
+  "13800": {
+   "description": "A wide cavern floor, long since given to an orc war-band: black rings of old fires, trampled bedding of rotten straw, and a rack of splintered spear shafts. The walls bear daubs of red ochre in the shape of crude hands. A tunnel leads west toward the lake, and a stranger natural passage opens east. Nothing here has been tended in a long while.",
+   "look": "cave"
+  },
+  "13801": {
+   "description": "Here the work of axe and pick ends and a natural tunnel begins, winding like the gut of some great beast. The walls are smooth, rippled and cold, running with thin threads of water. The floor tilts south, where the tunnel twists out of sight, and the old camp lies back west. A faint sulphur tang hangs in the air.",
+   "look": "cave"
+  },
+  "13802": {
+   "description": "The cave tunnel twists tightly, its walls pinching together and then flaring out again to take a turn east. Stone flows in frozen sheets down one side, cream and rust in colour like melted candles. Pools stand in basins at the foot of the flowstone, each one rimmed with tiny crystal. The passage lies back north.",
+   "look": "cave"
+  },
+  "13803": {
+   "description": "A narrow throat of natural stone where you must turn sideways in places to pass. A curtain of delicate stone straws hangs in hundreds from the ceiling and rings faintly if brushed. The way runs south into a wider gallery and west toward the passage you came by. Wet clay holds the prints of bare feet.",
+   "look": "cave"
+  },
+  "13804": {
+   "description": "The tunnel opens into a gallery of round bulging chambers, like the bubbles in cooled bread. The floor is worn and slippery, and falls gently east, where a draught blows steadily. Back north the passage narrows to the throat you came through. Clusters of white cave flowers bloom in the rock, delicate as frost.",
+   "look": "cave"
+  },
+  "13805": {
+   "description": "The cave tunnel straightens and runs level to a mouth in the stone where a great flight of stairs begins to the east. The air moves strongly here, rising from far below with a smell of hot stone and smoke, and a low rumble of drums comes with it. Handprints in ochre mark the walls in a long line. The way west returns toward the gallery.",
+   "look": "cave"
+  },
+  "13806": {
+   "description": "You stand on a ledge of cut stone at the head of a stair that spirals down into the dark, its steps worn to bowls by ancient feet. A rail of rusted chain hangs along the outer edge, bolted into the rock. Warm air climbs out of the stairwell, and the drums are louder here. The natural tunnel lies back west.",
+   "look": "cave"
+  },
+  "13807": {
+   "description": "The stair winds tightly round a central core of stone, each step a hand's breadth wide at the narrow end and slick with grease and soot. Torch niches pierce the outer wall, but only blackened stumps remain. The echo of your tread comes back from above and below at once. The steps climb up and descend down.",
+   "look": "cave"
+  },
+  "13808": {
+   "description": "Halfway down the spiral a rough landing has been hewn from the wall, where long ago some guard dozed on a stone bench. Crude tallies and a drawing of a tusked face are scratched into the bench. The warm air is thicker here, tinged with the sharp reek of hot metal. The stair goes on both up and down.",
+   "look": "cave"
+  },
+  "13809": {
+   "description": "The steps grow steeper and wetter as the spiral nears its end, and the sound of drums comes up through the stone like a heartbeat. Black soot coats the ceiling above the last torch niche. A smear of old blood has dried on the central core where a body once scraped past. The stair climbs back up and drops a short way more.",
+   "look": "cave"
+  },
+  "13810": {
+   "description": "The spiral of stairs ends at a floor of smooth, much-trodden stone beneath a low arch. A wide passage crosses here, with an old cave tunnel leading east and the Oldest Road running away west. The air is hot and dry compared to the stair, and the rumble of drums is clear. Above, the stair winds up into darkness.",
+   "look": "cave"
+  },
+  "13813": {
+   "description": "This old cave tunnel is rounded and smooth, its floor worn by ages of feet into a shallow trough. Pale crusts of mineral cling to the ceiling in clots. The air is dry and a little stale, like a long-shut cupboard. The tunnel runs south, and back west lies the foot of the stairs.",
+   "look": "cave"
+  },
+  "13814": {
+   "description": "A dry and dusty bend in the old tunnel, where the walls are rubbed shiny at shoulder height by passing bodies. Little pits dot the floor where drops have fallen from the ceiling for ten thousand years. A shred of rotted leather lies in a corner. The way leads north toward the stairs and west deeper in.",
+   "look": "cave"
+  },
+  "13815": {
+   "description": "Three ways meet here in a small chamber with a domed roof. A dead end lies south, a tunnel runs on west, and the way you came lies east. Someone once painted a white spiral on the wall, and it has flaked away to a ghost. The stone is cool and the silence deep, broken only by the faint tick of settling rock.",
+   "look": "cave"
+  },
+  "13816": {
+   "description": "The old tunnel ends here against a blank face of fallen rock, where the roof has come down in a slope of rubble. Between the stones, a hand's width of black gap breathes cold air. A small rounded niche in the wall holds a heap of ancient bones, brittle and grey. The only way out is back north.",
+   "look": "cave"
+  },
+  "13817": {
+   "description": "The cave tunnel rises to a low mouth opening north onto the Oldest Road, and a trace of lighter air drifts in. The floor holds the ruts of ancient cart wheels where the road once ran into the rock. Scraps of flowstone cover the walls like candle drippings. The tunnel leads on east into dry darkness.",
+   "look": "cave"
+  },
+  "13818": {
+   "description": "The Oldest Road runs here as a pavement of enormous slabs, cracked and heaved but still plain. A great vault of rock arches overhead, so high that the torchlight dies before it finds the roof. East the road ends at an arch and the foot of a stair, a tunnel mouth opens south, and the road runs on west. Stone posts stand along the verge, carved with worn runes.",
+   "look": "cave"
+  },
+  "13819": {
+   "description": "The old road bends along the foot of a cliff wall, its slabs split by ribs of pale stone growing up between them. Drifted dust lies in smooth banks. On the other hand a drop falls away into dark of unknown depth. Milestones, if they ever stood, have toppled. The road goes north and returns east.",
+   "look": "cave"
+  },
+  "13820": {
+   "description": "A stretch of road where the paving is whole and the slabs lie tight as the day they were laid. Faint runes carved along the kerb tell of tolls or oaths in a tongue no one reads. The vault above is stained by the smoke of ancient lamps. The way runs on west, and returns south.",
+   "look": "cave"
+  },
+  "13821": {
+   "description": "Here a tumble of fallen rock has buried half the road, leaving a narrow track around it. Among the stones lies the shaft of a toppled lamp post of black iron. A warm wind blows steadily from the north, bearing the sulphur of a distant fire. The road lies back east.",
+   "look": "cave"
+  },
+  "13822": {
+   "description": "The road widens as it nears a great gateway to the west, its stones scorched and crazed with heat. Two broken pillars of black stone flank the way. The air shimmers and smells of brimstone, and from somewhere far off comes the beat of drums. The road returns south.",
+   "look": "cave"
+  },
+  "13848": {
+   "description": "A towering gate of fused black stone stands here, its great doors long since fallen and lying in slabs on the ground. Beyond it a hot wind roars out of the dark. A road of old stone runs on north to a ruined bridge, south toward a descent, and east back along the way you came. Faces of tormented figures are carved all along the gateposts.",
+   "look": "volcanic"
+  },
+  "13823": {
+   "description": "The road ends in a broken span of stone, which once crossed a chasm and now stops short over a fall of unmeasured depth. Red light glows far below, and heat rises in waves that make the air tremble. The broken edge is crumbled and sharp. The only way back is south to the gateway.",
+   "look": "volcanic"
+  },
+  "13824": {
+   "description": "Beyond the gateway the road tilts and breaks, and a steep stair of tumbled blocks goes down into a cleft. Heat pours from the cleft, along with a low hissing like a thousand kettles. The paving here is blistered and glazed. The way north leads back to the gateway.",
+   "look": "volcanic"
+  },
+  "13825": {
+   "description": "A path of cracked ledges climbs along the near face of a deep cleft, the rock hot to the touch. Far below, a river of lava crawls through the cleft, sullen red under a skin of black crust. The ledges are slick with sulphur crystals, yellow as butter. The path goes on south, and a climb leads up to the road.",
+   "look": "volcanic"
+  },
+  "13827": {
+   "description": "A shelf of scorched rock runs along the bank of the glowing stream that creeps past. The heat is fierce enough to dry your lips and make the air ripple. Glassy black crusts have formed on the stone, cracking and ticking as they cool. The track goes north up the rock toward the road and south toward a heap of stones.",
+   "look": "volcanic"
+  },
+  "13828": {
+   "description": "Travellers and conquerors have piled stones here for ages, until the heap stands taller than a man at the meeting of four ways. Every stone is a tribute or a taunt, and some are daubed with crude orcish marks. Steam seeps from tunnel mouths east and west, hissing softly, while the path continues south toward the great gate of an orc city and north back to the cleft. The air is thick and hot.",
+   "look": "cave"
+  },
+  "13829": {
+   "description": "Hot steam fills this tunnel so thickly that you can hardly see your hand, rolling in slow white banks along the floor. Water beads on the rock and runs in thin scalding threads. The stone is slick with a slimy film, and the heat sticks your clothes to your skin. The only way out is back west to the mound.",
+   "look": "cave"
+  },
+  "13830": {
+   "description": "This steam tunnel is lower and narrower, and the vapour here carries a taste of salt and rotten eggs. Yellow crystals fur the walls where hot jets blow from cracks in the rock. Bubbles pop in a shallow, scalding pool at the end of the passage. The way east leads out to the heap of stones.",
+   "look": "cave"
+  },
+  "13831": {
+   "description": "A mighty gate of black iron and rough-cut timber closes the way into the orc city, set in a wall of fitted boulders with spikes along its top. Skulls on pikes grin from the battlements above. A small door has been cut in the great leaves and stands ready to open south into Morkai. The path leads back north toward the mound.",
+   "look": "cave"
+  },
+  "13832": "Inside the gate, the orc city of Morkai opens out in a huge cavern lit by roaring fires on iron tripods. Squat towers of black stone lean over lanes that wind east, south and west. A forest of stalactites hangs from the cavern roof far above, shining red in the firelight. The great gate stands north, and the stink of smoke, tallow and meat is everywhere. Drums beat somewhere in the maze.",
+  "13833": "A crooked street of trampled filth and cinders runs through ranks of low houses built of rough stone and hide. Pennants of tattered black cloth hang on poles across the lane. A door stands open east into a stone building, while the street runs south and back west to the city gate. Gutters carry a thick greasy runoff.",
+  "13834": {
+   "description": "A bare stone room, windowless, with a floor of beaten earth and a hearth of piled rocks where embers glow. Weapon racks, empty now, line the wall, and a heavy table with a cleaver-hacked top stands in the middle. Bloody handprints decorate the lintel. The door west opens to the street.",
+   "look": "cave"
+  },
+  "13835": "The street broadens at a crossing where a stone trough stands, filled with cloudy water and floating ash. East a gate of black iron bars leads into the grounds of a church, and the street goes on south and back north. Bone-and-hide banners hang from the houses, stiff with grease. The cavern roof is lost in smoke.",
+  "13884": "A gatehouse of black and white stone, built in stripes, spans the way to the church, one half polished and the other half rough. A pair of iron lamps hang in the arch, one burning bright and one smoking dull. The street lies back west, and a heavy door east leads on into the ante chamber. Prayers painted along the wall are half scraped away.",
+  "13885": "A narrow ante chamber where worshippers once shed their weapons, though the racks along the wall are empty and dusty. Benches of black wood line both sides, and the floor is laid in alternating tiles of white marble and black slate. A hush lies upon the place, deeper than the quiet of an ordinary room. The church proper opens east, and the gate door is west.",
+  "13886": "The great nave of the church is paved in checkers of pale and sombre stone. Pillars of white marble and black basalt rise in two rows to a vault lost in shadow. Side aisles curve away north and south behind the pillars, while the altar stone stands east at the head of the nave. The door of the ante chamber is west.",
+  "13887": "This aisle of the church is a gloomy alley between pillars and wall, where candle stubs gutter in niches. Pale carvings of a radiant figure line the wall, each one hacked across the face by some iconoclast. The aisle bends east toward the altar end, and back south toward the nave. The air smells of old wax.",
+  "13890": "The aisle ends in a small chapel recess, where a stone basin stands filled with black water that never seems to move. Painted on the wall behind it is a half-faded sun, and under it a crescent of darker paint. The altar stone lies south, and the aisle runs back west. Dust drifts in the thin light of a single lamp.",
+  "13889": {
+   "description": "A great stone block, scorched and stained, stands upon a stepped dais at the head of the church. Channels in its surface lead to gutters in the floor, and the dais steps are polished by knees. Dark spatters mark the wall behind it. Aisles curve north and south round the dais, a door in the far wall leads east to an inner sanctum, and the nave runs west.",
+   "look": "cave"
+  },
+  "13899": {
+   "description": "A bare windowless chamber, small as a cell, where the church keeps its secrets. A shallow niche holds a silver bowl blackened by fire. Carvings of eyes cover the walls from floor to ceiling, each one staring toward the door. The air is dry and dead, and your breath is the only sound. The door west leads back to the altar.",
+   "look": "cave"
+  },
+  "13891": "Rows of broken pews lie smashed against the wall in this corner of the church, their carved ends gnawed by rats. A fallen sconce lies in a puddle of old tallow. A faint breeze carries a smell of rot from below the floor. The altar lies north and the aisle goes west.",
+  "13888": "A side aisle of the church, where tall narrow windows once stood but have been bricked up, leaving only their pointed outlines. Stone saints line the wall on plinths, though all have been beheaded and the heads piled in a corner. A thick rug of dust muffles every step. The aisle goes north to the nave and east round the altar.",
+  "13898": "The street runs straight and downhill toward a black shaft of stone rising out of the smoke ahead. The cobbles are slick with grease and spilled drink, and strings of dried ears hang across the lane as trophies. Rowdy singing seeps through a tavern wall. The street lies back north toward the crossing, and runs on south to a square.",
+  "13836": {
+   "description": "A square before the foot of the Black Spire, a tower of glassy dark stone rising until it merges with the cavern roof. Its door stands south, a huge slab of iron with a spiked ring for a knocker. Streets run north and west from the square, and war banners flap on poles around the base. The stone of the spire hums faintly.",
+   "look": "cave"
+  },
+  "13837": {
+   "description": "The ground floor of the spire is a round hall of dark glassy stone, ringed by arrow slits that look onto nothing. A spiral stair of iron winds up the wall to the floor above. Weapons hang on the walls in orderly rows, each ticketed with a scrap of hide. A great brazier smokes in the middle of the floor. The door north returns to the square outside.",
+   "look": "cave"
+  },
+  "13838": {
+   "description": "A round chamber furnished for a commander, with a long table spread with maps scratched on hide and weighted with daggers. Narrow slits in the walls show the glow of the city below. A rack of banners stands by the stair, each one crusted with filth. The stair runs down to the hall and up to the spire's top.",
+   "look": "cave"
+  },
+  "13839": {
+   "description": "The roof of the spire is a flat platform ringed by a low parapet of fanged merlons. From here the whole of Morkai spreads out below in a jumble of fires and smoke. A huge bronze drum stands on a frame, its skin scarred by mallets, beside a basket of unlit torches. The cavern roof hangs close above. The stair leads down.",
+   "look": "cave"
+  },
+  "13896": "A wide street where carts of meat and scrap iron have worn deep ruts into the stone. Stalls of rough planks line the verges, strewn with hide scraps and bone. The black bulk of the spire's base shows east, and the street goes on north and west. A fat drift of smoke hangs under the awnings.",
+  "13897": "A corner where three lanes join, with an iron gibbet standing at the crossing and a cage that creaks in the draught. A heap of broken crates is piled against a house wall. The plaza lies north, the street runs on south, and a short alley goes west. Stained flagstones show where many punishments have been carried out.",
+  "13843": {
+   "description": "The central plaza is a wide trampled square, ringed by the tallest houses of the city. In its middle stands a huge cracked statue of an orc in plate armour, its sword arm missing. Fire pits burn at each corner, some with spits above them. The wide street leads north to the gate and south into the city.",
+   "look": "cave"
+  },
+  "13842": "A dead-end alley of leaning shacks, closed at the far end by a blank wall hung with drying skins. Puddles of rust-coloured water stand between the stones, and a sour smell of tanning vats fills the nose. A broken cart lies on its side, one wheel missing. The only way out is east.",
+  "13895": "The street slopes down toward a pit in the west, from which a cold air breathes. Skulls are set in the wall plaster on each side, hundreds of them, jaws agape. Braziers burn low and green. The street runs back east toward the spire.",
+  "13844": {
+   "description": "A great round well, ringed with a wall of white bones mortared in lime, stands in a small plaza. A faint grey breath rises from its depths, and whispers curl around the rim. Lanes lead north and east, and a gaping arch west opens on a hall piled with the dead. A chain and bucket hang on a rusted windlass.",
+   "look": "cave"
+  },
+  "13845": "A narrow street winds between the high blank walls of storehouses, their doors barred with iron. Chalked marks on the walls count sacks and barrels. A muddy channel runs down the centre, carrying the runoff toward the well. The street goes north and south.",
+  "13894": "The street turns a corner here by a smithy whose chimney belches soot. The hammering that rings from within never stops, even in the quiet between drumbeats. The cobbles are black with coal dust. The road leads east and back south.",
+  "13892": "A bleak street, hung with butchers' hooks and drying racks of meat, runs between two blank walls. Flies swarm thick in the warm air. The pavement is black with old blood and trodden offal. The street leads north to a heap of rot, south to a low building and back west.",
+  "13846": {
+   "description": "A hill of slaughtered beasts is heaped here, a great mound of hides, horns and rotting flesh. Pale maggots seethe in it, and vast flies cloud the air. A foul green slime runs from the base of the pile in a slow stream. The heart of the city lies east, and a lane runs south.",
+   "look": "cave"
+  },
+  "13893": {
+   "description": "A low vaulted room where the dead of the city are laid out on slabs of stone, row after row, each slab with a drain cut beneath it. Rust-brown stains run into channels in the floor. A butcher's saw and a hook-handled knife hang from a bench. The cold here is sharper than in the streets. The only way out is north.",
+   "look": "crypt"
+  },
+  "13847": {
+   "description": "A long hall whose walls are lined with niches, each stuffed with a withered body bound in rags, the dead of the war-tribes preserved by the dry heat. Hooks hang from the beams for the newest arrivals. Torches burn low and dim in brackets. The arch east opens to the well, and a heavy door south leads on to the throne room.",
+   "look": "crypt"
+  },
+  "13840": "A broad vestibule of black granite, floored with a rug woven of grey wolf pelts, stiff and cracked with age. Two great iron braziers flank an opening framed with the curving horns of some huge beast. Chains of rusted spurs and gorgets hang in the arch as tributes. The throne room lies south, and the hall of the dead north.",
+  "13841": {
+   "description": "A vast chamber at the heart of the city's power, its walls hung with captured banners and the heads of beasts. On a dais of seven steps stands the high seat, a throne built of bones and black iron, spiked with tusks. Trophies of past rulers hang in rows along the wall. The only way out is the vestibule north.",
+   "look": "cave"
+  },
+  "13774": "The lake edge is close here, a wall of stone shelving into black water, with a ledge strewn with slimy weed. The lake leads off north and then west. Nothing stirs but the slow rise and fall of the swell, and a drip somewhere keeps its patient count.",
+  "13765": "The lake is calm and wide here, and far overhead a patch of roof glows with pale lichen, like a drift of dim stars. By their light the water shows endless in all four directions, north, east, south and west. A small white skull bobs past on the swell.",
+  "13766": "A light current runs through the water here, tugging your craft gently from the west toward the east. Long ribbons of weed trail in it, anchored somewhere in the depths. The lake offers a way on in every direction, whether north, east, south or west. The surface is dotted with the rings of rising fish.",
+  "13767": "The air is warmer here, and a thin film of steam lifts from the water as if a hot spring fed the lake from below. Droplets gather on the roof far above and fall in a fine rain. You may steer in any direction, north, east, south or west. A sulphurous whiff comes and goes.",
+  "13761": "Rafts of bleached bones and driftwood have collected here, bound by weed into a floating mat that slides against your craft. The water beneath is black as ink. Open water lies on every side, north, east, south and west. A pale glow in the deep drifts slowly past and fades.",
+  "13762": "The water turns in a slow wide whirl, drawing your craft round in a lazy circle. Loose weed and splinters spiral round with you. The lake lies open north, east, south and west, and each way looks the same in the dark.",
+  "13763": "A low reef of jagged rock just breaks the surface here, each point wet and black like a row of teeth. You keep clear of it by steering north or east. A deep boom rolls across the water, the echo of drums carried from a long way off.",
+  "13764": "The lake ends against a steep shelf of rock slick with green slime, and the water here is shallow and thick with silt. Tiny blind fish dart away beneath your craft. A rusted anchor lies on the shelf, long abandoned. Open water lies north and west.",
+  "13758": "The shore of the lake is close, a cliff of dripping flowstone rising straight from the water. Streams of milky water pour down it into the lake with a steady rushing. The surface is silvery with spray. Water leads north along the cliff and east across the lake.",
+  "13757": "A rocky shore lies close to the west, a fan of grit and boulders where a stair of rough steps climbs into the dark. Lake water leads north, east and south. The surface here is oily and still, and the stink of wet stone and fish is strong. A broken boat hook floats among the weed.",
+  "13755": {
+   "description": "A beach of dark gravel and slick boulders lies at the foot of a long slope that climbs steeply to the tunnel above. The lake laps the stones east with cold small waves. Shells of freshwater snails crunch underfoot. A rotted net hangs from the rock like a grey curtain.",
+   "look": "shore"
+  },
+  "13736": {
+   "description": "A long straight tunnel runs between a junction and a crossing, its floor smooth with ages of foot traffic. The ceiling is crusted with soot, and old torch brackets of rusty iron jut at intervals. Wet dark patches show where groundwater seeps. The junction lies north and the way continues south.",
+   "look": "cave"
+  },
+  "13735": {
+   "description": "The tunnel slopes downward here, and the rock changes from grey to a rust-red banded stone. Scrapes in the walls show where heavy loads were dragged. A smell of damp iron fills the air. The tunnel runs north and south.",
+   "look": "cave"
+  },
+  "13734": {
+   "description": "Three tunnels meet in a low cavern, where the roof is held up by two pillars of natural rock. Soot-stained alcoves in the wall once held watchmen. Crude marks scratched by a dozen hands show which way bands went. Passages lead north, east and west.",
+   "look": "cave"
+  },
+  "13754": {
+   "description": "The tunnel runs close beside the river, whose dark water can be heard rushing near at hand. Wet air blows in from the west where the river flows, and the passage leads east to a bend. Pebbles and silt cover the floor. The planks of an old boat lie against the wall, grey and furred with mould.",
+   "look": "cave"
+  },
+  "13753": {
+   "description": "A bend in the passage where the tunnel turns from the west toward the north. The rock overhead is cracked and a trickle of water falls in a slender silver thread to splash on a flat stone. Bits of flint litter the floor where someone sharpened blades. Warm air rolls down from the passage ahead.",
+   "look": "cave"
+  },
+  "13733": {
+   "description": "A winding tunnel with a floor of damp sand runs east and west. On the wall someone has painted a crude white skull with red ochre eyes, now streaked by seepage. The sound of dripping grows louder toward the west, where a cavern opens, while a crossing lies east.",
+   "look": "cave"
+  },
+  "13732": {
+   "description": "A cavern of modest size, its roof a flat ceiling pitted with holes like a sponge. Pale mushrooms grow in rings across the floor. The air feels heavy and still. A tunnel goes east to a crossing, and a squared hallway cut by tools runs north.",
+   "look": "cave"
+  },
+  "13731": "A hallway cut square and true from the rock by some skilled hand, far finer than the tunnels around it. The walls are smooth, though scored with the claw marks of later visitors. Doorless alcoves stand empty at intervals. It runs north and south, and a faint chill breathes along it.",
+  "13730": "The hallway continues, its floor tiled in cracked slabs of grey stone. Faded paint on the ceiling still shows a pattern of red and blue stars. A pile of rubble partly blocks one corner, leaving room to pass. The hallway goes north and south.",
+  "13729": "Faded murals of marching figures cover the walls of the hallway here, worn to ghosts by time and soot. Their hands are raised as though in greeting or in surrender. A film of dust lies thick over the floor. The hall continues north, and returns south.",
+  "13728": "Here the hallway's roof is lower and ribbed with arches of dressed stone. Rings of tarnished brass are set in the walls at head height, perhaps for torches or perhaps for chains. A draught hums softly along it. The hall runs on north, and back south.",
+  "13727": "The hallway ends in a three-way meeting, where the squared stone gives way to rough tunnel. A pair of broken pillars stand to each side of the opening east, and the passage west sags into a bend. A scrap of faded green cloth is nailed to the wall, a forgotten banner. The hall runs south.",
+  "13740": {
+   "description": "The passage bends here from the hallway on the west toward a chamber north. The floor slopes and is littered with fist-sized stones fallen from the roof. A square-cut lintel, much older than the tunnel, is set above the entrance ahead. Dust stirs on a faint draught.",
+   "look": "cave"
+  },
+  "13741": {
+   "description": "A round chamber with a ragged hole in the roof through which a rope of knotted hide hangs. The floor is a mess of rubble and dried droppings fallen from above. Scratches on the walls mark the reach of those who have climbed. The way out is south, and the hole leads up to dusty tunnels.",
+   "look": "cave"
+  },
+  "13785": {
+   "description": "Dust lies deep and soft in this tunnel, as fine as flour, and rises in clouds at each step. The hole in the floor drops down to the chamber below. Along the walls, pale shelves of rock are furred in grey. The tunnel runs north.",
+   "look": "cave"
+  },
+  "13784": {
+   "description": "The dusty tunnel bends sharply, its roof so low that grey powder gathers on the crown of your head. Footprints, shallow and indistinct, wander through the dust and are lost. A dry rattle of falling grit comes from somewhere. The bend turns east and south.",
+   "look": "cave"
+  },
+  "13783": {
+   "description": "A long dry passage where a draught blows steadily, carrying the dust in veils along the floor. Cracks in the wall have been stuffed with rags, long rotted to powder. Grey webs of dust hang from the roof. The tunnel runs east and west.",
+   "look": "cave"
+  },
+  "13781": {
+   "description": "A junction in the dusty tunnels, where the floor has been swept by many feet into dark bare patches. A stack of empty barrels, staves cracked, stands in a corner. Old iron nails still stud the walls where lamps once hung. Ways lead north, east and west.",
+   "look": "cave"
+  },
+  "13780": {
+   "description": "A tunnel hewn square, with deep scrape marks in the floor where loaded sledges once ran. The dust is dark with soot here and clings to the walls in sooty webs. A rusted lantern lies on its side. The passage runs north and south, and a side path leads west.",
+   "look": "cave"
+  },
+  "13786": {
+   "description": "The dust thins and the floor shows bare stone worn smooth in a groove. On one wall a faded painted arrow points ahead, and under it runs a column of orcish tally strokes. A damp patch in the roof drips into a glistening pool. The passage leads on north and winds back south.",
+   "look": "cave"
+  },
+  "13787": {
+   "description": "A broader place in the tunnels, where the roof is held up by a pair of fat timber props. A door of rusted iron is bolted with three heavy bars, and it opens on a prison to the north. Another tunnel leads east, and the way you came lies south. The floor is scored with the marks of dragged feet.",
+   "look": "cave"
+  },
+  "13790": {
+   "description": "A prison cut straight out of the living rock: a low windowless cell with a ring of iron in the floor, a chain and a trough for water. The walls are scratched with the marks of those who waited here. The air is thick with despair and old straw. The only way out is the door south.",
+   "look": "dungeon"
+  },
+  "13788": {
+   "description": "The passage narrows and the roof comes down, so that you must bend double. The dust here is churned by many feet, all going one way. A trail of dark drips on the floor leads east. The way west returns to the broader place.",
+   "look": "cave"
+  },
+  "13789": {
+   "description": "The tunnel ends against a wall of broken rock. A heap of rotten sacking lies in one corner, beside a puddle of old wax. Scratched in the stone is an arrow pointing back the way you came, and a single word you cannot read. The only way out is back west.",
+   "look": "cave"
+  },
+  "13779": {
+   "description": "A steep-sided tunnel, the roof low and rough, with crude steps cut down in places. Fine pale dust coats everything. Strips of cloth are tied to old iron spikes in the wall, perhaps as markers. The passage leads east and west.",
+   "look": "cave"
+  },
+  "13777": {
+   "description": "A fork in the tunnel where a hole in the floor opens to a bend below, and a worn path runs on into a small grotto. Dust hangs in the air, and a breath of damp warmth rises from the hole. Footprints gather round its edge. The tunnel leads east, and the grotto lies north.",
+   "look": "cave"
+  },
+  "13778": {
+   "description": "A tiny grotto, its walls glittering with crystals the size of fingers. A shallow pool in the centre holds clear, cold water and a scatter of pale pebbles. Soft drips fall from the stalactites and ring like little bells. The only way out is back south into the dusty tunnels.",
+   "look": "cave"
+  },
+  "13724": {
+   "description": "The tunnel bends hard here, from the west round to the south, and a rough ladder of notched logs climbs up through a hole in the roof. The walls are blackened by fire and old smoke. A line of white paint on the floor marks some boundary. A warm draught blows down from above.",
+   "look": "cave"
+  },
+  "13725": {
+   "description": "A short straight passage between two bends, its walls ribbed with thin stone seams. Water seeps along the floor in a shallow rill, gurgling quietly. Bits of broken pottery lie in the rill. The passage runs on both north and south between its two bends, and the damp is chill on the skin.",
+   "look": "cave"
+  },
+  "13726": {
+   "description": "Here the passage turns from north to east, ending at a squared archway where a hallway begins. The rock on the outer side of the turn is rubbed smooth and dark. A rusty spike is driven into the wall at shoulder height. Cold air flows from the hall.",
+   "look": "cave"
+  },
+  "13718": {
+   "description": "A crossing of three tunnels beneath a roof of ribbed stone. Deep ruts in the floor show where heavy carts turn at the meeting. A faded white stripe is painted across the way west. A hanging lantern frame, long empty, creaks in a draught. Passages lead east, south and west.",
+   "look": "cave"
+  },
+  "13719": {
+   "description": "A straight, plain tunnel with walls hacked flat. A bundle of rotted torches lies at the foot of the wall. The only variety is the pattern of the tool marks, which sweep in slanting rows. The tunnel goes north and south.",
+   "look": "cave"
+  },
+  "13720": {
+   "description": "The tunnel here is wet and the floor is slippery with green slime. Water gathers in a runnel down the middle, and the sound of it fills the narrow space. A single bronze hook is set into the roof. The passage leads north, and south as well.",
+   "look": "cave"
+  },
+  "13721": {
+   "description": "Rough pillars of rock have been left standing at intervals, supporting the roof where it looks weak. Scorch marks surround the base of each pillar. A cold wind slips between them, humming. The tunnel goes north and south to a crossing.",
+   "look": "cave"
+  },
+  "13722": {
+   "description": "Another meeting of tunnels, where the walls are scrawled with crude pictures of tusked heads in charcoal. The roof is high and flat. A well-trodden path leads west, and a narrower passage goes north and south. Smoke stains the ceiling in a great dark fan.",
+   "look": "cave"
+  },
+  "13723": {
+   "description": "The tunnel narrows to a throat barely wide enough for a pair of shoulders, then widens again. Chisel marks on the walls are fresh and bright. A pile of stone chips lies against one wall, as if work stopped only just now. Beyond the throat the passage goes north, or south.",
+   "look": "cave"
+  },
+  "13701": {
+   "description": "A crossing where the tunnel splits three ways beneath a cracked roof. Grit sifts down constantly. The floor is paved with flat stones in one patch, as if someone once began to make a road and gave up. Passages lead north, south and west.",
+   "look": "cave"
+  },
+  "13702": {
+   "description": "The tunnel makes a sharp bend, from the north toward the west, in the stone of a ridge of red rock. Streaks of rust bleed from the wall. A heap of crumbled stone fills the elbow of the bend. The air is dry and warm.",
+   "look": "cave"
+  },
+  "13703": {
+   "description": "A tunnel of uniform width, with a floor trodden hollow along its middle. Strange flat patches of lichen glow dimly on the roof. A broken pick handle lies across the way. Footing is firm in that long passage, which leads east and then away west into darkness.",
+   "look": "cave"
+  },
+  "13704": {
+   "description": "A drip falls from the roof in the exact centre of the tunnel, and has worn a small bowl in the stone. Rows of small holes in the wall, evenly spaced, show where timbers once braced it. The air carries the stale smell of long-dead fires. The passage runs east and west.",
+   "look": "cave"
+  },
+  "13705": {
+   "description": "A bend where the tunnel climbs a little way from the east toward the north. The roof drips steadily on a flat stone. Someone has stacked a cairn of small pebbles by the wall as a marker. A rancid reek drifts down from the passage ahead.",
+   "look": "cave"
+  },
+  "13706": {
+   "description": "The tunnel is rough and unfinished, its walls bristling with the stumps of broken pick work. A rusty mattock head sits fixed in a crack. The air is noticeably colder, and the rumble of distant drums travels through the floor. A way lies north, and another south.",
+   "look": "cave"
+  }
+ },
+ "extras": {
+  "13692": [
+   {
+    "keywords": "altar basalt",
+    "description": "The altar is a single block of black basalt, its top grooved with channels that run to a stained basin at one corner. Old offerings have left a dark crust in every groove."
+   }
+  ],
+  "13737": [
+   {
+    "keywords": "cairn skulls",
+    "description": "A waist-high cairn of skulls, orc and man and beast together, stacked with care around the foot of the pillar. A strip of black cloth is knotted about the topmost one."
+   }
+  ],
+  "13848": [
+   {
+    "keywords": "gateposts faces figures",
+    "description": "The gateposts are carved from base to lintel with writhing figures, their mouths open wide, their hands clutching at the stone around them. Some of the faces have been chiselled away by later hands."
+   }
+  ],
+  "13818": [
+   {
+    "keywords": "posts runes",
+    "description": "The stone posts are carved with runes so worn they can be felt more easily than read. One bears the crude scratch of an orc tally over the older writing."
+   }
+  ],
+  "13828": [
+   {
+    "keywords": "mound stones heap",
+    "description": "The stones are of every size, some carried from far away, many scratched with tribal marks or the names of the dead. A fresh stone with a smear of blood on it rests at the very top."
+   }
+  ],
+  "13889": [
+   {
+    "keywords": "altar stone block",
+    "description": "The altar is a single slab of dark stone, hollowed in the middle and worn smooth where hands have gripped its edges. No god's name is carved on it, which perhaps is why it serves so many."
+   }
+  ],
+  "13836": [
+   {
+    "keywords": "spire tower",
+    "description": "The spire is sheer and seamless, as if poured in one piece from molten glass. Its surface is cold to the touch and shows your face darkly."
+   }
+  ],
+  "13843": [
+   {
+    "keywords": "statue orc armour",
+    "description": "The statue shows a great orc chieftain with a shattered sword arm, and its plate is chipped and scarred by a thousand thrown rocks. Someone has painted a red grin upon its face."
+   }
+  ],
+  "13844": [
+   {
+    "keywords": "well bones wall",
+    "description": "The well wall is built of long bones, laid in rings and held with lime. Down in the darkness something sighs."
+   }
+  ],
+  "13846": [
+   {
+    "keywords": "mound carcasses hides",
+    "description": "The mound has been piled for months, each layer fresher than the last, and crawls with a crust of flies. A crow's nest of old horns sticks out of the top."
+   }
+  ],
+  "13729": [
+   {
+    "keywords": "murals figures",
+    "description": "The marching figures were once painted in bright pigment, but only their outlines survive. At their head one figure wears a crown, and every orcish hand has scratched out its face."
+   }
+  ],
+  "13778": [
+   {
+    "keywords": "crystals pool",
+    "description": "The crystals are clear as glass and sharp as nails, clustered thick on the walls. The pool is shallow, and its water tastes of cold iron."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "b-orc-warrior",
+   "keywords": "orc warrior tusked",
+   "short_desc": "a tusked orc warrior",
+   "long_desc": "A tusked orc warrior stands here, hefting a notched cleaver and glaring about.",
+   "description": "A broad grey-green brute in scavenged plates, his lower tusks capped with iron. He smells of smoke and sour fat, and his small eyes follow every movement.",
+   "kind": "humanoid",
+   "level": 44,
+   "aggressive": true,
+   "alignment": -600,
+   "sectors": [
+    "inside",
+    "hills"
+   ],
+   "count": 10,
+   "drops": [
+    {
+     "item": "b-orc-cleaver",
+     "chance": 20
+    },
+    {
+     "item": "b-blackiron-helm",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "b-cave-wolf",
+   "keywords": "cave wolf grey",
+   "short_desc": "a gaunt cave wolf",
+   "long_desc": "A gaunt cave wolf prowls here, its ribs showing under a coat of dirty grey.",
+   "description": "A rangy wolf bred in the warrens, pale-eyed and scarred, with a wet red mouth. It circles on silent paws and bares fangs as long as a finger.",
+   "kind": "animal",
+   "level": 43,
+   "aggressive": true,
+   "alignment": -200,
+   "sectors": [
+    "inside",
+    "hills"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "b-wolfpelt-cloak",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "b-pale-cave-spider",
+   "keywords": "pale cave spider",
+   "short_desc": "a pale cave spider",
+   "long_desc": "A pale cave spider the size of a dog clings to the rock, its fangs dripping.",
+   "description": "A bloated, bone-white spider with pale unseeing eyes and long jointed legs that tap the stone as it feels for you. Its fangs glisten with venom.",
+   "kind": "animal",
+   "level": 45,
+   "aggressive": true,
+   "alignment": -300,
+   "sectors": [
+    "inside"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "b-wolfpelt-cloak",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "b-blind-lake-eel",
+   "keywords": "blind lake eel",
+   "short_desc": "a blind lake eel",
+   "long_desc": "A blind lake eel as thick as a man's thigh coils through the water here.",
+   "description": "A pallid, eyeless eel as long as a boat, its jaw ringed with needle teeth. It senses the ripples of your craft and glides closer.",
+   "kind": "animal",
+   "level": 46,
+   "aggressive": true,
+   "alignment": -100,
+   "sectors": [
+    "water_swim"
+   ],
+   "count": 5,
+   "drops": []
+  },
+  {
+   "id": "b-morkai-orc-townsman",
+   "keywords": "orc townsman peasant morkai",
+   "short_desc": "an orc townsman of Morkai",
+   "long_desc": "An orc townsman of Morkai shoulders through the street with a sack of scrap iron.",
+   "description": "A stooped, thick-armed orc in a stained leather apron, scarred from the forges and quarrels of the city. He eyes strangers sourly but looks for no fight.",
+   "kind": "humanoid",
+   "level": 42,
+   "aggressive": false,
+   "alignment": -300,
+   "sectors": [
+    "city"
+   ],
+   "count": 5,
+   "drops": []
+  },
+  {
+   "id": "b-orc-blackguard",
+   "keywords": "orc blackguard elite black armour",
+   "short_desc": "an orc blackguard",
+   "long_desc": "An orc blackguard in blackened plate stands here, a heavy flanged mace across his shoulder.",
+   "description": "A huge orc in plate that is more scar than metal, the champion of a dozen pit fights. His helm is crowned with the spikes of rivals' teeth.",
+   "kind": "humanoid",
+   "level": 50,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "The Central Plaza Of Morkai",
+    "The Gate To Morkai",
+    "The Hall Of Corpses"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "b-blackiron-helm",
+     "chance": 25
+    },
+    {
+     "item": "b-orc-cleaver",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "b-cave-troll",
+   "keywords": "cave troll hulking",
+   "short_desc": "a hulking cave troll",
+   "long_desc": "A hulking cave troll slouches here, dragging a club the size of a tree trunk.",
+   "description": "A mountain of grey warty flesh, bent under the low roof, with long arms that scrape the floor. Its small eyes gleam red, and the bones of its last meals hang from its belt.",
+   "kind": "monster",
+   "level": 51,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Mound Of Stones",
+    "A Mound Of Carcasses",
+    "The Morgue"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "b-blackiron-helm",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "b-vrakk-lieutenant",
+   "keywords": "vrakk lieutenant orc captain",
+   "short_desc": "Vrakk the Red-Eyed, lieutenant of Morkai",
+   "long_desc": "Vrakk the Red-Eyed, lieutenant of Morkai, scans the city from beside his great drum.",
+   "description": "A lean, sinewy orc with one eye gone red as an ember, wrapped in a captain's cloak of black wolfhide. A dozen small blades sit on his belt, and he is quick with all of them.",
+   "kind": "humanoid",
+   "level": 49,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "Atop The Black Spire"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "b-lieutenant-gorget",
+     "chance": 35
+    },
+    {
+     "item": "b-orc-cleaver",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "b-gorbash-war-chief",
+   "keywords": "gorbash skullcleaver war-chief warchief orc chief",
+   "short_desc": "Gorbash Skullcleaver, the orc war-chief",
+   "long_desc": "Gorbash Skullcleaver, the orc war-chief, sits on the high seat with a huge maul across his knees.",
+   "description": "A towering orc scarred from brow to belt, with a necklace of knuckle bones and a skull-faced maul that few men could lift. He rules Morkai's war-bands by fear alone, and his roar can shake dust from the roof.",
+   "kind": "humanoid",
+   "level": 51,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "The High Seat Of Morkai"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "b-skullcleaver-maul",
+     "chance": 35
+    },
+    {
+     "item": "b-lieutenant-gorget",
+     "chance": 20
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "b-orc-cleaver",
+   "keywords": "orc cleaver notched heavy",
+   "short_desc": "a heavy orc cleaver",
+   "room_desc": "A heavy orc cleaver lies here, its edge notched with use.",
+   "description": "A broad, single-edged blade forged for hacking more than fencing. The tang is bound with strips of wolfhide.",
+   "kind": "weapon",
+   "level": 45,
+   "weapon_type": "slash"
+  },
+  {
+   "id": "b-blackiron-helm",
+   "keywords": "blackiron helm spiked orc",
+   "short_desc": "a spiked blackiron helm",
+   "room_desc": "A spiked blackiron helm sits here, dented and scarred.",
+   "description": "A heavy helm of dull black iron with a ridge of spikes along the crown. Inside, someone has scratched a tally of kills.",
+   "kind": "armor",
+   "level": 47,
+   "wear_slot": "head"
+  },
+  {
+   "id": "b-wolfpelt-cloak",
+   "keywords": "wolfpelt cloak grey pelt",
+   "short_desc": "a grey wolfpelt cloak",
+   "room_desc": "A grey wolfpelt cloak lies here in a heap.",
+   "description": "A thick cloak sewn from the pelts of cave wolves, coarse and heavy but warm against the damp of the deeps.",
+   "kind": "armor",
+   "level": 44,
+   "wear_slot": "about"
+  },
+  {
+   "id": "b-lieutenant-gorget",
+   "keywords": "lieutenant gorget red iron",
+   "short_desc": "a red-stained iron gorget",
+   "room_desc": "A red-stained iron gorget lies here, glinting dully.",
+   "description": "A gorget of riveted iron plates, its edges burnished by long wear. A red stain, never quite scrubbed away, marks the inside of the collar.",
+   "kind": "armor",
+   "level": 49,
+   "wear_slot": "neck",
+   "bonus": {
+    "str": 1
+   }
+  },
+  {
+   "id": "b-skullcleaver-maul",
+   "keywords": "skullcleaver maul skull",
+   "short_desc": "the skullcleaver maul",
+   "room_desc": "A great skull-faced maul rests here, heavy as an anvil.",
+   "description": "A mighty maul with a head of black iron cast in the likeness of a snarling skull. The haft is bound in the hide of a troll.",
+   "kind": "weapon",
+   "level": 52,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  }
+ ]
+}

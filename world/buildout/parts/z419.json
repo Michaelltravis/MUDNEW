@@ -1,0 +1,359 @@
+{
+ "job": "z419",
+ "rooms": {
+  "8004": "The street runs beneath the jutting upper floor of a chandler's house, so the junction lies in permanent dusk and smells of old rope and wet stone. Ways open on every side: the wall road goes north toward Keep Street and south along the town wall, Chapel Street heads east, and west stands the western gate itself. A rusted lantern hook hangs from a beam, long without a lantern. Behind bolted shutters someone coughs, and the chapel bell tolls the quarter hour.",
+  "8005": "Keep Street ends here against the wall road, a crooked meeting of cobbles worn into shallow troughs by cartwheels. The grey curtain wall climbs on one side, its parapet lost in drifting mist, while the road continues north and south and Keep Street leads east between tall narrow houses. A drain grate gurgles beside the kerb. Every window along the lane has its shutter pulled to, and a few have been nailed.",
+  "8006": "The wall road follows the foot of the town wall, which rises here in rough courses of dark stone patched with newer, paler blocks. Puddles stand between the setts and reflect nothing but cloud. Small houses press close on the inner side, their doors painted with chalk signs that someone has tried to scrub away. The road goes north and south from here.",
+  "8007": "A leaning buttress braces the town wall at this point, and the road bends around it, narrow enough that two carts would have to quarrel. Moss furs the lower stones and a trickle of rainwater runs down a crack in the masonry. Smoke from a hidden chimney lies flat over the roofs. The road runs on north to a corner and back south the way you came.",
+  "8008": "Two stretches of wall road meet at a sharp corner, where the old wall turns and a squat watch-post stands with its door hanging open on empty gloom. Wind gathers in the angle and carries the damp smell of the moat or whatever lies beyond the stones. Your way follows the Northern Wall Road east, or back south along the road you came by. A bell sounds slowly from the chapel, the only voice in the street.",
+  "8016": "The Northern Wall Road runs straight beneath the parapet, its cobbles slick with last night's fog. A heavy door in the house fronts opens on the Guard Room to the south, iron-banded and scarred by old knife work. The road continues east into grey distance and west to the corner. Spent torch stubs lie in a gutter, and a rattle of shutters announces that someone has seen you pass.",
+  "8024": "Weeds push up between the setts of the Northern Wall Road, and the houses along it grow shabbier as the road goes east. To the south a door hangs crooked in the frame of a ruined house, its roof half fallen in and its windows black. A cold draught breathes from it, smelling of soot and rot. The road goes on east and back west.",
+  "8032": "Here the Northern Wall Road runs between the battlemented wall and a row of blind brick backs, with not a single door in them. Rain has streaked the stonework with long dark tracks, and a broken pitchfork rests against a wall where somebody left it. The only sounds are the wind over the parapet and distant hammering. East and west the road continues.",
+  "8041": "A single gnarled tree grows from a gap in the paving by the wall, bare of leaves and strung with rags of faded cloth that townsfolk have tied to its twigs. Beneath the tree the stones are stained with old candle wax. Plain shuttered houses face the wall on the other side of the road. The Northern Wall Road carries on east and west.",
+  "8049": "The road bends slightly here as the wall curves toward its corner, and the cobbles are cracked and heaved by roots from some forgotten garden. A watchman's chalk tally covers a stretch of wall in neat rows of strokes. The air is cold and tastes of smoke. Ahead east lies the corner of the Eastern Wall Road, and west the road runs on along the Northern Wall Road.",
+  "8057": "At this corner of the town wall two wall roads meet, and in the middle of the cobbles a ragged hole has opened, its edge crumbling and ringed with a rope hung on rusty stakes. Raw earth and old stone show in its sides, and a faint chill rises out of it. The Eastern Wall Road leads south from here and the Northern Wall Road west. Something below breathes a stale, mouldy air.",
+  "8056": "The Eastern Wall Road widens before the gate, its setts churned to mud by hooves and wheels. Across the way a low shed stands open to the road, the red glow of a forge showing from inside, and the smell of hot iron mixes with horse dung and wet wool. The road goes north to the corner, south along the wall, and east to the gate. Grey light picks out the iron studs of the gate doors.",
+  "8083": "You stand in the shadow of the eastern gate, where a vaulted passage cuts through the thickness of the wall. Its great oak doors are hung with iron and pitted with the marks of ages of weather, and a portcullis sits raised in its slot above. Wet cobbles lead east through the doors to the road outside, and the town lies back west. Bootmarks and ruts cover the floor of the gatehouse.",
+  "8084": "Beyond the gate doors the ground opens to a trampled apron of mud and gravel before the town wall, scattered with straw and broken crate boards. The wall looms overhead, black with damp, and arrow slits stare down from it like closed eyes. The forested road begins east, narrow between dark trunks, and the gate lies back west. A signpost leans, its arms weathered blank.",
+  "8085": "The road enters the trees here, a rutted track of brown earth between oaks and tall dark firs. Mist hangs in the branches and the light is thin, the colour of old pewter. Fallen cones and wet leaves cover the verges. The road runs on east into the wood and back west toward the town gate.",
+  "8086": "The forest closes in tighter here, roots crossing the road like knuckles, and the trunks stand so close that the track seems a tunnel. Water drips steadily from the boughs. A wheel rut has filled with black water, and the leaf-mould smells sweet and old. The Forested Road continues east to a crossing and west toward Mishrak.",
+  "8087": "A crossing of tracks lies in a small clearing where a toppled oak has let some grey daylight through. The main road goes on east and west, while a lesser way leads north toward the end of the road. Wagon wheels have cut deep, and someone has hacked a crude mark into a trunk. Ferns grow thick at the verge, dripping.",
+  "8094": "The road gives out in a dead end among the pines, ending in a ring of trodden earth where wagons once turned. A cairn of mossy stones stands in the middle, topped with a rusted horseshoe nailed to a post. Needles blanket the ground and silence presses in. The only way back is the track south to the crossing.",
+  "8088": "East of the crossing the road runs between ancient beeches whose smooth grey trunks rise like pillars, and the canopy makes a ceiling of rattling leaves. Boot prints in the mud wander from the road into the undergrowth and stop. A chill wind pushes through the trunks. The Forested Road leads west to the crossing and east deeper into the wood.",
+  "8095": "The road fades here into a track of bare roots and bracken, and just ahead the trees draw together in a wall of thorn and bramble. A rotten gatepost sags beside the path, its crossbar long gone, and ivy has swallowed half of it. Everything is damp and the light is poor. The only way out is back west along the Forested Road.",
+  "8055": "The Eastern Wall Road runs here between the blank flank of the wall and tall shuttered houses, with a gutter down its centre choked with fallen leaves. A baker's sign hangs rusted and creaking, though the shop beneath it has been shut for years. The smell of cold ashes lingers. The road leads north toward the forge and gate and south to the junction with Keep Street.",
+  "8054": "Keep Street meets the Eastern Wall Road at a wide, windy corner, with the dark mass of the keep rising beyond the roofs. A watch-post stands on the corner with a lamp burning in the window even in day. The road goes north and south along the wall, the gate stands east, and Keep Street runs west toward the keep. Faces vanish from shutters as you look.",
+  "8053": "The wall road runs quiet here, with cobbles clean-swept and doorsteps scrubbed, as if the residents wished to be left unnoticed. A water barrel stands beneath a downpipe, its surface skinned with scum. Chimney smoke is the only sign of life. The road goes north and south along the wall.",
+  "8052": "A shop door with a faded sign of crossed scales opens in the house fronts here, its lintel carved with a pattern of vines. Handprints of soot mark the doorpost, and a worn step has been polished by years of boots. The Eastern Wall Road continues north and south from the doorway, while the shop lies west.",
+  "8051": "The Eastern Wall Road narrows between a sagging tannery and the grey wall, and the sour smell of hides hangs thick. A line of rope across the street still holds a few strips of leather that never dry in this damp. Dark stains patch the setts. The road runs north and south from here.",
+  "8050": "Here the Eastern Wall Road meets the Southern Wall Road at a rounded corner, where the wall curves tight and a squat corner tower leans over the cobbles. The tower's door is padlocked and its slit windows look down on the junction. Bleak light falls on puddles. One way leads north along the wall and the other runs west.",
+  "8042": "The Southern Wall Road passes a black hole sunk into the cobbles by the wall, rimmed with broken paving and fenced with a crooked rail. A chill, earthy breath comes up from it along with a faint, sweet rot. The road goes on east to the corner and west along the town wall. Steps of rough stone lead down into the dark.",
+  "8033": "Behind the wall road the houses rise in tiers of dark slate roofs, and the cobbles here are patched with flat river stones. A rain barrel overflows into the gutter and nobody comes to mend it. A small shrine niche in the wall holds a stub of candle, still burning. The Southern Wall Road runs east and west.",
+  "8025": "The Southern Wall Road lies deserted, its paving broken by frost, and the town wall leans slightly inward as if listening. Torn bills nailed to a doorpost flap in the wind, their ink run to grey blots. Smoke and damp mingle in the air. The road continues east and west.",
+  "8017": "Barracks Avenue lies close by, and the wall road shows its mark in boot-scuffed cobbles and the faint smell of wet leather and lamp oil. A water trough stands by the wall, its iron ring rusted but sturdy. High above, a sentry's lantern swings in the wind. The road goes east along the wall and west to where Barracks Avenue meets it.",
+  "8009": "A vaulted passage carries the wall road under the barracks' overhanging wing, and the ceiling bricks are black with generations of torch smoke. Racks of staves and spear shafts stand against the stone, bound with leather thongs. Barracks Avenue runs north from here into the garrison's quarter, the road continues east, and a short way west lies a corner of the wall road. Boots ring somewhere above on bare boards.",
+  "8010": "Barracks Avenue is a covered lane, roofed over by the upper floors of the garrison buildings, and lamps hang from iron brackets at every few paces. The flagstones are scrubbed grey and the walls whitewashed to shoulder height, scuffed by passing shields. A heavy door stands to the north, studded with nails and marked with the crest of the town watch. South the passage opens back into the wall road.",
+  "8011": "The barracks hall is long and low, with bare timber rafters, rows of narrow cots made up with grey blankets, and a rack of dented helms by the wall. A stove sits cold in the middle of the floor, ringed with boot-black. Stale air smells of oil, sweat and old wool. An iron-bound door in the end of the hall leads east to the headquarters, and the door out to Barracks Avenue lies south.",
+  "8019": "The headquarters is a bare, cramped chamber, dominated by a scarred oak table covered in maps and duty rolls weighted with spent arrowheads. Pegs along the walls hold cloaks and chains, and a lantern burns with a tired, smoky flame. A crossed pair of pikes hangs above the cold hearth. The only way out is the door west into the barracks hall.",
+  "208001": "Two stretches of the wall road meet at this rounded corner, and a flight of worn steps climbs the wall to a narrow walkway above. Rain has pooled in the angle where the stones meet, and an old brazier stands rusted beside it. The road goes north along the town wall and east into the covered passage toward Barracks Avenue. Chimneys smoke raggedly beyond the wall-backed houses.",
+  "208002": "A hole has opened in the middle of the wall road, a ragged gap in the cobbles where something below has given way, ringed by stakes and a single length of tattered rope. The edges crumble when the wind blows and a smell of old earth rises out of it. The road continues north and south, and a rough ledge leads down into the pit. Windows overlook the spot and every shutter is closed.",
+  "208003": "The wall road runs straight and quiet here beneath the curtain wall, whose stones are streaked with ochre stains where iron ties have rusted. Doors in the house fronts are barred and each lintel carries a nailed bunch of dried herbs against the dark. A bell from the chapel tolls somewhere ahead. The road leads north to a junction under a gallery and south toward the corner.",
+  "8076": "You are in a ragged pit dug into the ground, the sides a mixture of black soil, knotted roots and fallen stones. Brown daylight falls from the opening above, where the wall road lies, and a few tree roots dangle down like dead fingers. The floor is damp and trampled, with a chill that seeps into the bones. The only way out is up.",
+  "8081": "A shaft of raw earth and broken masonry drops from the road above, forming a rough pit whose floor is littered with rubble and fallen cobbles. The sides are shored in places with warped timbers, and cold air creeps along the bottom, smelling of lime and wet ash. A pale square of sky shows high overhead, and a climb up is the only way out.",
+  "8044": "The shop is cramped and ill lit, hung with coils of rope, tin lanterns, bundles of tallow candles and sacks of coarse salt. A counter of black oak runs across the room, scarred by countless coins and knives. Dust lies thick on the shelves, and the grey day filters through a single grimy window. The door opens east to the wall road, and a curtained doorway leads north into the back room.",
+  "8045": "The back room is a windowless storeroom, stacked to the rafters with crates, kegs and barrels bound in hoops of rusting iron. A table holds a ledger gone mouldy at the edges and a candle drowned in its own wax. Everything smells of damp sacking, tar and spilled brine. The only way out is the doorway south to the shop.",
+  "8046": "Keep Street climbs gently here toward the high ground, its cobbles sharply worn into ridges by centuries of hooves. Tall houses with leaded windows lean over the road, each with a bolt on the door and a pot of withered herbs on the sill. The air is cold and tastes of coal smoke. The street runs north toward the keep, and the wall road lies east.",
+  "8047": "The street bends sharply here as it nears the keep, whose dark curtain wall rises over the rooftops in heavy courses of grey stone. A rusted lamp bracket juts from a corner, bent as if someone had tried to wrench it off. Fallen slates lie in the gutters. Keep Street runs south back toward the wall road, and west leads to the keep's entrance.",
+  "8039": "Before you rise the keep's inner gate, an arched entrance flanked by two stout buttresses, with an iron grille raised on its chains above. Cold air breathes from the dark archway, and the paving has been worn bright by the boots of soldiers. A guard room door stands north, the keep's inner court lies south, Keep Street runs east, and another street leads west. Torch sconces hold only charred stubs.",
+  "8040": "The guard room is a stone cell with a low vaulted ceiling, a rack of spears along one wall and a battered table scattered with dice and scraps of tallow. A narrow window looks out on the gate arch. The hearth is cold and the benches smell of cheap ale and old leather. The only door leads south to the gate.",
+  "8038": "The keep's inner court is a paved square pent in by high grey walls, its sky a strip of cloud above. A dry well stands in the middle, its windlass rotted away, and weeds grow along the base of the walls. Arrow slits stare down from every side. The gate arch lies north, and a heavy door south opens to a narrow stair.",
+  "8037": "A narrow stair begins here in a cramped lobby of cold flagstones, its steps worn in the middle by countless feet. A single rushlight burns in a niche, trailing a thin black thread of smoke. The air is stale, and echoes of your steps return from above. The door north leads back to the court, and the stairs go up into the keep.",
+  "8064": "A long hallway runs through the keep's upper floor, floored with dark boards that creak at every step and lit by narrow windows of thick greenish glass. Faded tapestries sag along the walls, their pictures lost in dust. The stairs lead down to the lobby, the hallway runs north into shadow, and south it opens to a landing.",
+  "8063": "The hallway has a worn runner of red carpet gone brown with age, running between panelled walls hung with empty portrait frames. A draught moves the dust in slow curls. Doors lead off the hallway, one open east into a small servants' room. The hallway goes on north and returns south.",
+  "8062": "At the end of the hallway the boards give way to flagstones, cold and slightly damp, with a lone window set in a deep embrasure. A candle sconce hangs bare on the wall and the plaster has flaked in long strips. A door west stands in carved oak, leading to the guest quarters. The hallway returns south.",
+  "8061": "The guest quarters are a dim chamber with a high carved bed hung with moth-eaten curtains, a washstand and a dressing table with a clouded mirror. Dust lies undisturbed on the coverlet. The window is shuttered, and the room smells of lavender gone sour. The hallway lies east, and a narrow door west leads to a closet.",
+  "8060": "The closet is hardly bigger than a cupboard, its walls lined with pegs and shelves smelling of cedar and mildew. A few empty hangers hang from a rail, clicking together in a draught from nowhere. A single shelf holds a cracked chamber pot and a bundle of mouse-chewed linen. The only way out is east to the guest quarters.",
+  "8069": "The servants' room has a row of rough pallets along one wall, each with a folded blanket and a small tin box beneath. A chipped basin stands beside a door, and the plaster is smudged with soot where candles stood. It smells of cold porridge and wool. The hallway lies west, and an open doorway east leads to a balcony.",
+  "8070": "A narrow stone balcony juts from the keep wall, railed with a crumbling balustrade and wet with drizzle. Far below, the roofs of Mishrak huddle under chimney smoke, and beyond them the wall and the dark line of the forest. The wind is strong and carries the slow toll of the chapel bell. The only way back is west into the servants' room.",
+  "8065": "A broad landing opens off the hallway, its balustrade of black carved wood overlooking a hall below and its floor tiled in a faded pattern of red and cream. High windows admit a pale and sullen light, and the dust of years lies on the rail. Grand stairways descend on either hand. The hallway lies north, and the landing's edges stretch east and west.",
+  "8067": "This end of the landing is a quiet alcove, its tiles cracked and its balustrade leaning slightly outward. A tall window of leaded glass overlooks the court, the panes smeared with grime. A rack of dead candles stands in the corner. The landing continues west, and the stairway descends south.",
+  "8066": "A grand stairway curves from the landing, its wide oak steps carpeted in a runner worn bare at the centre. Carved newel posts end in snarling beasts whose paint has long flaked off. A chill drifts up the stairwell, smelling of old stone. The landing is north, and the stair rises further to the next floor.",
+  "8073": "The third-floor landing is a small square hall, ringed with doors of dark wood, one on each side. Threadbare carpets lie on boards that groan underfoot, and a single high window lets in grey light. A dusty lamp hangs from a ceiling hook on a chain. Doors lead north, east, south and west to the bedrooms.",
+  "8074": "The bedroom is large and chilly, with a canopied bed sagging beneath a mildewed spread and heavy drapes drawn across the window. A cold hearth holds a nest of old ash, and a chest at the foot of the bed lies open and empty. The air tastes of damp and abandoned things. The door leads back south to the landing.",
+  "8071": "The bedroom is small and neat, though the dust is thick on every surface. A narrow bed stands against the wall beneath a cracked mirror, and a wardrobe's door hangs by one hinge. A faint smell of tallow and cold ashes clings to the air. The door opens west onto the landing.",
+  "8072": "This bedroom has a single window facing the court, its shutters nailed and its glass cobwebbed. A bed with a bare mattress sits beside a heavy table scarred by ink and knife-points. Torn papers rustle in the hearth. The door north leads out to the landing.",
+  "8075": "The western bedroom is the smallest of the four, and its single window is blocked with a tapestry gone black with damp. A narrow bed stands under the slope of the ceiling, and a washstand holds a basin cracked clean through. The floorboards have shrunk and gaped, and the cold comes up through them. The only door opens east onto the landing.",
+  "8059": "This end of the landing is dim and draughty, the balustrade broken in one spot and mended with a length of rope. A faded tapestry of a stag hunt hangs on the wall, its colours eaten to browns and greys. Dust drifts across the tiles. The landing runs east toward the hallway, and the stairs descend south.",
+  "8058": "Narrow and steep, this grand stair winds up in a tight curve, its stone treads dished in the middle and slick with damp. An iron rail follows the wall, flaking rust onto the palm. Weak light drops from a window high above. Back north the landing waits, and the stair climbs on.",
+  "8030": "A crossroads of Keep Street and Market Street, where wheel ruts have worn the cobbles into deep grooves and a signpost stands with arms pointing in four directions. A stable door stands in the wall to the north, the keep's gate arch is near east, and Market Street runs south. Another reach of Keep Street goes west. The smell of hay and horse hangs in the damp air.",
+  "8031": "The stables are an open yard surrounded by low sheds, the straw underfoot trodden into a brown mat and the beams above black with old smoke. Wooden stalls stand empty, their halters dangling from pegs. A pump drips into a mossy trough. The only way out is the door south to Keep Street.",
+  "8029": "Market Street slopes toward the square, its cobbles scattered with cabbage leaves and straw and the faint tang of fish brine. Tall narrow shops with painted signs line either side, each shuttered and hung with a bell. A gutter running down the middle carries a thread of grey water. The street goes north to a crossroads, south toward the chapel, and west opens into the marketplace.",
+  "8028": "Chapel Street and Market Street meet in a roofed forecourt before the chapel, where lamps hang from chains and the pillars wear a coat of soot. A pair of tall doors stands to the south, bound in iron and carved with an ancient pattern of thorns. Market Street leads north and Chapel Street west. The bell above tolls with a deep, slow note that shakes the dust.",
+  "8027": "The nave of the chapel is hushed and cold, with a long aisle of worn flagstones and rows of plain oak benches facing a distant altar. Grey light seeps through narrow windows of dull glass. Candle stubs gutter in iron stands, and the smell of tallow and damp stone is strong. The doors north lead out to the street, while the nave continues east and south.",
+  "8035": "Here the nave bends toward the chancel, where a simple altar rail of black wood divides the pews from a worn step. Heavy drapes hang motionless, and a lamp burns red in a hanging cup. The stone floor is dished by centuries of kneeling. A door north leads to the head priest's rooms, the nave continues south, and an aisle goes west.",
+  "8036": "The head priest's quarters are a plain, cold chamber with a narrow bed, a writing desk heaped with sealed letters and a prie-dieu worn smooth at the knee. A tall cupboard stands closed beside a hearth that holds only grey ash. The window shows a slice of slate roofs and drifting cloud. The only door leads south to the chapel.",
+  "8034": "This side of the chapel is a bare alcove of stone and old wood, with a bench along the wall and a worn grating in the floor that breathes cold air. Candle wax has dripped in rivulets down the nearest pillar. The sound of the bell fills the vault above. Aisles lead north and west, and a low arch opens east to an altar.",
+  "8043": "A small side altar stands against the wall, draped in a grey cloth embroidered with a faded sign of thorns. Two candlesticks of tarnished brass flank it, and a bowl of dry salt rests beside them. The stone slab is stained with old rings where cups once stood. The only way back is west into the transept.",
+  "8026": "The chapel's western aisle is lined with narrow arched alcoves holding worn stone saints whose faces have been chiselled smooth. One flagstone in the floor has been scraped at the edges and set slightly askew, as though lifted and replaced many times. Cold air seeps from the crack. Aisles lead north and east, and an arch leads west to an altar.",
+  "8018": "The western altar is a plain stone table beneath a small round window of smoked glass, its surface scrubbed bare and faintly stained. Iron rings are set in the wall behind it, and the flagstones before it are dished by kneelers. A thin smell of incense and copper lingers. The only way back is east into the aisle.",
+  "8079": {
+   "description": "A cramped stone chamber lies beneath the chapel, its roof so low you must stoop and its walls scratched with sigils in rusty red. A table of black wood holds stubs of candles and a stained bowl. The air is cold and heavy, and it smells of old blood and wax. A passage leads east into dark.",
+   "look": "crypt"
+  },
+  "8080": {
+   "description": "A low vaulted passage runs between rows of burial niches, each one stacked with yellowed bones and dust. The mortar is cracked and wet, and a faint draught moves along the floor. Every opening here seems to lead to the same dark stretch of vault in the north, east, south or west. A narrow stair climbs up toward the chapel.",
+   "look": "crypt"
+  },
+  "8098": {
+   "description": "The catacomb passages branch and rejoin here like a root system, vault after vault of stone bones. Fallen plaster lies in white drifts, and ribs and skulls peer from the niches. The air is thick and still, and distant footsteps echo with no clear source. Passages lead north, south, east and west, and others slope up and down.",
+   "look": "crypt"
+  },
+  "8097": {
+   "description": "Here the tunnels of the dead run deeper than any mason intended, and the walls are patched with bone and brick in a crazed mosaic. A line of old candle-black runs along the vault as though someone had followed it with a flame. Water drips on stone with slow patience. You can go north, south, east or west, up or down, though all look the same.",
+   "look": "crypt"
+  },
+  "8020": "Chapel Street runs beneath a long roof of dark timbers, with shuttered stalls and boarded doorways pressed against its sides. A single lamp burns on an iron hook, throwing wavering shadows on the damp walls. The pavement is polished by processions that no longer come. The street leads east toward the chapel forecourt and west toward the wall road.",
+  "8012": "The covered street is quiet here, hung with strings of dried herbs and bunches of withered holly nailed over each door. Cobbles run smooth and grey underfoot, and the roof beams are black from years of lamp smoke. Somewhere a latch clicks softly and a shutter shuts. Chapel Street runs east toward the chapel and west toward the wall road.",
+  "8021": "The marketplace is an open square of wet cobbles, with rows of empty stalls under sagging awnings, their trestles bare and their canvas spotted with mould. A stone fountain in the middle runs dry, its basin filled with leaves. Cold wind pulls at the awnings and rattles the hooks. Market Street leads back east.",
+  "8022": "Keep Street runs level here between narrow houses of timber and plaster, whose upper floors lean over the cobbles until they almost touch. A cracked lamp hangs unlit over the doorway of a closed cooper's shop. Dripping gutters beat a slow rhythm on stone. The street goes east toward the crossroads and west toward the wall road.",
+  "8014": "Keep Street meets a short doorway to the north, with a plank door painted dark green and a brass plate gone black. A well-worn step shows where many visitors have waited in the damp. The street continues east and south from here. Fine rain beads on the iron lamp bracket overhead.",
+  "8077": "The office is a narrow, plain room, with a heavy desk, a stool and a shelf of ledgers bound in grey cloth. A high window lets in dim light, and a smoky lamp stands on the desk with a half-written page beneath it. Ink has dried in a black pool in the well. The street door lies south, and a narrow door west leads to another room.",
+  "208099": "A cold stone table dominates this small room, with a drain in the floor beneath it and a rack of curved blades and saws on the wall. A lamp on a bracket gives a harsh, yellow light that shows dark stains on the flags. The room smells of vinegar and old iron. The only way out is the door east to the office.",
+  "8013": "Keep Street heads toward the wall here, its houses lower and meaner, with cracked plaster and slates missing from their roofs. A line of washing hangs stiff and grey between two windows, dripping slowly. The cobbles shine with the damp. The street goes north and west from this bend.",
+  "8048": "The forge is an open-fronted shed with a hearth of blackened brick and a hooded flue, its bellows hung on a beam and its anvil bolted to a stump. Racks of tongs, hammers and half-forged blades line the posts. Coals glow orange in the fire pit, and the air smells of scorch and quenching water. The way out is east to the wall road.",
+  "8082": "You are at the bottom of a shaft of loose earth and broken stone, which has been dug or has fallen from the road overhead. Tree roots and rusty nails stick from the clay walls, and the floor is a clutter of rubble. Grey light sifts down through the opening above. Only a scramble up the crumbling side gets you out.",
+  "8023": "The house has lost most of its roof, and rafters stand against the sky like blackened ribs. Doors hang from their hinges, and the floor is a heap of charred beams, tiles and scorched plaster. Nettles grow through the hearth and the smell of old smoke still lingers. A hatch in the floor leads down into the cellar, and a doorway opens north onto the wall road.",
+  "8078": {
+   "description": "The cellar is a low, damp room of rough brick, its roof beams sagging and its floor wet with seep. Empty barrels lie on their sides and shelves slump under rotten sacks. A smell of mould and old wine hangs thick. The only way out is up the steps into the ruined house."
+  },
+  "8015": "A small bare chamber serves as the watch's guard room, with a bench along the wall and a table scarred with knife marks. A cracked lamp swings from a chain and a pegboard holds keys and rusted manacles. A narrow slit of window shows the wall road outside. The door north leads back out to the road.",
+  "208000": "Within the western gate the road passes through a vaulted passage, its walls rough with soot and its floor rutted by countless cart wheels. A barred wicket stands set in the great door, and a portcullis hangs raised in its slot above. The gate stands open to the west, leading out to the trade road beyond, and the wall road lies east. A gatekeeper's brazier smoulders in a niche.",
+  "8096": "The abode is a cramped, cluttered room with a narrow cot, a shelf of tattered scrolls and a round table piled with candle ends and half-eaten crusts. A shuttered window lets in a thread of light, and the whole place smells of ink, old wool and tallow. A string of dried herbs hangs above the hearth. The door opens east onto the chapel forecourt."
+ },
+ "extras": {
+  "8041": [
+   {
+    "keywords": "tree rags cloth",
+    "description": "The rags are strips torn from shirts, shrouds and bed linen, each tied by someone with a wish or a grief. The oldest have rotted to threads."
+   }
+  ],
+  "8094": [
+   {
+    "keywords": "cairn horseshoe stones post",
+    "description": "The cairn is a waist-high heap of mossy fieldstones, each placed by a passing traveller. The horseshoe on the post above it is worn thin with rust."
+   }
+  ],
+  "8038": [
+   {
+    "keywords": "well windlass",
+    "description": "The well is dry, its shaft a black circle edged with green slime, and the windlass above it has rotted off its pins. A faint chill rises from the depths."
+   }
+  ],
+  "8043": [
+   {
+    "keywords": "altar cloth thorns sign",
+    "description": "The grey cloth is embroidered in black thread with a ring of thorns, the old sign of Mishrak's chapel. Beneath the thorns, so faint you could take it for a stain, a second mark has been stitched: a closed eye."
+   }
+  ],
+  "8079": [
+   {
+    "keywords": "sigils scratches walls",
+    "description": "The sigils are scratched deep and daubed with something rust-brown. They circle a single shape, a closed eye above a bowl, repeated over and over until the pattern swallows the wall."
+   }
+  ],
+  "8097": [
+   {
+    "keywords": "niches bones mosaic",
+    "description": "The bones in the niches have been sorted and arranged, skulls with skulls and long bones in neat criss-crossed stacks. Here and there a skull has been set facing the wall."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "wary-townsman",
+   "keywords": "townsman man wary mishrak",
+   "short_desc": "a wary townsman",
+   "long_desc": "A wary townsman keeps close to the wall, glancing at every shuttered window.",
+   "description": "He is thin and grey-faced, with a patched coat pulled tight and a walking stick he holds like a weapon. His eyes slide away from yours, and he looks like a man who has learned to hear nothing and see less.",
+   "kind": "humanoid",
+   "level": 12,
+   "aggressive": false,
+   "alignment": 100,
+   "sectors": [
+    "city"
+   ],
+   "count": 6
+  },
+  {
+   "id": "forest-wolf",
+   "keywords": "wolf grey forest",
+   "short_desc": "a gaunt grey wolf",
+   "long_desc": "A gaunt grey wolf pads between the trunks beside the road, watching with pale eyes.",
+   "description": "The wolf's ribs show beneath a matted coat, and its lip is drawn back from yellow teeth. It moves with the slow patience of a beast that has been hunting travellers on the Forested Road all winter.",
+   "kind": "animal",
+   "level": 13,
+   "aggressive": true,
+   "alignment": 0,
+   "sectors": [
+    "forest"
+   ],
+   "count": 3
+  },
+  {
+   "id": "hooded-cultist",
+   "keywords": "cultist hooded cult acolyte",
+   "short_desc": "a hooded cultist",
+   "long_desc": "A hooded cultist stands in the gloom, murmuring under his breath.",
+   "description": "He wears a robe of undyed grey wool with the hood pulled low, and a closed eye daubed in red on his brow. A black-bladed dagger hangs at his belt, and his lips never stop moving over some unwholesome prayer.",
+   "kind": "humanoid",
+   "level": 17,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Catacombs",
+    "The Secret Room"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "cult-dagger",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "cult-enforcer",
+   "keywords": "enforcer cultist cult mail blackened",
+   "short_desc": "a blackened cult enforcer",
+   "long_desc": "A blackened cult enforcer stands guard in the dark, his hand on a heavy blade.",
+   "description": "A broad man in soot-black chain, his face hidden by a visor of beaten iron. The closed eye of the cult is cut into his breastplate. He moves like a soldier, and he does not seem to need to breathe.",
+   "kind": "humanoid",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Catacombs",
+    "The Secret Room"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "enforcer-hauberk",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "bone-warden",
+   "keywords": "skeleton warden bone",
+   "short_desc": "a bone warden skeleton",
+   "long_desc": "A bone warden skeleton stands motionless between the niches, its empty sockets turned on you.",
+   "description": "A tall skeleton clad in the rotted remains of a sexton's cloak, with bone plates wired across its chest. It holds a rusted halberd and a shield of yellowed bone, and it clatters faintly as it turns.",
+   "kind": "undead",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "The Catacombs"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "bone-warden-shield",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "deacon-orrin-vash",
+   "keywords": "deacon orrin vash cultist priest",
+   "short_desc": "Deacon Orrin Vash",
+   "long_desc": "Deacon Orrin Vash sits at the desk in the head priest's chair, smiling thinly.",
+   "description": "The deacon wears the grey vestments of the chapel, but a heavy cult ring glints on his hand and a red thread is knotted at his wrist. His smile is polite and his eyes are cold, and a curved knife lies by his hand.",
+   "kind": "humanoid",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -650,
+   "rooms": [
+    "Head Priest's Quarters"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "deacon-ring",
+     "chance": 35
+    },
+    {
+     "item": "cult-dagger",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "high-priest-maelgrim",
+   "keywords": "maelgrim high priest pale cultist",
+   "short_desc": "Maelgrim the Pale, high priest of the cult",
+   "long_desc": "Maelgrim the Pale, high priest of the cult, stands among the dead with a smoking censer in his hand.",
+   "description": "A gaunt man in robes the colour of old bone, with skin that has never seen the sun and a closed eye tattooed in red across his brow. He swings a heavy censer on a chain, and the smoke that pours from it smells of grave earth. The bones in the niches seem to lean toward him as he speaks.",
+   "kind": "humanoid",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "The Catacombs"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "censer-mace",
+     "chance": 35
+    },
+    {
+     "item": "enforcer-hauberk",
+     "chance": 20
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "cult-dagger",
+   "keywords": "dagger black bladed cult",
+   "short_desc": "a black-bladed cult dagger",
+   "room_desc": "A black-bladed dagger lies here, its hilt wound with red cord.",
+   "description": "The blade is blackened iron, wicked and thin. A closed eye is etched into the pommel.",
+   "kind": "weapon",
+   "level": 17,
+   "weapon_type": "pierce"
+  },
+  {
+   "id": "enforcer-hauberk",
+   "keywords": "hauberk chain mail blackened",
+   "short_desc": "a blackened chain hauberk",
+   "room_desc": "A blackened chain hauberk lies in a heap here.",
+   "description": "Soot-dark links, heavy and well made, with an eye cut into the breast ring. It smells faintly of grave earth.",
+   "kind": "armor",
+   "level": 20,
+   "wear_slot": "body"
+  },
+  {
+   "id": "bone-warden-shield",
+   "keywords": "shield bone plate yellowed",
+   "short_desc": "a yellowed bone-plate shield",
+   "room_desc": "A yellowed shield of wired bone plates lies here.",
+   "description": "Plates of old bone are wired to a wooden frame, sturdier than they look. It rattles faintly when moved.",
+   "kind": "armor",
+   "level": 21,
+   "wear_slot": "shield",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "deacon-ring",
+   "keywords": "ring silver chapel tarnished",
+   "short_desc": "a tarnished silver chapel ring",
+   "room_desc": "A tarnished silver ring lies here.",
+   "description": "A heavy silver ring bearing the thorn sign of the chapel of Mishrak, with a tiny closed eye cut on the inside of the band.",
+   "kind": "armor",
+   "level": 19,
+   "wear_slot": "finger",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "censer-mace",
+   "keywords": "censer mace chain priest high",
+   "short_desc": "the high priest's censer-mace",
+   "room_desc": "A heavy censer on a chain lies here, still faintly smoking.",
+   "description": "A brass censer shaped like a skull, hung on a short chain from an iron haft. It hits like a hammer and leaves a smell of grave earth.",
+   "kind": "weapon",
+   "level": 22,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 1
+   }
+  }
+ ]
+}

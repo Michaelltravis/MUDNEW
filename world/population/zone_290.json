@@ -1,0 +1,155 @@
+{
+ "zone": 290,
+ "_about": "The Black Observatory (levels 62-66): acolytes, wisps, stalkers and astrologers answer the great lens, the constructs, sentinels and lens-keepers are elites, Curator Nyx and the Voidglass Warden sub-bosses, and the Eclipse Regent under the Eclipse Crown blots out the stars and bends gravity into wells you must leave.",
+ "creatures": {
+  "29001": {
+   "helpers": {
+    "group": "observatory",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The great lens swings round, and the Observatory's watchers come!"
+   },
+   "why": "the watchers"
+  },
+  "29004": {
+   "helpers": {
+    "group": "observatory",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The great lens swings round, and the Observatory's watchers come!"
+   },
+   "why": "the watchers"
+  },
+  "29005": {
+   "helpers": {
+    "group": "observatory",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The great lens swings round, and the Observatory's watchers come!"
+   },
+   "why": "the watchers"
+  },
+  "29006": {
+   "helpers": {
+    "group": "observatory",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The great lens swings round, and the Observatory's watchers come!"
+   },
+   "why": "the watchers"
+  },
+  "29002": {
+   "rank": "elite",
+   "why": "an elite of the Observatory",
+   "helpers": {
+    "group": "observatory",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The great lens swings round, and the Observatory's watchers come!"
+   }
+  },
+  "29003": {
+   "rank": "elite",
+   "why": "an elite of the Observatory",
+   "helpers": {
+    "group": "observatory",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The great lens swings round, and the Observatory's watchers come!"
+   }
+  },
+  "29007": {
+   "rank": "elite",
+   "why": "an elite of the Observatory",
+   "helpers": {
+    "group": "observatory",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The great lens swings round, and the Observatory's watchers come!"
+   }
+  },
+  "29010": {
+   "rank": "sub-boss",
+   "why": "a lieutenant of the Regent"
+  },
+  "29011": {
+   "rank": "sub-boss",
+   "why": "a lieutenant of the Regent"
+  },
+  "29020": {
+   "rank": "boss",
+   "flags": [
+    "boss",
+    "aggressive",
+    "sentinel",
+    "no_charm",
+    "no_sleep"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Eclipse Regent rises: \"The sky is mine to darken.\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Gravity Collapse",
+      "telegraph": "The Eclipse Regent clenches a fist, and the floor drags at you!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+16",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Starfall",
+      "telegraph": "The Eclipse Regent calls down a falling star!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+13",
+      "dodge": true
+     },
+     {
+      "name": "Total Eclipse",
+      "telegraph": "The Eclipse Regent begins to blot out every star!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+22",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "Eclipse Regent"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 29020,
+   "room": 29035,
+   "why": "the Eclipse Regent under the Eclipse Crown",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Gravity Well",
+     "school": "arcane",
+     "every": 8,
+     "radius": 2.6,
+     "last": 10,
+     "pct": 0.055,
+     "why": "gravity wells: step out"
+    },
+    {
+     "type": "gloom",
+     "max": 0.9,
+     "shout": "The stars go out one by one...",
+     "why": "the eclipse"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,140 @@
+{
+ "zone": 499,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Phaeton, master of the Academy as the boss.",
+ "creatures": {
+  "649902": {
+   "helpers": {
+    "group": "z499_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a giant maze rat"
+  },
+  "649903": {
+   "helpers": {
+    "group": "z499_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a bronze golem",
+   "rank": "elite"
+  },
+  "649904": {
+   "helpers": {
+    "group": "z499_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "the arch sophist",
+   "rank": "sub-boss"
+  },
+  "649905": {
+   "helpers": {
+    "group": "z499_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "Aporia, the failed experiment",
+   "rank": "elite"
+  },
+  "649906": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Phaeton, master of the Academy",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Phaeton, master of the Academy rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Phaeton, master of the Academy gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Phaeton, master of the Academy raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Phaeton, master of the Academy begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 649900,
+   "route": [
+    5702,
+    5703,
+    5704,
+    5705,
+    5706,
+    5718
+   ],
+   "why": "a pale scholar walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 649906,
+   "room": 5761,
+   "why": "Phaeton, master of the Academy in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      649902
+     ],
+     "shout": "Phaeton, master of the Academy calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

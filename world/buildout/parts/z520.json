@@ -1,0 +1,384 @@
+{
+ "job": "z520",
+ "rooms": {
+  "12301": "The gallery curves along the foot of the castle's outer wall, a vaulted passage with a floor of wide, worn flagstones. Ward-sigils glow faintly in the stone at head height, humming a note too low to hear and just loud enough to feel in the teeth. Arrow slits pierce the outer wall at long intervals, admitting only a thin, colourless gleam. Westward the gallery returns to the castle entrance, and it goes on east around the wall.",
+  "12354": "The vault is lower here, and the stone sweats pale beads that glow where they catch the ward-light. A rack bolted to the wall holds nothing now but a few rotted straps. Grooves are worn down the middle of the flagstones, as if a column of soldiers has marched this gallery day and night for a very long time. You can follow the curve east or west.",
+  "12355": "Faded murals of a siege cover the walls, painted by someone who loved the soldiers in them; every face has since been scratched out. Cold flows along the gallery from the east, where it bends away out of sight. A sconce hangs empty, its bracket twisted as though something strong once wrenched at it. West the passage runs back toward the entrance.",
+  "12356": "The gallery makes a sharp turn here around a buttress of dressed stone, its face scored with thousands of tally marks in neat rows of five. Ward-light pulses in the cracks with a slow, patient rhythm, like a sleeper's breath. The passage climbs a gentle ramp north, while the long run of the wall lies back west.",
+  "12357": "The passage narrows until two men could barely pass abreast, with the outer wall pressing close on one side. Someone has chalked the same word again and again at head height: Stay. The air smells of iron and of old, cold wax. The way goes on north, and south it returns to the bend.",
+  "12358": "Cracks have crept across the vault, and fine grit sifts onto your shoulders with every footstep. The ward-sigils here are blackened and dim, their hum broken into a stuttering whine. Splinters of a wooden brace lie wedged in the floor joints, rotted soft as bread. Ahead north the passage is cluttered with fallen stone, and south it leads back the way you came.",
+  "12359": "A section of the vault has come down, burying the gallery under a hill of broken blocks and splintered beams. Above the slope a ragged hole shows where a ward-stone burst, leaving a scorched ring in the ceiling that still smells of lightning. Dust trickles from the heap in the silence. Nothing remains open but the passage south.",
+  "12302": "The gallery meets the castle's gate passage in a vaulted vestibule, its ceiling grooved with the iron tracks of a portcullis rusted fast in the raised position. A massive ward-stone set in the wall glows with a steady blue light, the source of the humming that fills the whole castle. In the south wall a door is fitted so finely to the stonework that you nearly miss it. The gatehouse stands ahead to the north, and the gallery runs away east and west.",
+  "12305": "The gatehouse is a squat, thick-walled passage pierced by murder-holes in its ceiling and lined with niches where the garrison once kept watch. The great winch for the portcullis crouches against one wall, its chain hanging slack and green with verdigris. Two doors face one another across the passage, one painted a dull grey and one a chalky white, both banded with ward-sigils. The castle grounds open north, and the entrance lies south.",
+  "12306": "Beyond the gate lies a wide paved yard, roofed by a lid of pale ward-light that hangs overhead like breath on a window. A well with a rotted windlass squats in its centre, its rim ringed with boot-scuffs. Paths run north toward the keep, east to a stable, and west to a low range of servants' quarters. The gatehouse lies back south.",
+  "12345": "A broad flagged way runs toward the keep between two rows of iron posts topped with dead lanterns. The stones are worn into a shallow trench along the middle, the track of ceaseless marching. The sour smell of old hay drifts from the stable to the east, and a plain door to the west leads into the servants' quarters. The way continues north into the inner ward and south to the castle grounds.",
+  "12346": "The Inner Ward spreads out in a great paved court, hemmed in by columns of grey stone and roofed by shimmering ward-light. A row of statues stands along its edge, each a warden of the castle, each with a different name on the plinth and all with the same worn stone face. The hum of the wards is louder here, and loose paving trembles slightly underfoot. The centre ward lies north, passages lead east and west, and the pathway runs back south.",
+  "12347": "A round dais of black stone marks the centre of the ward, ringed by the brass sigils of the great warding spell. In its middle an iron grille stands open on a stair that spirals down into the dark, breathing out a cold that smells of old blood. The light overhead is brightest here, white and merciless. Ways lead off in all four directions, and the steps go down to a sacrificial altar below.",
+  "12338": "Straw archery butts stand against a wall, still bristling with arrows whose feathers have rotted away. The wards flicker above, flaring whenever a dry draught crosses the court. A stone trough, green and empty, rests beside a post worn smooth by leaning backs. The pathway to the keep runs north from here, the ward's centre lies south, and passages lead east and west.",
+  "12322": "The pathway ends at the foot of the keep, whose enormous walls rise sheer into the glowing ward-light. A great arched doorway yawns north, its oak doors long since torn from their hinges and leaned against the stone. To the east a doorway marked with a crossed-swords plaque leads to the guards' quarters, and to the west a broad arch opens on the gallows court. The inner ward lies back south.",
+  "12360": "You are in the keep's great entrance hall, a lofty chamber whose ribbed ceiling disappears in the shifting glow of the wards. Torn banners of the old garrison hang from iron rods, so faded that their colours are only rumour. Ahead north the floor rises to the foot of a spiral staircase, and lesser halls open east and west. Behind you south, the doorway gives onto the pathway.",
+  "12370": "A spiral staircase of pale stone winds up through the centre of the keep, its steps worn in the middle to shallow bowls. A rail of black iron follows the curve, polished by the palms of ten thousand climbers. Halls open in every direction from the foot of the stair, and the hum of the wards runs up the stone like a pulse in a throat. Above, the steps rise into dimness.",
+  "12365": "A long banquet table, bare of any feast, stretches across this hall, its top deeply scored by knives and fists. High-backed chairs stand around it, all pushed back as if the diners had risen at once in alarm. Dusty tapestries of the hunt hang between narrow slits that show only a white glimmer. The stair is south, with the hall running on east and west.",
+  "12364": "A cold hearth big enough to roast an ox gapes in the wall of this corner room, its stones black with the soot of countless fires. Above it hangs a boar's head, mouldered to a leathery mask. Split logs lie stacked beside it, gone grey as driftwood. Passages lead south and west.",
+  "12363": "A narrow hall of whitewashed stone runs along the base of the stair, lined with iron-bound chests whose lids have been hacked open and left empty. Scratches mark the walls at shoulder height, as of fingers dragged across the plaster. The wards hum thinly here. Halls continue north and south, and the staircase is west.",
+  "12362": "A small guard room opens at the keep's corner, with a plank table set with dice and a candle stub that burns without ever shrinking. Pegs for cloaks line the wall, and one rusted hauberk hangs from them still. A slit window shows only the white wash of the wards. The passage leads north, and west to the entrance hall.",
+  "12368": "Shelves of a once-fine library line this corner, but the books are fused into black, curled masses, as if lightning had struck within. Burn marks stripe the floor in a ring around a reading desk. The smell of scorched vellum still lingers in the air. A passage leads east, and another south.",
+  "12369": "A small chapel of the ward fills this hall, with a stone altar bearing a silver sigil in a circle of cut crystals that glitter with blue light. Kneeling benches face it, the cushions long rotted, and carved prayers for lasting watchfulness cover the walls. The stair lies east, with halls leading north and south.",
+  "12361": "Rows of soldiers' cots fill this corner, their straw ticks gone to brown dust and their blankets rotted to webs. Footprints in the dust circle the room over and over in the same worn track. A mouldering cloak hangs forgotten from a peg. Passages lead north and east.",
+  "12371": "The spiral staircase climbs on, its narrow steps turning tight around a central pillar. The outer wall is pierced by slit windows that show a flat white glow instead of any view. The hum of the wards is fainter here and the cold sharper. The stair winds up to a higher landing, or down to the keep's hall.",
+  "12376": "Higher yet the stair steepens, and the pillar at its heart is carved with a spiral of tiny runes that bleed blue light. Dust lies in an unbroken skin on every step but the edges, where boots have worn a groove. The air tastes of metal. Up lies the top of the keep, and down the winding steps.",
+  "12381": "The stair ends in a round chamber crowned by a domed vault, where the great ward-stone of the castle turns slowly, shedding blue light across a floor of cracked marble. A tablet of bronze set into the wall carries the oath of the garrison and, beneath it, a curse. Pale doorways stand to the north and east, and a door of splintered oak leads south into a ruined hall. The stair winds down.",
+  "12383": "White plaster covers every surface of this small chamber, floor and ceiling alike, without joint or crack. A cold radiance with no source fills it, so that nothing casts a shadow, not even you. The ward-hum here has narrowed to a single pure note that makes the ears ring. There is no door, no window, and no sign of how the room is meant to be left.",
+  "12384": "The walls of this white chamber are scratched with countless fine tallies, row on row, as though someone counted days here for an age. The air is still and carries a faint, dry smell of chalk. A glimmer of ward-light creeps along the ceiling and never quite arrives anywhere. Nothing about the smooth plaster offers a way out.",
+  "12382": "Once a feasting hall, this is a ruin: the roof beams have fallen, the great table has been smashed to kindling, and scorched stone shows where a fierce fire raged. Strange black glass crusts parts of the walls, fused by a heat no hearth could make. The ward-light is ragged and torn, flaring in patches. A broken door in one wall leads on west.",
+  "12385": "The ruin continues in a gallery of collapsed arches, choked with rubble and the twisted remains of iron chandeliers. A cold wind from nowhere stirs the dust into slow spirals. A mural of an angel with broken wings has been half-effaced on the wall, and what remains weeps long streaks of soot. A door in the hall leads north.",
+  "12386": "The last of the destroyed hall is a narrow antechamber, its floor cracked and inlaid with a ring of silver that has melted in places. Feathers of pale light drift down from a hole in the ceiling and fade before they touch the stone. The air hums with sorrow rather than threat. A strong iron door bound with ward-chains leads north.",
+  "12387": {
+   "description": "A small round chamber, its walls studded with silver chains set deep in the stone and its floor etched with a cage of ward-sigils. Black feathers each as long as a forearm lie scattered about, and they do not stir in any draught. The silence is complete; even the hum of the castle's wards seems held at bay. The iron door has sealed behind you, and nothing here suggests a way out.",
+   "look": "dungeon"
+  },
+  "12321": "A long barracks hall opens here, with rows of bunks built in tiers against the walls and a table scarred by dagger-play. The bunks are neatly made, the blankets stiff and grey, as if the sleepers might be called at any hour. A rack of spears runs along one wall, all of them pitted with rust. The hall goes on east, an archway opens south to the ward, and a door leads west to the keep's pathway.",
+  "12320": "The barracks room is dominated by a long table where the garrison's rolls were kept, a black ledger still open upon it and the ink dried to brown dust. Names fill the pages, each with a notch cut beside it for every death that did not take. Wards glow along the beams. East the barracks goes on, south a doorway leads to a workshop, and west is the long hall.",
+  "12319": "A cramped corner of the barracks holds the captain's cot behind a hanging curtain, with a locker beside it. A cracked mirror and a dented dress helm catch the pale light on a shelf. The beam above the cot bears a hundred nicks, one for every year of the curse. A doorway south leads to the workshop, and the barracks lies west.",
+  "12318": "A long workbench runs under hanging tools, hammers, tongs and files, all bright with oil that never dries. A forge sits cold in the corner, its bellows slack and cracked, with sparks of blue ward-light flickering where the coals should be. Racks of half-finished helms line one wall. A doorway north leads to the barracks, the workshop goes on south, and a passage opens west.",
+  "12317": "Grindstones and whetting wheels crowd this part of the workshop, their rims worn thin, and a trough of black water stands beside them. Blades in every stage of repair lie on the benches, edges blunt, as if the smith was called away mid-stroke. A great vice is bolted to a post. Aisles lead north and south, and open west.",
+  "12316": "Harness-makers' tools litter this end of the workshop: awls, stitching clamps and a barrel of rotted rivets. Saddle-trees hang from the ceiling like the ribs of beasts. A smell of leather and horse sweat comes up from the stable. The workshop goes north, a doorway south opens into the stable, and the benches continue west.",
+  "12315": "Wide stalls line this part of the stable, divided by planks chewed and kicked ragged. Straw lies in each, bleached grey and never changed. A mounting block stands by the door with an iron ring set in the wall above it. Doors lead north into the workshop, west along the stalls, and south to a farther corner.",
+  "12314": "The end of the stable is a dead-end corner of stalls, with a hayloft ladder lashed to the beam. Spilled oats have sprouted a pale fur of mould. A water trough, dry and cracked, rests against a post. The stable goes north from here, or west along the row.",
+  "12313": "A farrier's corner of the stable: a tilted anvil, a sack of nails, a hoof-rasp hung on a peg. Horseshoes nailed over the door have turned black. The floor is trodden to a hard, polished earth. Passages lead north, east to the stalls' end, and west toward the castle grounds.",
+  "12343": "The stable's central aisle is a broad avenue of packed earth where the stalls meet the workshop. A lantern hangs from a hook without a flame, yet it gives off a steady cold light. Chaff drifts in the air and never settles. Ways lead north to the workshop, east and south among the stalls, and west toward the ward.",
+  "12342": "The workshop opens here onto the Inner Ward through a wide archway where wagons once rolled in. Heavy chains and pulleys hang from a beam for hoisting, and ruts are worn deep in the floor. The ward-light slants in across the threshold. The workshop runs north and east, the stable lies south, and west the arch opens on the ward.",
+  "12341": "A carpenter's corner: shavings piled in drifts, a half-built siege ladder, saw-horses, and a rack of chisels. The smell of sawdust and linseed oil is strong, as if the work had been done only this morning. The wards dim near the benches. Aisles lead north, east and south, and an opening west gives onto the ward.",
+  "12340": "Racks of lances and polearms stand in this corner of the workshop awaiting new heads, with a stack of hafts beside them gone grey and brittle. A fine layer of metal filings coats the floor and crunches faintly underfoot. A rope pull dangles from a bell that has no clapper. A doorway north leads to the barracks, and aisles run east and south, with an opening west to the ward.",
+  "12339": "This part of the Inner Ward is lined with kennels of stone, long empty, and a drill post pocked by countless sword cuts. The paving is cracked and scorched where something once fell from the keep. A thin line of blue light runs along the wall and loses itself in the dark. A doorway north leads to the barracks, the workshop lies east, and the ward continues south and west.",
+  "12348": "A long stone trough stands against the wall here, and a pole for hanging signal flags rises beside it, its pulley stuck fast. The flags themselves hang in grey tatters that never stir. Scuffed circles in the paving show where men once drilled in ranks. The ward goes on north and south, the centre ward lies west, and a doorway east leads into the workshop.",
+  "12349": "Two cartwheels lie sunk in a gouge of the paving, as if a wagon once collapsed here and was dragged away. A bell hangs in a stone frame, cracked clean through and silent. The air is dry and tastes of rust. The ward runs north and west, a doorway east opens into the workshop, and the stable lies south.",
+  "12344": "A stable yard of rough cobbles, with the hitching posts still standing in a row and the water pump seized solid. Horse brasses hang from a nail, black with tarnish. The smell of straw is old and sour. A passage leads north to the ward, east among the stalls, south to a further stable, and west to the pathway.",
+  "12310": "The stable's front bay is a high-roofed barn where carts once stood, with great doors that hang half open and will not close. Drifts of dust and chaff lie against the walls. A weathervane tinkles faintly somewhere overhead, in a place where no wind blows. The bay leads north to the yard and east deeper into the stalls, and west the doors open on the castle grounds.",
+  "12323": "A massive timber beam spans the vault, and from it hang three nooses of weathered rope that turn slowly in no wind. Beneath it stands a platform of warped black planks with a trapdoor, its hinge-pins rusted. Ward-sigils are scratched into the beam, deep, as if a prisoner had tried to mark his own end. The gallows court goes on west, the pathway lies east, and a passage leads south to the ward.",
+  "12337": "A stretch of the ward is cobbled here in round river-stones, slick and dark though nothing drips. The smell of tallow and boiled cabbage drifts from the kitchen door to the west, thick enough to taste. Overhead the ward-light flickers and steadies, flickers and steadies, like a lamp in a draught. The gallows court lies north, the ward goes on east and south, and the kitchen opens west.",
+  "12336": "A rain-barrel stands against a post, its staves split and dry, and a washing-line hangs across the court strung with grey shirts as stiff as boards. The paving is stained in a wide, pale ring where something was scrubbed again and again. Faint clinking of pots seems to come from the kitchen door to the west. The centre ward lies east, the ward runs north and south.",
+  "12335": "A chopping block gashed by a thousand cleaver strokes sits beside a stack of firewood, split and neatly piled and long gone to punk. A rusted pair of iron tongs hangs from a hook on the kitchen wall. The wards hum a little lower here, comfortable as a hearth. The ward goes north and east, the kitchen opens west, and a doorway south leads to the servants' quarters.",
+  "12334": "A long passage between narrow rooms serves as the servants' hall, its walls hung with pegs and little shelves, each marked with a faded tag in a careful hand. A bench runs the length of it, worn by the sitting of tired people. The sound of far-off scrubbing seems to follow you. Doors lead north to the ward, east to the pathway, and south and west along the quarters.",
+  "12309": "Narrow bunks fill this servants' room in three tiers, the straw spilled from the mattresses and trampled flat. A shrine to a household saint, a clay figure with a chipped nose, sits in a niche, a dry wick before it. Mouse-gnawed aprons hang from the door. The room opens north onto the quarters' passage, east to the castle grounds, and west to more bunks.",
+  "12311": "A damp, low room where the servants kept their trunks, their lids propped open on tangles of mouldering rags. A smell of earth and fungus drifts in from the west, rich and wet and out of place in a stone house. A candle-stub burns on a ledge, a flame the colour of milk. Passages lead north and east, and an opening west drops toward the farm.",
+  "12332": "A crowded, comfortless dormitory where the cooks and scullions slept, with cots stacked to the ceiling and a washstand cracked clean through. Pale threads of mould have crept over the cots and ripened into small white caps. A narrow door north leads to the kitchen, and the quarters go on east and south, with a damp passage opening west.",
+  "12333": "The kitchen's long scrubbed table runs the length of the room, its top gouged where meat was chopped, a heavy cleaver left stuck upright in the wood. Copper pans hang from a rack, green and dull, and a cauldron of congealed grey porridge sits on the cold hearth. The kitchen goes north and west, a doorway east opens to the ward, and a door south leads to the quarters.",
+  "12331": "A great bread oven fills the wall of this part of the kitchen, its iron door hanging open on a cavity of cold black ash. Flour sacks sag against the wall, split and spilled in a pale spreading drift. The smell of ancient yeast is dizzying. The kitchen runs north, south and west, and a doorway east leads out to the ward.",
+  "12330": "Roasting spits and a huge open hearth dominate the corner of the kitchen, with a spit rod still fixed across the andirons. Ladles and skimmers dangle from hooks above a stone sink, rimed with salt. A grating in the floor breathes the cool smell of the cellar. Passages lead north to the gallows court, south and west within the kitchen, and east to the ward.",
+  "12324": "A raised dais of grey stone stands against the wall of this hall, with a lectern for the reading of sentences and a bench for the condemned. Ropes coil on iron pegs, hung in neat loops. A smell of damp hemp and cold iron is all about. The hall runs east to the gibbet and west to the stocks, and a door south leads into the kitchen.",
+  "12325": "Wooden stocks and a whipping post stand in this corner, their wood polished by those who were fastened in them. A cage of rusted bars, hung from a chain, dangles with its door ajar. The scratches on the floor beneath it make a pattern like frantic handwriting. The hall opens east, and a narrow door south leads into the kitchen.",
+  "12326": "Hams hang in a row from the beams, shrivelled to leather and strung with dusty webs. Barrels of salt pork and pickling brine stand with their lids split, and shelves hold stoppered jars of unknown dark stuff. A door in the north wall leads to the gallows hall, the kitchen opens east and south.",
+  "12327": "Stone shelves hold row upon row of earthenware crocks, glazed in blue and cracked, their contents turned to varnish. A mortar the size of a bucket stands on a block with its pestle laid across it. The wards hum thinly in the corners. The kitchen runs north, east and south from here.",
+  "12328": "A scullery of low sinks and drainboards, the stone worn into smooth hollows, and a hand-pump whose handle has rusted off. Pale roots have crept in at the corner of the floor, thin as hair, and a damp cool breath rises from below. Mushrooms have started in the cracks. The kitchen goes north and east, and a stair of worn steps leads south toward the farm.",
+  "12329": {
+   "description": "The farm is a low rough chamber cut into raw rock, its floor heaped with beds of black compost where pale mushrooms grow in crowded rows. Water seeps down the walls and gathers in channels worn by many hands. The air is thick with spores and a rich, sweet smell of rot, and the ward-hum is muffled by the stone. A stair leads north to the kitchen, an opening east gives onto the servants' quarters, and the cavern runs on south.",
+   "look": "cave"
+  },
+  "12312": {
+   "description": "The farm's far end is a damp cavern with a ceiling too low to stand under, dripping steadily into pools ringed with fungus. Giant mushrooms as tall as a man stand in the dark, their caps glowing a faint, sickly green. Rough ladders and baskets rot where they were left. The cave goes north, and an opening east leads up toward the servants' rooms.",
+   "look": "cave"
+  },
+  "12388": {
+   "description": "A low chamber of fitted black stone lies below the ward, its floor channelled and stained dark. At its heart stands the sacrificial altar, a slab of grey granite with iron rings set at its corners. Stale candles ring the room in clots of old wax, and the walls are scored with tally marks and prayers for mercy. The ward-hum here is a hollow groan, and the only way out is the stair up to the centre ward.",
+   "look": "crypt"
+  },
+  "12308": "The walls of this grey chamber are lined with slate, cold and damp, and a cold mist seems to hang just above the floor. The ward-sigils here are carved deep and filled with lead, and they make a slow, grinding hum. No door shows on any wall, only seamless slate. The silence presses on your ears like deep water.",
+  "12307": "A chamber of chalk-white stone, bare except for a single circle of runes cut in the floor and glowing with a steady light. The air is warm and smells faintly of lilies. The door by which you came has sealed so completely that it might never have been. The hum of the wards here is gentle, almost kind, and it makes you want to sit down.",
+  "12304": "A hidden room tucked behind the gate wall, little bigger than a closet, with a cot, a table and shelves of rolled maps. A ward-sigil on the door glows green for friends and red for foes. Rations in a tin box have turned to dust, and a message is scratched into the wall above the cot. The door north leads out to the castle entrance.",
+  "12303": "The gallery runs out from the entrance toward the sealed side of the castle, its flagstones darker and colder than elsewhere. Sconces here hold the stubs of candles that have never been lit, and a thin film of dust lies unbroken. A faint scrabbling sounds from the wall, as of nails on stone. East lies the entrance, and the gallery goes on west.",
+  "12350": "Here the gallery's outer wall is lined with arrow-slits cut at angles for archers, and a row of oil-stained niches holds iron braziers gone cold. Beneath each slit the floor is polished by the pacing of watchers. The ward-sigils glow a sullen red rather than blue. The gallery continues east toward the entrance and west around the wall.",
+  "12351": "A pair of massive buttresses squeeze the gallery here, leaving only a narrow gap between them where the stone is bright with scraping, as of plate armour pushing through. A smell of oil and old blood hangs about the place. The ward-hum has deepened to a growl. The way runs east toward the entrance and west around a bend.",
+  "12352": "The gallery bends here in a tight curve and then stops, closed by a wall of mortared stone newer than the rest. Chisel marks scar it where someone tried to dig through from the other side. The ward-sigils flare angrily and the hum turns to a whine. There is nothing here but the way back east."
+ },
+ "extras": {
+  "12302": [
+   {
+    "keywords": "ward-stone stone ward",
+    "description": "The ward-stone is a block of blue-veined rock as tall as a man, set deep in the wall and warm to the touch. Its glow dims for a heartbeat whenever something in the castle tries to die, and then it burns brighter."
+   }
+  ],
+  "12347": [
+   {
+    "keywords": "dais sigils brass",
+    "description": "The brass sigils are set in the stone in nine concentric rings, each ring a different script. The innermost ring is blackened and cracked, as though the spell it held has been bent to a darker purpose."
+   }
+  ],
+  "12306": [
+   {
+    "keywords": "well windlass",
+    "description": "The well is stopped with a round slab of stone, and scratches around the slab suggest it was shut from within. Faint knocking sometimes comes up through the rock."
+   }
+  ],
+  "12381": [
+   {
+    "keywords": "tablet bronze oath curse",
+    "description": "The oath is cut in a soldier's blunt letters: to hold the castle until relieved, living or dead. The curse beneath it is in finer script, and its last line reads that relief shall never come."
+   }
+  ],
+  "12382": [
+   {
+    "keywords": "glass black walls",
+    "description": "The black glass is smooth and cold, and in its depths you see a glimmer of white wings. It may be a trick of the ward-light."
+   }
+  ],
+  "12387": [
+   {
+    "keywords": "chains silver feathers",
+    "description": "The silver chains are fixed with bolts the width of a wrist. The feathers beneath them are warm to the touch and smell faintly of rain."
+   }
+  ],
+  "12323": [
+   {
+    "keywords": "beam nooses gallows",
+    "description": "The nooses are knotted with the care of an expert and never frayed. When one swings in your direction the rope seems to tighten expectantly."
+   }
+  ],
+  "12388": [
+   {
+    "keywords": "altar granite rings",
+    "description": "The granite is smoothed by years of use, and the iron rings are polished bright by straining wrists. In the dark channel beneath, a fresh drip of red gleams, though no one has come here for years."
+   }
+  ],
+  "12329": [
+   {
+    "keywords": "mushrooms beds compost",
+    "description": "The mushrooms are fat and pale, with gills that glimmer green at the edges. Some of the beds are packed with something that was once a man, and the caps have grown through the cloth."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "cursed-soldier",
+   "keywords": "soldier cursed garrison undying",
+   "short_desc": "a cursed soldier of the garrison",
+   "long_desc": "A cursed soldier of the garrison trudges his rounds, his grey face blank and his sword already drawn.",
+   "description": "The soldier's tabard bears the faded badge of the castle, and the flesh under his helm has the colour of candle wax. Wounds that should have killed him gape unbleeding, and he fights on without a word.",
+   "kind": "undead",
+   "level": 27,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Around the Warded Castle",
+    "Inside the Gatehouse",
+    "On the Castle Grounds",
+    "The Inner Ward",
+    "The Stable",
+    "The Workshop"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "garrison-blade",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "cursed-cook",
+   "keywords": "cook cursed kitchen servant",
+   "short_desc": "a cursed cook",
+   "long_desc": "A cursed cook shuffles between the pots, stirring a cauldron that has been cold for years.",
+   "description": "The cook is a stout figure in a stained apron, his eyes milk-white and his hands blackened to the wrist. He turns a heavy cleaver idly and grins without humour.",
+   "kind": "undead",
+   "level": 24,
+   "aggressive": true,
+   "alignment": -200,
+   "rooms": [
+    "The Kitchen",
+    "Servants Quarters"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "garrison-blade",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "mould-ogre",
+   "keywords": "ogre mould fungus hulking",
+   "short_desc": "a mould-ridden ogre",
+   "long_desc": "A mould-ridden ogre lumbers between the beds, pale caps sprouting from its shoulders.",
+   "description": "Thick white fungus crawls over the ogre's hide, and spores puff from its mouth with every breath. It tends the beds in a slow stupor, but it sets upon any intruder with huge, clumsy fists.",
+   "kind": "monster",
+   "level": 26,
+   "aggressive": true,
+   "alignment": -100,
+   "rooms": [
+    "The Mushroom Farm",
+    "The Kitchen"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "garrison-blade",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "undying-headsman",
+   "keywords": "headsman executioner undying hooded",
+   "short_desc": "an undying headsman",
+   "long_desc": "An undying headsman stands beside the trapdoor, leaning on a long two-handed axe.",
+   "description": "A tall, broad figure in a black leather hood, with only two eyes burning pale behind the slits. The axe has been sharpened so often its edge is a hair's thickness, and he has not forgotten how to swing it.",
+   "kind": "undead",
+   "level": 31,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Gallows"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "headsmans-axe",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "ward-knight",
+   "keywords": "knight ward warded armoured revenant",
+   "short_desc": "a ward-bound knight",
+   "long_desc": "A ward-bound knight paces the hall in full plate, blue light seeping from every seam of his armour.",
+   "description": "Runes burn along the knight's breastplate and the edges of his tower shield. Inside the helm there is only a cold, bright glow, and the armour moves with the stiffness of a statue pushed by a will not its own.",
+   "kind": "undead",
+   "level": 32,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Inside the Warded Keep",
+    "On the Spiral Staircase",
+    "Pathway To The Keep"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "ward-knight-shield",
+     "chance": 25
+    },
+    {
+     "item": "garrison-blade",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "captain-hollis",
+   "keywords": "captain hollis unburied guard",
+   "short_desc": "Captain Hollis, the Unburied Captain",
+   "long_desc": "Captain Hollis, the Unburied Captain, stands at his table, calling the roll of a garrison that cannot die.",
+   "description": "The captain's armour is polished and his moustache neatly waxed, but the face below it is the grey of tallow and his chest is crossed by a dozen old wounds. His voice is calm, courteous and quite without mercy.",
+   "kind": "undead",
+   "level": 33,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "The Guards Quarters"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "captains-cuirass",
+     "chance": 35
+    },
+    {
+     "item": "garrison-blade",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "cursed-warden",
+   "keywords": "warden cursed lord hadrec",
+   "short_desc": "Hadrec Vael, the cursed Warden",
+   "long_desc": "Hadrec Vael, the cursed Warden, stands beneath the ward-stone with both hands on the hilt of his sword.",
+   "description": "The Warden is a tall man in black plate, crowned with an iron circlet fused to his brow. His eyes blaze with the blue of the ward-stone, and wherever his boots fall the floor cracks. He is the one who made the curse, and the one it will not let rest.",
+   "kind": "undead",
+   "level": 34,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "The Top of the Keep"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "wardens-signet",
+     "chance": 35
+    },
+    {
+     "item": "captains-cuirass",
+     "chance": 15
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "garrison-blade",
+   "keywords": "sword garrison blade pitted",
+   "short_desc": "a pitted garrison sword",
+   "room_desc": "A pitted garrison sword lies here.",
+   "description": "A soldier's straight sword, its edge notched and its fuller etched with a small warding rune. The grip is wound with cord worn smooth by many hands.",
+   "kind": "weapon",
+   "level": 26,
+   "weapon_type": "slash"
+  },
+  {
+   "id": "headsmans-axe",
+   "keywords": "axe headsman executioner",
+   "short_desc": "a headsman's axe",
+   "room_desc": "A long-hafted headsman's axe lies here.",
+   "description": "A heavy axe with a broad, crescent blade, honed to a hair's edge. The haft is dark with the sweat of one long career.",
+   "kind": "weapon",
+   "level": 31,
+   "weapon_type": "slash",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "ward-knight-shield",
+   "keywords": "shield tower ward knight runed",
+   "short_desc": "a runed tower shield",
+   "room_desc": "A runed tower shield lies here, faintly aglow.",
+   "description": "A tall shield of dark steel, its face etched with spiralling runes that glow blue when struck. It is heavy but wonderfully balanced.",
+   "kind": "armor",
+   "level": 32,
+   "wear_slot": "shield",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "captains-cuirass",
+   "keywords": "cuirass captain breastplate plate",
+   "short_desc": "the captain's polished cuirass",
+   "room_desc": "A polished steel cuirass lies here.",
+   "description": "A fine steel breastplate, still bright, with a castle badge embossed over the heart. A dozen small dents and one long scar mark where it has turned aside the blows of years.",
+   "kind": "armor",
+   "level": 33,
+   "wear_slot": "body",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "wardens-signet",
+   "keywords": "signet ring warden iron blue",
+   "short_desc": "the Warden's iron signet",
+   "room_desc": "A heavy iron signet ring glints blue on the floor.",
+   "description": "A broad iron ring with a sapphire-coloured stone set in the bezel. Looking into the stone, you see a tiny, tireless figure walking the walls of a castle.",
+   "kind": "armor",
+   "level": 34,
+   "wear_slot": "finger",
+   "bonus": {
+    "damroll": 2
+   }
+  }
+ ]
+}

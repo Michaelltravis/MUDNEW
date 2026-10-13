@@ -1,0 +1,383 @@
+{
+ "job": "z453",
+ "rooms": {
+  "49400": {
+   "description": "Black shingle crunches under your boots at the landing, where the island climbs steeply out of the grey water. Steam rises from cracks between the stones, and the sea nearby is warm and cloudy with minerals. Above, a ragged slope of cinder climbs toward a smoking rim. The path leads north up the slope, while east lies the grinding pack ice you came across.",
+   "look": "volcanic"
+  },
+  "49401": {
+   "description": "A rough path, scratched into the black slope by the feet of those who came before, climbs the island's flank. Loose cinders skid underfoot, and thin smoke seeps from the stones on either side. The stink of sulphur grows stronger with each step. The path rises north toward the rim and drops south to the landing.",
+   "look": "volcanic"
+  },
+  "49402": {
+   "description": "You reach the lip of the crater, a ridge of cracked black rock hot enough to feel through your soles. Beyond it the land falls away into smoke. Wind whips grit against your face, and the sky is a smear of yellow haze. The rim runs north and east, and the path goes down south to the landing.",
+   "look": "volcanic"
+  },
+  "49457": {
+   "description": "The rim here is a narrow spine of fused stone no wider than a cart, with a long drop on either side. Ropes of glassy black rock lie frozen where the molten flow once cooled. A hot breath rises from the crater, tasting of struck matches. The rim goes on north and south.",
+   "look": "volcanic"
+  },
+  "49403": {
+   "description": "Yellow crystals of sulphur crust the cracks along the rim, glittering like spilled salt. The stone is brittle and rings hollowly when you tread on it. A low hiss comes from a vent beside the path, and the steam from it stings the eyes. The rim runs north and south.",
+   "look": "volcanic"
+  },
+  "49404": {
+   "description": "The rim widens into a flat of cracked slabs, tilted like the plates of a smashed pavement. Between them grow tough, pale lichens, the only life for a long way. Heat shimmers off the stones, and a veil of grey smoke drifts across the path. North and south the rim winds on.",
+   "look": "volcanic"
+  },
+  "49405": {
+   "description": "The rim turns a sharp corner here, with a broken wall of black rock rising to shelter the path from the wind. In its lee the air is still and thick with fumes that catch in your throat. Ash lies in drifts, scuffed with the prints of small clawed feet. The rim turns east, and goes back south.",
+   "look": "volcanic"
+  },
+  "49406": {
+   "description": "A rubble slope falls away south from the rim here to the crater floor, a mass of loose clinker that slides with every step. The crater beyond is a wide bowl of black stone veined with red. Smoke rolls up from its depths and hangs in the air. The rim continues east and west.",
+   "look": "volcanic"
+  },
+  "49407": {
+   "description": "The rim stands high above the crater here, and from the edge you can see across the whole bowl, scarred with cracks that glow a dull orange. The heat on your face is like an open oven door. A smell of burnt metal and rotten eggs is thick on the air. The rim goes east and west, and a steep scree slope runs south to the floor.",
+   "look": "volcanic"
+  },
+  "49454": {
+   "description": "A scatter of black boulders litters the rim here, each as big as a cart, flung out in some old eruption. Their sides are pitted like sponge and still faintly warm. Between them a trail of small, clawed tracks wanders off. The rim goes east and west, and a slope drops south to the crater floor.",
+   "look": "volcanic"
+  },
+  "49408": {
+   "description": "The rim bends here and begins to run along the far side of the crater. The rock underfoot is rust-red and crumbles into grit. A steam vent whistles somewhere nearby on a thin, wavering note. The way leads south along the rim, and back west.",
+   "look": "volcanic"
+  },
+  "49409": {
+   "description": "A stretch of rim as narrow as a wall-walk, with the crater on one side and a plunge to the sea on the other. Grey smoke wraps round you and blots out the view. The stone sweats beads of yellow moisture that stain your gloves. You can follow the rim north or south.",
+   "look": "volcanic"
+  },
+  "49410": {
+   "description": "Fresh rockfalls have scoured the rim here, leaving a mess of jagged slabs with hollows between them. Each hollow holds a puddle of green, bitter-smelling water that steams slowly. The rock is brittle and sharp, and it rasps at your boots. Northward and southward the broken rim goes on.",
+   "look": "volcanic"
+  },
+  "49456": {
+   "description": "A gap in the haze opens here, giving a brief view of the island dropping away to the sea, grey and steaming. Near your feet the rim is split by a crack so deep that it glows. Warm wind pours up out of it, carrying the sting of sulphur. From here the rim leads north and south.",
+   "look": "volcanic"
+  },
+  "49411": {
+   "description": "The rim curves toward a cluster of stunted, twisted bushes, the only plants that grow on the crest. Their leaves are stained yellow and curled with the fumes. Strings of small bones hang from the branches, clicking in the wind. The rim goes north, and bends west toward a high place.",
+   "look": "volcanic"
+  },
+  "49455": {
+   "description": "Little clay bowls of ash and bone chips sit on flat stones along the rim, set there as offerings. A pair of crossed bones is painted in red on a boulder, the paint still tacky. The ground is scuffed by many small feet and a dragged tail. The rim goes east and west.",
+   "look": "volcanic"
+  },
+  "49412": {
+   "description": "The rim rises here to a knuckle of black rock, with a steep, hacked stair leading south to a high perch over the crater. Bright feathers and strings of teeth dangle from posts along the stair. The smell of burnt herbs mixes with the sulphur on the air. The rim runs east and west.",
+   "look": "volcanic"
+  },
+  "49413": {
+   "description": "A ledge of black rock juts out over the crater, hung with skulls and scraps of bright metal and ringed by a rail of sharp stakes. The whole crater lies beneath, its lake and its glowing cracks spread out like a map. A fire of strange green flame smoulders in a clay bowl. The only way back is north to the rim.",
+   "look": "volcanic"
+  },
+  "49414": {
+   "description": "The rim here is crossed by an old landslide, a fan of rubble that you pick your way over. The stones are warm and shift with a chink. Beyond the slide the way is smoother and the haze thinner. The rim continues east and west past the slide.",
+   "look": "volcanic"
+  },
+  "49417": {
+   "description": "You step off the rubble onto the crater floor, a plain of black stone cracked into plates like a dried riverbed. Orange light glows in the cracks, and heat shimmers up through them. The air stinks of sulphur and scalded earth. The rim lies north, and the floor spreads south and west.",
+   "look": "volcanic"
+  },
+  "49450": {
+   "description": "A pool of bubbling yellow mud lies steaming beside the way, popping and blowing slow blisters. The ground near it is crusted with pale salts that crunch underfoot. Every few moments a gout of steam spits from a crack and hisses away. The floor runs north, south and west.",
+   "look": "volcanic"
+  },
+  "49453": {
+   "description": "The floor ends here against a wall of smooth, glassy rock, streaked black and green where an old flow stopped. Its face is hot to the touch. A rust-coloured stain runs down it from a crack above. The way leads back north, and west along the foot of the wall.",
+   "look": "volcanic"
+  },
+  "49452": {
+   "description": "A field of ropy, twisted rock stretches around you, each coil frozen where it cooled, glittering like black glass. Thin vents puff pale steam among them in little fountains. Small shells and bits of bone lie in the cracks, bleached white. The floor goes north, east and west.",
+   "look": "volcanic"
+  },
+  "49449": {
+   "description": "A round hole yawns in the floor here, its lip smooth and glassy, the mouth of a long tube that bores down into the rock. Warm air wells up out of it, smelling of hot stone and something older. Scratches mark the edge where claws have worn it. The floor runs off in all four directions, and the hole leads down.",
+   "look": "volcanic"
+  },
+  "49416": {
+   "description": "The floor slopes up toward the rim here in a ramp of black rubble. Heat pours down over the edge, and the haze makes the sun a dim coin. Stained boulders from the old eruptions lie scattered about. The rim stands north, with the floor extending east, south and west.",
+   "look": "volcanic"
+  },
+  "49415": {
+   "description": "A wide crack runs across the floor, lit from beneath by a dull red glow, and a steady hiss comes from it. The stone near its edge is too hot for bare skin. A scorched smell hangs over everything. The rim lies north, and the floor goes on east and south.",
+   "look": "volcanic"
+  },
+  "49418": {
+   "description": "Flows of old, cold lava lie here in heaped, twisted ridges, their surfaces dull and pitted. The air is still and heavy, and every breath tastes of metal. Specks of green stone glint in the cracks. The floor goes on north, east and south.",
+   "look": "volcanic"
+  },
+  "49451": {
+   "description": "The crater's far wall rises here as a ring of crumbling cliffs, banded in yellow and red and grey. Fumaroles pepper the rock face and puff their white clouds up into the dim light. Loose scree lies at the foot, warm and noisy. The floor leads north and east.",
+   "look": "volcanic"
+  },
+  "49419": {
+   "description": "You stand in the throat of a lava tube, a round tunnel of glassy black rock that runs off ahead into darkness. The walls are smooth and ribbed like the inside of a gullet, and warm to the touch. The air is close and smells of hot stone. The tube goes north into the dark.",
+   "look": "cave"
+  },
+  "49420": {
+   "description": "The tube bends here, its roof sagging in long drips of frozen black rock like candle wax. The floor is smooth but gritty with fine cinder. A faint rhythmic ticking of cooling stone comes from the walls. The tube leads south and west.",
+   "look": "cave"
+  },
+  "49421": {
+   "description": "A junction in the tubes, where three bores meet under a low dome. The walls are scratched with deep claw marks and smeared with a dried, sticky film. A warm, musty smell like a reptile pen drifts from the north, thick and sour. Tubes lead east and south, and the way north opens onto a hatchery.",
+   "look": "cave"
+  },
+  "49422": {
+   "description": "A broad dome in the rock, floored with heaped sand and warm ash, where a score of leathery eggs lie in shallow scrapes. The heat is strong and sticky, and the walls sweat. Shell fragments crunch underfoot, and the hot reek of the place clogs your throat. The way out is the tube south.",
+   "look": "cave"
+  },
+  "49423": {
+   "description": "The tube steepens, and its floor becomes a ramp of ridged stone. Veins of orange mineral run through the walls and give barely enough light to see by. Water drips from the roof and hisses where it falls on hot rock. The tube goes north, and drops down into the dark.",
+   "look": "cave"
+  },
+  "49424": {
+   "description": "A wide chamber where several tubes have run together, its floor strewn with cooled blobs of black glass. Drip-formed spikes hang from the ceiling, sharp as spears. The air is warm and silent apart from a distant hissing. Tubes lead south and west.",
+   "look": "cave"
+  },
+  "49427": {
+   "description": "The tube plunges steeply here, the floor ridged and glassy and awkward to stand on. Heat rises from below, and the air thickens until each breath hurts. The scratches of claws show on the walls at head height. The tube leads back north and drops further down.",
+   "look": "cave"
+  },
+  "49428": {
+   "description": "A forking in the tube, where the walls are smooth and black as polished jet. Crusts of yellow sulphur gather on the roof, and drips fall from them with soft ticks. A damp breeze flows from the east, smelling of stagnant water. Passages lead east and west.",
+   "look": "cave"
+  },
+  "49429": {
+   "description": "The tube widens and the floor turns damp and slimy underfoot. A greenish glow ahead shows the way east, and the air carries a stench like a bog. Pale growths cling to the walls, soft as sponge. The tube leads east toward the glow and west back the way you came.",
+   "look": "cave"
+  },
+  "49432": {
+   "description": "A great cavern holds a lake of foul water, green-black and scummed, steaming and giving off a gagging stink. A narrow shelf of slimy rock runs around its edge. Bubbles rise and burst from deep within. A steep stair of rock climbs north toward a high perch, and a black crack in the floor leads down into the dark.",
+   "look": "cave"
+  },
+  "49430": {
+   "description": "The tube ends in a blunt, round wall where a crack opens in the floor. Sooty marks show where torches once burned. The rock is cooler here and beaded with damp. Back east is the main tube, and the crack leads down.",
+   "look": "cave"
+  },
+  "49431": {
+   "description": "A small round chamber, barely high enough to stand in, with a floor of fine black sand. The walls are covered in crude pictures scratched with a claw, showing long-snouted figures around a fire. Old gnawed bones lie piled in a corner. A crack leads up to the tube.",
+   "look": "cave"
+  },
+  "49425": {
+   "description": "A tube of black glass so smooth it mirrors the glimmer of your light. The floor is warm and strewn with scraps of eggshell, pale and brittle. A deep thrumming, felt more than heard, comes through the rock. The tube leads east, and the way south opens onto a hatchery.",
+   "look": "cave"
+  },
+  "49426": {
+   "description": "The second hatching ground is a low, hot cavern floored with fine grey sand sifted deep into nests. Eggs lie in heaps there, some cracked and leaking, and the air steams with the reek of reptile. Claw-marks line the walls from floor to roof. The only exit is the tube north.",
+   "look": "cave"
+  }
+ },
+ "extras": {},
+ "creatures": [
+  {
+   "id": "kobold-sentry",
+   "keywords": "kobold sentry scout",
+   "short_desc": "a kobold sentry",
+   "long_desc": "A kobold sentry in a patched hide vest squints along the rim, spear in hand.",
+   "description": "A scaly, dog-faced creature no taller than a child, with yellow eyes and a mouth full of small sharp teeth. It wears bones in its ears, and chatters shrilly at any intruder.",
+   "kind": "humanoid",
+   "level": 9,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "On the Rim",
+    "On the Rough Path"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "kobold-hide-buckler",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "cinder-crab",
+   "keywords": "cinder crab black",
+   "short_desc": "a black cinder crab",
+   "long_desc": "A black cinder crab scuttles across the cracked floor, claws clicking.",
+   "description": "A crab the size of a shield, its shell crusted with black grit and warm to the eye. It lives in the steam vents, and pinches hard with claws like blacksmith's tongs.",
+   "kind": "animal",
+   "level": 8,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "On the Crater Floor"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "cinder-crab-bracers",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "lizard-hatchling",
+   "keywords": "lizard hatchling young",
+   "short_desc": "a lizard hatchling",
+   "long_desc": "A lizard hatchling hisses from a scrape in the warm sand, snapping at the air.",
+   "description": "A leathery young reptile as big as a hound, all teeth and appetite. Its skin is mottled brown and orange, and it hisses and lunges at anything that comes near the nests.",
+   "kind": "animal",
+   "level": 10,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Hatchery",
+    "In the Tube"
+   ],
+   "count": 3,
+   "drops": []
+  },
+  {
+   "id": "ember-salamander",
+   "keywords": "salamander ember fire",
+   "short_desc": "an ember salamander",
+   "long_desc": "An ember salamander clings to the tube wall, its flanks glowing red.",
+   "description": "A long, wet-skinned salamander with a back that glows like coals in a grate. It drinks the heat of the tubes, and it spits scalding sparks at those who disturb it.",
+   "kind": "monster",
+   "level": 16,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "In the Tube",
+    "In a Tube",
+    "A Small Chamber"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "salamander-scale-gloves",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "lake-lurker",
+   "keywords": "lurker lake thing pale",
+   "short_desc": "a pale lake lurker",
+   "long_desc": "A pale lake lurker stirs the scummy water, its blind head turning toward you.",
+   "description": "A bloated, bone-white thing with a lamprey's mouth and a long fringed tail. It has grown fat in the foul lake and hunts by feeling the ripples of anything that moves along the shore.",
+   "kind": "monster",
+   "level": 16,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Nasty Lake"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "salamander-scale-gloves",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "hatchery-brood-mother",
+   "keywords": "brood-mother broodmother lizard giant hatchery",
+   "short_desc": "the hatchery brood-mother lizard",
+   "long_desc": "The hatchery brood-mother lizard lies coiled over her eggs, her slit eyes following you.",
+   "description": "A giant lizard as long as a wagon, her hide plated in ridged scales the colour of cold iron. She is fiercely quick to defend her clutch, and her jaws can snap a spear in two.",
+   "kind": "monster",
+   "level": 17,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Hatchery"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "brood-mother-fang",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "zikrak-kobold-shaman",
+   "keywords": "zikrak kobold shaman",
+   "short_desc": "Zikrak, the Kobold Shaman",
+   "long_desc": "Zikrak, the Kobold Shaman, capers on his perch, shaking a staff hung with skulls.",
+   "description": "A wizened kobold with a crown of feathers and an ash-grey cloak that smokes at the hem. He calls fire from the crater with a thin, cracked voice, and the whole island answers him.",
+   "kind": "humanoid",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Kobold Shaman's Perch"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "shaman-skull-staff",
+     "chance": 35
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "kobold-hide-buckler",
+   "keywords": "buckler hide kobold",
+   "short_desc": "a patched hide buckler",
+   "room_desc": "A patched hide buckler lies here.",
+   "description": "A small round shield of stretched lizard hide on a frame of bent bone. It is crude, but the hide shrugs off sparks and heat.",
+   "kind": "armor",
+   "level": 9,
+   "wear_slot": "shield"
+  },
+  {
+   "id": "cinder-crab-bracers",
+   "keywords": "bracers crab shell cinder",
+   "short_desc": "a pair of crab-shell bracers",
+   "room_desc": "A pair of crab-shell bracers lies here.",
+   "description": "Two curved plates of black shell, drilled and laced with sinew to fit about the forearm. They are light and tough and stay faintly warm.",
+   "kind": "armor",
+   "level": 9,
+   "wear_slot": "arms"
+  },
+  {
+   "id": "salamander-scale-gloves",
+   "keywords": "gloves scale salamander red",
+   "short_desc": "a pair of ember-scaled gloves",
+   "room_desc": "A pair of ember-scaled gloves lies here, warm to the eye.",
+   "description": "Supple gloves stitched with small red scales that glow faintly in the dark. They keep the hands safe from heat and seem to add a little bite to every grip.",
+   "kind": "armor",
+   "level": 16,
+   "wear_slot": "hands",
+   "bonus": {
+    "str": 1
+   }
+  },
+  {
+   "id": "brood-mother-fang",
+   "keywords": "fang brood mother curved dagger",
+   "short_desc": "a curved brood-mother fang",
+   "room_desc": "A curved fang as long as a dagger lies here.",
+   "description": "A tooth as long as a man's forearm, ground to a point and fitted with a grip of wrapped hide. It is sharp enough to pierce plate.",
+   "kind": "weapon",
+   "level": 17,
+   "weapon_type": "pierce",
+   "bonus": {
+    "hitroll": 1
+   }
+  },
+  {
+   "id": "shaman-skull-staff",
+   "keywords": "staff skull shaman feathered",
+   "short_desc": "a skull-crowned shaman's staff",
+   "room_desc": "A skull-crowned staff lies here, hung with feathers.",
+   "description": "A knotted staff of black wood topped with a tiny skull whose eye-sockets glow dull orange. It crackles faintly when swung, and it strikes like a hammer.",
+   "kind": "weapon",
+   "level": 18,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  }
+ ]
+}

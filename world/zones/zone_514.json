@@ -26,8 +26,9 @@
      "description": "To the east lies The Stone Of Sealing."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
-   "placeholder": true
+   "description": "A Small Crack splits the black rock here, barely wide enough for a grown\nman to squeeze through sideways. The stone is hot under your palm, and a\ndull red light seeps from deep in the fissure. Veins of glassy rock wind\nalong the walls, and the air tastes of sulphur and old smoke. The crack\nopens north into a larger hollow, and east onto a sealed-looking stone.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13849": {
    "vnum": 13849,
@@ -51,8 +52,9 @@
      "description": "To the south lies A Hot Cave Tunnel."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and south.",
-   "placeholder": true
+   "description": "A Hot Cave Tunnel winds through rock the colour of dried blood, where\nthe walls are too warm to rest a hand upon. Sweat runs down your neck in\nthe stifling air, and the floor crackles with fine black grit. A faint\norange glow lights the passage east, while the tunnel falls away south\ninto a hotter dark.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13850": {
    "vnum": 13850,
@@ -80,8 +82,9 @@
      "description": "To the west lies Natural Lava-Chamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A Hot Cave Tunnel runs through reddened rock, broad and low, where the\nheat beats against you in waves. Rivulets of cooled lava have frozen\nalong the floor in twisted ropes, and your boots stumble over them. A\nfierce orange light spills in from a hollow on one side. The tunnel runs\nnorth and south, and an opening west leads to a molten chamber.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13851": {
    "vnum": 13851,
@@ -101,8 +104,15 @@
      "description": "To the east lies A Hot Cave Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "The Natural Lava-Chamber is a huge bubble in the rock, its floor a lake\nof slow, glowing lava that heaves and sighs like something alive. Black\ncrusts of stone drift on its surface and crack open to show the white-\nhot heart beneath. The heat is monstrous, and the light blinding,\nthrowing your shadow high on the roof. The only path is the tunnel east.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651404,
+     "max": 1
+    }
+   ]
   },
   "13852": {
    "vnum": 13852,
@@ -126,8 +136,15 @@
      "description": "To the east lies The Fire Vein."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "The Hot Cave Tunnel grows narrower here, and the walls glow a dull\ncherry colour. Scalding air rushes from a gap at the end, bringing with\nit a deep bellowing roar. The floor is dry and cracked, with flakes of\nblack stone curling up at the edges. The tunnel runs north, and the\npassage opens east on a blazing cut in the rock.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651400,
+     "max": 1
+    }
+   ]
   },
   "13853": {
    "vnum": 13853,
@@ -149,8 +166,9 @@
      "description": "To the west lies A Hot Cave Tunnel."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. From the crest the land below\nspreads out like a map. Ways lead south and west.",
-   "placeholder": true
+   "description": "The Fire Vein is a great seam of molten rock that cuts across the cavern\nin a river of white-gold light, hissing and spitting as it flows. The\nheat is nearly unbearable, and the air shakes with it. A narrow shelf of\nstone runs along the edge, scorched and crumbling. The hot tunnel lies\nwest, and the shelf continues south.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "13854": {
    "vnum": 13854,
@@ -172,8 +190,15 @@
      "description": "To the west lies At The Entrance To The Under Tombs."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. The ground rises and falls in\ngrassy folds. Ways lead north and west.",
-   "placeholder": true
+   "description": "On A Stone Ledge you edge along a narrow shelf above a glowing chasm,\nthe rock hot underfoot and flecked with ash. Far below, a river of fire\ncrawls slowly through the dark, lighting the cavern in shifting red. A\nrising updraft of heat tugs at your cloak. The ledge runs north along\nthe fire, and west toward a dark archway.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651404,
+     "max": 1
+    }
+   ]
   },
   "13855": {
    "vnum": 13855,
@@ -197,8 +222,17 @@
      "description": "To the down lies The Hall Of Mirrors."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and down.",
-   "placeholder": true
+   "description": "At The Entrance To The Under Tombs, an archway of black stone is carved\nwith a ring of pallid faces, their eyes closed, their mouths open in\nsilent song. A cold, sweet air drifts up from within, strangely free of\nthe cavern's heat. Worn stairs spiral steeply into the dark. The ledge\nlies east, and the stairs lead down.",
+   "look": "crypt",
+   "extra_descs": {
+    "faces archway carved faces": "A ring of pale stone faces circles the arch, each one different. Their\nlips are parted as though in the middle of a hymn."
+   },
+   "mob_resets": [
+    {
+     "vnum": 651402,
+     "max": 1
+    }
+   ]
   },
   "13856": {
    "vnum": 13856,
@@ -227,8 +261,21 @@
      "description": "To the up lies At The Entrance To The Under Tombs."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south and up.",
-   "placeholder": true
+   "description": "The Hall Of Mirrors is a long gallery lined with tall panels of black\nglass, each framed in tarnished silver. In them your reflection moves a\nmoment too late, and sometimes shows you wearing a different face, or no\nface at all. The air is bitterly cold and perfectly still. A door at the\nfar end leads south into a great hall, and a stair climbs back to the\nentrance.",
+   "look": "crypt",
+   "extra_descs": {
+    "mirrors panels glass": "The black glass shows your own shape, but off by a breath, and the room\nbehind you is never quite the room you stand in."
+   },
+   "mob_resets": [
+    {
+     "vnum": 651402,
+     "max": 1
+    },
+    {
+     "vnum": 651406,
+     "max": 1
+    }
+   ]
   },
   "13857": {
    "vnum": 13857,
@@ -257,8 +304,19 @@
      }
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Great Hall Of The Pale is a vast chamber of white stone, its ceiling\nlost in shadow and its floor laid with rows of silent stone slabs. Tall\npillars carved as robed figures hold up the vault, and each wears the\nsame serene, empty smile. Cold blue light falls from no visible source,\nand your footsteps echo strangely. A door north leads to the mirrors,\nand another door south leads on toward a great stone.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651403,
+     "max": 1
+    },
+    {
+     "vnum": 651405,
+     "max": 1
+    }
+   ]
   },
   "13858": {
    "vnum": 13858,
@@ -282,8 +340,15 @@
      "description": "To the south lies Moloch's Repose."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Tomb Of The Pale is a long chamber of grey stone, lined with niches\nthat hold the bodies of an ancient sect, wrapped in bleached linen.\nTheir faces, where the cloth has slipped, are white as candle wax and\nstrangely untouched by time. A low red glow creeps up the walls from\ncracks in the floor. The tomb runs north to a great carved stone, and\nsouth toward a heavier heat.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651405,
+     "max": 1
+    }
+   ]
   },
   "13859": {
    "vnum": 13859,
@@ -303,8 +368,15 @@
      "description": "To the south lies A Small Crack."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
-   "placeholder": true
+   "description": "Moloch's Repose is a vaulted pit of black stone, where the heat presses\nagainst your face like an open furnace. A great sarcophagus of fused\nobsidian lies on a dais of cracked basalt, wound about with chains of\ndull iron. Veins of molten light pulse slowly in the floor, as though\nthe rock itself breathed. Only the small crack leads away south.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651407,
+     "max": 1
+    }
+   ]
   },
   "13862": {
    "vnum": 13862,
@@ -320,10 +392,15 @@
     "south": {
      "to_room": 13858,
      "description": "To the south lies The Tomb Of The Pale."
+    },
+    "north": {
+     "to_room": 13857,
+     "description": "To the north lies The Great Hall Of The Pale."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. Rocks break through the thin\nsoil of the slope. A way leads south.",
-   "placeholder": true
+   "description": "The Stone Of Sealing is a slab of pale rock as wide as a barn door, set\nupright into the cave wall and carved from edge to edge with warding\nglyphs. Ash lies in drifts at its foot, scorched where something tried\nto break through long ago. A dry, throbbing heat leaks around its edges,\nand the glyphs glow faintly red. The only way back is south, into the\nTomb Of The Pale.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "13863": {
    "vnum": 13863,
@@ -355,8 +432,9 @@
      "description": "To the up lies The Granite Stairs."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, south, west and up.",
-   "placeholder": true
+   "description": "A rough stair of granite leads up out of the Glowing Tunnel here, its\nworn treads wide and shallow, with the charred stumps of an old\nbarricade standing to either side. A cool breath of cleaner air drifts\ndown it, a sweet contrast with the choking heat. The tunnel runs north,\nsouth and west, and the steps climb toward an older, drier country.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13864": {
    "vnum": 13864,
@@ -380,8 +458,9 @@
      "description": "To the south lies A Glowing Tunnel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Glowing Tunnel runs straight here for a long stretch, its walls\nstreaked with bands of black, red and ochre like a layered cake. The\nroof is cracked and sags in places, and a few fallen slabs lie across\nthe floor. The heat has an oily weight, and the glow pulses faintly in\ntime with a distant beat. The tunnel goes north and south.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13865": {
    "vnum": 13865,
@@ -405,8 +484,9 @@
      "description": "To the west lies A Glowing Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "This Glowing Tunnel bends where two long cracks meet, the floor split by\na seam of bright, living ember. Ash curls from it in lazy ribbons, and\nthe rock on either side is blistered and flaking. A hot wind sighs\nthrough the passage and tugs at your clothes. The tunnel leads north,\nand west around the corner.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13866": {
    "vnum": 13866,
@@ -430,8 +510,9 @@
      "description": "To the east lies A Glowing Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "A Glowing Tunnel with walls pocked by hundreds of tiny holes, as though\nthe stone were a sponge, each one glinting red from within. The floor is\nrutted and strewn with pebbles of black glass. A distant bubbling sound\ncomes from somewhere beyond the rock. Here the tunnel bends, running\nnorth and east.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13867": {
    "vnum": 13867,
@@ -455,8 +536,9 @@
      "description": "To the west lies A Glowing Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The Glowing Tunnel turns sharply here around a heap of collapsed rock,\nthe fallen stone fused together in a single dark mass. A thin scarlet\nlight runs through its crevices like blood through veins. The air is dry\nas a bake-oven. You can go south or west from here.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13868": {
    "vnum": 13868,
@@ -480,8 +562,9 @@
      "description": "To the east lies A Glowing Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "A Glowing Tunnel with a high, narrow roof, the rock overhead streaked\nwhite where mineral water once ran and has long since boiled away.\nBrittle crusts crack beneath your feet. A smell of hot metal and struck\nflint hangs in the air. The tunnel winds north and east.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13869": {
    "vnum": 13869,
@@ -505,8 +588,9 @@
      "description": "To the south lies A Glowing Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "This Glowing Tunnel is carved with faint, ancient marks, rows of runes\ncut by some long-lost hand and half-melted by heat. They glow with a\npale orange light that seems brighter than the rock around them. The\nfloor is warm and dry, scattered with a few pieces of broken pottery.\nThe passage runs east and south.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13870": {
    "vnum": 13870,
@@ -534,8 +618,15 @@
      "description": "To the west lies A Glowing Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A Glowing Tunnel joins three ways here in a ragged hollow where the\nceiling is lost in smoke. Cinders crunch in drifts along the walls, and\nan ember-coloured haze hangs in the still air. The rock shows the marks\nof old pick work, long since scorched. Passages lead north, east and\nwest.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651401,
+     "max": 1
+    }
+   ]
   },
   "13871": {
    "vnum": 13871,
@@ -559,8 +650,9 @@
      "description": "To the south lies A Glowing Tunnel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Glowing Tunnel here is a short, straight run of smooth stone, its\nwalls glazed as though by a giant's kiln. Your footsteps ring on the\nfloor, and a dull glow rises from below in the cracks. Streaks of soot\nreach the roof. The way leads on north, and back south.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13872": {
    "vnum": 13872,
@@ -588,8 +680,9 @@
      "description": "To the south lies A Glowing Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Three tunnels meet in this Glowing Tunnel, where the rock widens into a\nsooty vault shot through with seams of red. A pile of charred rubble\nlies against one wall, and the air above it shivers with heat. A dry\nroaring sound comes from the stone, rising and falling like a slow\nbreath. Passages lead north, east and south.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13873": {
    "vnum": 13873,
@@ -617,8 +710,15 @@
      "description": "To the west lies A Glowing Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "At this bend the Glowing Tunnel opens into a small chamber with a\nsmooth, scorched floor, as though a great fire once burned here. Soot\nblackens the walls to head height, and fragments of burnt bone lie in\nthe cinders. Heat shimmers over the stone in rippling waves. Ways lead\neast, west and south from here.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651400,
+     "max": 1
+    }
+   ]
   },
   "13874": {
    "vnum": 13874,
@@ -642,8 +742,9 @@
      "description": "To the south lies A Glowing Tunnel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "This stretch of the Glowing Tunnel slopes gently, its floor worn into a\nsmooth channel as if a long-dried stream of fire had once flowed here.\nBeads of cooled rock hang from the ceiling like dark glass tears. The\nglow is strongest at the lowest point, a deep and brooding red. The\ntunnel runs north and south from here.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13875": {
    "vnum": 13875,
@@ -667,8 +768,9 @@
      "description": "To the west lies A Glowing Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and west.",
-   "placeholder": true
+   "description": "A Glowing Tunnel narrows here to a throat of rough, spiky stone, its\nwalls studded with sharp crystals the colour of coals. Every breath\nscalds the lungs, and tiny sparks leap from the dry rock when your boots\nstrike it. A shaft of red radiance spills from a side seam. The tunnel\nruns north and west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13876": {
    "vnum": 13876,
@@ -692,8 +794,9 @@
      "description": "To the west lies A Glowing Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The Glowing Tunnel curves here around a pillar of fused rock that looks\nlike melted wax. A film of orange light dances on the polished surface,\nand your reflection wavers in it like a ghost in water. The air stinks\nof burnt iron. The passage drops south toward a wider cavity and runs\nwest back along the tunnel.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13877": {
    "vnum": 13877,
@@ -717,8 +820,9 @@
      "description": "To the west lies A Glowing Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "This Glowing Tunnel is low and long, with a crust of iridescent mineral\nrunning along the roof that glimmers green and violet in the heat-light.\nThe floor is warm as a hearthstone and covered in a fine pale dust.\nSomewhere far off, stone grinds against stone with a slow, patient\nrhythm. The passage runs east and west, each way a little hotter than\nthe last.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13878": {
    "vnum": 13878,
@@ -746,8 +850,9 @@
      "description": "To the west lies A Glowing Tunnel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A Glowing Tunnel meets two others here in a small, round junction of\nblackened rock. The ceiling is lost in smoke, and ash settles gently on\nyour shoulders like dark snow. Pale light comes from a seam in the\nfloor, illuminating the heaps of cinder along the walls. Ways lead east\nand west along the tunnel, and a passage runs south.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13879": {
    "vnum": 13879,
@@ -771,8 +876,9 @@
      "description": "To the south lies A Glowing Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
-   "placeholder": true
+   "description": "Another Glowing Tunnel, this one broad and sloping, with a floor of\nribbed stone that crunches with ash. The walls are marked with deep\nscratches, as though by iron claws, running in long parallel lines.\nLight wells from the cracks below, painting everything in dull red and\ngold. The tunnel goes east toward a junction, and south back toward the\nnarrower reaches.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13880": {
    "vnum": 13880,
@@ -796,8 +902,9 @@
      "description": "To the west lies A Glowing Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "A Glowing Tunnel runs between walls of smooth, reddish rock that seem to\nshine from within. Small bubbles of cooled stone, like frozen froth,\ncrust the ceiling and click softly in the rising draught. A sharp tang\nof brimstone fills your nose. The passage runs north toward a brighter\nglow and west back along the way you came.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13881": {
    "vnum": 13881,
@@ -821,8 +928,9 @@
      "description": "To the south lies A Glowing Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The Glowing Tunnel here is narrow and low, the roof just above your head\nand crusted with fused black glass. Thin threads of red light run along\nthe seams in the rock and flicker as if with a pulse. The heat is steady\nand heavy, like a hand on your chest. The tunnel turns east, and returns\nsouth the way you came.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13882": {
    "vnum": 13882,
@@ -846,11 +954,450 @@
      "description": "To the west lies A Hot Cave Tunnel."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "This Glowing Tunnel bends sharply through veined rock, each vein shining\na dull, sickly amber like the embers of a banked fire. Your shadow\nstretches long and wavering on the opposite wall. The floor is gritty\nwith cinders, and a distant roar rumbles through the stone. The tunnel\nturns north, and a hot passage lies back west.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651401,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "651400": {
+   "vnum": 651400,
+   "name": "beetle fire ember giant",
+   "short_desc": "a giant ember beetle",
+   "long_desc": "A giant ember beetle scuttles over the hot rock, its black shell glowing at the seams.",
+   "description": "A beetle as big as a hound, its shell split by lines of orange light and\nits mandibles dripping a smoking spittle.",
+   "level": 46,
+   "alignment": 0,
+   "hp_dice": "46d8+676",
+   "damage_dice": "12d6+26",
+   "armor_class": -20,
+   "exp": 2550,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751400,
+     "chance": 12
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651401": {
+   "vnum": 651401,
+   "name": "imp cinder small demon",
+   "short_desc": "a cinder imp",
+   "long_desc": "A cinder imp capers along the wall, cackling, trailing sparks from its clawed fingers.",
+   "description": "A small, wiry fiend of charred red skin, with a long barbed tail and\neyes like glowing coals. It grins a mouthful of needle teeth.",
+   "level": 48,
+   "alignment": -600,
+   "hp_dice": "48d8+1029",
+   "damage_dice": "13d6+33",
+   "armor_class": -20,
+   "exp": 2660,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751400,
+     "chance": 15
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651402": {
+   "vnum": 651402,
+   "name": "wraith mirror ghost",
+   "short_desc": "a mirror wraith",
+   "long_desc": "A mirror wraith slides out of a black pane, a silvery ghost wearing a dozen stolen faces.",
+   "description": "A shape of cold silver mist that mimics your face as you look on it. Its\nhands end in shards of broken glass.",
+   "level": 50,
+   "alignment": -500,
+   "hp_dice": "50d8+980",
+   "damage_dice": "13d6+28",
+   "armor_class": -20,
+   "exp": 2770,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751401,
+     "chance": 20
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651403": {
+   "vnum": 651403,
+   "name": "cultist pale robed",
+   "short_desc": "a pale cultist",
+   "long_desc": "A pale cultist in a bone-white robe kneels motionless on the cold stone, murmuring prayers.",
+   "description": "A gaunt, hairless figure with skin as white as chalk and eyes sunk deep\nin shadow. He wears a robe stitched with silver thread.",
+   "level": 47,
+   "alignment": -500,
+   "hp_dice": "47d8+798",
+   "damage_dice": "12d6+28",
+   "armor_class": -20,
+   "exp": 2605,
+   "gold": 564,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751401,
+     "chance": 10
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651404": {
+   "vnum": 651404,
+   "name": "golem magma lava",
+   "short_desc": "a hulking magma golem",
+   "long_desc": "A hulking magma golem stands in the lava, glowing, a figure of black rock cracked with fire.",
+   "description": "A towering figure of black stone, its seams full of liquid fire. Each\nstep leaves a scorched footprint that smokes.",
+   "level": 53,
+   "alignment": -300,
+   "hp_dice": "53d8+1182",
+   "damage_dice": "14d6+37",
+   "armor_class": -20,
+   "exp": 2935,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751400,
+     "chance": 30
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651405": {
+   "vnum": 651405,
+   "name": "knight pale skeleton armoured",
+   "short_desc": "a pale knight",
+   "long_desc": "A pale knight in bone-coloured plate stands watch beside the slabs, a long sword held before him.",
+   "description": "A dead warrior in ancient white armour, pale light shining from the\nslits of his helm. His shield bears a faded face with closed eyes.",
+   "level": 52,
+   "alignment": -400,
+   "hp_dice": "52d8+1035",
+   "damage_dice": "14d6+28",
+   "armor_class": -20,
+   "exp": 2880,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751402,
+     "chance": 25
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651406": {
+   "vnum": 651406,
+   "name": "imrael priest pale high wight",
+   "short_desc": "Imrael, the Pale High Priest",
+   "long_desc": "Imrael, the Pale High Priest, stands in the Hall of Mirrors, a robed figure of ash and silver.",
+   "description": "A tall figure in robes of pale grey, a mask of white silver covering its\nface. It holds a staff topped with a ring of cold flame, and its\nreflection in the glass does not match its movements.",
+   "level": 54,
+   "alignment": -700,
+   "hp_dice": "54d8+1092",
+   "damage_dice": "14d6+31",
+   "armor_class": -20,
+   "exp": 2990,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751403,
+     "chance": 35
+    },
+    {
+     "vnum": 751401,
+     "chance": 30
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651407": {
+   "vnum": 651407,
+   "name": "moloch demon lord ancient",
+   "short_desc": "Moloch, the Ancient Demon Lord",
+   "long_desc": "Moloch, the Ancient Demon Lord, rises from his sarcophagus, wreathed in flame and smoke.",
+   "description": "A towering demon with the horns of a ram and skin like cooling lava,\nwings folded about him like a smoking cloak. His eyes are two pits of\nwhite fire, and the chains about him burn red where they stretch.",
+   "level": 55,
+   "alignment": -1000,
+   "hp_dice": "55d8+1245",
+   "damage_dice": "14d6+40",
+   "armor_class": -20,
+   "exp": 3045,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751404,
+     "chance": 35
+    },
+    {
+     "vnum": 751403,
+     "chance": 20
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "751400": {
+   "vnum": 751400,
+   "name": "magma heart ruby glowing",
+   "short_desc": "a glowing magma heart",
+   "room_desc": "A glowing red stone, hot to the eye, lies here.",
+   "description": "A smouldering gem the size of a fist, holding a slow pulse of liquid fire inside. It sells dear to any jeweller who dares to touch it.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 50,
+   "weight": 1,
+   "value": 1525
+  },
+  "751401": {
+   "vnum": 751401,
+   "name": "mirror shard dagger glass",
+   "short_desc": "a mirror-shard dagger",
+   "room_desc": "A dagger made of black mirror glass lies here.",
+   "description": "A slender dagger ground from a shard of black mirror-glass, its edge bright as ice. Your reflection in the blade never quite matches your face.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 50,
+   "damage_dice": "2d10",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 1290,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ]
+  },
+  "751402": {
+   "vnum": 751402,
+   "name": "pale knight shield white",
+   "short_desc": "a pale knight's shield",
+   "room_desc": "A white shield painted with a sleeping face lies here.",
+   "description": "A heavy kite shield of bleached steel, painted with a closed-eyed face. It is cold to the touch even in the cave's heat.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 52,
+   "wear_slot": "shield",
+   "armor": 7,
+   "weight": 6,
+   "value": 1070,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "751403": {
+   "vnum": 751403,
+   "name": "pale priest mantle grey cloak",
+   "short_desc": "the Pale High Priest's mantle",
+   "room_desc": "A silver-threaded grey mantle lies here.",
+   "description": "A long mantle of ash-grey cloth embroidered with silver faces, each with closed eyes. It hangs on the shoulders as if made of cold mist.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 54,
+   "wear_slot": "about",
+   "armor": 5,
+   "weight": 3,
+   "value": 1110,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  },
+  "751404": {
+   "vnum": 751404,
+   "name": "moloch hellblade sword black",
+   "short_desc": "Moloch's hellblade",
+   "room_desc": "A black greatsword with a molten edge lies here, glowing.",
+   "description": "A huge blade of black iron with an edge that still glows dull red, as though newly drawn from the forge. The hilt is wrapped in blistered leather, and the heat of it can be felt from across the room.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 55,
+   "damage_dice": "2d11",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 1415,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

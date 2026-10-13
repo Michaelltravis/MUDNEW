@@ -1,0 +1,244 @@
+{
+ "zone": 200,
+ "_about": "The Forest of Shadows (levels 5-14): a wolfpack that answers its howl, spiders that run along the web, the dire wolf, the shrine guardian and a shadow stag as elites, a dark dryad in the hidden glade, the Spider Queen raising her brood, and the Alpha Wolf calling the pack.",
+ "creatures": {
+  "20001": {
+   "helpers": {
+    "group": "wolfpack",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up: the pack is coming!"
+   },
+   "why": "wolves"
+  },
+  "20006": {
+   "rank": "elite",
+   "helpers": {
+    "group": "wolfpack",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up: the pack is coming!"
+   },
+   "why": "the dire wolf"
+  },
+  "20002": {
+   "helpers": {
+    "group": "spiders",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The web trembles, and spiders come running along its threads!"
+   },
+   "why": "spiders"
+  },
+  "20003": {
+   "helpers": {
+    "group": "spiders",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The web trembles, and spiders come running along its threads!"
+   },
+   "why": "spiders"
+  },
+  "20004": {
+   "helpers": {
+    "group": "spiders",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The web trembles, and spiders come running along its threads!"
+   },
+   "why": "spiders"
+  },
+  "20005": {
+   "rank": "elite",
+   "why": "the shrine guardian"
+  },
+  "20007": {
+   "rank": "boss",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Spider Queen shrieks, and the whole hollow trembles with skittering legs!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Web Spray",
+      "telegraph": "The Spider Queen rears and sprays sticky webbing everywhere!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+3",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Venom Fang",
+      "telegraph": "The Spider Queen lunges at you, fangs dripping!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+2",
+      "dodge": true
+     },
+     {
+      "name": "Cocoon",
+      "telegraph": "The Spider Queen begins spinning a cocoon around you!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+4",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "a boss"
+  },
+  "20008": {
+   "rank": "boss",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Alpha Wolf's hackles rise: it fights for the pack now!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Savage Howl",
+      "telegraph": "The Alpha Wolf throws back its head to howl!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+3",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Throat Bite",
+      "telegraph": "The Alpha Wolf crouches low, eyes on your throat!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+2",
+      "dodge": true
+     },
+     {
+      "name": "Pack Fury",
+      "telegraph": "The Alpha Wolf snarls and gathers itself for a frenzy!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+4",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "helpers": {
+    "group": "wolfpack",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up: the pack is coming!"
+   },
+   "why": "a boss"
+  },
+  "20050": {
+   "name": "stag shadow",
+   "short_desc": "a shadow stag",
+   "long_desc": "A shadow stag stands among the trees, its antlers like dead branches.",
+   "description": "A great black stag whose coat drinks the light, with eyes like embers. It belongs to the forest's shadows, not to the daylight.",
+   "level": 11,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "deer",
+   "rank": "elite",
+   "alignment": -300
+  },
+  "20051": {
+   "name": "dryad dark",
+   "short_desc": "a dark dryad",
+   "long_desc": "A dark dryad stands in the glade, bark-skinned and weeping sap like black tears.",
+   "description": "Once the glade's gentle spirit; the shadows of the forest crept into her heartwood, and now she lures travellers in to feed the roots.",
+   "level": 13,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "fey",
+   "rank": "sub-boss",
+   "alignment": -500
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 20050,
+   "rooms": [
+    20005
+   ]
+  },
+  {
+   "vnum": 20051,
+   "rooms": [
+    20010
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 20001,
+   "route": [
+    20001,
+    20002,
+    20005,
+    20006
+   ],
+   "why": "a wolf ranges the paths"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 20007,
+   "room": 20008,
+   "why": "the Spider Queen in her lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "20002": 2
+     },
+     "shout": "Egg sacs burst, and giant spiders spill out across the floor!",
+     "why": "her brood at 60% and 30%"
+    }
+   ]
+  },
+  {
+   "vnum": 20008,
+   "room": 20009,
+   "why": "the Alpha Wolf in the den",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      35
+     ],
+     "count": 2,
+     "rooms": 4,
+     "raise": [
+      20001
+     ],
+     "shout": "The Alpha Wolf howls, and the pack comes running!",
+     "why": "the pack answers"
+    }
+   ]
+  }
+ ]
+}

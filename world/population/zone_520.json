@@ -1,0 +1,150 @@
+{
+ "zone": 520,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Hadrec Vael, the cursed Warden as the boss.",
+ "creatures": {
+  "652000": {
+   "helpers": {
+    "group": "z520_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a cursed soldier of the garrison"
+  },
+  "652001": {
+   "helpers": {
+    "group": "z520_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a cursed cook"
+  },
+  "652002": {
+   "helpers": {
+    "group": "z520_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a mould-ridden ogre"
+  },
+  "652003": {
+   "helpers": {
+    "group": "z520_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "an undying headsman",
+   "rank": "elite"
+  },
+  "652004": {
+   "helpers": {
+    "group": "z520_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a ward-bound knight",
+   "rank": "elite"
+  },
+  "652005": {
+   "helpers": {
+    "group": "z520_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Captain Hollis, the Unburied Captain",
+   "rank": "sub-boss"
+  },
+  "652006": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "Hadrec Vael, the cursed Warden",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Hadrec Vael, the cursed Warden rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Hadrec Vael, the cursed Warden gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+8",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Hadrec Vael, the cursed Warden raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+6",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Hadrec Vael, the cursed Warden begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+11",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 652000,
+   "route": [
+    12301,
+    12302,
+    12303,
+    12350
+   ],
+   "why": "a cursed soldier of the garrison walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 652006,
+   "room": 12381,
+   "why": "Hadrec Vael, the cursed Warden in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "652001": 2
+     },
+     "shout": "Hadrec Vael, the cursed Warden calls, and a cursed cooks come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

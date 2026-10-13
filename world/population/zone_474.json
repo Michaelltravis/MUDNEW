@@ -1,0 +1,170 @@
+{
+ "zone": 474,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Ilvareth, the Cave Elf King as the boss.",
+ "creatures": {
+  "647400": {
+   "helpers": {
+    "group": "z474_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale cave spider"
+  },
+  "647401": {
+   "helpers": {
+    "group": "z474_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a cave elf sentry"
+  },
+  "647402": {
+   "helpers": {
+    "group": "z474_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a surly jailer"
+  },
+  "647403": {
+   "helpers": {
+    "group": "z474_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "an arena gladiator"
+  },
+  "647405": {
+   "helpers": {
+    "group": "z474_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a cave elf royal guard",
+   "rank": "elite"
+  },
+  "647406": {
+   "helpers": {
+    "group": "z474_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a royal war mage",
+   "rank": "elite"
+  },
+  "647407": {
+   "helpers": {
+    "group": "z474_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Vharel the Unbroken",
+   "rank": "sub-boss"
+  },
+  "647408": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Ilvareth, the Cave Elf King",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Ilvareth, the Cave Elf King rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Ilvareth, the Cave Elf King gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Ilvareth, the Cave Elf King raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Ilvareth, the Cave Elf King begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 647400,
+   "route": [
+    4665,
+    4666,
+    4668,
+    4669,
+    4672,
+    4674,
+    4676,
+    4686,
+    4687
+   ],
+   "why": "a pale cave spider walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 647408,
+   "room": 21725,
+   "why": "Ilvareth, the Cave Elf King in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      647401
+     ],
+     "shout": "Ilvareth, the Cave Elf King calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

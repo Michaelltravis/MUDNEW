@@ -22,8 +22,8 @@
      "description": "To the up lies Modest Farmhouse And Barn."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads up.",
-   "placeholder": true
+   "description": "Sacks of meal, a rack of hams and a stack of empty barrels crowd this\nlow cellar room beneath the farmhouse. The walls are plain planking over\npacked earth, and the air smells of dust, apples and old sacking. Behind\nthe barrels the boards sound oddly hollow when you knock them, as if a\nfalse wall hid something better kept out of sight. A ladder climbs up\nthrough the trapdoor to the house above.",
+   "extra_descs": {}
   },
   "8219": {
    "vnum": 8219,
@@ -79,8 +79,8 @@
      "description": "To the down lies The Inn Of The Welcome Wench."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south, west and down.",
-   "placeholder": true
+   "description": "A narrow landing at the head of the inn stair, its floorboards worn pale\ndown the middle by travellers' boots. Four stout doors face one another\nacross the little space: a door ahead of you, one to your left, one to\nyour right and one behind you, each with a heavy iron lock. A single\ncandle sputters in a wall sconce, and the smell of bread and ale rises\nfaintly from the common room as the stair winds down toward it.\nSomewhere beyond a door, a floorboard creaks.",
+   "extra_descs": {}
   },
   "8220": {
    "vnum": 8220,
@@ -104,8 +104,8 @@
      "description": "To the up lies The Inn Of The Welcome Wench."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and up.",
-   "placeholder": true
+   "description": "This hidden chamber lies behind a wall that looks solid from the other\nside, and it is far too tidy for a mere pantry. Iron-bound chests stand\nin a row against the stone, each with a lock of better quality than any\ninnkeeper would buy. Dust lies thin on the floor, and a faint oily smell\nhangs in the air. A narrow way leads on to the larger store room, and a\nstair climbs up to the inn above.",
+   "extra_descs": {}
   },
   "8221": {
    "vnum": 8221,
@@ -129,8 +129,8 @@
      "description": "To the down lies The Kitchen Of The Welcome Wench."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and down.",
-   "placeholder": true
+   "description": "Gundigoot lodges well, for a man who claims to be a simple traveller:\nthe bed is hung with a heavy green curtain, a brass lamp stands on a\npolished table, and a good carpet hides the boards. A locked coffer sits\nat the foot of the bed, and a plain cloak hangs on a peg beside the door\nto the landing. A narrow back stair spirals down toward the warm\nkitchen, where the heat of the hearth seeps up through the floor.",
+   "extra_descs": {}
   },
   "8222": {
    "vnum": 8222,
@@ -154,8 +154,8 @@
      "description": "To the up lies The Kitchen Of The Welcome Wench."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and up.",
-   "placeholder": true
+   "description": "Barrels of ale, kegs of salted pork and crates of crockery fill this\nlong store room beneath the inn, stacked high and hung with cobwebs. A\nsingle oil lamp in a niche throws shadows over the beams, and the floor\nis damp where the casks sweat. One wall is oddly thicker than the rest,\nwith a seam running down it that looks too straight for age. A stair\nrises up to the kitchen, and a narrow way leads toward a hidden chamber.",
+   "extra_descs": {}
   },
   "8223": {
    "vnum": 8223,
@@ -175,8 +175,10 @@
      "description": "To the south lies The Top Of The Stairs."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "This is a cramped, tidy chamber with a narrow bed, a travelling chest\nbound in iron and a stool beside a shuttered window. The coverlet is\npulled so tight it might have been ironed, and the whitewashed walls\nbear not one picture. Look closely at the beam above the bed, though,\nand you will find a small eye cut into the wood, half hidden by a smear\nof soot. The only way out is the door back to the landing.",
+   "extra_descs": {
+    "eye beam": "An eye no bigger than your thumb is carved into the beam, its pupil\nblackened with soot. It is cut so neatly that it could only be the work\nof a patient hand, and it faces the bed."
+   }
   },
   "8224": {
    "vnum": 8224,
@@ -196,8 +198,8 @@
      "description": "To the west lies The Top Of The Stairs."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "The room is comfortable enough for a well-paying guest, with a wide bed,\na washstand and a rag rug before a small hearth that has not been lit in\ndays. A cheerful sampler about hospitality hangs by the window. The\nbedding is rumpled, a half-burned candle stands in a puddle of wax on\nthe sill, and the air smells faintly of stale smoke. The door to the\nlanding stands to your left.",
+   "extra_descs": {}
   },
   "8225": {
    "vnum": 8225,
@@ -217,8 +219,8 @@
      "description": "To the east lies The Top Of The Stairs."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
-   "placeholder": true
+   "description": "Furnok keeps a barer room than his companions: a pallet, a bench and a\nbasin, and the shutters nailed fast against the village outside.\nScratches in the plaster by the bedhead form a pattern of crossed lines\nthat is not quite a letter and not quite a pictogram. A stub of tallow\nburns on the floor, and the air is close and sour. The only door leads\nout to the landing.",
+   "extra_descs": {}
   },
   "8241": {
    "vnum": 8241,
@@ -250,8 +252,8 @@
      "description": "To the down lies The Vestry."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, west, up and down.",
-   "placeholder": true
+   "description": "The upper hall of the church is long and silent, lit by narrow windows\nglazed in thick, greenish glass. Oak beams curve overhead, and the\nfloorboards are polished by the soft shoes of priests. Doors stand at\neither end, one to the quarters of the priest's assistant and the other\nto the chief priest's chambers, each with an iron latch. A plain stair\nleads down to the vestry, and a lingering smell of beeswax and incense\nhangs in the air.",
+   "extra_descs": {}
   },
   "8242": {
    "vnum": 8242,
@@ -271,8 +273,8 @@
      "description": "To the up lies The Study And Audience Chamber."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads up.",
-   "placeholder": true
+   "description": "The Sacred Trophies Gallery is a long, dim loft under the church roof,\nwhere glass-fronted cases line the walls and the rafters hang with faded\nbanners. Chalices, reliquaries and crumbling scrolls of old victories\nlie on velvet, each tagged in a careful hand. The floor creaks softly\nunderfoot, and the light is dusty and amber. A steep stair climbs up to\nthe study and audience chamber.",
+   "extra_descs": {}
   },
   "8243": {
    "vnum": 8243,
@@ -292,8 +294,8 @@
      "description": "To the west lies The Upper Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "A small, ordered chamber, with a narrow bed, a writing desk under the\nwindow and a shelf of well-thumbed prayer books. The assistant cleric\nkeeps his things neat, and a simple wooden symbol of Helver hangs above\nthe pillow. The room smells of ink and lamp oil. Something about the\nceiling is wrong, though, for a faint pattern of scratches has been cut\ninto the corner plaster, as if someone had drawn the same small mark\nover and over. The door leads back to the hall.",
+   "extra_descs": {}
   },
   "8244": {
    "vnum": 8244,
@@ -313,11 +315,10 @@
      "description": "To the east lies The Upper Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
-   "placeholder": true
+   "description": "Rich hangings of crimson and gold cover the walls of this chamber, and a\ngreat bed stands on a low dais beneath a canopy of embroidered silk. A\nheavy desk, a carved prayer stool and a silver lamp suggest comfort far\nbeyond a village priest's means. The shutters are closed tight, and the\nair is warm and a little too sweet. Behind the hangings you glimpse the\nedge of a hidden recess, and the door out to the hall stands at your\nback.",
+   "extra_descs": {}
   }
  },
  "mobs": {},
- "objects": {},
- "sealed": true
+ "objects": {}
 }

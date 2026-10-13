@@ -1,0 +1,170 @@
+{
+ "zone": 495,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and the Judge of the Dead as the boss.",
+ "creatures": {
+  "649500": {
+   "helpers": {
+    "group": "z495_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a drowned shade"
+  },
+  "649501": {
+   "helpers": {
+    "group": "z495_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a grey carrion raven"
+  },
+  "649502": {
+   "helpers": {
+    "group": "z495_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a temple skeleton"
+  },
+  "649503": {
+   "helpers": {
+    "group": "z495_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a winged fury",
+   "rank": "elite"
+  },
+  "649504": {
+   "helpers": {
+    "group": "z495_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a bronze-helmed gate guard",
+   "rank": "elite"
+  },
+  "649505": {
+   "helpers": {
+    "group": "z495_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Charon the Ferryman",
+   "rank": "sub-boss"
+  },
+  "649506": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "the Judge of the Dead",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Judge of the Dead rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "The Judge of the Dead gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "The Judge of the Dead raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "The Judge of the Dead begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 649502,
+   "route": [
+    3747,
+    3742,
+    3741,
+    3771,
+    3772,
+    3774,
+    3775,
+    3776,
+    3777,
+    3782,
+    3783,
+    3784,
+    3785,
+    3786,
+    3787,
+    3788,
+    3791,
+    3792,
+    3793,
+    3794,
+    3795,
+    3796,
+    3797,
+    3799
+   ],
+   "why": "a temple skeleton walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 649506,
+   "room": 3781,
+   "why": "the Judge of the Dead in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "649500": 2
+     },
+     "shout": "The Judge of the Dead calls, and a drowned shades come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,623 @@
+{
+ "job": "z522",
+ "rooms": {
+  "3900": {
+   "description": "A hump-backed bridge of old grey stone carries the road across a gorge, its surface smothered in unbroken snow and its low parapets shrunk to white ridges. Beneath you a frozen stream lies like a pane of dark glass between the cliffs. Wind hums through the gap and plucks at your cloak. North the span ends at the edge of the Winterlands, and south it runs on toward a glazed walkway.",
+   "look": "snow"
+  },
+  "3901": {
+   "description": "The snowfield opens here into a wide bowl of white under a low pewter sky, with the bridge close behind. Wind-bent pines stand at the rim of the drifts, their branches clotted with ice. A trampled gap leads north through the storm-felled timber to where the Winterwood ends, while the bridge lies to the south. Every breath you take clouds and crackles before your face.",
+   "look": "snow"
+  },
+  "3902": {
+   "description": "The walkway is a raised causeway of packed snow glazed with a skin of clear ice, so slick that each step must be tested. To the east and west the ground vanishes into whirling white, and a stray step off the edge would swallow you in the blizzard. Posts of frozen rope, thick with rime, mark the safe line. The path leads back north toward the bridge and on south.",
+   "look": "snow"
+  },
+  "3989": {
+   "description": "Snow screams past in a solid curtain, and the world shrinks to the length of your own arm. Sky, ground and horizon are one bruised white, and whichever way you turn, north, south, east or west, looks exactly like the last. Ice crusts your lashes and your cloak stiffens like a board. The glazed walkway must lie close by, if only you could find it again.",
+   "look": "snow"
+  },
+  "3903": {
+   "description": "The glazed walkway runs on as a pale ribbon through the churning storm, its surface scored with wind-carved ripples. Snow hisses along it in thin serpents, and the blizzard presses close to the east and west, hiding everything beyond the verge. Ahead to the south a great dark shape looms through the flurries: the Winterland Monument. Back north the path returns toward the bridge.",
+   "look": "snow"
+  },
+  "3904": {
+   "description": "You stand at the foot of the Winterland Monument, a soaring spire of black stone whose faces are sheathed in ice as thick as your forearm. Snow has been swept into a tight ring about its plinth, and the walkway meets it from the north. The trampled path runs east and west around the base. Runes cut into the plinth are half drowned in frost.",
+   "look": "snow"
+  },
+  "3911": {
+   "description": "Here the trampled ring turns a corner, curving back west along the plinth and on toward the south. The spire rises beside you, its black stone glittering where a thin glaze of ice has formed. A heap of snow has piled against one corner of the base, packed hard as chalk. The cold creeps through the seams of your boots like a living thing.",
+   "look": "snow"
+  },
+  "3910": {
+   "description": "On this flatter stretch of the ring the wind has scoured the snow thin, leaving dark patches of the old paving bare. A frozen walkway leaves the ring here and runs east toward a distant gate, while the ring itself goes north and south. Icicles hang in rows from a ledge of the spire, tinkling faintly. Your boots ring hollow on the stone.",
+   "look": "snow"
+  },
+  "3912": {
+   "description": "The walkway is a narrow shelf of ice between two long banks of drift, scraped smooth by the wind into a dull blue sheen. Behind you, to the west, the black spire stands against the sky. Ahead the way runs on east, and the faint iron smell of a great gate drifts along it. Frost feathers grow on the rope-posts at the verge, trembling when the gusts come.",
+   "look": "snow"
+  },
+  "3913": {
+   "description": "Halfway along the walkway the drifts rise higher than your shoulders on both sides, forming a trench of glittering white. Meltwater from some past thaw has refrozen across the path in a ribbed sheet that must be crossed with care. The trench runs east toward the gate and west back toward the monument. Overhead the sky is a flat, pitiless grey.",
+   "look": "snow"
+  },
+  "3914": {
+   "description": "The drifts fall away and the walkway widens into an apron of ice scattered with old iron nails and flakes of rust. Ahead to the east a wall of weathered stone climbs out of the snow, and in it a vast gate hangs, dark and shut. Frost has furred every rivet of the apron's iron studs. The path leads back west along the trench of white.",
+   "look": "snow"
+  },
+  "3915": {
+   "description": "A massive portcullis of black iron fills an arch cut for creatures far larger than men, its bars thick as tree trunks and spiked at the foot. Rime blankets every bar, and long icicles hang from the arch above, some as tall as you are. Beyond the grating lies only a vast breathing darkness, and the gate does not stir for any hand. The only way back is the walkway to the west.",
+   "look": "snow"
+  },
+  "3909": {
+   "description": "The ring bends again at the base of the monument, running north and west. Here the spire's lowest course is carved with a frieze of marching giants, their stone faces worn blunt by wind and furred with rime. Fine snow slides off the carving in little sighs. The ground is hard rutted ice, treacherous under its coat of powder.",
+   "look": "snow"
+  },
+  "3908": {
+   "description": "A long straight reach of the ring, where the spire's shadow lies across the snow like a blade. The ice on the stone is stained blue-green by some mineral seeping from the joints. Wind funnels along the path from the east and west alike, tugging at your hood. An iron ring set into the plinth is crusted solid with frost.",
+   "look": "snow"
+  },
+  "3907": {
+   "description": "At this corner a heap of fallen masonry, white-capped and frozen into the drift, spills across the ring. The monument is cracked here, a black seam the height of its flank filled with glittering ice. The path bends, leading north around the base and east along it. Silence presses close, broken only by the creak of settling snow.",
+   "look": "snow"
+  },
+  "3906": {
+   "description": "On this side of the monument the wind has built a long drift that leans against the plinth like a frozen wave. The path squeezes between the drift and the black stone, leading north and south. Blue shadows pool in the hollows, and your breath hangs in the still air. Scratches in the ice show where something heavy was dragged along the wall.",
+   "look": "snow"
+  },
+  "3905": {
+   "description": "The ring comes to its last corner, where the plinth steps outward in three broad tiers glazed with ice. Snow lies in the angle of each step in neat white wedges. East the ring returns toward the walkway, and south it runs on along the stone. A battered iron brazier, long cold, sits rusting on the lowest tier.",
+   "look": "snow"
+  },
+  "3917": {
+   "description": "You leave the walkway for a wide shelf of open snow where the wind has packed the surface into hard ripples. A line of stakes, bleached and crusted with ice, marks some old boundary and runs off east across the ground. The glazed walkway lies back north, and the way continues south. The spire is a dark finger beyond the drifts, and nothing else breaks the white.",
+   "look": "snow"
+  },
+  "3918": {
+   "description": "Frozen furrows run across this stretch of field, the memory of some long-dead planting, now ridged with ice and hidden under snow. A blackened fence post leans at an angle, thick with hoarfrost. The track leads east and west between gently rising drifts. Wind whistles across the open ground without ever pausing for breath.",
+   "look": "snow"
+  },
+  "3919": {
+   "description": "A shallow bowl in the snow, rimmed with sculpted drifts whose crests curl like breaking waves. In its floor lies a disc of clear ice through which you can see the dark ground. The way leads south along the bowl's edge and west back across the furrows. Your shadow is a pale blue smear on the white.",
+   "look": "snow"
+  },
+  "3920": {
+   "description": "Tall ridges of wind-packed snow flank this stretch, making a corridor open to the sky. The crust crunches at every step, and the sound carries a long way in the cold. Old wolf tracks, softened by newer fall, wander along it from the north toward the south. A ring of smoke-black stones at one side marks a firepit long gone cold.",
+   "look": "snow"
+  },
+  "3921": {
+   "description": "A scatter of boulders sheathed in ice, each wearing a cap of snow, stands about this corner like sleeping beasts. Beyond them the ground sinks into a gully choked with drifts. The trail leads north past the biggest boulder and west across the flats. Cold stings every inch of exposed skin.",
+   "look": "snow"
+  },
+  "3922": {
+   "description": "A half-buried wagon, its wheels rimed and its bed heaped with snow, rests on its side in the middle of the trail. The wood has gone grey and brittle with cold, and long icicles hang from the shattered tongue. The track passes it to the east and west. A snapped axle lies frozen into the crust.",
+   "look": "snow"
+  },
+  "3923": {
+   "description": "A broad flat of old drift, so hard that the wind can find no loose snow to lift. Pale standing stones, none taller than a child and all sheathed in ice, form a loose arc around the corner. The path leads north away from the arc and east along it. The silence here is deep and a little eerie.",
+   "look": "snow"
+  },
+  "3924": {
+   "description": "Skeletal birches, long dead and sheathed in ice, rattle in the wind at the edge of this field. Between them the snow lies in smooth swells, unbroken but for the faint stitching of hare prints. The way leads north toward the walkway and south across a bare flat. Frozen twigs chime together like tiny bells.",
+   "look": "snow"
+  },
+  "3925": {
+   "description": "The walkway gives way to a second plain of snow, flatter and brighter, where a low sun glares off every surface. Ice spicules cover the ground like salt, crunching underfoot, and the wind carries a whisper of grit. The walkway lies back north, while open ground continues east and south. A single leaning milestone, capped with ice, stands to one side of the way.",
+   "look": "snow"
+  },
+  "3926": {
+   "description": "Rippling dunes of snow roll across this stretch, sculpted by the wind into sharp-edged ridges. In the hollows between them the powder is blue with shadow and wholly untouched. The trail follows the crests east and west. A frost-split stump, black against the white, is the only upright thing in sight.",
+   "look": "snow"
+  },
+  "3927": {
+   "description": "The ground slopes into a wide frozen pond, its surface ground milky by the wind and its edges ruffled with frozen reeds. The trail swings around the shore, leading south and back west. Cracks run across the ice with a deep groaning note that carries for miles. Your breath rises in a ghost and is gone.",
+   "look": "snow"
+  },
+  "3928": {
+   "description": "A causeway of hard snow runs between two banks of tall wind-carved drifts, like a street between white walls. The air within is oddly still and every sound is deadened. Ice crystals hang glittering in the air, too fine to fall. The way leads north toward the pond and south along the walls.",
+   "look": "snow"
+  },
+  "3929": {
+   "description": "The great ribcage of some long-dead beast arches out of the drift here, its bones bleached and crusted with frost. Beneath the arch the trail bends, running north and west. The snow around it is unmarked and the cold has a bitter, mineral taste. Far off, a low moan of wind answers across the plain.",
+   "look": "snow"
+  },
+  "3930": {
+   "description": "A stand of ice-furred spruce, stunted and twisted by the wind, crowds the trail on both sides, their needles stiff as glass. Snow weighs on every bough, and now and then a branch cracks in the cold like a shot. Under the trees the ground is a patchwork of ice and powder. The trail runs east and west through the grove.",
+   "look": "snow"
+  },
+  "3931": {
+   "description": "A broad dish of snow, broken by a slab of black rock coated in ice that thrusts from the drift like a tooth. The trail loops around it, leading north and east. Faint blue light glows within the ice where the sun finds it. Your breath freezes into a fine crust on your scarf.",
+   "look": "snow"
+  },
+  "3932": {
+   "description": "The field here is pitted with small round hollows where snow has settled over sinkholes, each rimmed with a delicate collar of frost. The ground rings dully underfoot. Mountains of cloud stack on the horizon, heavy with more snow. The path leads north along the edge of the plain and south toward a tooth of black rock.",
+   "look": "snow"
+  },
+  "3933": {
+   "description": "A corner of the field beside what was once the monument's outer wall, now only a long mound of snow-covered blocks. Icicles as long as spears hang from an outcrop, and the ice beneath them is pocked where they have fallen before. The way leads east along the mound and south across the trampled snow. A thin, steady wind combs the surface into fine lines.",
+   "look": "snow"
+  },
+  "3934": {
+   "description": "Snow-waves undulate across this stretch, their tops sharp as knives. Between them the ground is bare black stone, polished by ice and by years of wind. The trail runs east and west along a line of cairns whose stones have frozen into one another. A pale haze of blown crystals drifts through the air.",
+   "look": "snow"
+  },
+  "3935": {
+   "description": "A wide bend where the plain falls away in a smooth white slope that ends in a mist of blown crystals. The path turns here, leading south and west. On the rim of the slope a ring of low black stones stands rimed with frost, perhaps the foundation of some forgotten hut. The light is cold and without warmth.",
+   "look": "snow"
+  },
+  "3936": {
+   "description": "The long shadow of the monument falls across this stretch, and the snow is blue-grey and hard. A thin crust of ice splits underfoot with a series of sharp cracks. The trail leads north and south through the shadow, where the air is colder still. A bent iron lantern-hook, empty and furred with rime, juts from a post.",
+   "look": "snow"
+  },
+  "3937": {
+   "description": "A drift has swallowed half of a stone horse-trough, leaving only a rim of frozen stone above the white. The trough is filled with solid ice and scarred by a hundred small scratches. The way leads north along the shade and west across the open field. Somewhere a loose sheet of ice flaps and clatters in the wind.",
+   "look": "snow"
+  },
+  "3938": {
+   "description": "A signpost of grey timber leans in the snow, its arms glazed over so that no word can be read on them. The ground is a stiff white crust that squeaks like leather. East and west the track runs, flanked by wind-gouged troughs where the drifts stand in pale ranks. The sky overhead has the colour of old pewter.",
+   "look": "snow"
+  },
+  "3939": {
+   "description": "Footprints crowd this corner, old and new, frozen into the crust in a confusing tangle. The snow is stained brownish where something was dragged away. The track leads north along the edge of the field and east across the open ground. Fresh flakes drift in on the wind and slowly soften every mark.",
+   "look": "snow"
+  },
+  "3940": {
+   "description": "A pair of snow-buried pillars, carved with spirals, flank the track and glitter with frost. Sleet has crusted the ground into a dark glaze that shows your reflection, bent and pale. The way leads north and south along the pillars. The air carries the faint, stony chill of a great hollow place close by.",
+   "look": "snow"
+  },
+  "3998": {
+   "description": "You stand in the base of the monument, a low square chamber of black stone where the howl of the wind is muffled to a moan. Ice sheathes the walls, and grey light seeps through the arches that open north and south onto the snowfield. To the east, frost-rimed steps lead into a crude stair. Carvings of giant hands are cut deep into the lintel, fingers spread as if to bar the way.",
+   "look": "snow"
+  },
+  "3941": {
+   "description": "The chamber narrows into the head of a crudely cut stair, hewn by huge impatient tools. The steps are uneven, some as high as your knee, and each wears a glaze of ice. The way back west returns to the monument's base, and the stair plunges down into darkness. Cold air breathes along it, smelling of stone and old frost.",
+   "look": "cave"
+  },
+  "3980": {
+   "description": "The stair twists here in a steep spiral through raw rock, the walls still scarred with the marks of picks and hammers. Ice has crept from the seams to form beards of white that brush your shoulders. A faint blue glimmer comes from somewhere beneath. The steps lead on down and back up toward the monument.",
+   "look": "cave"
+  },
+  "3981": {
+   "description": "Here the stair is wider, as though the diggers grew tired of cutting small steps, and its treads are as deep as a man is tall. A scatter of frozen rubble lies in the corners where the giants left it. The cold deepens with every step, and your footfalls ring and return. The way leads up toward the surface and down toward the sound of dripping.",
+   "look": "cave"
+  },
+  "3942": {
+   "description": "The crude stair ends on a floor of trampled rock slick with ice. Overhead the roof is lost in blackness, and the walls glitter with frozen seepage. To the east the passage opens into a vaster space whose echoes drift back to you. The stair rises behind you toward the surface.",
+   "look": "cave"
+  },
+  "3943": {
+   "description": "A wide mouth of rock opens into a cavern of immense size, where the air is as still as held breath. Pillars of ice stand in rows, taller than houses, glowing with a deep blue light of their own. Passages of frozen floor lead north, east and south, and the stair lies back west. Every sound is swallowed and then returned a moment late.",
+   "look": "cave"
+  },
+  "3944": {
+   "description": "Here the cavern wall meets the roof in a tight corner thick with icicles, some as long as spears, dripping slowly onto a frozen puddle. The rock is slick and glassy, scored in places by huge claw-like grooves. The cavern opens east along the wall and south toward its entrance. A faint draught carries the smell of cold iron.",
+   "look": "cave"
+  },
+  "3947": {
+   "description": "The floor of this stretch is a sheet of ice so clear that you can see pale rock in its depths. A line of low frozen pools runs along the wall, each ringed by a collar of white crystals. The cavern continues west toward a corner, east toward another, and south toward its middle. Water ticks down from the roof in the silence.",
+   "look": "cave"
+  },
+  "3949": {
+   "description": "In this corner the roof sweeps low, hung with curtains of ice that ripple like frozen cloth. Where they meet the floor they have fused into smooth, glistening columns. The only ways out lead south along the cavern's edge and west along the wall. Hoarfrost lies on the stone as thick as fur.",
+   "look": "cave"
+  },
+  "3950": {
+   "description": "The eastern end of the cavern is sealed by a wall of dark carved stone in which a massive door of black timber stands, banded with iron and furred with frost. Giant footprints of long-melted ice are worn into the floor before it, deeper than a man's boot. The door leads east into the hallway beyond. The cavern opens north, south and west behind you.",
+   "look": "cave"
+  },
+  "3951": {
+   "description": "A low corner of the cavern where the floor slopes toward a shallow bowl of black ice. Frozen runnels trace the walls like the veins of a leaf. The chamber leads north toward the great door and west along the cavern wall. The air tastes of metal and your breath comes out in slow white plumes.",
+   "look": "cave"
+  },
+  "3948": {
+   "description": "The floor here is littered with shards of ice that have fallen from the roof and shattered, glittering in drifts against the walls. A single tall column of frost stands near the wall, its heart clouded white. The cavern runs on east and west along its edge, and a wider space opens north. Cold seeps through every layer of clothing.",
+   "look": "cave"
+  },
+  "3945": {
+   "description": "At the heart of the cavern a great ring of ice pillars stands around a floor of blue-white frost, polished by long years of cold. The roof is lost far overhead, and a deep slow dripping measures the silence. Paths of trampled ice lead away in every direction, north, south, east and west. The pillars catch what little light there is and throw it back in cold shards.",
+   "look": "cave"
+  },
+  "3946": {
+   "description": "A corner of rough, unworked rock where the frost has grown thick and furred, as though the cave had grown a pelt. The floor is gritty with frozen sand and slick underneath. The cavern leads north toward its entrance and east along the cavern wall. A wet, bitter smell hangs in the air.",
+   "look": "cave"
+  },
+  "3952": {
+   "description": "You stand in a hallway of colossal size, its walls of fitted black stone rising far beyond the reach of any light. Great pillars of ice have been left standing along its length, and the floor is worn into shallow channels by generations of enormous feet. The great door stands west, and the hall runs on east. Every breath you take echoes like a whisper in a vast tomb.",
+   "look": "cave"
+  },
+  "3953": {
+   "description": "Banners of frozen cloth hang stiff from iron poles along the hall, painted with giant sigils that have flaked away under the ice. A long trough of black stone runs along the wall, filled with solid blue ice. The hallway continues east and west, and your steps ring out as though it were a bell. The cold here is dry and vast.",
+   "look": "cave"
+  },
+  "3954": {
+   "description": "The hall narrows toward another door, as massive as the first, its panels carved with scenes of giants hunting in the snow. A throne-sized bench of ice sits against the wall, its arms worn smooth by use. The door lies east, and the hall continues back west. Drifts of fine snow have blown in under the door and lie in a pale crescent.",
+   "look": "cave"
+  },
+  "3955": {
+   "description": "You stand just inside a vast cavern, where the great door lies back west and the floor of dark rock stretches away in a frozen plain. Stalactites of ice hang from the roof in clusters, pale as bone, and the air hums with a thin high note as the draught passes through them. Passages open north, east and south across the glittering floor. Your lamplight, if you have any, goes a very short way.",
+   "look": "cave"
+  },
+  "3956": {
+   "description": "The floor here is a single sheet of ice, cracked in a pattern like a spider's web, with a gleam of black water far beneath. Along the rock wall huge sconces of iron stand empty, each as wide as a barrel and frozen to the stone. The cavern leads east across the cracked sheet and south back toward the door hall. The ice groans softly when you move.",
+   "look": "cave"
+  },
+  "3961": {
+   "description": "Thick columns of blue ice rise from floor to roof in a tangle, so wide that three men could not circle one. Their surfaces are marbled with trapped bubbles and streaks of grit. You pick a path between them, with openings leading north, east, south and west. Light flickers deep within the ice like a distant fire.",
+   "look": "cave"
+  },
+  "3960": {
+   "description": "A narrow corner of the cavern, where the roof comes lower and dozens of icicles hang within reach of your hand. The rock floor is dry and gritty, strangely free of frost, and warmer than the rest. A gnawed length of bone as thick as your arm lies wedged into a crack in the wall. The cavern opens east and south from this nook.",
+   "look": "cave"
+  },
+  "3965": {
+   "description": "A gentle slope of rubble, frozen into a single mass, spreads across the cavern floor toward a ridge of fallen stone. Each rock wears a crown of hoarfrost, and the smaller ones are cemented in place by ice. The way leads east beyond the ridge, south across the slope, and west toward the nook. A trickle of meltwater ticks somewhere out of sight.",
+   "look": "cave"
+  },
+  "3974": {
+   "description": "At this corner the cavern wall is a curved sweep of rock glazed with ice so smooth it mirrors your torch. Long scratches, deeper than a hand is wide, run across it at a height well above your head. Frozen puddles pave the floor in a mosaic of white plates. The only ways onward are south and back west.",
+   "look": "cave"
+  },
+  "3973": {
+   "description": "A ring of broken pillars stands here, their stumps capped with ice, as though some giants' hall once stood in the cavern and was cast down. Fragments of carved stone lie half-buried in the frost, patterned with spirals and knotwork. Paths of trampled ice lead north, east, south and west among the ruins. The air feels thick and watchful.",
+   "look": "cave"
+  },
+  "3976": {
+   "description": "Here the cavern wall bulges inward, forming a recess where the frost has grown into delicate ferns and feathers on the rock. The floor is slick with a fine skin of ice that seems to flow when the lamplight moves. Passages lead south toward a heavy door's glow and west along the wall. Silence lies thick, broken by a distant crack of settling ice.",
+   "look": "cave"
+  },
+  "3977": {
+   "description": "A wide, flat floor of packed stone before a doorway cut into the cavern wall, with a lintel of iron beams that shows scorch marks beneath the rime. The ground is trampled to bare rock by countless heavy feet, and ash lies grey in the corners. The door in the wall leads east into the workshop beyond. Other ways run north, south and west across the cavern floor.",
+   "look": "cave"
+  },
+  "3999": {
+   "description": "A vast forge-hall hacked from the living rock, where a hearth wide as a cottage glows with dull red embers at the far wall. Anvils the size of wagons stand about the floor, and racks of huge tongs, hammers and chisels line the walls, rimed with frost. Half-finished figures of ice and iron loom in the shadows, their blank faces turned toward the fire. The only way out is the door leading back west.",
+   "look": "cave"
+  },
+  "3978": {
+   "description": "The cavern floor tilts here toward a pit of black ice, round and smooth as a bowl, its edges rimmed with frozen spray. The walls are daubed with old crude paintings in soot, pictures of hunters with enormous spears chasing something with antlers. A path leads north toward the forge door and west across the slope. Your steps crackle and echo.",
+   "look": "cave"
+  },
+  "3971": {
+   "description": "A crossing of four wide passages, the floor worn smooth by a procession of huge boots over centuries. In the middle of the crossing a block of ice stands as tall as a man, rough-hewn into the shape of a seated figure, its features eroded to a smooth blur. Ways lead north, east, south and west from its feet. The air smells of old smoke and cold stone.",
+   "look": "cave"
+  },
+  "3972": {
+   "description": "Rubble from a fallen section of roof litters the floor here, thrown into heaps of frost-welded boulders. Through the hole it left, a shaft of pale glow falls from some higher crack and glitters on the ice. The cavern leads north, east, south and west between the heaps. Dust of frozen stone crunches beneath your feet.",
+   "look": "cave"
+  },
+  "3967": {
+   "description": "A broad, level floor of old black ice, laid out like a vast hall, the sort of place where giants might hold their gatherings. Rows of low benches cut from the rock itself run along either side, cushioned with deep drifts of frost. Openings in the stone lead north, east, south and west. A thin white mist crawls along the ground.",
+   "look": "cave"
+  },
+  "3966": {
+   "description": "The roof here is hung with a forest of slender icicles, a thousand of them, each tipped with a bead of frozen light. When you breathe, they sing faintly, a shimmering chord that rises and falls. The floor is rimed in feathery crystals. You can go north, east, south or west from this glittering grove.",
+   "look": "cave"
+  },
+  "3968": {
+   "description": "A hollow in the floor holds a frozen lake the size of a village green, black as slate and veined with white cracks. Mounds of rubble ring the edge, and a trail of scuffed frost runs around the hollow. The passage continues north and south around its rim, with openings east and west. Something cold and old seems to sleep beneath the ice.",
+   "look": "cave"
+  },
+  "3969": {
+   "description": "A low, tight stretch where the roof presses close and the walls are black with soot beneath their frost. Charred stumps of ancient torches still jut from sockets in the rock. The passage runs east and west, with a wider space opening north. The ice underfoot is dingy and gritty, mixed with ash.",
+   "look": "cave"
+  },
+  "3970": {
+   "description": "The end of a rough tunnel, walled with glittering rock and floored with powdery frost that billows when you walk. Bits of broken ice-armour, dented and green with age, lie fused into the wall, the remains of some long-ago battle. The only exits are north and back west. It is very quiet and the cold leans on your shoulders.",
+   "look": "cave"
+  },
+  "3963": {
+   "description": "A dead-end niche with a floor of coarse gravel and a roof stained rust-red by mineral water, frozen in streaks like dried blood. A single column of ice stands in the middle, with a hollow at its heart where the cold glows. Paths lead north and east from the niche. The stone is slick and every sound seems to hang in the air.",
+   "look": "cave"
+  },
+  "3962": {
+   "description": "Wide steps of natural rock lead across this part of the cavern, each wearing a thin glaze of ice that must be crossed with care. The air is bitter and smells of wet stone, and a faint echo of dripping rises from somewhere ahead. Passages open north, east, south and west. A line of old bootprints, huge and frozen, crosses the steps.",
+   "look": "cave"
+  },
+  "3957": {
+   "description": "The cavern roof soars here into a dome so high that its crown is lost in mist, and frozen chandeliers of ice hang from a hundred points. Long drifts of snow have blown through unseen cracks and piled against the walls. Ways lead north, east, south and west across the polished floor. Your voice returns to you from every side, thinned and strange.",
+   "look": "cave"
+  },
+  "3958": {
+   "description": "A cramped corner at the edge of the cavern, where the frost lies thick on the walls and the floor is a hard crust of old snow. A cairn of fist-sized stones, coated in ice, stands at the foot of the wall as though left as a marker. Passages lead north toward the door and east along the wall. The cold here is dry and keen.",
+   "look": "cave"
+  }
+ },
+ "extras": {
+  "3900": [
+   {
+    "keywords": "parapet parapets bridge",
+    "description": "The low stone parapets are almost lost under snow, but a few old masons' marks show where the wind has scoured the stone."
+   }
+  ],
+  "3904": [
+   {
+    "keywords": "monument spire runes plinth",
+    "description": "The spire is cut from a single block of black stone and rises out of sight into the grey. Giant-sized runes run around the plinth, too worn and frosted to read."
+   }
+  ],
+  "3915": [
+   {
+    "keywords": "portcullis gate bars",
+    "description": "Each bar of the portcullis is wider than your waist and cold enough to burn bare skin. The teeth at its foot are sunk deep in a trench of ancient ice."
+   }
+  ],
+  "3925": [
+   {
+    "keywords": "milestone stone",
+    "description": "The milestone is cut with a pattern of notches, a giants' tally of distance, and one side is furred with white frost."
+   }
+  ],
+  "3998": [
+   {
+    "keywords": "lintel carvings hands",
+    "description": "The hands carved in the lintel are each larger than a man, their palms outward and their fingers spread in warning."
+   }
+  ],
+  "3953": [
+   {
+    "keywords": "banners sigils",
+    "description": "The banners have frozen into stiff folds like sheets of tin. The sigils on them show a crowned head over crossed axes, though most of the paint has gone."
+   }
+  ],
+  "3971": [
+   {
+    "keywords": "figure block ice seated",
+    "description": "The seated figure is rough work, but it has a crown on its brow and its hands rest on its knees, as a king might sit."
+   }
+  ],
+  "3999": [
+   {
+    "keywords": "anvils anvil hearth",
+    "description": "The anvils are black iron, their faces dented by blows no mortal arm could deliver. The hearth still holds embers that give off no flame, only a dull red glow."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "frost-wolf",
+   "keywords": "frost wolf white",
+   "short_desc": "a gaunt frost wolf",
+   "long_desc": "A gaunt frost wolf prowls the snow here, rime clinging to its pale fur.",
+   "description": "Its coat is white as the drifts and its eyes burn a pale blue. Ice hangs from its jaws, and its ribs show through the thick fur.",
+   "kind": "animal",
+   "level": 11,
+   "aggressive": true,
+   "alignment": -100,
+   "sectors": [
+    "field"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "wolf-pelt-cloak",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "white-cave-bear",
+   "keywords": "white cave bear",
+   "short_desc": "a huge white cave bear",
+   "long_desc": "A huge white cave bear shambles across the frozen floor, snuffling at the ice.",
+   "description": "The bear is vast and shaggy, its white fur matted with frost and its claws thick as horn. It sways its head from side to side, watching you with small black eyes.",
+   "kind": "animal",
+   "level": 13,
+   "aggressive": true,
+   "alignment": -100,
+   "rooms": [
+    "Center of a Cavern",
+    "Southern End of a Cavern",
+    "Northern End of a Cavern",
+    "South East Corner of a Cavern"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "wolf-pelt-cloak",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "rime-spider",
+   "keywords": "rime spider icy",
+   "short_desc": "a pale rime spider",
+   "long_desc": "A pale rime spider clings to the ice, its long legs dusted with frost.",
+   "description": "The spider is the size of a dog, its body translucent as ice and its legs tipped with crystal. Threads of frozen silk trail behind it and glitter in the dark.",
+   "kind": "animal",
+   "level": 14,
+   "aggressive": true,
+   "alignment": -150,
+   "rooms": [
+    "A Large Cavern"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "rime-silk-gloves",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "ice-troll",
+   "keywords": "ice troll",
+   "short_desc": "a hulking ice troll",
+   "long_desc": "A hulking ice troll stomps through the snow, its grey hide caked with frost.",
+   "description": "The troll is stooped and enormous, with a hide like cracked slate and long arms that drag in the snow. Icicles hang from its chin and its breath rolls out in great grey clouds.",
+   "kind": "monster",
+   "level": 15,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Around the Winterland Monument"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "rime-silk-gloves",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "frost-ghost",
+   "keywords": "frost ghost wraith pale",
+   "short_desc": "a frost-wreathed ghost",
+   "long_desc": "A frost-wreathed ghost drifts through the cold, trailing a mist of ice crystals.",
+   "description": "The ghost is the pale shape of a long-dead hunter, rimed in white and fading at the edges. Its eyes are hollow wells of blue light and the cold around it bites to the bone.",
+   "kind": "undead",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Eastern End of a Cavern",
+    "Center of a Cavern",
+    "A Crudely Formed Staircase"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "frozen-tear",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "frost-giant-warrior",
+   "keywords": "frost giant warrior",
+   "short_desc": "a frost giant warrior",
+   "long_desc": "A frost giant warrior stands guard here, his huge axe resting on one shoulder.",
+   "description": "He is three times the height of a man, with skin of blue-white and a beard braided with beads of ice. A huge frost-rimed axe is in his fist, and his eyes are pitiless.",
+   "kind": "monster",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "A Large Cavern",
+    "A Massive Hallway"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "frozen-tear",
+     "chance": 25
+    },
+    {
+     "item": "rimeforged-maul",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "skarn-rimeforger",
+   "keywords": "skarn rimeforger giant smith",
+   "short_desc": "Skarn the Rimeforger",
+   "long_desc": "Skarn the Rimeforger, a soot-blackened frost giant, hammers at a glowing anvil.",
+   "description": "Skarn is a giant of the old line, his blue skin scarred with burns and his leather apron stiff with soot and frost. His arms are as thick as pine trunks, and he swings a hammer the size of a barrel.",
+   "kind": "monster",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Creator's Workshop"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "rimeforged-maul",
+     "chance": 35
+    },
+    {
+     "item": "crown-of-the-frost-king",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "hrimgar-frost-giant-king",
+   "keywords": "hrimgar frost giant king",
+   "short_desc": "Hrimgar, the Frost Giant King",
+   "long_desc": "Hrimgar, the Frost Giant King, sits his icy throne, a crown of black iron on his brow.",
+   "description": "Hrimgar is taller than the hall's own pillars, his skin the blue of deep glacier ice and his beard falling to his knees in frozen braids. A crown of black iron sits on his brow, and his gaze alone makes your breath freeze in your throat.",
+   "kind": "monster",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "A Massive Hallway"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "crown-of-the-frost-king",
+     "chance": 35
+    },
+    {
+     "item": "rimeforged-maul",
+     "chance": 15
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "wolf-pelt-cloak",
+   "keywords": "white wolf pelt cloak",
+   "short_desc": "a white wolf-pelt cloak",
+   "room_desc": "A white wolf-pelt cloak lies here, stiff with frost.",
+   "description": "A cloak cut from a thick white wolf pelt, heavy and warm. It still smells faintly of snow and wild beast.",
+   "kind": "armor",
+   "wear_slot": "about",
+   "level": 11
+  },
+  {
+   "id": "rime-silk-gloves",
+   "keywords": "rime silk gloves pale",
+   "short_desc": "a pair of rime-silk gloves",
+   "room_desc": "A pair of pale rime-silk gloves lies here.",
+   "description": "Gloves woven from the frozen silk of cave spiders, fine as cobweb and surprisingly strong. They never quite lose their chill.",
+   "kind": "armor",
+   "wear_slot": "hands",
+   "level": 14,
+   "bonus": {
+    "dex": 1
+   }
+  },
+  {
+   "id": "frozen-tear",
+   "keywords": "frozen tear gem blue",
+   "short_desc": "a frozen blue tear",
+   "room_desc": "A glittering blue tear of ice lies here.",
+   "description": "A teardrop-shaped gem of clear blue ice that never melts, however warm the hand that holds it. Collectors pay well for such things.",
+   "kind": "treasure",
+   "level": 18
+  },
+  {
+   "id": "rimeforged-maul",
+   "keywords": "rimeforged maul hammer",
+   "short_desc": "a rimeforged maul",
+   "room_desc": "A heavy rimeforged maul lies here, rimed white.",
+   "description": "A maul of blue-black iron, its head patterned with frost and its haft bound in wolf hide. It is made for a giant's grip, but a strong man can swing it.",
+   "kind": "weapon",
+   "weapon_type": "pound",
+   "level": 19,
+   "bonus": {
+    "damroll": 2
+   }
+  },
+  {
+   "id": "crown-of-the-frost-king",
+   "keywords": "crown frost king iron",
+   "short_desc": "the crown of the Frost Giant King",
+   "room_desc": "A black iron crown rimmed with frost lies here.",
+   "description": "A crown of black iron, set with chips of blue ice that glow faintly in the dark. Cut down for mortal brows, it still weighs heavily and fills the wearer with a stubborn, bitter cold courage.",
+   "kind": "armor",
+   "wear_slot": "head",
+   "level": 20,
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}

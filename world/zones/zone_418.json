@@ -22,8 +22,8 @@
      "description": "To the down lies In the Kitchen."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads down.",
-   "placeholder": true
+   "description": "The vintner's bedroom is small and low, its whitewashed walls leaning in\nunder the slope of the roof and its dark beams close enough to touch. A\nnarrow bed with a patched quilt of dyed wool stands under the shuttered\nwindow, and a pegged oak chest and a washstand fill the rest of the\nspace. The air smells faintly of grape must and old wood smoke. A narrow\nstair leads down to the kitchen below.",
+   "extra_descs": {}
   },
   "209007": {
    "vnum": 209007,
@@ -52,8 +52,8 @@
      "description": "To the up lies Inside a large building."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead west and up.",
-   "placeholder": true
+   "description": "Brick vaults arch overhead in the vintner's cellar, and ranks of fat oak\ncasks lie on cradles down both sides, their heads marked in chalk with\nthe years of the vintages. The air is cool and still and sweet with the\nsmell of old wine soaked into the stone. Steps climb up to the pressing\nhouse. A low door in the wall leads west to the storage room.",
+   "extra_descs": {}
   },
   "209008": {
    "vnum": 209008,
@@ -73,11 +73,12 @@
      "description": "To the east lies In the wine cellar."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "Racks of dusty bottles climb the walls of this low storage room, their\nnecks furred with grey, and everything is draped in cobwebs. Thick\nsilken cables of web span from rack to rack and across the ceiling, as\nstrong as ship's rope, and a dense white sheet of it clogs the far\ncorner. Something large has spun here, and the dust is scuffed in wide\nragged trails. The only way out is the door east to the cellar.",
+   "extra_descs": {
+    "webs cobwebs cables web": "The strands are as thick as a thumb, grey and tacky with dust. Whatever\nspun them has dragged heavy things through the tangle, and torn threads\nhang in ragged loops."
+   }
   }
  },
  "mobs": {},
- "objects": {},
- "sealed": true
+ "objects": {}
 }

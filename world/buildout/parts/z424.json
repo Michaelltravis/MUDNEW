@@ -1,0 +1,436 @@
+{
+ "job": "z424",
+ "rooms": {
+  "15308": {
+   "description": "Two worn passages cross here beneath a low vaulted ceiling, and the damp has bloomed black along every seam of the stone. A single drip falls somewhere close, with the patience of a clock. The way east narrows to an old archway, while the passage west bends off toward an odd room whose far end you cannot make out. Cold air seeps across the flagstones and stirs the dust into slow rings.",
+   "look": "crypt"
+  },
+  "15312": {
+   "description": "You stand beneath an ancient archway of fitted stones, its keystone cracked and furred with pale mould. Water beads on the curve above and falls in slow drops upon your shoulders. A door to the east opens on a small study, and the passage south breathes out a sour, rotten odour. Scratches in the mortar might be old tally marks, or the work of claws.",
+   "look": "crypt"
+  },
+  "15313": "A cramped study has been cut into the rock, with a stooped writing desk, a three-legged stool and shelves whose books have swollen into grey pulp. A bracket on the wall holds only a crust of old candle wax, and a cabinet door hangs open on empty pigeonholes. Mildew climbs the plaster in slow green tongues. A narrow doorway in the far wall leads south toward a faint gleam of gold.",
+  "15318": {
+   "description": "The passage ends before a great tomb of golden marble veined with amber, its lid carved with a crowned figure whose face has been worn almost smooth. Flecks of gilt glitter in the damp, and the air is heavy and still, as though the chamber were holding its breath. A cracked bronze lamp-stand leans against the foot of the tomb. The only way out is back west toward a smelly room.",
+   "look": "crypt"
+  },
+  "15317": {
+   "description": "A fetid reek hangs in this low room, thick with rot and old wet earth, and green slime has crept down one wall in long runnels. The floor dips in the middle to a shallow puddle that never dries. A passage opens south into a strangely shaped way, and another runs west toward a small passage. Somewhere beyond the walls something drips and drips.",
+   "look": "crypt"
+  },
+  "15319": {
+   "description": "The passage twists unnaturally here, its walls leaning in at odd angles until the ceiling seems to tilt above your head. Faint chalk marks, half washed away, spiral along the stones in a pattern that hurts the eye to follow. The air tastes of cold iron. To the west a heavy door of dark wood stands ajar, and past it lies the secret room.",
+   "look": "crypt"
+  },
+  "15311": {
+   "description": "A round chamber hidden behind the catacomb walls, its floor inlaid with a ring of faded runes that still seem faintly warm. Dust lies thick upon a stone dais except where it has been disturbed in a long, dragging track. A narrow stair climbs up toward the Holy Altar in Welmar's Castle, while dark passages lead north and south. The air hums low and patient, like a breath held under the stone.",
+   "look": "crypt"
+  },
+  "15316": {
+   "description": "A cramped passage hardly wider than a man's shoulders, with a roof so low its stones brush your hair. Water trickles along a groove cut in the floor and vanishes into a crack. Scratches mark the walls at the height of a hand, many and close together, as if someone had once tried to climb out. The passage runs on north to a small intersection.",
+   "look": "crypt"
+  },
+  "15323": {
+   "description": "The floor of this passage tilts gently, so that a dropped coin would roll away toward the next chamber, and the walls are pocked with niches too small for any coffin. Pale roots have forced through the mortar overhead and dangle like fingers. Your footsteps come back a half-second late, as though something walked behind you. The passage runs south to a small intersection.",
+   "look": "crypt"
+  },
+  "15328": {
+   "description": "Three ways part here beneath a groined ceiling, the stone sooty from torches long gone. A cold draught pours in from the east, where a windy room moans, while south lies a cross point between the rooms and west a sleepy room, hushed as a bedchamber. Grit crunches underfoot, and a thin skin of damp has settled on every ledge.",
+   "look": "crypt"
+  },
+  "15327": {
+   "description": "A gale that has no business underground howls through this room, tugging at your cloak and setting a rusted chain swinging from the ceiling. Dust devils spin across the flags and settle in the corners. The wind carries a sour smell down from the smelly room to the north, and the way east leads on to a smaller, quieter windy chamber.",
+   "look": "crypt"
+  },
+  "15324": {
+   "description": "The stench is worse here, a sweet, heavy rot that clings to the back of the throat. Black water has pooled in a cracked basin in the floor, ringed with a scum of green. Long smears on the walls show where something large has dragged itself along. A passage north leads to the strange passageway, and another goes west toward an odd one.",
+   "look": "crypt"
+  },
+  "15326": {
+   "description": "In this small room the draught squeezes through a crack and whistles thinly in the roof, like a child humming to itself. The walls sweat, and the flagstones have been polished by the damp to a dark shine. A low arch in the wall to the north opens on a pale gleam of white marble.",
+   "look": "crypt"
+  },
+  "15325": {
+   "description": "A tomb of white marble stands here, spotless where everything else is stained, its sides carved with weeping figures whose faces are veiled. Cold radiates from the stone, and your breath clouds before it. Two dead iron sconces flank the tomb, their cups full of black water. The only way back leads west to the smelly room.",
+   "look": "crypt"
+  },
+  "15331": {
+   "description": "Passages meet here at a crossing worn smooth by generations of feet, with blind doorways on every side that lead nowhere you can reach. An empty lantern hook, red with rust, juts from a pillar. The floor is slick with seep, and the sound of dripping comes from every direction at once. A way leads south toward a slippery intersection, and another west to a sleepy room.",
+   "look": "crypt"
+  },
+  "15332": {
+   "description": "Glossy green slime coats the floor of this junction, and every step is a small gamble. Runnels of water thread between the flagstones toward a drain choked with grit. To the east a doorway opens on a room with the faded remains of comfort, while west the passage gives onto a dirty room.",
+   "look": "crypt"
+  },
+  "15333": {
+   "description": "Whoever kept this chamber meant to stay: a carved bedstead rots in one corner, a table with turned legs stands under a mouldered cloth, and a tapestry hangs in rags above a cold hearth. Nothing here has seen use for a century, and the damp has swollen every joint. The way north returns to the cross point, and east leads on to a boring room."
+  },
+  "15334": {
+   "description": "Bare walls, bare floor, bare ceiling: the builders gave this room nothing to look at. A single pale stain on the stones is all that breaks the grey, and even that has the shape of nothing in particular. The only door leads south, where a dull glint of brass shows in the dark.",
+   "look": "crypt"
+  },
+  "15335": {
+   "description": "The tomb here is cast in brass, green with age at its seams and rubbed bright in places where hands have touched it for luck or for worse reasons. A heat shimmer lifts from the metal, strange in so damp a place. Old wax and ash are caked on the lid in rings. The way out lies west into a hot room.",
+   "look": "crypt"
+  },
+  "15336": {
+   "description": "Heat presses on you as though a forge burned behind the wall, and the stones are warm and dry to the touch while the rest of the catacombs weep. The air shimmers and tastes of scorched dust. Soot streaks the ceiling above the cracks in the floor. A passage north goes back to the well furnished room, and west the way runs on to a very hot intersection.",
+   "look": "crypt"
+  },
+  "15337": {
+   "description": "The heat peaks at this crossing, and sweat runs into your eyes before you have gone three paces. The walls are cracked and baked, the mortar gone to a powder that sifts down at every footfall. To the north the way leads back toward the slippery intersection, and south it opens into the mouth of a large tunnel breathing cooler air.",
+   "look": "crypt"
+  },
+  "15342": {
+   "description": "A broad tunnel hewn from raw rock, wide enough for a cart, runs through the dark here. Its roof is lost overhead and its sides glisten with a skin of water. Ruts long since dried into the floor show where heavy loads once rolled. The way north returns to the very hot intersection, while the tunnel runs west along a long stretch.",
+   "look": "cave"
+  },
+  "15343": {
+   "description": "The tunnel stretches on, narrow and ruler-straight, and every sound you make races ahead into the dark and comes back thinned. Drips fall from the roof in a slow count. Pale fungus dots the walls in patches the size of a hand. East lies the broader part of the tunnel, and west the way runs on to its end.",
+   "look": "cave"
+  },
+  "15344": {
+   "description": "The tunnel ends in a rough shelf of rock where a stair drops away into blackness. Chisel marks cover the end wall, and a groove has been worn in the stone lip by years of ropes dragged over it. Cold, wet air rises from the stairs leading down. Back east, the tunnel runs along its length.",
+   "look": "cave"
+  },
+  "15345": {
+   "description": "Narrow steps wind steeply downward, each one hollowed in the middle and slick with a film of green. You keep a hand on the wall, and the wall is no help, as wet and cold as a fish. The stair climbs up toward the end of a long tunnel and descends again into the dark.",
+   "look": "cave"
+  },
+  "15346": {
+   "description": "The steps are broken and uneven here, one in four missing a corner, and water runs down the stair in a thin, unbroken sheet. The sound of it fills the shaft, a chuckle that never stops. Above, the stairs lead up toward the tunnel, and below they sink deeper into the rock.",
+   "look": "cave"
+  },
+  "15347": {
+   "description": "The stairs end in a small landing awash with an inch of cold water, and the last step is lost beneath it. A low tunnel opens east, its walls shining with damp. The stair behind you climbs up into the dark, and the echoes of your splashing run along the rock.",
+   "look": "cave"
+  },
+  "15348": {
+   "description": "Water seeps from the walls into a channel along the floor, and the whole tunnel is cold, close and dripping. Moss grows in dark cushions above the waterline, and the roof stoops low enough to make you duck. The stairs lie to the west, and the tunnel goes on east along its wet length.",
+   "look": "cave"
+  },
+  "15349": {
+   "description": "The tunnel bends south here, the rock slick and the floor ankle-deep in a flow that drains toward the dark. A rusted iron ring is set into the wall, from which a chain once hung. Beads of water race one another down the stone. West the passage runs back along the wet tunnel.",
+   "look": "cave"
+  },
+  "15350": {
+   "description": "The tunnel turns a sharp corner here, and the stone is gnawed smooth where water has beaten against it for centuries. A mutter of falling water comes from further on. A slump of loose rock half fills one side of the passage. The way north leads back along the wet tunnel, and east it goes deeper.",
+   "look": "cave"
+  },
+  "15351": {
+   "description": "Here the tunnel dives into true darkness, the walls glistening and close, and the water underfoot runs cold enough to ache. A pale crust of mineral has grown over old tool marks in the rock. Somewhere ahead a heavy murmur of water is felt more than heard. West the passage leads back toward a turning point, and east it goes on into a stretch where it is easy to lose your way.",
+   "look": "cave"
+  },
+  "15352": {
+   "description": "Cracks and false turnings fork off through the rock, each as dark as the last, and every drip sounds like a footstep. Small heaps of stone stand here and there like cairns, left by people who feared to lose their way. The tunnel runs on east and west, and neither end looks different from the other.",
+   "look": "cave"
+  },
+  "15353": {
+   "description": "The roar of moving water is loud now, and a cold mist drifts through the tunnel and beads on your skin. The floor slopes toward the sound, and the rock is as slick as soap. Stalactites drip in long, glassy threads from the roof. West the tunnel runs back toward the lost stretch, and south it opens on the river.",
+   "look": "cave"
+  },
+  "15354": {
+   "description": "The tunnel opens onto a ledge above a black river that races past in a rush of spray, loud in the enclosed dark. Wet rock glitters on every side, and an iron ring is fixed into the stone for the mooring of boats. The only way on is south, onto the water itself, where rapids boil under the low roof. North the tunnel runs back into the depths.",
+   "look": "cave"
+  },
+  "15341": {
+   "description": "Filth lies in drifts across the floor of this room, a grey sludge of dust, mould and old straw trodden into paste. Handprints smear the walls at shoulder height, as though someone had felt their way along in the dark. The air is thick and close. A doorway leads west to a cold room.",
+   "look": "crypt"
+  },
+  "15340": {
+   "description": "A deathly chill gathers in this room, and your breath hangs in white curls before your face. The stone is cold to the point of pain, and the damp on the walls has hardened into little glass beads. A thin whisper passes along the ceiling and dies. The only way on leads south to a red tomb.",
+   "look": "crypt"
+  },
+  "15339": {
+   "description": "The tomb in this chamber is of red marble, streaked and veined like raw meat, and it seems to glisten even where the stone is dry. Dark stains have run from its lid down the sides and gathered in the cracks of the floor. The walls close in on every side but one. The way out lies east, toward a bloody room.",
+   "look": "crypt"
+  },
+  "15338": {
+   "description": "Rust-red stains cover wall and floor in broad splashes, dried to a brown crust that flakes beneath your boots. A butcher's hook hangs from a ceiling beam, still swaying a little as if lately touched. The passage north leads to a dirty room, and to the east the heat of a very hot intersection spills in.",
+   "look": "crypt"
+  },
+  "15329": {
+   "description": "A hush lies over this room, deep as wool. Low stone shelves like bunks line the walls, each cut to the length of a sleeping body and strewn with rotted bedding. No draught stirs the cobwebs strung between them. The passage north leads to a large intersection.",
+   "look": "crypt"
+  },
+  "15322": {
+   "description": "This is the widest crossing in the catacombs, a high hall where four pillars hold up a vault gone black with age. Passages leave it north to a dusty room, east toward an odd passageway and west toward a noisy room. A great circle of mosaic is set in the floor, most of its tiles long gone, and a low murmur drifts in from the dark.",
+   "look": "crypt"
+  },
+  "15320": {
+   "description": "Dust lies in grey drifts here, heavy as felt, and cobwebs hang in sheets from the roof beams. Nothing moves except the motes turning in a faint draught. Your footprints are the first in a very long time, or so it seems. The only way on leads east to the secret room.",
+   "look": "crypt"
+  },
+  "15321": {
+   "description": "Every surface in this room seems to make a sound: loose stones clink underfoot, a pipe somewhere knocks, and water gurgles in a crack. The walls pass the noise around in the hollow dark, so you cannot tell where any of it begins. The passage leads south toward a shadowy tomb.",
+   "look": "crypt"
+  },
+  "15330": {
+   "description": "A tomb of dark stone crouches in a recess where no light seems to reach, its edges blurred by shadow. Soot-black niches pit the walls, and the cold here is thick and clinging. Your own shadow looks longer than it should. A passage east returns to a sleepy room.",
+   "look": "crypt"
+  },
+  "15310": {
+   "description": "Nothing in this room is quite square: the floor slopes, the walls lean, and the roof has a hump like a sleeping animal's back. A cracked mirror frame hangs on the wall, empty of glass. A doorway leads south to a sleepy room, and a slick passage west goes on to a slippery room.",
+   "look": "crypt"
+  },
+  "15315": {
+   "description": "A low plastered ceiling here is painted with faded stars, most of them flaked away to bare lime. Wooden pegs along the wall hold nothing but cobweb, and a long stone bench runs under them. A small passage leads east, while south the way goes on to a dusty room.",
+   "look": "crypt"
+  },
+  "15309": {
+   "description": "The flagstones are coated with a glassy slime, and a tiny stream runs across the floor from one wall to the other and disappears. You test each step before trusting it. The only dry spot is the doorway south, which leads to a pink tomb.",
+   "look": "crypt"
+  },
+  "15314": {
+   "description": "The tomb here is of rose-pink marble, cracked along one side and carved with a wreath of stone flowers whose petals have crumbled to nubs. It is the gentlest tomb in the catacombs, and somehow the saddest. Dry leaves of long-dead blooms lie against the base. The way back leads east to a sleepy room.",
+   "look": "crypt"
+  }
+ },
+ "extras": {
+  "15318": [
+   {
+    "keywords": "golden tomb marble lid figure",
+    "description": "The lid is carved with a crowned figure, hands folded on a sword, the gold veins of the marble running through him like old fire. The inscription at his feet has been scraped away."
+   }
+  ],
+  "15311": [
+   {
+    "keywords": "runes ring floor",
+    "description": "The runes are cut deep and filled with some dark paste that has never quite dried. They form a ring around the dais, and the dust has been wiped from one arc of it."
+   }
+  ],
+  "15314": [
+   {
+    "keywords": "pink tomb wreath flowers",
+    "description": "The wreath of stone flowers runs all around the lid, each blossom a little different, as if carved from memory. A name was cut at the foot, but the damp has taken all but the first letter."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "grave-rat",
+   "keywords": "grave rat",
+   "short_desc": "a fat grave rat",
+   "long_desc": "A fat grave rat creeps along the base of the wall, whiskers twitching.",
+   "description": "Bloated on what the catacombs leave lying about, this rat is the size of a cat, with matted fur and yellow teeth. Its eyes shine red in the dark.",
+   "kind": "animal",
+   "level": 8,
+   "aggressive": true,
+   "alignment": 0,
+   "sectors": [
+    "inside"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "burial-coin",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "tomb-skeleton",
+   "keywords": "tomb skeleton bones",
+   "short_desc": "a clattering tomb skeleton",
+   "long_desc": "A tomb skeleton shuffles through the dark, a rusted blade in its bony hand.",
+   "description": "Grave-dirt clings to the yellowed bones, and tatters of shroud hang from its ribs. Two cold sparks burn deep in its empty eye sockets.",
+   "kind": "undead",
+   "level": 10,
+   "aggressive": true,
+   "alignment": -500,
+   "sectors": [
+    "inside"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "bone-handled-dagger",
+     "chance": 20
+    },
+    {
+     "item": "burial-coin",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "mouldering-zombie",
+   "keywords": "mouldering zombie corpse",
+   "short_desc": "a mouldering zombie",
+   "long_desc": "A mouldering zombie lurches across the floor, trailing wet rags and a sour stench.",
+   "description": "The corpse has been in the damp too long, and what is left of its flesh sags from the bone in grey folds. It moves with the patient, stubborn gait of the long dead.",
+   "kind": "undead",
+   "level": 12,
+   "aggressive": true,
+   "alignment": -600,
+   "sectors": [
+    "inside"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "burial-coin",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "crypt-ghoul",
+   "keywords": "crypt ghoul",
+   "short_desc": "a gaunt crypt ghoul",
+   "long_desc": "A gaunt crypt ghoul crouches in the gloom, gnawing at something it will not show you.",
+   "description": "Long-limbed and hairless, the ghoul has skin like wet parchment stretched over a starved frame. Its claws are black to the knuckle and its jaw hangs wider than any living mouth should.",
+   "kind": "undead",
+   "level": 15,
+   "aggressive": true,
+   "alignment": -700,
+   "sectors": [
+    "inside"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "bone-handled-dagger",
+     "chance": 25
+    },
+    {
+     "item": "grave-warden-ring",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "weeping-ghost",
+   "keywords": "weeping ghost spirit",
+   "short_desc": "a weeping ghost",
+   "long_desc": "A weeping ghost drifts above the flagstones, pale hands pressed to its face.",
+   "description": "The ghost is the faint shape of a woman in a burial gown, and her tears fall as silver mist that never reaches the floor. Her wail climbs when you draw near, and the air turns cold as a grave.",
+   "kind": "undead",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "In Front Of A White Marble Tomb",
+    "In Front Of A Pink Tomb",
+    "In Front Of A Shadowy Tomb"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "grave-warden-ring",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "harl-cultist",
+   "keywords": "harl gravewhisper cultist",
+   "short_desc": "Harl Gravewhisper, the grave cultist",
+   "long_desc": "Harl Gravewhisper, the grave cultist, kneels by the dais and murmurs over the runes.",
+   "description": "Harl is a stooped man in a soiled black robe, his hands stained with grave-dirt to the wrist. A silver chain bearing a bone charm hangs at his throat, and he mutters without pause to something that has not yet answered.",
+   "kind": "humanoid",
+   "level": 17,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "The Secret Room"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "grave-warden-ring",
+     "chance": 35
+    },
+    {
+     "item": "bone-handled-dagger",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "aldric-vane",
+   "keywords": "aldric vane crypt lord skeleton",
+   "short_desc": "Aldric Vane, the skeletal crypt lord",
+   "long_desc": "Aldric Vane, the skeletal crypt lord, stands guard over the golden tomb in tarnished armour.",
+   "description": "A tall skeleton in a gilded breastplate stands with a black sword planted point down before him. A circlet of gold still sits on his skull, and green fire burns where his eyes once were. He does not so much move as unfold, as if the tomb behind him were his to defend until the world ends.",
+   "kind": "undead",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "In Front Of A Golden Tomb"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "vane-black-sword",
+     "chance": 35
+    },
+    {
+     "item": "gilded-death-mask",
+     "chance": 35
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "burial-coin",
+   "keywords": "burial coin tarnished",
+   "short_desc": "a tarnished burial coin",
+   "room_desc": "A tarnished burial coin lies here.",
+   "description": "A thick silver coin, green at the edges, stamped with a sleeping face. It was meant to pay a ferryman who never came.",
+   "kind": "treasure",
+   "level": 9
+  },
+  {
+   "id": "bone-handled-dagger",
+   "keywords": "bone handled dagger",
+   "short_desc": "a bone-handled dagger",
+   "room_desc": "A bone-handled dagger lies here.",
+   "description": "The handle is yellowed bone worn smooth by many hands, and the narrow blade still keeps a wicked point. Grave-dirt stains the cross-guard.",
+   "kind": "weapon",
+   "level": 12,
+   "weapon_type": "pierce"
+  },
+  {
+   "id": "grave-warden-ring",
+   "keywords": "grave warden ring silver",
+   "short_desc": "a grave warden's ring",
+   "room_desc": "A silver ring set with a black stone lies here.",
+   "description": "A heavy silver ring, the black stone in it cut with a tiny closed eye. It is cold against the skin and seems to listen.",
+   "kind": "armor",
+   "level": 16,
+   "wear_slot": "finger",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "vane-black-sword",
+   "keywords": "black sword vane blade",
+   "short_desc": "the black sword of Aldric Vane",
+   "room_desc": "A long black sword lies here, rimed with grave-dust.",
+   "description": "The blade is dark iron that drinks the light, its edge as keen as the day it was forged. A line of old runes runs down the fuller.",
+   "kind": "weapon",
+   "level": 18,
+   "weapon_type": "slash",
+   "bonus": {
+    "damroll": 2
+   }
+  },
+  {
+   "id": "gilded-death-mask",
+   "keywords": "gilded death mask gold",
+   "short_desc": "a gilded death mask",
+   "room_desc": "A gilded death mask lies here, staring at the ceiling.",
+   "description": "A mask of beaten gold in the likeness of a calm, proud face, worn over the brow with age. Through its empty eyes the world seems a shade colder.",
+   "kind": "armor",
+   "level": 18,
+   "wear_slot": "head",
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}

@@ -1,0 +1,142 @@
+{
+ "zone": 90,
+ "_about": "The Haunted Swamp (levels 10-20): ghouls, zombies and tormented spirits answer each other across the mire, the will-o-wisps lure, the swamp troll and the great alligators are elites, the swamp hag a sub-boss, and the Bog Witch in her hut fills the ground with bubbling brew and calls up the drowned dead.",
+ "creatures": {
+  "9002": {
+   "helpers": {
+    "group": "swamp_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A groan rolls across the mire, and the swamp's dead rise to answer!"
+   },
+   "why": "the swamp's dead"
+  },
+  "9003": {
+   "helpers": {
+    "group": "swamp_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A groan rolls across the mire, and the swamp's dead rise to answer!"
+   },
+   "why": "the swamp's dead"
+  },
+  "9006": {
+   "helpers": {
+    "group": "swamp_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A groan rolls across the mire, and the swamp's dead rise to answer!"
+   },
+   "why": "the swamp's dead"
+  },
+  "9007": {
+   "rank": "elite",
+   "why": "a terror of the swamp"
+  },
+  "9008": {
+   "rank": "elite",
+   "why": "a terror of the swamp"
+  },
+  "9004": {
+   "rank": "sub-boss",
+   "why": "the swamp hag"
+  },
+  "90500": {
+   "name": "bog witch",
+   "short_desc": "the Bog Witch",
+   "long_desc": "The Bog Witch stirs a black cauldron, cackling to herself.",
+   "description": "Bent, green-skinned and draped in rotting moss, with a necklace of frog skulls and eyes like marsh-lights. The dead of the swamp are her servants, and the will-o-wisps are her lanterns.",
+   "level": 20,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "hag",
+   "rank": "boss",
+   "alignment": -900,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Bog Witch shrieks: \"Rise, my sleepers!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Bog Gas",
+      "telegraph": "The Bog Witch upends her cauldron, and foul gas rolls out!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Hex",
+      "telegraph": "The Bog Witch points a crooked finger at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Drowning Curse",
+      "telegraph": "The Bog Witch begins a curse that fills your lungs with mud!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 9002,
+   "route": [
+    9007,
+    9008,
+    9012,
+    9016,
+    9019
+   ],
+   "why": "a swamp zombie wanders the mire"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 90500,
+   "room": 9018,
+   "why": "the Bog Witch in her hut",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Witch's Brew",
+     "school": "poison",
+     "every": 10,
+     "radius": 2.3,
+     "last": 12,
+     "pct": 0.04,
+     "why": "bubbling brew on the floor: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "9002": 2
+     },
+     "shout": "The Bog Witch cackles, and zombies drag themselves out of the mud!",
+     "why": "the drowned dead"
+    }
+   ]
+  }
+ ]
+}

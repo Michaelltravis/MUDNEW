@@ -34,8 +34,8 @@
      "description": "To the up lies The Beach Head."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads up.",
-   "placeholder": true
+   "description": "You are in a low, lightless hollow beneath the pit, where the air is\nstale and dry and the floor is gritty underfoot. Rough stone presses\nclose on every side, and a crooked shaft in the roof lets a thread of\ndaylight and river air trickle down. Gold dust and tarnished flecks of\nmetal glint faintly wherever your eyes can pick them out. A narrow climb\nleads up and out toward the beach.",
+   "extra_descs": {}
   },
   "923": {
    "vnum": 923,
@@ -59,8 +59,8 @@
      "description": "To the east lies The Pit of Minos."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and down.",
-   "placeholder": true
+   "description": "A worn stair of rough stone cuts down out of the pit toward the river-\nsmelling air of the beach, its steps hollowed by years of hooves. Heat\ngathers in the sunken bowl and hangs there, thick with dust and the rank\nsmell of beast. The pit wall rises sheer on every hand, scored with long\nscratches at the height of a horn. The floor of packed sand runs on east\ninto the arena.",
+   "extra_descs": {}
   },
   "926": {
    "vnum": 926,
@@ -84,8 +84,8 @@
      "description": "To the east lies The Pit of Minos."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "Pale sand drifts over the floor here, and everywhere in it lie bones:\nribs, jawbones and the long shins of cattle and worse, trampled half to\npowder. The curving wall of the pit is stained brown to well above your\nhead. A dry, coppery stink rises from the sand whenever your boots stir\nit. The passage runs on east and back west toward the stair.",
+   "extra_descs": {}
   },
   "928": {
    "vnum": 928,
@@ -109,8 +109,8 @@
      "description": "To the east lies The Pit of Minos."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "A great timber rack leans against the stone here, bristling with notched\nswords, bent spears and axes with splintered hafts. Many of the weapons\nare far too large for any man to swing, and all of them are streaked\nwith rust or something darker. Shards of broken blades crunch in the\ndust underfoot. The passage continues east, and the way west leads back\ntoward the stair.",
+   "extra_descs": {}
   },
   "929": {
    "vnum": 929,
@@ -134,8 +134,8 @@
      "description": "To the east lies The Pit of Minos."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "In this cramped corner of the pit someone has made a kind of camp, with\na stone ledge scraped smooth and a sleeping hollow scratched deep into\nthe packed earth beneath it. A faded battle-standard hangs from a spike\ndriven into the wall, stiff with dust and cut to ribbons at its edge.\nTiny claw marks furrow the floor around the hollow in neat, soldierly\nrows. Passages lead off east and west from this corner.",
+   "extra_descs": {}
   },
   "930": {
    "vnum": 930,
@@ -159,8 +159,8 @@
      "description": "To the east lies The Pit of Minos."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
-   "placeholder": true
+   "description": "The air here is sour with old sweat, and a pair of enormous stone\nweights lie on the sand beside an iron bar bent into a shallow bow.\nGrapefruit rinds, dried hard and brown, are scattered across the floor,\nand a few are heaped against the wall as though someone eats here\nbetween bouts of heavy lifting. Scuffed rings in the dust mark where\nwrestlers have circled one another. The passage leads east and west.",
+   "extra_descs": {}
   },
   "931": {
    "vnum": 931,
@@ -184,8 +184,8 @@
      "description": "To the east lies The Pit of Minos."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The ceiling drops low here, and the walls close in until a broad-\nshouldered visitor must turn aside to pass. Torch brackets of black iron\nhold stubs of guttering tallow, and the smoke has painted the stone\nabove them with greasy soot. Hoofprints as wide as dinner plates are\nbaked into the hardened floor. The passage slips on east into deeper\ngloom, while west lies the way back toward the arena.",
+   "extra_descs": {}
   },
   "932": {
    "vnum": 932,
@@ -209,8 +209,8 @@
      "description": "To the east lies The Pit of Minos."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
-   "placeholder": true
+   "description": "A deep, damp draught moves along this stretch of passage, and with it\ncomes the steady rush of the river through the stone, somewhere close\nbeyond the wall. Water seeps down the masonry in dark streaks and\ngathers in a shallow, muddy trough along the floor. Strings of old horn\nand knuckle-bone hang from a rafter, clicking softly against one\nanother. The passage runs on east and west.",
+   "extra_descs": {}
   },
   "933": {
    "vnum": 933,
@@ -234,8 +234,8 @@
      "description": "To the north lies A Nameless Place."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The passage ends in a wide, crumbling landing where the stone floor is\ncracked and strewn with chunks of fallen masonry. Painted on the wall in\ndull red, a huge bull's head glares out at those who come this far, its\neyes mere black holes. Heat and a heavy animal reek pour down from the\nway north. The passage you came by runs back west.",
+   "extra_descs": {}
   },
   "934": {
    "vnum": 934,
@@ -259,8 +259,10 @@
      "description": "To the south lies The Pit of Minos."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and up.",
-   "placeholder": true
+   "description": "Here, at the far end of the pit, a throne has been raised on a dais of\nrough slabs, built entirely of horns lashed and wedged together into a\nmonstrous seat. Heaped skulls form a low rampart at its foot, and every\nsurface is slick with grease and dust. A steep stair climbs up into the\ndark, toward a chamber of cold stone above. The only other way out is\nsouth, back down the passage.",
+   "extra_descs": {
+    "throne horns dais": "The throne is a tangle of horns, hundreds of them, from goats and oxen\nand some far larger, bound with greasy cord and wedged tightly together.\nThe seat is worn smooth and dark by long use."
+   }
   }
  },
  "mobs": {

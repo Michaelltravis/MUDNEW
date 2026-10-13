@@ -1,0 +1,146 @@
+{
+ "zone": 62,
+ "_about": "The Orc Enclave (levels 1-15): orcs and mutant orcs who answer each other's bellow, the orc chief a sub-boss, the mutant things from Elstar's cages as elites, and Elstar the mad elven wizard in his laboratory, splashing mutagen and loosing his creations.",
+ "creatures": {
+  "6203": {
+   "helpers": {
+    "group": "enclave_orcs",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The orc bellows, and the enclave answers!"
+   },
+   "why": "orcs"
+  },
+  "6208": {
+   "helpers": {
+    "group": "enclave_orcs",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The orc bellows, and the enclave answers!"
+   },
+   "why": "orcs"
+  },
+  "6209": {
+   "helpers": {
+    "group": "enclave_orcs",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The orc bellows, and the enclave answers!"
+   },
+   "why": "orcs"
+  },
+  "6204": {
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "enclave_orcs",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The orc bellows, and the enclave answers!"
+   },
+   "why": "the orc chief"
+  },
+  "6212": {
+   "rank": "elite",
+   "why": "a mutant thing"
+  },
+  "6213": {
+   "rank": "elite",
+   "why": "a mutant thing"
+  },
+  "6210": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "memory",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Elstar shrieks: \"Out of the cages, my children!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Mutagen Burst",
+      "telegraph": "Elstar hurls a flask of bubbling green liquid!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+3",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Arcane Bolt",
+      "telegraph": "Elstar points a crackling finger at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Transmute",
+      "telegraph": "Elstar begins a spell to change you into something else!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+5",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the mad wizard"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 6203,
+   "route": [
+    6218,
+    6233,
+    6232,
+    6230,
+    6229,
+    6228,
+    6212
+   ],
+   "why": "an orc hunter ranges the forest trail"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 6210,
+   "room": 6259,
+   "why": "Elstar in his Laboratory",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Mutagen",
+     "school": "poison",
+     "every": 10,
+     "radius": 2.2,
+     "last": 12,
+     "pct": 0.04,
+     "why": "spilled mutagen: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "6212": 1
+     },
+     "shout": "Elstar throws open a cage, and a mutant thing lurches out!",
+     "why": "his creations"
+    }
+   ]
+  }
+ ]
+}

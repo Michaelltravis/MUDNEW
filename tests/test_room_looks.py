@@ -67,7 +67,8 @@ async def main():
     check(rooms[5300].look == 'desert', 'The Great Eastern Desert is desert (once typed field)')
     check(look_of('The Castle Yard') not in rl.UNDERGROUND, "a castle's yard is not underground")
     check(look_of('Deeper and Deeper') == 'cave', "the Pale Man's caverns are caves throughout")
-    taverns = [r for r in rooms.values() if r.sector_type == 'inside' and 'tavern' in r.name.lower()]
+    taverns = [r for r in rooms.values() if r.sector_type == 'inside' and 'tavern' in r.name.lower()
+               and not r.name.lower().startswith(('below', 'under', 'beneath'))]   # a mine under a tavern is a mine
     check(taverns and all(r.look not in rl.UNDERGROUND for r in taverns), 'no tavern turns into a cave')
     plains = [r for r in rooms.values() if r.name == 'The Plains']
     check(plains and all(r.look not in ('inside', 'dungeon') for r in plains), 'no room called The Plains is drawn as a building')

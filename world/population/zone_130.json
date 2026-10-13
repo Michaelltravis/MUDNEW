@@ -1,0 +1,493 @@
+{
+  "_about": "The Sunken Ruins of Atal'narath (src/population.py; the zone's own mobiles block was never loaded). Merfolk who made the ruins their home; sahuagin raiders and their priestess and Baron; reef sharks, water elementals, the drowned; the giant octopus and an abyssal angler; Nerathis, the Drowned King, on his throne, with whirlpools to swim out of and his drowned subjects rising.",
+  "zone": 130,
+  "creatures": {
+    "13100": {
+      "name": "merfolk warden",
+      "short_desc": "a merfolk warden",
+      "long_desc": "A merfolk warden glides here, trident ready, watching the ruins.",
+      "description": "Scales of blue-green from the waist down, a warrior's calm above. The merfolk have made a home of the drowned city, and they guard it.",
+      "level": 19,
+      "hp_dice": "42d10+210",
+      "max_hp": 420,
+      "hp": 420,
+      "damage_dice": "2d8+4",
+      "hitroll": 9,
+      "damroll": 4,
+      "ac": -29,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "undead_free"
+      ],
+      "gold": 76,
+      "exp": 570,
+      "xp": 1140,
+      "detect_bonus": 10,
+      "helpers": {
+        "group": "merfolk",
+        "rooms": 2,
+        "count": 2,
+        "shout": "The merfolk warden calls through the water: \"To me, kin!\""
+      },
+      "race": "merfolk"
+    },
+    "13101": {
+      "name": "sahuagin raider",
+      "short_desc": "a sahuagin raider",
+      "long_desc": "A sahuagin raider prowls here, trident low, rows of teeth bared.",
+      "description": "Shark-headed, shark-skinned and shark-hungry. Sahuagin hunt in packs and hate the surface folk.",
+      "level": 20,
+      "hp_dice": "46d10+230",
+      "max_hp": 460,
+      "hp": 460,
+      "damage_dice": "2d8+5",
+      "hitroll": 10,
+      "damroll": 5,
+      "ac": -30,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive"
+      ],
+      "gold": 80,
+      "exp": 600,
+      "xp": 1200,
+      "detect_bonus": 10,
+      "helpers": {
+        "group": "sahuagin",
+        "rooms": 2,
+        "count": 2,
+        "shout": "The sahuagin screeches, and the water fills with teeth!"
+      },
+      "race": "sahuagin"
+    },
+    "13102": {
+      "name": "water elemental",
+      "short_desc": "a flowing water elemental",
+      "long_desc": "A being of living water flows here, its form never still.",
+      "description": "Water given will. Its eyes are whirlpools; in the deep it is nearly unstoppable.",
+      "level": 22,
+      "hp_dice": "56d10+280",
+      "max_hp": 560,
+      "hp": 560,
+      "damage_dice": "2d10+5",
+      "hitroll": 11,
+      "damroll": 5,
+      "ac": -32,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive"
+      ],
+      "gold": 88,
+      "exp": 660,
+      "xp": 1320,
+      "detect_bonus": 10,
+      "race": "elemental"
+    },
+    "13103": {
+      "name": "reef shark",
+      "short_desc": "a reef shark",
+      "long_desc": "A reef shark circles lazily overhead.",
+      "description": "Grey, quick and patient. It has learned that the ruins bring food.",
+      "level": 18,
+      "hp_dice": "36d10+180",
+      "max_hp": 360,
+      "hp": 360,
+      "damage_dice": "2d6+4",
+      "hitroll": 9,
+      "damroll": 4,
+      "ac": -28,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive"
+      ],
+      "gold": 72,
+      "exp": 540,
+      "xp": 1080,
+      "detect_bonus": 10,
+      "helpers": {
+        "group": "sharks",
+        "rooms": 1,
+        "count": 2
+      }
+    },
+    "13104": {
+      "name": "drowned one corpse",
+      "short_desc": "a bloated drowned one",
+      "long_desc": "A waterlogged corpse drifts here, animated by old magic.",
+      "description": "Once a citizen of Atal'narath. Fish have taken the fingers; the hunger remains.",
+      "level": 21,
+      "hp_dice": "50d10+250",
+      "max_hp": 500,
+      "hp": 500,
+      "damage_dice": "2d8+4",
+      "hitroll": 10,
+      "damroll": 5,
+      "ac": -31,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive",
+        "undead"
+      ],
+      "gold": 84,
+      "exp": 630,
+      "xp": 1260,
+      "detect_bonus": 10,
+      "helpers": {
+        "group": "drowned",
+        "rooms": 1,
+        "count": 2
+      },
+      "race": "undead"
+    },
+    "13110": {
+      "name": "giant octopus",
+      "short_desc": "an enormous giant octopus",
+      "long_desc": "An enormous octopus fills the cave, tentacles curling from the dark.",
+      "description": "The size of a cottage and twice as clever. It has survived decades by being smarter than what it eats.",
+      "level": 22,
+      "hp_dice": "150d10+750",
+      "max_hp": 1500,
+      "hp": 1500,
+      "damage_dice": "2d10+6",
+      "hitroll": 11,
+      "damroll": 5,
+      "ac": -32,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "gold": 88,
+      "exp": 660,
+      "xp": 5280,
+      "detect_bonus": 10,
+      "rank": "elite"
+    },
+    "13111": {
+      "name": "sahuagin priestess",
+      "short_desc": "a sahuagin priestess",
+      "long_desc": "A sahuagin priestess chants to the deep, a coral staff raised.",
+      "description": "Barnacled jewellery, a shark's grin, and a voice that carries through water like a bell.",
+      "level": 22,
+      "hp_dice": "130d10+650",
+      "max_hp": 1300,
+      "hp": 1300,
+      "damage_dice": "2d8+6",
+      "hitroll": 11,
+      "damroll": 5,
+      "ac": -32,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive"
+      ],
+      "gold": 88,
+      "exp": 660,
+      "xp": 5280,
+      "detect_bonus": 10,
+      "rank": "elite",
+      "helpers": {
+        "group": "sahuagin",
+        "rooms": 2,
+        "count": 2,
+        "shout": "The sahuagin screeches, and the water fills with teeth!"
+      },
+      "race": "sahuagin"
+    },
+    "13112": {
+      "name": "drowned royal guard",
+      "short_desc": "a drowned royal guard",
+      "long_desc": "A drowned royal guard stands its post before the vaults, halberd crossed.",
+      "description": "Its armour has rusted green; its oath has not.",
+      "level": 23,
+      "hp_dice": "160d10+800",
+      "max_hp": 1600,
+      "hp": 1600,
+      "damage_dice": "2d10+6",
+      "hitroll": 11,
+      "damroll": 5,
+      "ac": -33,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive",
+        "undead",
+        "sentinel"
+      ],
+      "gold": 92,
+      "exp": 690,
+      "xp": 5520,
+      "detect_bonus": 10,
+      "rank": "elite",
+      "helpers": {
+        "group": "drowned",
+        "rooms": 1,
+        "count": 2
+      },
+      "race": "undead"
+    },
+    "13113": {
+      "name": "abyssal angler",
+      "short_desc": "an abyssal angler",
+      "long_desc": "A pale light bobs in the black, and beneath it, teeth.",
+      "description": "A fish as long as a boat, eyeless, with a lure of cold light and a jaw that opens wider than it should.",
+      "level": 24,
+      "hp_dice": "180d10+900",
+      "max_hp": 1800,
+      "hp": 1800,
+      "damage_dice": "2d10+8",
+      "hitroll": 12,
+      "damroll": 6,
+      "ac": -34,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "gold": 96,
+      "exp": 720,
+      "xp": 5760,
+      "detect_bonus": 10,
+      "rank": "elite"
+    },
+    "13120": {
+      "name": "sahuagin baron",
+      "short_desc": "the Sahuagin Baron",
+      "long_desc": "The Sahuagin Baron lounges on a throne of bones, watching you with flat black eyes.",
+      "description": "Bigger than its kin by half, scarred by a hundred raids. Its trident is tipped with a sea-dragon's tooth.",
+      "level": 24,
+      "hp_dice": "320d10+1600",
+      "max_hp": 3200,
+      "hp": 3200,
+      "damage_dice": "3d8+8",
+      "hitroll": 12,
+      "damroll": 6,
+      "ac": -34,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "gold": 96,
+      "exp": 720,
+      "xp": 14400,
+      "detect_bonus": 10,
+      "rank": "sub-boss",
+      "helpers": {
+        "group": "sahuagin",
+        "rooms": 2,
+        "count": 3,
+        "shout": "The Baron roars, and its raiders come for blood!"
+      },
+      "race": "sahuagin"
+    },
+    "13130": {
+      "name": "drowned king nerathis",
+      "short_desc": "Nerathis, the Drowned King",
+      "long_desc": "Nerathis, the Drowned King, sits his coral throne, crown green with age.",
+      "description": "The last king of Atal'narath would not leave his city when the sea came. He has not left it since. Water pours from his mouth when he speaks.",
+      "level": 26,
+      "hp_dice": "600d10+3000",
+      "max_hp": 6000,
+      "hp": 6000,
+      "damage_dice": "3d10+10",
+      "hitroll": 13,
+      "damroll": 6,
+      "ac": -36,
+      "armor_class": 5,
+      "alignment": -300,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "boss",
+        "undead"
+      ],
+      "gold": 104,
+      "exp": 780,
+      "xp": 15600,
+      "detect_bonus": 10,
+      "rank": "boss",
+      "race": "undead",
+      "boss": true,
+      "boss_id": "drowned_king",
+      "boss_title": "the Drowned King",
+      "boss_config": {
+        "enrage_time": 180,
+        "enrage_multiplier": 1.5,
+        "ability_interval": 5.0,
+        "phases": [
+          {
+            "threshold": 50,
+            "message": "Nerathis rises from his throne, and the whole palace groans with the weight of the sea!"
+          }
+        ],
+        "abilities": [
+          {
+            "name": "Crushing Tide",
+            "telegraph": "Nerathis raises his arms, and the water above you darkens!",
+            "cast_time": 2,
+            "cooldown": 12,
+            "damage_dice": "3d8+8",
+            "aoe": true,
+            "radius": 4.5
+          },
+          {
+            "name": "Trident of the Deep",
+            "telegraph": "Nerathis levels his trident at you!",
+            "cast_time": 1,
+            "cooldown": 7,
+            "damage_dice": "3d10+6",
+            "dodge": true
+          },
+          {
+            "name": "Drowning Grasp",
+            "telegraph": "Water coils around your throat!",
+            "cast_time": 2.5,
+            "cooldown": 18,
+            "damage_dice": "4d8+8",
+            "interruptible": true,
+            "min_phase": 1
+          }
+        ]
+      }
+    }
+  },
+  "spawns": [
+    {
+      "vnum": 13103,
+      "rooms": [
+        13002,
+        13003,
+        13004
+      ],
+      "why": "reef sharks over the drop-off"
+    },
+    {
+      "vnum": 13100,
+      "rooms": [
+        13006,
+        13010,
+        13011
+      ],
+      "why": "merfolk wardens keep the ruins they have made a home"
+    },
+    {
+      "vnum": 13102,
+      "rooms": [
+        13008,
+        13013
+      ],
+      "why": "water elementals at the gateway and the palace"
+    },
+    {
+      "vnum": 13101,
+      "rooms": [
+        13012,
+        13014
+      ],
+      "why": "sahuagin raiders in the merchant quarter and their own territory"
+    },
+    {
+      "vnum": 13104,
+      "rooms": [
+        13016,
+        13013
+      ],
+      "why": "drowned ones in the vaults and palace"
+    },
+    {
+      "vnum": 13110,
+      "rooms": [
+        13009
+      ],
+      "why": "the giant octopus in its cave"
+    },
+    {
+      "vnum": 13111,
+      "rooms": [
+        13014
+      ],
+      "why": "a sahuagin priestess with the raiders"
+    },
+    {
+      "vnum": 13112,
+      "rooms": [
+        13016
+      ],
+      "why": "a drowned royal guard before the vaults"
+    },
+    {
+      "vnum": 13113,
+      "rooms": [
+        13017
+      ],
+      "why": "an abyssal angler in the trench"
+    },
+    {
+      "vnum": 13120,
+      "rooms": [
+        13014
+      ],
+      "why": "the Sahuagin Baron holds Sahuagin Territory"
+    }
+  ],
+  "patrols": [
+    {
+      "vnum": 13100,
+      "route": [
+        13008,
+        13010,
+        13011
+      ],
+      "why": "a merfolk warden walks gateway, plaza and temple"
+    },
+    {
+      "vnum": 13101,
+      "route": [
+        13014,
+        13012,
+        13010
+      ],
+      "why": "a sahuagin raider ranges from its territory to the plaza"
+    }
+  ],
+  "bosses": [
+    {
+      "vnum": 13130,
+      "room": 13015,
+      "why": "Nerathis, the Drowned King, on his throne",
+      "mechanics": [
+        {
+          "type": "plague_pools",
+          "label": "Whirlpool",
+          "school": "frost",
+          "every": 10,
+          "radius": 2.6,
+          "last": 12,
+          "pct": 0.05,
+          "why": "whirlpools to swim out of"
+        },
+        {
+          "type": "waves",
+          "at": [
+            66,
+            33
+          ],
+          "adds": {
+            "13104": 2
+          },
+          "shout": "Nerathis calls, and the drowned of Atal'narath rise from the floor!",
+          "why": "his drowned subjects at 66% and 33%"
+        }
+      ]
+    }
+  ]
+}

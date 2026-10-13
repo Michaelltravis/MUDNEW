@@ -1,7 +1,8 @@
 """Creatures that come to each other's aid (a zone's population: world/population, a creature's
 `helpers`: {"group": "castle", "rooms": 2, "count": 3}). When a player attacks one, others of
 its group within `rooms` steps who are free rush in and join the fight (a boss's call_guards
-works the same way: boss_mechanics.py).
+works the same way: boss_mechanics.py). One whose helpers say "answer": false calls for help
+but never comes (a shopkeeper calls the watch; the watch comes).
 """
 
 
@@ -33,7 +34,7 @@ def nearby_allies(mob, rooms=2, want=3):
                         return out
                     if m is mob or hasattr(m, 'connection') or getattr(m, 'fighting', None) or getattr(m, 'hp', 0) <= 0:
                         continue
-                    if _group(m) == group:
+                    if _group(m) == group and (m.helpers or {}).get('answer', True):
                         out.append((m, to))
         frontier = nxt
     return out

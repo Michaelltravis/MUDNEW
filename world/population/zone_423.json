@@ -1,0 +1,221 @@
+{
+ "zone": 423,
+ "_about": "Hommlet's upper rooms (levels 8-16): agents of a hidden cult lodge above the village. Cultists help each other; Zert and Furnok are elites, Gundigoot a sub-boss, and the false Canon in the Chief Priest's Chambers, the cult's real master, calls his followers.",
+ "creatures": {
+  "42300": {
+   "name": "cultist hooded",
+   "short_desc": "a hooded cultist",
+   "long_desc": "A hooded cultist checks the store-room locks, glancing over his shoulder.",
+   "description": "A plain villager's coat over a black robe, and an eye stitched inside the hood in red thread. The cult has eyes all over Hommlet.",
+   "level": 10,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": -500,
+   "helpers": {
+    "group": "eye_cult",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A hidden door bangs open: the cult comes!"
+   }
+  },
+  "42301": {
+   "name": "zert fighter",
+   "short_desc": "Zert",
+   "long_desc": "Zert the swordsman leans in his doorway, polishing a blade.",
+   "description": "A hard-faced man with a duellist's scars and the easy stance of someone who has killed for pay. He calls himself a traveller; no traveller carries that many knives.",
+   "level": 13,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "elite",
+   "alignment": -400,
+   "helpers": {
+    "group": "eye_cult",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A hidden door bangs open: the cult comes!"
+   }
+  },
+  "42302": {
+   "name": "furnok thief",
+   "short_desc": "Furnok",
+   "long_desc": "Furnok sits on his bed, shuffling a deck of marked cards.",
+   "description": "A small, quick man with clever hands and a pleasant smile that never reaches his eyes. He has picked half the purses in Hommlet and reported the rest.",
+   "level": 12,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "elite",
+   "alignment": -400,
+   "helpers": {
+    "group": "eye_cult",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A hidden door bangs open: the cult comes!"
+   }
+  },
+  "42303": {
+   "name": "gundigoot priest",
+   "short_desc": "Gundigoot",
+   "long_desc": "Gundigoot murmurs over a little brass eye on his table.",
+   "description": "A round, soft-spoken man who passes for a seed merchant. The brass eye he prays to is the sign of the cult he serves.",
+   "level": 15,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "sub-boss",
+   "alignment": -700,
+   "helpers": {
+    "group": "eye_cult",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A hidden door bangs open: the cult comes!"
+   }
+  },
+  "42304": {
+   "name": "assistant cleric",
+   "short_desc": "the assistant cleric",
+   "long_desc": "The assistant cleric looks up nervously from his prayer book.",
+   "description": "A young cleric of the village church who has begun to suspect his master. He jumps at every footstep.",
+   "level": 8,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 500,
+   "helpers": {
+    "group": "hommlet_church",
+    "rooms": 3,
+    "count": 2,
+    "shout": "Help! Someone help me!",
+    "answer": false
+   }
+  },
+  "42310": {
+   "name": "false canon",
+   "short_desc": "the false Canon",
+   "long_desc": "The Canon of Hommlet turns from the window, his kindly smile fading.",
+   "description": "Grey-haired and gentle-faced, the village's beloved priest for twenty years. Under the white vestments he wears the black eye of the cult, and he has been its master all along.",
+   "level": 16,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "boss",
+   "alignment": -900,
+   "helpers": {
+    "group": "eye_cult",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A hidden door bangs open: the cult comes!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Canon tears off his vestments: \"The Eye sees all!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Unholy Sermon",
+      "telegraph": "The Canon raises his hands, and his sermon turns to something dark!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+4",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Censer Blow",
+      "telegraph": "The Canon swings a heavy brass censer!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "The Eye Opens",
+      "telegraph": "The Canon begins to chant to the Eye!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+5",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 42300,
+   "rooms": [
+    8207,
+    8220,
+    8222,
+    8241
+   ]
+  },
+  {
+   "vnum": 42301,
+   "rooms": [
+    8223
+   ]
+  },
+  {
+   "vnum": 42302,
+   "rooms": [
+    8225
+   ]
+  },
+  {
+   "vnum": 42303,
+   "rooms": [
+    8221
+   ]
+  },
+  {
+   "vnum": 42304,
+   "rooms": [
+    8243
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 42310,
+   "room": 8244,
+   "why": "the false Canon in the Chief Priest's Chambers",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      42300
+     ],
+     "shout": "The Canon calls: \"Brothers! Sisters! To me!\"",
+     "why": "his cult"
+    }
+   ]
+  }
+ ]
+}

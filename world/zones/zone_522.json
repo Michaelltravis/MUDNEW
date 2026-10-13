@@ -24,8 +24,11 @@
      "description": "To the south lies A Frozen Walkway."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north and south.",
-   "placeholder": true
+   "description": "A hump-backed bridge of old grey stone carries the road across a gorge,\nits surface smothered in unbroken snow and its low parapets shrunk to\nwhite ridges. Beneath you a frozen stream lies like a pane of dark glass\nbetween the cliffs. Wind hums through the gap and plucks at your cloak.\nNorth the span ends at the edge of the Winterlands, and south it runs on\ntoward a glazed walkway.",
+   "look": "snow",
+   "extra_descs": {
+    "parapet parapets bridge": "The low stone parapets are almost lost under snow, but a few old masons'\nmarks show where the wind has scoured the stone."
+   }
   },
   "3901": {
    "vnum": 3901,
@@ -47,8 +50,9 @@
      "description": "To the south lies Across a Snow Covered Bridge."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north and south.",
-   "placeholder": true
+   "description": "The snowfield opens here into a wide bowl of white under a low pewter\nsky, with the bridge close behind. Wind-bent pines stand at the rim of\nthe drifts, their branches clotted with ice. A trampled gap leads north\nthrough the storm-felled timber to where the Winterwood ends, while the\nbridge lies to the south. Every breath you take clouds and crackles\nbefore your face.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3902": {
    "vnum": 3902,
@@ -78,8 +82,9 @@
      "description": "To the west lies Lost in the Blizzard."
     }
    },
-   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The walkway is a raised causeway of packed snow glazed with a skin of\nclear ice, so slick that each step must be tested. To the east and west\nthe ground vanishes into whirling white, and a stray step off the edge\nwould swallow you in the blizzard. Posts of frozen rope, thick with\nrime, mark the safe line. The path leads back north toward the bridge\nand on south.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3903": {
    "vnum": 3903,
@@ -109,8 +114,9 @@
      "description": "To the west lies Lost in the Blizzard."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The glazed walkway runs on as a pale ribbon through the churning storm,\nits surface scored with wind-carved ripples. Snow hisses along it in\nthin serpents, and the blizzard presses close to the east and west,\nhiding everything beyond the verge. Ahead to the south a great dark\nshape looms through the flurries: the Winterland Monument. Back north\nthe path returns toward the bridge.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3904": {
    "vnum": 3904,
@@ -136,8 +142,11 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "You stand at the foot of the Winterland Monument, a soaring spire of\nblack stone whose faces are sheathed in ice as thick as your forearm.\nSnow has been swept into a tight ring about its plinth, and the walkway\nmeets it from the north. The trampled path runs east and west around the\nbase. Runes cut into the plinth are half drowned in frost.",
+   "look": "snow",
+   "extra_descs": {
+    "monument spire runes plinth": "The spire is cut from a single block of black stone and rises out of\nsight into the grey. Giant-sized runes run around the plinth, too worn\nand frosted to read."
+   }
   },
   "3905": {
    "vnum": 3905,
@@ -159,8 +168,15 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead east and south.",
-   "placeholder": true
+   "description": "The ring comes to its last corner, where the plinth steps outward in\nthree broad tiers glazed with ice. Snow lies in the angle of each step\nin neat white wedges. East the ring returns toward the walkway, and\nsouth it runs on along the stone. A battered iron brazier, long cold,\nsits rusting on the lowest tier.",
+   "look": "snow",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652200,
+     "max": 1
+    }
+   ]
   },
   "3906": {
    "vnum": 3906,
@@ -182,8 +198,9 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north and south.",
-   "placeholder": true
+   "description": "On this side of the monument the wind has built a long drift that leans\nagainst the plinth like a frozen wave. The path squeezes between the\ndrift and the black stone, leading north and south. Blue shadows pool in\nthe hollows, and your breath hangs in the still air. Scratches in the\nice show where something heavy was dragged along the wall.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3907": {
    "vnum": 3907,
@@ -203,10 +220,14 @@
     "east": {
      "to_room": 3908,
      "description": "To the east lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3919
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and east.",
-   "placeholder": true
+   "description": "At this corner a heap of fallen masonry, white-capped and frozen into\nthe drift, spills across the ring. The monument is cracked here, a black\nseam the height of its flank filled with glittering ice. The path bends,\nleading north around the base and east along it. Silence presses close,\nbroken only by the creak of settling snow.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3908": {
    "vnum": 3908,
@@ -228,8 +249,15 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long straight reach of the ring, where the spire's shadow lies across\nthe snow like a blade. The ice on the stone is stained blue-green by\nsome mineral seeping from the joints. Wind funnels along the path from\nthe east and west alike, tugging at your hood. An iron ring set into the\nplinth is crusted solid with frost.",
+   "look": "snow",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652203,
+     "max": 1
+    }
+   ]
   },
   "3909": {
    "vnum": 3909,
@@ -251,8 +279,9 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and west.",
-   "placeholder": true
+   "description": "The ring bends again at the base of the monument, running north and\nwest. Here the spire's lowest course is carved with a frieze of marching\ngiants, their stone faces worn blunt by wind and furred with rime. Fine\nsnow slides off the carving in little sighs. The ground is hard rutted\nice, treacherous under its coat of powder.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3910": {
    "vnum": 3910,
@@ -278,8 +307,9 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "On this flatter stretch of the ring the wind has scoured the snow thin,\nleaving dark patches of the old paving bare. A frozen walkway leaves the\nring here and runs east toward a distant gate, while the ring itself\ngoes north and south. Icicles hang in rows from a ledge of the spire,\ntinkling faintly. Your boots ring hollow on the stone.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3911": {
    "vnum": 3911,
@@ -301,8 +331,9 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead south and west.",
-   "placeholder": true
+   "description": "Here the trampled ring turns a corner, curving back west along the\nplinth and on toward the south. The spire rises beside you, its black\nstone glittering where a thin glaze of ice has formed. A heap of snow\nhas piled against one corner of the base, packed hard as chalk. The cold\ncreeps through the seams of your boots like a living thing.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3912": {
    "vnum": 3912,
@@ -324,8 +355,9 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead east and west.",
-   "placeholder": true
+   "description": "The walkway is a narrow shelf of ice between two long banks of drift,\nscraped smooth by the wind into a dull blue sheen. Behind you, to the\nwest, the black spire stands against the sky. Ahead the way runs on\neast, and the faint iron smell of a great gate drifts along it. Frost\nfeathers grow on the rope-posts at the verge, trembling when the gusts\ncome.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3913": {
    "vnum": 3913,
@@ -347,8 +379,9 @@
      "description": "To the west lies A Frozen Walkway."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead east and west.",
-   "placeholder": true
+   "description": "Halfway along the walkway the drifts rise higher than your shoulders on\nboth sides, forming a trench of glittering white. Meltwater from some\npast thaw has refrozen across the path in a ribbed sheet that must be\ncrossed with care. The trench runs east toward the gate and west back\ntoward the monument. Overhead the sky is a flat, pitiless grey.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3914": {
    "vnum": 3914,
@@ -370,8 +403,9 @@
      "description": "To the west lies A Frozen Walkway."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead east and west.",
-   "placeholder": true
+   "description": "The drifts fall away and the walkway widens into an apron of ice\nscattered with old iron nails and flakes of rust. Ahead to the east a\nwall of weathered stone climbs out of the snow, and in it a vast gate\nhangs, dark and shut. Frost has furred every rivet of the apron's iron\nstuds. The path leads back west along the trench of white.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3915": {
    "vnum": 3915,
@@ -387,10 +421,22 @@
     "west": {
      "to_room": 3914,
      "description": "To the west lies A Frozen Walkway."
+    },
+    "south": {
+     "to_room": 3933
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. A way leads west.",
-   "placeholder": true
+   "description": "A massive portcullis of black iron fills an arch cut for creatures far\nlarger than men, its bars thick as tree trunks and spiked at the foot.\nRime blankets every bar, and long icicles hang from the arch above, some\nas tall as you are. Beyond the grating lies only a vast breathing\ndarkness, and the gate does not stir for any hand. The only way back is\nthe walkway to the west.",
+   "look": "snow",
+   "extra_descs": {
+    "portcullis gate bars": "Each bar of the portcullis is wider than your waist and cold enough to\nburn bare skin. The teeth at its foot are sunk deep in a trench of\nancient ice."
+   },
+   "mob_resets": [
+    {
+     "vnum": 652200,
+     "max": 1
+    }
+   ]
   },
   "3917": {
    "vnum": 3917,
@@ -416,8 +462,9 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "You leave the walkway for a wide shelf of open snow where the wind has\npacked the surface into hard ripples. A line of stakes, bleached and\ncrusted with ice, marks some old boundary and runs off east across the\nground. The glazed walkway lies back north, and the way continues south.\nThe spire is a dark finger beyond the drifts, and nothing else breaks\nthe white.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3918": {
    "vnum": 3918,
@@ -439,8 +486,9 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead east and west.",
-   "placeholder": true
+   "description": "Frozen furrows run across this stretch of field, the memory of some\nlong-dead planting, now ridged with ice and hidden under snow. A\nblackened fence post leans at an angle, thick with hoarfrost. The track\nleads east and west between gently rising drifts. Wind whistles across\nthe open ground without ever pausing for breath.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3919": {
    "vnum": 3919,
@@ -460,10 +508,14 @@
     "west": {
      "to_room": 3918,
      "description": "To the west lies Around the Winterland Monument."
+    },
+    "east": {
+     "to_room": 3907
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead south and west.",
-   "placeholder": true
+   "description": "A shallow bowl in the snow, rimmed with sculpted drifts whose crests\ncurl like breaking waves. In its floor lies a disc of clear ice through\nwhich you can see the dark ground. The way leads south along the bowl's\nedge and west back across the furrows. Your shadow is a pale blue smear\non the white.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3920": {
    "vnum": 3920,
@@ -485,8 +537,9 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north and south.",
-   "placeholder": true
+   "description": "Tall ridges of wind-packed snow flank this stretch, making a corridor\nopen to the sky. The crust crunches at every step, and the sound carries\na long way in the cold. Old wolf tracks, softened by newer fall, wander\nalong it from the north toward the south. A ring of smoke-black stones\nat one side marks a firepit long gone cold.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3921": {
    "vnum": 3921,
@@ -506,10 +559,14 @@
     "west": {
      "to_room": 3922,
      "description": "To the west lies Around the Winterland Monument."
+    },
+    "east": {
+     "to_room": 3925
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and west.",
-   "placeholder": true
+   "description": "A scatter of boulders sheathed in ice, each wearing a cap of snow,\nstands about this corner like sleeping beasts. Beyond them the ground\nsinks into a gully choked with drifts. The trail leads north past the\nbiggest boulder and west across the flats. Cold stings every inch of\nexposed skin.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3922": {
    "vnum": 3922,
@@ -531,8 +588,9 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead east and west.",
-   "placeholder": true
+   "description": "A half-buried wagon, its wheels rimed and its bed heaped with snow,\nrests on its side in the middle of the trail. The wood has gone grey and\nbrittle with cold, and long icicles hang from the shattered tongue. The\ntrack passes it to the east and west. A snapped axle lies frozen into\nthe crust.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3923": {
    "vnum": 3923,
@@ -554,8 +612,9 @@
      "description": "To the east lies Around the Winterland Monument."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north and east.",
-   "placeholder": true
+   "description": "A broad flat of old drift, so hard that the wind can find no loose snow\nto lift. Pale standing stones, none taller than a child and all sheathed\nin ice, form a loose arc around the corner. The path leads north away\nfrom the arc and east along it. The silence here is deep and a little\neerie.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3924": {
    "vnum": 3924,
@@ -577,8 +636,15 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and south.",
-   "placeholder": true
+   "description": "Skeletal birches, long dead and sheathed in ice, rattle in the wind at\nthe edge of this field. Between them the snow lies in smooth swells,\nunbroken but for the faint stitching of hare prints. The way leads north\ntoward the walkway and south across a bare flat. Frozen twigs chime\ntogether like tiny bells.",
+   "look": "snow",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652203,
+     "max": 1
+    }
+   ]
   },
   "3925": {
    "vnum": 3925,
@@ -602,10 +668,16 @@
     "south": {
      "to_room": 3932,
      "description": "To the south lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3921
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The walkway gives way to a second plain of snow, flatter and brighter,\nwhere a low sun glares off every surface. Ice spicules cover the ground\nlike salt, crunching underfoot, and the wind carries a whisper of grit.\nThe walkway lies back north, while open ground continues east and south.\nA single leaning milestone, capped with ice, stands to one side of the\nway.",
+   "look": "snow",
+   "extra_descs": {
+    "milestone stone": "The milestone is cut with a pattern of notches, a giants' tally of\ndistance, and one side is furred with white frost."
+   }
   },
   "3926": {
    "vnum": 3926,
@@ -627,8 +699,15 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead east and west.",
-   "placeholder": true
+   "description": "Rippling dunes of snow roll across this stretch, sculpted by the wind\ninto sharp-edged ridges. In the hollows between them the powder is blue\nwith shadow and wholly untouched. The trail follows the crests east and\nwest. A frost-split stump, black against the white, is the only upright\nthing in sight.",
+   "look": "snow",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652200,
+     "max": 1
+    }
+   ]
   },
   "3927": {
    "vnum": 3927,
@@ -650,8 +729,9 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead south and west.",
-   "placeholder": true
+   "description": "The ground slopes into a wide frozen pond, its surface ground milky by\nthe wind and its edges ruffled with frozen reeds. The trail swings\naround the shore, leading south and back west. Cracks run across the ice\nwith a deep groaning note that carries for miles. Your breath rises in a\nghost and is gone.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3928": {
    "vnum": 3928,
@@ -673,8 +753,9 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and south.",
-   "placeholder": true
+   "description": "A causeway of hard snow runs between two banks of tall wind-carved\ndrifts, like a street between white walls. The air within is oddly still\nand every sound is deadened. Ice crystals hang glittering in the air,\ntoo fine to fall. The way leads north toward the pond and south along\nthe walls.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3929": {
    "vnum": 3929,
@@ -694,10 +775,14 @@
     "west": {
      "to_room": 3930,
      "description": "To the west lies Around the Winterland Monument."
+    },
+    "east": {
+     "to_room": 3998
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and west.",
-   "placeholder": true
+   "description": "The great ribcage of some long-dead beast arches out of the drift here,\nits bones bleached and crusted with frost. Beneath the arch the trail\nbends, running north and west. The snow around it is unmarked and the\ncold has a bitter, mineral taste. Far off, a low moan of wind answers\nacross the plain.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3930": {
    "vnum": 3930,
@@ -719,8 +804,9 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead east and west.",
-   "placeholder": true
+   "description": "A stand of ice-furred spruce, stunted and twisted by the wind, crowds\nthe trail on both sides, their needles stiff as glass. Snow weighs on\nevery bough, and now and then a branch cracks in the cold like a shot.\nUnder the trees the ground is a patchwork of ice and powder. The trail\nruns east and west through the grove.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3931": {
    "vnum": 3931,
@@ -742,8 +828,9 @@
      "description": "To the east lies Around the Winterland Monument."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and east.",
-   "placeholder": true
+   "description": "A broad dish of snow, broken by a slab of black rock coated in ice that\nthrusts from the drift like a tooth. The trail loops around it, leading\nnorth and east. Faint blue light glows within the ice where the sun\nfinds it. Your breath freezes into a fine crust on your scarf.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3932": {
    "vnum": 3932,
@@ -765,8 +852,9 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and south.",
-   "placeholder": true
+   "description": "The field here is pitted with small round hollows where snow has settled\nover sinkholes, each rimmed with a delicate collar of frost. The ground\nrings dully underfoot. Mountains of cloud stack on the horizon, heavy\nwith more snow. The path leads north along the edge of the plain and\nsouth toward a tooth of black rock.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3933": {
    "vnum": 3933,
@@ -786,10 +874,14 @@
     "south": {
      "to_room": 3940,
      "description": "To the south lies Around the Winterland Monument."
+    },
+    "north": {
+     "to_room": 3915
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead east and south.",
-   "placeholder": true
+   "description": "A corner of the field beside what was once the monument's outer wall,\nnow only a long mound of snow-covered blocks. Icicles as long as spears\nhang from an outcrop, and the ice beneath them is pocked where they have\nfallen before. The way leads east along the mound and south across the\ntrampled snow. A thin, steady wind combs the surface into fine lines.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3934": {
    "vnum": 3934,
@@ -811,8 +903,15 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead east and west.",
-   "placeholder": true
+   "description": "Snow-waves undulate across this stretch, their tops sharp as knives.\nBetween them the ground is bare black stone, polished by ice and by\nyears of wind. The trail runs east and west along a line of cairns whose\nstones have frozen into one another. A pale haze of blown crystals\ndrifts through the air.",
+   "look": "snow",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652203,
+     "max": 1
+    }
+   ]
   },
   "3935": {
    "vnum": 3935,
@@ -834,8 +933,9 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead south and west.",
-   "placeholder": true
+   "description": "A wide bend where the plain falls away in a smooth white slope that ends\nin a mist of blown crystals. The path turns here, leading south and\nwest. On the rim of the slope a ring of low black stones stands rimed\nwith frost, perhaps the foundation of some forgotten hut. The light is\ncold and without warmth.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3936": {
    "vnum": 3936,
@@ -857,8 +957,9 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and south.",
-   "placeholder": true
+   "description": "The long shadow of the monument falls across this stretch, and the snow\nis blue-grey and hard. A thin crust of ice splits underfoot with a\nseries of sharp cracks. The trail leads north and south through the\nshadow, where the air is colder still. A bent iron lantern-hook, empty\nand furred with rime, juts from a post.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3937": {
    "vnum": 3937,
@@ -880,8 +981,15 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north and west.",
-   "placeholder": true
+   "description": "A drift has swallowed half of a stone horse-trough, leaving only a rim\nof frozen stone above the white. The trough is filled with solid ice and\nscarred by a hundred small scratches. The way leads north along the\nshade and west across the open field. Somewhere a loose sheet of ice\nflaps and clatters in the wind.",
+   "look": "snow",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652200,
+     "max": 1
+    }
+   ]
   },
   "3938": {
    "vnum": 3938,
@@ -903,8 +1011,9 @@
      "description": "To the west lies Around the Winterland Monument."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead east and west.",
-   "placeholder": true
+   "description": "A signpost of grey timber leans in the snow, its arms glazed over so\nthat no word can be read on them. The ground is a stiff white crust that\nsqueaks like leather. East and west the track runs, flanked by wind-\ngouged troughs where the drifts stand in pale ranks. The sky overhead\nhas the colour of old pewter.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3939": {
    "vnum": 3939,
@@ -926,8 +1035,9 @@
      "description": "To the east lies Around the Winterland Monument."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north and east.",
-   "placeholder": true
+   "description": "Footprints crowd this corner, old and new, frozen into the crust in a\nconfusing tangle. The snow is stained brownish where something was\ndragged away. The track leads north along the edge of the field and east\nacross the open ground. Fresh flakes drift in on the wind and slowly\nsoften every mark.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3940": {
    "vnum": 3940,
@@ -949,8 +1059,9 @@
      "description": "To the south lies Around the Winterland Monument."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north and south.",
-   "placeholder": true
+   "description": "A pair of snow-buried pillars, carved with spirals, flank the track and\nglitter with frost. Sleet has crusted the ground into a dark glaze that\nshows your reflection, bent and pale. The way leads north and south\nalong the pillars. The air carries the faint, stony chill of a great\nhollow place close by.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3941": {
    "vnum": 3941,
@@ -974,8 +1085,15 @@
      "description": "To the down lies A Crudely Formed Staircase."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead west and down.",
-   "placeholder": true
+   "description": "The chamber narrows into the head of a crudely cut stair, hewn by huge\nimpatient tools. The steps are uneven, some as high as your knee, and\neach wears a glaze of ice. The way back west returns to the monument's\nbase, and the stair plunges down into darkness. Cold air breathes along\nit, smelling of stone and old frost.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652204,
+     "max": 1
+    }
+   ]
   },
   "3942": {
    "vnum": 3942,
@@ -999,8 +1117,9 @@
      "description": "To the up lies A Crudely Formed Staircase."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and up.",
-   "placeholder": true
+   "description": "The crude stair ends on a floor of trampled rock slick with ice.\nOverhead the roof is lost in blackness, and the walls glitter with\nfrozen seepage. To the east the passage opens into a vaster space whose\nechoes drift back to you. The stair rises behind you toward the surface.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3943": {
    "vnum": 3943,
@@ -1032,8 +1151,9 @@
      "description": "To the west lies The Bottom of a Crude Staircase."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A wide mouth of rock opens into a cavern of immense size, where the air\nis as still as held breath. Pillars of ice stand in rows, taller than\nhouses, glowing with a deep blue light of their own. Passages of frozen\nfloor lead north, east and south, and the stair lies back west. Every\nsound is swallowed and then returned a moment late.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3944": {
    "vnum": 3944,
@@ -1057,8 +1177,9 @@
      "description": "To the south lies A Cavern Entrance."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "Here the cavern wall meets the roof in a tight corner thick with\nicicles, some as long as spears, dripping slowly onto a frozen puddle.\nThe rock is slick and glassy, scored in places by huge claw-like\ngrooves. The cavern opens east along the wall and south toward its\nentrance. A faint draught carries the smell of cold iron.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3945": {
    "vnum": 3945,
@@ -1090,8 +1211,15 @@
      "description": "To the west lies A Cavern Entrance."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "At the heart of the cavern a great ring of ice pillars stands around a\nfloor of blue-white frost, polished by long years of cold. The roof is\nlost far overhead, and a deep slow dripping measures the silence. Paths\nof trampled ice lead away in every direction, north, south, east and\nwest. The pillars catch what little light there is and throw it back in\ncold shards.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652201,
+     "max": 1
+    }
+   ]
   },
   "3946": {
    "vnum": 3946,
@@ -1115,8 +1243,9 @@
      "description": "To the east lies Southern End of a Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and east.",
-   "placeholder": true
+   "description": "A corner of rough, unworked rock where the frost has grown thick and\nfurred, as though the cave had grown a pelt. The floor is gritty with\nfrozen sand and slick underneath. The cavern leads north toward its\nentrance and east along the cavern wall. A wet, bitter smell hangs in\nthe air.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3947": {
    "vnum": 3947,
@@ -1144,8 +1273,9 @@
      "description": "To the west lies North West Corner of a Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The floor of this stretch is a sheet of ice so clear that you can see\npale rock in its depths. A line of low frozen pools runs along the wall,\neach ringed by a collar of white crystals. The cavern continues west\ntoward a corner, east toward another, and south toward its middle. Water\nticks down from the roof in the silence.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3948": {
    "vnum": 3948,
@@ -1173,8 +1303,15 @@
      "description": "To the west lies South West Corner of a Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The floor here is littered with shards of ice that have fallen from the\nroof and shattered, glittering in drifts against the walls. A single\ntall column of frost stands near the wall, its heart clouded white. The\ncavern runs on east and west along its edge, and a wider space opens\nnorth. Cold seeps through every layer of clothing.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652201,
+     "max": 1
+    }
+   ]
   },
   "3949": {
    "vnum": 3949,
@@ -1198,8 +1335,9 @@
      "description": "To the west lies Northern End of a Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "In this corner the roof sweeps low, hung with curtains of ice that\nripple like frozen cloth. Where they meet the floor they have fused into\nsmooth, glistening columns. The only ways out lead south along the\ncavern's edge and west along the wall. Hoarfrost lies on the stone as\nthick as fur.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3950": {
    "vnum": 3950,
@@ -1236,8 +1374,15 @@
      "description": "To the west lies Center of a Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The eastern end of the cavern is sealed by a wall of dark carved stone\nin which a massive door of black timber stands, banded with iron and\nfurred with frost. Giant footprints of long-melted ice are worn into the\nfloor before it, deeper than a man's boot. The door leads east into the\nhallway beyond. The cavern opens north, south and west behind you.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652204,
+     "max": 1
+    }
+   ]
   },
   "3951": {
    "vnum": 3951,
@@ -1261,8 +1406,15 @@
      "description": "To the west lies Southern End of a Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "A low corner of the cavern where the floor slopes toward a shallow bowl\nof black ice. Frozen runnels trace the walls like the veins of a leaf.\nThe chamber leads north toward the great door and west along the cavern\nwall. The air tastes of metal and your breath comes out in slow white\nplumes.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652201,
+     "max": 1
+    }
+   ]
   },
   "3952": {
    "vnum": 3952,
@@ -1286,8 +1438,9 @@
      "description": "To the west lies Eastern End of a Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "You stand in a hallway of colossal size, its walls of fitted black stone\nrising far beyond the reach of any light. Great pillars of ice have been\nleft standing along its length, and the floor is worn into shallow\nchannels by generations of enormous feet. The great door stands west,\nand the hall runs on east. Every breath you take echoes like a whisper\nin a vast tomb.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3953": {
    "vnum": 3953,
@@ -1311,8 +1464,17 @@
      "description": "To the west lies A Massive Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "Banners of frozen cloth hang stiff from iron poles along the hall,\npainted with giant sigils that have flaked away under the ice. A long\ntrough of black stone runs along the wall, filled with solid blue ice.\nThe hallway continues east and west, and your steps ring out as though\nit were a bell. The cold here is dry and vast.",
+   "look": "cave",
+   "extra_descs": {
+    "banners sigils": "The banners have frozen into stiff folds like sheets of tin. The sigils\non them show a crowned head over crossed axes, though most of the paint\nhas gone."
+   },
+   "mob_resets": [
+    {
+     "vnum": 652207,
+     "max": 1
+    }
+   ]
   },
   "3954": {
    "vnum": 3954,
@@ -1341,8 +1503,9 @@
      "description": "To the west lies A Massive Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The hall narrows toward another door, as massive as the first, its\npanels carved with scenes of giants hunting in the snow. A throne-sized\nbench of ice sits against the wall, its arms worn smooth by use. The\ndoor lies east, and the hall continues back west. Drifts of fine snow\nhave blown in under the door and lie in a pale crescent.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3955": {
    "vnum": 3955,
@@ -1374,8 +1537,9 @@
      "description": "To the west lies A Massive Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "You stand just inside a vast cavern, where the great door lies back west\nand the floor of dark rock stretches away in a frozen plain. Stalactites\nof ice hang from the roof in clusters, pale as bone, and the air hums\nwith a thin high note as the draught passes through them. Passages open\nnorth, east and south across the glittering floor. Your lamplight, if\nyou have any, goes a very short way.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3956": {
    "vnum": 3956,
@@ -1399,8 +1563,9 @@
      "description": "To the south lies A Large Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "The floor here is a single sheet of ice, cracked in a pattern like a\nspider's web, with a gleam of black water far beneath. Along the rock\nwall huge sconces of iron stand empty, each as wide as a barrel and\nfrozen to the stone. The cavern leads east across the cracked sheet and\nsouth back toward the door hall. The ice groans softly when you move.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3957": {
    "vnum": 3957,
@@ -1432,8 +1597,15 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The cavern roof soars here into a dome so high that its crown is lost in\nmist, and frozen chandeliers of ice hang from a hundred points. Long\ndrifts of snow have blown through unseen cracks and piled against the\nwalls. Ways lead north, east, south and west across the polished floor.\nYour voice returns to you from every side, thinned and strange.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652202,
+     "max": 1
+    }
+   ]
   },
   "3958": {
    "vnum": 3958,
@@ -1457,8 +1629,9 @@
      "description": "To the east lies A Large Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "A cramped corner at the edge of the cavern, where the frost lies thick\non the walls and the floor is a hard crust of old snow. A cairn of fist-\nsized stones, coated in ice, stands at the foot of the wall as though\nleft as a marker. Passages lead north toward the door and east along the\nwall. The cold here is dry and keen.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3960": {
    "vnum": 3960,
@@ -1482,8 +1655,9 @@
      "description": "To the south lies A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "A narrow corner of the cavern, where the roof comes lower and dozens of\nicicles hang within reach of your hand. The rock floor is dry and\ngritty, strangely free of frost, and warmer than the rest. A gnawed\nlength of bone as thick as your arm lies wedged into a crack in the\nwall. The cavern opens east and south from this nook.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3961": {
    "vnum": 3961,
@@ -1515,8 +1689,15 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Thick columns of blue ice rise from floor to roof in a tangle, so wide\nthat three men could not circle one. Their surfaces are marbled with\ntrapped bubbles and streaks of grit. You pick a path between them, with\nopenings leading north, east, south and west. Light flickers deep within\nthe ice like a distant fire.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652205,
+     "max": 1
+    }
+   ]
   },
   "3962": {
    "vnum": 3962,
@@ -1548,8 +1729,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Wide steps of natural rock lead across this part of the cavern, each\nwearing a thin glaze of ice that must be crossed with care. The air is\nbitter and smells of wet stone, and a faint echo of dripping rises from\nsomewhere ahead. Passages open north, east, south and west. A line of\nold bootprints, huge and frozen, crosses the steps.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3963": {
    "vnum": 3963,
@@ -1573,8 +1755,15 @@
      "description": "To the east lies A Large Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "A dead-end niche with a floor of coarse gravel and a roof stained rust-\nred by mineral water, frozen in streaks like dried blood. A single\ncolumn of ice stands in the middle, with a hollow at its heart where the\ncold glows. Paths lead north and east from the niche. The stone is slick\nand every sound seems to hang in the air.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652202,
+     "max": 1
+    }
+   ]
   },
   "3965": {
    "vnum": 3965,
@@ -1602,8 +1791,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A gentle slope of rubble, frozen into a single mass, spreads across the\ncavern floor toward a ridge of fallen stone. Each rock wears a crown of\nhoarfrost, and the smaller ones are cemented in place by ice. The way\nleads east beyond the ridge, south across the slope, and west toward the\nnook. A trickle of meltwater ticks somewhere out of sight.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3966": {
    "vnum": 3966,
@@ -1635,8 +1825,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The roof here is hung with a forest of slender icicles, a thousand of\nthem, each tipped with a bead of frozen light. When you breathe, they\nsing faintly, a shimmering chord that rises and falls. The floor is\nrimed in feathery crystals. You can go north, east, south or west from\nthis glittering grove.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3967": {
    "vnum": 3967,
@@ -1668,8 +1859,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A broad, level floor of old black ice, laid out like a vast hall, the\nsort of place where giants might hold their gatherings. Rows of low\nbenches cut from the rock itself run along either side, cushioned with\ndeep drifts of frost. Openings in the stone lead north, east, south and\nwest. A thin white mist crawls along the ground.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3968": {
    "vnum": 3968,
@@ -1701,8 +1893,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A hollow in the floor holds a frozen lake the size of a village green,\nblack as slate and veined with white cracks. Mounds of rubble ring the\nedge, and a trail of scuffed frost runs around the hollow. The passage\ncontinues north and south around its rim, with openings east and west.\nSomething cold and old seems to sleep beneath the ice.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3969": {
    "vnum": 3969,
@@ -1730,8 +1923,15 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A low, tight stretch where the roof presses close and the walls are\nblack with soot beneath their frost. Charred stumps of ancient torches\nstill jut from sockets in the rock. The passage runs east and west, with\na wider space opening north. The ice underfoot is dingy and gritty,\nmixed with ash.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652202,
+     "max": 1
+    }
+   ]
   },
   "3970": {
    "vnum": 3970,
@@ -1755,8 +1955,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The end of a rough tunnel, walled with glittering rock and floored with\npowdery frost that billows when you walk. Bits of broken ice-armour,\ndented and green with age, lie fused into the wall, the remains of some\nlong-ago battle. The only exits are north and back west. It is very\nquiet and the cold leans on your shoulders.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3971": {
    "vnum": 3971,
@@ -1788,8 +1989,11 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A crossing of four wide passages, the floor worn smooth by a procession\nof huge boots over centuries. In the middle of the crossing a block of\nice stands as tall as a man, rough-hewn into the shape of a seated\nfigure, its features eroded to a smooth blur. Ways lead north, east,\nsouth and west from its feet. The air smells of old smoke and cold\nstone.",
+   "look": "cave",
+   "extra_descs": {
+    "figure block ice seated": "The seated figure is rough work, but it has a crown on its brow and its\nhands rest on its knees, as a king might sit."
+   }
   },
   "3972": {
    "vnum": 3972,
@@ -1821,8 +2025,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Rubble from a fallen section of roof litters the floor here, thrown into\nheaps of frost-welded boulders. Through the hole it left, a shaft of\npale glow falls from some higher crack and glitters on the ice. The\ncavern leads north, east, south and west between the heaps. Dust of\nfrozen stone crunches beneath your feet.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3973": {
    "vnum": 3973,
@@ -1854,8 +2059,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A ring of broken pillars stands here, their stumps capped with ice, as\nthough some giants' hall once stood in the cavern and was cast down.\nFragments of carved stone lie half-buried in the frost, patterned with\nspirals and knotwork. Paths of trampled ice lead north, east, south and\nwest among the ruins. The air feels thick and watchful.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3974": {
    "vnum": 3974,
@@ -1879,8 +2085,15 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "At this corner the cavern wall is a curved sweep of rock glazed with ice\nso smooth it mirrors your torch. Long scratches, deeper than a hand is\nwide, run across it at a height well above your head. Frozen puddles\npave the floor in a mosaic of white plates. The only ways onward are\nsouth and back west.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652205,
+     "max": 1
+    }
+   ]
   },
   "3976": {
    "vnum": 3976,
@@ -1904,8 +2117,15 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "Here the cavern wall bulges inward, forming a recess where the frost has\ngrown into delicate ferns and feathers on the rock. The floor is slick\nwith a fine skin of ice that seems to flow when the lamplight moves.\nPassages lead south toward a heavy door's glow and west along the wall.\nSilence lies thick, broken by a distant crack of settling ice.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652202,
+     "max": 1
+    }
+   ]
   },
   "3977": {
    "vnum": 3977,
@@ -1942,8 +2162,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A wide, flat floor of packed stone before a doorway cut into the cavern\nwall, with a lintel of iron beams that shows scorch marks beneath the\nrime. The ground is trampled to bare rock by countless heavy feet, and\nash lies grey in the corners. The door in the wall leads east into the\nworkshop beyond. Other ways run north, south and west across the cavern\nfloor.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3978": {
    "vnum": 3978,
@@ -1967,8 +2188,9 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and west.",
-   "placeholder": true
+   "description": "The cavern floor tilts here toward a pit of black ice, round and smooth\nas a bowl, its edges rimmed with frozen spray. The walls are daubed with\nold crude paintings in soot, pictures of hunters with enormous spears\nchasing something with antlers. A path leads north toward the forge door\nand west across the slope. Your steps crackle and echo.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3980": {
    "vnum": 3980,
@@ -1992,8 +2214,9 @@
      "description": "To the down lies A Crudely Formed Staircase."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stair twists here in a steep spiral through raw rock, the walls\nstill scarred with the marks of picks and hammers. Ice has crept from\nthe seams to form beards of white that brush your shoulders. A faint\nblue glimmer comes from somewhere beneath. The steps lead on down and\nback up toward the monument.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3981": {
    "vnum": 3981,
@@ -2017,8 +2240,9 @@
      "description": "To the down lies The Bottom of a Crude Staircase."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "Here the stair is wider, as though the diggers grew tired of cutting\nsmall steps, and its treads are as deep as a man is tall. A scatter of\nfrozen rubble lies in the corners where the giants left it. The cold\ndeepens with every step, and your footfalls ring and return. The way\nleads up toward the surface and down toward the sound of dripping.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3989": {
    "vnum": 3989,
@@ -2046,10 +2270,15 @@
     "west": {
      "to_room": 3989,
      "description": "To the west lies Lost in the Blizzard."
+    },
+    "up": {
+     "to_room": 3902,
+     "description": "To the up lies A Frozen Walkway."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "Snow screams past in a solid curtain, and the world shrinks to the\nlength of your own arm. Sky, ground and horizon are one bruised white,\nand whichever way you turn, north, south, east or west, looks exactly\nlike the last. Ice crusts your lashes and your cloak stiffens like a\nboard. The glazed walkway must lie close by, if only you could find it\nagain.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3998": {
    "vnum": 3998,
@@ -2075,10 +2304,16 @@
     "south": {
      "to_room": 3939,
      "description": "To the south lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3929
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "You stand in the base of the monument, a low square chamber of black\nstone where the howl of the wind is muffled to a moan. Ice sheathes the\nwalls, and grey light seeps through the arches that open north and south\nonto the snowfield. To the east, frost-rimed steps lead into a crude\nstair. Carvings of giant hands are cut deep into the lintel, fingers\nspread as if to bar the way.",
+   "look": "snow",
+   "extra_descs": {
+    "lintel carvings hands": "The hands carved in the lintel are each larger than a man, their palms\noutward and their fingers spread in warning."
+   }
   },
   "3999": {
    "vnum": 3999,
@@ -2098,11 +2333,448 @@
      "description": "To the west lies A Large Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "A vast forge-hall hacked from the living rock, where a hearth wide as a\ncottage glows with dull red embers at the far wall. Anvils the size of\nwagons stand about the floor, and racks of huge tongs, hammers and\nchisels line the walls, rimed with frost. Half-finished figures of ice\nand iron loom in the shadows, their blank faces turned toward the fire.\nThe only way out is the door leading back west.",
+   "look": "cave",
+   "extra_descs": {
+    "anvils anvil hearth": "The anvils are black iron, their faces dented by blows no mortal arm\ncould deliver. The hearth still holds embers that give off no flame,\nonly a dull red glow."
+   },
+   "mob_resets": [
+    {
+     "vnum": 652206,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "652200": {
+   "vnum": 652200,
+   "name": "frost wolf white",
+   "short_desc": "a gaunt frost wolf",
+   "long_desc": "A gaunt frost wolf prowls the snow here, rime clinging to its pale fur.",
+   "description": "Its coat is white as the drifts and its eyes burn a pale blue. Ice hangs\nfrom its jaws, and its ribs show through the thick fur.",
+   "level": 11,
+   "alignment": -100,
+   "hp_dice": "11d8+123",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752200,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "652201": {
+   "vnum": 652201,
+   "name": "white cave bear",
+   "short_desc": "a huge white cave bear",
+   "long_desc": "A huge white cave bear shambles across the frozen floor, snuffling at the ice.",
+   "description": "The bear is vast and shaggy, its white fur matted with frost and its\nclaws thick as horn. It sways its head from side to side, watching you\nwith small black eyes.",
+   "level": 13,
+   "alignment": -100,
+   "hp_dice": "13d8+146",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752200,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "652202": {
+   "vnum": 652202,
+   "name": "rime spider icy",
+   "short_desc": "a pale rime spider",
+   "long_desc": "A pale rime spider clings to the ice, its long legs dusted with frost.",
+   "description": "The spider is the size of a dog, its body translucent as ice and its\nlegs tipped with crystal. Threads of frozen silk trail behind it and\nglitter in the dark.",
+   "level": 14,
+   "alignment": -150,
+   "hp_dice": "14d8+158",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752201,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "652203": {
+   "vnum": 652203,
+   "name": "ice troll",
+   "short_desc": "a hulking ice troll",
+   "long_desc": "A hulking ice troll stomps through the snow, its grey hide caked with frost.",
+   "description": "The troll is stooped and enormous, with a hide like cracked slate and\nlong arms that drag in the snow. Icicles hang from its chin and its\nbreath rolls out in great grey clouds.",
+   "level": 15,
+   "alignment": -300,
+   "hp_dice": "15d8+249",
+   "damage_dice": "4d6+12",
+   "armor_class": 47,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752201,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "652204": {
+   "vnum": 652204,
+   "name": "frost ghost wraith pale",
+   "short_desc": "a frost-wreathed ghost",
+   "long_desc": "A frost-wreathed ghost drifts through the cold, trailing a mist of ice crystals.",
+   "description": "The ghost is the pale shape of a long-dead hunter, rimed in white and\nfading at the edges. Its eyes are hollow wells of blue light and the\ncold around it bites to the bone.",
+   "level": 18,
+   "alignment": -500,
+   "hp_dice": "18d8+272",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752202,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "652205": {
+   "vnum": 652205,
+   "name": "frost giant warrior",
+   "short_desc": "a frost giant warrior",
+   "long_desc": "A frost giant warrior stands guard here, his huge axe resting on one shoulder.",
+   "description": "He is three times the height of a man, with skin of blue-white and a\nbeard braided with beads of ice. A huge frost-rimed axe is in his fist,\nand his eyes are pitiless.",
+   "level": 19,
+   "alignment": -400,
+   "hp_dice": "19d8+323",
+   "damage_dice": "5d6+14",
+   "armor_class": 35,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752202,
+     "chance": 25
+    },
+    {
+     "vnum": 752203,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "652206": {
+   "vnum": 652206,
+   "name": "skarn rimeforger giant smith",
+   "short_desc": "Skarn the Rimeforger",
+   "long_desc": "Skarn the Rimeforger, a soot-blackened frost giant, hammers at a glowing anvil.",
+   "description": "Skarn is a giant of the old line, his blue skin scarred with burns and\nhis leather apron stiff with soot and frost. His arms are as thick as\npine trunks, and he swings a hammer the size of a barrel.",
+   "level": 19,
+   "alignment": -500,
+   "hp_dice": "19d8+323",
+   "damage_dice": "5d6+14",
+   "armor_class": 35,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752203,
+     "chance": 35
+    },
+    {
+     "vnum": 752204,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "652207": {
+   "vnum": 652207,
+   "name": "hrimgar frost giant king",
+   "short_desc": "Hrimgar, the Frost Giant King",
+   "long_desc": "Hrimgar, the Frost Giant King, sits his icy throne, a crown of black iron on his brow.",
+   "description": "Hrimgar is taller than the hall's own pillars, his skin the blue of deep\nglacier ice and his beard falling to his knees in frozen braids. A crown\nof black iron sits on his brow, and his gaze alone makes your breath\nfreeze in your throat.",
+   "level": 20,
+   "alignment": -600,
+   "hp_dice": "20d8+342",
+   "damage_dice": "6d6+13",
+   "armor_class": 32,
+   "exp": 1120,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752204,
+     "chance": 35
+    },
+    {
+     "vnum": 752203,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "752200": {
+   "vnum": 752200,
+   "name": "white wolf pelt cloak",
+   "short_desc": "a white wolf-pelt cloak",
+   "room_desc": "A white wolf-pelt cloak lies here, stiff with frost.",
+   "description": "A cloak cut from a thick white wolf pelt, heavy and warm. It still smells faintly of snow and wild beast.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 11,
+   "wear_slot": "about",
+   "armor": 1,
+   "weight": 3,
+   "value": 250
+  },
+  "752201": {
+   "vnum": 752201,
+   "name": "rime silk gloves pale",
+   "short_desc": "a pair of rime-silk gloves",
+   "room_desc": "A pair of pale rime-silk gloves lies here.",
+   "description": "Gloves woven from the frozen silk of cave spiders, fine as cobweb and surprisingly strong. They never quite lose their chill.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 14,
+   "wear_slot": "hands",
+   "armor": 3,
+   "weight": 2,
+   "value": 310,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  },
+  "752202": {
+   "vnum": 752202,
+   "name": "frozen tear gem blue",
+   "short_desc": "a frozen blue tear",
+   "room_desc": "A glittering blue tear of ice lies here.",
+   "description": "A teardrop-shaped gem of clear blue ice that never melts, however warm the hand that holds it. Collectors pay well for such things.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 18,
+   "weight": 1,
+   "value": 565
+  },
+  "752203": {
+   "vnum": 752203,
+   "name": "rimeforged maul hammer",
+   "short_desc": "a rimeforged maul",
+   "room_desc": "A heavy rimeforged maul lies here, rimed white.",
+   "description": "A maul of blue-black iron, its head patterned with frost and its haft bound in wolf hide. It is made for a giant's grip, but a strong man can swing it.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 19,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 515,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  },
+  "752204": {
+   "vnum": 752204,
+   "name": "crown frost king iron",
+   "short_desc": "the crown of the Frost Giant King",
+   "room_desc": "A black iron crown rimmed with frost lies here.",
+   "description": "A crown of black iron, set with chips of blue ice that glow faintly in the dark. Cut down for mortal brows, it still weighs heavily and fills the wearer with a stubborn, bitter cold courage.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 20,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 430,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  }
+ }
 }

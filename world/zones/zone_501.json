@@ -24,8 +24,8 @@
      "description": "To the west lies Before The Bridge Across The Ravine."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead east and west.",
-   "placeholder": true
+   "description": "A bridge of carved stone leaps the ravine, its parapets worn smooth by\nlong ages of boots and weather. The iron gate at the bridge's head now\nstands open, and the way runs back west toward the badlands. Far below,\na pale thread of water glints in the gorge, and the wind sings through\nthe gap in one low note. Ahead, east, the span ends at a broad stone\nlanding under the mountain's shoulder.",
+   "extra_descs": {}
   },
   "24703": {
    "vnum": 24703,
@@ -49,8 +49,9 @@
      "description": "To the west lies On The Bridge Across The Ravine."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "The bridge ends in a vaulted landing cut straight into the mountain's\nflank, where the roof is low and soot-stained from old braziers. Wet\ngusts from the ravine still push through the arch behind you to the\nwest. Rune-carved lintels mark the way out east, and the floor is worn\ninto two shallow troughs by the wheels of ore carts. The air smells of\ncold iron and woodsmoke.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24704": {
    "vnum": 24704,
@@ -72,8 +73,8 @@
      "description": "To the west lies The Landfall Before Aredrel Dwarven."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead east and west.",
-   "placeholder": true
+   "description": "A rocky path winds up from the landing, a ribbon of pale gravel between\nheaps of broken grey stone. Cairns of fist-sized rocks stand at the\nverge, set there by dwarven hands to keep travellers from the ravine's\nlip. Thin grass shivers in the wind that comes off the gorge. The path\nruns on east toward the mountain, and west it drops back to the landing.",
+   "extra_descs": {}
   },
   "24705": {
    "vnum": 24705,
@@ -95,8 +96,8 @@
      "description": "To the west lies Along The Rocky Path."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead east and west.",
-   "placeholder": true
+   "description": "The path narrows here between two shoulders of weathered rock, and the\ngravel gives way to bedrock scored with old wheel ruts. A twisted thorn\nclings to a crack in the wall, its few leaves rattling dryly. Ahead the\nridge looms, dark and bare, and somewhere beyond it a hammer rings\nfaintly on stone. The path leads on east, while west it runs back toward\nthe bridge landing.",
+   "extra_descs": {}
   },
   "24706": {
    "vnum": 24706,
@@ -122,8 +123,8 @@
      "description": "To the west lies Along The Rocky Path."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The path widens into a rough crossing of trampled gravel where a lesser\ntrack branches away south across the rocky plain. A squat waymark of\npiled stones leans at the fork, its top painted with a faded rune of\nwelcome. Wind-bent tufts of heather cling in the lee of the boulders.\nThe main path runs east to the village gate and back west along the\nravine.",
+   "extra_descs": {}
   },
   "24707": {
    "vnum": 24707,
@@ -145,8 +146,8 @@
      "description": "To the west lies Along The Rocky Path."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead east and west.",
-   "placeholder": true
+   "description": "A tall wall of dressed stone rises in front of the mountain, and the\ngreat gate of Aredrel Dwarven yawns just ahead, east. Its posts are\ncarved with knotted beards and crossed hammers, and a lantern of green\nglass hangs from a bracket, throwing an emerald glow over the cobbles.\nFine dust from many boots lies drifted against the wall. West, the rocky\npath dwindles away toward the ravine.",
+   "extra_descs": {}
   },
   "24708": {
    "vnum": 24708,
@@ -181,8 +182,8 @@
      "description": "To the west lies Before The Gate Of Aredrel Dwarven."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Inside the gate stands a small paved court, ringed by squat towers whose\nslit windows overlook the path. A great oaken door banded with iron\nstands in the cliff face ahead, east, and the green lamplight of the\ncave glows beneath it. Two stair-turrets rise at the court's edges, to\nthe north and to the south. West, the gate arch opens on the rocky path\noutside.",
+   "extra_descs": {}
   },
   "24709": {
    "vnum": 24709,
@@ -204,8 +205,8 @@
      "description": "To the up lies Inside The Northern Watchtower."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead south and up.",
-   "placeholder": true
+   "description": "The watchtower rises from the courtyard's corner, a stout drum of grey\nstone chinked with mortar and lichen. Arrow slits stare out over the\nrocky plain, and an iron-banded door at its foot stands ajar on a spiral\nstair that climbs up. A rack of weathered practice staves leans against\nthe wall. South, the court of the gate lies open to the wind.",
+   "extra_descs": {}
   },
   "24710": {
    "vnum": 24710,
@@ -225,8 +226,8 @@
      "description": "To the down lies Outside The Nothern Watchtower."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads down.",
-   "placeholder": true
+   "description": "A round stone chamber crowns the tower, its walls pierced with narrow\nembrasures that let in thin streaks of daylight. A brazier of black iron\nsquats in the middle of the floor, ringed with ash and the scorched\nstubs of old fires. A horn of beaten brass hangs on a peg by the stair,\nand a signal-lantern waits beside it. The only way out is the stair\nspiralling down to the court.",
+   "extra_descs": {}
   },
   "24711": {
    "vnum": 24711,
@@ -248,8 +249,8 @@
      "description": "To the up lies Inside The Southern Watchtower."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and up.",
-   "placeholder": true
+   "description": "The watchtower rises out of the gate court, a squat drum of dark stone\nwith narrow loops for archers. Its door of iron-bound oak stands ajar\nover a few worn steps, and a lamp of green glass hangs above. A barrel\ncatches rain from a gutter, and moss creeps up the wall. North the court\nof the gate opens, and a spiral stair climbs up inside.",
+   "extra_descs": {}
   },
   "24712": {
    "vnum": 24712,
@@ -269,8 +270,8 @@
      "description": "To the down lies Outside The Southern Watchtower."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads down.",
-   "placeholder": true
+   "description": "A round chamber at the tower's crown, with a floor of worn boards and\nnarrow loopholes on every side. A table with a ledger and a sand-glass\nstands in the middle, and a horn hangs from a hook on the wall. Draughts\nwhistle through the slits, carrying the smell of rain and heather. The\nstair leads down to the court.",
+   "extra_descs": {}
   },
   "24713": {
    "vnum": 24713,
@@ -294,8 +295,9 @@
      "description": "To the west lies Aredrel's Gate - Entrance To The Dwarven Village."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "Beyond the great door the rock opens into a high hall hewn from the\nliving mountain, its walls veined with seams of green that glitter in\nthe lamplight. Pillars of uncut stone rise to a ceiling lost in shadow,\nand the air is warm and smells of coal smoke and baked bread. Far down\nthe hall, east, a pulse of hammering carries on the draught. The oaken\ndoor lets in the daylight from the west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24714": {
    "vnum": 24714,
@@ -319,8 +321,9 @@
      "description": "To the west lies Entrance To The Cave Of Aredrel Dwarven."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "The main hallway runs on through solid rock, wide enough for two ox-\ncarts abreast and floored with flagstones worn hollow. Lanterns of green\nglass hang from iron hooks along the walls, each one casting a pool of\nemerald light across the stone. Fine veins of crystal glint in the roof\nlike frozen stars. The hall continues east into the heart of the\nvillage, and west it returns to the great entrance.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24715": {
    "vnum": 24715,
@@ -348,8 +351,9 @@
      "description": "To the west lies The Main Hallway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Here the great hallway divides, with passages leading away north and\nsouth into the dim stone. Worn runes cut into the corner pillar name the\ndistricts beyond, their letters polished by countless passing hands. A\ncool breath of air flows down the northern passage, while the southern\none carries a faint scent of ale and warm bread. West, the hall runs\nback to the cave's entrance.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24716": {
    "vnum": 24716,
@@ -373,8 +377,9 @@
      "description": "To the south lies The Western Junction Of The Main Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The hallway bends sharply here, turning from the long southward run\ntoward the east. The rock wall on the outside of the curve is rubbed\nshiny where a thousand shoulders have brushed past. A small niche holds\na smoky oil lamp and a clay jar of spare wicks. The passage leads on\neast, and south it returns to the junction.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24717": {
    "vnum": 24717,
@@ -402,8 +407,11 @@
      "description": "To the west lies A Bend In The Main Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Four passages meet in a round chamber of fitted stone, its ceiling a\nshallow dome carved with a ring of crossed hammers. A tall pedestal in\nthe centre holds a lamp of green glass, its glow rippling in the\ndraught. The way continues east and west along the hallway, and a broad\npassage leads north toward the village quarter. Scratches on the floor\nmark where carts have turned.",
+   "look": "cave",
+   "extra_descs": {
+    "ring hammers pedestal": "The ring of carved hammers on the dome's underside is the old emblem of\nAredrel, thirteen hammers for the thirteen founding clans."
+   }
   },
   "24718": {
    "vnum": 24718,
@@ -427,8 +435,9 @@
      "description": "To the west lies The Northern Junction Of The Main Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead south and west.",
-   "placeholder": true
+   "description": "The main hallway turns a hard corner here, swinging around a pillar of\nliving stone. The walls are streaked with rust-coloured seams, and a\ntrickle of moisture shines on the floor in the lamplight. Somewhere in\nthe distance a bell tolls once and falls silent. The passage leads south\ntoward the junction, and west it runs back along the hall.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24719": {
    "vnum": 24719,
@@ -456,8 +465,9 @@
      "description": "To the south lies A Bend In The Main Hallway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "This junction is the busiest in the hall, its floor worn into hollows\nand its walls scuffed to the height of a pack. Hallways lead away north\nand south around the bend, and a broad passage runs east toward the\nmining district. Lamps of green glass burn in niches at each corner,\nthrowing long shadows. A faint rumble drifts in from deep in the\nmountain.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24720": {
    "vnum": 24720,
@@ -481,8 +491,9 @@
      "description": "To the west lies The Southern Junction Of The Main Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and west.",
-   "placeholder": true
+   "description": "The main hallway turns here, curving from the junction toward the far\nside of the village. Along the wall runs a gutter of dressed stone,\ncarrying a trickle of clear water down to some hidden cistern. The floor\nis cobbled, and a hanging lamp swings slowly in the draught. The passage\nleads north to the junction and west along the hall.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24721": {
    "vnum": 24721,
@@ -510,8 +521,9 @@
      "description": "To the west lies A Bend In The Main Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Three passages meet here beneath a vaulted roof held up by a pair of\nsquat pillars carved with twining roots. A bench of pale stone rests\nbetween them, and a lantern of green glass spills warm light across the\nflags. The smell of baking drifts from the passage south, where the hall\nruns toward the shops. East and west the hall bends away.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24722": {
    "vnum": 24722,
@@ -535,8 +547,9 @@
      "description": "To the east lies The Southern Junction Of The Main Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "The hall bends here beside the junction, its walls finished with smooth\nplaster and a band of carved leaves. A bench of stone stands in a\nrecess, with a basin of clean water and a rag for travellers' hands. The\nfloor shows deep wear along the inner curve. North the hall returns to\nthe junction, and east it runs on.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24723": {
    "vnum": 24723,
@@ -560,8 +573,9 @@
      "description": "To the south lies The Southern Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The southern hallway is lined with small niches, each holding a\nstatuette of some dwarf hero cast in dull bronze. The floor slopes\ngently and the air carries the scent of spices and hot bread. Lamps burn\nsteadily from hooks high on the wall, and the plaster between them is\npainted with crossed hammers. The hallway goes on south and returns\nnorth to the junction.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24724": {
    "vnum": 24724,
@@ -585,8 +599,9 @@
      "description": "To the south lies A Bend In The Southern Hallway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "Wheel-ruts and the prints of many boots mark this stretch of hall, which\nsees the daily traffic of the village markets. A wooden signboard hangs\nfrom a chain, its paint flaked and its letters worn to a blur. The smell\nof fresh bread is stronger here. The hall carries on south toward the\nshops and returns north.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24725": {
    "vnum": 24725,
@@ -610,8 +625,9 @@
      "description": "To the east lies A Bend In The Southern Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "The hall bends here around a heavy pillar painted with a mural of laden\nbarrows and bargaining dwarves, its colours dulled by years of lamp\nsmoke. A stone basin set into the wall collects drips from a crack above\nand overflows in a thin silver line to the floor. The passage leads east\nand returns north along the hall.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24726": {
    "vnum": 24726,
@@ -635,8 +651,9 @@
      "description": "To the west lies A Bend In The Southern Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "The hall turns again, narrow and well-swept, as the noise of the market\ngrows louder ahead. Strings of dried peppers and garlic hang from a rack\nabove the wall, rustling softly. A painted arch in the wall frames the\nway south, its stonework picked out in red and gold. West the hall runs\nback along the bend, and south it opens into the market.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24727": {
    "vnum": 24727,
@@ -660,8 +677,9 @@
      "description": "To the south lies The Middle Of The Shopping District."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The market-hall's entrance is a wide archway hung with banners of dyed\ncloth, each stitched with the sign of a trade. Barrow-ruts cross the\nfloor in all directions, and the smells of ale, leather and spice rise\ntogether. Lanterns of green and amber glass swing from the beams. North\nthe hall runs back to its bend, and south it spreads into the market\nproper.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24728": {
    "vnum": 24728,
@@ -693,8 +711,9 @@
      "description": "To the west lies The Western Hallway Through The Shopping District."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The heart of the shopping district is a broad square beneath a high\nceiling, where a well of black marble stands in the middle and the\nflagstones are stained with a hundred years of spilled ale. Streets of\nstalls and shopfronts spread to the east and the west, while a carved\nsign marks the tavern's door to the south. Lanterns burn along the\ncornices, and a shuffle of boots sounds on the floor. North the hall\nreturns toward the entrance arch.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24729": {
    "vnum": 24729,
@@ -718,8 +737,8 @@
      "description": "To the south lies The Tavern Inn Bar of Aredrel."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The tavern's front room is dim and smoky, its beams hung with tin mugs\nand its floor strewn with fresh rushes. Long tables of scarred oak stand\nin rows, and a roaring hearth throws heat across the benches. Over the\nmantel hangs a mounted ram's head with polished horns. The street lies\nnorth, and the bar opens south.",
+   "extra_descs": {}
   },
   "24730": {
    "vnum": 24730,
@@ -743,8 +762,14 @@
      "description": "To the up lies The Sleeping Lodge."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and up.",
-   "placeholder": true
+   "description": "The tavern bar is a long counter of oak, its top polished by countless\nelbows, and behind it stand kegs of black ale and shelves of clay jugs.\nBrass taps gleam in the lamplight, and a ring of stools surrounds the\nhearth. A narrow stair of timber climbs up to the lodge above. The front\nroom lies north.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650100,
+     "max": 1
+    }
+   ]
   },
   "24731": {
    "vnum": 24731,
@@ -764,8 +789,8 @@
      "description": "To the down lies The Tavern Inn Bar of Aredrel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads down.",
-   "placeholder": true
+   "description": "The sleeping lodge is a low, long room under the rafters, lined with\nplain bunks, each made up with a grey wool blanket and a bolster. Small\nlanterns hang over every bed, turned low, and the boards creak with a\nsound like old timbers. A chest at each bed's foot holds a traveller's\nbelongings. The stair leads down to the bar.",
+   "extra_descs": {}
   },
   "24732": {
    "vnum": 24732,
@@ -789,8 +814,9 @@
      "description": "To the west lies The Middle Of The Shopping District."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "A short covered hallway between shopfronts, its lintels hung with\npainted signs of copper, bread and bellows. Awnings of oiled canvas\nshade the narrow stalls, and a drift of straw lies on the cobbles. The\nair smells of leather and warm bread. East the hall opens into a square,\nand west it returns to the middle of the market.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24733": {
    "vnum": 24733,
@@ -822,8 +848,9 @@
      "description": "To the west lies The Eastern Hallway Through The Shopping District."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "This small square is crowded with stalls, its centre taken up by a stone\nfountain in the shape of a ram's head with a dry spout. Three shopfronts\nopen off it, one for baking, one for water, one for jewellery, each with\na painted board. Cobbles are slick with spilled flour and mud. The way\nnorth, east and south leads into the shops, and west it returns to the\nhall.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24734": {
    "vnum": 24734,
@@ -843,8 +870,8 @@
      "description": "To the south lies A Junction In The Village Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "The barrack is a long low room of whitewashed stone, lined with plain\nbunks and chests bolted to the floor. Racks along the walls hold hammers\nand spears gone dull with use, and a table scarred by dagger-points\nstands in the middle. A chart of the cave's tunnels is pinned above the\nhearth, its corners curled with smoke. The only door leads south into\nthe village hallway.",
+   "extra_descs": {}
   },
   "24735": {
    "vnum": 24735,
@@ -864,8 +891,8 @@
      "description": "To the north lies The Eastern Shopping Square."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "A narrow, glittering shop where lamps of green glass are set to catch\nthe facets of the stones in the glass cases. Rings, torcs and brooches\nlie on black velvet, and a magnifying lens on a tripod stands at the\ncounter. The shelves are crowded with small boxes of polished emeralds,\neach tagged in dwarven runes. The only way out is the door north.",
+   "extra_descs": {}
   },
   "24736": {
    "vnum": 24736,
@@ -885,8 +912,8 @@
      "description": "To the south lies The Eastern Shopping Square."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
-   "placeholder": true
+   "description": "The bakery is warm and floury, its low ceiling blackened with\ngenerations of smoke. A great brick oven fills one wall, its iron door\najar and glowing a deep orange, and wooden trays of dough sit on long\ntables nearby. Loaves of black rye and honeyed buns stand in neat rows\nbehind a counter scarred by knives. The only door opens south onto the\nsquare.",
+   "extra_descs": {}
   },
   "24737": {
    "vnum": 24737,
@@ -906,8 +933,8 @@
      "description": "To the west lies The Eastern Shopping Square."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "Rows of stoneware jugs and leather skins line the shelves of this shop,\neach stamped with the name of a spring deep under the mountain. A barrel\nwith a brass tap stands on the counter, beaded with cold sweat, and a\nwooden dipper hangs beside it. The floor is damp and the air cool, with\na smell of clean stone. West, a doorway returns to the square.",
+   "extra_descs": {}
   },
   "24738": {
    "vnum": 24738,
@@ -931,8 +958,9 @@
      "description": "To the west lies The Western Shopping Square."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The western hallway through the shopping district is lined with narrow\ndoors, each painted a different colour. The ceiling is lower here, and\nthe lamps hang closer, so that the light is warm and golden. A crooked\nsign over one doorway swings and creaks in the draught. East the hall\nreturns to the middle of the market, and west it widens into a square.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24739": {
    "vnum": 24739,
@@ -964,8 +992,9 @@
      "description": "To the west lies The Weapon Shop Of Aredrel."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "This square is ringed by three smithing trades, and the clang of metal\non metal never quite stops. The flagstones are scorched with fallen\nsparks, and a long water trough stands against the pillar. Racks of iron\nstand beside each door, and the air carries coal-smoke and hot oil. The\narmoury stands north, the magic shop south, and the weapon shop west,\nwhile the hall returns east.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24740": {
    "vnum": 24740,
@@ -985,8 +1014,8 @@
      "description": "To the north lies The Western Shopping Square."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "The magic shop is a curious, cluttered room, its shelves crammed with\nstoppered bottles, bundled herbs and runed stones. A brass astrolabe\nturns slowly on the counter, driven by no hand, and a faint smell of\nsulphur and sage hangs in the air. Lamps burn with a pale violet flame.\nA single door opens north to the square.",
+   "extra_descs": {}
   },
   "24741": {
    "vnum": 24741,
@@ -1006,8 +1035,8 @@
      "description": "To the south lies The Western Shopping Square."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
-   "placeholder": true
+   "description": "The armoury is hung from floor to rafters with coats of ring and scale,\nhelms and shields, each polished to a dull shine. A stand of plate\nstands in the centre, its joints oiled and its visor open. The counter\nholds a rack of file and hammer, and a mallet for knocking out dents.\nThe only door opens south to the square.",
+   "extra_descs": {}
   },
   "24742": {
    "vnum": 24742,
@@ -1027,8 +1056,8 @@
      "description": "To the east lies The Western Shopping Square."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "Spears and axes hang in racks across every wall of the weapon shop,\ntheir blades gleaming with oil. A grindstone stands in the corner, a\nbucket beneath it, and a pile of rough ingots waits on the floor.\nNotched practice targets stand along one wall, riddled with holes. The\ndoor east leads back to the square.",
+   "extra_descs": {}
   },
   "24743": {
    "vnum": 24743,
@@ -1052,8 +1081,9 @@
      "description": "To the south lies The Northern Junction Of The Main Hallway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The northern hallway runs straight and narrow, its walls hewn smooth and\nset with iron rings for torches. The floor slopes very gently upward,\nand the air feels fresher, as if it had travelled through some hidden\nshaft from the open sky. A faint trace of woodsmoke clings to the roof.\nNorth the passage carries on, and south it returns to the junction.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24744": {
    "vnum": 24744,
@@ -1077,8 +1107,9 @@
      "description": "To the south lies The Northern Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "Long scrapes along the lower walls tell of barrels and crates dragged\nthis way for years. Between the lamps the stone is dark and cold, and\nthe quiet is broken only by the drip of water somewhere out of sight. A\nline of runes, half worn away, runs along the lintel overhead. The\nhallway goes on north, and south it leads back toward the main junction.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24745": {
    "vnum": 24745,
@@ -1102,8 +1133,9 @@
      "description": "To the west lies A Bend In The Northern Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
-   "placeholder": true
+   "description": "The hallway swings here in a tight curve, the outer wall bulging where\nthe masons followed a vein of hard rock. A single green lantern burns\nabove a wooden bench no one has sat on in a long while. Cold air creeps\nalong the floor. West the passage bends on, and south it runs back down\nthe straight hall.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24746": {
    "vnum": 24746,
@@ -1127,8 +1159,11 @@
      "description": "To the east lies A Bend In The Northern Hallway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "The passage turns north again after its long bend, and the stone here is\ncleaner, the floor swept and sanded against slipping. Carved on the wall\nis a bearded face with eyes of inlaid emerald, so old that the nose is\nworn flat. A warm glow ahead promises the village. The way leads on\nnorth, and east it bends back along the hall.",
+   "look": "cave",
+   "extra_descs": {
+    "face wall emerald": "The bearded face is the founder-king, his inlaid eyes two chips of green\nglass that catch every lamp."
+   }
   },
   "24747": {
    "vnum": 24747,
@@ -1152,8 +1187,9 @@
      "description": "To the south lies A Bend In The Northern Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The tunnel opens out into a wider antechamber at the very edge of the\nvillage district. Painted pennants of faded wool hang from the roof\nbeams, each stitched with the sign of a dwarf clan. A stone trough runs\nalong one wall, full of sand for quenching boots and lamps. South the\npassage narrows down toward the hallway, and ahead north the village\nhallway begins.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24748": {
    "vnum": 24748,
@@ -1186,8 +1222,14 @@
      }
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The hallway bends here beside the crossing, where a rain-barrel stands\nfilled by a trickle from the rock. A rack of pegs holds heavy cloaks and\nleather aprons, left for all to borrow. In the western wall a round-\ntopped door stands closed against the draughts. North the hallway runs\non, and east it opens back to the crossing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650100,
+     "max": 1
+    }
+   ]
   },
   "24749": {
    "vnum": 24749,
@@ -1207,8 +1249,8 @@
      "description": "To the east lies A Bend In The Village Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
-   "placeholder": true
+   "description": "A neat, dark little dwelling, with a long table of scrubbed oak and\nbenches worn smooth by generations of use. Rows of mugs hang on pegs\nabove the hearth, and a copper kettle ticks as it cools. A carved wooden\nbeard-comb sits on the mantel beside a clay pipe. The door east leads\nback out to the hallway bend.",
+   "extra_descs": {}
   },
   "24750": {
    "vnum": 24750,
@@ -1232,8 +1274,14 @@
      "description": "To the south lies A Bend In The Village Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow straight hallway, its ceiling so low that taller travellers\nmust stoop beneath the lamps. The walls are hung with woven tapestries,\nfaded from many years in the smoke, depicting battles under a green sky.\nA thin trail of sawdust marks the middle of the floor. The hallway leads\nnorth to a corner and south to a bend.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650100,
+     "max": 1
+    }
+   ]
   },
   "24751": {
    "vnum": 24751,
@@ -1266,8 +1314,8 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The hallway bends at a corner where two walls meet at a sharp angle, and\na small shrine to the forge-father has been set into the stone. A bowl\nof cold ash and a little carved hammer lie in the niche. A door in the\nwestern wall stands half open, letting out the sweet smell of baking.\nEast and south the hallway carries on.",
+   "extra_descs": {}
   },
   "24752": {
    "vnum": 24752,
@@ -1287,8 +1335,8 @@
      "description": "To the east lies A Bend In The Village Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "A smith's family keeps this house, to judge by the small anvil on the\nhearthstone and the tongs hanging by the chimney. Soot lies thick on the\nbeams, and the floor is gritty with iron filings swept into neat piles.\nA heavy bed-chest stands under a window of green-tinted glass set in the\nstone. The door east returns to the hallway bend.",
+   "extra_descs": {}
   },
   "24753": {
    "vnum": 24753,
@@ -1321,8 +1369,14 @@
      "description": "To the west lies A Bend In The Village Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "This stretch of hallway is quiet and dry, with shelves of scroll-cases\nbuilt into the walls on either side. A heavy door of black wood stands\nto the north, studded with brass and bearing a plaque in dwarven script.\nDust gathers thickly in the corners, though the floor is carefully\nswept. The hallway goes on east and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650100,
+     "max": 1
+    }
+   ]
   },
   "24754": {
    "vnum": 24754,
@@ -1342,8 +1396,8 @@
      "description": "To the south lies Along The Village Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads south.",
-   "placeholder": true
+   "description": "Tall shelves of dark oak run to the roof, crowded with scrolls, ledgers\nand clay tablets, each in its own pigeonhole. A reading desk stands\nunder a green-glass lamp, with a quill and a pot of dried ink left\nbeside an open ledger. The room smells of vellum and old lamp oil. A\nnarrow door leads south to the village hallway, the only way in or out.",
+   "extra_descs": {}
   },
   "24755": {
    "vnum": 24755,
@@ -1376,8 +1430,8 @@
      "description": "To the west lies Along The Village Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The hallway swings here around a thick pillar of stone, its surface\ncarved with a long procession of bearded kings. A door of dark oak\nstands set in the eastern wall, with a lamp of green glass above it,\nstill warm. The air hums with the thud of some distant forge. West the\nhallway leads on, and south it returns to a straight run.",
+   "extra_descs": {}
   },
   "24756": {
    "vnum": 24756,
@@ -1397,8 +1451,14 @@
      "description": "To the west lies A Bend In The Village Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "This low, snug dwelling is crammed with stout furniture made to a\ndwarf's measure. A fire crackles in a stone hearth, throwing ruddy light\nover a table scattered with wooden bowls, and a rack of copper pans\nhangs from the beams. Rugs of coarse wool cover the flagstones, and a\nladder-backed chair sits by the fire. The only way out is the door west\nto the hallway.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650100,
+     "max": 1
+    }
+   ]
   },
   "24757": {
    "vnum": 24757,
@@ -1422,8 +1482,8 @@
      "description": "To the south lies A Bend In The Village Hallway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The hallway runs straight along a row of narrow doors, their frames\ncarved with names in blocky runes. Pots of pale cave-mushrooms sit on\nthe sills, glowing a soft, sickly white. The floor is polished by years\nof sweeping, and a bucket of sand stands by the wall. The hall runs on\nnorth and returns south toward the bend.",
+   "extra_descs": {}
   },
   "24758": {
    "vnum": 24758,
@@ -1456,8 +1516,8 @@
      "description": "To the west lies A Junction In The Village Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The village hallway curves here, narrowing between smooth walls of pale\nstone. A shuttered window set in the rock lets out the warm smell of a\ncooking fire, and a brass doorknocker in the shape of a ram's head\ngleams on a door in the eastern wall. Boot-scrapers of black iron stand\nbeside every threshold. North the hallway climbs on, and west it runs\nback to the crossing.",
+   "extra_descs": {}
   },
   "24759": {
    "vnum": 24759,
@@ -1477,8 +1537,14 @@
      "description": "To the west lies A Bend In The Village Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "This house is cramped but cheerful, its ceiling of bare rock hung with\nbundles of dried herbs and strings of onions. A wide bed with a\npatchwork quilt fills one corner, and a cradle of carved pine rocks\ngently in the warm air. Mugs of horn and clay sit on a shelf above a\nsquat iron stove. The door west gives onto the village hallway.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650100,
+     "max": 1
+    }
+   ]
   },
   "24760": {
    "vnum": 24760,
@@ -1515,8 +1581,8 @@
      "description": "To the west lies A Bend In The Village Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four hallways meet at the village's crossing, where the roof is high and\nthe floor is worn with the tread of generations. A heavy oak door bound\nin iron stands in the northern wall, marked with the crossed axes of the\nvillage guard. Hallways run away east and west, curving out of sight\nbeneath hanging lamps. Water gurgles in a stone gutter along the base of\nthe walls, and south the passage runs back toward the antechamber.",
+   "extra_descs": {}
   },
   "24761": {
    "vnum": 24761,
@@ -1540,8 +1606,9 @@
      "description": "To the west lies The Eastern Junction Of The Main Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The eastern hallway runs between walls of rough-cut stone, cooler and\nquieter than the main halls. Iron rails sunk into the floor tell of ore\ncarts that once rolled here by the hour. Veins of green crystal glimmer\nfaintly in the rock overhead. The hallway leads on east, and west it\nopens to the junction.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24762": {
    "vnum": 24762,
@@ -1565,8 +1632,9 @@
      "description": "To the west lies The Eastern Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The hall turns a sharp corner as the tunnel follows a seam of hard rock,\nand the air takes on a metallic tang. A rusty pick leans against the\nwall, forgotten, its handle split with age. Shallow puddles lie in the\nhollows of the floor, black and still. The passage runs on north, and\nwest it returns along the hall.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24763": {
    "vnum": 24763,
@@ -1590,8 +1658,9 @@
      "description": "To the south lies A Bend In The Eastern Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
-   "placeholder": true
+   "description": "A straight run of tunnel, narrower than the rest, where the lamps hang\nfar apart and shadows pool between them. Coal-dust smears the walls at\nshoulder height, and the floor is deeply grooved by the iron wheels of\ncarts. A cold current flows steadily past, drawing the lamp-flames\nsideways. North and south the passage carries on.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24764": {
    "vnum": 24764,
@@ -1615,8 +1684,9 @@
      "description": "To the south lies The Eastern Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "Rough steps cut into the floor mark a change of level as the tunnel\ncurves to the east. Stout timbers prop the roof, and a rope handrail has\nbeen looped along the wall. The distant ringing of hammers is louder\nhere and carries a strange, hollow note. The passage leads on east, and\nsouth it descends to the straight tunnel.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24765": {
    "vnum": 24765,
@@ -1640,8 +1710,9 @@
      "description": "To the down lies Entrance To The Mining District."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead west and down.",
-   "placeholder": true
+   "description": "The hall ends in a small round chamber with a wide stair spiralling down\ninto the earth. A great wheel of black iron stands by the stairhead,\nwound with chain that disappears into the dark below. Warm air smelling\nof hot metal rises from beneath. West the hallway runs back to the bend,\nand the stair leads down to the mining district.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24766": {
    "vnum": 24766,
@@ -1665,8 +1736,9 @@
      "description": "To the up lies End Of The Eastern Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and up.",
-   "placeholder": true
+   "description": "The stair ends in a broad gallery cut into the ore-bearing rock, where\nthe walls glitter with flecks of green and gold. Heaps of broken stone\nlie sorted by size beside a line of rusty carts. Smoke from a hundred\nlamps has blackened the ceiling, and pick marks score every surface. The\ngallery leads east into the diggings, and the stair climbs up behind\nyou.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "24767": {
    "vnum": 24767,
@@ -1690,8 +1762,15 @@
      "description": "To the west lies Entrance To The Mining District."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The mining district stretches out in a long gallery braced with squared\ntimbers, each one stamped with a clan-mark. Rails run down the middle of\nthe floor, buckled by the weight of loaded carts. Hammers ring out\nahead, sharp and quick, from some deeper seam. The gallery runs on east,\nand west it leads back toward the stair.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650103,
+     "max": 1
+    }
+   ]
   },
   "24768": {
    "vnum": 24768,
@@ -1715,8 +1794,9 @@
      "description": "To the west lies The Mining District."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The gallery bends around a great pillar left standing by the diggers,\nits surface scarred with notches counting the seams taken. A crate of\nspent candle-stubs and a tin lantern lie abandoned in a dusty alcove.\nThe air is thick with stone-dust that tickles the throat. North the\ndiggings continue, while west the gallery runs back toward the stair.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "24769": {
    "vnum": 24769,
@@ -1740,8 +1820,9 @@
      "description": "To the south lies A Bend In The Mining District."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "This stretch of the mine is wide and ragged, the rock torn open by\ncountless blows into a ceiling of jagged teeth. Ore carts stand tilted\non a spur of broken rail, their iron beds red with rust. A damp breath\nrises from some deep opening ahead, north, where a rail of timber hangs\nacross the dark. Behind you, south, the gallery curves back.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "24770": {
    "vnum": 24770,
@@ -1765,8 +1846,9 @@
      "description": "To the down lies The Mining Shaft."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and down.",
-   "placeholder": true
+   "description": "A broad platform of timber and iron hangs above the mining shaft, ringed\nby a sturdy rail of oak. A cage-winch with a great drum of rope stands\nat its edge, and a lamp on a chain sways over the abyss. Below, the\nshaft plunges into utter blackness, and cold air rises with a faint,\nstony smell. The gallery lies south, while a ladder leads down into the\nshaft.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "24771": {
    "vnum": 24771,
@@ -1790,8 +1872,9 @@
      "description": "To the down lies The Mining Shaft."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "Iron rungs bolted into the rock lead down the shaft's wall, slick with\nseeping water. The walls here are cut straight and true, though lichen\nblooms in pale patches. Overhead, the platform's lamp is a small yellow\nstar, and below there is only darkness. A steady drip echoes and re-\nechoes. The rungs climb up to the platform and descend deeper.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "24772": {
    "vnum": 24772,
@@ -1815,8 +1898,15 @@
      "description": "To the down lies The Mining Shaft."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead up and down.",
-   "placeholder": true
+   "description": "The shaft is narrower at this depth, and the walls close in until your\nshoulders brush the cold rock. Chisel marks run in neat rows beside the\nladder, interrupted by long, ominous cracks. A foul smell of damp stone\nand old smoke seeps from below. Up the rungs lies the way back, and down\nthey run into the dark.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650103,
+     "max": 1
+    }
+   ]
   },
   "24773": {
    "vnum": 24773,
@@ -1840,8 +1930,9 @@
      "description": "To the down lies The Mining Shaft."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead up and down.",
-   "placeholder": true
+   "description": "A rotted timber brace juts from the wall, half-fallen across the shaft\nand hung with a mat of grey roots. The ladder shudders when weight is\nput on it, and flakes of rust fall into the gloom below. Faint, stony\nsounds like slow breathing travel up from the depths. The ladder goes up\ntoward the light and down into the shaft.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "24774": {
    "vnum": 24774,
@@ -1865,8 +1956,9 @@
      "description": "To the down lies A Platform In The Mining Shaft."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead up and down.",
-   "placeholder": true
+   "description": "Here the shaft widens into a crude ledge where the diggers once rested,\nwith a bench of stacked stone and a scatter of old bones from their\nmeals. Scratches on the wall, deep and recent, seem too large to be pick\nmarks. A green glow wells up from below, faint and cold. The rungs lead\nup, and down to a platform just below.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "24775": {
    "vnum": 24775,
@@ -1895,8 +1987,15 @@
      "description": "To the up lies The Mining Shaft."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and up.",
-   "placeholder": true
+   "description": "A platform of massive timbers is wedged across the foot of the shaft,\nbolted to the living stone with great iron pins. The air is colder and\nheavy, and the green glow is stronger, spilling from a doorway cut in\nthe northern wall. The pit's walls above lose themselves in black, and\nthe rungs climb up toward them. Beyond the heavy door north lies a\nguarded chamber.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650105,
+     "max": 1
+    }
+   ]
   },
   "24776": {
    "vnum": 24776,
@@ -1920,8 +2019,9 @@
      "description": "To the south lies A Platform In The Mining Shaft."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The door opens on a bare antechamber hewn from the mountain's deep\nheart, its roof low and rough and lit by a green radiance that has no\nlamp. Crystals the size of men's fists stud the walls and hum faintly.\nHeavy iron rings are set in the floor where gates once stood. The\nchamber runs north into the cave proper, and south returns to the shaft\nplatform.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24777": {
    "vnum": 24777,
@@ -1953,8 +2053,15 @@
      "description": "To the west lies A Tunnel Inside The Emerald Cave."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four tunnels meet in a wide cavern, and every wall is crusted with\nemerald crystal that drinks the lamplight and gives it back as a cold\ngreen fire. The floor is smooth, ground by feet over many centuries, and\ndust lies unbroken in the corners. Stalactites hang like spear-points\noverhead. Passages lead away north, east and west, and south the way\nreturns to the antechamber.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650101,
+     "max": 1
+    }
+   ]
   },
   "24778": {
    "vnum": 24778,
@@ -1987,8 +2094,15 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The tunnel narrows, its walls flowing with veins of green that pulse\nfaintly, as if the stone had a heartbeat. An iron door is set in the\nwestern wall, its handle polished by many hands. Droplets cling to the\ncrystals and fall into small basins worn in the floor. North the tunnel\nbends away, and south it opens to the crossing.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650101,
+     "max": 1
+    }
+   ]
   },
   "24779": {
    "vnum": 24779,
@@ -2012,8 +2126,9 @@
      "description": "To the south lies A Tunnel Inside The Emerald Cave."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "A sharp bend where the tunnel doubles back on itself, the walls glossy\nwith moisture and lined with crystal spikes. The green glow here is cold\nand shifting, throwing wavering shadows across the roof. A thin crack in\nthe stone whispers with moving air. The tunnel leads on east, and south\nit returns toward the crossing.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24780": {
    "vnum": 24780,
@@ -2046,8 +2161,15 @@
      "description": "To the west lies A Bend Inside The Emerald Cave."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The tunnel runs level here, its walls scored by ancient tools and\nglimmering with green flecks. A heavy door in the northern wall, bound\nwith iron, bears the mark of the old guard in rusted relief. The floor\nis cracked and pitted, with shallow pools lying in the lowest hollows.\nThe way continues east and west along the tunnel.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650101,
+     "max": 1
+    }
+   ]
   },
   "24781": {
    "vnum": 24781,
@@ -2080,8 +2202,9 @@
      "description": "To the west lies A Tunnel Inside The Emerald Cave."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The tunnel splits, its walls glowing with crowded emerald crystals that\nthrow back every light a hundred times over. A door of iron-bound oak\nstands in the southern wall, scratched with warding signs. Loose stones\nlie scattered across the floor, shaken from the roof. The tunnel ends in\na close chamber east, and west it leads back along the passage.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24782": {
    "vnum": 24782,
@@ -2101,8 +2224,15 @@
      "description": "To the west lies A Tunnel Inside The Emerald Cave."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "The tunnel ends in a ragged cavern where the mountain's emerald heart\nlies exposed, a vast wall of green crystal rising out of sight. Great\nscars mar the floor, gouged by something heavy that has dragged itself\nback and forth. The air is thick, and the crystal hums with a low,\nresonant note you feel in your teeth. There is no other way out but west\nalong the tunnel.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650106,
+     "max": 1
+    }
+   ]
   },
   "24783": {
    "vnum": 24783,
@@ -2135,8 +2265,15 @@
      "description": "To the west lies A Crossing Inside The Emerald Cave."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The tunnel runs on beneath a ceiling studded with crystal, each point\ncatching the glow and spilling it down in thin green threads. The air is\nstill and strangely warm, as if the stone itself were alive. A guard-\ndoor of dark iron stands in the southern wall, scratched with notches\ncounting forgotten watches. The tunnel leads on east, and west it\nreturns to the crossing.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650101,
+     "max": 1
+    }
+   ]
   },
   "24784": {
    "vnum": 24784,
@@ -2156,8 +2293,15 @@
      "description": "To the west lies A Tunnel Inside The Emerald Cave."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A short dead-end tunnel where the roof comes down so low that the\ncrystals brush your hair. A fan of green-white veins spreads across the\nend wall, and the rock beneath them has been chipped away by patient\nhands. A few shards lie on the floor, glittering and untouched. The only\nway out is the tunnel west.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650101,
+     "max": 1
+    }
+   ]
   },
   "24785": {
    "vnum": 24785,
@@ -2177,8 +2321,9 @@
      "description": "To the east lies A Crossing Inside The Emerald Cave."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
-   "placeholder": true
+   "description": "The tunnel narrows and ends in a blind pocket, its roof clustered with\nlong crystals like the teeth of some buried beast. Gnawed bones are\nheaped in a hollow, and a ragged web hangs in the corner, grey and\ndusty. A thin draught carries the smell of stagnant water. The only way\nout is east to the crossing.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24786": {
    "vnum": 24786,
@@ -2198,8 +2343,9 @@
      "description": "To the north lies A Tunnel Inside The Emerald Cave."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "A guard chamber of heavy, square-hewn blocks, its single window an\narrow-slit that looks onto nothing but black rock. Stone benches line\nthe walls, each hollowed by years of sitting, and an iron bar leans in\nthe corner, bent as if with great force. Water has eaten stripes of\ngreen into the plaster. The only door leads north to the tunnel.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24787": {
    "vnum": 24787,
@@ -2219,8 +2365,9 @@
      "description": "To the east lies A Tunnel Inside The Emerald Cave."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "A narrow chamber hacked from the rock, where a long bench runs under a\nrow of rusted peg-hooks and a single squat brazier. The air is stale,\nand the crystal in the walls has turned a murky, smoky green. A dwarven\nhelm lies crushed under the bench, old and forgotten. The door east\nleads out to the tunnel.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24788": {
    "vnum": 24788,
@@ -2240,8 +2387,9 @@
      "description": "To the south lies A Tunnel Inside The Emerald Cave."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "A guard chamber carved square from the stone, with a sentry bench and a\nrack for pikes along one wall. Iron lamp-hooks hang empty from the\nceiling, and a table of black stone stands bolted in the middle. The\nfloor is dusted with old ash, and the walls drip steadily with green-\nstained water. The only way out is the door south into the tunnel.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24789": {
    "vnum": 24789,
@@ -2261,8 +2409,9 @@
      "description": "To the north lies A Tunnel Inside The Emerald Cave."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "This guard chamber has been wrecked in some long-ago struggle: the bunks\nare splintered, the shields are dented flat, and a toppled pike rack\nlies across the doorway. Dark stains mark the stone, and the green glow\nfrom the walls makes them look black. A cold draught moves around the\nedges of the room. The only door leads north back into the tunnel.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "24790": {
    "vnum": 24790,
@@ -2284,8 +2433,8 @@
      "description": "To the south lies Outside The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north and south.",
-   "placeholder": true
+   "description": "A faint trail winds south across the stony plain, marked by cairns of\nweathered rocks. Coarse grass and thistles struggle between the\nboulders, and the wind carries a smell of cold earth. To the north the\nrocky path stands out as a pale line, and ahead the trail slopes toward\na low wall.",
+   "extra_descs": {}
   },
   "24791": {
    "vnum": 24791,
@@ -2314,8 +2463,8 @@
      "description": "To the south lies The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A low wall of grey stone encloses the graveyard, its gate a heavy door\nof black oak studded with iron nails. An arch above is carved with a\nhammer and a mourning branch, worn nearly smooth. The ground here is\nbare and trodden hard, and a stone bench stands beside the gate. The\ndoor leads north to the trail, while south the ground opens onto the\ngraves.",
+   "extra_descs": {}
   },
   "24792": {
    "vnum": 24792,
@@ -2333,8 +2482,14 @@
      "description": "To the east lies The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. A way leads east.",
-   "placeholder": true
+   "description": "The westernmost reaches of the burial ground are scattered with small\ncairns, piled by hand over graves without names. Lichen paints the\nstones orange and grey, and a stunted rowan leans over the nearest, its\nberries shrivelled on the branch. The silence is heavy. The path returns\neast to the crossing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650102,
+     "max": 1
+    }
+   ]
   },
   "24793": {
    "vnum": 24793,
@@ -2352,8 +2507,18 @@
      "description": "To the west lies The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. A way leads west.",
-   "placeholder": true
+   "description": "The path ends at a line of old graves set against the wall, their\nheadstones leaning like crooked teeth. Moss has crept over the carved\nnames until only a few runes can be read, and a withered wreath of\nheather lies at the foot of one. A raven's feather lies in the grass,\nblack and glossy. The only path leads west back to the crossing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650102,
+     "max": 1
+    },
+    {
+     "vnum": 650104,
+     "max": 1
+    }
+   ]
   },
   "24794": {
    "vnum": 24794,
@@ -2371,8 +2536,8 @@
      "description": "To the east lies The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. A way leads east.",
-   "placeholder": true
+   "description": "A forgotten corner where the earth has sunk, leaving shallow hollows\nover the oldest graves. A small stone angel, headless, kneels beside a\npool of rainwater, and thistles crowd round it. The wind makes a thin\nkeening sound among the broken stones. The only path leads east back to\nthe nearest crossing.",
+   "extra_descs": {}
   },
   "24795": {
    "vnum": 24795,
@@ -2390,8 +2555,14 @@
      "description": "To the east lies The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. A way leads east.",
-   "placeholder": true
+   "description": "Rows of narrow graves, each marked by a flat stone, fill this sheltered\ncorner against the wall. Candle-stubs, burnt black, stand at the foot of\na few, and a clay cup of dried flowers has fallen on its side. A cold,\ndamp smell rises from the earth. The path leads east, and no other way\ngoes from here.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650102,
+     "max": 1
+    }
+   ]
   },
   "24796": {
    "vnum": 24796,
@@ -2421,8 +2592,8 @@
      "description": "To the west lies The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The graveyard's heart is a trodden crossing of four paths between rows\nof squat headstones, each carved with a hammer or a pick. A cold grey\nlight falls from the sky, and the wind hisses through the dry grass\nbetween the graves. A tall cairn of white stones stands at the middle,\nhung with rusted chains. The gate lies north, and paths lead east, south\nand west among the dead.",
+   "extra_descs": {}
   },
   "24797": {
    "vnum": 24797,
@@ -2440,8 +2611,14 @@
      "description": "To the west lies The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. A way leads west.",
-   "placeholder": true
+   "description": "The easternmost corner of the graveyard is a small plot walled in by\ntumbled stones, where the ground is soft and weedy. A single great slab,\nflat and unmarked, lies in the middle, split down its length by a root.\nDead lilies hang from a rusted iron urn, and a chill sits on the air.\nThe path returns west to the crossing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650102,
+     "max": 1
+    }
+   ]
   },
   "24798": {
    "vnum": 24798,
@@ -2471,8 +2648,14 @@
      "description": "To the west lies The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A wider space among the graves, where four paths meet beneath a bare\nthorn tree whose branches claw at the sky. The headstones here are tall\nand finely cut, carved with the ram's head of an old clan. Fallen leaves\ndrift against them, brown and brittle. Paths lead away north, east,\nsouth and west among the stones.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650104,
+     "max": 1
+    }
+   ]
   },
   "24799": {
    "vnum": 24799,
@@ -2498,8 +2681,14 @@
      "description": "To the west lies The Graveyard Of Aredrel Dwarven."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The graves here lie in long, neat rows, as if the dead had been buried\nin ranks to serve their kings. Iron lamps on tall posts stand at each\ncorner, cold and blackened, and a thin mist clings to the ground. Mounds\nof fresh earth have been scraped aside by something. Paths lead north to\nthe crossing, east toward a sunken stair, and west among the older\ngraves.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650102,
+     "max": 1
+    }
+   ]
   },
   "224800": {
    "vnum": 224800,
@@ -2521,11 +2710,390 @@
      "description": "To the down lies Entrance To The Lost Crypt."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead west and down.",
-   "placeholder": true
+   "description": "At the end of the path a wide stair of weathered stone yawns in the\nground, its steps leading down into utter dark. The mouth is framed by a\nsquat arch carved with a skull and a hammer, and the grass around it is\nbent and bare. A cold breath rises from below, smelling of old stone and\ndust. The stair leads down to the Lost Crypt, and west the path returns\nto the graves.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "650100": {
+   "vnum": 650100,
+   "name": "dwarf villager aredrel dwarven",
+   "short_desc": "a stout dwarf villager",
+   "long_desc": "A stout dwarf villager goes about the day's errands with a basket on one arm.",
+   "description": "A broad, bearded dwarf in a leather apron, his hands scarred from the\nforge and the mine. He eyes strangers with plain, unhurried curiosity.",
+   "level": 32,
+   "alignment": 400,
+   "hp_dice": "32d8+478",
+   "damage_dice": "9d6+16",
+   "armor_class": 1,
+   "exp": 1780,
+   "gold": 384,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": []
+  },
+  "650101": {
+   "vnum": 650101,
+   "name": "emerald cave spider",
+   "short_desc": "an emerald cave spider",
+   "long_desc": "An emerald cave spider clings to the crystal wall, its hairy legs glittering green.",
+   "description": "A spider as big as a hound, its carapace flecked with green crystal. Its\neyes shine like wet gems, and its fangs drip a pale, glassy venom.",
+   "level": 36,
+   "alignment": -100,
+   "hp_dice": "36d8+485",
+   "damage_dice": "10d6+19",
+   "armor_class": -11,
+   "exp": 2000,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750100,
+     "chance": 25
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650102": {
+   "vnum": 650102,
+   "name": "restless dwarf skeleton",
+   "short_desc": "a restless dwarf skeleton",
+   "long_desc": "A restless dwarf skeleton shambles between the graves, rusted mail hanging from its ribs.",
+   "description": "The bones of a long-dead dwarf, still clad in the remnants of a mail\nshirt and a cracked helm. Green light burns in its empty sockets, and\nits jaw clacks silently.",
+   "level": 34,
+   "alignment": -500,
+   "hp_dice": "34d8+583",
+   "damage_dice": "9d6+19",
+   "armor_class": -5,
+   "exp": 1890,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750101,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "650103": {
+   "vnum": 650103,
+   "name": "stone ogre shaft",
+   "short_desc": "a stone-skinned shaft ogre",
+   "long_desc": "A stone-skinned shaft ogre lumbers through the dark, dragging a mattock of iron.",
+   "description": "A hulking ogre whose hide has hardened into grey plates of rock. Crystal\nsplinters jut from its shoulders, and it breathes in slow, rasping\ngusts.",
+   "level": 39,
+   "alignment": -450,
+   "hp_dice": "39d8+777",
+   "damage_dice": "10d6+29",
+   "armor_class": -20,
+   "exp": 2165,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750102,
+     "chance": 25
+    },
+    {
+     "vnum": 750101,
+     "chance": 10
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650104": {
+   "vnum": 650104,
+   "name": "grave bound ghost dwarven",
+   "short_desc": "a grave-bound dwarven ghost",
+   "long_desc": "A grave-bound dwarven ghost drifts between the headstones, its beard stirring in a wind that does not blow.",
+   "description": "The pale, translucent shape of a dwarf in funeral armour, its face fixed\nin grief. Cold green flame wavers about its hands.",
+   "level": 38,
+   "alignment": -600,
+   "hp_dice": "38d8+674",
+   "damage_dice": "10d6+22",
+   "armor_class": -17,
+   "exp": 2110,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750101,
+     "chance": 25
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650105": {
+   "vnum": 650105,
+   "name": "kharn ironvein captain guard overseer",
+   "short_desc": "Kharn Ironvein, captain of the shaft guard",
+   "long_desc": "Kharn Ironvein, captain of the shaft guard, stands over the platform with a heavy pick in both hands.",
+   "description": "A scarred, grey-bearded dwarf guard in plate blackened by long use.\nGreen crystal has crept up his left arm, and his eyes burn with an\nunnatural light.",
+   "level": 40,
+   "alignment": -300,
+   "hp_dice": "40d8+640",
+   "damage_dice": "11d6+21",
+   "armor_class": -20,
+   "exp": 2220,
+   "gold": 480,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750103,
+     "chance": 35
+    },
+    {
+     "vnum": 750102,
+     "chance": 15
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650106": {
+   "vnum": 650106,
+   "name": "karrak stone troll horror",
+   "short_desc": "Karrak, the stone troll of the deep shaft",
+   "long_desc": "Karrak, the stone troll of the deep shaft, squats in the green glow and watches with slow, heavy eyes.",
+   "description": "A towering troll of living rock, its body veined with glowing emerald\nand its fists like boulders. The crystal in its chest pulses with a slow\nheartbeat, and the floor trembles at each breath.",
+   "level": 42,
+   "alignment": -700,
+   "hp_dice": "42d8+858",
+   "damage_dice": "11d6+30",
+   "armor_class": -20,
+   "exp": 2330,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750104,
+     "chance": 35
+    },
+    {
+     "vnum": 750103,
+     "chance": 15
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "750100": {
+   "vnum": 750100,
+   "name": "spider silk wraps wrist",
+   "short_desc": "a pair of green spider-silk wraps",
+   "room_desc": "A pair of green spider-silk wraps lies here.",
+   "description": "Wristwraps woven from the cave spiders' glassy thread, light and tough. They shimmer faintly green.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 36,
+   "wear_slot": "wrist1",
+   "armor": 3,
+   "weight": 1,
+   "value": 750,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  },
+  "750101": {
+   "vnum": 750101,
+   "name": "grave warden mail dwarven",
+   "short_desc": "a rusted dwarven grave-warden mail",
+   "room_desc": "A rusted dwarven mail shirt lies here.",
+   "description": "A heavy mail shirt of dwarven make, eaten with rust yet still sound. A hammer and mourning branch are stamped on the breast.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 35,
+   "wear_slot": "body",
+   "armor": 7,
+   "weight": 10,
+   "value": 730,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "750102": {
+   "vnum": 750102,
+   "name": "stonefist gauntlets stone hands",
+   "short_desc": "a pair of stonefist gauntlets",
+   "room_desc": "A pair of heavy stonefist gauntlets lies here.",
+   "description": "Gauntlets of grey stone plates bound with iron wire, cold and unyielding. They make a fist like a hammerhead.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 39,
+   "wear_slot": "hands",
+   "armor": 5,
+   "weight": 2,
+   "value": 810,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "750103": {
+   "vnum": 750103,
+   "name": "ironvein pick mattock",
+   "short_desc": "Kharn's ironvein pick",
+   "room_desc": "A heavy ironvein pick lies here.",
+   "description": "A long-hafted pick of dark iron shot through with veins of green crystal. Its point is keen enough to split rock.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 40,
+   "damage_dice": "2d9",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 1040,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ]
+  },
+  "750104": {
+   "vnum": 750104,
+   "name": "emerald heart greathelm helm",
+   "short_desc": "the emerald-heart greathelm",
+   "room_desc": "An emerald-crowned greathelm lies here.",
+   "description": "A great dwarven helm of black steel, crowned with a shard of glowing emerald. It hums softly when worn.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 42,
+   "wear_slot": "head",
+   "armor": 5,
+   "weight": 3,
+   "value": 870,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  }
+ }
 }

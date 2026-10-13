@@ -1,0 +1,144 @@
+{
+ "zone": 79,
+ "_about": "Redferne's Residence, the sky-house of Naris at the top of the great chain (levels 12-28): a butler and a cook, rats in the larder, the Cleaver in its pen (a sub-boss), and Redferne himself, a wizard who tears rifts in the air and summons imps to his side.",
+ "creatures": {
+  "7902": {
+   "rank": "sub-boss",
+   "why": "the Cleaver"
+  },
+  "79000": {
+   "name": "redferne wizard",
+   "short_desc": "Redferne the Wizard",
+   "long_desc": "Redferne the Wizard stands by his bed, turning an artifact over in his long fingers.",
+   "description": "A tall, gaunt wizard in a robe of midnight blue stitched with silver runes, his beard braided with copper wire. He hung his house from the sky on a chain, and he does not like visitors.",
+   "level": 28,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "boss",
+   "alignment": -200,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Redferne's eyes blaze: \"Enough! I will unmake you!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Arcane Storm",
+      "telegraph": "Redferne spreads his hands, and the air crackles with raw magic!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+7",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Lightning Lance",
+      "telegraph": "Redferne points a crackling finger at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Unmaking",
+      "telegraph": "Redferne begins to weave a spell of unmaking!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+9",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  },
+  "79001": {
+   "name": "imp summoned",
+   "short_desc": "a summoned imp",
+   "long_desc": "A summoned imp cackles and flaps about the room.",
+   "description": "A red, bat-winged imp with a barbed tail, bound to Redferne's service.",
+   "level": 18,
+   "flags": [
+    "aggressive"
+   ],
+   "race": "demon",
+   "alignment": -600
+  },
+  "79002": {
+   "name": "butler",
+   "short_desc": "the butler",
+   "long_desc": "The butler stands stiffly by the door, a silver tray in hand.",
+   "description": "Impeccably dressed and utterly unflappable; he has served the house for forty years and seen worse than you.",
+   "level": 15,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 300
+  },
+  "79003": {
+   "name": "cook",
+   "short_desc": "the cook",
+   "long_desc": "The cook bustles about the kitchen, muttering at the stew.",
+   "description": "A round woman in a floury apron with a ladle like a mace.",
+   "level": 12,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 300
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 79002,
+   "rooms": [
+    7905
+   ]
+  },
+  {
+   "vnum": 79003,
+   "rooms": [
+    7906
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 79000,
+   "room": 7911,
+   "why": "Redferne in his bedroom",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Arcane Rift",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.4,
+     "last": 11,
+     "pct": 0.04,
+     "why": "rifts torn in the floor: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "79001": 2
+     },
+     "shout": "Redferne snaps his fingers, and imps pop into being around him!",
+     "why": "his imps at 66% and 33%"
+    }
+   ]
+  }
+ ]
+}

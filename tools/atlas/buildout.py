@@ -122,6 +122,8 @@ def check(path, world=None, quiet=False):
         v, room = int(k), w.rooms[int(k)]
         if isinstance(text, dict):              # {"description": ..., "look": ...}
             look = text.get('look')
+            if look and room.get('sector_type') in WATER:
+                probs.append(f'{v} {room.get("name")}: a water room is drawn as water; give it no look')
             if look and look not in room_looks.LOOKS:
                 probs.append(f'{v}: unknown look {look!r} (one of {", ".join(room_looks.LOOKS)})')
             named = room_looks.words_look(room.get('name'))
@@ -357,7 +359,7 @@ def apply(new_zones, new_rooms, write=False):
                 continue
             # a room may say how it looks in 3D: {"description": ..., "look": "cave"} (room_looks.py)
             if isinstance(text, dict):
-                if text.get('look'):
+                if text.get('look') and r.get('sector_type') not in WATER:     # water is drawn as water
                     r['look'] = text['look']
                     summary['looks stated'] += 1
                 text = text.get('description') or ''

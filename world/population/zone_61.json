@@ -1,0 +1,92 @@
+{
+ "zone": 61,
+ "_about": "Dark Haon-Dor (levels 8-20): poisonous spiders that run along the web to each other, the Elder druid of the cultist temple an elite, Isha the Dark Elf a sub-boss, and the Queen spider in her den spawning her brood.",
+ "creatures": {
+  "6113": {
+   "helpers": {
+    "group": "dark_spiders",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The web shivers, and spiders come running!"
+   },
+   "why": "spiders"
+  },
+  "6116": {
+   "rank": "elite",
+   "why": "the Elder druid"
+  },
+  "6117": {
+   "rank": "sub-boss",
+   "why": "Isha the Dark Elf"
+  },
+  "6114": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Queen spider shrieks, and the den trembles!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Web Spray",
+      "telegraph": "The Queen spider sprays sticky webbing!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+3",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Venom Fang",
+      "telegraph": "The Queen spider lunges, fangs dripping!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Cocoon",
+      "telegraph": "The Queen spider begins spinning a cocoon around you!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+5",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Queen spider"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 6114,
+   "room": 6134,
+   "why": "the Queen spider in her den",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "6113": 2
+     },
+     "shout": "Egg sacs split, and poisonous spiders pour out!",
+     "why": "her brood"
+    }
+   ]
+  }
+ ]
+}

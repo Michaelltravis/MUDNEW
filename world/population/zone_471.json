@@ -1,0 +1,156 @@
+{
+ "zone": 471,
+ "_about": "The Badlands (levels 6-18): gnoll raiders run in packs across the plains, the restless spirits of Spirit Wood answer each other, the hill trolls and the ghosts of the hanged man and the lodge-keeper are elites, and the Black Priest before the Dark Castle leads the black-robed cult, calling his faithful to him.",
+ "creatures": {
+  "647102": {
+   "helpers": {
+    "group": "gnolls",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The gnoll yips, and the pack comes loping over the plains!"
+   },
+   "why": "gnoll raiders"
+  },
+  "647101": {
+   "helpers": {
+    "group": "jackals",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The jackal howls for the pack!"
+   },
+   "why": "jackals"
+  },
+  "647104": {
+   "helpers": {
+    "group": "spirit_wood",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A wail rises from Spirit Wood, and the restless dead drift closer!"
+   },
+   "why": "restless spirits"
+  },
+  "647108": {
+   "helpers": {
+    "group": "dark_cult",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The cultist cries out to the dark, and robed figures answer!"
+   },
+   "why": "cultists"
+  },
+  "647103": {
+   "rank": "elite",
+   "why": "an elite of the Badlands"
+  },
+  "647105": {
+   "rank": "elite",
+   "why": "an elite of the Badlands"
+  },
+  "647106": {
+   "rank": "elite",
+   "why": "an elite of the Badlands"
+  },
+  "47150": {
+   "name": "black priest",
+   "short_desc": "the Black Priest",
+   "long_desc": "The Black Priest stands before the Dark Castle, his arms raised to the clouds.",
+   "description": "A tall, gaunt man in robes black as pitch, a silver dagger at his belt and a holy symbol of something nameless around his neck. The cult of the Dark Castle answers to him, and he answers to the dark.",
+   "level": 18,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "boss",
+   "alignment": -900,
+   "helpers": {
+    "group": "dark_cult",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The cultist cries out to the dark, and robed figures answer!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Black Priest screams: \"The castle will have your soul!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Dark Litany",
+      "telegraph": "The Black Priest chants, and the shadows deepen around you!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+4",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Sacrificial Knife",
+      "telegraph": "The Black Priest draws his silver dagger!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Summon the Dark",
+      "telegraph": "The Black Priest begins to call down the dark!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 647102,
+   "route": [
+    9123,
+    9124,
+    9129,
+    9168,
+    9169,
+    9170,
+    9171,
+    9172,
+    9173,
+    9174,
+    9175,
+    9176
+   ],
+   "why": "a gnoll raider ranges the plains"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 47150,
+   "room": 8357,
+   "why": "the Black Priest before the Dark Castle",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      647108
+     ],
+     "shout": "The Black Priest cries out, and his cultists come running!",
+     "why": "the cult comes"
+    }
+   ]
+  }
+ ]
+}

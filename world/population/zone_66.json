@@ -1,0 +1,134 @@
+{
+ "zone": 66,
+ "_about": "The Northern Wilderness (levels 3-24): frost wolves that run in packs across the tundra, bandits who whistle each other in, their captain a sub-boss, the hulking yeti an elite, and Hrimgar the Frost Jarl on the mountaintop, calling down the blizzard and his wolves.",
+ "creatures": {
+  "606602": {
+   "helpers": {
+    "group": "frost_wolves",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The frost wolf howls, and the pack answers across the snow!"
+   },
+   "why": "frost wolves"
+  },
+  "6602": {
+   "helpers": {
+    "group": "bandits66",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The bandit whistles, and figures rise out of the snow!"
+   },
+   "why": "a bandit"
+  },
+  "6603": {
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "bandits66",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The bandit whistles, and figures rise out of the snow!"
+   },
+   "why": "the bandit captain"
+  },
+  "606603": {
+   "rank": "elite",
+   "why": "the yeti"
+  },
+  "66050": {
+   "name": "hrimgar frost jarl giant",
+   "short_desc": "Hrimgar the Frost Jarl",
+   "long_desc": "Hrimgar the Frost Jarl stands on the mountaintop, his beard rimed with ice, an axe of blue ice in his fists.",
+   "description": "A frost giant twice the height of a man, skin pale blue as glacier ice and eyes like chips of sky. The wolves of the tundra are his hounds, and the blizzard comes when he calls.",
+   "level": 24,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "giant",
+   "rank": "boss",
+   "alignment": -500,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Hrimgar roars, and the wind howls with him!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Avalanche",
+      "telegraph": "Hrimgar slams his axe into the mountainside!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Ice Axe",
+      "telegraph": "Hrimgar swings his great ice axe at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Breath of Winter",
+      "telegraph": "Hrimgar draws in a breath that freezes the air!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 606602,
+   "route": [
+    4607,
+    4611,
+    4615,
+    4614
+   ],
+   "why": "a frost wolf ranges the tundra"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 66050,
+   "room": 4652,
+   "why": "Hrimgar on the mountaintop",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Blizzard",
+     "school": "frost",
+     "every": 10,
+     "radius": 2.6,
+     "last": 12,
+     "pct": 0.045,
+     "why": "drifts of killing cold: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "606602": 2
+     },
+     "shout": "Hrimgar whistles, and frost wolves bound up the slope!",
+     "why": "his wolves at 60% and 30%"
+    }
+   ]
+  }
+ ]
+}

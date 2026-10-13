@@ -121,6 +121,462 @@
    "mood": "Grey, wind-scoured and grim; ghosts in the Spirit Wood; vertigo on the bridges.",
    "creatures": "Carrion crows and badland jackals (6-10), gnolls and a hill troll on the plains (10-14), restless spirits and a hanged man's ghost in the Spirit Wood (12-16).",
    "items": "A gnoll's flail, a hangman's rope token, a lodge-keeper's lantern, spirit-ash."
+  },
+  "403": {
+   "name": "Garathorm Wall",
+   "levels": [5, 15],
+   "theme": "The walk along the top of Garathorm's great curtain wall: a parapet of pale weathered stone with crenels and arrow slits, guard towers and stairheads at the four turns, braziers and racks of spears, banners of the city. Inward the roofs, spires and smoke of the Inner City, the Temple dome and the market; outward the plains, the Trade Road and the far hills. Gulls and crows ride the wind. The watch walks it day and night.",
+   "mood": "High, windy and watchful; the city at your back, the wide world in front.",
+   "creatures": "",
+   "items": ""
+  },
+  "431": {
+   "name": "Garathorm Cathedral",
+   "levels": [15, 25],
+   "theme": "Garathorm's old cathedral, abandoned when its bishop turned to darker prayers, standing beyond the walls in a shaded churchyard of leaning graves and a mausoleum. Inside: the great hall of fallen pews under a broken rose window, galleries, a huge silent organ, the sacristy, a stair up the tower to the belfry and the roof. Secret passages behind the panelling lead down to catacombs, bone tunnels lined with skulls, vaults and a well shaft, and at the heart a diamond altar where the Hollow Bishop keeps his vigil. The dead do not rest here.",
+   "mood": "Holy ground gone wrong: dust, cold candle-wax, dead silence broken by a far bell.",
+   "creatures": "",
+   "items": ""
+  },
+  "517": {
+   "name": "Garathorm School House",
+   "levels": [1, 6],
+   "theme": "The city's school house on a dirt track: a two-storey timber and stone building with hallways of pegs and slates, classrooms for philosophy, mathematics, history and science, a woodcrafting workshop, a fencing hall, the principal's, counselor's, coach's and janitor's offices, a stable behind and an outhouse. Lessons, chalk, ink and noise; a safe and gentle place for the young.",
+   "mood": "Warm, busy and a little comic: chalk dust, scuffed floors, a bell for lessons.",
+   "creatures": "",
+   "items": ""
+  },
+  "420": {
+   "name": "Fameland",
+   "levels": [20, 30],
+   "theme": "A hall of heroes reached from Garathorm: the Gate of Fameland, the Way of Heroes, the Halls of Eternity and of Victory, the Chambers of Heroes, the Chambers of Sorrow, the Chamber of the Fallen Ones, the Rooms of Mercy and of Honour, and the Corridors of Remembrance. Marble statues, honour rolls carved in stone, trophies and banners of old wars, braziers that never go out. The spirits of the honoured dead still walk here and test the living.",
+   "mood": "Solemn, grand and haunted by honour; marble, gold leaf and eternal flame.",
+   "creatures": "",
+   "items": ""
+  },
+  "418": {
+   "name": "Garathorm Vineyard",
+   "levels": [8, 14],
+   "theme": "The vintner's house above Garathorm's vineyard: a modest bedroom, a stair down to a vaulted wine cellar of casks, and a storage room of racked bottles, cobwebbed and dark, where something large has spun its web.",
+   "mood": "Cool, musty and sweet with old wine.",
+   "creatures": "",
+   "items": ""
+  },
+  "481": {
+   "name": "Ghenna",
+   "levels": [28, 34],
+   "theme": "Ghenna, the city of evil: a walled town of crooked streets, hedge mazes and a fountain of tears, where the smell of decay never lifts. Barrow mounds lie outside its limits; inside are taverns and dens, a covered walkway, a golem-guarded hall, the Swordmaster's arena, an efreeti's chamber, and under it all slimy footpaths, caves and long sloping tunnels down to the lair of a deep dragon and a deepspawn. Missionaries come here to save souls; few leave.",
+   "mood": "Rotten, menacing and decadent: decay, hedges that twist back on themselves, things watching from doorways.",
+   "creatures": "",
+   "items": ""
+  },
+  "475": {
+   "name": "World Of Chaos",
+   "levels": [22, 30],
+   "theme": "A realm a mad builder dreamed into being, reached from Mount Ravenmist past a lonely cabin: a Path of Bones paved with skulls and femurs winding through broken ground, huge black pillars that hum, a walled building of impossible proportions (a front hall, a hall of pillars, a dimly lit library, a room filled with mirrors, a mind-boggling winding staircase, a deformed gate), and a Lake of Blood with rocky shores and a small island in its middle where a way leads down to the evil city of Ghenna. Nothing here is quite the right shape.",
+   "mood": "Unsettling and wrong: red water, bone underfoot, angles that do not add up, a silence that waits.",
+   "creatures": "",
+   "items": ""
+  },
+  "9": {
+   "name": "Minos River Island",
+   "levels": [4, 26],
+   "theme": "A small island in the river where King Minos the Minotaur keeps his court in a sunken pit: a nameless landing place, then the Pit of Minos, a sunken arena of rough stone ringed with bones and broken weapons, its passages worn by the hooves of the bull-king and his warband (General Woundwort, a gruff warrior rabbit, and the henchmen Franz and Hanz). River creatures (a sea hag, a merman, crabs, a dragon turtle) haunt the island's edges.",
+   "mood": "Hot, dusty and brutal: the smell of beast and old blood, the river always rushing somewhere near.",
+   "creatures": "",
+   "items": ""
+  },
+  "423": {
+   "name": "Hommlet",
+   "levels": [8, 16],
+   "theme": "The upper floors and hidden store rooms above the farm village of Hommlet on the Trade Road: the private rooms over the inn where three strangers lodge (Gundigoot, Zert and Furnok, agents of a hidden cult), store rooms with false walls, a secret store room, an upper hall, and over the village church the Sacred Trophies Gallery, the assistant cleric's quarters and the chief priest's chambers, where the cult's real master hides in plain sight.",
+   "mood": "Homely on the surface (timber, whitewash, the smell of bread and ale from below), sinister beneath: locked chests, hidden symbols, an eye carved where no one looks.",
+   "creatures": "",
+   "items": ""
+  },
+  "482": {
+   "name": "Haunted House",
+   "levels": [10, 20],
+   "theme": "A great old house beyond the cathedral fields, abandoned when its family died one by one and never truly left: a gate and a front yard gone to weeds, a grand foyer, a library, a sitting room, a living room, a greenhouse of dead plants, a kitchen, a servants' corridor, the chef's and cook's rooms, water closets, collapsed rooms, bedrooms and an attic. A gate on its far side opens on an abandoned carnival.",
+   "mood": "Dusty, creaking and wrong: portraits whose eyes follow, cold spots, a piano that plays itself, footsteps upstairs when no one is there.",
+   "creatures": "",
+   "items": ""
+  },
+  "479": {
+   "name": "Ancalador",
+   "levels": [6, 25],
+   "theme": "Ancalador, a dragon of stone so vast that a whole realm lies inside it: from a wild valley you climb into its open mouth, past stone tonsils and down its throat to the lungs and the heart, into a stomach where an acid forest grows and wooden bridges cross the digesting dark, through the pancreas and the coiling small and large intestines to the tail. Hidden within lies the Necromancers' Guild of the Bloodstone: an undead garden, a macabre amphitheatre, the Temple of Death, cold storage, a kennel of the dead, an operating room, the guildhall and the Altar of Annihilation.",
+   "mood": "Organic and strange: ribbed stone walls that seem to breathe, acid hiss, a slow heartbeat underfoot; then grave-cold and candle-black in the guild.",
+   "creatures": "",
+   "items": ""
+  },
+  "414": {
+   "name": "Strange Garden",
+   "levels": [12, 22],
+   "theme": "A strange walled garden gone wild: a hedge labyrinth, a greenhouse of carnivorous plants, a pond with a small island, a rockery, a pavilion and a secret garden, all tended once by a mad botanist.",
+   "mood": "Lush, humid and unsettling: too-bright flowers, things moving in the hedges.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Mad Botanist, or the carnivorous Queen Bloom in the greenhouse). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "416": {
+   "name": "Castle Of Caboon",
+   "levels": [3, 13],
+   "theme": "Castle Caboon, held by the necromancer Lord Khal: a tunnel of death, a painted hallway, the Arcade of the Undead Lords, burial grounds and a graveyard, Mania's chamber, a library, a portal chamber and the chamber of sacrifice at Khal's altar.",
+   "mood": "Cold, rotten and ceremonial: painted saints with their eyes scratched out, grave-dirt on the stairs.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Lord Khal the necromancer at his altar). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "419": {
+   "name": "Mishrak",
+   "levels": [12, 22],
+   "theme": "Mishrak, a walled town of streets named for its keep, chapel and barracks, with wall roads all round, a chapel over catacombs and a hole that leads below; a forested road leads in. Its folk are wary and its catacombs hide a cult.",
+   "mood": "Grey, guarded and close: watchful eyes behind shutters, bells from the chapel.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the cult's high priest in the catacombs under the chapel). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "424": {
+   "name": "Castle Catacombs",
+   "levels": [8, 18],
+   "theme": "The catacombs under Welmar's castle: slippery stairs, wet tunnels, tombs of pink and golden marble, a small study, odd and noisy rooms and a secret room where something old has woken.",
+   "mood": "Damp, echoing and claustrophobic: dripping water, the scrape of something in the dark.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: a crypt lord in the golden tomb). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "426": {
+   "name": "Troglodyte Mines",
+   "levels": [6, 16],
+   "theme": "Troglodyte mines under the desert mountains: a gnome silver mine overrun by troglodytes, their barracks, a meat locker, a chamber of cells for captives, a meeting chamber, a thin ledge over a chasm and a giant's lair.",
+   "mood": "Rank, hot and brutal: the troglodytes' stench, the clink of chains.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the troglodyte chieftain, or the giant in his lair). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "429": {
+   "name": "City of Ancients",
+   "levels": [15, 25],
+   "theme": "The City of Ancients beyond Fameland: the Way of Ancients and the Way of Heroes lead to rooms of Might, Bravery, Courage, Perseverance and Slaying, a walkway of bones and a road to a temple at the edge of a rift. The spirits of the first heroes keep their trials here.",
+   "mood": "Ancient, solemn and testing: worn statues, the hum of the rift.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Ancient Champion at the edge of the Rift). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "436": {
+   "name": "Baron Kalveh's Fief",
+   "levels": [14, 24],
+   "theme": "Baron Kalveh's fief: a settlement on a gravel road with farmhouses, pastures and a barn, and the baron's tower above it, where the baron and his advisers Gilzaan and Necromocis work in a laboratory and a twilight chamber at things no honest lord should.",
+   "mood": "Rural and outwardly calm, with dread behind the tower door.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Baron Kalveh in his twilight chamber). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "439": {
+   "name": "Mount Olympus",
+   "levels": [7, 17],
+   "theme": "Mount Olympus: a great valley, white marble stairs and streets, the abodes of demigods and angels, the gods' labyrinth, the gods' cathedral and the Gods' Table, with the thrones of the Olympians around it. The gods are absent; their guardians and monsters remain.",
+   "mood": "Dazzling, lofty and perilous: white marble, thunder, the scent of ambrosia.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: a titan or the guardian of the thrones, never a named Olympian god). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "445": {
+   "name": "Ogre Village",
+   "levels": [12, 22],
+   "theme": "The ogres' country: crude huts in a clearing, the black forest and the dark woods, a swampy path, rocky shores at the edge of the sea, misty frigid wastelands and a bloody intersection where the ogres feast.",
+   "mood": "Wild, damp and savage: smoke from cookfires, bones on the paths.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Ogre Chieftain among the huts). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "447": {
+   "name": "Mahn-Tor Keep",
+   "levels": [15, 25],
+   "theme": "Mahn-Tor Keep, a mountain town on a cliffside: temple and market squares, houses and a trading post, a gathering hall, and the keep's guarded halls rising above, where its lord rules with an iron fist.",
+   "mood": "Stern and martial: banners, guards on every corner, mountain wind.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Lord of Mahn-Tor in the great hall). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "449": {
+   "name": "Leper Island",
+   "levels": [3, 13],
+   "theme": "Leper Island: a jungle island with a lepers' village of clay and thatch huts, pig pens and gardens, an encampment, a cliff's edge, a narrow gully and a trail up to a smoking volcano.",
+   "mood": "Hot, humid and melancholy: jungle noise, smoke on the crest.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the fire spirit of the volcano's crest). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "452": {
+   "name": "Submerged Temple",
+   "levels": [8, 18],
+   "theme": "The Submerged Temple of Zaebos: half-flooded corridors, underground pools, a magnificent corridor, sleeping chambers, a shrine to a lizardine warrior, slippery ledges and the lair of a scaled beast, held by lizardfolk who worship it.",
+   "mood": "Wet, dim and reptilian: dripping stone, hissing in the dark.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the scaled beast of Zaebos in its lair). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "453": {
+   "name": "Crater",
+   "levels": [8, 18],
+   "theme": "A volcanic crater island: its rim, the crater floor, lava tubes, a hatchery of something reptilian, a nasty lake, and the kobold shaman's perch over it all.",
+   "mood": "Sulphurous and hot: steam vents, cracked black rock.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the kobold shaman, or the thing in the hatchery). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "454": {
+   "name": "Caverns of the Pale Man",
+   "levels": [11, 21],
+   "theme": "The Caverns of the Pale Man: an enormous cavern system descending hundreds of feet, the bugbears' den, mold caverns, a lake and its tributary, vaulted chambers and carpeted cave-ways leading to the Pale Man's private chambers.",
+   "mood": "Cold, deep and pressing: the air gets colder as you descend; mold glows faintly.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Pale Man himself). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "455": {
+   "name": "Gondor Island",
+   "levels": [11, 21],
+   "theme": "Gondor Island at the rim of the world: the ruins of an ancient city, an ocean stream, a gulf, and the Mound of Concealed Demise among the ruins.",
+   "mood": "Lonely, windswept and ancient: the sea falling away at the rim.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the barrow-king in the Mound of Concealed Demise). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "458": {
+   "name": "Castle Varok",
+   "levels": [12, 22],
+   "theme": "Castle Varok in the rolling foothills: a road through the foothills, the castle wall, foyer, main hall, grand ballroom, state room, guest rooms and the lord and lady's bedchamber. The Varoks are vampires.",
+   "mood": "Elegant and decaying: dust sheets, a ballroom where the dead still dance.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Lord Varok, a vampire, in the bedchamber). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "461": {
+   "name": "Tombs of Atuan",
+   "levels": [13, 23],
+   "theme": "The Tombs of Atuan: a ridge of death, roads named for distrust, despair and pride, a painted room, the undertombs, a panopticum of petrified souls, a chasm, a treasure room and the throne of Acrasia.",
+   "mood": "Dark, hushed and sacred to the nameless powers: echoing stone, the feeling of being watched.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Acrasia on her throne). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "464": {
+   "name": "Brethrenmere",
+   "levels": [14, 24],
+   "theme": "Brethrenmere, a miners' cavern town: miners' houses with kitchens and living rooms, a stone fountain at the cavern centre, an overseer's pedestal, rubble-choked tunnels of darkness at its back.",
+   "mood": "Dim, dusty and hard-working, with something wrong in the back tunnels.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: a corrupted overseer, or the thing in the tunnels of darkness). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "465": {
+   "name": "Below Moria",
+   "levels": [11, 21],
+   "theme": "Below Moria: a labyrinth of mine tunnels (shadowy, smelly, rocky, shored-up, wet, bone-strewn), the tunnel of sighs and a tunnel to hell, a barren cavern and a mine shaft's bottom, full of orcs and worse.",
+   "mood": "Black, endless and echoing: drums in the deep.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: a balrog-like fire demon at the tunnel to hell). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "467": {
+   "name": "Moria Deep",
+   "levels": [17, 27],
+   "theme": "Moria Deep: a bridge, a guard post, and the dens of the deep's named horrors (Gomel's Hole, Zalygin's Yard, Terasaki's Trashery, Riabev's Lair, Morhun's Haunt, Dashuk's Web, Asmolov's Tyrade).",
+   "mood": "Close, foul and dangerous: every room someone's lair.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Asmolov, the worst of them). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "470": {
+   "name": "Castle of Ostragoth",
+   "levels": [11, 21],
+   "theme": "The Castle of Ostragoth, called Castle N'Kai: a castle yard and square, a stable, guards' and servants' quarters, horrid hallways, the six thousand stairs and secret stairs and cave tunnels beneath, ruled by the sorcerer-lord Ostragoth.",
+   "mood": "Grim and oppressive: black stone, the smell of horses and fear.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Ostragoth the sorcerer-lord). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "474": {
+   "name": "Cave Elf Kingdom",
+   "levels": [10, 20],
+   "theme": "The Cave Elf Kingdom: a great underground realm with an underground lake, streets of leisure, trading chambers, a hall of champions and an arena with a balcony and the king's throne stage, a dungeon and sentry posts. The cave elves are proud and hostile to outsiders.",
+   "mood": "Glittering and dark: lantern-lit stone, arena roars echoing.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Cave Elf King on his throne, or the arena champion). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "476": {
+   "name": "Stone Circle",
+   "levels": [17, 27],
+   "theme": "The Stone Circle: standing stones around a stone city with a plaza, an avenue and cell blocks, pit stones and a slaughter stone, a stone portal, and the Manigua thicket where a thicket beast lairs.",
+   "mood": "Primal and blood-stained: old stones that hum, drums at night.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the high druid at the slaughter stone, or the thicket beast). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "478": {
+   "name": "Fire Grotto",
+   "levels": [17, 27],
+   "theme": "The Fire Grotto: a maze of confusing caverns, a prison of slaves, steamy halls, a vertical shaft and a rope bridge, royal hallways and Machk-Gyi's inner treasury, ruled by fire creatures who work slaves in the heat.",
+   "mood": "Sweltering, red-lit and cruel: the crack of whips, the roar of fire.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Machk-Gyi, the fire lord, in the inner treasury). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "480": {
+   "name": "Salem's Lot",
+   "levels": [12, 22],
+   "theme": "Salem's Lot, a small country town gone dark: fields and McKnight's Gap Road, Tudor Street, a souvenir shop and hardware store, deserted homes, a church and a morgue, and the house on the hill. Its folk are becoming vampires one by one.",
+   "mood": "Small-town quiet with dread underneath: empty porches, curtains drawn by day.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the master vampire in the house's cellar). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "488": {
+   "name": "Tunnels of Sin",
+   "levels": [7, 17],
+   "theme": "The Tunnels of Sin: mist and pillars of the abyss, a black granite labyrinth, a dead pool, stone mazes and the ancient troglodyte passages and hall beneath.",
+   "mood": "Black, misty and disorienting: whispers that lead astray.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: a demon of the abyss at the dead pool). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "491": {
+   "name": "Morvoct",
+   "levels": [15, 25],
+   "theme": "Morvoct, a goblin town on a seaweed-forest shore: sandy and palm-covered paths, huts, a bakery, a goblin tavern and a brawlers' room, a storage room and a hall of the conquered reached by a secret passage.",
+   "mood": "Rowdy, salty and grubby: goblin songs, fish drying on lines.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the goblin warlord of Morvoct in the hall of the conquered). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "494": {
+   "name": "Eden",
+   "levels": [15, 25],
+   "theme": "Eden, a sacred and peaceful garden: the road to Eden and its gate, lines of fruit trees, a flower garden, beehives, and at its heart the Tree of the Knowledge of Good and Evil. A gentle place guarded by a cherub with a flaming sword; nothing here should be a sacred figure to fight.",
+   "mood": "Serene, golden and holy: birdsong, honey, warm light.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: no boss: only a guardian cherub (a sub-boss) at the gate, and peaceful creatures). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "495": {
+   "name": "Island Of The Dead",
+   "levels": [15, 25],
+   "theme": "The Island of the Dead: dense forest, shores all round, and a crypt-temple of winding corridors, antechambers and judges' chambers where the dead are weighed, with the Garden of Everlasting Peace at its heart.",
+   "mood": "Grey, quiet and judgemental: mist on the shore, scales and feathers.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Judge of the Dead in the judges' chamber). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "496": {
+   "name": "Isle of Lag",
+   "levels": [15, 25],
+   "theme": "The Isle of Lag: a cluttered beach, a forest path that seems endless, hills, and caves and tunnels beneath the summit, where everything moves a little too slowly.",
+   "mood": "Dreamlike and sluggish: time feels thick, sounds arrive late.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Lag Wyrm in the deep dark cave). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "499": {
+   "name": "Phaeton's Academy",
+   "levels": [12, 22],
+   "theme": "Phaeton's Academy: a philosophers' academy with wings around a garden, lecture rooms on Heraclitus, Stoicism and Sophism, a dining hall, slave quarters, and a maze under the garden where a failed experiment lurks.",
+   "mood": "Learned and genteel above, wrong below: marble, scrolls, and a smell from the maze.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the creature in the maze under the garden, or Phaeton himself). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "501": {
+   "name": "Aredrel Dwarven",
+   "levels": [32, 42],
+   "theme": "Aredrel Dwarven, a dwarf village in the emerald cave: village and main hallways, dwarven houses, a mining district and shaft, a graveyard, guard chambers and a bridge across a ravine.",
+   "mood": "Stout and warm, emerald-lit: hammers ringing, a dwarf graveyard's quiet.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: a dwarven thane, or a stone horror from the deep mining shaft). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "502": {
+   "name": "Draconian Camp",
+   "levels": [11, 21],
+   "theme": "The Draconian camp: trodden paths, wandering caves and narrow tunnels, small huts, the chief guard's hut, a large clearing and the draconian shrine.",
+   "mood": "Harsh and militant: scaled warriors drilling, smoke from the shrine.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the draconian high priest at the shrine). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "503": {
+   "name": "Durmandel I",
+   "levels": [33, 43],
+   "theme": "Durmandel, a great dwarven city underground: roads and highways named for its founders, nobles' houses and abandoned houses, the mining district, dark alleys, the ambassadors' halls and the gates to the stronghold.",
+   "mood": "Grand and fallen-on-hard-times: carved halls, empty houses, guards at the gates.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: a dwarven usurper at the gate to the stronghold). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "504": {
+   "name": "Elvandar",
+   "levels": [13, 23],
+   "theme": "Elvandar, the elven city in the trees: stairs on a humongous tree, branches (Eledhel, Moredhel), a common platform, guilds for mages, clerics, thieves and warriors, guards' barracks and an elven magic shop.",
+   "mood": "Airy, green and graceful: leaves, lanterns, songs among the branches.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: a living city: no boss beyond the captain of its guard as a sub-boss). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "505": {
+   "name": "Lost Crypt I",
+   "levels": [34, 44],
+   "theme": "The Lost Crypt, upper level: a tunnel of confusion, ancient and strange tunnels, junctions, a sealed crypt, hidden tombs, a lost cave, and Bone Gnasher's lair.",
+   "mood": "Dark, airless and maze-like: void of sunlight, bones underfoot.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Bone Gnasher in his lair). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "507": {
+   "name": "Lost Crypt II",
+   "levels": [36, 46],
+   "theme": "The Lost Crypt, the sarcofag below: a huge sarcophagus-maze, the tunnel of vampires and the tunnel of living dead, a magical bridge over a lava stream, a room of entangleness and the Vampire Lord's den.",
+   "mood": "Hot from the lava, cold from the dead: red light, black stone.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Vampire Lord in his den). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "508": {
+   "name": "Durmandel II",
+   "levels": [36, 46],
+   "theme": "Durmandel's royal halls: the hall of heroes, the royal hall and throne hall, the grand hall of records, the king's and queen's bedchambers, a chapel and an embalming chamber, burial mounds, and a look-out with a gryphon's nest.",
+   "mood": "Regal and funereal: the old kings lie in state.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the undead Dwarf King in the throne hall, or the gryphon). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "509": {
+   "name": "Durmandel Mines I",
+   "levels": [39, 49],
+   "theme": "The Durmandel mines: the first deep's mine tunnels, the old mine road, the mines of Khukal, the under-mines, ore storage, the dump and the black rock.",
+   "mood": "Dusty, deep and dangerous: cave-ins, rails, things that ate the miners.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the thing at the black rock). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "512": {
+   "name": "Orc Tunnels",
+   "levels": [42, 52],
+   "theme": "The Orc Tunnels: a vast warren of mine tunnels across the second and third deeps, grey and natural cave-tunnels, underground lakes, the orc town of Morkai's streets, the whispering hallway, and the Great Hall of Orschnag, the orc king.",
+   "mood": "Huge, brutal and teeming: drums, torchlight, orc war-chants.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Orschnag the orc king in his great hall). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "514": {
+   "name": "Morkai",
+   "levels": [45, 55],
+   "theme": "Morkai's under-tombs: glowing and hot cave tunnels, a lava chamber and the fire vein, the hall of mirrors, the great hall and tomb of the Pale, Moloch's repose and the Stone of Sealing.",
+   "mood": "Hellish and ancient: lava light, mirrors that show the wrong things.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Moloch at his repose). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "515": {
+   "name": "Orcus Temple",
+   "levels": [45, 55],
+   "theme": "The Temple of Orcus: a courtyard and stable, corridors and a stair to salvation, priests', disciples' and high priest's quarters, the room of the beautiful maid (a lure) and the Sanctuary of Orcus, opening into the void.",
+   "mood": "Unholy and seductive: incense over rot, a beautiful voice in the dark.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the high priest of Orcus in the Sanctuary). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "518": {
+   "name": "Necromancer Mines",
+   "levels": [12, 22],
+   "theme": "The Necromancer Mines: eerie corridors, dark cells, a cave-rat nest, and old mine workings (shafts, crossroads, glowing rooms) where a necromancer harvests the dead miners.",
+   "mood": "Sickly, glowing and dead: green light, the scrape of corpse-miners.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the necromancer in the large glowing room). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "519": {
+   "name": "White Gold Cathedral",
+   "levels": [21, 31],
+   "theme": "The White Gold Cathedral: a wizards' cathedral of corridors for elementalists, alchemists, enchanters and hit-wizards, an alchemy chamber, sleeping quarters, pews and the White Gold Altar, reached by shady paths.",
+   "mood": "Bright, arcane and arrogant: white-gold light, crackling wards.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Archmagus at the White Gold Altar). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "520": {
+   "name": "Warded Castle",
+   "levels": [24, 34],
+   "theme": "The Warded Castle: the ward and inner ward, a keep with a spiral staircase, a gatehouse, stables, workshop, kitchen, servants' and guards' quarters, a mushroom farm, gallows and a destroyed hall, under a curse that keeps its garrison from dying.",
+   "mood": "Grim and endless: wards that hum, soldiers that will not stay dead.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the cursed Warden in the keep). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
+  },
+  "522": {
+   "name": "The Winterlands",
+   "levels": [10, 20],
+   "theme": "The Winterlands beyond the Winterwood: a monument in the snow, a frozen walkway and a snow-covered bridge to a massive portcullis, and vast frozen caverns and halls carved by frost giants.",
+   "mood": "Frozen, vast and echoing: blue ice, breath that freezes.",
+   "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: the Frost Giant King in the massive hallway). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
+   "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
   }
  }
 }

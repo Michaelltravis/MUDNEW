@@ -26,8 +26,9 @@
      "description": "To the up lies The Nasty Lake."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and up.",
-   "placeholder": true
+   "description": "The last grey of daylight reaches this narrow rock mouth by way of a\nstair-cut shaft that climbs up toward the Nasty Lake above, and it fades\nbefore it touches the far wall. Cold breathes out of the tunnel that\nruns on east into the black. The floor is worn smooth by older feet than\nyours, and the stone sweats where the air meets it. Here the world you\nknow ends and the Caverns of the Pale Man begin.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107301": {
    "vnum": 107301,
@@ -51,8 +52,9 @@
      "description": "To the west lies Entry into the Darkness."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The tunnel tips and begins its long descent, the floor sloping under\nyour boots toward deeper rock. Rough-hewn walls close in on both sides,\nglistening with a thin skin of wet. The entry is a dim paler patch\nbehind you to the west, while ahead the way bends on east into a cold\nthat smells of old stone. Pebbles skitter loose from your heel and are\nlost in the dark.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107302": {
    "vnum": 107302,
@@ -76,8 +78,9 @@
      "description": "To the west lies Descending Into the Depths."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "Breath smokes in front of your face here, for the chill has come up out\nof the rock like a tide. Frost-fine crystals of damp cling to the\nceiling in a pale fur. The tunnel keeps its slow slope, running on east,\nand the way back west toward the entry is already warmer than this. Your\nfingers ache against the cave wall.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107303": {
    "vnum": 107303,
@@ -101,8 +104,9 @@
      "description": "To the west lies The Air Gets Cold."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "The passage twists through a throat of dark grey stone, each turn a\nlittle lower than the last. A thin trickle runs along a groove in the\nfloor and vanishes into a crack. Somewhere ahead, water drips at slow,\neven intervals. The tunnel goes on east, and the way west climbs back\ntoward a memory of light.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107304": {
    "vnum": 107304,
@@ -126,8 +130,9 @@
      "description": "To the west lies Deeper and Deeper."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "A great weight of rock presses over your head, and the whole tunnel\nseems to hold its breath beneath it. The ceiling lifts a little here and\nthe walls are scored with long pale seams of mineral. Your steps ring\nflat and dull, as if the stone drinks the sound. East the passage leans\ntoward a place where the floor seems to settle, while the slope you came\nby runs back west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107305": {
    "vnum": 107305,
@@ -151,8 +156,9 @@
      "description": "To the west lies Hundreds of Feet Below the Surface."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
-   "placeholder": true
+   "description": "At last the floor stops its long fall and lies level, a broad shelf of\ndamp stone worn by countless passings. The ceiling is low and ragged,\nhung with short stone teeth. The tunnel from the west ends against a\nblank wall of rock, and the only way on turns south into a smoother\npassage. The cold here is steady and patient, no longer a wind but a\nsettled fact.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107306": {
    "vnum": 107306,
@@ -180,8 +186,9 @@
      "description": "To the west lies A Secret Chamber."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The walls here have been worked, or perhaps worn, until they shine like\nold bone under a thumb. The passage runs straight north back to the\nlevel floor and south toward a bend. A low opening in the west wall\ngives onto a small room that someone clearly meant to hide. Faint tool\nmarks show in the rock around it.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107307": {
    "vnum": 107307,
@@ -205,8 +212,9 @@
      "description": "To the west lies Chamber of Fear."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "The secret chamber is a neat square room with walls of dressed stone,\nhidden behind the smooth passage as if to hide it from careless eyes. A\nlow stone shelf runs around the sides, and a faded circle is painted on\nthe ceiling. The passage lies east. Beyond a narrow arch opposite, a\ndarker way leads west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107308": {
    "vnum": 107308,
@@ -226,8 +234,15 @@
      "description": "To the east lies A Secret Chamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "The Chamber of Fear is a small bare cell whose walls have been scratched\nall over with desperate marks: pleading words, crossed-out days and\nrough drawings of eyes. A circle of black stains lies on the floor\nbeneath a ring set into the ceiling. The only way out is the secret\nchamber to the east. The air is stale and cold, and it prickles at the\nback of your neck.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645404,
+     "max": 1
+    }
+   ]
   },
   "107309": {
    "vnum": 107309,
@@ -251,8 +266,9 @@
      "description": "To the east lies Near an Alcove."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "The smooth passage bends here in a long, lazy curve, its walls bellying\nout like the inside of a great shell. Drips fall from the ceiling and\nring on a little ridge of flowstone. The way north leads back to the\npolished stretch, while the bend carries on east. A sour mineral smell\nhangs in the air.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107310": {
    "vnum": 107310,
@@ -280,8 +296,9 @@
      "description": "To the west lies A Curve in the Passage."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The tunnel widens around a recess in the northern wall, a hollow like a\nniche cut to hold a lamp. Your own footsteps come back from the dark\nwith a small delay. West the passage curves away behind you, and east it\nopens out wider still. The rock underfoot is gritty with pale sand\nground from the walls.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107311": {
    "vnum": 107311,
@@ -301,8 +318,9 @@
      "description": "To the south lies Near an Alcove."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "A shallow alcove, no deeper than a man might lie, hollowed from the\nliving rock. The floor is dusted with fine pale grit, and old scorch\nmarks stain the stone where someone once kept a fire. Only the way\nsouth, back to the passage, leads out. The chill is a little less\ncutting in this pocket, and the silence is thick.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107312": {
    "vnum": 107312,
@@ -326,8 +344,9 @@
      "description": "To the west lies Near an Alcove."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The walls draw back and the ceiling climbs, as if the tunnel were\nremembering that it was once something grander. Lumps of fallen stone\nlie in the dust, rounded by age. West is the way back toward the alcove,\nand east a sense of vast space waits, felt as a change in the air on\nyour face. Far off, water falls with a thin silver sound.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107313": {
    "vnum": 107313,
@@ -359,8 +378,15 @@
      "description": "To the west lies The Passage Widens."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "You step out of the tunnel into a cavern so large that your light finds\nneither roof nor far wall. Pale mold glows in faint green smears on the\nnearer rocks, enough to show a floor littered with boulders. Paths of\ntrodden dust lead north, east and south among them, and the passage you\ncame by lies behind you to the west. The air is cold and tastes of wet\niron.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645400,
+     "max": 1
+    }
+   ]
   },
   "107314": {
    "vnum": 107314,
@@ -384,8 +410,9 @@
      "description": "To the south lies An Enormous Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "The cavern floor here is a field of broken stalagmites, snapped long ago\nand lying like felled trees. A faint green glow clings to the cracks\nbetween them. The way east threads onward among the boulders, and the\nway south leads back to the part of the cavern you entered by. Overhead\nthe dark is absolute.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107315": {
    "vnum": 107315,
@@ -417,8 +444,9 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four trails of trodden grit cross here beneath a ragged ceiling lost in\nblackness. A drift of pale flowstone like frozen candle wax fills one\nside of the floor and reflects the green glimmer of the mold. A narrower\nway begins to the north, the cavern spreads east and south, and the\nbroken stalagmites lie to the west. Water ticks somewhere out of sight.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107316": {
    "vnum": 107316,
@@ -450,8 +478,15 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A broad, empty reach of cavern floor lies here, scattered with the\nwhite, snapped ribs of stone that once hung from the roof. Your passage\nraises a cloud of fine pale dust that hangs in the still air. Trails\nlead north, east, south and west among the rubble. A dull glimmer of\ngreen mold marks the boulders and nothing else.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645400,
+     "max": 1
+    }
+   ]
   },
   "107317": {
    "vnum": 107317,
@@ -479,8 +514,9 @@
      "description": "To the south lies Narrow Crack in the Walls."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The cavern narrows toward its southern edge, where a split in the rock\nleads off into a tighter space. Its floor is a pale crumble of old bones\nof stone, and thin veils of mineral hang from the ceiling in curtains.\nNorth the cavern spreads wide, east it runs on, and south a dark crack\nin the wall draws the eye. A cold wind sighs through the crack.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107318": {
    "vnum": 107318,
@@ -508,8 +544,9 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The cavern floor tilts gently here toward a patch of darkness more\ncomplete than the rest. Stalagmites cluster like a thicket of pale\ncandles, some as thin as a finger and some as thick as a barrel. The\ncavern opens north, east and west from here. A steady rain of drops\nfalls through the dark and clinks upon the stones.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107319": {
    "vnum": 107319,
@@ -537,8 +574,15 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The cavern floor is smoother here, a wide plain of pale stone dimpled\nwith shallow cups where drip-water has gathered. Slender stone spikes\nrise from the cups, no taller than a child, and ring faintly when your\nsleeve brushes them. Paths of grit lead north, east and west. The glow\nof the mold is thin and cold.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645400,
+     "max": 1
+    }
+   ]
   },
   "107320": {
    "vnum": 107320,
@@ -570,8 +614,9 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four trails of grit cross in this stretch of the cavern, in a hollow\nbetween two long ridges of rubble. A great column of stone, tall and\nthick as a tower, stands at its heart with a ring of mold glowing around\nits foot. The cavern runs away in all four directions. The air smells of\nwet limestone and cold.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107321": {
    "vnum": 107321,
@@ -603,8 +648,9 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A broad, flat stretch of the cavern where the floor is covered in a\ngritty carpet of pale sand and tiny stones. Paths of scuffed grit lead\nin four directions into the dark, and the glow of the mold shows only\nthe nearest of the boulders. You hear the slow drip of a pool somewhere\nto the east. Far overhead, something unseen rustles in the black.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107322": {
    "vnum": 107322,
@@ -632,8 +678,15 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The cavern floor ramps upward here toward a pair of tall stone doors\nlong since fallen from their hinges and lying flat in the dust. Past\nthem an archway of cut stone leads east into a grander hall. South the\ncavern opens on a lower stretch of rough ground, and west lies the broad\nflat sand. Carved leaf patterns still show on the nearer door.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645400,
+     "max": 1
+    }
+   ]
   },
   "107323": {
    "vnum": 107323,
@@ -661,8 +714,9 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A slope of broken scree runs across this part of the cavern, loose and\nnoisy underfoot. Boulders the size of carts lie where they fell from the\nvanished roof, and between them the mold has made a pale green ledge.\nThe cavern runs on north, south and west from here. A trickle of water\nwinds through the pebbles with a tiny chuckle.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107324": {
    "vnum": 107324,
@@ -690,8 +744,9 @@
      "description": "To the up lies A Steep Climb."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, west and up.",
-   "placeholder": true
+   "description": "A steep stair of tumbled stone climbs from the corner of the cavern into\na crevice high in the wall. The floor is gritty and dry, and a faint\nbreath of living air, with a hint of green, wanders down it from above.\nThe cavern lies open to the north and west, and the climb leads up.\nSmall bright flakes of mica twinkle in the rock like distant stars.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107325": {
    "vnum": 107325,
@@ -715,8 +770,9 @@
      "description": "To the west lies Horror Chamber."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and west.",
-   "placeholder": true
+   "description": "You must turn sideways to pass this narrow crack in the walls, the rock\npressing against both your chest and your back. The stone is cold and\nslippery, rubbed to a dull shine by those who have squeezed through\nbefore you. North the crack opens back into the great cavern, and west\nit widens at last into a room. Your breath comes loud in the confined\ndark.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107326": {
    "vnum": 107326,
@@ -736,8 +792,15 @@
      "description": "To the east lies Narrow Crack in the Walls."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "The Horror Chamber is a ragged pocket of black rock stained in great\ndark splashes on floor and wall. Heavy iron hooks hang from the ceiling\non rusted chains, and a stone slab stands in the middle with channels\ncut in its surface. The only way out is the crack to the east. Even now\nthe cold seems to carry an echo of screams.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645404,
+     "max": 1
+    }
+   ]
   },
   "107327": {
    "vnum": 107327,
@@ -761,8 +824,15 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south and west.",
-   "placeholder": true
+   "description": "The great cavern curves away here around an immense column where roof\nand floor have grown together into one pillar of stone. Mold in pale\ngreen rosettes spreads over the base of it, and a faint luminous dust\nfloats about the air. The cavern runs on south, and west it opens toward\na pinched corner. The cold seeps up through your soles.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645400,
+     "max": 1
+    }
+   ]
   },
   "107328": {
    "vnum": 107328,
@@ -790,8 +860,9 @@
      "description": "To the south lies An Enormous Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The great cavern narrows toward a funnel of rock at this end, the walls\nleaning in as if to whisper. Thick mats of grey mold cover a slab of\nfallen stone and give off a faint, sickly shine. A wide passage opens to\nthe north, and the cavern lies open south and east. The floor is slick\nand treacherous underfoot.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107329": {
    "vnum": 107329,
@@ -815,8 +886,15 @@
      "description": "To the south lies An Enormous Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The cavern gives way to a broad passage whose walls run almost parallel,\nas straight as if a mason had laid a rule to them. Old grooves in the\nfloor suggest heavy things dragged over it. South the passage opens back\ninto the great cavern, and north it continues toward a meeting of ways.\nThe air moves faintly here, carrying a rank animal smell.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645401,
+     "max": 1
+    }
+   ]
   },
   "107330": {
    "vnum": 107330,
@@ -844,8 +922,9 @@
      "description": "To the south lies A Wide Passage."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Three tunnels meet in a low round chamber whose roof is black with soot.\nThe worn floor is scuffed in all directions, and a dull, steady rumble\ncomes along the eastern tunnel like the sound of a distant crowd. The\nway north runs on through a wide passage, and the way south leads back\ntoward the cavern. Scratches on the wall mark a tally no one has\nfinished.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107331": {
    "vnum": 107331,
@@ -869,8 +948,9 @@
      "description": "To the west lies Three-Way Split."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "A noise rises along this tunnel like surf heard through a wall, a\nrushing, muttering murmur that never quite resolves into words. The rock\nis cracked and hollow, and every step you take sets a faint chorus\ngoing. West the tunnel returns to the three-way split, and east it runs\non toward the source of the sound. Fine grey dust sifts down from the\nceiling with each footfall.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107332": {
    "vnum": 107332,
@@ -894,8 +974,9 @@
      "description": "To the west lies Noisy Tunnel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "Voices seem to speak from every crack in the stone, whispers and\nchitters and sighs overlapping until your ears ache. It is only the echo\nof far-off water finding a hundred small channels in the rock, but the\nmind does not believe it. The tunnel stretches west back toward the\nquieter way and east toward a louder place. Cold drafts brush your neck\nlike fingers.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107333": {
    "vnum": 107333,
@@ -923,8 +1004,9 @@
      "description": "To the west lies A Thousand Small Voices."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The din here is enormous, a pounding, tumbling roar thrown back and\nforth between close walls of wet stone. Spray hangs in the air from some\nunseen fall, and the floor shivers faintly underfoot. The tunnel opens\neast toward the loudest part, a doorway leads south into a small side\nroom, and the quieter way lies west. You must raise your voice to hear\nyourself think.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107334": {
    "vnum": 107334,
@@ -944,8 +1026,9 @@
      "description": "To the north lies An Enormous Din."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "This small private chamber is tucked away from the worst of the noise,\nand a damp quiet fills it. Rusted brackets in the wall once held\ntorches, and a drift of grey ash is all that is left of the last of\nthem. The way north is the only way back out. The ceiling is so low that\nit brushes your hair.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107335": {
    "vnum": 107335,
@@ -973,8 +1056,9 @@
      "description": "To the west lies An Enormous Din."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The noise reaches a pitch that rattles loose grit from the roof and sets\nyour teeth on edge. A churning stream of white water pours through a\ncleft in the rock, plunging away through a hole too narrow to follow.\nChambers open to the north and east, and the way back lies west. Slick\nmoss paints the stone in dark green stripes.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107336": {
    "vnum": 107336,
@@ -994,8 +1078,9 @@
      "description": "To the west lies Loud as Hell."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "A large room with a high, dripping ceiling and a floor of broken\nflagstones laid long before the caverns were claimed. Heaps of rubble\nstand in the corners and a long crack runs across the middle of the\nroom. The way west returns to the pounding passage. Beneath the din, a\nslow, steady drip counts out the seconds.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107337": {
    "vnum": 107337,
@@ -1015,8 +1100,9 @@
      "description": "To the south lies Loud as Hell."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
-   "placeholder": true
+   "description": "A private chamber cut from the rock, its walls trimmed straight and its\nfloor swept clean of grit. A heavy slab of stone serves as a table, and\nwedge-shaped holes in the walls once held shelves. Only the way south\nback to the loud passage leads out. The roar is muffled here to a low\nthrob you feel in your ribs.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107338": {
    "vnum": 107338,
@@ -1040,8 +1126,9 @@
      "description": "To the south lies Three-Way Split."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The wide passage runs on between smooth, sooty walls, its floor beaten\nflat by heavy tread. Splintered shafts of broken spears lie jammed in\ncracks along the sides. North the passage keeps its course, and south it\nreturns to the three-way split. A smell of smoke and sour fur hangs\nhere.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107339": {
    "vnum": 107339,
@@ -1065,8 +1152,15 @@
      "description": "To the south lies A Wide Passage."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "Here the passage is wide enough for three to walk abreast, and the roof\nis hung with ropes of dripping stone. A crude ward of knotted sinew and\nbone dangles from a spike driven into the rock. The way south goes back\nalong the wide passage, and north it opens toward the dens. Low growling\ntalk echoes faintly out of the dark ahead.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645401,
+     "max": 1
+    }
+   ]
   },
   "107340": {
    "vnum": 107340,
@@ -1090,8 +1184,9 @@
      "description": "To the south lies A Wide Passage."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "A rough archway of piled stones frames the entrance to the dens, its\ncapstone daubed with a smear of red handprints. Trampled straw and\ngnawed bones spill out across the threshold. The passage you came by\nlies south, and east the dens begin in earnest, thick with heat and\nstench. The stone here is warm to the touch, which feels wrong after the\nlong cold.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107341": {
    "vnum": 107341,
@@ -1115,8 +1210,15 @@
      "description": "To the west lies Entrance to the Dens."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
-   "placeholder": true
+   "description": "A low-roofed den scooped out of the rock, its floor strewn with matted\nstraw and the splintered ends of bones. Greasy smoke has blackened the\nceiling above a ring of fire-cracked stones. The entrance lies west, and\na second den opens east, deeper in. The smell is of wet dog, old meat\nand something fouler.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645401,
+     "max": 1
+    }
+   ]
   },
   "107342": {
    "vnum": 107342,
@@ -1140,8 +1242,9 @@
      "description": "To the west lies Den of the Bugbears."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "Rotted hides hang from pegs hammered into the walls, stiff and dark with\ngrease. A pile of broken crates and barrels has been dragged into one\ncorner as a rough bed. The den continues north, and west lies the den\nyou came through. Scratched into the stone at head height are crude\npictures of men with arrows in them.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107343": {
    "vnum": 107343,
@@ -1165,8 +1268,15 @@
      "description": "To the south lies Den of the Bugbears."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The den narrows to a tunnel-like chamber where the straw is trodden into\na black felt. A heap of old skulls, human and otherwise, is stacked\nalong the wall in a careful pile. North the chamber widens toward a\nlarger hall, and south it returns to the lower den. The ceiling drips\nsomething warm and brown.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645401,
+     "max": 1
+    }
+   ]
   },
   "107344": {
    "vnum": 107344,
@@ -1198,8 +1308,15 @@
      "description": "To the west lies Den of the Bugbears."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The heart of the den is a wide, round hall with a firepit at its centre,\nits ashes still faintly warm. A great chair of lashed bone and rough\ntimber sits against the far wall, heaped with furs. Dens open to the\nnorth, east, south and west, each a dark mouth in the stone. Totem poles\nhung with teeth and rags crowd the edges of the room, and the smell is\nnearly solid.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645406,
+     "max": 1
+    }
+   ]
   },
   "107345": {
    "vnum": 107345,
@@ -1223,8 +1340,9 @@
      "description": "To the west lies Main Room in the Den."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "This den is hung with blackened iron pots and stolen cooking gear, a\nplunderer's kitchen with a stained slab for a table. The remains of a\ngreat meal lie scattered on the floor, picked clean. North the chamber\ncontinues into a corner den, and west it opens on the main hall. Black\nsoot streaks the walls above a small fire that has burned to coals.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107346": {
    "vnum": 107346,
@@ -1248,8 +1366,15 @@
      "description": "To the west lies Den of the Bugbears."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "A corner den where the stone sweats and a puddle of dark water has\ngathered in a hollow. Scraps of leather and half-cured pelts hang drying\nfrom a line of knotted cord. South lies another den and west the cramped\nsleeping place. Someone has scratched a row of tally marks, hundreds\nstrong, into the rock above the puddle.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645401,
+     "max": 1
+    }
+   ]
   },
   "107347": {
    "vnum": 107347,
@@ -1273,8 +1398,9 @@
      "description": "To the south lies Main Room in the Den."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "A cramped den full of sleeping pallets, each a shallow bed of straw and\nfilthy blankets pressed flat by a heavy sleeper. A rack of crude clubs\nand spiked cudgels leans against the wall. The great hall lies south,\nand east the chamber runs on into another den. Dust and fleas drift in a\nslanting thread of ember-light.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107348": {
    "vnum": 107348,
@@ -1294,8 +1420,15 @@
      "description": "To the south lies Den of the Bugbears."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "A dead-end store den, packed to the ceiling with plunder: split sacks,\nbarrel staves, torn banners and a cart wheel with no cart. Everything is\ncoated in the same grey dust. The only way out lies south. A faint dry\nrustling comes from among the sacks, only the settling of old cloth.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645401,
+     "max": 1
+    }
+   ]
   },
   "107349": {
    "vnum": 107349,
@@ -1327,8 +1460,9 @@
      "description": "To the west lies Den of the Bugbears."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The den opens on four ways and reeks of musk, for it is where the\nbiggest sleepers lie. Huge nests of hide and straw fill the floor, each\nshaped by a body larger than a man. A passage leads north and another\nsouth, the main hall lies east, and a smaller den opens west. A rusted\nchain hangs from the ceiling, its end torn clean through.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107350": {
    "vnum": 107350,
@@ -1348,8 +1482,15 @@
      "description": "To the east lies Den of the Bugbears."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "The westernmost den is the filthiest of all, a pit of trampled bedding\nand splintered bone under a ceiling furred with soot. Gouges in the\nwalls show where claws have worried the stone in some old rage. The only\nway out is the den to the east. A heavy iron ring is sunk into the\nfloor, rusted to a solid knot.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645401,
+     "max": 1
+    }
+   ]
   },
   "107351": {
    "vnum": 107351,
@@ -1369,8 +1510,9 @@
      "description": "To the north lies Den of the Bugbears."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "A narrow den scraped out like a burrow, so low that you must stoop. The\nwalls are rubbed shiny by the passage of many shoulders, and bits of\ncoarse hair cling to every ridge. The only way out lies north. A heap of\ndried bones and bent arrowheads fills the back of the burrow.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107352": {
    "vnum": 107352,
@@ -1394,8 +1536,9 @@
      "description": "To the down lies An Enormous Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead up and down.",
-   "placeholder": true
+   "description": "The cave floor tilts hard here into a steep climb, a stair of rough\nledges and handholds worn by long use. Mold-slick rock makes every step\nuncertain. A faint, fresher smell drifts from above, and below lies the\ngreat cavern. The wall is cold and damp under your grasping hands.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107353": {
    "vnum": 107353,
@@ -1419,8 +1562,9 @@
      "description": "To the down lies A Steep Climb."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
-   "placeholder": true
+   "description": "A fresh scent, green and wet and alive, drifts down the tunnel from\nabove and makes the old air seem staler by contrast. The way is a rough\nchimney of rock with ledges to climb by, rubbed bright by countless\nhands. Above, the tunnel bends toward a looser space, and below it\ndescends to the steep stair. Thin cobwebs of pale root hang from the\nroof.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107354": {
    "vnum": 107354,
@@ -1448,8 +1592,9 @@
      "description": "To the down lies Up Toward a Fresh Scent."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "A small cavernway where the tunnel from below opens onto a low, damp\nledge, with a lake's gleam showing off in two directions. A stream\nchuckles out of the rock to the east, and the way west leads along a\nmuddy shore toward a moldy smell. Down the climb lies the way back into\nthe deep. Thick beads of water hang from the ceiling like glass.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107355": {
    "vnum": 107355,
@@ -1473,8 +1618,9 @@
      "description": "To the west lies Small Cavernway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "A clear black stream, the tributary of the lake, runs alongside a narrow\nledge of wet rock. Its water flows with a smooth, silent pull, cold\nenough to numb a hand that dips into it. The ledge leads east beside the\nstream and west to a small cavernway. Pale blind roots dangle from the\nroof and trail in the current.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107356": {
    "vnum": 107356,
@@ -1498,8 +1644,9 @@
      "description": "To the west lies Along the Tributary."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "The ledge narrows here to little more than a shelf, and the tributary\npulls hard at the base of it, loud against the stone. Spray freckles\nyour face and chills it. The way runs east along the water and west back\ntoward the cavernway. Slime paints the rock green below the waterline.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107357": {
    "vnum": 107357,
@@ -1523,8 +1670,9 @@
      "description": "To the west lies Along the Tributary."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The tributary pours under the wall in a dark, glassy tongue, vanishing\nbeneath a low lintel of rock too small for a boat. The ledge turns here\nto follow a gap in the stone, and the passage runs north through a\nfissure, while the way west returns along the stream. A mournful sound\ncomes from the hole where the water goes. A cold mist rises from it and\nbeads on your lashes.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107358": {
    "vnum": 107358,
@@ -1548,8 +1696,9 @@
      "description": "To the south lies The Water Flows Under."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "A tiny crack in the rock, scarcely wider than your shoulders, climbs and\ntwists between walls cold as ice. A thread of the lost stream trickles\nover the floor in a pale chain of puddles. The crack leads north to a\nchamber and south back to the place where the water flows under. Each\nbreath puffs out in a small ghost of fog.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107359": {
    "vnum": 107359,
@@ -1569,8 +1718,9 @@
      "description": "To the south lies A Tiny Crack."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "Death's Kiss is a small, silent pocket of rock where the cold is so\nintense that the walls are furred with white rime. The floor is a mosaic\nof frozen puddles, and long icicles of mineral hang in a crown from the\nroof. Something terrible must once have happened here, for the silence\nhas weight. The only way out lies south through the tiny crack.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107360": {
    "vnum": 107360,
@@ -1598,8 +1748,9 @@
      "description": "To the west lies Moldy Passage."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The cavern slopes to the black edge of the lake, whose still surface\nlies like a sheet of poured iron beyond a skirt of pebbles. A dim\npallor, the faintest shine of mold, runs along the shoreline. A\ncavernway lies east, a moldy passage leads west, and the shore continues\nsouth. The air is heavy with the smell of cold water and rot.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107361": {
    "vnum": 107361,
@@ -1623,8 +1774,9 @@
      "description": "To the west lies Moldy Passage."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "The passage wanders from the lake's edge into a stretch where the walls\nare crusted with soft grey-green mold, thick as moss on a rotted log.\nSpores drift in the still air and catch in your throat. The shore lies\neast, and the passage runs on west into a deeper, damper fug. Your light\nshows the mold ripple and pulse as if breathing.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107362": {
    "vnum": 107362,
@@ -1648,8 +1800,15 @@
      "description": "To the south lies Mold Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "Fat orange fungi in clusters hang from the roof of this passage,\ndripping a sweet, sickly juice onto the floor. The rock is so soft with\nrot that it crumbles under your fingers. The passage comes in from the\neast and bends south toward a larger cavern. Everything glows faintly\nwith a green that makes your skin look ill.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645403,
+     "max": 1
+    }
+   ]
   },
   "107363": {
    "vnum": 107363,
@@ -1677,8 +1836,9 @@
      "description": "To the west lies Mold Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The mold cavern opens like the inside of a rotting fruit, its walls\nbulging with slick, glowing growths in sick yellows and greens. A thick,\nspongy carpet of fungus covers the floor and swallows the sound of your\nsteps. A passage runs north to the moldy way, a cavern continues south,\nand another opens west. The air is warm and wet and heavy to breathe.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107364": {
    "vnum": 107364,
@@ -1702,8 +1862,15 @@
      "description": "To the south lies Mold Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "A low-roofed bay of the mold cavern, the walls blackened and sticky with\na tar-like blight that clings to your sleeves. Thin dark spores float in\nthe glow like drifting ash. The cavern is open east and south from here.\nA heavy, mushroomy stench hangs in the dead air.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645403,
+     "max": 1
+    }
+   ]
   },
   "107365": {
    "vnum": 107365,
@@ -1723,8 +1890,9 @@
      "description": "To the east lies Mold Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "Cold Storage is a dry, narrow chamber hewn square, and the air here is\nfar colder than the dripping caverns beyond. Rows of empty stone shelves\nline the walls, their lips rimed with fine white frost. A few cracked\nclay jars and the staves of old kegs are all that remain of what was\nonce kept here. The only way out lies east, into the mold cavern.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107366": {
    "vnum": 107366,
@@ -1752,8 +1920,9 @@
      "description": "To the west lies Cold Storage."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "In this part of the mold cavern the growths are blue-white and brittle,\nand they crunch like frost under your boots. Curtains of web-fine\nthreads hang between the stalagmites and tremble when you breathe. The\ncavern continues north and east, and a cold, dry opening lies west. The\nmold glow here is thin and cold, like moonlight on snow.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107367": {
    "vnum": 107367,
@@ -1777,8 +1946,15 @@
      "description": "To the west lies Mold Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "Pillars of fungus as thick as a man's waist rise from the floor here,\ntheir caps spread wide like umbrellas dripping with spores. A pale lilac\nlight pulses faintly from the gills. The cavern lies to the north, and a\nconnecting hollow leads west. Dead things lie pressed into the carpet,\nonly the shapes of them left.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645403,
+     "max": 1
+    }
+   ]
   },
   "107368": {
    "vnum": 107368,
@@ -1802,8 +1978,9 @@
      "description": "To the south lies The Lake's Edge."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The shore of the underground lake runs along here in a thin strip of\nblack shingle. The water is perfectly still, and the dark beyond it\nkeeps its secrets well. The shore leads north and south along the water.\nFar out across the lake, something stirs the surface in a slow, wide\nring.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107369": {
    "vnum": 107369,
@@ -1827,8 +2004,9 @@
      "description": "To the down lies The Aboleth's Lair."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and down.",
-   "placeholder": true
+   "description": "The shingle ends against a sheer wall of rock where the lake laps at a\nsteep drop. A rough stair of slick, cut steps winds down into the water,\nvanishing beneath the surface into utter darkness. The shore lies north,\nand the stair leads down toward a lair. The lake gives off a smell of\nweed and old cold secrets.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107370": {
    "vnum": 107370,
@@ -1852,8 +2030,9 @@
      "description": "To the west lies An Enormous Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
-   "placeholder": true
+   "description": "A vaulted chamber, its ceiling a pointed arch of cut stone ribbed with\nnarrow bands of paler rock. The floor is paved in great square flags\nworn into shallow dishes by feet of ages ago. West is the rough cavern\nyou came from, and east the hall continues beneath the same arching\nroof. Mold glows faintly in the joints of the paving.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107371": {
    "vnum": 107371,
@@ -1877,8 +2056,15 @@
      "description": "To the west lies Vaulted Chamber."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The vault continues here, its pillars rising from the floor like a grove\nof stone trees. Faded stripes of paint, once red and gold, run along the\nribs of the arches above. The hall leads west toward the doors and east\ntoward a dark opening in the floor. Every sound you make comes back from\nthe high roof a moment late.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645402,
+     "max": 1
+    }
+   ]
   },
   "107372": {
    "vnum": 107372,
@@ -1902,8 +2088,9 @@
      "description": "To the down lies In the Shaft."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead west and down.",
-   "placeholder": true
+   "description": "A round hole as wide as a wagon yawns in the middle of the floor, rimmed\nwith a low lip of rough stone. A rusted iron windlass stands beside it,\nits rope long rotted away to a few brown threads. Cold air rises from\nthe black below in a steady, silent breath. The vaulted hall lies west,\nand the shaft itself drops away downward.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "107373": {
    "vnum": 107373,
@@ -1927,8 +2114,9 @@
      "description": "To the down lies Bottom of the Shaft."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "You hang in the throat of the shaft, rungs of old iron set into the wall\nbeneath your hands. The rock here is shiny with damp, and every breath\nrises as a white ghost in the dark. A square of faint light shows above\nwhere the shaft opens to the hall, and far below the blackness thickens.\nRust flakes off the rungs and falls away without a sound.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "107374": {
    "vnum": 107374,
@@ -1952,8 +2140,9 @@
      "description": "To the up lies In the Shaft."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and up.",
-   "placeholder": true
+   "description": "The shaft ends in a small round chamber, its floor heaped with rubble\nand the rotted ends of timbers. The last iron rung gives onto the wet\nstone, and overhead the shaft climbs away into darkness. A low arched\nway leads east toward a hall of dressed stone. Water has collected in\nthe stones in cold, black puddles.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "107375": {
    "vnum": 107375,
@@ -1977,8 +2166,9 @@
      "description": "To the west lies Bottom of the Shaft."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "A second vaulted chamber, lower and narrower than the first, with squat\npillars that carry a heavy, ribbed roof. Carved bands of knotwork run\naround the walls at shoulder height, picked out in a fine green bloom of\nmold. The passage back to the shaft lies west, and east a pointed arch\nopens upon something grander. The air is dry and strangely still.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107376": {
    "vnum": 107376,
@@ -2006,8 +2196,9 @@
      "description": "To the west lies Vaulted Chamber."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A tall archway of fitted stone spans the passage here, its keystone\ncarved with a pale, blank-eyed face. Ways meet beneath it: a broad\ncarpeted passage heads north, a wider cavern opens east, and the vaulted\nhall lies to the west. The stone beneath your feet gives way to\nsomething soft and old. A dry cold falls from the arch like a shadow.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107377": {
    "vnum": 107377,
@@ -2031,8 +2222,15 @@
      "description": "To the south lies Archway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The floor of the cave-way is carpeted from wall to wall with a thick,\nmoth-eaten weave of deep red, worn to threads along its middle. Brass\nlamp-brackets, green with age, hang from the walls at regular intervals.\nThe way north continues into the carpeted dark, and the archway lies\nsouth. No echo comes from your steps on the heavy pile.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645402,
+     "max": 1
+    }
+   ]
   },
   "107378": {
    "vnum": 107378,
@@ -2056,8 +2254,9 @@
      "description": "To the south lies Wide Carpeted Caveway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The wide cave-way continues, and the old carpet here is stained with\ndark patches where something heavy was dragged. Faded tapestries hang in\nrotted tatters from hooks driven into the rock. The way leads north\ndeeper in, and south back toward the archway. A cold stillness presses\non your ears.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107379": {
    "vnum": 107379,
@@ -2081,8 +2280,15 @@
      "description": "To the south lies Wide Carpeted Caveway."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The wide cave-way grows richer as it nears its end: small carved niches\nline the walls, each holding a cracked dish of long-dried oil. The\ncarpet is thick and nearly whole here, silenced with a century of dust.\nNorth the way ends at a corner before a great chamber, and south it runs\nback along the carpeted length. A faint, sweetish smell of old incense\nclings to the air.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645402,
+     "max": 1
+    }
+   ]
   },
   "107380": {
    "vnum": 107380,
@@ -2106,8 +2312,9 @@
      "description": "To the south lies Wide Carpeted Caveway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The cave-way turns at last to face a pair of tall doorposts, their doors\nlong gone, and beyond them lies a chamber of state. Gold-painted\nscrollwork on the lintel has flaked to a dull yellow. The way east leads\ninto the chamber itself, and the carpeted passage runs back south. The\nair is colder here, with the quiet of a place that is waited in.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107381": {
    "vnum": 107381,
@@ -2127,8 +2334,9 @@
      "description": "To the south lies Entering the Chamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "A narrow waiting chamber with a long stone bench running around its\nwalls, polished smooth by those who sat to be called. Faded murals show\nranks of pale-robed figures bowing toward a distant door. The only way\nout is south, back to the antechamber. Every sound is hushed here, as if\nthe room expects silence from its petitioners.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107382": {
    "vnum": 107382,
@@ -2148,8 +2356,9 @@
      "description": "To the south lies Chamber of the Pale Man."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "A side chamber used for storage of the rich and the long-dead: rotted\nchests, collapsed shelves and bundles of mouldering silk. A single\nnarrow window of stone looks into the great hall, letting in a trickle\nof glimmer. The only way out is south, into the Chamber of the Pale Man.\nThe cold here has a deep, tomb-like patience.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107383": {
    "vnum": 107383,
@@ -2181,8 +2390,15 @@
      "description": "To the west lies Before the Chamber."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A lofty antechamber where four ways meet beneath a ceiling painted with\na ring of pale faces. Waiting rooms lie to the north and south, the\ngreat chamber stands to the east, and the carpeted door lies west. The\nfloor is covered in worn black and white tiles, chipped like old teeth.\nA chandelier of iron hangs dark and empty from a single chain.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645402,
+     "max": 1
+    }
+   ]
   },
   "107384": {
    "vnum": 107384,
@@ -2214,8 +2430,9 @@
      "description": "To the west lies Entering the Chamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The Chamber of the Pale Man is a tall, bare hall of white-veined stone,\ncold as the heart of winter. Pillars of stained rock march in pairs down\nits length, and the floor is a mosaic of pale tiles worn to the colour\nof bone. Side chambers open north and south, a throne room lies east,\nand the antechamber waits west. A feeling of attention settles on you,\nas if the walls themselves are watching.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107385": {
    "vnum": 107385,
@@ -2235,8 +2452,15 @@
      "description": "To the west lies Chamber of the Pale Man."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
-   "placeholder": true
+   "description": "The throne room ends in a dais of five wide steps, and on it stands a\ngreat seat carved from a single block of bleached stone. Tall candle\nstands, long since drained of wax, flank it like pale sentries. The only\nway out is west to the Chamber of the Pale Man. The throne is cold even\nthrough your glove when you touch its arm.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645407,
+     "max": 1
+    }
+   ]
   },
   "107386": {
    "vnum": 107386,
@@ -2256,8 +2480,9 @@
      "description": "To the north lies Entering the Chamber."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "Another waiting chamber, mirror to the first, though its bench has\ncollapsed into a heap of broken stone. Scraps of gilded cloth lie in the\ncorners, stiff and brown. The only way out lies north, to the\nantechamber. A cold seam of draught slides under your cloak.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107387": {
    "vnum": 107387,
@@ -2277,8 +2502,15 @@
      "description": "To the north lies Chamber of the Pale Man."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "A second side chamber, with bare walls and a low ceiling blackened with\nthe smoke of countless small lamps. A ring of worn depressions in the\nfloor shows where kneeling figures once gathered. The only way out lies\nnorth, into the Chamber of the Pale Man. Candle-stubs lie melted into\nthe floor in uneven puddles of white wax.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645402,
+     "max": 1
+    }
+   ]
   },
   "107388": {
    "vnum": 107388,
@@ -2306,8 +2538,9 @@
      "description": "To the west lies Archway."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The cave-way opens suddenly into a wide cavern, the roof climbing out of\nsight and the floor sloping gently toward a pit. Pale mold patches glow\nin drifts on the walls like faded stars. West is the archway through\nwhich you came, east a pool of stillness waits around a deep well, and a\ngrim chamber opens to the south. The smell of cold water and old stone\nis strong.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107389": {
    "vnum": 107389,
@@ -2327,8 +2560,9 @@
      "description": "To the north lies The Cavern Widens."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "A grim chamber with a round, domed ceiling and a floor of black stone,\nscarred with long deep scratches that cross and recross. Rusted shackles\nare bolted into the walls at the height of a man's wrists, and the iron\nhas flaked away to a red crust. The only way out is north, to the\nwidening cavern. A dull smell of old blood clings to the rock.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107390": {
    "vnum": 107390,
@@ -2352,8 +2586,9 @@
      "description": "To the down lies In the Well."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead west and down.",
-   "placeholder": true
+   "description": "A round well-mouth opens in the floor here, ringed by a low parapet of\nstones black with age. A stout iron hook set into the rim once held a\nbucket rope, and a few rotten strands still dangle from it. The cavern\nlies west, and the well itself plunges away downward into cold darkness.\nBreath rises from it like the breath of something sleeping.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107391": {
    "vnum": 107391,
@@ -2377,8 +2612,9 @@
      "description": "To the down lies Well's Base."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead up and down.",
-   "placeholder": true
+   "description": "You cling to the slick wall of the well, with rungs of black iron set at\nwide intervals under your hands. The stone is wet and furred with pale\ngrowth, and far below you hear water shifting in the dark. Overhead the\nmouth of the well is a small grey coin of dim light. The cold is bitter\nand the air smells of deep stone.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107392": {
    "vnum": 107392,
@@ -2402,8 +2638,9 @@
      "description": "To the up lies In the Well."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and up.",
-   "placeholder": true
+   "description": "The well ends in a small domed chamber with a floor of wet gravel and a\nshallow pool of black water in the middle. The rungs of the shaft rise\ninto the roof above you. A passage leads east from the chamber. Ripples\nspread across the pool from a slow drip that falls from the heart of the\ndome.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107393": {
    "vnum": 107393,
@@ -2431,8 +2668,9 @@
      "description": "To the west lies Well's Base."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Four low passages cross in a square chamber with a flat ceiling propped\nup by thick pillars of living rock. Strange signs are scratched into the\npillars at the height of a man's chest, too weathered to read. The well\nchamber lies west, a faint glow shows east, and a side tunnel leads\nsouth. The air here is bitterly cold and perfectly still.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107394": {
    "vnum": 107394,
@@ -2456,8 +2694,9 @@
      "description": "To the west lies Crosschamber."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "A pale glow spills along this passage from the chamber ahead, shifting\nlike light seen through water. It lies in long wavering stripes across\nthe walls and floor and makes your hands look like a dead man's. The\npassage returns west to the crosschamber and goes on east toward the\nlight. Your eyes ache from the unnatural brightness.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107395": {
    "vnum": 107395,
@@ -2477,8 +2716,9 @@
      "description": "To the west lies Near a Glow."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
-   "placeholder": true
+   "description": "This low cavern was once a dragon's lair, and the proof is everywhere:\nthe rock is fused to a glassy black, scorched by fires long dead. In the\nmiddle lies a great saucer-shaped hollow worn smooth by a heavy body,\nnow bare and empty. Veins of pale crystal in the roof throw out the glow\nthat lights the place. The only way out is west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107396": {
    "vnum": 107396,
@@ -2502,8 +2742,9 @@
      "description": "To the south lies Side Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow side tunnel, its floor greasy with wet clay and marked with the\nprints of many bare feet long since baked hard. The walls are scribbled\nwith charcoal figures, stick men fleeing from a great shape. The tunnel\nleads north back to the crosschamber and south into the dark. Water\noozes in a thin skin down the stone.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107397": {
    "vnum": 107397,
@@ -2527,8 +2768,9 @@
      "description": "To the east lies Deep Room."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and east.",
-   "placeholder": true
+   "description": "The side tunnel bends here around a thick fin of rock, and the walls\ncome so close that you must turn sideways in places. Grey rime lies in\nthe crevices like old salt. North the tunnel runs back toward the\ncrosschamber, and east it twists on toward a deeper room. A smell of\ncold iron hangs in the dark.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107398": {
    "vnum": 107398,
@@ -2548,8 +2790,9 @@
      "description": "To the west lies Side Tunnel."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A deep room, perhaps the lowest in these caverns, its ceiling so far\nabove that your light dies before it finds it. The floor is a wide shelf\nof rock, dry as dust and strewn with the shards of pottery. Strange\nscoured marks run in concentric circles around the centre of the room.\nThe only way out lies west, and the stillness is nearly sacred.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "107399": {
    "vnum": 107399,
@@ -2569,11 +2812,443 @@
      "description": "To the up lies The Lake's Edge."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads up.",
-   "placeholder": true
+   "description": "The stair ends in a drowned-looking hollow whose walls are slick with\nbluish slime and whose floor is a wide basin of sticky mud. Strings of\npale jelly hang from the ceiling in glistening loops, and the air is\nthick with the taste of brine. Round pits sunk in the floor are full of\ngreen, lightless water. The only way out is the stair, climbing up to\nthe lake's edge.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645405,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "645400": {
+   "vnum": 645400,
+   "name": "cave spider pale",
+   "short_desc": "a pale cave spider",
+   "long_desc": "A pale cave spider crouches in the glow of the mold, its long legs ticking on the stone.",
+   "description": "The spider is the size of a mastiff, bleached white by a life without\nsun. Its many eyes catch the green light like drops of oil, and its\nfangs drip.",
+   "level": 11,
+   "alignment": 0,
+   "hp_dice": "11d8+123",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745400,
+     "chance": 12
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645401": {
+   "vnum": 645401,
+   "name": "bugbear shaggy brute",
+   "short_desc": "a shaggy bugbear",
+   "long_desc": "A shaggy bugbear stalks the den with a spiked club on its shoulder.",
+   "description": "Broad and hairy, the bugbear stands a head taller than a man, with\nyellow eyes and long arms that hang nearly to its knees. Its fur is\nmatted with old blood and soot.",
+   "level": 13,
+   "alignment": -500,
+   "hp_dice": "13d8+169",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 156,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745401,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645402": {
+   "vnum": 645402,
+   "name": "pale cultist robed",
+   "short_desc": "a pale-robed cultist",
+   "long_desc": "A pale-robed cultist keeps silent watch, hands folded in his sleeves.",
+   "description": "The cultist is thin and colourless as candle wax, his eyes pink-rimmed\nand his lips bloodless. He wears a robe of grey wool and a pendant\nshaped like a blank face.",
+   "level": 16,
+   "alignment": -600,
+   "hp_dice": "16d8+210",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 192,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745400,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645403": {
+   "vnum": 645403,
+   "name": "skeleton mold-eaten",
+   "short_desc": "a mold-eaten skeleton",
+   "long_desc": "A mold-eaten skeleton shambles through the glowing fungus, trailing threads of spores.",
+   "description": "Old bones furred with grey-green mold clatter together as it moves.\nFungus sprouts from its eye sockets and ribs and lights its empty skull\nfrom within.",
+   "level": 15,
+   "alignment": -700,
+   "hp_dice": "15d8+223",
+   "damage_dice": "4d6+9",
+   "armor_class": 52,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745400,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645404": {
+   "vnum": 645404,
+   "name": "cave troll grey",
+   "short_desc": "a grey cave troll",
+   "long_desc": "A grey cave troll lumbers about, knuckles dragging on the blood-stained stone.",
+   "description": "A hulking troll with skin like wet slate and long, rubbery arms. Its\nsmall eyes shine red in the dark, and its mouth is full of cracked and\ncrooked tusks.",
+   "level": 19,
+   "alignment": -600,
+   "hp_dice": "19d8+323",
+   "damage_dice": "5d6+14",
+   "armor_class": 35,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745402,
+     "chance": 12
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645405": {
+   "vnum": 645405,
+   "name": "aboleth slime fish",
+   "short_desc": "the aboleth of the lake",
+   "long_desc": "The aboleth wallows in its slimy basin, three red eyes turning slowly toward you.",
+   "description": "A vast, eel-bodied fish with four long tentacles and three slitted eyes\nset one above the other. Slime streams from its slick blue-green hide\nand the air around it tastes of brine.",
+   "level": 19,
+   "alignment": -500,
+   "hp_dice": "19d8+323",
+   "damage_dice": "5d6+14",
+   "armor_class": 35,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745402,
+     "chance": 35
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645406": {
+   "vnum": 645406,
+   "name": "grukk skullsplitter bugbear chieftain",
+   "short_desc": "Grukk Skullsplitter, bugbear chieftain",
+   "long_desc": "Grukk Skullsplitter, chieftain of the bugbears, lolls on his bone chair and glares.",
+   "description": "Grukk is the largest bugbear you have seen, scarred across the face and\ndraped in pelts. A notched cleaver as long as your leg rests across his\nknees.",
+   "level": 18,
+   "alignment": -700,
+   "hp_dice": "18d8+240",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 216,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745403,
+     "chance": 35
+    },
+    {
+     "vnum": 745401,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645407": {
+   "vnum": 645407,
+   "name": "pale man lord ogre",
+   "short_desc": "the Pale Man, a bone-white ogre lord",
+   "long_desc": "The Pale Man, a towering bone-white ogre lord, sits unmoving upon his cold throne.",
+   "description": "The Pale Man is a hairless giant whose skin is the colour of bleached\nbone, his eyes two pits of colourless fire. His long fingers drum slowly\non the arm of the throne, and the very air around him seems to freeze.",
+   "level": 21,
+   "alignment": -900,
+   "hp_dice": "21d8+362",
+   "damage_dice": "6d6+14",
+   "armor_class": 29,
+   "exp": 1175,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745404,
+     "chance": 35
+    },
+    {
+     "vnum": 745403,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "745400": {
+   "vnum": 745400,
+   "name": "lantern mold glowing",
+   "short_desc": "a mold-glow lantern",
+   "room_desc": "A lantern full of glowing mold sits here.",
+   "description": "A little iron lantern packed with cultured cave mold, which gives off a steady green light and a faint chill.",
+   "item_type": "light",
+   "type": "light",
+   "min_level": 11,
+   "light_hours": 48,
+   "weight": 2,
+   "value": 37
+  },
+  "745401": {
+   "vnum": 745401,
+   "name": "vest hide bugbear",
+   "short_desc": "a greasy hide vest",
+   "room_desc": "A greasy hide vest lies here.",
+   "description": "A thick vest of bugbear hide, stitched with sinew and stiff with old grease. It is heavy but turns a blade well.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 13,
+   "wear_slot": "body",
+   "armor": 4,
+   "weight": 10,
+   "value": 290
+  },
+  "745402": {
+   "vnum": 745402,
+   "name": "buckler slimescale scale shield",
+   "short_desc": "a slimescale buckler",
+   "room_desc": "A blue-green scaled buckler lies here.",
+   "description": "A small round shield faced with the slick blue-green scales of a deep-water beast. It is cold and always a little damp.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "shield",
+   "armor": 4,
+   "weight": 6,
+   "value": 410,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "745403": {
+   "vnum": 745403,
+   "name": "cleaver notched bugbear",
+   "short_desc": "Grukk's notched cleaver",
+   "room_desc": "A great notched cleaver lies here.",
+   "description": "A huge cleaver of crude iron, nicked along its edge by long use. It is built for a bugbear's grip and swings like an axe.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 18,
+   "damage_dice": "2d6",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 490,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "745404": {
+   "vnum": 745404,
+   "name": "circlet pale bone crown",
+   "short_desc": "the Pale Man's circlet",
+   "room_desc": "A circlet of white bone lies here.",
+   "description": "A narrow circlet of bleached bone set with a single colourless stone. It is cold as ice against the brow.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 21,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 450,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  }
+ }
 }

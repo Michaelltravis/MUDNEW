@@ -1,0 +1,276 @@
+{
+ "job": "z496",
+ "rooms": {
+  "2400": {
+   "description": "A curve of grey shingle is cluttered with the leavings of a hundred wrecks: split barrels, rope gone stiff as wire, bleached spars and a ship's lantern with no glass. The waves seem to arrive a long moment after you see them break. To the west a rickety pier runs out over the water, and a trodden way leads inland to the north. A cleft in the rocks at the beach's edge breathes cold air.",
+   "look": "shore"
+  },
+  "2401": "The forest draws back here from the beach in a ragged half circle, leaving a clearing of thin grass and trodden earth. Gulls call from somewhere above, but their cries reach you a heartbeat late, as if from far away. A narrow track enters the trees to the west, while the beach lies to the south. In the east, a dark mouth opens in a bank of rock overhung with ferns.",
+  "2414": {
+   "description": "The cave mouth is a low arch of weathered rock, hung with fern and dripping slowly into a pool the size of a hat. Daylight reaches only a few paces inside, and then thickens like honey before giving way to dark. Your voice comes back a breath too late. The cave leads on east into the hill.",
+   "look": "cave"
+  },
+  "2415": {
+   "description": "The tunnel bends sharply here, its walls pressed smooth and glossy by a long seep of water. A faint drip counts out a time that does not match your pulse. The floor is damp clay printed with the old tracks of heavy paws. The passage turns north toward a sharper bend, and west toward the cave mouth.",
+   "look": "cave"
+  },
+  "2417": {
+   "description": "At this sharp bend the roof of the cave drops so low that you must stoop, and the rock wears a fur of pale moss. Footsteps seem to sound a moment after your feet leave the ground. Scratched arrows, half healed over by mineral crust, point in two directions at once. The tunnel runs south to the curve you passed, and west on into the dark.",
+   "look": "cave"
+  },
+  "2416": {
+   "description": "The cave twists again, narrowing to a crooked throat where rock teeth hang from the roof and rise from the floor. The air is close and still, and the dust you stir hangs in the dark far longer than it should. A smear of old soot on the wall marks where some visitor turned back. The passage goes north to a tight twist and east to the sharp bend.",
+   "look": "cave"
+  },
+  "2418": {
+   "description": "The passage here is a narrow twist, barely wide enough for a man to squeeze through with his pack held before him. The stone is clammy and sweating, and a low slow rumbling carries along it from deeper in. Sounds arrive here as if heard through water. The way goes east toward the last bend, and south back to the curve you passed.",
+   "look": "cave"
+  },
+  "2419": {
+   "description": "The last bend opens the cave into a wider gallery where pale stalactites hang like wax from a candle left burning for years. Every drip sounds twice, the second time long after the first. A heavy musk drifts in from the north, thick with old smoke and stranger things. The gallery narrows back west toward the twist.",
+   "look": "cave"
+  },
+  "2420": {
+   "description": "A great vault of black rock swallows the torchlight, its far end invisible beyond hills of fallen stone. Heaps of bones and rotted sailcloth lie where something dragged them in from the beach long ago. Each sound arrives late, and each slow breath from the shadows rolls round the walls like a tide. A rough chimney of rock climbs up toward a gleam of daylight, and the gallery you left lies south.",
+   "look": "cave"
+  },
+  "2402": "The path is well used, a pale ribbon of beaten earth between ferns and tall straight trees. Every step seems to take a little longer than it should, and the birdsong in the leaves arrives after the birds have flown. Cart ruts, long dried, wind off between the trunks. The track runs east to a clearing by the shore and west on deeper into the forest.",
+  "2403": "A small clearing opens in the path, ringed by old oaks whose roots crawl across the open ground like sleeping snakes. Shafts of green light fall at a slant and seem to hang rather than move. A fire ring of blackened stones holds only damp ash. The track leads east toward a well-trodden stretch, and a fainter way leaves to the north.",
+  "2404": "The path here is endless in the way of a dream: the same trunks, the same ferns and the same slant of green light, however far you walk. Moss grows thick on one face of every trunk, though the trees seem to lean every which way. Your own footfalls come back to you from behind. The path bends east toward a crowded clearing and south toward the open space you left.",
+  "2405": "Brambles and young birches crowd close about this small clearing, so that the sky is only a rag of grey overhead. A fallen tree lies half sunk in moss, its bark peeling in long slow curls. A sweet, drowsy smell hangs in the air and weighs on the eyelids. Paths leave in three directions: north toward rocks, east along a bend in the trail, and west the way you came.",
+  "2408": "The trail breaks out of the trees onto a ledge of broken grey rock where the hill shoulders up from the forest. Lichen has made yellow maps of the boulders, and the wind comes in slow, sighing gusts. Far below, the canopy rolls away in a green sea. To the west a gap in the hillside opens on a deep, dark cave, and the clearing lies south.",
+  "2409": {
+   "description": "A huge cavern opens out of the hill, so deep that the entrance is only a pale coin behind you. The air is thick and warm, and the very dark seems to move like slow water. Mounds of shed scale, as large as roof tiles, lie scattered across a floor of cracked stone. A vast, slow rumble shakes the dust from the roof at long intervals. The only way out is the opening to the east.",
+   "look": "cave"
+  },
+  "2406": "The trail bends sharply round a mossy boulder cracked by a single old oak growing from the fissure. The air hangs heavy and sweet, and the drone of unseen insects seems to arrive from a different hour. Mushrooms ring the stone in pale circles. The trail runs west to the crowded clearing, and north to a dark tunnel in the hillside.",
+  "2407": {
+   "description": "The tunnel burrows through the hill in a long straight line, its walls hung with roots and glistening with damp. The dark is complete a few paces in, and your own footsteps seem to follow you rather than lead. A smell of turned earth and stale water lies thick in the air. The tunnel leads north to a hillside, and south back to the bend in the trail.",
+   "look": "cave"
+  },
+  "2411": "You come out of the tunnel onto a bare green slope, where the hills rise in gentle folds under a pale, low sky. A cairn of white stones marks the entrance, and the wind brings the sound of the sea a little late. Sheep tracks wind off across the turf. The path continues west along the hillside, and the tunnel mouth lies south.",
+  "2410": "The path takes a sharp curve around the shoulder of a hill, where wiry grass bends before a wind that never quite arrives. Outcrops of grey stone stand like sleeping beasts among the heather. The trail ahead rises to the north, while the entrance to the hills lies east. Your shadow seems to lag behind you on the turf.",
+  "2412": "The ground steepens and turns to stony scree, with gorse clinging in the hollows and the sky growing wide and bright above. Each stone you kick rolls a slow, long way before it stops. A weathered post leans by the path, its carved marks worn to nothing. The trail goes east toward the summit, and south back down the hillside.",
+  "2413": "A last steep rise of bare rock lies here below the summit, scarred by weather and stained orange with lichen. The wind sings thin and slow over the stone, and the sound arrives well after the gust that made it. Below, the whole island lies spread out in the haze, the forest dark and the beach a pale thread. The path climbs north to the plateau and falls west toward the bend you left.",
+  "2422": "The summit is a bare plateau of tilted rock, open to a sky that seems too near and too still. A ring of standing stones, leaning like tired watchers, circles a flat slab worn hollow by the weather. Clouds drift across the sun as slowly as fallen leaves on a pond. The only way down leads south along the trail you climbed."
+ },
+ "extras": {
+  "2422": [
+   {
+    "keywords": "stones ring standing slab",
+    "description": "The standing stones lean toward the slab at their centre, and the hollow worn into it holds still, dark water that does not ripple in the wind."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "wreck-crab",
+   "keywords": "giant crab wreck",
+   "short_desc": "a giant wreck crab",
+   "long_desc": "A giant wreck crab picks sluggishly through the flotsam, one great claw raised and waiting.",
+   "description": "A crab as big as a washtub, its shell crusted with barnacles and old rope. It moves with a slow, deliberate patience that makes it no less dangerous.",
+   "kind": "animal",
+   "level": 15,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "A Cluttered Beach",
+    "The Clearing Before The Forest"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "crab-shell-buckler",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "drowsy-bear",
+   "keywords": "bear drowsy brown",
+   "short_desc": "a drowsy brown bear",
+   "long_desc": "A drowsy brown bear shambles through the trees, blinking at the world as though waking from a long dream.",
+   "description": "A big brown bear with matted fur and half-lidded eyes. It moves as though underwater, but its claws are sharp and quick when it chooses.",
+   "kind": "animal",
+   "level": 17,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "A Well Traveled Path",
+    "A Clearing In The Path",
+    "The Endless Path Thru The Forest",
+    "A Small Crowded Clearing",
+    "A Bend In The Trail"
+   ],
+   "count": 2
+  },
+  {
+   "id": "lag-bat",
+   "keywords": "bat giant cave lag",
+   "short_desc": "a giant cave bat",
+   "long_desc": "A giant cave bat hangs from the roof, its leathery wings folded and quivering.",
+   "description": "A bat with a wingspan broader than a man's arms, its fur grey with cave dust. Its cry reaches the ear a moment after its fangs.",
+   "kind": "animal",
+   "level": 18,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "Entrance Into The Caves",
+    "A Curve In The Caves",
+    "A Sharp Bend",
+    "Another Curve"
+   ],
+   "count": 1
+  },
+  {
+   "id": "slowmist-ghost",
+   "keywords": "ghost mist drowned sailor",
+   "short_desc": "a drowned sailor's ghost",
+   "long_desc": "The ghost of a drowned sailor drifts here, trailing mist, reaching toward you in slow motion.",
+   "description": "A pale, translucent shape in a salt-stained coat, water streaming endlessly from its sleeves. Its hands reach out slowly, but the cold they carry arrives all at once.",
+   "kind": "undead",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Another Bend In The Trail",
+    "Before The Summit",
+    "The Final Plateau",
+    "A Sharp Curve In The Path"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "sailor-pendant",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "tarry-troll",
+   "keywords": "troll cave tarry",
+   "short_desc": "a lumbering cave troll",
+   "long_desc": "A lumbering cave troll sways in the dark, its slow stare fixed on you.",
+   "description": "A mottled grey troll with long arms and a face like a fist. It seems half asleep until the moment it strikes, and then the blow comes too fast to follow.",
+   "kind": "monster",
+   "level": 23,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "A Narrow Twist",
+    "The Final Bend",
+    "Another Curve"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "troll-hide-belt",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "dozing-gorrak",
+   "keywords": "gorrak ogre dozing",
+   "short_desc": "Gorrak the Dozing Ogre",
+   "long_desc": "Gorrak the Dozing Ogre lies against a wall of the vault, one huge eye cracked open.",
+   "description": "Gorrak is an ogre of vast girth, wrapped in sailcloth and snoring like a gale. His eyelid lifts slowly, and the club beside him lifts slower still, but when it falls the stone shakes.",
+   "kind": "monster",
+   "level": 24,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Cave Of Doom"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "gorrak-club",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "lag-wyrm",
+   "keywords": "lag wyrm dragon",
+   "short_desc": "the Lag Wyrm",
+   "long_desc": "The Lag Wyrm lies coiled in the dark, vast and ancient, its slow breath moving the dust of ages.",
+   "description": "A dragon of the oldest kind, its scales dull as river stone and its eyes like twin slow lanterns. Everything about it is slow: the breath, the blink, the turn of the great head. The doom it carries is not slow at all.",
+   "kind": "monster",
+   "level": 25,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "A Deep, Dark Cave"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "wyrm-fang",
+     "chance": 35
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "crab-shell-buckler",
+   "keywords": "buckler crab shell",
+   "short_desc": "a crab shell buckler",
+   "room_desc": "A crab shell buckler lies here.",
+   "description": "A round buckler made from the shell of a huge crab, barnacles and all. It is tough and a bit slippery.",
+   "kind": "armor",
+   "level": 15,
+   "wear_slot": "shield"
+  },
+  {
+   "id": "sailor-pendant",
+   "keywords": "pendant sailor drowned silver",
+   "short_desc": "a salt-crusted pendant",
+   "room_desc": "A salt-crusted pendant lies here.",
+   "description": "A small silver anchor on a green chain, forever damp to the touch.",
+   "kind": "armor",
+   "level": 22,
+   "wear_slot": "neck",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "troll-hide-belt",
+   "keywords": "belt troll hide",
+   "short_desc": "a troll-hide belt",
+   "room_desc": "A troll-hide belt lies here.",
+   "description": "A broad belt of grey hide, thick as a finger and tough as old rope.",
+   "kind": "armor",
+   "level": 23,
+   "wear_slot": "waist"
+  },
+  {
+   "id": "gorrak-club",
+   "keywords": "club ogre gorrak heavy",
+   "short_desc": "Gorrak's heavy club",
+   "room_desc": "A heavy ogre's club lies here.",
+   "description": "A knotted trunk of ironwood, wrapped in ship's rope for a grip. It falls slowly but lands hard.",
+   "kind": "weapon",
+   "level": 24,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "wyrm-fang",
+   "keywords": "fang wyrm dragon lag",
+   "short_desc": "a fang of the Lag Wyrm",
+   "room_desc": "A long yellowed fang lies here.",
+   "description": "A fang as long as a short sword, hollow-ground and edged along both sides. It feels heavy in the hand, as if time pooled in it.",
+   "kind": "weapon",
+   "level": 25,
+   "weapon_type": "pierce",
+   "bonus": {
+    "hitroll": 2
+   }
+  }
+ ]
+}

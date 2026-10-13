@@ -1,0 +1,358 @@
+{
+ "zone": 54,
+ "_about": "New Thalos, the desert city (a living city, no boss): the Sultan's Guard walks the gate roads and Main Street, and comes when a citizen is attacked; the Chief Guard, the Sultan's bodyguards and the beasts of the menagerie are elites; the ixitxachitl in its lair a sub-boss.",
+ "creatures": {
+  "5433": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5418": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5413": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5414": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5415": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5479": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5480": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5411": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5416": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5410": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5417": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5484": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5483": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5465": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5466": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5405": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5412": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5446": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5489": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5442": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5436": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5468": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5408": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5407": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5409": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5445": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "5461": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The guard shouts: \"In the name of the Sultan!\""
+   },
+   "why": "the watch"
+  },
+  "5462": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The guard shouts: \"In the name of the Sultan!\""
+   },
+   "why": "the watch"
+  },
+  "5482": {
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The guard shouts: \"In the name of the Sultan!\""
+   },
+   "why": "the watch"
+  },
+  "5463": {
+   "rank": "elite",
+   "helpers": {
+    "group": "thalos_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The Chief Guard roars: \"Seize them!\""
+   },
+   "why": "the Chief Guard"
+  },
+  "5434": {
+   "rank": "elite",
+   "why": "a palace guard or a beast of the menagerie"
+  },
+  "5474": {
+   "rank": "elite",
+   "why": "a palace guard or a beast of the menagerie"
+  },
+  "5475": {
+   "rank": "elite",
+   "why": "a palace guard or a beast of the menagerie"
+  },
+  "5469": {
+   "rank": "sub-boss",
+   "why": "the ixitxachitl in its lair"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 5461,
+   "route": [
+    5413,
+    5412,
+    5410,
+    5403,
+    5404,
+    5405,
+    5406,
+    5415,
+    5418,
+    5419,
+    5420,
+    5421,
+    5422
+   ],
+   "why": "south gate to north gate, through the market"
+  },
+  {
+   "vnum": 5461,
+   "route": [
+    5423,
+    5424,
+    5425,
+    5426,
+    5409,
+    5406,
+    5417,
+    5427,
+    5428,
+    5429,
+    5430,
+    5431
+   ],
+   "why": "west gate to east gate, along Main Street"
+  }
+ ]
+}

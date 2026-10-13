@@ -1,0 +1,151 @@
+{
+ "zone": 429,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and the Ancient Champion as the boss.",
+ "creatures": {
+  "642900": {
+   "helpers": {
+    "group": "z429_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a bone sentry"
+  },
+  "642901": {
+   "helpers": {
+    "group": "z429_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a hero's shade"
+  },
+  "642903": {
+   "helpers": {
+    "group": "z429_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a granite guardian",
+   "rank": "elite"
+  },
+  "642904": {
+   "helpers": {
+    "group": "z429_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a slayer wraith",
+   "rank": "elite"
+  },
+  "642905": {
+   "helpers": {
+    "group": "z429_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Elder Verun, Keeper of Trials",
+   "rank": "sub-boss"
+  },
+  "642906": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "the Ancient Champion",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Ancient Champion rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "The Ancient Champion gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "The Ancient Champion raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "The Ancient Champion begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 642900,
+   "route": [
+    1602,
+    1603,
+    1604,
+    1605,
+    1608,
+    1625,
+    1626,
+    1627,
+    1644,
+    1643,
+    1642,
+    1641,
+    1640,
+    1639
+   ],
+   "why": "a bone sentry walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 642906,
+   "room": 1645,
+   "why": "the Ancient Champion in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "642900": 2
+     },
+     "shout": "The Ancient Champion calls, and a bone sentrys come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

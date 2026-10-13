@@ -1,0 +1,151 @@
+{
+ "zone": 522,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Hrimgar, the Frost Giant King as the boss.",
+ "creatures": {
+  "652200": {
+   "helpers": {
+    "group": "z522_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a gaunt frost wolf"
+  },
+  "652201": {
+   "helpers": {
+    "group": "z522_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a huge white cave bear"
+  },
+  "652202": {
+   "helpers": {
+    "group": "z522_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale rime spider"
+  },
+  "652203": {
+   "helpers": {
+    "group": "z522_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking ice troll"
+  },
+  "652204": {
+   "helpers": {
+    "group": "z522_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a frost-wreathed ghost",
+   "rank": "elite"
+  },
+  "652205": {
+   "helpers": {
+    "group": "z522_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a frost giant warrior",
+   "rank": "elite"
+  },
+  "652206": {
+   "helpers": {
+    "group": "z522_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "Skarn the Rimeforger",
+   "rank": "sub-boss"
+  },
+  "652207": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Hrimgar, the Frost Giant King",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Hrimgar, the Frost Giant King rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Hrimgar, the Frost Giant King gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Hrimgar, the Frost Giant King raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Hrimgar, the Frost Giant King begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 652207,
+   "room": 3953,
+   "why": "Hrimgar, the Frost Giant King in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "652203": 2
+     },
+     "shout": "Hrimgar, the Frost Giant King calls, and a hulking ice trolls come!",
+     "why": "its brood"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

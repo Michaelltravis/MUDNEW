@@ -1,0 +1,185 @@
+{
+ "zone": 285,
+ "_about": "The Drowned Reliquary (levels 60-64): acolytes, knights, guardians, assassins and revenants answer the drowned bell, the behemoths, cantors, heralds and wardens are elites, the Reliquary Abbot and the Drowned Sanctifier sub-bosses, and the Thalassine Lich in its sepulcher fills the water with grave-cold and calls its drowned.",
+ "creatures": {
+  "28501": {
+   "helpers": {
+    "group": "reliquary",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A drowned bell tolls, and the Reliquary's faithful answer!"
+   },
+   "why": "the faithful"
+  },
+  "28502": {
+   "helpers": {
+    "group": "reliquary",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A drowned bell tolls, and the Reliquary's faithful answer!"
+   },
+   "why": "the faithful"
+  },
+  "28503": {
+   "helpers": {
+    "group": "reliquary",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A drowned bell tolls, and the Reliquary's faithful answer!"
+   },
+   "why": "the faithful"
+  },
+  "28504": {
+   "helpers": {
+    "group": "reliquary",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A drowned bell tolls, and the Reliquary's faithful answer!"
+   },
+   "why": "the faithful"
+  },
+  "28505": {
+   "helpers": {
+    "group": "reliquary",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A drowned bell tolls, and the Reliquary's faithful answer!"
+   },
+   "why": "the faithful"
+  },
+  "28506": {
+   "rank": "elite",
+   "why": "an elite of the Reliquary",
+   "helpers": {
+    "group": "reliquary",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A drowned bell tolls, and the Reliquary's faithful answer!"
+   }
+  },
+  "28507": {
+   "rank": "elite",
+   "why": "an elite of the Reliquary",
+   "helpers": {
+    "group": "reliquary",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A drowned bell tolls, and the Reliquary's faithful answer!"
+   }
+  },
+  "28508": {
+   "rank": "elite",
+   "why": "an elite of the Reliquary",
+   "helpers": {
+    "group": "reliquary",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A drowned bell tolls, and the Reliquary's faithful answer!"
+   }
+  },
+  "28509": {
+   "rank": "elite",
+   "why": "an elite of the Reliquary",
+   "helpers": {
+    "group": "reliquary",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A drowned bell tolls, and the Reliquary's faithful answer!"
+   }
+  },
+  "28510": {
+   "rank": "sub-boss",
+   "why": "a lieutenant of the Lich"
+  },
+  "28511": {
+   "rank": "sub-boss",
+   "why": "a lieutenant of the Lich"
+  },
+  "28520": {
+   "rank": "boss",
+   "flags": [
+    "boss",
+    "aggressive",
+    "sentinel",
+    "no_charm",
+    "no_sleep"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Thalassine Lich rises from its sepulcher in a column of black water!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Drowning Tide",
+      "telegraph": "The Thalassine Lich lifts its staff, and the sea rushes in!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+16",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Brine Bolt",
+      "telegraph": "The Thalassine Lich points a coral-crusted finger!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+12",
+      "dodge": true
+     },
+     {
+      "name": "Abyssal Word",
+      "telegraph": "The Thalassine Lich begins a word from the abyss!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+21",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "Thalassine Lich"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 28520,
+   "room": 28535,
+   "why": "the Thalassine Lich in its sepulcher",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Grave-Cold Water",
+     "school": "frost",
+     "every": 9,
+     "radius": 2.8,
+     "last": 12,
+     "pct": 0.05,
+     "why": "killing cold: move"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "28501": 2
+     },
+     "shout": "Drowned acolytes rise from the silt!",
+     "why": "its drowned"
+    },
+    {
+     "type": "gloom",
+     "max": 0.75,
+     "why": "the deep closes in"
+    }
+   ]
+  }
+ ]
+}

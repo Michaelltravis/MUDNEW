@@ -1,0 +1,250 @@
+{
+ "zone": 36,
+ "_about": "The Chessboard of Garathorm (levels 4-10): two courts whose pieces defend each other; the queens are elites; each king is a boss who calls his court and raises fresh pawns.",
+ "creatures": {
+  "3600": {
+   "helpers": {
+    "group": "black_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the Black Court moves to defend it!"
+   },
+   "why": "the Black Court"
+  },
+  "3602": {
+   "helpers": {
+    "group": "black_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the Black Court moves to defend it!"
+   },
+   "why": "the Black Court"
+  },
+  "3604": {
+   "helpers": {
+    "group": "black_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the Black Court moves to defend it!"
+   },
+   "why": "the Black Court"
+  },
+  "3606": {
+   "helpers": {
+    "group": "black_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the Black Court moves to defend it!"
+   },
+   "why": "the Black Court"
+  },
+  "3601": {
+   "helpers": {
+    "group": "white_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the White Court moves to defend it!"
+   },
+   "why": "the White Court"
+  },
+  "3603": {
+   "helpers": {
+    "group": "white_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the White Court moves to defend it!"
+   },
+   "why": "the White Court"
+  },
+  "3605": {
+   "helpers": {
+    "group": "white_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the White Court moves to defend it!"
+   },
+   "why": "the White Court"
+  },
+  "3607": {
+   "helpers": {
+    "group": "white_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the White Court moves to defend it!"
+   },
+   "why": "the White Court"
+  },
+  "3608": {
+   "rank": "elite",
+   "helpers": {
+    "group": "black_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the Black Court moves to defend it!"
+   },
+   "why": "the Black Queen"
+  },
+  "3609": {
+   "rank": "elite",
+   "helpers": {
+    "group": "white_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the White Court moves to defend it!"
+   },
+   "why": "the White Queen"
+  },
+  "3610": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "boss"
+   ],
+   "helpers": {
+    "group": "black_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the Black Court moves to defend it!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Black King roars: \"The game is not over!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Checkmate",
+      "telegraph": "The Black King raises his sceptre: \"Check!\"",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+2",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Royal Rebuke",
+      "telegraph": "The Black King strikes at you with his sceptre!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+2",
+      "dodge": true
+     },
+     {
+      "name": "Castling",
+      "telegraph": "The Black King calls for his rook!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+3",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Black King"
+  },
+  "3611": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "boss"
+   ],
+   "helpers": {
+    "group": "white_court",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The piece cries out, and the White Court moves to defend it!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The White King cries: \"Defend the crown!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Checkmate",
+      "telegraph": "The White King raises his sceptre: \"Check!\"",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+2",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Royal Rebuke",
+      "telegraph": "The White King strikes at you with his sceptre!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+2",
+      "dodge": true
+     },
+     {
+      "name": "Castling",
+      "telegraph": "The White King calls for his rook!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+3",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the White King"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 3610,
+   "room": 3605,
+   "why": "the Black King on his square",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      35
+     ],
+     "count": 3,
+     "rooms": 3,
+     "raise": [
+      3600
+     ],
+     "shout": "The Black King bellows: \"Pawns! Advance!\"",
+     "why": "his court"
+    }
+   ]
+  },
+  {
+   "vnum": 3611,
+   "room": 3661,
+   "why": "the White King on his square",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      35
+     ],
+     "count": 3,
+     "rooms": 3,
+     "raise": [
+      3601
+     ],
+     "shout": "The White King commands: \"Pawns! Advance!\"",
+     "why": "his court"
+    }
+   ]
+  }
+ ]
+}

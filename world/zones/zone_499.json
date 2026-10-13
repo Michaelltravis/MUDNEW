@@ -24,8 +24,10 @@
      "description": "To the south lies The Northern Side of the Academy."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and south.",
-   "placeholder": true
+   "description": "A forecourt of raked white gravel lies before the Academy, edged with\nclipped box hedges and two stone urns of rosemary. The Eastern Gatehouse\nstands a short way to the north, its lanterns pale in the daylight, and\nthe murmur of the Trade Road drifts from it. To the south a flight of\nshallow marble steps rises to bronze-banded doors left open to the\nmorning. Carved across the lintel in letters a hand deep is a single\nword.",
+   "extra_descs": {
+    "lintel word letters carved": "The word is Inquire, cut deep and gilded once, the gilt now mostly worn\nto a few bright flecks."
+   }
   },
   "5701": {
    "vnum": 5701,
@@ -57,8 +59,8 @@
      "description": "To the west lies The North Wing."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "You stand in the vestibule of the Academy, a long hall of cool grey\nmarble where every footstep rings. Niches in the walls hold busts of\nbearded thinkers, their noses polished smooth by generations of hopeful\nhands. Doors open north upon the forecourt, and the hall runs east and\nwest into the wings. To the south an arch frames the garden, a green\nglow beyond it.",
+   "extra_descs": {}
   },
   "5702": {
    "vnum": 5702,
@@ -82,8 +84,14 @@
      "description": "To the west lies The Northwest Corner."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
-   "placeholder": true
+   "description": "Portraits of former heads of the Academy hang along this stretch of the\nNorth Wing in gilt frames, each more severe than the last. Between them\nnarrow shelves hold rolled maps tied with faded ribbon. The floor is\nworn into two shallow troughs by the passage of countless feet. The\nvestibule lies east, and the corner opens west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649900,
+     "max": 1
+    }
+   ]
   },
   "5703": {
    "vnum": 5703,
@@ -107,8 +115,8 @@
      "description": "To the south lies The West Wing."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The Northwest Corner is a round chamber with a domed ceiling pierced by\na lantern of coloured glass, which throws wandering rainbows on the\nfloor. A circular bench runs round the walls, and in the middle stands a\nsmall table with a chessboard, its pieces locked in mid-argument. A\ndraught moves the dust. Corridors lead east along the North Wing and\nsouth down the West Wing.",
+   "extra_descs": {}
   },
   "5704": {
    "vnum": 5704,
@@ -136,8 +144,8 @@
      "description": "To the west lies Lecture room of Heraclitus."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The corridor widens into a bay at the foot of a little flight of steps.\nA heavy door to the west stands open on the lecture room of Heraclitus,\nand the faint sound of running water drifts from it. Pegs along the wall\nhold dusty academic gowns of grey and brown. The West Wing runs south\nfrom here, and the corner lies north.",
+   "extra_descs": {}
   },
   "5705": {
    "vnum": 5705,
@@ -165,8 +173,14 @@
      "description": "To the south lies The West Wing."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The West Wing here is lined with doors of dark oak, each with a brass\nplate engraved with the name of a master long dead. Long windows of\nrippled glass throw wavering light across the floor. At the foot of the\nwall a runner of faded red wool absorbs every step. The passage runs\nnorth and south along the wing, and an arch on the east side opens onto\nthe garden.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649900,
+     "max": 1
+    }
+   ]
   },
   "5706": {
    "vnum": 5706,
@@ -194,8 +208,8 @@
      "description": "To the west lies Lecture room on Stoicism."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A smell of woodsmoke and cabbage broth drifts along this stretch of the\nWest Wing from the kitchens beyond the walls. The plaster is yellow with\nage, and a row of pegs holds nothing but a single forgotten scarf. A\nstained board announces the hours of the lectures in a faded hand. To\nthe west a door stands ajar on the lecture room on Stoicism, and the\nwing runs north and south.",
+   "extra_descs": {}
   },
   "5707": {
    "vnum": 5707,
@@ -219,8 +233,8 @@
      "description": "To the east lies The South Wing."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "The Southwest Corner is a dim, narrow place where two wings meet and\nneither has much to say. A small window of greenish glass looks out on a\nwalled yard of firewood. A chipped bust of Zeno sits on a shelf, his\nnose long since broken off. Passages lead north along the West Wing and\neast along the South Wing.",
+   "extra_descs": {}
   },
   "5708": {
    "vnum": 5708,
@@ -248,8 +262,14 @@
      "description": "To the west lies The Southwest Corner."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The South Wing is wider here, with a vaulted ceiling hung with lamps of\ntarnished brass and a smell of roast meat in the air. A pair of double\ndoors to the south stands open on the dining hall, from which comes the\nclink of pewter. Rush matting lines the floor. The corridor leads west\nto the corner and east along the wing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649900,
+     "max": 1
+    }
+   ]
   },
   "5709": {
    "vnum": 5709,
@@ -277,8 +297,14 @@
      "description": "To the west lies The South Wing."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Midway along the South Wing an open archway looks north upon the garden,\nwhere a white pavilion shows pale among the trees. A long runner of\nthreadbare carpet leads on, and a row of benches faces the wall as if\ntheir sitters were waiting for a summons that never came. A clock of\nwater and brass drips patiently in a niche, marking hours no one keeps.\nEast and west the passage goes on along the wing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649901,
+     "max": 1
+    }
+   ]
   },
   "5710": {
    "vnum": 5710,
@@ -306,8 +332,8 @@
      "description": "To the west lies Middle of the South Wing."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The South Wing is plainer than the others, its floor of worn flagstones\nand its walls limewashed, with iron hooks at intervals for lanterns and\ncoats. A low door in the south wall has a rope handle in place of a\nlatch, and from behind it comes the smell of boiled barley and wet wool.\nThe corridor stretches west toward the middle of the wing and east to\nthe corner. The door south leads to the Slave Quarters.",
+   "extra_descs": {}
   },
   "5711": {
    "vnum": 5711,
@@ -331,8 +357,14 @@
      "description": "To the west lies The South Wing."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and west.",
-   "placeholder": true
+   "description": "In the Southeast Corner a window seat looks down through narrow panes on\na kitchen yard heaped with cabbage stalks and broken amphorae. The\nplaster is patched here and the paint is older than that of the lecture\nhalls, a sign that the Academy's wealth thins toward the servants' end.\nA brazier warms the angle against the draught. The passage leads north\nalong the East Wing and west into the South Wing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649901,
+     "max": 1
+    }
+   ]
   },
   "5712": {
    "vnum": 5712,
@@ -360,8 +392,8 @@
      "description": "To the south lies The Southeast Corner."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Here the East Wing grows narrower and the lamps burn brighter, as if the\nSophists wished their listeners to see every smile. Dried rose petals\nlie swept into drifts along the skirting. A curtained archway to the\neast opens into the lecture room on Sophism, where silver tongues are\ntrained. The passage runs north toward the garden arches and south to\nthe corner.",
+   "extra_descs": {}
   },
   "5713": {
    "vnum": 5713,
@@ -389,8 +421,14 @@
      "description": "To the west lies In the Garden."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Round arches open on the west side of the East Wing, giving long views\ninto the garden, where green leaves nod in a draught from nowhere. The\ninner wall is hung with framed maps of lands the Academy's masters have\nnever visited, drawn from other men's reports. A brass drinking fountain\ngurgles in a niche, its basin stained green. The corridor runs north and\nsouth, and a gap in the arches leads west into the garden.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649900,
+     "max": 1
+    }
+   ]
   },
   "5714": {
    "vnum": 5714,
@@ -418,8 +456,8 @@
      "description": "To the south lies The East Wing."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The East Wing is panelled in dark oak to the height of a man, with brass\nlamps burning in brackets at every third pace. A smell of beeswax and\nold vellum hangs in the air. A heavy door stands open to the east upon\nthe Lecture Room on Logic, and the scrape of chalk on slate comes\nfaintly through it. The corridor runs on south and turns back north\ntoward the corner.",
+   "extra_descs": {}
   },
   "5715": {
    "vnum": 5715,
@@ -443,8 +481,8 @@
      "description": "To the west lies The North Wing."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and west.",
-   "placeholder": true
+   "description": "Two corridors meet at the Northeast Corner in a square little hall under\na ribbed ceiling painted midnight blue and scattered with gilt stars. A\nbronze astrolabe the size of a cartwheel is bolted to the wall, its\nrings still turning at a touch. A cushioned bench waits in the angle for\nthose who must think before they go on. The way south leads down the\nEast Wing, and the North Wing runs back west.",
+   "extra_descs": {}
   },
   "5716": {
    "vnum": 5716,
@@ -468,8 +506,14 @@
      "description": "To the west lies The Northern Side of the Academy."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "A broad corridor runs the length of the North Wing, its floor laid in\nblack and white squares like a board for some patient game. Tall windows\nof thick greenish glass admit a watery light, and between them hang\ntapestries of the Seven Sages, their threads gone dull. A rack of scroll\ncases leans against the wall, each labelled in a cramped scholarly hand.\nThe passage ends east at a corner, and west it opens toward the\nvestibule.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649900,
+     "max": 1
+    }
+   ]
   },
   "5717": {
    "vnum": 5717,
@@ -489,8 +533,10 @@
      "description": "To the east lies The West Wing."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "A shallow stone channel runs round the floor of this lecture room, fed\nby a trickle from a spout in the wall, so that the sound of flowing\nwater is never absent. At the lectern a brazier of iron burns with a low\nred flame fed by pitch. On the wall behind it, painted in tall black\nletters, stands a saying about rivers and fire. Only one door leads out,\neast to the West Wing.",
+   "extra_descs": {
+    "saying painted letters river fire": "The saying is that no man steps twice into the same river, for it is not\nthe same river and he is not the same man."
+   }
   },
   "5718": {
    "vnum": 5718,
@@ -510,8 +556,14 @@
      "description": "To the east lies The West Wing."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "A bare room of whitewashed walls and a plain stone floor, without a\nsingle ornament, for the Stoics held that comfort was a distraction.\nRows of backless benches face a low platform, and over its edge hangs a\ncoarse woollen curtain. Painted on the wall is a porch of columns, as\nthough to remind pupils of the school's origin. The only way out is\neast, to the West Wing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649900,
+     "max": 1
+    }
+   ]
   },
   "5719": {
    "vnum": 5719,
@@ -531,8 +583,14 @@
      "description": "To the north lies The South Wing."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "A long hall of scrubbed oak tables and plain benches stretches under a\nceiling of dark beams, where lamps hang on chains. A great hearth fills\nthe end wall, its fire banked to embers beneath a spit and a row of iron\npots. Carved on the mantel are the names of every master since the\nfounding. Trestles stand stacked against the wall, and the only door is\nnorth to the South Wing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649901,
+     "max": 1
+    }
+   ]
   },
   "5720": {
    "vnum": 5720,
@@ -552,8 +610,8 @@
      "description": "To the north lies The South Wing."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
-   "placeholder": true
+   "description": "Rows of narrow plank bunks with straw pallets fill the long low room,\neach with a peg above it holding one spare tunic. There is no window,\nonly a grating high in the wall that lets in a smear of grey light and\nthe smell of the kitchen. Names are scratched into the beams, some many\ntimes over, some only once. A single door leads back north to the South\nWing.",
+   "extra_descs": {}
   },
   "5721": {
    "vnum": 5721,
@@ -573,8 +631,14 @@
      "description": "To the west lies The East Wing."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads west.",
-   "placeholder": true
+   "description": "A theatre in miniature: a curved dais of polished cedar faces a\nsemicircle of cushioned couches, with a gilded chair at its centre for\nwhoever is to be persuaded. Painted on the dome overhead are Gorgias,\nProtagoras and their pupils, gesturing with enviable ease. Lamps on tall\ntripods give a flattering honeyed light. A pitcher of wine stands stale\non the speaker's table, and the only way out is west to the East Wing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649904,
+     "max": 1
+    }
+   ]
   },
   "5722": {
    "vnum": 5722,
@@ -598,8 +662,8 @@
      "description": "To the down lies The Paradox Closet."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead west and down.",
-   "placeholder": true
+   "description": "Rising tiers of oak benches face a lectern and a great slate wall\ncovered in chalked syllogisms, half rubbed out and rewritten in another\nhand. Each bench has an inkwell sunk in its arm, and a few quills lie\nwhere they were dropped. Behind the lectern a trapdoor of iron-studded\nplanks stands ajar upon a steep stair that leads down to the Paradox\nCloset. The only other way out is west, to the East Wing.",
+   "extra_descs": {}
   },
   "5723": {
    "vnum": 5723,
@@ -631,8 +695,10 @@
      "description": "To the west lies In the Garden."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The garden begins here at the foot of an arch from the vestibule, where\nan olive tree grows from a great clay tub and its silver leaves tremble\nin the warm air. Box hedges are clipped into squares and spirals, and\ngravel walks lead off between them. A low stone plaque set in the path\nreads Nothing In Excess. The way north returns to the Northern Side of\nthe Academy, and paths wind east, south and west.",
+   "extra_descs": {
+    "plaque path stone": "The plaque is old, and the lettering has been worn nearly smooth by\nfeet."
+   }
   },
   "5724": {
    "vnum": 5724,
@@ -664,8 +730,8 @@
      "description": "To the west lies In the Garden."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A bronze sundial on a fluted pedestal stands at the meeting of four\npaths, though no sun reaches it beneath the glass, and the gnomon casts\nonly a smudge of shadow. Arches in the wall to the east open into the\nEast Wing. Paths lead north to the vines, south to a corner of pear\ntrees, and west to the fountain. Lavender borders the gravel and scents\nthe damp air.",
+   "extra_descs": {}
   },
   "5725": {
    "vnum": 5725,
@@ -697,8 +763,8 @@
      "description": "To the west lies In the Garden."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Gravel paths cross here beneath a trellis of climbing roses that has\noutgrown its frame and tumbled into the beds. A marble pavilion stands\nnorth, its columns wreathed in ivy, and the path to it is worn pale by\nfeet. An arch in the wall to the south leads back into the South Wing.\nOverhead the leaded glass of the roof is streaked and green, and the air\nbeneath it is damp and warm and smells of loam.",
+   "extra_descs": {}
   },
   "5726": {
    "vnum": 5726,
@@ -730,8 +796,8 @@
      "description": "To the west lies The West Wing."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Raised herb beds of thyme, sage and bitter wormwood fill this part of\nthe garden, each labelled on a slate tablet in neat chalk. A rain barrel\nof cracked oak stands under a drainpipe and hums with a faint insect\ndrone. The scent of crushed leaves hangs in the damp air. A broad arch\nin the wall to the west leads into the West Wing, and paths run north,\neast and south.",
+   "extra_descs": {}
   },
   "5727": {
    "vnum": 5727,
@@ -759,8 +825,8 @@
      "description": "To the west lies In the Garden."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A round fountain stands at the heart of the garden, its basin of grey\nmarble carved with leaping fish, though the spout has run dry and only\nthe mist of condensed air drips from the rim. Four paths meet at the\nbasin, each edged with trimmed hedges. Benches sit round it at even\nintervals, as if for a conversation long ended. Paths lead north, east\nand west from here.",
+   "extra_descs": {}
   },
   "5728": {
    "vnum": 5728,
@@ -784,8 +850,8 @@
      "description": "To the south lies In the Garden."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "A single great pear tree, the oldest in the garden, spreads over a ring\nof seats made from sawn logs, where disputations were once held. Its\nfruit lies rotting in the grass in a sweet brown drift. The lattice of\nthe glass roof shows green with moss, and the light that gets through it\nis dim and speckled. The path leads east and south.",
+   "extra_descs": {}
   },
   "5729": {
    "vnum": 5729,
@@ -809,8 +875,8 @@
      "description": "To the west lies In the Garden."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead south and west.",
-   "placeholder": true
+   "description": "A grape arbour covers this corner of the garden, its vines trained over\na frame of white-painted iron until the leaves meet overhead in a green\ntunnel. Bunches of small black fruit hang just out of reach. A stone\nseat inside holds a sunken cushion and a forgotten volume of verse.\nPaths run south toward the sundial and west along the far beds.",
+   "extra_descs": {}
   },
   "5730": {
    "vnum": 5730,
@@ -834,8 +900,8 @@
      "description": "To the west lies In the Garden."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "A low wall along one side of this corner of the garden carries pear\ntrees trained flat against the stone, their fruit hard and green. A\nstone bench sits in the angle with a cushion of moss on one arm. Gravel\ncrunches underfoot, and a path leads north toward a sundial and west\ntoward the roses. Rain has never fallen here, yet the leaves always\nglisten.",
+   "extra_descs": {}
   },
   "5731": {
    "vnum": 5731,
@@ -859,8 +925,8 @@
      "description": "To the east lies In the Garden."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
-   "placeholder": true
+   "description": "A small lily pond lies here, its stone rim worn into hollows by sitting\nand its water dark as tea, with a few pale blossoms floating at the\nedges. Moss has crept over the flagstones, and the air is thick with the\nscent of damp earth. A path leads north toward the herb beds and east\ntoward the roses and a white pavilion.",
+   "extra_descs": {}
   },
   "5732": {
    "vnum": 5732,
@@ -884,8 +950,10 @@
      "description": "To the up lies Lecture Room on Logic."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and up.",
-   "placeholder": true
+   "description": "This cramped closet holds nothing but shelves of locked boxes, each\nlabelled This Box Is Empty and each heavy when lifted. A card pinned\nover the door says Do Not Read This Card. The air is close and smells of\nlamp oil and dust. A stair climbs up to the Lecture Room on Logic, and a\ndoor in the far wall leads south to a gloomier chamber.",
+   "extra_descs": {
+    "card pinned": "The card is written in a beautiful hand, and it is quite impossible to\nread it without breaking its rule."
+   }
   },
   "5733": {
    "vnum": 5733,
@@ -919,8 +987,8 @@
      }
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "A low windowless room lit by a single swinging lamp, whose shadow never\nseems to fall where it should. The same sentence is painted across the\nwalls in a dozen hands, All that is written here is false, and under\neach someone has scrawled a furious rebuttal. Three-legged stools stand\nround a table scarred with knife-points. A door north returns to the\nParadox Closet, and another south leads on.",
+   "extra_descs": {}
   },
   "5734": {
    "vnum": 5734,
@@ -944,8 +1012,8 @@
      "description": "To the south lies The Eternal Race."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The ceiling of this long narrow chamber is hung with hundreds of painted\nwooden arrows, each dangling on a thread and none ever seen to land. At\nthe end of the room a target of straw and canvas waits, always a little\nfarther off than it was. Dust lies thick on the boards where no one has\never got across. The Liar's Den lies back north, and the room opens\nsouth onto a running track.",
+   "extra_descs": {}
   },
   "5735": {
    "vnum": 5735,
@@ -974,8 +1042,8 @@
      "description": "To the south lies Further on the Race Track."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "A running track of packed sand, ringed by a low wall, has been laid out\nbeneath an oval vault of whitewashed brick. Two sets of footprints are\npressed into it, one far ahead of the other, and neither pair seems to\nhave made any progress. A stone tortoise squats at the starting line,\npolished smooth by passing palms. A door east returns to the Paradox\nCloset, and the track bends south.",
+   "extra_descs": {}
   },
   "5736": {
    "vnum": 5736,
@@ -999,8 +1067,8 @@
      "description": "To the south lies Further on the Race Track."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The track goes on and on between low whitewashed walls hung with faded\npennants. Every few strides a marble post is numbered with a fraction,\none half, three quarters, seven eighths, each nearer the next than the\nlast. The sand is scuffed into long grooves by feet that never quite\narrive. Behind you the track runs back north to the starting line, and\nahead it looks exactly as it did before.",
+   "extra_descs": {}
   },
   "5750": {
    "vnum": 5750,
@@ -1030,10 +1098,25 @@
     "west": {
      "to_room": 5750,
      "description": "To the west lies The Maze under the Garden."
+    },
+    "up": {
+     "to_room": 5765,
+     "description": "To the up lies The Marble Pavillion."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The stair ends in a low brick chamber where several passages begin at\nonce and none looks different from another. Water beads the walls, and\nthe air is thick, warm and faintly sweet, like meat left too long in a\nlarder. A chalked arrow on the floor has been scuffed out and redrawn so\nmany times that it points at nothing. The steps behind you are lost\nalready in the gloom.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649902,
+     "max": 1
+    },
+    {
+     "vnum": 649905,
+     "max": 1
+    }
+   ]
   },
   "5751": {
    "vnum": 5751,
@@ -1073,8 +1156,9 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south, west, up and down.",
-   "placeholder": true
+   "description": "The walls here are daubed with white paint in looping symbols that might\nbe a mathematician's despair or a lost student's last attempt at a map.\nA rope hangs from a hatch in the ceiling, frayed at the end where it was\ncut. A drain in the floor gurgles and breathes out warm air. Every\nturning looks like the one before it.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "5752": {
    "vnum": 5752,
@@ -1114,8 +1198,15 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south, west, up and down.",
-   "placeholder": true
+   "description": "Rusted rings are set in the walls of this junction, as though something\nwas once tethered here, and the brick beneath them is scored with long\ngrooves. A narrow ladder of iron staples climbs into a black slot\noverhead, and another drops into a hole in the floor. Passages leave in\nevery direction, and all of them smell the same: wet clay, lamp soot and\nsomething sweetly rotten.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649902,
+     "max": 1
+    }
+   ]
   },
   "5753": {
    "vnum": 5753,
@@ -1151,8 +1242,15 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east, south, west, up and down.",
-   "placeholder": true
+   "description": "A round chamber with a domed ceiling of small bricks, where a dry\nwhisper returns your own footsteps a moment late and slightly altered.\nBroken crockery lies in a ring on the floor, bowls and cups pitched\nagainst the wall in some old tantrum. A hole in the floor shows a dim\nglow far below, and a ladder of staples climbs into the dome above.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649903,
+     "max": 1
+    }
+   ]
   },
   "5754": {
    "vnum": 5754,
@@ -1188,8 +1286,9 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east, south, west, up\nand down.",
-   "placeholder": true
+   "description": "The passage narrows to a throat barely wide enough for a man's\nshoulders, the bricks bulging inward as if something enormous pressed on\nthem from the far side. A stair of worn wedge-shaped steps climbs one\nway and another descends the other. Scratches at the height of a hand\ncover the stone, thousands of them, in groups of five. The smell is\nstronger here.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "5755": {
    "vnum": 5755,
@@ -1229,8 +1328,15 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south, west, up and down.",
-   "placeholder": true
+   "description": "Lamp brackets in the walls hold stubs of tallow candles burned down to\npuddles, the remains of an expedition that lit its way and still lost\nit. A bent iron grate lies in a corner with a bundle of mouldering rags\nbeside it. A cramped stair spirals up toward a small niche, and another\nspiral drops away below. The air feels thick, as if it had been breathed\nmany times.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649902,
+     "max": 1
+    }
+   ]
   },
   "5756": {
    "vnum": 5756,
@@ -1266,8 +1372,11 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south, west and down.",
-   "placeholder": true
+   "description": "Raised on a plinth in the middle of this chamber is a stone bust of a\nman with his eyes gouged out and his mouth stopped with clay. A gutter\ncircles the plinth and carries a thin dark trickle into a hole to one\nside. Steps lead down into a lower passage. The walls sweat, and green-\nblack stains creep from the floor to the ceiling.",
+   "look": "dungeon",
+   "extra_descs": {
+    "bust plinth stone": "The bust is of Phaeton himself, to judge by the heavy brow and the proud\nchin. Someone has taken a chisel to the eyes."
+   }
   },
   "5757": {
    "vnum": 5757,
@@ -1312,8 +1421,15 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south, west, up and down.",
-   "placeholder": true
+   "description": "The brickwork gives way here to a stretch of smooth black stone, as\nthough a different hand built this corner of the maze. In the wall to\nthe east a panel the width of a door, edged with a hairline seam, stands\nslightly proud of the stone. A handprint in the dust beside it shows\nwhere someone has often pushed it open. Passages continue in other\ndirections, and stairs lead both up and down.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649902,
+     "max": 1
+    }
+   ]
   },
   "5758": {
    "vnum": 5758,
@@ -1349,8 +1465,15 @@
      "description": "To the up lies The Maze under the Garden."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south, west and up.",
-   "placeholder": true
+   "description": "Bones of small animals, rats and cats and one that might have been a\ndog, lie in drifts along the foot of the walls, picked clean and set in\nneat rows. A net of dark wire sags from the ceiling, torn through in the\nmiddle. The roof is low enough to brush your hair, and a narrow stair\nrises into the dark overhead. Something has been collecting here, and\ncarefully.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649903,
+     "max": 1
+    }
+   ]
   },
   "5759": {
    "vnum": 5759,
@@ -1390,8 +1513,9 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south, west, up and down.",
-   "placeholder": true
+   "description": "The maze loosens its grip a little here: the floor is swept, and a brass\nlamp with a clean wick burns in a bracket at the head of a short flight\nof steps. Long streaks on the brick show where something heavy has been\ndragged in and out. A lit landing to the north promises order, and the\nstench thins as you near it. Passages lead off on every other hand.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "5760": {
    "vnum": 5760,
@@ -1428,8 +1552,8 @@
      "description": "To the west lies The Maze under the Garden."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A small stone landing, swept and lamp-lit, lies before a door of black\nwalnut bound with silver. A mat of woven reed is laid at the threshold,\nand above the lintel hangs a brass plate engraved with a name and a\nshort warning to visitors. Dust has been brushed from the handle by a\nhand that comes often. The door stands east, and the maze closes in\nagain to the north, west and south.",
+   "extra_descs": {}
   },
   "5761": {
    "vnum": 5761,
@@ -1449,8 +1573,16 @@
      "description": "To the west lies On the Landing before the Study."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "Books climb to the ceiling in crooked towers, and every flat surface\nbears a clutter of astrolabes, retorts, bell jars and loose pages\ncrawling with equations. A great desk of dark wood sits under a lamp of\ngreen glass, an open journal upon it in a hurried hand. Glass tanks\nalong one wall hold pale pickled shapes that were never quite natural.\nThe only way out is west, back to the landing.",
+   "extra_descs": {
+    "journal open desk": "The last entries are cramped and damp-stained, recording an experiment\nthat was to join the wisdom of many minds in a single body. The final\nline says only that it has outgrown its cage."
+   },
+   "mob_resets": [
+    {
+     "vnum": 649906,
+     "max": 1
+    }
+   ]
   },
   "5762": {
    "vnum": 5762,
@@ -1479,8 +1611,8 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead west and down.",
-   "placeholder": true
+   "description": "A hole barely large enough to crouch in has been scraped from the brick\nand lined with sacking. A candle stub sits in a saucer beside a clay\ncup, and chalk marks on the wall count days in fives, then stop. A low\ndoor of planks leads west, and a spiral stair drops back down into the\nmaze. The air here is a little cleaner, and someone has tried to keep it\nso.",
+   "extra_descs": {}
   },
   "5763": {
    "vnum": 5763,
@@ -1500,8 +1632,8 @@
      "description": "To the east lies A Tiny Niche."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "A tidy tiny chamber, arranged by someone who refused to go mad. A narrow\ncot is made up with a folded blanket, a shelf holds a few salvaged\nbooks, and a ledger on an upturned crate logs the days in a steady hand.\nChalked proofs cover one wall beside a map of the maze with many\ncorrections. The only way out is east, to the niche.",
+   "extra_descs": {}
   },
   "5764": {
    "vnum": 5764,
@@ -1515,9 +1647,14 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 5757,
+     "description": "To the west lies The Maze under the Garden."
+    }
+   },
+   "description": "This cramped closet behind the panel is narrow as a wardrobe, its walls\nlined with shelves of stoppered jars whose labels have faded to brown\nghosts. A sheet of sketches pinned to the plaster shows a creature drawn\nagain and again, each version a little less like anything alive. The\npanel swings shut behind you with a soft click and a sigh of mortar\ndust. The air is stale and tastes of vinegar.",
+   "extra_descs": {}
   },
   "5765": {
    "vnum": 5765,
@@ -1541,11 +1678,407 @@
      "description": "To the down lies The Maze under the Garden."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and down.",
-   "placeholder": true
+   "description": "Eight slender columns hold up a domed roof of white marble, and the\nfloor is a mosaic of interlocking squares in cream and rose. At the\ncentre a round stone cover the width of a cartwheel has been set into\nthe floor, ringed with brass and furrowed by chains. Beneath it a stair\nplunges down into dankness, and a warm sour breath rises from it. The\ngarden lies south, bright and green, but the pavilion itself feels\nwatched.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "649900": {
+   "vnum": 649900,
+   "name": "scholar academic student man",
+   "short_desc": "a pale scholar",
+   "long_desc": "A pale scholar in a grey gown stands muttering over a scroll.",
+   "description": "He is thin and ink-fingered, with the unhealthy pallor of one who reads\nby lamplight. A leather satchel of scrolls hangs at his hip, and he\nlooks up at strangers with absent, patient annoyance.",
+   "level": 12,
+   "alignment": 100,
+   "hp_dice": "12d8+156",
+   "damage_dice": "4d6+5",
+   "armor_class": 61,
+   "exp": 680,
+   "gold": 144,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749900,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649901": {
+   "vnum": 649901,
+   "name": "slave servant man",
+   "short_desc": "a weary slave",
+   "long_desc": "A weary slave in a rough tunic goes about his chores with lowered eyes.",
+   "description": "A lean, stooped man with a brand on his forearm and rope-calloused\nhands. He keeps his gaze on the floor and moves as if every footstep\nwere measured against a lash.",
+   "level": 12,
+   "alignment": 200,
+   "hp_dice": "12d8+156",
+   "damage_dice": "4d6+5",
+   "armor_class": 61,
+   "exp": 680,
+   "gold": 144,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749901,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649902": {
+   "vnum": 649902,
+   "name": "rat giant maze",
+   "short_desc": "a giant maze rat",
+   "long_desc": "A giant maze rat the size of a hound scuttles along the wall with its yellow teeth bared.",
+   "description": "Its fur is sleek, almost glossy, and its eyes are the wrong colour, a\nflat and thoughtful green. It moves along the passages as if it knew\nthem very well.",
+   "level": 14,
+   "alignment": -200,
+   "hp_dice": "14d8+158",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749901,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649903": {
+   "vnum": 649903,
+   "name": "bronze golem automaton guardian",
+   "short_desc": "a bronze golem",
+   "long_desc": "A towering bronze golem stands guard, its green-veined joints creaking with each slow breath of steam.",
+   "description": "The golem is twice the height of a man, cast in the likeness of a\nbearded sage with a hammer for a hand. Verdigris crusts its seams, and a\nthin steam escapes from a vent in its back with a faint hissing wheeze.",
+   "level": 19,
+   "alignment": 0,
+   "hp_dice": "19d8+323",
+   "damage_dice": "5d6+14",
+   "armor_class": 35,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749902,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649904": {
+   "vnum": 649904,
+   "name": "arch sophist rhetorician master man",
+   "short_desc": "the arch sophist",
+   "long_desc": "An arch sophist in silk robes stands upon the dais, smiling the smile of a man who has never lost an argument.",
+   "description": "He is handsome and sleek, with oiled curls and rings on every finger,\nand a voice like warm honey. His eyes, though, are quite cold, and they\nmeasure you for the price of your purse.",
+   "level": 20,
+   "alignment": -300,
+   "hp_dice": "20d8+270",
+   "damage_dice": "6d6+10",
+   "armor_class": 37,
+   "exp": 1120,
+   "gold": 240,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749903,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649905": {
+   "vnum": 649905,
+   "name": "aporia failed experiment chimera beast",
+   "short_desc": "Aporia, the failed experiment",
+   "long_desc": "Aporia the failed experiment lurches through the passage, a patchwork thing of many mismatched limbs.",
+   "description": "A sprawling heap of flesh and hide stitched together from a dozen\ncreatures, scholar, hound and ox, it drags a trailing arm and murmurs\nhalf-remembered syllogisms in a dozen voices. Its eyes are set in the\nwrong places and all of them are weeping.",
+   "level": 20,
+   "alignment": -400,
+   "hp_dice": "20d8+342",
+   "damage_dice": "6d6+13",
+   "armor_class": 32,
+   "exp": 1120,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749904,
+     "chance": 35
+    },
+    {
+     "vnum": 749900,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649906": {
+   "vnum": 649906,
+   "name": "phaeton wizard philosopher master",
+   "short_desc": "Phaeton, master of the Academy",
+   "long_desc": "Phaeton, master of the Academy, bends over his desk with ink on his cuffs and madness in his eyes.",
+   "description": "A tall gaunt man in a threadbare black gown, with a hawk's nose and\nwhite hair standing in tufts. He mutters in Greek and in numbers, and a\nstaff of pale ash glows faintly in his fist. The brilliance in his eyes\nhas long since curdled into something else.",
+   "level": 22,
+   "alignment": -500,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749905,
+     "chance": 35
+    },
+    {
+     "vnum": 749903,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "749900": {
+   "vnum": 749900,
+   "name": "bronze stylus pointed",
+   "short_desc": "a pointed bronze stylus",
+   "room_desc": "A pointed bronze stylus lies here.",
+   "description": "A scribe's stylus of bronze, long and sharp, with a flattened end for scraping out mistakes. It will serve as a dagger in a pinch.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 12,
+   "damage_dice": "2d5",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 340
+  },
+  "749901": {
+   "vnum": 749901,
+   "name": "honeyed barley cake",
+   "short_desc": "a honeyed barley cake",
+   "room_desc": "A honeyed barley cake sits here, wrapped in a cloth.",
+   "description": "A dense little cake of barley meal sweetened with dark honey, baked in the Academy's kitchens.",
+   "item_type": "food",
+   "type": "food",
+   "min_level": 12,
+   "food_value": 16,
+   "nutrition": 16,
+   "weight": 1,
+   "value": 17
+  },
+  "749902": {
+   "vnum": 749902,
+   "name": "bronze plate golem breastplate",
+   "short_desc": "a bronze golem's breastplate",
+   "room_desc": "A greenish bronze breastplate lies here.",
+   "description": "A piece torn from a golem's chest, heavy, green with verdigris and engraved with tiny rows of numbers. Hammered into a fit, it makes a stout cuirass.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "body",
+   "armor": 5,
+   "weight": 10,
+   "value": 410
+  },
+  "749903": {
+   "vnum": 749903,
+   "name": "silver ring sophist",
+   "short_desc": "a silver sophist's ring",
+   "room_desc": "A silver ring set with a polished stone lies here.",
+   "description": "A silver band whose inner side is inscribed with a very small, very clever argument. The wearer feels a little sharper in the head.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 20,
+   "wear_slot": "finger1",
+   "armor": 2,
+   "weight": 1,
+   "value": 430,
+   "affects": [
+    {
+     "type": "int",
+     "value": 1
+    }
+   ]
+  },
+  "749904": {
+   "vnum": 749904,
+   "name": "knotted hide cloak",
+   "short_desc": "a cloak of knotted hide",
+   "room_desc": "A cloak of stitched and knotted hide lies here.",
+   "description": "A cloak stitched from many hides of different animals, tough and ill-smelling, with a knot at the clasp that no hand can untie.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 20,
+   "wear_slot": "about",
+   "armor": 2,
+   "weight": 3,
+   "value": 430,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  },
+  "749905": {
+   "vnum": 749905,
+   "name": "ash staff phaeton pale",
+   "short_desc": "Phaeton's pale ash staff",
+   "room_desc": "A pale ash staff, faintly warm to the eye, lies here.",
+   "description": "A staff of pale ash, carved with spiralling equations from foot to crown. It hums gently when swung, and the wood is faintly warm.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 22,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 590,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  }
+ }
 }

@@ -32,8 +32,8 @@
      "description": "To the west lies By The Pond."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "You step through a gap in the old garden wall, with the trade road\nbehind you to the south, running back across the Great Field of\nGarathorm. The gravel path is split by shoots of knotweed and lined with\nflowers far too bright, red as fresh wounds and violet as bruises. The\nair is warm, heavy and sweet. Paths lead on north and east between the\nbeds, and west toward the glint of a pond.",
+   "extra_descs": {}
   },
   "4501": {
    "vnum": 4501,
@@ -59,8 +59,8 @@
      "description": "To the south lies The Garden."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Rose bushes the size of haystacks have swallowed this part of the\ngarden, their thorns hooked and their blooms wet with a sticky dew. The\npath narrows to a single trampled line between them. It runs north\ntoward the edge of a pond, east along more overgrown beds, and south\nback to the garden's entrance. Something rustles among the roses and\nthen goes still.",
+   "extra_descs": {}
   },
   "4502": {
    "vnum": 4502,
@@ -90,8 +90,8 @@
      "description": "To the west lies The Garden."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four paths cross here amid overgrown flowerbeds, and a toppled stone urn\nlies in a drift of nettles. Giant sunflowers lean over the way, their\ndark faces turned to follow you. From this crossing the way leads north\ntoward the glasshouse, west to the rose-choked beds, south to more\ngarden, and east into a patch of wiry grass.",
+   "extra_descs": {}
   },
   "4503": {
    "vnum": 4503,
@@ -117,8 +117,14 @@
      "description": "To the west lies On The Winding Path."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The pond stretches out beside the path here, wide and brown, with a\nsmall island rising from its centre. Stepping stones, green with slime,\nmake a crooked line through the shallows to the north. A willow trails\nits branches in the water, and the bank is churned by heavy, dragging\nmarks. The path leads east to the garden's entrance and west along a\nwinding way.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641402,
+     "max": 1
+    }
+   ]
   },
   "4504": {
    "vnum": 4504,
@@ -140,8 +146,14 @@
      "description": "To the south lies The Garden."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north and south.",
-   "placeholder": true
+   "description": "A round pond lies here, its surface so choked with lily pads and green\nscum that the water is almost invisible. Dragonflies as long as a hand\nhover and dart above it, and the reeds along the bank sway though no\nwind stirs. The path bends away north toward a great glasshouse, and\nsouth it returns to the tangled garden. The mud at the water's edge is\nprinted with narrow, dragging marks.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641404,
+     "max": 1
+    }
+   ]
   },
   "4505": {
    "vnum": 4505,
@@ -163,8 +175,8 @@
      "description": "To the west lies The Garden."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and west.",
-   "placeholder": true
+   "description": "This corner of the garden was once a kitchen plot, and the ghosts of\ncabbages and onions still sprawl in the beds, grown to a monstrous size.\nA rotting scarecrow's post stands among them, its crossbar empty.\nLettuce leaves as broad as shields tremble beside the path. The way runs\nnorth toward a crossing of paths, and west to the garden's entrance.",
+   "extra_descs": {}
   },
   "4506": {
    "vnum": 4506,
@@ -182,8 +194,8 @@
      "description": "To the west lies The Garden."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. A way leads west.",
-   "placeholder": true
+   "description": "A thick mat of crab grass has overrun the old lawn, its jointed stems\ncreeping out in all directions and rooting at every node. The grass hums\nwith a faint dry clicking, like claws on glass. A low wall of crumbling\nbrick closes the field in, and a rusted croquet hoop leans in the\ntangle. The only path out leads west back to the garden.",
+   "extra_descs": {}
   },
   "4507": {
    "vnum": 4507,
@@ -209,8 +221,8 @@
      "description": "To the south lies By The Pond."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The greenhouse rises before you, a long hall of iron ribs and clouded\nglass, many panes cracked and furred with green. Its door hangs open on\na single hinge, and warm wet air breathes out of it, thick with the\nsmell of rot and honey. The path leads north through the doorway into\nthe glasshouse, east along its outer wall, and south back to the pond.\nPale tendrils have crept out through the broken panes and curl over the\nframe.",
+   "extra_descs": {}
   },
   "4508": {
    "vnum": 4508,
@@ -232,8 +244,14 @@
      "description": "To the south lies By The Pond."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north and south.",
-   "placeholder": true
+   "description": "The island is a small hump of black earth, crowned with one gnarled tree\nwhose branches are hung with strings of pale, glistening seed pods.\nReeds ring the shore, and the water laps at the roots in slow oily\nswells. A cracked statue of a stooped man lies half sunk in the mud.\nStepping stones lead south to the near bank and north across the water\nto the far one.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641400,
+     "max": 1
+    }
+   ]
   },
   "4509": {
    "vnum": 4509,
@@ -255,8 +273,8 @@
      "description": "To the west lies Outside The Greenhouse."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead east and west.",
-   "placeholder": true
+   "description": "The path winds between hedges of box that have run wild, its gravel\nhidden under creeping moss. Passion flowers, bright as painted fans,\nhang from the branches in garlands. The ground squelches underfoot, and\nthe scent of damp bark is strong. East the way runs back to the pond,\nand west it brings you to the foot of the glasshouse.",
+   "extra_descs": {}
   },
   "4510": {
    "vnum": 4510,
@@ -282,8 +300,8 @@
      "description": "To the west lies In The Greenhouse."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, south and\nwest.",
-   "placeholder": true
+   "description": "A flagged path hugs the outer wall of the glasshouse, its stones heaved\nup by roots and fringed with pale moss. Condensation runs down the glass\nin long streaks, and shapes shift behind it in the green light. The path\nruns north and south along the wall, and a glass door to the west leads\nback into the greenhouse. A trellis of dead vines leans against the\nframe, its blossoms crumbling to brown dust.",
+   "extra_descs": {}
   },
   "4511": {
    "vnum": 4511,
@@ -305,8 +323,8 @@
      "description": "To the south lies The Path Around The Greenhouse."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead north and south.",
-   "placeholder": true
+   "description": "The path follows the glasshouse into a quieter, shadier stretch, where\nthe glass is so stained with algae that the greenhouse shows only as a\ndark bulk. Foxgloves taller than a man crowd both sides, their speckled\nbells nodding together. A rusting watering can lies on its side at the\nverge. North the path opens onto bare ground, and south it follows the\nwall back around.",
+   "extra_descs": {}
   },
   "4512": {
    "vnum": 4512,
@@ -332,8 +350,8 @@
      "description": "To the west lies Outside The Greenhouse."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The path swings round the corner of the glasshouse here, where the iron\nframe has rusted to the colour of dried blood. A rain barrel stands\nunder a downpipe, brimming over with green water. Hyacinths and lilies\ncrowd the verges in a heavy, sickly perfume. The path runs north along\nthe wall, south to a garden of tangled beds, and west toward the\ngreenhouse door.",
+   "extra_descs": {}
   },
   "4513": {
    "vnum": 4513,
@@ -355,8 +373,8 @@
      "description": "To the south lies The Hedge Labyrinth."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead east and south.",
-   "placeholder": true
+   "description": "This end of the plaza is overlooked by a tall wall of clipped yew, its\nface trimmed flat and dark as a cliff. Cracked tiles form a mosaic of a\nspreading flower, half of it hidden under creeping weeds. The plaza\ncontinues east, and a narrow gap in the hedge leads south into the\nlabyrinth. A cold draught seeps out of that gap, smelling of earth and\nold leaves.",
+   "extra_descs": {}
   },
   "4515": {
    "vnum": 4515,
@@ -382,8 +400,10 @@
      "description": "To the west lies The Plaza."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A paved plaza spreads out here, its flagstones cracked and lifted by\nweeds with pink flowers that glisten like raw meat. A dry fountain in\nthe centre holds a stone nymph whose face has been eaten smooth by moss.\nCurved iron benches face a white pavilion, which stands to the north,\nwhile the clearing lies south and another stretch of the plaza west.\nHumidity beads on every surface.",
+   "extra_descs": {
+    "fountain nymph statue": "The stone nymph holds an empty urn above a basin of dry leaves. Moss has\ncrept over her features, so that she seems to wear a green mask."
+   }
   },
   "4516": {
    "vnum": 4516,
@@ -409,8 +429,10 @@
      "description": "To the south lies The Path Around The Greenhouse."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A round clearing opens in the garden, its grass flattened as though by\nsome great weight. A sundial stands in the middle, its bronze gnomon\nbent and its face blotched with lichen. Paving shows through the weeds\nto the north, where a plaza begins, and a heap of grey rock rises to the\neast. The path back along the glasshouse leads south.",
+   "extra_descs": {
+    "sundial gnomon": "The bronze gnomon is bent far out of true, and the hours around the dial\nare overgrown with lichen. Someone has scratched the words 'Nothing\nkeeps time here' into the rim."
+   }
   },
   "4517": {
    "vnum": 4517,
@@ -428,10 +450,14 @@
     "north": {
      "to_room": 4513,
      "description": "To the north lies The Plaza."
+    },
+    "south": {
+     "to_room": 4518,
+     "description": "To the south lies The Hedge Labyrinth."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "Walls of dense, thorny hedge rise on every side, twice the height of a\nman and woven so tight that no light slips between the leaves. The\ngravel underfoot is dark and damp, strewn with snapped twigs. Branches\nstir softly in the corridors though the air is still. The only open way\nis the gap to the north, leading back to the plaza.",
+   "extra_descs": {}
   },
   "4518": {
    "vnum": 4518,
@@ -445,9 +471,18 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 4517,
+     "description": "To the north lies The Hedge Labyrinth."
+    },
+    "south": {
+     "to_room": 4519,
+     "description": "To the south lies The Hedge Labyrinth."
+    }
+   },
+   "description": "Another passage between the high hedges, this one narrow enough that\nthorns catch at your sleeves on either side. The gravel is slick with a\nblack ooze, and a trail of crushed leaves winds on and bends out of\nsight. Somewhere deeper in, the hedge creaks as though it were\nstretching.",
+   "extra_descs": {}
   },
   "4519": {
    "vnum": 4519,
@@ -461,9 +496,24 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 4518,
+     "description": "To the north lies The Hedge Labyrinth."
+    },
+    "south": {
+     "to_room": 4520,
+     "description": "To the south lies The Hedge Labyrinth."
+    }
+   },
+   "description": "A small square in the maze, with a rotted wooden seat set into a niche\ncut in the hedge. The leaves overhead are woven so densely they make a\ngreen ceiling, and a damp gloom lies over everything. Tiny white flowers\ngrow in the seat's cracks, sweet and sickly. Every gap leads into yet\nanother wall of green.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641403,
+     "max": 1
+    }
+   ]
   },
   "4520": {
    "vnum": 4520,
@@ -477,9 +527,18 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 4519,
+     "description": "To the north lies The Hedge Labyrinth."
+    },
+    "south": {
+     "to_room": 4521,
+     "description": "To the south lies The Hedge Labyrinth."
+    }
+   },
+   "description": "The hedges here have been clipped into the shapes of animals: a stag, a\nhound, a swan, each now overgrown into a shaggy parody. Moisture\nglitters on the leaves, and the gravel crunches loudly in the hush. A\nsmell of crushed mint and something meatier hangs in the air. The\ntopiary seems to lean closer whenever you look away.",
+   "extra_descs": {}
   },
   "4521": {
    "vnum": 4521,
@@ -493,9 +552,18 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 4520,
+     "description": "To the north lies The Hedge Labyrinth."
+    },
+    "south": {
+     "to_room": 4522,
+     "description": "To the south lies The Hedge Labyrinth."
+    }
+   },
+   "description": "Roots as thick as ropes have lifted the gravel into ridges here, and the\nhedge walls bulge where the roots have grown through them. Black berries\nhang in clusters at head height, glossy and waxy. The light is a dim,\nunderwater green. Scraps of torn cloth flutter from the thorns, a\nwarning of what the hedge has taken.",
+   "extra_descs": {}
   },
   "4522": {
    "vnum": 4522,
@@ -509,9 +577,23 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "east": {
+     "to_room": 4523
+    },
+    "north": {
+     "to_room": 4521,
+     "description": "To the north lies The Hedge Labyrinth."
+    }
+   },
+   "description": "The passage opens into a wider walk, with an old stone lantern at the\ncorner choked by ivy. Hedge walls stand on every side, tall and dark,\nand the earth underfoot is trampled hard. A glimmer of open ground shows\nthrough a gap at the far end, where the labyrinth thins out. The silence\nis thick enough to feel.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641403,
+     "max": 1
+    }
+   ]
   },
   "4523": {
    "vnum": 4523,
@@ -529,8 +611,8 @@
      "description": "To the west lies The Hedge Labyrinth."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. A way leads west.",
-   "placeholder": true
+   "description": "The passage ends in a blank wall of ancient yew, hung with creepers that\nhave twisted themselves into thick, writhing curtains. The ground is\nbare earth, dotted with rings of pale mushrooms. Overhead a patch of sky\nshows, grey and faintly humid. The only way back is west, along the\nlabyrinth passage.",
+   "extra_descs": {}
   },
   "4524": {
    "vnum": 4524,
@@ -560,8 +642,18 @@
      "description": "To the west lies In The Greenhouse."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Inside the glasshouse the heat presses on you like a damp hand. Rows of\nslatted benches run off into the green gloom, crowded with pots whose\ntenants have long since burst their clay and rooted into the floor. The\ndoorway lies south, back to the garden, while the glass-roofed hall\ncontinues north, east and west between the benches. Water drips from the\nroof ribs, and every drop is tinted faintly green.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641400,
+     "max": 1
+    },
+    {
+     "vnum": 641401,
+     "max": 1
+    }
+   ]
   },
   "4525": {
    "vnum": 4525,
@@ -583,8 +675,16 @@
      "description": "To the east lies In The Greenhouse."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and east.",
-   "placeholder": true
+   "description": "A workbench runs along the glass here, scarred by knives and stained\nwith sap in many colours. Broken seed trays and glass jars are heaped\nbeneath it in a tangle of dust and webs. A hand-painted sign above the\nbench is blotted by mould. The aisle runs north into the corner and east\nto the centre of the greenhouse.",
+   "extra_descs": {
+    "sign painted mould": "Beneath the mould, a few faded letters survive: 'Doctor I. Vane,\nExperimental Plantings. Do not water the specimens.'"
+   },
+   "mob_resets": [
+    {
+     "vnum": 641402,
+     "max": 1
+    }
+   ]
   },
   "4526": {
    "vnum": 4526,
@@ -606,8 +706,8 @@
      "description": "To the south lies In The Greenhouse."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead east and south.",
-   "placeholder": true
+   "description": "This is a far corner of the glasshouse, where condensation hangs like\nrain and the panes glow with green fire. Orchids dangle from the rafters\nin dripping curtains, their lips red and wet and strangely toothed. A\ndrain in the flagstones gurgles faintly. The aisle leads east along the\nrear wall and south along the side of the hall.",
+   "extra_descs": {}
   },
   "4527": {
    "vnum": 4527,
@@ -633,8 +733,14 @@
      "description": "To the west lies In The Greenhouse."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead east, south and\nwest.",
-   "placeholder": true
+   "description": "This is the back of the greenhouse, where the benches give way to a bed\nof black soil, churned deep. Fat pitcher plants as tall as a man nod on\nthick stems, their hooded mouths brimming with a syrupy fluid that hums\nwith drowning flies. Narrow aisles lead east and west along the glass,\nand south the way returns to the central aisle. The panes are so thick\nwith moisture that nothing outside can be seen.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641401,
+     "max": 1
+    }
+   ]
   },
   "4528": {
    "vnum": 4528,
@@ -656,8 +762,14 @@
      "description": "To the west lies In The Greenhouse."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead south and west.",
-   "placeholder": true
+   "description": "In this corner of the glasshouse the iron frame is wrapped in a single\nhuge vine, its trunk thick as a man's waist and its leaves slick as wet\nleather. Pale blossoms hang overhead, opening and closing slowly as if\nthey were breathing. Dead moths lie scattered on the flagstones beneath\nthem, dusted gold with pollen. The aisle runs south toward a door in the\nside wall, and west back along the rear of the hall.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641405,
+     "max": 1
+    }
+   ]
   },
   "4529": {
    "vnum": 4529,
@@ -683,8 +795,8 @@
      "description": "To the west lies In The Greenhouse."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east and\nwest.",
-   "placeholder": true
+   "description": "A glass door stands in the side wall of the greenhouse, its frame wedged\nopen by a root as thick as a cable. Beyond it the outer path is bright\nwith sunlight, a welcome relief from the oppressive heat. Spiny cacti\nand bloated succulents crowd the benches, bursting with swollen red\nfruit. The aisle continues north into the corner and west toward the\nmiddle of the hall, while the door leads east.",
+   "extra_descs": {}
   },
   "4530": {
    "vnum": 4530,
@@ -706,8 +818,8 @@
      "description": "To the west lies The Clearing."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and west.",
-   "placeholder": true
+   "description": "Heaps of weathered limestone have been piled into a rockery, each\ncrevice stuffed with alpine flowers, stonecrop and trailing moss in too-\nvivid colours. Water seeps from the stones in a tiny stream that ends in\na stagnant pool, ringed with bright orange fungi. Loose rubble makes the\nfooting treacherous. Paths lead north to a garden of low beds and west\ninto a clearing.",
+   "extra_descs": {}
   },
   "4531": {
    "vnum": 4531,
@@ -733,8 +845,8 @@
      "description": "To the west lies The Pavilion."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A garden of low box-edged beds stretches around you, the borders long\nsince grown shaggy and spilled together. Snapdragons gape in rows, and\nbees as fat as thumbs drone drunkenly from flower to flower. Piled\nstones to the south mark the rockery, the pavilion's white roof shows to\nthe west, and a shaded way leads north beneath old trees.",
+   "extra_descs": {}
   },
   "4532": {
    "vnum": 4532,
@@ -756,8 +868,8 @@
      "description": "To the south lies The Garden."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead east and south.",
-   "placeholder": true
+   "description": "Old yews and crooked apple trees meet overhead, making a green tunnel\nwhere the light falls in coins. The path underfoot is mossy and soft,\nand windfalls lie rotting in the grass, split open and sticky. A faint\nscent of lilies drifts from the east, where an ivy-draped archway opens\ninto a hidden place. South the path returns to the beds.",
+   "extra_descs": {}
   },
   "4533": {
    "vnum": 4533,
@@ -779,8 +891,8 @@
      "description": "To the south lies The Plaza."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead east and south.",
-   "placeholder": true
+   "description": "An octagonal pavilion of white painted wood stands here, its roof\nsagging under a mantle of climbing creeper. The floorboards are soft\nwith damp and strewn with petals, and lanterns hang cold from the\nrafters, their glass fogged green. Tea tables are laid for guests who\nnever came, the cups full of rainwater and drowned blossoms. The open\nsides give onto the plaza to the south and a lawn of low beds to the\neast.",
+   "extra_descs": {}
   },
   "4534": {
    "vnum": 4534,
@@ -798,11 +910,417 @@
      "description": "To the west lies The Path Under The Trees."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. A way leads west.",
-   "placeholder": true
+   "description": "A walled garden, secret and silent, is closed in on all sides by high\nbrick walls blanketed with ivy. At its heart a mad botanist's private\nwork lies in neat, terrible rows: flowers with human-shaped buds, and a\nbed of pale bulbs that twitch in the soil. A cracked stone bench sits\nbeside a basin of black water. The only way out is the archway to the\nwest, through which the path under the trees can be seen.",
+   "extra_descs": {
+    "basin black water": "The basin is cut from a single block of dark stone, and the water in it\nnever ripples. Stems of tiny white flowers stand up out of it, all\nleaning the same way."
+   },
+   "mob_resets": [
+    {
+     "vnum": 641400,
+     "max": 1
+    },
+    {
+     "vnum": 641406,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "641400": {
+   "vnum": 641400,
+   "name": "spider garden giant orb-weaver",
+   "short_desc": "a giant garden spider",
+   "long_desc": "A giant garden spider hangs motionless in a web strung between two flowerbeds, its striped belly swollen.",
+   "description": "The spider is as big as a hound, its legs banded yellow and black like a\nwasp's. Dewdrops cling to its web and every strand quivers as it turns\nto watch you.",
+   "level": 13,
+   "alignment": 0,
+   "hp_dice": "13d8+146",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741401,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "641401": {
+   "vnum": 641401,
+   "name": "flytrap plant snapping man-eating",
+   "short_desc": "a snapping flytrap",
+   "long_desc": "A snapping flytrap as tall as a man sways on its thick stem, its spiked jaws slowly opening.",
+   "description": "Its two hinged leaves are fringed with white spines and lined in wet\ncrimson. Bones and scraps of cloth lie in the soil about its root.",
+   "level": 15,
+   "alignment": -100,
+   "hp_dice": "15d8+249",
+   "damage_dice": "4d6+12",
+   "armor_class": 47,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741400,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "641402": {
+   "vnum": 641402,
+   "name": "gardener feral man wild",
+   "short_desc": "a feral gardener",
+   "long_desc": "A feral gardener in a tattered smock crouches among the flowers, muttering to the plants as he clips them.",
+   "description": "Leaves and thorns are tangled in his beard, and his eyes shine with a\ntender madness. He clutches a long, crooked blade as if it were a child.",
+   "level": 16,
+   "alignment": -300,
+   "hp_dice": "16d8+210",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 192,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741400,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "641403": {
+   "vnum": 641403,
+   "name": "ogre hedge topiary living",
+   "short_desc": "a hulking hedge ogre",
+   "long_desc": "A hulking hedge ogre, shaped of yew and bramble, stands very still among the leaves.",
+   "description": "It is a giant figure of clipped hedge, with eyes of dark berries and\nhands like bundles of thorned branches. Gravel rolls from its shoulders\nas it breathes in the damp air.",
+   "level": 20,
+   "alignment": -400,
+   "hp_dice": "20d8+342",
+   "damage_dice": "6d6+13",
+   "armor_class": 32,
+   "exp": 1120,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741400,
+     "chance": 15
+    },
+    {
+     "vnum": 741401,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "641404": {
+   "vnum": 641404,
+   "name": "crocodile marsh pond huge",
+   "short_desc": "a huge marsh crocodile",
+   "long_desc": "A huge marsh crocodile lies half submerged in the shallows, only its eyes and snout showing.",
+   "description": "Its scaled back is crusted with mud and pond weed, and its jaws are\ncrowded with yellow teeth. It was no doubt brought here as a curiosity\nand left to grow.",
+   "level": 19,
+   "alignment": 0,
+   "hp_dice": "19d8+221",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741402,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "641405": {
+   "vnum": 641405,
+   "name": "queen bloom flower carnivorous plant",
+   "short_desc": "Queen Bloom, the carnivorous matriarch",
+   "long_desc": "Queen Bloom, a vast carnivorous flower, rises from the greenhouse floor on a nest of coiling vines.",
+   "description": "Her petals are crimson and cream, each as big as a door, and a sweet\ndrugging scent rolls off her in waves. In the dark heart of the bloom a\nwet mouth gapes, ringed with thorns.",
+   "level": 20,
+   "alignment": -500,
+   "hp_dice": "20d8+342",
+   "damage_dice": "6d6+13",
+   "armor_class": 32,
+   "exp": 1120,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741403,
+     "chance": 35
+    },
+    {
+     "vnum": 741404,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "641406": {
+   "vnum": 641406,
+   "name": "botanist mad doctor ilmeric vane",
+   "short_desc": "Doctor Ilmeric Vane, the Mad Botanist",
+   "long_desc": "Doctor Ilmeric Vane, the Mad Botanist, bends over a bed of twitching bulbs, whispering to them.",
+   "description": "He is a gaunt man in a stained green coat, his hands stained to the\nwrists with sap and his hair full of petals. His eyes are bright and\nfixed, and he smiles as though you were a seedling that has finally\ntaken root.",
+   "level": 22,
+   "alignment": -600,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741404,
+     "chance": 35
+    },
+    {
+     "vnum": 741403,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "741400": {
+   "vnum": 741400,
+   "name": "sickle briar curved",
+   "short_desc": "a curved briar sickle",
+   "room_desc": "A curved sickle with a briar-wood handle lies here.",
+   "description": "The blade is notched and stained green with old sap. The handle is a twist of living briar that still bears a few thorns.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 15,
+   "damage_dice": "2d5",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 415
+  },
+  "741401": {
+   "vnum": 741401,
+   "name": "gloves silk spider",
+   "short_desc": "a pair of spider silk gloves",
+   "room_desc": "A pair of spider silk gloves lies here.",
+   "description": "The silk is pale and fine, strong enough to turn a knife yet soft against the skin.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 13,
+   "wear_slot": "hands",
+   "armor": 3,
+   "weight": 2,
+   "value": 290,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  },
+  "741402": {
+   "vnum": 741402,
+   "name": "boots mudhide crocodile hide",
+   "short_desc": "a pair of mudhide boots",
+   "room_desc": "A pair of boots stitched from crocodile hide lies here.",
+   "description": "The scaled leather is thick and waterproof, and smells faintly of the pond. The soles grip wet stone like claws.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "feet",
+   "armor": 3,
+   "weight": 3,
+   "value": 410,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  },
+  "741403": {
+   "vnum": 741403,
+   "name": "crown petal queen bloom",
+   "short_desc": "a crown of crimson petals",
+   "room_desc": "A crown of crimson petals, strangely fresh, lies here.",
+   "description": "The petals are as thick as leather and never wilt. Warm scent drifts from the crown, and for a moment you feel the vines listening.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 20,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 430,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "741404": {
+   "vnum": 741404,
+   "name": "shears vane pruning silver",
+   "short_desc": "the botanist's silver shears",
+   "room_desc": "A pair of long silver pruning shears lies here.",
+   "description": "The blades are long, narrow and keen, and etched with tiny leaves. The handles are worn smooth by years of one man's hands.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 22,
+   "damage_dice": "2d6",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 590,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

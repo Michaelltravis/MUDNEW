@@ -1,0 +1,507 @@
+{
+ "zone": 30,
+ "_about": "Garathorm Inner City: a living city, no boss. The watch walks the main streets, and an attack on any citizen, shopkeeper or guard brings the watch running (helpers group garathorm_watch: citizens call, guards come). Townsfolk fill the streets.",
+ "creatures": {
+  "3000": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3001": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3002": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3003": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3004": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3006": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3007": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3010": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3020": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3021": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3022": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3023": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3030": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3042": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3043": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3044": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3045": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3065": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3100": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3101": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3104": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3110": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3200": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   },
+   "why": "a citizen: calls the watch"
+  },
+  "3059": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The guard bellows: \"To arms! The watch!\""
+   },
+   "why": "a guard: comes when called"
+  },
+  "3060": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The guard bellows: \"To arms! The watch!\""
+   },
+   "why": "a guard: comes when called"
+  },
+  "3067": {
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The guard bellows: \"To arms! The watch!\""
+   },
+   "why": "a guard: comes when called"
+  },
+  "30500": {
+   "name": "watchman garathorm watch",
+   "short_desc": "a watchman of Garathorm",
+   "long_desc": "A watchman of Garathorm walks his beat, halberd on his shoulder.",
+   "description": "Steel cap, blue tabard with the city's tower, a halberd and a whistle on a cord. The watch keeps the peace of the streets, and they come quickly when that whistle blows.",
+   "level": 18,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": 600,
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The watchman blows a shrill whistle: the watch is coming!"
+   }
+  },
+  "30501": {
+   "name": "lamplighter",
+   "short_desc": "the lamplighter",
+   "long_desc": "The lamplighter carries his long pole and a can of oil from lamp to lamp.",
+   "description": "A stooped old man in a soot-streaked coat, his pole tipped with a brass hook and a smouldering wick. He knows every lamp in the city by name.",
+   "level": 3,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": 300,
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   }
+  },
+  "30502": {
+   "name": "town crier",
+   "short_desc": "the town crier",
+   "long_desc": "The town crier rings his handbell and calls out the news of the day.",
+   "description": "A barrel-chested man in a red coat with a bell in one hand and a scroll of notices in the other. His voice carries across the whole square.",
+   "level": 4,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 300,
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   }
+  },
+  "30503": {
+   "name": "porter",
+   "short_desc": "a merchants' porter",
+   "long_desc": "A merchants' porter staggers past under a load of crates.",
+   "description": "Broad in the shoulder and short of breath, the porter carries goods from the quay to the shops for a few coppers a load.",
+   "level": 5,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": 200,
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   }
+  },
+  "30504": {
+   "name": "urchin street",
+   "short_desc": "a street urchin",
+   "long_desc": "A street urchin darts between the passers-by, eyeing purses.",
+   "description": "Barefoot, quick and grubby, with a grin missing two teeth. The urchins of the Dark Alley know every shortcut in the city.",
+   "level": 2,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": 0,
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   }
+  },
+  "30505": {
+   "name": "flower seller",
+   "short_desc": "a flower seller",
+   "long_desc": "A flower seller offers posies from a basket on her arm.",
+   "description": "A young woman in a patched shawl with a basket of violets, marigolds and sprigs of lavender from the park.",
+   "level": 2,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 400,
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   }
+  },
+  "30506": {
+   "name": "pilgrim",
+   "short_desc": "a pilgrim",
+   "long_desc": "A pilgrim in a dusty cloak has come far to pray at the Temple.",
+   "description": "Road-worn boots, a staff, and a pilgrim's badge pinned to a hood. They have walked a long way to see the Temple of Garathorm.",
+   "level": 4,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": 500,
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "answer": false,
+    "shout": "Guards! Guards! To me, the watch!"
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 30502,
+   "rooms": [
+    3014
+   ]
+  },
+  {
+   "vnum": 30503,
+   "rooms": [
+    203045,
+    3049
+   ]
+  },
+  {
+   "vnum": 30504,
+   "rooms": [
+    3045,
+    3046
+   ]
+  },
+  {
+   "vnum": 30505,
+   "rooms": [
+    3105
+   ]
+  },
+  {
+   "vnum": 30506,
+   "rooms": [
+    3005,
+    3001
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 30500,
+   "route": [
+    3005,
+    203006,
+    3014,
+    3025,
+    203026,
+    203045
+   ],
+   "why": "Temple Fountain down the Market Square to the Quay"
+  },
+  {
+   "vnum": 30500,
+   "route": [
+    3040,
+    3012,
+    3013,
+    3014,
+    3015,
+    3016,
+    3041
+   ],
+   "why": "Main Street, West Gate to the Gate of the Inner City"
+  },
+  {
+   "vnum": 30500,
+   "route": [
+    3100,
+    3144,
+    3145,
+    3146,
+    3147,
+    3148,
+    3149,
+    203150,
+    203151,
+    3127
+   ],
+   "why": "the Concourse"
+  },
+  {
+   "vnum": 30500,
+   "route": [
+    3119,
+    206700,
+    206701,
+    206704,
+    206707,
+    206710,
+    206713,
+    6716,
+    6719,
+    6722,
+    6725,
+    6728,
+    6731
+   ],
+   "why": "Bazaar Street and Merchant Avenue"
+  },
+  {
+   "vnum": 30501,
+   "route": [
+    3132,
+    3117,
+    3119,
+    3133,
+    3120,
+    3134,
+    3121,
+    3125,
+    3128
+   ],
+   "why": "the lamplighter on Emerald Avenue"
+  }
+ ]
+}

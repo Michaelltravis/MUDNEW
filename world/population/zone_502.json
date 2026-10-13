@@ -1,0 +1,155 @@
+{
+ "zone": 502,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Zhaarok, the draconian high priest as the boss.",
+ "creatures": {
+  "650200": {
+   "helpers": {
+    "group": "z502_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a brass-scaled draconian"
+  },
+  "650201": {
+   "helpers": {
+    "group": "z502_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a bronze-scaled draconian"
+  },
+  "650202": {
+   "helpers": {
+    "group": "z502_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a giant cave spider"
+  },
+  "650203": {
+   "helpers": {
+    "group": "z502_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a silver-scaled draconian",
+   "rank": "elite"
+  },
+  "650204": {
+   "helpers": {
+    "group": "z502_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a bozak draconian shaman",
+   "rank": "elite"
+  },
+  "650205": {
+   "helpers": {
+    "group": "z502_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Skarrag, the chief guard",
+   "rank": "sub-boss"
+  },
+  "650206": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Zhaarok, the draconian high priest",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Zhaarok, the draconian high priest rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Zhaarok, the draconian high priest gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Zhaarok, the draconian high priest raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Zhaarok, the draconian high priest begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 650200,
+   "route": [
+    2006,
+    2003,
+    2055
+   ],
+   "why": "a brass-scaled draconian walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 650206,
+   "room": 2053,
+   "why": "Zhaarok, the draconian high priest in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      650200
+     ],
+     "shout": "Zhaarok, the draconian high priest calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

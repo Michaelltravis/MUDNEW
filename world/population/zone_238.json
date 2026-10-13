@@ -1,0 +1,198 @@
+{
+ "zone": 238,
+ "_about": "The Haunted Monastery (levels 25-35): the monastery's dead answer the tolling bell, the spectral priests and the possessed armour are elites, the catacomb crawler a sub-boss, and the Abbot's Ghost in the Refectory calling his restless monks as the light dies.",
+ "creatures": {
+  "23800": {
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   },
+   "why": "the dead"
+  },
+  "23801": {
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   },
+   "why": "the dead"
+  },
+  "23802": {
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   },
+   "why": "the dead"
+  },
+  "23805": {
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   },
+   "why": "the dead"
+  },
+  "23806": {
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   },
+   "why": "the dead"
+  },
+  "23809": {
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   },
+   "why": "the dead"
+  },
+  "23810": {
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   },
+   "why": "the dead"
+  },
+  "23803": {
+   "rank": "elite",
+   "why": "a spectral priest or a possessed armour",
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   }
+  },
+  "23804": {
+   "rank": "elite",
+   "why": "a spectral priest or a possessed armour",
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   }
+  },
+  "23807": {
+   "rank": "elite",
+   "why": "a spectral priest or a possessed armour",
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   }
+  },
+  "23808": {
+   "rank": "elite",
+   "why": "a spectral priest or a possessed armour",
+   "helpers": {
+    "group": "monastery_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls in the empty tower, and the dead of the monastery answer!"
+   }
+  },
+  "23811": {
+   "rank": "sub-boss",
+   "why": "the catacomb crawler"
+  },
+  "23812": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Abbot's Ghost screams: 'You cannot save them! NONE of us can be saved!'"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Unholy Word",
+      "telegraph": "The Abbot's Ghost speaks a word of unholy power!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+8",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Soul Drain",
+      "telegraph": "The Abbot's Ghost reaches for your soul!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+7",
+      "dodge": true
+     },
+     {
+      "name": "Last Rites",
+      "telegraph": "The Abbot's Ghost begins the last rites!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+11",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Abbot's Ghost"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 23800,
+   "route": [
+    23800,
+    23801,
+    23802
+   ],
+   "why": "a restless monk walks his old round"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 23812,
+   "room": 23812,
+   "why": "the Abbot's Ghost in the Refectory",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "23800": 2
+     },
+     "shout": "The Abbot's Ghost calls, and his monks drift through the walls!",
+     "why": "his monks"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "shout": "The candles of the refectory go out one by one...",
+     "why": "the light dies"
+    }
+   ]
+  }
+ ]
+}

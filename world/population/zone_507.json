@@ -1,0 +1,157 @@
+{
+ "zone": 507,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and the Vampire Lord as the boss.",
+ "creatures": {
+  "650700": {
+   "helpers": {
+    "group": "z507_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a gaunt crypt ghoul"
+  },
+  "650701": {
+   "helpers": {
+    "group": "z507_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a pale vampire thrall"
+  },
+  "650702": {
+   "helpers": {
+    "group": "z507_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "an ember salamander"
+  },
+  "650703": {
+   "helpers": {
+    "group": "z507_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a hulking bone dragon",
+   "rank": "elite"
+  },
+  "650704": {
+   "helpers": {
+    "group": "z507_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a great lavaworm",
+   "rank": "elite"
+  },
+  "650705": {
+   "helpers": {
+    "group": "z507_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "Cerzyl, the Ember Wyrm",
+   "rank": "sub-boss"
+  },
+  "650706": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "the Vampire Lord",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Vampire Lord rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "The Vampire Lord gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+11",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "The Vampire Lord raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+9",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "The Vampire Lord begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+15",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 650700,
+   "route": [
+    24901,
+    24902,
+    24903,
+    24915,
+    24921,
+    24922,
+    24923,
+    24926,
+    24927,
+    24928,
+    24929
+   ],
+   "why": "a gaunt crypt ghoul walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 650706,
+   "room": 24936,
+   "why": "the Vampire Lord in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "650700": 2
+     },
+     "shout": "The Vampire Lord calls, and a gaunt crypt ghouls come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

@@ -16,9 +16,14 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 4465,
+     "description": "To the west lies The Catacombs."
+    }
+   },
+   "description": "A lightless nothing presses in on every side, with no floor to feel and\nno wall to lean on. Cold and stillness are all there is, and even your\nown heartbeat sounds muffled and far away. Whatever prayers once drew\nyou toward this blackness have left no mark upon it, and no way out can\nbe found.",
+   "extra_descs": {}
   },
   "4401": {
    "vnum": 4401,
@@ -55,8 +60,8 @@
      "description": "To the west lies The Path By The Cathedral."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Before the great doors of the abandoned cathedral the paving is cracked\nand sunken, and lichen creeps up the broad steps. A tall pointed porch\nlooms overhead, its carved saints worn faceless by weather. Back north\nlies the Concourse and the last smoke and noise of Garathorm, while a\npath curls away east and west around the cathedral's walls. The doors to\nthe south stand ajar upon the dusty dark of the antechamber.",
+   "extra_descs": {}
   },
   "4402": {
    "vnum": 4402,
@@ -80,8 +85,8 @@
      "description": "To the south lies The Side Of The Cathedral."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and south.",
-   "placeholder": true
+   "description": "This is the cathedral's outer flank, where the path squeezes between the\nbuttresses and a wall of dark ivy. Stained glass high above has lost\nmost of its panes, and a few coloured shards still glint dully in the\nlead. East the way returns to the great doors, and south the path runs\nalong the side of the church. Everything smells of damp stone and\nrotting leaves.",
+   "extra_descs": {}
   },
   "4403": {
    "vnum": 4403,
@@ -105,8 +110,8 @@
      "description": "To the west lies Outside The Cathedral."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The path runs tight beside the cathedral's flank, where flying\nbuttresses lean over it and old yew boughs shut out the sky. Moss has\nturned the flagstones into a soft green carpet that muffles every step.\nWest the way opens toward the cathedral's porch, and south it slips off\nalong a shaded track under darker trees. A cold draught seeps out of the\nstonework beside you.",
+   "extra_descs": {}
   },
   "4404": {
    "vnum": 4404,
@@ -139,8 +144,8 @@
      "description": "To the south lies The Churchyard."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A narrow strip of ground runs between the cathedral wall and the yard,\nclosed in by buttresses and the dripping eaves. East a low arched door,\nits oak gone silver, leads into the cathedral itself. The path goes on\nnorth toward the front of the church, and south it opens among the\ngraves. Weeds sprout in every crack of the paving, and the stones are\nslick with green.",
+   "extra_descs": {}
   },
   "4405": {
    "vnum": 4405,
@@ -162,8 +167,8 @@
      "description": "To the south lies The Churchyard."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and south.",
-   "placeholder": true
+   "description": "Yews and black cypresses meet overhead, and the path beneath is only a\nstrip of damp earth between tilted headstones. The light here is green\nand weak, and the air smells of wet leaves and old stone. North the path\nwinds back toward the cathedral wall, while ahead to the south the\nleaning graves of the churchyard begin in earnest.",
+   "extra_descs": {}
   },
   "4406": {
    "vnum": 4406,
@@ -198,8 +203,8 @@
      }
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The cathedral's grey side wall rises close to the north here, streaked\nblack where the gutters long ago gave up. Beneath it the graves are\nolder and the stones lower, half swallowed by nettles. West stands a\nsquat mausoleum with a heavy door set into its face, and the yard runs\non east and south. A cold smell of wax drifts faintly from somewhere\ninside the church.",
+   "extra_descs": {}
   },
   "4407": {
    "vnum": 4407,
@@ -225,8 +230,10 @@
      "description": "To the west lies The Churchyard."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A broken angel kneels on a plinth at the heart of this corner of the\nyard, her wings snapped and her folded hands worn to stumps. Ivy has\nwound itself around her shoulders as though to hold her up. Graves\nstretch east and west of her, and the ground slopes down south toward\nthe tombs. The sky above is a pale smear behind the bare branches.",
+   "extra_descs": {
+    "angel statue": "The kneeling angel's face is gone, chiselled flat by wind and rain. A\nfaint line of letters runs along her plinth, but only the word 'rest'\ncan still be made out."
+   }
   },
   "4408": {
    "vnum": 4408,
@@ -256,8 +263,8 @@
      "description": "To the west lies The Churchyard."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Crooked headstones crowd the grass here, many of them sunk to their\nshoulders in the turf and wearing names that no one can read. A trodden\npath leads north under the trees, and the ground opens east into a rough\nfield. More graves run on to the south and west in untidy rows. A wind\npicks at the dry grass with a sound like whispering.",
+   "extra_descs": {}
   },
   "4409": {
    "vnum": 4409,
@@ -279,8 +286,8 @@
      "description": "To the east lies The Churchyard."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and east.",
-   "placeholder": true
+   "description": "The graves here lie close together, their headstones fallen forward like\na row of dominoes. A cracked urn on a pedestal stands stained and empty,\nand nettles grow thick where the wind has piled dead leaves. North, a\nline of older stones runs toward the cathedral wall, and east the yard\ncontinues past a sunken path. A sour smell of wet earth hangs in the\nshade.",
+   "extra_descs": {}
   },
   "4410": {
    "vnum": 4410,
@@ -310,8 +317,8 @@
      "description": "To the west lies The Churchyard."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Here the graves stand in tidy rows, though the rows have heaved and\nslumped until each stone points a different way. Iron railings, rusted\nto lace, fence off a few of the older plots. To the south rises the\nsquat grey front of a mausoleum, its bronze door green with age. The\ngrass is trampled flat along the path that leads to it.",
+   "extra_descs": {}
   },
   "4411": {
    "vnum": 4411,
@@ -333,8 +340,8 @@
      "description": "To the west lies The Churchyard."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and west.",
-   "placeholder": true
+   "description": "A cluster of table tombs squats in the long grass, their lids split by\nthe roots of an old yew that twists up out of one of them. Moss greys\nevery inscription, and the carved skulls on the corners have lost their\nfaces. The yard climbs gently north to a wider stretch of graves, and a\nrow of smaller markers runs off west. Dew never seems to leave the\nstone.",
+   "extra_descs": {}
   },
   "4412": {
    "vnum": 4412,
@@ -363,8 +370,9 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and down.",
-   "placeholder": true
+   "description": "A small, domed mausoleum, its walls bearing the names of a long-dead\nfamily in raised letters worn by many winters. Three empty stone coffins\nstand open in the middle of the floor. The way east leads out to the\nchurchyard, and a trapdoor at your feet drops into the vault below. Weak\ndaylight slants in, grey and thin.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4413": {
    "vnum": 4413,
@@ -393,8 +401,11 @@
      "description": "To the down lies The Vault."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and down.",
-   "placeholder": true
+   "description": "The mausoleum stands cold and hushed, its walls lined with marble\nplaques and its floor strewn with dead leaves blown in under the door. A\nstone coffin rests on a dais in the centre, its lid shifted a hand's\nbreadth to one side. The door north opens upon the churchyard, and a\nhatch in the floor drops to the vault below. Cold seeps from the marble.",
+   "look": "crypt",
+   "extra_descs": {
+    "coffin dais": "The stone coffin is carved with the likeness of a robed priest, his\nhands crossed upon his breast. The lid has been shoved aside, and\nsomething inside has been long since taken."
+   }
   },
   "4414": {
    "vnum": 4414,
@@ -416,8 +427,8 @@
      "description": "To the west lies The Churchyard."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north and west.",
-   "placeholder": true
+   "description": "The graves give out here and rank meadow grass takes over, waist-high\nand grey with seed. North, an iron gate hangs shut in a hedge of thorn,\nchained fast and thick with creeper, and nothing beyond it can be seen.\nBack west the headstones of the churchyard lean together like gossips.\nThe wind is steady across the open ground and carries a smell of turned\nearth.",
+   "extra_descs": {}
   },
   "4415": {
    "vnum": 4415,
@@ -450,8 +461,8 @@
      "description": "To the up lies The Gallery."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east, south and up.",
-   "placeholder": true
+   "description": "A low stone antechamber, cold as a cellar, where worshippers once shook\nthe rain from their cloaks. A spiral stair of worn steps winds upward in\nthe corner toward the galleries. East the room continues, and south a\nheavy door opens into the hall. Hooks line the walls for cloaks nobody\nwill ever hang, and a thin line of dust marks the floor.",
+   "extra_descs": {}
   },
   "4416": {
    "vnum": 4416,
@@ -483,8 +494,8 @@
      "description": "To the west lies The Antechamber."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "This is the main entrance of the cathedral, a broad stone chamber with a\nhigh roof and a floor scattered with leaves blown in through the cracks.\nThe great doors stand to the north, barred with tarnished iron and grey\nwith cobweb. West and east the antechamber continues, and south the hall\nopens on its fallen pews. Holy-water stoups beside the doors are dry and\ncracked.",
+   "extra_descs": {}
   },
   "4417": {
    "vnum": 4417,
@@ -517,8 +528,8 @@
      "description": "To the up lies The Gallery."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south, west and up.",
-   "placeholder": true
+   "description": "A cramped end of the antechamber, where a stone font of dry, cracked\nmarble stands against the wall. An iron-railed stair climbs up from the\ncorner toward the galleries, its rail slick with grime. West the\nentrance chamber lies open, and south a door leads down into the hall. A\nsingle shaft of grey light falls through a crack in the roof.",
+   "extra_descs": {}
   },
   "4418": {
    "vnum": 4418,
@@ -555,8 +566,8 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Slim pillars rise from the dust-thick floor to a ceiling lost in gloom,\nand between them the fallen pews lie in drifts. A heavy door stands\nclosed to the north, leading into the antechamber, and a narrow panelled\ndoor in the west wall is half hidden behind a toppled lectern. The hall\nopens east and south. Candle-wax, long dead, has run down the pillars in\npale ridges.",
+   "extra_descs": {}
   },
   "4419": {
    "vnum": 4419,
@@ -597,8 +608,8 @@
      "description": "To the down lies The Bottom Of The Well."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south, west and down.",
-   "placeholder": true
+   "description": "A round stone well-curb breaks the floor of the nave here, its iron\ncover long since rusted through and its dark throat open. A cold breath\nrises from it, smelling of old water and mud. The hall continues east,\nsouth and west of here, and the antechamber lies through a door to the\nnorth. Chains hang from a beam above the well like a dead creeper.",
+   "extra_descs": {}
   },
   "4420": {
    "vnum": 4420,
@@ -626,8 +637,8 @@
      "description": "To the west lies The Great Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Along this side of the hall the pews stand in better order, though every\none has sagged on rotten legs. Dust lies thick on the floor, unbroken by\nany print but your own. North a door leads back into the antechamber,\nand the hall runs on south and west. Somewhere far off a bell tolls\nonce, faint and thin, and the silence swallows the echo.",
+   "extra_descs": {}
   },
   "4421": {
    "vnum": 4421,
@@ -651,8 +662,8 @@
      "description": "To the west lies The Side Of The Cathedral."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "A short vaulted passage connects the side door to the nave, its floor of\nblack and white tiles gone dull under years of grit. Empty sconces line\nthe walls, their iron arms crusted with old wax. West is the door to the\nouter path, and east the passage opens upon the great hall. A faint,\ncold, sweetish smell hangs in the stillness.",
+   "extra_descs": {}
   },
   "4422": {
    "vnum": 4422,
@@ -684,8 +695,8 @@
      "description": "To the west lies The Hall."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "You stand at the western edge of the great hall, where the pews begin.\nThey lie in splintered ranks, toppled and heaped, with prayer-books\nrotted into grey pulp on the shelves. Ahead the nave runs on east, and\nthe hall continues both north and south of here. Far above, the roof\ntimbers vanish into a darkness that echoes with every scuff of your\nboots.",
+   "extra_descs": {}
   },
   "4423": {
    "vnum": 4423,
@@ -717,8 +728,10 @@
      "description": "To the west lies The Great Hall."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Directly above, the great rose window gapes broken, its tracery bare and\nspiked with the last coloured shards. Pale light falls through in\nslanted bars, picking out drifting dust. Here the hall runs in all four\ndirections, between toppled pillars and heaped pews. A cold, slow\ndraught circles in the nave.",
+   "extra_descs": {
+    "rose window": "The tracery of the rose window forms twelve great petals, now empty of\nalmost all their glass. A few ruby and sapphire shards cling to the lead\nlike dried petals."
+   }
   },
   "4424": {
    "vnum": 4424,
@@ -755,8 +768,8 @@
      "description": "To the west lies The Great Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A heavy oak door in the east wall leads to the sacristy, its handle worn\nbright by long years of priestly hands. The pews here lie in a tangle\nagainst the wall where something once dragged them. The hall continues\nnorth, south and west of here. Rushlight stubs sit crusted in iron\nbrackets, and the floor tiles show cracks wide as a thumb.",
+   "extra_descs": {}
   },
   "4425": {
    "vnum": 4425,
@@ -776,8 +789,8 @@
      "description": "To the east lies The Great Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
-   "placeholder": true
+   "description": "A shallow alcove behind the pews, its back wall painted with a faded\nfresco of kneeling saints, their haloes flaked away to bare plaster. A\nstone bench runs along the wall, polished by the knees of long-dead\npenitents. The hall lies east. The air is musty and cold, and the paint\ndust crunches under foot.",
+   "extra_descs": {}
   },
   "4426": {
    "vnum": 4426,
@@ -809,8 +822,8 @@
      "description": "To the west lies The Alcove."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The pews stand in ragged lines along this side, their kneelers gnawed by\ndamp and time. A grey alcove opens in the west wall behind a curtain of\ncobweb, and the nave continues north, east and south. The flagstones are\ncracked by the roots of something that has found its way under the\nchurch. A smell of stale incense lingers.",
+   "extra_descs": {}
   },
   "4427": {
    "vnum": 4427,
@@ -842,8 +855,8 @@
      "description": "To the west lies The Great Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Here the nave widens before the altar steps, and the fallen pews lie in\na litter of broken kneelers and splintered backs. Brass candlesticks,\ngreen and bent, lie among the wreckage. Light from the west and south\ncatches the glitter of the altar beyond. The hall runs north, east and\nwest, and the altar waits to the south.",
+   "extra_descs": {}
   },
   "4428": {
    "vnum": 4428,
@@ -880,8 +893,8 @@
      "description": "To the west lies The Great Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A small door in the east wall of the hall leads into the wall's hidden\nstair, its panels so cleverly cut that they pass for part of the stone.\nThe pews here are stacked against one another, as though cleared away in\na hurry. The hall runs on north, south and west. A faded tapestry hangs\nby a single corner above the door.",
+   "extra_descs": {}
   },
   "4429": {
    "vnum": 4429,
@@ -909,8 +922,8 @@
      "description": "To the down lies The Catacombs."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and down.",
-   "placeholder": true
+   "description": "In a far corner of the hall, a great trapdoor of black oak has been\nwrenched half open, revealing a stair of slick stone plunging down. A\nraw cold pours up from it, smelling of earth and old bones. The hall\nruns north and east, and the stair leads down into the dark. Scratches\non the flags mark where heavy things were dragged.",
+   "extra_descs": {}
   },
   "4430": {
    "vnum": 4430,
@@ -938,8 +951,10 @@
      "description": "To the west lies The Great Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The diamond altar stands at the heart of the great hall, a block of\nclear crystal as high as your waist, throwing cold light in every\ndirection. Candle-stubs ring its foot in a melted crown, and the\nflagstones around it are scuffed by a thousand kneeling years. The hall\nopens north, east and west around it. A deep hush hangs here, as though\nthe altar kept a vigil of its own.",
+   "extra_descs": {
+    "diamond altar": "The altar is a single flawless crystal, uncut and faintly luminous,\nwithout a seam or a flaw. Its heart shows dark shapes, like figures in a\nfrozen pool, and the cold it gives off stings the fingers."
+   }
   },
   "4431": {
    "vnum": 4431,
@@ -963,8 +978,8 @@
      "description": "To the west lies By The Diamond Altar."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "This far corner of the great hall is hung with rotting banners, their\nstitching unravelled. A glitter breaks the gloom to the west, where the\naltar stands. North the hall continues along the wall, and the\nflagstones are polished by a faint shine. Dust lies here as thick as\nsnowfall.",
+   "extra_descs": {}
   },
   "4432": {
    "vnum": 4432,
@@ -984,8 +999,8 @@
      "description": "To the east lies The Great Hall."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
-   "placeholder": true
+   "description": "A hidden alcove, hardly more than a closet, built into the thickness of\nthe wall behind the panelling. A narrow shelf holds an old stub of\ncandle and a heap of crumbled parchment. Cold dust fills every corner,\nand the stone sweats. The only way out is the door east, leading back to\nthe great hall.",
+   "extra_descs": {}
   },
   "4433": {
    "vnum": 4433,
@@ -1014,8 +1029,8 @@
      "description": "To the west lies The Great Hall."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "The sacristy is a narrow room of cedar cupboards and a long vestment\ntable, everything furred with dust. Stained cloth, once crimson and\ngold, hangs in rotting folds from open drawers. West is the door back to\nthe hall, and a plain door to the south leads on to a back room. The air\nis thick with the smell of old incense gone sour.",
+   "extra_descs": {}
   },
   "4434": {
    "vnum": 4434,
@@ -1039,8 +1054,8 @@
      "description": "To the down lies The Catacombs."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and down.",
-   "placeholder": true
+   "description": "A small back room, bare but for a scarred table and a rack of empty\ncandle-holders on the wall. The floor boards near the far corner have\nbeen pulled up, revealing a stair of rough stone that drops away into\ncold darkness. North lies the sacristy, and the stairwell leads down\ntoward something older. The silence in here is absolute and watchful.",
+   "extra_descs": {}
   },
   "4435": {
    "vnum": 4435,
@@ -1068,8 +1083,8 @@
      "description": "To the down lies The Secret Passage."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead west, up and down.",
-   "placeholder": true
+   "description": "A cramped spiral stair of wedge-cut stone winds through the thickness of\nthe cathedral's wall, lit by nothing but a thin seam of daylight from\nabove. The steps are hollowed with age, and the central pillar is carved\nwith faint, spidery runes. Up above, a hatch leads to the roof, a stair\ndescends into cold dark, and a door in the west wall opens on the great\nhall. The air smells of tar and dust.",
+   "extra_descs": {}
   },
   "4436": {
    "vnum": 4436,
@@ -1089,8 +1104,9 @@
      "description": "To the south lies The Secret Passage."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads south.",
-   "placeholder": true
+   "description": "You are at the bottom of an old well, its walls of green-slimed stone\nrising out of reach into darkness. The floor is a shallow bed of silt,\nlong since dry. A low opening in the wall leads out through a door\nbehind you. Far above, the circle of the sky is no more than a pale\ncoin.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4437": {
    "vnum": 4437,
@@ -1123,8 +1139,9 @@
      "description": "To the up lies The Secret Stairwell."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, west and up.",
-   "placeholder": true
+   "description": "A narrow passage hidden behind the panelling, cut straight through the\nold foundations. The walls are bare stone, unpainted, and the air is\ndank. A door to the north is set into the rock, a stair climbs up into\nthe church, and the passage continues west. Footprints in the dust have\nlong since been covered by new dust.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4438": {
    "vnum": 4438,
@@ -1148,8 +1165,9 @@
      "description": "To the east lies The Secret Passage."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "A cramped, winding passage running through the wall of the church, so\nnarrow that your shoulders brush both sides. Cobwebs hang in thick\ncurtains, and the stone is slick with condensation. The way leads north\nto a landing, and east it returns to the stair. Behind the panelling,\nmuffled, the cathedral's emptiness seems to listen.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4439": {
    "vnum": 4439,
@@ -1181,8 +1199,8 @@
      "description": "To the down lies The Antechamber."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south, west and down.",
-   "placeholder": true
+   "description": "The gallery runs along the upper edge of the great hall, a balcony of\ndark wood with a carved balustrade splintered in places. Below, the\nranks of ruined pews are barely visible in the gloom. The gallery goes\non east toward the belfry stair and south toward a vast organ, and a\nhidden door in the west wall leads into the walls. A stair spirals down\nat your back.",
+   "extra_descs": {}
   },
   "4440": {
    "vnum": 4440,
@@ -1206,8 +1224,10 @@
      "description": "To the east lies The Gallery."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "The huge organ towers here against the wall, its pipes of tarnished tin\nrising into the gloom like the trunks of a petrified wood. Its keys are\nyellowed and cracked, and a faded hymn-board still stands on the music\ndesk. The gallery passes by to the north and east. A faint, hollow note\nbreathes from the pipes whenever the draught moves.",
+   "extra_descs": {
+    "huge organ pipes": "The pipes are tarnished and bent, some as thick as a man's body. Their\nmouths are choked with dust, but a breath of air still draws a low note\nfrom them."
+   }
   },
   "4441": {
    "vnum": 4441,
@@ -1235,8 +1255,8 @@
      "description": "To the down lies The Antechamber."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, west and down.",
-   "placeholder": true
+   "description": "The gallery ends here in a corner of the church's upper floor, with\nnarrow windows that let in grey slats of light. Dust lies thick on the\nrail, unmarked by any hand. The way north leads on toward the belfry\nstair, west to the organ, and a stair spirals down to the antechamber.\nThe air tastes of cold wax and old paper.",
+   "extra_descs": {}
   },
   "4442": {
    "vnum": 4442,
@@ -1264,8 +1284,8 @@
      "description": "To the up lies The Belfry."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south, west and up.",
-   "placeholder": true
+   "description": "The belfry's timber stair rises overhead in a tight spiral, and from up\nabove, the great bell's rope hangs in a slow, small sway. Wooden beams\ncrowd close, scored with the marks of carpenters long dead. The gallery\nlies west and south of here, and the stair climbs up toward the bell.\nNow and then a faint, wooden creak answers from the dark.",
+   "extra_descs": {}
   },
   "4443": {
    "vnum": 4443,
@@ -1298,8 +1318,8 @@
      "description": "To the up lies On The Roof."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south and up.",
-   "placeholder": true
+   "description": "A hidden landing behind the cathedral's panelling, where a narrow stair\nclimbs up into the open air over the roof. Thin cracks of light show\nbetween the boards at your side, and dust drifts down in the beams. A\nhidden door east opens into the gallery, and the secret passage descends\nsouth. The air smells of tar and old timber.",
+   "extra_descs": {}
   },
   "4444": {
    "vnum": 4444,
@@ -1329,8 +1349,8 @@
      "description": "To the down lies The Secret Passage."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead east, south, up and down.",
-   "placeholder": true
+   "description": "You stand upon the roof where the tower rises, a squat block of stone\nwith a rusted iron ladder bolted to its face. Below, a trapdoor of\nrotted planks covers a hidden stair. The roof stretches away east and\nsouth, and the iron rungs climb up toward the belfry. The wind is cold\nand tastes of soot and rain.",
+   "extra_descs": {}
   },
   "4445": {
    "vnum": 4445,
@@ -1356,8 +1376,8 @@
      "description": "To the up lies On The Side Of The Tower."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead south, west and up.",
-   "placeholder": true
+   "description": "A steep roof of lichen-crusted slate slopes away on every side, with\nlead gutters choked by years of moss. Tufts of grass sprout in the\nvalleys between the gables, and the wind sings thinly through the\nchimneys. The roof continues south and west, and a ladder of iron rungs\nrises up the tower wall behind you. Beyond the parapet the graves look\nsmall as seed.",
+   "extra_descs": {}
   },
   "4446": {
    "vnum": 4446,
@@ -1379,8 +1399,8 @@
      "description": "To the south lies On The Roof."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north and south.",
-   "placeholder": true
+   "description": "A long valley of lead runs between two ridges of slate, thick with\nfallen leaves and blown dust. A cracked gargoyle crouches at the edge of\nthe gutter, its snarl worn smooth by the rain. The ridge climbs north\ntoward the tower, and the valley falls away south. Overhead the clouds\ndrift slowly, grey on grey.",
+   "extra_descs": {}
   },
   "4447": {
    "vnum": 4447,
@@ -1406,8 +1426,8 @@
      "description": "To the down lies The Secret Stairwell."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north, south and down.",
-   "placeholder": true
+   "description": "A flat stretch of lead roofing lies between two steep pitches, pocked\nand green and hot to the touch at midday. A square hatch of oak, bound\nwith iron, is set into the leads and leads down into the church. The\nroof runs on north and south from here. A cold wind off the plains blows\nsteadily, bringing a smell of rain.",
+   "extra_descs": {}
   },
   "4448": {
    "vnum": 4448,
@@ -1429,8 +1449,8 @@
      "description": "To the east lies On The Roof."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north and east.",
-   "placeholder": true
+   "description": "The slates are loose here, cracked and slipping, and a patch of rotting\ntimber shows where part of the roof has given way. The wind whips round\nthe stonework with a low moaning. You can go north along the ridge or\neast across the leads. Far across the valley, the city wall of Garathorm\nis a thin grey line on the horizon.",
+   "extra_descs": {}
   },
   "4449": {
    "vnum": 4449,
@@ -1452,8 +1472,8 @@
      "description": "To the west lies On The Roof."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north and west.",
-   "placeholder": true
+   "description": "The roof ends against a stone parapet, its crenellations broken like bad\nteeth. Beyond the edge lies a drop to the churchyard, whose crooked\nstones seem to nod. The slates run back north and the ridge continues\nwest. Rain has left black stains on every surface, and the lichen here\nis the colour of old rust.",
+   "extra_descs": {}
   },
   "4451": {
    "vnum": 4451,
@@ -1475,8 +1495,8 @@
      "description": "To the down lies On The Roof."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead east and down.",
-   "placeholder": true
+   "description": "A narrow ledge of weathered stone clings to the tower's outer face, with\nthe iron ladder bolted beside it. Gusts press you against the wall, and\nloose mortar trickles down at each step. East an opening in the belfry\noffers a way inside, and the rungs lead down to the roof. The land far\nbelow is a patchwork of green and grey.",
+   "extra_descs": {}
   },
   "4452": {
    "vnum": 4452,
@@ -1504,8 +1524,10 @@
      "description": "To the down lies Under The Belfry."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "The great bell hangs in its oaken frame, green with age and dull with\ndust. Louvred openings in the walls let a cold wind whistle through, and\nthe rope sways gently without a hand upon it. A narrow ledge runs out on\neither side onto the outside of the tower, east and west, and the stair\ndescends below. The whole tower hums with the ghost of old tolling.",
+   "extra_descs": {
+    "great bell": "The bell is cast with a band of saints and a date too corroded to read.\nIts clapper has been tied back with rotted cord, yet now and then it\nstirs by itself."
+   }
   },
   "4453": {
    "vnum": 4453,
@@ -1527,8 +1549,8 @@
      "description": "To the down lies On The Roof."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead west and down.",
-   "placeholder": true
+   "description": "You cling to the outer wall of the tower, where a narrow ledge of\nweathered stone runs beside the open belfry. Wind tugs at your clothes,\nand the graveyard and the grey countryside lie spread out far below.\nWest the louvred opening of the belfry offers shelter, and a ladder of\niron rungs descends toward the roof. Moss and dark streaks stain the\nstone.",
+   "extra_descs": {}
   },
   "4454": {
    "vnum": 4454,
@@ -1552,8 +1574,9 @@
      "description": "To the south lies The Catacombs."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
-   "placeholder": true
+   "description": "Burial niches line the walls in rows, each narrow slot sealed with a\nflat slab and a name scratched in the lime. The air is cold and dry and\ncarries a faint smell of old dust and older rot. A tunnel leads east,\nand the vault of the catacombs runs on south. Water drips somewhere in\nthe dark, steady as a slow pulse.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4455": {
    "vnum": 4455,
@@ -1581,8 +1604,9 @@
      "description": "To the up lies The Secret Passage."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south, west and up.",
-   "placeholder": true
+   "description": "The catacomb passage widens into a long chamber lined with burial\nniches, many of them broken open and their stone lids lying cracked on\nthe floor. A cold current of air moves through the place, smelling of\nearth and old candle smoke. West the way leads into a plain tunnel,\nsouth the passage runs on, and above you a gap in the ceiling opens onto\na hidden stair.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4456": {
    "vnum": 4456,
@@ -1606,8 +1630,9 @@
      "description": "To the south lies The Junction."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The catacomb opens here into a hall of low arches, supported by thick\nstone piers carved with weeping faces. Between the piers the burial\nniches are choked with dust and the dust with cobweb. A passage leads\nnorth into a narrow tunnel, and south the hall ends at a junction of\nways. A smell of old stone and cold wax hangs unmoving.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4457": {
    "vnum": 4457,
@@ -1644,8 +1669,9 @@
      "description": "To the west lies The Vault."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four ways meet in this junction hall, each framed by an arch of black\nstone. A door of studded oak stands to the south, and a plainer archway\nopens west into a vault, while a tunnel leads east and the catacomb\npassage runs north. Faded runes ring the ceiling in a circle too worn to\nread. The air is bitterly cold.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4458": {
    "vnum": 4458,
@@ -1674,8 +1700,9 @@
      "description": "To the west lies The Junction."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "A rough tunnel, narrower and more crudely cut than the catacombs it\nleaves. The walls here are bare stone, hacked out with picks and never\ndressed. A door stands in the north wall, bound in rusted iron, and the\ntunnel returns west to the junction. The floor slopes gently down, and\nthe damp grows heavier.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4459": {
    "vnum": 4459,
@@ -1704,8 +1731,9 @@
      "description": "To the up lies In The Mausoleum."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and up.",
-   "placeholder": true
+   "description": "This vault is older than the cathedral above it, rough-hewn and low,\nwith the dead laid in stacked stone coffins that crowd the walls. Roots\nhang from the ceiling like pale hair. A door leads east to the junction,\nand a stair in the corner climbs toward the light of the mausoleum\nabove. A dry rustling runs through the dark, though nothing stirs.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4460": {
    "vnum": 4460,
@@ -1734,8 +1762,9 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and up.",
-   "placeholder": true
+   "description": "A burial vault of fitted stone, its roof held up by four squat pillars\nand its floor inlaid with the names of the dead. Stone sarcophagi stand\nalong the walls, their lids carved with robed figures whose faces are\nworn smooth. A junction opens to the north, and above, a narrow stair\nbehind an iron door climbs toward the mausoleum. The air smells of\nsealed places.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4461": {
    "vnum": 4461,
@@ -1759,8 +1788,9 @@
      "description": "To the south lies The Catacombs."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "A straight, narrow tunnel, its walls built of grey brick that sweats a\ncold moisture. Small niches are cut into the masonry at intervals, each\nholding a tarnished lamp of black glass. The passage runs north to a\ncrossing and south toward a larger gallery. Your footfalls come back\nfrom the dark ahead, always a moment late.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4462": {
    "vnum": 4462,
@@ -1792,8 +1822,9 @@
      "description": "To the west lies The Catacombs."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Four passages of fitted stone cross here beneath a low arched ceiling.\nDust lies undisturbed in the corners, but the middle of the floor is\nscuffed in a curious wide band. North and south run narrow tunnels, east\nis a burial chamber, and west lies another. A dull iron ring is set in\nthe ceiling, bearing nothing now.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4463": {
    "vnum": 4463,
@@ -1830,8 +1861,9 @@
      "description": "To the west lies The Catacombs."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A low tunnel of fitted stone runs through the catacombs here, its\nceiling close enough to touch. Burial niches line the walls at the\nheight of your shoulders, some still holding a wrapped shape. To the\nnorth, a narrow door set in the wall leads to a stranger passage, while\nthe tunnel runs on south, east and west. The floor is worn into a\nshallow trough by countless passing feet.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4464": {
    "vnum": 4464,
@@ -1855,8 +1887,9 @@
      "description": "To the east lies The Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "The catacomb passage ends here at a wall of bricked-up niches, each\nplastered over and marked with a single faded cross. The air is still\nand tastes of dust. The passage returns north, and a low tunnel leads\neast. Someone has set a line of tiny dry stones along the floor, a\npattern no one living remembers.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4465": {
    "vnum": 4465,
@@ -1878,10 +1911,15 @@
     "west": {
      "to_room": 4462,
      "description": "To the west lies The Tunnel."
+    },
+    "east": {
+     "to_room": 4400,
+     "description": "To the east lies The Sunless Lands."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and west.",
-   "placeholder": true
+   "description": "A corner of the catacombs where the burial niches are stacked three\nhigh, their slabs carved with worn names and faded dates. A faint\ntrickle of water runs down one wall and pools on the floor in a black,\nstill mirror. North the passage returns to a wider chamber, and a tunnel\nleads west. The cold is bone-deep and utterly still.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4466": {
    "vnum": 4466,
@@ -1910,8 +1948,9 @@
      "description": "To the west lies The Bone Tunnel."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "Skulls line the walls from floor to ceiling, set in tight rows with\ntheir empty sockets watching the passage. The mortar between them has\ncrumbled and the whole wall seems to lean toward you. A door to the\nsouth opens back into the main tunnel, and the bone tunnel goes on west.\nThe cold here has a dry, papery quality, like a held breath.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4467": {
    "vnum": 4467,
@@ -1939,8 +1978,9 @@
      "description": "To the south lies The Small Chamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The bone tunnel bends here, its walls built of thigh-bones stacked like\nfirewood and capped with rows of yellowed skulls. Grit and bone-dust\ncrunch underfoot. A narrow way leads north toward a junction, and a low\ndoor opens south, while the passage you came by runs back east. Every\nbreath tastes of lime and old, dry things.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4468": {
    "vnum": 4468,
@@ -1965,8 +2005,9 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "A small chamber off the bone tunnel, hardly wider than a man with\noutstretched arms. The ceiling is so low that your head brushes the\ncold, damp stone. Someone has scratched crude marks into the wall, long\nrows of them, and then gone no further. A narrow door in the north wall\nleads back to the tunnel.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4469": {
    "vnum": 4469,
@@ -1986,8 +2027,9 @@
      "description": "To the south lies The Tunnel."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
-   "placeholder": true
+   "description": "The tunnel opens into a cavern, its roof lost in blackness and its floor\na litter of broken stone. Stalactites hang from above like rows of\nteeth, and a thin, cold wind moves through the dark. The only way out is\nthe door to the south. Somewhere deep in the rock, water falls in a\nslow, steady dripping.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4470": {
    "vnum": 4470,
@@ -2020,8 +2062,9 @@
      "description": "To the west lies The Ossuary."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Three passages meet here in a cramped junction, the walls patterned in\nbone as a mason might lay brick. A heavy door of black oak stands in the\neast wall, its hinges red with rust, and a wide archway opens west into\na long, low room of piled skulls. The way south leads back down the bone\ncorridor. A pale chalk mark has been drawn on the lintel and rubbed half\naway.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4471": {
    "vnum": 4471,
@@ -2041,8 +2084,9 @@
      "description": "To the west lies The T-junction In The Bone Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "Narrow shelves line this storeroom from floor to ceiling, crowded with\nclay jars sealed in black wax and empty urns without lids. A strong\nsmell of tallow and mildew lingers in the close air. The only way out is\nthe door west, which opens upon the bone corridor. Cobwebs hang from the\nshelves like grey bunting.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4472": {
    "vnum": 4472,
@@ -2071,8 +2115,9 @@
      "description": "To the east lies The T-junction In The Bone Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "The ossuary is a long vault of stacked bones, thousands of them, sorted\nby kind into walls and pillars and tidy pyramids. Skulls gaze from every\nledge and alcove, and a crown of finger-bones is set above the arch like\na decoration. A door in the north wall is closed and heavy with iron\nbands, and the junction lies back east. The silence here is the loudest\nin the whole place.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "4473": {
    "vnum": 4473,
@@ -2092,11 +2137,11 @@
      "description": "To the south lies The Ossuary."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
-   "placeholder": true
+   "description": "A small, square room of damp stone, plain after the bone-lined halls\nbehind. A bare stone bench runs along one wall, and nothing else breaks\nthe grey. Scratches mark the plaster beside the door, a tally that ends\nmid-stroke. The only way out leads south into the ossuary.",
+   "look": "crypt",
+   "extra_descs": {}
   }
  },
  "mobs": {},
- "objects": {},
- "sealed": true
+ "objects": {}
 }

@@ -1,0 +1,324 @@
+{
+ "zone": 475,
+ "_about": "The World of Chaos (levels 22-30), the mad builder's realm between Mount Ravenmist and Ghenna: a house that folds back on itself, bone walkers on the Path of Bones who rise to each other's rattle, mirror shades and chaos imps in the impossible building, leeches and a blood serpent in the Lake of Blood, the pillar wardens, the Hermit of the Cabin (a sub-boss), and the Lord of Chaos in the Hall of Pillars, tearing rifts in the floor and spilling imps.",
+ "creatures": {
+  "47500": {
+   "name": "bone walker skeleton",
+   "short_desc": "a bone walker",
+   "long_desc": "A bone walker clatters along the path, built from bones that never belonged together.",
+   "description": "Three arms, a ribcage set sideways and a skull with too many teeth: something put this together from whatever lay on the path, and it walks.",
+   "level": 23,
+   "flags": [
+    "aggressive",
+    "stay_zone",
+    "undead"
+   ],
+   "race": "undead",
+   "alignment": -700,
+   "helpers": {
+    "group": "chaos_bones",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The bones of the path rattle, and more of them get up!"
+   }
+  },
+  "47501": {
+   "name": "mirror shade",
+   "short_desc": "a mirror shade",
+   "long_desc": "A mirror shade steps out of the glass, wearing your face.",
+   "description": "It looks exactly like you, except that it smiles when you do not, and its eyes are empty silver.",
+   "level": 24,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "race": "shade",
+   "alignment": -600,
+   "helpers": {
+    "group": "chaos_house",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The house shudders, and things come out of the walls!"
+   }
+  },
+  "47502": {
+   "name": "chaos imp",
+   "short_desc": "a chaos imp",
+   "long_desc": "A chaos imp turns cartwheels in the air, giggling.",
+   "description": "A small, bright, many-coloured thing whose shape will not hold still: horns one moment, wings the next, a grin all the time.",
+   "level": 22,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "race": "demon",
+   "alignment": -500,
+   "helpers": {
+    "group": "chaos_house",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The house shudders, and things come out of the walls!"
+   }
+  },
+  "47503": {
+   "name": "blood leech",
+   "short_desc": "a blood leech",
+   "long_desc": "A blood leech the length of an arm slides out of the red water.",
+   "description": "Black, ringed and glistening, with a round mouth full of tiny hooked teeth. It has fed on the lake so long it is more blood than leech.",
+   "level": 22,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "race": "worm",
+   "alignment": 0
+  },
+  "47504": {
+   "name": "pillar warden",
+   "short_desc": "a pillar warden",
+   "long_desc": "A pillar warden stands beside the huge black pillar, humming the same low note.",
+   "description": "A tall figure of polished black stone, faceless, its hands resting on the pillar it guards. When it moves, the hum rises to a scream.",
+   "level": 25,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "golem",
+   "rank": "elite",
+   "alignment": -300
+  },
+  "47510": {
+   "name": "keeper deformed gate",
+   "short_desc": "the Keeper of the Deformed Gate",
+   "long_desc": "The Keeper of the Deformed Gate leans out of the twisted archway, blocking the way.",
+   "description": "A long, folded creature that seems to be part of the gate itself: iron ribs, a hinged jaw, eyes like keyholes. It asks no questions; it only decides.",
+   "level": 26,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "construct",
+   "rank": "elite",
+   "alignment": -500
+  },
+  "47511": {
+   "name": "librarian",
+   "short_desc": "the Librarian",
+   "long_desc": "The Librarian shelves a book upside down and looks at you over its spectacles.",
+   "description": "A thin, grey, stooping figure whose spectacles have no glass. Every book in its library is the same book, and it has read it ten thousand times.",
+   "level": 25,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "humanoid",
+   "rank": "elite",
+   "alignment": -400
+  },
+  "47512": {
+   "name": "blood serpent",
+   "short_desc": "a blood serpent",
+   "long_desc": "A great blood serpent rises from the lake, red water streaming from its scales.",
+   "description": "A sea serpent the colour of a wound, as long as a ship, with a mane of dripping tendrils. It is the Lake of Blood's oldest thing.",
+   "level": 27,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "serpent",
+   "rank": "elite",
+   "alignment": -500
+  },
+  "47520": {
+   "name": "hermit cabin",
+   "short_desc": "the Hermit of the Cabin",
+   "long_desc": "The Hermit of the Cabin rocks in his chair, muttering measurements.",
+   "description": "A wild-haired old man in a builder's apron, covered in chalk lines and plumb strings. He was the mad builder's apprentice once, and he knows every wrong angle in this place, because he drew them.",
+   "level": 28,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "sub-boss",
+   "alignment": -400
+  },
+  "47530": {
+   "name": "lord chaos",
+   "short_desc": "the Lord of Chaos",
+   "long_desc": "The Lord of Chaos stands among the pillars, and the hall bends around him.",
+   "description": "A figure that is never the same twice: a king in a crown of broken compasses, a child, a storm of glass. The builder made this world for him, or he made the builder; either way, everything here answers to him.",
+   "level": 30,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "demon",
+   "rank": "boss",
+   "alignment": -1000,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Lord of Chaos laughs, and the pillars begin to scream!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Unmaking Wave",
+      "telegraph": "The Lord of Chaos spreads his hands, and the hall starts to come apart!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+7",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Twisted Blade",
+      "telegraph": "The Lord of Chaos draws a blade that is the wrong shape!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+6",
+      "dodge": true
+     },
+     {
+      "name": "Rewrite",
+      "telegraph": "The Lord of Chaos begins to rewrite the world around you!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+10",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 47500,
+   "rooms": [
+    16218,
+    16221,
+    16226,
+    16233,
+    16238
+   ]
+  },
+  {
+   "vnum": 47501,
+   "rooms": [
+    16207,
+    16208
+   ]
+  },
+  {
+   "vnum": 47502,
+   "rooms": [
+    16242,
+    16245,
+    16248,
+    16250
+   ]
+  },
+  {
+   "vnum": 47503,
+   "rooms": [
+    16262,
+    16271,
+    16285
+   ]
+  },
+  {
+   "vnum": 47504,
+   "rooms": [
+    16269,
+    16275,
+    16283,
+    16289
+   ]
+  },
+  {
+   "vnum": 47510,
+   "rooms": [
+    16241
+   ]
+  },
+  {
+   "vnum": 47511,
+   "rooms": [
+    16212
+   ]
+  },
+  {
+   "vnum": 47512,
+   "rooms": [
+    16261
+   ]
+  },
+  {
+   "vnum": 47520,
+   "rooms": [
+    16203
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 47500,
+   "route": [
+    16216,
+    16217,
+    16218,
+    16219,
+    16220,
+    16230,
+    16231,
+    16232,
+    16233,
+    16234,
+    16235,
+    16236,
+    16237,
+    16238,
+    16239,
+    16240
+   ],
+   "why": "a bone walker walks the Path of Bones to the Deformed Gate"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 47530,
+   "room": 16252,
+   "why": "the Lord of Chaos in the Hall of Pillars",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Rift of Chaos",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 11,
+     "pct": 0.045,
+     "why": "rifts torn in the floor: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "47502": 3
+     },
+     "shout": "The Lord of Chaos tears the air open, and imps tumble out!",
+     "why": "imps at 66% and 33%"
+    }
+   ]
+  }
+ ]
+}

@@ -9,6 +9,10 @@ after the zone files and before the first reset, so a rebuild of world/zones kee
 Also "creatures" (prototypes by vnum: rank regular/elite/sub-boss, helpers {group, rooms, count}),
 "spawns" [{vnum, rooms, max}] and "patrols" [{vnum, route}] (mobs.patrol_ai; allies.py).
 
+A creature needs only its words, level and rank: health, blows, armour and experience left out
+are worked out from them (numbers()). An entry for a creature the zone files already have, with
+no "name", changes only what it gives (a rank, helpers) and keeps the rest.
+
 A boss placed here spawns in its room and nowhere else in the world (its other resets go). A door
 listed is closed and locked, opened by the key named (doors.py key_vnum).
 """
@@ -19,6 +23,49 @@ import os
 
 logger = logging.getLogger('Misthollow')
 POP_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'world', 'population')
+
+
+RANK_HP = {'regular': 1.0, 'elite': 3.4, 'sub-boss': 6.5, 'boss': 11.0}
+RANK_XP = {'regular': 2, 'elite': 8, 'sub-boss': 20, 'boss': 20}
+
+
+def numbers(level, rank=None):
+    """A creature's numbers from its level and rank, on the same curve as the castle's and
+    Atal'narath's (health about 22 a level for a regular, more by rank)."""
+    L, rank = max(1, int(level)), rank or 'regular'
+    hp = max(8, int(22 * L * RANK_HP.get(rank, 1.0)))
+    n = 1 if L < 10 else 2 if rank in ('regular', 'elite') else 3
+    size = 4 if L < 6 else 6 if L < 15 else 8 if L < 22 else 10
+    bonus = L // 5 + {'elite': 2, 'sub-boss': 4, 'boss': 6}.get(rank, 0)
+    return {'hp_dice': f'{max(1, hp // 10)}d10+{hp // 2}', 'max_hp': hp, 'hp': hp,
+            'damage_dice': f'{n}d{size}+{bonus}', 'hitroll': L // 2, 'damroll': bonus,
+            'ac': -(10 + L), 'armor_class': 5, 'gold': 4 * L, 'exp': 30 * L,
+            'xp': 30 * L * RANK_XP.get(rank, 2), 'detect_bonus': 10}
+
+
+def _avg(dice, default=0):
+    import re
+    m = re.match(r'\s*(\d+)d(\d+)\s*([+-]\s*\d+)?', str(dice or ''))
+    if not m:
+        return default
+    return int(m.group(1)) * (int(m.group(2)) + 1) / 2 + int((m.group(3) or '0').replace(' ', ''))
+
+
+def ranked(proto, rank):
+    """What a rank lifts in an old creature: its health, blows and experience up to the rank's
+    curve at its level (never down: a creature built tougher stays so)."""
+    if rank not in ('elite', 'sub-boss', 'boss'):
+        return {}
+    want, out = numbers(proto.get('level') or 1, rank), {}
+    have = proto.get('max_hp') or _avg(proto.get('hp_dice'))
+    if want['max_hp'] > have:
+        out.update(max_hp=want['max_hp'], hp=want['max_hp'], hp_dice=want['hp_dice'])
+    if _avg(want['damage_dice']) > _avg(proto.get('damage_dice')):
+        out['damage_dice'] = want['damage_dice']
+    for k in ('hitroll', 'damroll', 'xp', 'exp'):
+        if want[k] > (proto.get(k) or 0):
+            out[k] = want[k]
+    return out
 
 
 def load(pop_dir=POP_DIR) -> dict:
@@ -39,22 +86,42 @@ def apply(world, data=None) -> list:
     for z, d in (data if data is not None else load()).items():
         # the zone's own creatures (prototypes: a rebuild of world/zones keeps them)
         for v, proto in (d.get('creatures') or {}).items():
+            v = int(v)
+            if 'name' not in proto:
+                if v not in world.mob_prototypes:
+                    problems.append(f"zone {z}: no creature {v} to give {sorted(proto)}")
+                else:       # an old creature given a rank or helpers (a rank lifts its numbers to fit)
+                    old = world.mob_prototypes[v]
+                    world.mob_prototypes[v] = dict(old, **ranked(old, proto.get('rank')),
+                                                   **{k: x for k, x in proto.items() if k != 'why'})
+                continue
             p = dict(proto)
-            p['vnum'] = int(v)
+            p['vnum'] = v
+            if 'level' in p:
+                for k, x in numbers(p['level'], p.get('rank')).items():
+                    p.setdefault(k, x)
             p.setdefault('max_hp', p.get('hp', 1000))
-            world.mob_prototypes[int(v)] = p
+            p.setdefault('hp', p['max_hp'])
+            if p.get('rank') == 'boss' and 'boss' not in (p.get('flags') or []):
+                p['flags'] = list(p.get('flags') or []) + ['boss']
+            world.mob_prototypes[v] = p
         # where they live: each room named gets one (max per room)
         for sp in d.get('spawns') or []:
             vnum = int(sp['vnum'])
             if vnum not in world.mob_prototypes:
                 problems.append(f"zone {z}: no creature {vnum}")
                 continue
-            for rv in sp.get('rooms') or []:
+            # a reset's max counts the creature across the whole zone (world.reset_zone): one in
+            # each room named means that many in all, plus any patrols of the same kind
+            rooms_named = sp.get('rooms') or []
+            total = sum(len(x.get('rooms') or []) for x in d.get('spawns') or [] if int(x['vnum']) == vnum) \
+                + sum(1 for pt in d.get('patrols') or [] if int(pt['vnum']) == vnum)
+            for rv in rooms_named:
                 room = world.rooms.get(int(rv))
                 if room is None:
                     problems.append(f"zone {z}: no room {rv} for {vnum}")
                     continue
-                room.mob_resets.append({'vnum': vnum, 'max': int(sp.get('max', 1))})
+                room.mob_resets.append({'vnum': vnum, 'max': max(int(sp.get('max', 1)), total)})
         # patrols: start at the route's first room and walk it (mobs.patrol_ai)
         for pt in d.get('patrols') or []:
             vnum, route = int(pt['vnum']), [int(r) for r in pt.get('route') or []]
@@ -62,8 +129,8 @@ def apply(world, data=None) -> list:
             if vnum not in world.mob_prototypes or not route or bad:
                 problems.append(f"zone {z}: patrol {vnum} route {bad or route}")
                 continue
-            world.mob_prototypes[vnum] = dict(world.mob_prototypes[vnum], patrol_route=route)
-            world.rooms[route[0]].mob_resets.append({'vnum': vnum, 'max': 1})
+            # the route goes with the reset, so two patrols of one kind walk two routes (world.reset_zone)
+            world.rooms[route[0]].mob_resets.append({'vnum': vnum, 'max': 1, 'route': route})
         for b in d.get('bosses') or []:
             vnum, room = int(b['vnum']), world.rooms.get(int(b['room']))
             if room is None or vnum not in world.mob_prototypes:

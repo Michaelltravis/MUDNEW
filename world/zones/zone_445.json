@@ -24,8 +24,8 @@
      "description": "To the south lies The Dark Woods."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Dark Woods crowd the track so closely that daylight comes down grey\nand thin, and the trunks stand black with damp. Roots break through the\nleaf-mould like knuckles, and a rank tang of old woodsmoke hangs between\nthe boughs. The track runs north toward the Black Forest and south\nthrough more of the woods. Someone has hacked a rough notch into every\ntenth tree, high up where only a giant could reach.",
+   "extra_descs": {}
   },
   "2201": {
    "vnum": 2201,
@@ -47,8 +47,14 @@
      "description": "To the south lies The Small Intersection In The Forest."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north and south.",
-   "placeholder": true
+   "description": "The path through the Dark Woods narrows to a deer-track between rank\nbushes, with branches meeting overhead. Rusted iron spikes have been\nhammered into several trunks and hung with strings of knucklebones.\nBlack woods lead north, and the track opens south at a small crossing.\nThe air smells of resin and wet earth.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644500,
+     "max": 1
+    }
+   ]
   },
   "2202": {
    "vnum": 2202,
@@ -74,8 +80,8 @@
      "description": "To the south lies The Edge Of The Forest And Hills."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Three tracks meet in a small clearing in the forest, and a split stump\nmarks the crossing. A trail runs north into the Dark Woods, another east\ninto denser forest, and a third south to where the trees give way to\nhills. Pale lichen grows on the stump, and a few crow feathers lie\npinned beneath a stone.",
+   "extra_descs": {}
   },
   "2203": {
    "vnum": 2203,
@@ -97,8 +103,8 @@
      "description": "To the west lies The Rocky Path."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead north and west.",
-   "placeholder": true
+   "description": "The forest thins into rough hills here: the last pines give way to\nheather and bare knuckles of rock. A trodden way leads north to a small\nintersection under the trees, and a stony path climbs west. A cairn of\nthree flat stones, topped by a cracked skull, stands beside the track.",
+   "extra_descs": {}
   },
   "2204": {
    "vnum": 2204,
@@ -120,8 +126,8 @@
      "description": "To the west lies The Small Intersection In The Forest."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead south and west.",
-   "placeholder": true
+   "description": "Dense forest presses in from every side, the trunks knotted with creeper\nand the undergrowth chest-high and wet. A narrow lane has been broken\nthrough it by something broad and heavy, leaving snapped saplings along\nboth edges. The lane bends south toward a darker path and west back to a\nsmall intersection. Dripping leaves patter softly on your shoulders.",
+   "extra_descs": {}
   },
   "2205": {
    "vnum": 2205,
@@ -147,8 +153,8 @@
      "description": "To the south lies A Turn In The Path."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The Dark Forest Path is a hollow of trodden mud between black trunks,\nrutted deep by great bare feet. Strings of hair-braided charms swing\nfrom the lowest branches and clack together in the draught. A boggier\nway wanders east, a bend of the path lies south, and the dense forest\nrises to the north. The air tastes of peat and smoke.",
+   "extra_descs": {}
   },
   "2206": {
    "vnum": 2206,
@@ -170,8 +176,14 @@
      "description": "To the west lies The Bloody Intersection."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead north and west.",
-   "placeholder": true
+   "description": "The path turns sharply here, bending around a boulder as tall as a hut\nand daubed with a red handprint. Old campfire ash and gnawed bones\nscatter the ground at its foot. The track leads north toward the dark\nforest path and west toward a place where the ground is stained dark.\nCrows have scratched the earth bare along the verge.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644500,
+     "max": 1
+    }
+   ]
   },
   "2207": {
    "vnum": 2207,
@@ -197,8 +209,10 @@
      "description": "To the west lies The Rocky Path."
     }
    },
-   "description": "From the crest the land below spreads out like a map. Gorse and heather\ncling to the windy rise. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "This is the Bloody Intersection, and it has earned the name. The packed\nearth is stained brown-red in broad splashes, the flat rocks are crusted\nblack, and bones of every size are heaped against the stones, some still\nhung with rags of flesh. A path leads east toward a turning, another\nruns west along a rocky track, and a steep hillside rises south. The\nogres feast here, and their leavings stink in the heat.",
+   "extra_descs": {
+    "stains blood stones intersection": "The stones have been stained so many times they no longer dry. Hundreds\nof knucklebones have been pressed into the clay between them."
+   }
   },
   "2208": {
    "vnum": 2208,
@@ -220,8 +234,8 @@
      "description": "To the east lies The Bloody Intersection."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead north\nand east.",
-   "placeholder": true
+   "description": "A rocky path winds over broken stone, climbing and dropping among\ntumbled boulders. The rock here is grey and sharp, and little grows but\nlichens. The path leads north along a ridge and east toward a stained\ncrossing. Fresh bones have been scattered along the verge, picked clean.",
+   "extra_descs": {}
   },
   "2209": {
    "vnum": 2209,
@@ -243,8 +257,8 @@
      "description": "To the south lies The Rocky Path."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead east and south.",
-   "placeholder": true
+   "description": "The rocky path squeezes between two grey outcrops before it drops toward\nthe trees. Chips of flint litter the track, and the stone is scored with\nlong parallel gouges where something has dragged heavy timber. The path\nruns east to the edge of the forest and south among tumbled boulders.",
+   "extra_descs": {}
   },
   "2210": {
    "vnum": 2210,
@@ -274,8 +288,8 @@
      "description": "To the west lies The Sparse Foothills."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. Ways lead north,\neast, south and west.",
-   "placeholder": true
+   "description": "A steep rocky hillside rises here, strewn with loose scree that rattles\naway underfoot. Scrubby gorse clings in the crevices between boulders.\nThe slope flattens to the north at a bloody crossing, runs on east to\nlevel ground, south toward a huge tree, and west across sparse\nfoothills. Cold wind whips the grey stones.",
+   "extra_descs": {}
   },
   "2211": {
    "vnum": 2211,
@@ -297,8 +311,8 @@
      "description": "To the south lies In The Foothills."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. The ground rises and falls in\ngrassy folds. Ways lead east and south.",
-   "placeholder": true
+   "description": "The foothills are sparse and stony here, with a thin skin of heather\nover the rock. A broken stone wall, long fallen, can be traced across\nthe slope by its line of mossy rubble. The ground climbs east toward a\nrocky hillside and rolls south through low hills. Nothing taller than a\nthistle grows within sight.",
+   "extra_descs": {}
   },
   "2212": {
    "vnum": 2212,
@@ -320,8 +334,8 @@
      "description": "To the west lies Up the Rocky Hillside."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. Rocks break through the thin\nsoil of the slope. Ways lead south and west.",
-   "placeholder": true
+   "description": "You stand on a shelf of level ground cut into the hillside, short-\ngrassed and windy. Flat stones are ringed around a blackened fire pit\nthat has been used many times. The steep hillside lies west, and a dark\ncave mouth yawns to the south. Smoke stains streak the rock above it.",
+   "extra_descs": {}
   },
   "2213": {
    "vnum": 2213,
@@ -347,8 +361,8 @@
      "description": "To the south lies The Hills Overlooking The Shore."
     }
    },
-   "description": "From the crest the land below spreads out like a map. A narrow path\nwinds between the hillocks. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "These foothills are rolling and bare, grassed with wiry tussocks and\ndotted with pale outcrops. A shallow gully, scoured by old rains, runs\naway downhill. The hills rise gently north, east toward a huge tree, and\nsouth toward a view of the sea. The wind is steady and carries the tang\nof salt.",
+   "extra_descs": {}
   },
   "2214": {
    "vnum": 2214,
@@ -378,8 +392,8 @@
      "description": "To the west lies In The Foothills."
     }
    },
-   "description": "From the crest the land below spreads out like a map. A narrow path\nwinds between the hillocks. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A huge tree stands alone on the hilltop, its trunk gnarled and fissured,\nits roots clutching the stony slope. Strips of hide have been nailed\ninto the bark, stiff and dark, and old arrowheads of flint litter the\nearth at its foot. The hill continues north up the slope, east to a dark\ncave, south along the ridge, and west through low foothills.",
+   "extra_descs": {}
   },
   "2215": {
    "vnum": 2215,
@@ -411,8 +425,9 @@
      "description": "To the west lies Before The Huge Tree."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A broad, ragged mouth of black rock opens in the hillside here, ringed\nwith piled skulls and cairns of broken stone. The smell of old meat and\nwet fur breathes out of the darkness. The cave itself lies east, while\nlevel ground is to the north, hills fall away south toward a distant\nshoreline, and a huge tree stands west. Deep gouges in the floor lead\ninto the gloom.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2216": {
    "vnum": 2216,
@@ -432,8 +447,9 @@
      "description": "To the west lies Before the Dark Cave."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "Inside the horrid cave the air is warm, close and foul. Rough walls\nsweat with moisture, and heaps of gnawed bones and filthy hides are\npiled in the corners. Little light reaches this far from the entrance,\nand the floor is slick with grease. The only way out is back west into\nthe daylight.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2217": {
    "vnum": 2217,
@@ -459,8 +475,8 @@
      "description": "To the down lies The Rocky Shore."
     }
    },
-   "description": "Rocks break through the thin soil of the slope. From the crest the land\nbelow spreads out like a map. Ways lead north, east and down.",
-   "placeholder": true
+   "description": "The hills overlooking the shore end in a ragged edge, beyond which\nspreads a wide sweep of cold grey sea. Salt-burned heather scrubs the\nground, and the wind pulls at your clothes. The hills continue north and\neast, and a steep scramble leads down to the rocky shore. Broken shells\nhave been dropped across the turf by the sea birds.",
+   "extra_descs": {}
   },
   "2218": {
    "vnum": 2218,
@@ -490,8 +506,8 @@
      "description": "To the down lies The Rocky Shoreline."
     }
    },
-   "description": "The ground rises and falls in grassy folds. From the crest the land\nbelow spreads out like a map. Ways lead north, east, west and down.",
-   "placeholder": true
+   "description": "From the hills overlooking the shoreline you can see surf breaking on\nblack rocks far below. The turf is thin and wiry, studded with sea-pink\nand thrift. Slopes continue north toward a huge tree, east and west\nalong the hill, and a steep path drops down to the rocky shoreline. A\nsingle wind-bent thorn stands over the edge.",
+   "extra_descs": {}
   },
   "2219": {
    "vnum": 2219,
@@ -517,8 +533,8 @@
      "description": "To the down lies The Rocky Shore."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead north, west and down.",
-   "placeholder": true
+   "description": "Wind sings across the hills above the shoreline, flattening the coarse\ngrass in long ripples. The sea shows grey and endless far below, and\ngulls wheel as tiny white flecks. A cave mouth gapes north, the hills\nroll west, and a goat-track drops down a broken slope to the rocky\nshore. A leaning pile of stones marks the path's head.",
+   "extra_descs": {}
   },
   "2220": {
    "vnum": 2220,
@@ -544,8 +560,15 @@
      "description": "To the up lies The Hills Overlooking The Shore."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead east, south and up.",
-   "placeholder": true
+   "description": "Wet black rocks, slimed with weed, litter the shore here, and the surf\npounds them in slow booms. Tide pools hold small drifts of foam and\ncrushed shells. The shore runs on east along the rocks, a waterline path\nleads south to the edge of the sea, and a steep slope climbs up to the\nhills. Everything is salt, spray and cold.",
+   "look": "shore",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644501,
+     "max": 1
+    }
+   ]
   },
   "2221": {
    "vnum": 2221,
@@ -575,8 +598,9 @@
      "description": "To the up lies The Hills Overlooking The Shoreline."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead east, south, west and up.",
-   "placeholder": true
+   "description": "The rocky shoreline is a jumble of boulders and shingle, polished by\ncenturies of storm. A line of tangled kelp and driftwood marks the high\ntide. Shore stretches east and west along the foot of the cliffs, the\nedge of the sea lies south, and a steep path climbs to the hills above.\nGulls scream overhead.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "2222": {
    "vnum": 2222,
@@ -606,8 +630,9 @@
      "description": "To the up lies The Hills Above The Shoreline."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north, south, west and\nup.",
-   "placeholder": true
+   "description": "Long grey waves run in against the rocky shore, hissing through the\nshingle. In the cliff face a dark gap opens to the north, damp and\nstrangely quiet, from which a faint chill seeps. The shore continues\nwest along the rocks, the edge of the sea lies south, and a steep path\nclimbs back up to the hills. A wrecked oar lies jammed between the\nstones.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "2223": {
    "vnum": 2223,
@@ -629,8 +654,15 @@
      "description": "To the east lies The Edge Of The Sea."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north and east.",
-   "placeholder": true
+   "description": "A narrow beach of grey shingle lies at the edge of the sea, strewn with\nbleached bones of fish and seabirds. The waves slide in slow and heavy,\ntrailing long ribbons of weed. Rocks rise north toward the shore, and\nthe sea's edge runs east. A rusted iron ring has been driven into a\nboulder.",
+   "look": "shore",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644501,
+     "max": 1
+    }
+   ]
   },
   "2224": {
    "vnum": 2224,
@@ -662,8 +694,9 @@
      "description": "To the west lies The Edge Of The Sea."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The land ends in a ledge of jagged rock where the sea heaves and sucks\nbelow. Beyond it, a strange blue light shines on the water, cold and\nunsteady. The shore lies north, the edge of the sea runs east and west,\nand the way south leads out onto the glow. Ice crusts the lowest stones.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "2225": {
    "vnum": 2225,
@@ -685,8 +718,9 @@
      "description": "To the west lies The Edge Of The Sea."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and west.",
-   "placeholder": true
+   "description": "Here the land gives out into the sea, and the grey water laps at the\nlast broken stones. Barnacles crust every rock, and the wind carries a\nthin, bitter spray. The shore lies north, and the edge of the sea\ncontinues west along the stones. Far across the water the horizon is a\nblur of cloud.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "2226": {
    "vnum": 2226,
@@ -710,8 +744,9 @@
      "description": "To the south lies The Glacier Temple."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "You drift on dark water in a strange cold light, blue as the heart of a\nglacier. Slabs of pale ice turn slowly around you, and the swell lifts\nand drops you without a sound. Shore lies back north, and a great shape\nof ice rises ahead, south. The air is bitter enough to ache in your\nlungs.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "2227": {
    "vnum": 2227,
@@ -733,8 +768,9 @@
      "description": "To the west lies The Dark Forest Path."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead east and west.",
-   "placeholder": true
+   "description": "The path sinks into black mud here, and each step comes up with a slow\nsucking sound. Rotten planks have been laid across the worst of the\nooze, and a green film of scum covers the pools on either side. The\nswamp stretches east along the path, and firmer ground lies west toward\nthe forest. Midges swarm thick over the stagnant water.",
+   "look": "swamp",
+   "extra_descs": {}
   },
   "2228": {
    "vnum": 2228,
@@ -756,8 +792,9 @@
      "description": "To the west lies The Swampy Path."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead east and west.",
-   "placeholder": true
+   "description": "Tussocks of yellow sedge rise out of the swamp on both sides of the\npath, with brown water glinting between them. Half-sunken logs make a\ncrooked causeway of sorts, slick with algae. The path runs east and\nwest, and in either direction the way is no cleaner. A low pale mist\nhangs low over the pools.",
+   "look": "swamp",
+   "extra_descs": {}
   },
   "2229": {
    "vnum": 2229,
@@ -779,8 +816,9 @@
      "description": "To the west lies The Swampy Path."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead east and west.",
-   "placeholder": true
+   "description": "Dead trees lean out of the stagnant swamp like gallows, bare of bark and\nhung with trailing moss. The path is little more than a ridge of peat,\nsoft and dangerous to the side. It continues east to a sharp turn and\nwest the way you came. Bubbles of foul gas rise and burst in the black\nwater.",
+   "look": "swamp",
+   "extra_descs": {}
   },
   "2230": {
    "vnum": 2230,
@@ -802,8 +840,9 @@
      "description": "To the west lies The Swampy Path."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead south and west.",
-   "placeholder": true
+   "description": "The path bends hard here, skirting a deep, brown pool fringed with\nrotting reeds. Great ragged claw-prints cross the mud where something\ncame up out of the water to cool itself. One arm of the path leads south\ninto the mist, and the other runs west along the ridge of peat. The\nstink of bog and rot is close to overpowering.",
+   "look": "swamp",
+   "extra_descs": {}
   },
   "2231": {
    "vnum": 2231,
@@ -825,8 +864,15 @@
      "description": "To the south lies Lost in the Mist."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A fog thickens as the path crosses a wide flat of black marsh. Skeletal\nreeds rattle in the damp wind, and a few withered gibbets of twisted\nwire hold only scraps of cloth. To the north the path returns toward a\nsharp bend; ahead south, the mist swallows the track entirely.\nEverything is wet and grey.",
+   "look": "swamp",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644500,
+     "max": 1
+    }
+   ]
   },
   "2232": {
    "vnum": 2232,
@@ -838,9 +884,13 @@
    },
    "sector_type": "hills",
    "flags": [],
-   "exits": {},
-   "description": "The ground rises and falls in grassy folds. From the crest the land\nbelow spreads out like a map.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 2235
+    }
+   },
+   "description": "Mist lies on the hummocks like wet wool, and the grass underfoot is\nsilver with beaded damp. Every direction looks exactly like every other,\nand the only landmark is a lopsided mound that seems to drift from view\nas you approach. Somewhere a stream chuckles, always at the edge of\nhearing, never any nearer.",
+   "extra_descs": {}
   },
   "2233": {
    "vnum": 2233,
@@ -856,10 +906,18 @@
     "north": {
      "to_room": 2231,
      "description": "To the north lies The Swampy Path."
+    },
+    "east": {
+     "to_room": 2234
+    },
+    "south": {
+     "to_room": 2236,
+     "description": "To the south lies Lost in the Mist."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. A way leads north.",
-   "placeholder": true
+   "description": "The mist is so thick here that you can barely see your own hands, and\nthe world shrinks to a few yards of dripping peat. Shapes that might be\ntrees or standing figures loom up and fade. Only one way is certain:\nback along the path to the north. The silence is broken now and then by\na distant, heavy splash.",
+   "look": "swamp",
+   "extra_descs": {}
   },
   "2234": {
    "vnum": 2234,
@@ -871,9 +929,19 @@
    },
    "sector_type": "hills",
    "flags": [],
-   "exits": {},
-   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 2233
+    },
+    "south": {
+     "to_room": 2237
+    },
+    "east": {
+     "to_room": 2238
+    }
+   },
+   "description": "A low ridge of black stone breaks the hillside here, its top furred with\nmoss and lost in the fog. The mist is colder in the hollow beneath it\nand smells of iron and turned earth. Your own footsteps return from the\ngrey as a muffled thump, as if another walker followed just out of\nsight.",
+   "extra_descs": {}
   },
   "2235": {
    "vnum": 2235,
@@ -885,9 +953,16 @@
    },
    "sector_type": "hills",
    "flags": [],
-   "exits": {},
-   "description": "From the crest the land below spreads out like a map. Gorse and heather\ncling to the windy rise.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 2254
+    },
+    "north": {
+     "to_room": 2232
+    }
+   },
+   "description": "The hill dips into a bowl of heather, soaked and drooping under a\nceiling of white mist. A few standing stones lean at odd angles, their\nlichen glowing faintly yellow in the murk. Moisture beads on your\nclothes and runs in thin lines down your face. You turn about and find\nyou cannot tell where you entered.",
+   "extra_descs": {}
   },
   "2236": {
    "vnum": 2236,
@@ -899,9 +974,14 @@
    },
    "sector_type": "hills",
    "flags": [],
-   "exits": {},
-   "description": "Gorse and heather cling to the windy rise. Rocks break through the thin\nsoil of the slope.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 2233,
+     "description": "To the north lies Lost in the Mist."
+    }
+   },
+   "description": "Tufts of rank grass and clumps of thistle dot a slope that rises and\nfalls without reason. The mist is pierced here by a few thin spars of\ndead timber, bleached and splintered. Droplets fall from them in a\nsteady tick, like a counting clock. Every direction gives the same view\nof grey.",
+   "extra_descs": {}
   },
   "2237": {
    "vnum": 2237,
@@ -913,9 +993,13 @@
    },
    "sector_type": "hills",
    "flags": [],
-   "exits": {},
-   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 2234
+    }
+   },
+   "description": "A shallow ford of black water winds through these misty hills, only\ninches deep and clouded with silt. Wet stepping-stones show for a moment\nand then dissolve into the whiteness. The fog is thick enough to taste,\nflat and mineral on the tongue. A dull drumbeat sounds from somewhere\nbeyond the haze, or perhaps it is only your pulse.",
+   "extra_descs": {}
   },
   "2238": {
    "vnum": 2238,
@@ -931,10 +1015,13 @@
     "east": {
      "to_room": 2239,
      "description": "To the east lies The Solid Path."
+    },
+    "west": {
+     "to_room": 2234
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. A way leads east.",
-   "placeholder": true
+   "description": "The mist thins to a ragged curtain among the last trees, and the trunks\nstand like dark bars against the pale air. A firmer track begins here,\nits surface beaten flat by many large feet, leading east out of the\nmurk. Dead leaves hang motionless in the damp. The lost way behind you\nis a wall of wet grey.",
+   "extra_descs": {}
   },
   "2239": {
    "vnum": 2239,
@@ -956,8 +1043,8 @@
      "description": "To the west lies Lost in the Mist."
     }
    },
-   "description": "From the crest the land below spreads out like a map. The ground rises\nand falls in grassy folds. Ways lead north and west.",
-   "placeholder": true
+   "description": "Solid ground at last: a causeway of packed stone and gravel runs over\nthe hills, its edges laid out with big rough rocks. Wheel ruts and the\ndeep prints of bare feet mark the surface. The path leads north into a\nforested track, and west back into the mist. A faint smell of cookfires\nsits on the breeze.",
+   "extra_descs": {}
   },
   "2240": {
    "vnum": 2240,
@@ -979,8 +1066,8 @@
      "description": "To the south lies The Solid Path."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead north and south.",
-   "placeholder": true
+   "description": "A forested path winds between old firs, its surface trampled to a pale\nribbon by heavy traffic. Bones and broken pots lie in the ditch, and\nstrips of hide dangle from the low branches as warnings. The track runs\nnorth toward a distant palisade and south to a solid causeway. Thin\nsmoke drifts through the treetops.",
+   "extra_descs": {}
   },
   "2241": {
    "vnum": 2241,
@@ -1002,8 +1089,10 @@
      "description": "To the south lies A Forested Path."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north and south.",
-   "placeholder": true
+   "description": "A palisade of sharpened logs, each as thick as a barrel, bars the forest\nhere, its points hung with skulls of every shape and size. A broad gate\nof lashed timber stands open to the north, flanked by two watchtowers of\ncrude planks. Beyond it, the ogre village crowds around its cookfires.\nThe track runs back south into the forest.",
+   "extra_descs": {
+    "palisade gate skulls towers": "The skulls on the palisade range from wolf to bear to man, most of them\ncracked open. The gate hinges are bound with hide and thick as a man's\nwaist."
+   }
   },
   "2242": {
    "vnum": 2242,
@@ -1025,8 +1114,14 @@
      "description": "To the east lies Inside the Gates."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "Crude huts squat shoulder to shoulder around this corner of the village,\ntheir roofs patched with hides and turf. A rusty cauldron the size of a\ncartwheel sits cold upon a tripod of lashed logs. A lane leads north to\nthe gathering place, and another runs east toward the village gates.\nBones, ashes and broken tools litter the mud.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644502,
+     "max": 1
+    }
+   ]
   },
   "2243": {
    "vnum": 2243,
@@ -1056,8 +1151,14 @@
      "description": "To the west lies Among the Crude Huts."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "You are just inside the gates of the ogre village, standing on churned\nand filthy ground. Crude huts of timber, mud and hide squat on either\nhand, and the great gate stands open to the south. A wide trodden way\nleads north toward a smoking firepit, with lanes running east and west\namong the huts. The stench of woodsmoke, meat and midden is\noverwhelming.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644502,
+     "max": 1
+    }
+   ]
   },
   "2244": {
    "vnum": 2244,
@@ -1079,8 +1180,8 @@
      "description": "To the west lies Inside the Gates."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and west.",
-   "placeholder": true
+   "description": "Low huts of mud, timber and hide are crammed together here, their doors\nhung with stinking skins. Drying racks stand outside, strung with strips\nof grey meat and braided gut. A lane leads north to a heap of refuse,\nand another wanders west toward the village gates. The ground is trodden\nto filthy slurry.",
+   "extra_descs": {}
   },
   "2245": {
    "vnum": 2245,
@@ -1102,8 +1203,14 @@
      "description": "To the south lies Among the Crude Huts."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead east and south.",
-   "placeholder": true
+   "description": "This is the gathering place of the ogres: a wide trampled square rimmed\nby log benches and smoke-blackened stumps. A tall pole planted in the\ncentre bears a ring of sun-whitened skulls. The firepit and lodge are\nclose to the east, and a lane leads south among the huts. Old\nbloodstains darken the packed earth.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644502,
+     "max": 1
+    }
+   ]
   },
   "2246": {
    "vnum": 2246,
@@ -1133,8 +1240,16 @@
      "description": "To the west lies The Gathering Place."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "A huge firepit smoulders in the middle of the clearing, ringed by\nblackened boulders and heaped with charred bones. Spits of green wood\nstand over the embers, still dripping fat. The great lodge of the ogre\nchieftain looms to the north, the village dump lies east, a gathering\nplace west, and the gates lie back south.",
+   "extra_descs": {
+    "firepit fire pit boulders": "The pit has burned for so long that its boulders have cracked in the\nheat. Bones of every kind jut from the ashes, and the char is a hand\ndeep."
+   },
+   "mob_resets": [
+    {
+     "vnum": 644503,
+     "max": 1
+    }
+   ]
   },
   "2247": {
    "vnum": 2247,
@@ -1156,8 +1271,14 @@
      "description": "To the west lies The Firepit Before the Lodge."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth and west.",
-   "placeholder": true
+   "description": "The village dump is a stinking hollow heaped with gnawed bones, rotten\nhides and smashed pottery. Flies blacken every surface, and ragged\nscraps of cloth flutter from the refuse. The ground is soft and sour\nunderfoot. A rutted path leads south among the huts, and another goes\nwest to the firepit.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644502,
+     "max": 1
+    }
+   ]
   },
   "2248": {
    "vnum": 2248,
@@ -1181,8 +1302,14 @@
      "description": "To the south lies The Firepit Before the Lodge."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The entryway to the lodge is a long hall of massive uprights, hung with\ntrophy skulls and the pelts of great beasts. Smoke curls through the\nrafters from a fire pit set in the floor, its glow flickering across\nmud-daubed walls. The way south leads out to the firepit, and wide doors\nlead north into the throne room. The floor is packed hard and greasy\nwith spilled fat.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644503,
+     "max": 1
+    }
+   ]
   },
   "2249": {
    "vnum": 2249,
@@ -1206,8 +1333,16 @@
      "description": "To the south lies The Entryway to the Lodge."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The throne room is a vast timber hall black with smoke, its roof beams\nsagging under trophies of war. At its head stands a throne of piled\nbones and rough timber, draped with a bearskin. Torches gutter in iron\ncressets along the walls. A narrow doorway leads north to the\nchieftain's own room, and the hall opens back south to the entryway.",
+   "extra_descs": {
+    "throne bones bearskin": "The throne is made of leg bones and jawbones lashed together with sinew.\nThe bearskin that covers the seat is big enough to wrap three men."
+   },
+   "mob_resets": [
+    {
+     "vnum": 644505,
+     "max": 1
+    }
+   ]
   },
   "2250": {
    "vnum": 2250,
@@ -1227,8 +1362,14 @@
      "description": "To the south lies The Throne Room."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
-   "placeholder": true
+   "description": "The chieftain's room is a low, hot chamber, thick with the smell of musk\nand old grease. A bed of heaped furs and straw takes up one end, and\nwar-trophies of every kind cover the walls, from broken shields to\nrusted helms. A single narrow window lets in a bar of pale smoke-stained\nlight. The only way out is south, back into the throne room.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644506,
+     "max": 1
+    }
+   ]
   },
   "2251": {
    "vnum": 2251,
@@ -1240,9 +1381,19 @@
    },
    "sector_type": "mountain",
    "flags": [],
-   "exits": {},
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 2253,
+     "description": "To the north lies The Glacier Temple."
+    },
+    "east": {
+     "to_room": 2252,
+     "description": "To the east lies The Frigid Wastelands."
+    }
+   },
+   "description": "A flat white waste of snow and ice stretches in every direction, scoured\nby a bitter wind. The cold bites through cloth and leather. No trail,\npost or landmark breaks the whiteness, and your own footprints fill with\ndrifting snow almost as soon as they are made.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "2252": {
    "vnum": 2252,
@@ -1254,9 +1405,25 @@
    },
    "sector_type": "mountain",
    "flags": [],
-   "exits": {},
-   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 2251,
+     "description": "To the west lies The Frigid Wastelands."
+    },
+    "east": {
+     "to_room": 2254,
+     "description": "To the east lies The Frigid Wastelands."
+    }
+   },
+   "description": "A flat plain of old snow stretches away under a pale, low sun. The wind\ncombs long ridges across it, and every ridge looks the same. The cold is\nso intense that your breath turns to needles of rime in the air.",
+   "look": "snow",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644504,
+     "max": 1
+    }
+   ]
   },
   "2253": {
    "vnum": 2253,
@@ -1280,8 +1447,11 @@
      "description": "To the south lies The Frigid Wastelands."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A temple of ice rises out of the frozen sea, its walls and pillars cut\nfrom glacier as clear as glass. Blue light pours through the vaulted\nroof and glitters on carved ogre faces frozen in the walls. A broken\naltar of black stone stands in the middle, rimed with frost. Water lies\nback north, and the door south opens on bare snow and wind.",
+   "look": "snow",
+   "extra_descs": {
+    "altar black stone": "The altar is a single slab of black stone, split down the middle. Dark\nold stains have soaked into its top beneath the frost."
+   }
   },
   "2254": {
    "vnum": 2254,
@@ -1293,9 +1463,21 @@
    },
    "sector_type": "mountain",
    "flags": [],
-   "exits": {},
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other.",
-   "placeholder": true
+   "exits": {
+    "east": {
+     "to_room": 2235
+    },
+    "south": {
+     "to_room": 2255
+    },
+    "west": {
+     "to_room": 2252,
+     "description": "To the west lies The Frigid Wastelands."
+    }
+   },
+   "description": "Wind has carved the drifts here into fluted, frozen waves with knife-\nedged crests. A scatter of black rock breaks through the snow, glazed\nwith ice. Nothing moves, and the only sound is the dry hiss of blown\ncrystals. The cold gnaws your fingers and the tip of your nose.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "2255": {
    "vnum": 2255,
@@ -1307,9 +1489,20 @@
    },
    "sector_type": "mountain",
    "flags": [],
-   "exits": {},
-   "description": "Snow lingers in the shadowed hollows of the rock. Bare rock climbs\nsteeply on one side and falls away on the other.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 2254
+    },
+    "west": {
+     "to_room": 2256
+    },
+    "south": {
+     "to_room": 2258
+    }
+   },
+   "description": "A long frozen stream lies beneath a skin of wind-polished ice, so clear\nthat you can see stones and trapped leaves deep inside. Banks of old\nsnow rise on both sides. Cracks run through the ice with sudden groaning\nreports. The sky overhead is a dull steel colour, promising more snow.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "2256": {
    "vnum": 2256,
@@ -1321,9 +1514,17 @@
    },
    "sector_type": "mountain",
    "flags": [],
-   "exits": {},
-   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside.",
-   "placeholder": true
+   "exits": {
+    "east": {
+     "to_room": 2255
+    },
+    "west": {
+     "to_room": 2257
+    }
+   },
+   "description": "The snow is churned here by huge, deep tracks which end in frozen\npuddles, and bones of some great animal jut from the drift, coated in\nfrost. A few shreds of fur flutter from a ragged post of driftwood. The\ncold is relentless and the horizon is lost in a whiteness that merges\nwith the sky.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "2257": {
    "vnum": 2257,
@@ -1335,9 +1536,20 @@
    },
    "sector_type": "mountain",
    "flags": [],
-   "exits": {},
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock.",
-   "placeholder": true
+   "exits": {
+    "east": {
+     "to_room": 2256
+    }
+   },
+   "description": "A great boulder of blue-white ice squats in the snow, taller than a hut,\nits flanks scoured smooth by the wind. Icicles hang from every lip like\nfangs. Past it, the waste runs away into haze, featureless and still.\nYour eyes sting with the glare.",
+   "look": "snow",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644504,
+     "max": 1
+    }
+   ]
   },
   "2258": {
    "vnum": 2258,
@@ -1353,10 +1565,17 @@
     "south": {
      "to_room": 2260,
      "description": "To the south lies The Edge Of The Frigid Wastes."
+    },
+    "north": {
+     "to_room": 2255
+    },
+    "west": {
+     "to_room": 2259
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. A way leads south.",
-   "placeholder": true
+   "description": "The waste rises into a low snowy ridge, bare of anything but rime and a\nfew dark ribs of stone. The wind comes in hard across the crest and\nfills the air with stinging crystals. A faint trail of packed snow leads\nsouth down the slope to the edge of the wastes. A pale, cold glow\nlingers in the overcast sky.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "2259": {
    "vnum": 2259,
@@ -1368,9 +1587,14 @@
    },
    "sector_type": "mountain",
    "flags": [],
-   "exits": {},
-   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside.",
-   "placeholder": true
+   "exits": {
+    "east": {
+     "to_room": 2258
+    }
+   },
+   "description": "A hollow in the snow holds the splintered wreck of a sledge, half buried\nand glazed with ice. Beside it a ring of stones surrounds the black scar\nof a long-dead fire. The drifts roll away on every side, white and\nsilent. The cold settles into your joints like iron.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "2260": {
    "vnum": 2260,
@@ -1392,8 +1616,9 @@
      "description": "To the up lies On The Cliffside."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead north and up.",
-   "placeholder": true
+   "description": "Here the frigid wastes end against a towering wall of dark rock streaked\nwith ice. A steep stair of frozen steps has been hacked into the cliff,\nclimbing to a keep whose broken towers hang above the cold. A path leads\nnorth back onto the wastelands. Wind howls down the stair and tears at\nyour clothes.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "4302": {
    "vnum": 4302,
@@ -1415,8 +1640,8 @@
      "description": "To the down lies The Deep Crack."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead up and down.",
-   "placeholder": true
+   "description": "Steps hardly wider than a boot are cut into the cliff, worn hollow in\nthe middle by long use. The rock is wet and the wind tugs at your cloak.\nBelow, the steps drop into a crack in the meadow; above, they climb to\nthe cliff's brink. One slip would mean a very long fall.",
+   "extra_descs": {}
   },
   "4303": {
    "vnum": 4303,
@@ -1438,8 +1663,10 @@
      "description": "To the up lies The Narrow Steps."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead south and up.",
-   "placeholder": true
+   "description": "The ground splits here into a deep crack, its sides raw red clay with\nwedged stones. Water has run down the cleft for ages and left a slick of\ngreen slime on the rocks. The meadow lies south, and a flight of narrow\nsteps climbs the far wall of the crack. Bleached ribs, each as long as a\nspear, jut from the clay.",
+   "extra_descs": {
+    "ribs bones clay": "The ribs are enormous, curved and yellowed like the frame of a wrecked\nboat. Whatever owned them died here long ago."
+   }
   },
   "4304": {
    "vnum": 4304,
@@ -1461,8 +1688,8 @@
      "description": "To the south lies By The Great Oak."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead east and south.",
-   "placeholder": true
+   "description": "A small copse of birch and rowan huddles here, its leaves rattling in\nthe breeze. Moss cushions the ground between the white trunks, and\nenormous bare footprints have pressed deep into it. The copse opens east\nonto a green field and south toward a great oak.",
+   "extra_descs": {}
   },
   "4305": {
    "vnum": 4305,
@@ -1492,8 +1719,8 @@
      "description": "To the west lies A Copse."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Bright grass carpets this field, startlingly green after the black\nwoods, and wild clover grows in thick patches. A split in the earth\ngapes to the north, ragged at its lips. Meadow lies east and south, and\na small copse of pale trees grows west. A cold breeze carries the faint\nsmell of cookfire from somewhere far off.",
+   "extra_descs": {}
   },
   "4306": {
    "vnum": 4306,
@@ -1515,8 +1742,8 @@
      "description": "To the west lies A Green Field."
     }
    },
-   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead south and west.",
-   "placeholder": true
+   "description": "Coarse grass hisses in the wind across this stretch of open field, tall\nenough to hide a crouching man. A line of flattened stems runs through\nit where something heavy has dragged a load. The field slopes away south\ntoward a muddy waterhole, and a greener meadow stretches west.",
+   "extra_descs": {}
   },
   "4307": {
    "vnum": 4307,
@@ -1538,8 +1765,10 @@
      "description": "To the south lies The Forest."
     }
    },
-   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead east and south.",
-   "placeholder": true
+   "description": "A stream tumbles over a lip of black rock in a thin white veil, and the\npool at its foot churns with spray. Ferns cling to the wet stone and the\ngrass is slick underfoot. A great oak stands to the east, and a forest\ntrack slips south through the trees. The roar of the fall drowns every\nother sound.",
+   "extra_descs": {
+    "waterfall fall stream veil": "The water drops about three times a man's height onto black stones.\nBehind the veil there is only a wet rock face."
+   }
   },
   "4308": {
    "vnum": 4308,
@@ -1573,8 +1802,10 @@
      "description": "To the up lies Up In The Tree House."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east, south, west and up.",
-   "placeholder": true
+   "description": "An enormous oak stands alone in a clearing, older than any wall in the\nrealm, its trunk wider than a hut and its roots rising like the backs of\nburied beasts. A rope ladder of knotted hide hangs toward a platform\nhigh among the boughs, and you can climb up. Fields lie east, a copse\nnorth, the roar of falling water comes from the west, and thick forest\ncrowds south.",
+   "extra_descs": {
+    "oak great tree ladder": "The great oak is hung with offerings: knotted cords, small skulls and\nstrips of red cloth. The hide ladder looks sturdy enough to bear an\nogre."
+   }
   },
   "4309": {
    "vnum": 4309,
@@ -1604,8 +1835,8 @@
      "description": "To the west lies By The Great Oak."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Trampled grass and old fire-blackened stones mark this part of the\nfield, where a hunting party once stopped to eat. Splintered bones are\nheaped against a lichened boulder. Open field stretches north and east,\na great oak stands to the west, and the forest begins again south.",
+   "extra_descs": {}
   },
   "4310": {
    "vnum": 4310,
@@ -1635,8 +1866,8 @@
      "description": "To the west lies The Field."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A muddy waterhole spreads across the middle of the field, its banks\nchurned by huge flat footprints and fouled with scraps of gnawed\ngristle. Reeds stand brown at the margin, and flies drift in clouds over\nthe shallows. Open ground continues north and west, a small clump of\ntrees waits east, and the forest edge begins south.",
+   "extra_descs": {}
   },
   "4311": {
    "vnum": 4311,
@@ -1658,8 +1889,8 @@
      "description": "To the west lies The Field By The Waterhole."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead south and west.",
-   "placeholder": true
+   "description": "A small clump of ash trees grows on a rise, their trunks bent all one\nway by the wind. The grass beneath them is worn bare by something that\nsleeps here, and a ring of fire-blackened stones holds nothing but cold\nash. The field falls away west toward the waterhole, and a dark forest\ncreeps in from the south.",
+   "extra_descs": {}
   },
   "4312": {
    "vnum": 4312,
@@ -1685,8 +1916,14 @@
      "description": "To the south lies The Forest."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Tall beech and oak stand well spaced here, and the forest floor is deep\nwith brown leaf litter. Sunlight dapples the ground in coins of gold,\nthe only cheer in this part of the realm. The noise of falling water\ndrifts from the north. Tracks lead east into denser wood and south\nthrough more forest.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644500,
+     "max": 1
+    }
+   ]
   },
   "4313": {
    "vnum": 4313,
@@ -1716,8 +1953,8 @@
      "description": "To the west lies The Forest."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The wood is so dense here that you push through rather than walk,\nshouldering aside curtains of ivy and hanging vines. Dead leaves lie\nankle-deep, and the air is thick and still. A great tree looms through\nthe gloom to the north, the track runs east to the forest's edge, south\ninto the Black Forest, and west into quieter woods.",
+   "extra_descs": {}
   },
   "4314": {
    "vnum": 4314,
@@ -1747,8 +1984,8 @@
      "description": "To the west lies The Dense Forest."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "A ragged line of oaks and hawthorn marks the boundary between field and\nforest. Claw marks as long as a forearm score the nearest trunk, and the\nbark hangs from it in strips. Meadow lies north, the edge of the wood\nruns on east, and the forest deepens south and thickens into dense woods\nwest.",
+   "extra_descs": {}
   },
   "4315": {
    "vnum": 4315,
@@ -1778,8 +2015,8 @@
      "description": "To the west lies The Edge Of The Forest."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The trees thin here, and pale light spills in from open ground ahead.\nBrambles crowd the margin of the wood, snagged with tufts of coarse\nblack hair. The way north leads out to a field and a waterhole, a track\neast dives into the Dark Forest, and another runs south into the Murky\nForest. The edge of the wood runs on west along the field's border.",
+   "extra_descs": {}
   },
   "4316": {
    "vnum": 4316,
@@ -1805,8 +2042,8 @@
      "description": "To the west lies The Edge Of The Forest."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Twisted roots grip the soil like talons in the Dark Forest, and the\ncanopy is so thick that noon feels like dusk. A trail of snapped twigs\nand flattened ferns leads north to a small clump of trees. The black\nwood continues south, and the forest edge lies west.",
+   "extra_descs": {}
   },
   "4317": {
    "vnum": 4317,
@@ -1832,8 +2069,14 @@
      "description": "To the south lies The Narrow Crevice."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The trees grow gnarled and twisted here, wrapped in strangling ivy. A\nnarrow crevice splits the rocks to the south, while a trail leads north\nthrough the wood and a heavy path runs east to the Black Forest. Old\nbones, snapped for the marrow, litter the leaves underfoot.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644500,
+     "max": 1
+    }
+   ]
   },
   "4318": {
    "vnum": 4318,
@@ -1867,8 +2110,8 @@
      "description": "To the up lies In The Tree."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead north, east, south, west and up.",
-   "placeholder": true
+   "description": "A lightning-split tree dominates this part of the Black Forest, its\nruined trunk hollow and charred. A stout limb offers a way up into the\ncrown. Trails run north into dense woods, east toward more black timber,\nsouth into a thicket, and west beneath the boughs of a gnarled old\nforest.",
+   "extra_descs": {}
   },
   "4319": {
    "vnum": 4319,
@@ -1898,8 +2141,8 @@
      "description": "To the west lies The Black Forest."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "The black trunks stand shoulder to shoulder, slick with moss on every\nside but the one that gets the rain. Little grows underfoot save pale\nferns and fallen needles. The wood runs north to its edge, east into the\nMurky Forest, west among yet more black trees, and south down a slope\ntoward a pool. A bundle of knotted grass hangs from a branch, a crude\nogre charm against bad luck.",
+   "extra_descs": {}
   },
   "4320": {
    "vnum": 4320,
@@ -1933,8 +2176,8 @@
      "description": "To the up lies Up In The Tree."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north, east, south, west and up.",
-   "placeholder": true
+   "description": "Mist pools between the trunks of the Murky Forest, and everything beyond\na few paces is a smudge of grey. Tracks lead north toward the edge of\nthe wood, east and west into the black timber, and south the way you\ncame. A stout old oak leans over the junction, its lowest limbs thick\nenough to climb into, and tattered rags are tied along them. The ground\nsquelches with every step.",
+   "extra_descs": {}
   },
   "4321": {
    "vnum": 4321,
@@ -1956,8 +2199,8 @@
      "description": "To the west lies The Murky Forest."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north and west.",
-   "placeholder": true
+   "description": "The trees lean in over the trail here, and thorns have grown across what\nonce was a way on. Scraps of dried meat hang from a line stretched\nbetween two trunks, curing in the damp air. The path winds north to the\nDark Forest and west to the Murky Forest.",
+   "extra_descs": {}
   },
   "4322": {
    "vnum": 4322,
@@ -1975,8 +2218,14 @@
      "description": "To the north lies The Forest."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. A way leads north.",
-   "placeholder": true
+   "description": "The forest floor breaks into a narrow crevice between two walls of mossy\nrock, so tight you must turn sideways to pass. Cold air breathes out of\nthe cracks, and the light fades to a green twilight. There is no way on;\nthe only road out is back north to the forest. Deep scratches in the\nstone show where something stout once dug.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644500,
+     "max": 1
+    }
+   ]
   },
   "4323": {
    "vnum": 4323,
@@ -1998,8 +2247,8 @@
      "description": "To the east lies By The Pool."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north and east.",
-   "placeholder": true
+   "description": "This is yet more black forest, and no kinder than the last. Thorns and\nlow branches snatch at your sleeves, and the light is a dim green murk.\nOnly two ways lead on from the tangle: north through the trunks and east\ntoward the glimmer of a pool. A huge ragged nest of sticks and hide\nscraps wedges into the crook of the lowest bough.",
+   "extra_descs": {}
   },
   "4324": {
    "vnum": 4324,
@@ -2025,8 +2274,8 @@
      "description": "To the west lies Yet More Black Forest."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A round black pool lies in a hollow of the forest floor, its rim ringed\nwith stunted willows and flat stones. The water is cold and still, and\npale shapes of old bone show beneath the surface. The Black Forest\ncloses around the hollow: it rises north and east, and a dim way leads\nwest under more trees.",
+   "extra_descs": {}
   },
   "4325": {
    "vnum": 4325,
@@ -2052,8 +2301,8 @@
      "description": "To the west lies By The Pool."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north, south and\nwest.",
-   "placeholder": true
+   "description": "Here the Black Forest earns its name: the trunks are wet and sooty, and\nthe canopy shuts out nearly all of the sky. Pale shelves of fungus crowd\nthe rotting logs. Paths lead north into the Murky Forest and south back\nto the Dark Woods, while a trodden gap in the ferns opens west toward a\npool. Splintered bones lie scattered in the moss, cracked open for their\nmarrow.",
+   "extra_descs": {}
   },
   "4326": {
    "vnum": 4326,
@@ -2071,8 +2320,8 @@
      "description": "To the down lies By The Great Oak."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. A way leads down.",
-   "placeholder": true
+   "description": "A platform of rough planks is lashed across the boughs of the great oak,\nits rails made of split saplings tied with hide. A heap of moth-eaten\nskins is nailed in one corner, and the wind sways the whole structure.\nThe only way out is down, back to the ground beneath the oak. Far below,\nthe field is a green patch among the trees.",
+   "extra_descs": {}
   },
   "4327": {
    "vnum": 4327,
@@ -2090,8 +2339,8 @@
      "description": "To the down lies The Black Forest."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. A way leads down.",
-   "placeholder": true
+   "description": "You cling to a broad limb of a lightning-scarred tree, the bark flaking\nunder your hands. Through gaps in the leaves the forest floor is a dim\ntangle below, and smoke climbs from some distant fire. The way down is\nthe way you came, back to the black forest floor.",
+   "extra_descs": {}
   },
   "4328": {
    "vnum": 4328,
@@ -2109,11 +2358,371 @@
      "description": "To the down lies The Murky Forest."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. A way leads down.",
-   "placeholder": true
+   "description": "The oak's crown sways gently around you, and the limb beneath your feet\nis as thick as a barrel. Rags and feathers dangle from the twigs in\nknotted charms. Over the tops of the trees a thin pillar of smoke rises\nfar off toward the horizon. The only way off the branch is down, to the\nmisty forest floor.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "644500": {
+   "vnum": 644500,
+   "name": "wolf black forest",
+   "short_desc": "a black forest wolf",
+   "long_desc": "A black forest wolf prowls the shadows, its lip curled over yellow fangs.",
+   "description": "This wolf is lean and shaggy, its pelt matted with burrs and old blood.\nIt lives off what the ogres leave behind and has lost all fear of men.",
+   "level": 13,
+   "alignment": -100,
+   "hp_dice": "13d8+146",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744500,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "644501": {
+   "vnum": 644501,
+   "name": "crab rock giant",
+   "short_desc": "a giant rock crab",
+   "long_desc": "A giant rock crab scuttles among the wet boulders, claws raised in threat.",
+   "description": "The crab is as broad as a shield, its shell crusted with barnacles and\nweed. One heavy claw is far larger than the other, and it clacks open\nand shut like a trap.",
+   "level": 12,
+   "alignment": 0,
+   "hp_dice": "12d8+135",
+   "damage_dice": "4d6+5",
+   "armor_class": 61,
+   "exp": 680,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "644502": {
+   "vnum": 644502,
+   "name": "ogre hulking village",
+   "short_desc": "a hulking ogre",
+   "long_desc": "A hulking ogre lumbers about, scratching its belly and glaring at strangers.",
+   "description": "The ogre stands head and shoulders above a man, its yellowed hide hung\nwith patchwork furs and its belly swollen with its last feast. Small,\nmean eyes fix on you from under a heavy brow, and a knotted club sits\neasy in one huge fist.",
+   "level": 16,
+   "alignment": -500,
+   "hp_dice": "16d8+267",
+   "damage_dice": "5d6+10",
+   "armor_class": 44,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744501,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "644503": {
+   "vnum": 644503,
+   "name": "ogre warlord scarred",
+   "short_desc": "a scarred ogre warlord",
+   "long_desc": "A scarred ogre warlord stands guard, thick arms folded across a plated chest.",
+   "description": "Old battle scars crisscross this ogre's hide, and one ear has been torn\nto a ragged stump. He is armoured with plates of beaten iron lashed to\nhis chest and wears a helm made from a horned skull. A huge maul rests\nacross his shoulder.",
+   "level": 20,
+   "alignment": -600,
+   "hp_dice": "20d8+342",
+   "damage_dice": "6d6+13",
+   "armor_class": 32,
+   "exp": 1120,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744502,
+     "chance": 25
+    },
+    {
+     "vnum": 744501,
+     "chance": 15
+    },
+    {
+     "vnum": 744504,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "644504": {
+   "vnum": 644504,
+   "name": "troll frost white",
+   "short_desc": "a gaunt frost troll",
+   "long_desc": "A gaunt frost troll stalks the drifts, rimed with ice from crown to toe.",
+   "description": "The troll is tall and stooped, its skin pale blue and cracked like\nfrozen mud. Long icicles hang from its chin and knuckles, and its breath\nsmokes in the cold.",
+   "level": 19,
+   "alignment": -500,
+   "hp_dice": "19d8+323",
+   "damage_dice": "5d6+14",
+   "armor_class": 35,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744502,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "644505": {
+   "vnum": 644505,
+   "name": "grushka shaman ogre bone caller",
+   "short_desc": "Grushka the Bone-Caller",
+   "long_desc": "Grushka the Bone-Caller, the ogre shaman, mutters over a rattling string of knucklebones.",
+   "description": "Grushka is a stooped, hook-nosed ogre hung from head to foot with bones,\nfeathers and dried paws. His eyes are milky white and his lips never\nstop moving as he mutters curses over a staff of lashed ribs.",
+   "level": 20,
+   "alignment": -700,
+   "hp_dice": "20d8+342",
+   "damage_dice": "6d6+13",
+   "armor_class": 32,
+   "exp": 1120,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744503,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "644506": {
+   "vnum": 644506,
+   "name": "brogg skullsplitter ogre chieftain",
+   "short_desc": "Brogg Skullsplitter, the Ogre Chieftain",
+   "long_desc": "Brogg Skullsplitter, the Ogre Chieftain, looms over his chamber with a monstrous maul in hand.",
+   "description": "Brogg is the largest ogre you have ever seen, his shoulders as wide as a\ndoorway and his arms thick as tree trunks. A necklace of fingerbones\nswings across his chest, and the head of his maul is crusted with old\ngore.",
+   "level": 22,
+   "alignment": -800,
+   "hp_dice": "22d8+382",
+   "damage_dice": "6d6+16",
+   "armor_class": 26,
+   "exp": 1230,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744504,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "744500": {
+   "vnum": 744500,
+   "name": "pelt wolf black",
+   "short_desc": "a black wolf pelt",
+   "room_desc": "A black wolf pelt lies here.",
+   "description": "A thick, coarse pelt of black wolf fur, rank but sound. Furriers would pay a fair price for it.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 13,
+   "weight": 1,
+   "value": 415
+  },
+  "744501": {
+   "vnum": 744501,
+   "name": "jerkin hide ogre",
+   "short_desc": "a stiff ogre-hide jerkin",
+   "room_desc": "A stiff ogre-hide jerkin lies here.",
+   "description": "A jerkin of thick, hardened hide stitched with gut. It stinks of smoke and grease but turns a blow well.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 16,
+   "wear_slot": "body",
+   "armor": 5,
+   "weight": 10,
+   "value": 350
+  },
+  "744502": {
+   "vnum": 744502,
+   "name": "helm helmet iron horned skull",
+   "short_desc": "a horned iron helm",
+   "room_desc": "A horned iron helm lies here.",
+   "description": "A helm of beaten iron, crudely riveted, with horns of bone curving from the brow. It is battered and too big for most men, but it is strong.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 410,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "744503": {
+   "vnum": 744503,
+   "name": "charm necklace bone caller",
+   "short_desc": "a bone-caller's charm",
+   "room_desc": "A bone-caller's charm lies here.",
+   "description": "A string of tiny knucklebones, feathers and polished teeth, knotted with sinew. A faint, uneasy hum seems to come from it.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 20,
+   "wear_slot": "neck1",
+   "armor": 2,
+   "weight": 1,
+   "value": 430,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "744504": {
+   "vnum": 744504,
+   "name": "maul skullsplitter ogre club",
+   "short_desc": "Skullsplitter, the chieftain's maul",
+   "room_desc": "A monstrous ogre maul lies here.",
+   "description": "A massive maul of iron-bound oak, crowned with the stone-hard skull of a bull. Its head is stained a deep brown, and it is heavy enough to break bone with a single swing.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 22,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 590,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

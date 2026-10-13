@@ -1,0 +1,161 @@
+{
+ "zone": 517,
+ "_about": "Garathorm School House (levels 1-6): a gentle place. The schoolmaster and teachers, pupils, the janitor, a fencing master who spars with any who ask (an elite, never the first to strike), a schoolyard bully, and rats in the outhouse.",
+ "creatures": {
+  "51700": {
+   "name": "schoolmaster",
+   "short_desc": "the schoolmaster",
+   "long_desc": "The schoolmaster sits behind his desk, peering over his spectacles.",
+   "description": "Thin, stern and ink-fingered, with a cane he has never once used and a voice that has silenced five hundred pupils.",
+   "level": 6,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 600
+  },
+  "51701": {
+   "name": "pupil",
+   "short_desc": "a pupil",
+   "long_desc": "A pupil scratches sums on a slate, tongue between teeth.",
+   "description": "A child of Garathorm in a patched smock, chalk on the cuffs and mischief in the eyes.",
+   "level": 1,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "race": "human",
+   "alignment": 300
+  },
+  "51702": {
+   "name": "janitor",
+   "short_desc": "the janitor",
+   "long_desc": "The janitor leans on his broom, muttering about muddy boots.",
+   "description": "A wiry old man with a ring of keys at his belt that opens every door in the building.",
+   "level": 4,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 300
+  },
+  "51703": {
+   "name": "fencing master",
+   "short_desc": "the fencing master",
+   "long_desc": "The fencing master salutes you with his foil, inviting a bout.",
+   "description": "Upright, silver-haired and quick as a cat. He was the champion of the city once, and he still teaches the young which end of the sword to hold.",
+   "level": 8,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "elite",
+   "alignment": 500
+  },
+  "51704": {
+   "name": "rat outhouse",
+   "short_desc": "an outhouse rat",
+   "long_desc": "An outhouse rat squeaks indignantly at you.",
+   "description": "Small, wet and very unpleasant.",
+   "level": 2,
+   "flags": [
+    "aggressive"
+   ],
+   "race": "rodent",
+   "alignment": 0
+  },
+  "51705": {
+   "name": "pony school",
+   "short_desc": "the school's pony",
+   "long_desc": "The school's pony munches hay in its stall.",
+   "description": "A shaggy, patient pony that has carried a generation of children around the yard.",
+   "level": 3,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "horse",
+   "alignment": 0
+  },
+  "51706": {
+   "name": "bully schoolyard",
+   "short_desc": "a schoolyard bully",
+   "long_desc": "A schoolyard bully lounges behind the school house, cracking his knuckles.",
+   "description": "A big lad for his age with a split lip and a chip on his shoulder. He picks on anyone smaller, and on anyone who looks at him.",
+   "level": 3,
+   "flags": [
+    "aggressive"
+   ],
+   "race": "human",
+   "alignment": -200
+  },
+  "51707": {
+   "name": "teacher",
+   "short_desc": "a teacher",
+   "long_desc": "A teacher chalks a lesson onto the board.",
+   "description": "Patient, tired and fond of the pupils, with chalk dust in the hair.",
+   "level": 5,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 500
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 51700,
+   "rooms": [
+    2800
+   ]
+  },
+  {
+   "vnum": 51701,
+   "rooms": [
+    2805,
+    2808,
+    2811,
+    2823,
+    2831
+   ]
+  },
+  {
+   "vnum": 51702,
+   "rooms": [
+    2802
+   ]
+  },
+  {
+   "vnum": 51703,
+   "rooms": [
+    2815
+   ]
+  },
+  {
+   "vnum": 51704,
+   "rooms": [
+    2806
+   ]
+  },
+  {
+   "vnum": 51705,
+   "rooms": [
+    2818
+   ]
+  },
+  {
+   "vnum": 51706,
+   "rooms": [
+    2817
+   ]
+  },
+  {
+   "vnum": 51707,
+   "rooms": [
+    2822,
+    2826,
+    2829,
+    2830
+   ]
+  }
+ ]
+}

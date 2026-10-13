@@ -1,0 +1,248 @@
+{
+ "job": "z455",
+ "rooms": {
+  "10900": "You drift on the dark swell of the Ocean Stream, a broad current that pours steadily toward the edge of the world. Black water slides past in long, smooth ridges, and the far horizon bends downward like the lip of a bowl. Cold spray beads on the gunwale under your hand. The stream carries you on east, and there is no turning back against it.",
+  "10901": "The stream bends here and the current quickens, hissing along the hull in pale seams of foam. Gulls wheel high overhead, crying thinly, and the air tastes of salt and distance. Far across the water a grey haze hangs where sea and sky should meet. The water runs north around the bend, while a calmer reach lies back west.",
+  "10902": "A long, oily swell lifts you and sets you down again, slow as breathing. Drifting weed streams past in tangled green ropes, torn from some drowned shelf far below. The wind has dropped to a mutter, and the only sound is the lapping of water against wood. The current runs west from here, and the quieter water behind you lies south.",
+  "10903": "Spindrift blows across the stream in sheets, stinging your eyes and rimming every rope with white crystals of salt. The sea here is a hard slate colour, pocked by sudden gusts. Something pale, perhaps a bleached spar, turns slowly in the wash and slips astern. The stream bears on north, and east lies the way you came.",
+  "10904": "The water grows strangely clear, and you can see long shafts of light sinking into green depths where nothing moves. A cold breath rises off the surface, smelling of stone and old rain. The sky has paled to the colour of tin, with no sun to be found. The stream runs straight on north, with the bend lying back south.",
+  "10905": "Here the current swings hard and the boat heels, shipping a cold slap of green water over the side. Ahead the swell steepens into rolling hills of grey, each crest torn by the wind. A low line of cloud lies across the sky like a lid. The stream turns east toward wider water, and the long straight reach lies back south.",
+  "10906": "The stream widens and slows, its hurrying current easing into a sullen, heaving calm. Broken timbers drift in the wash, grey with age and furred with weed, the remains of ships that never came home. A faint brine-heavy fog clings to the surface. East the water opens into a gulf, and the stream you have followed lies west.",
+  "10907": "You float on the wide, restless water of the gulf, ringed by a pale and hazy sky. To the east the water laps against broken stones, the tumbled edge of a city older than any chart. Cold wind pushes at you from the open sea, bringing a distant rumble from beyond the world's rim. Open water lies west back to the stream, and a darker stretch of sea leads north toward the edge.",
+  "10908": "Fallen walls and shattered columns rise out of a tangle of gnarled trees, where roots have split the old paving and heaved it into ridges. A salt wind hums through empty window arches, and lichen paints the stones in rust and yellow. Under the thorn and bramble a faint track threads the rubble. The ground slopes down west toward the gulf, while the track runs on north to a great mound among the ruins.",
+  "10909": "A grassy barrow-hill swells up here out of the rubble, ringed by broken pillars that lean away from it like mourners. The wind is quieter in this hollow, and the grass lies flat and silvered. A narrow stair of worn stones climbs up the slope toward a dark opening in the top of the mound. Paths run through the ruins north, south and west.",
+  "10910": {
+   "description": "The air within the mound is still, cold and heavy with the smell of earth and old bronze. Rough stone slabs wall a low chamber, and thick roots hang from the roof like grey hair. A great flat bier stands at the heart of the room, crusted with the green of corroded grave goods. The only way out is the passage down the slope, back to the foot of the mound.",
+   "look": "crypt"
+  },
+  "10911": "The ruins end in a broken terrace here, strewn with slabs that were once the floor of some great hall. A single arch still stands, and wind howls softly through it. Thorn trees crowd the fallen stones, bending all one way from long years of gales. The path runs back south to the mound among the ruins.",
+  "10912": "A row of headless statues stands in the brush, their robes worn smooth and their pedestals buried in leaf mould. Ivy crawls over the toppled lintel of a gate that opens on nothing at all. The air smells of wet stone, and somewhere a loose shingle ticks in the breeze. A path winds back east through the weeds to the mound among the ruins.",
+  "10913": "The water here has a strange tilt to it, running faster with each fathom as though the whole sea were leaning on a slope. Foam streaks the surface in long white lines, all pointing the same way. The sky ahead is a hard and cloudless blue, curiously close. The current sweeps on east, and the gulf lies south behind you.",
+  "10914": "The roar of the world's edge has grown to a steady thunder that shakes the boat in your hands. Mist boils up from somewhere ahead, drenching you in cold droplets and hiding the horizon in white. The stream sets firmly north toward the brink, but if you must flee the sound, the way back runs west.",
+  "10915": "You are at the Rim of the World itself, where the sea slides over the lip of the sky and falls into endless white mist. A pale rainbow arches silently over the abyss and is gone, then glimmers again. Nothing lies beyond but air, cloud and a long, soft thunder. The only way from here is south, back along the failing stream."
+ },
+ "extras": {
+  "10909": [
+   {
+    "keywords": "stair stones steps stair-stones",
+    "description": "The steps are cut from black stone and polished by wind. Faint spirals, almost erased, climb the risers like the coils of a sleeping serpent."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "rim-shark",
+   "keywords": "shark grey rim",
+   "short_desc": "a lean grey shark",
+   "long_desc": "A lean grey shark circles in the water, its fin cutting the swell.",
+   "description": "A long, scarred shark with eyes like wet slate. It rides the current at the edge of the world, hungry and unafraid of anything that floats.",
+   "kind": "animal",
+   "level": 14,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Ocean Stream near the Rim of the World",
+    "Gulf on Gondor Island"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "shark-tooth-charm",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "ruin-hound",
+   "keywords": "hound wolf gaunt ruin",
+   "short_desc": "a gaunt ruin hound",
+   "long_desc": "A gaunt ruin hound prowls between the fallen walls, nose low to the stones.",
+   "description": "A starved grey wolf-hound, ribs showing under a coat matted with salt and burrs. It haunts the ruins, snapping at the wind and anything that walks there.",
+   "kind": "animal",
+   "level": 13,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Ruins of an Ancient City"
+   ],
+   "count": 1,
+   "drops": []
+  },
+  {
+   "id": "drowned-sailor",
+   "keywords": "sailor drowned skeleton",
+   "short_desc": "a drowned sailor",
+   "long_desc": "A drowned sailor clambers over the rail, streaming water and weed.",
+   "description": "Bone and rotted cloth hang together around a sailor's frame, trailing weed and brine. Empty eye sockets turn toward you, and a rusted knife glints in its grip.",
+   "kind": "undead",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Gulf on Gondor Island",
+    "Nearing the Rim of the World",
+    "The Ocean Stream near the Rim of the World"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "shark-tooth-charm",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "barrow-guard",
+   "keywords": "guard barrow skeleton warrior",
+   "short_desc": "a barrow guard",
+   "long_desc": "A barrow guard stands among the broken pillars, a green-crusted shield on its arm.",
+   "description": "An armoured skeleton in the bronze harness of a lost kingdom, still standing sentinel over the mound it was buried to guard. Cold blue light flickers behind its helm.",
+   "kind": "undead",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "At the Mound among the Ruins",
+    "The Ruins of an Ancient City"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "barrow-guard-shield",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "rim-wraith",
+   "keywords": "wraith rim spirit",
+   "short_desc": "a wailing rim wraith",
+   "long_desc": "A wailing rim wraith hangs in the mist, a pale shape trailing sea-spray.",
+   "description": "A tall, grey spirit with a face of drawn and sorrowful mist, wrapped in cloud and spray. It haunts the brink of the world, drawn to those who come near the edge.",
+   "kind": "undead",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Rim of the World",
+    "Nearing the Rim of the World"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "shark-tooth-charm",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "captain-harrowmere",
+   "keywords": "captain harrowmere drowned skeleton",
+   "short_desc": "Captain Harrowmere the Drowned",
+   "long_desc": "Captain Harrowmere the Drowned stands guard at the foot of the mound, a tattered cloak snapping about him.",
+   "description": "The bones of a sea captain who sailed to the world's end and never returned. A cloak of sea-green sailcloth hangs from his shoulders, and a salt-white cutlass never leaves his hand.",
+   "kind": "undead",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "At the Mound among the Ruins"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "harrowmere-cloak",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "barrow-king",
+   "keywords": "barrow king aldric crowned skeleton",
+   "short_desc": "Aldric, the Barrow-King",
+   "long_desc": "Aldric, the Barrow-King, sits upright on his bier, a cold crown on his skull.",
+   "description": "The king of the ancient city, dead since before the sea turned back from his walls, yet unwilling to lie down. He rises in rotting mail with a long black blade across his knees, and the cold of the grave rolls from him.",
+   "kind": "undead",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "The Mound of Concealed Demise"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "barrow-king-blade",
+     "chance": 35
+    },
+    {
+     "item": "barrow-king-crown",
+     "chance": 35
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "shark-tooth-charm",
+   "keywords": "shark tooth charm",
+   "short_desc": "a shark-tooth charm",
+   "room_desc": "A shark-tooth charm lies here, strung on a cord.",
+   "description": "A hand-long tooth, yellow and serrated, drilled and strung on a salt-stiff cord. Sailors swear it keeps the sea from claiming them.",
+   "kind": "treasure",
+   "level": 14
+  },
+  {
+   "id": "barrow-guard-shield",
+   "keywords": "bronze shield barrow",
+   "short_desc": "a green bronze shield",
+   "room_desc": "A green bronze shield lies in the dust here.",
+   "description": "A round shield of old bronze, crusted with verdigris. A faded sun-and-wave device still shows on its boss.",
+   "kind": "armor",
+   "level": 19,
+   "wear_slot": "shield",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "harrowmere-cloak",
+   "keywords": "cloak sailcloth sea-green",
+   "short_desc": "a sea-green sailcloth cloak",
+   "room_desc": "A sea-green sailcloth cloak lies here, still damp.",
+   "description": "A heavy cloak of tarred sailcloth, stiff with salt and never quite dry. It turns wind and spray alike.",
+   "kind": "armor",
+   "level": 20,
+   "wear_slot": "about",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "barrow-king-blade",
+   "keywords": "black blade barrow-king sword",
+   "short_desc": "the Barrow-King's black blade",
+   "room_desc": "A long black blade lies here, cold to look upon.",
+   "description": "A broad blade of dark, pitted iron, longer than a man's arm. Frost beads along its edge even in summer.",
+   "kind": "weapon",
+   "level": 21,
+   "weapon_type": "slash",
+   "bonus": {
+    "damroll": 2
+   }
+  },
+  {
+   "id": "barrow-king-crown",
+   "keywords": "crown barrow-king iron circlet",
+   "short_desc": "a tarnished iron crown",
+   "room_desc": "A tarnished iron crown lies here.",
+   "description": "A heavy circlet of blackened iron set with dull blue stones, cold as a winter well.",
+   "kind": "armor",
+   "level": 21,
+   "wear_slot": "head",
+   "bonus": {
+    "wis": 1
+   }
+  }
+ ]
+}

@@ -24,8 +24,14 @@
      "description": "To the south lies Durgar's Gate - The Doors To The Dwarven Kingdom."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and south.",
-   "placeholder": true
+   "description": "Durgan's Gate is a great arch hewn from the mountain, its tall doors of\niron and stone swung wide and left to rust open on their hinges. Rows of\nbearded kings are carved up the jambs, their stone beards chipped by\nthieves. To the south the doors open on the barren badlands outside, and\na bar thick as a man's waist lies split on the flagstones. North the\nMain Tunnel leads into the dim city.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650301,
+     "max": 1
+    }
+   ]
   },
   "213001": {
    "vnum": 213001,
@@ -49,8 +55,9 @@
      "description": "To the south lies Durgan's Gate."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The air here is fresher and colder, carrying a faint taste of open\nmountain from the south. A pair of empty lantern-hooks beside a deep-set\ndoorframe mark where the gate-wardens once checked travellers' papers.\nThe paving is cracked and heaved by the cold that creeps in from\noutside. North the road runs on into the tunnel, and south lies Durgan's\nGate.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "213002": {
    "vnum": 213002,
@@ -74,8 +81,15 @@
      "description": "To the south lies The Main Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Painted warnings in an angular dwarven script have been daubed on the\nwall at shoulder height, now flaking to red dust. Beneath them stands an\nold toll-post, a stout iron-bound beam with a slot for coins that has\nlong been empty. The road is rutted from the wagons of merchants who\nonce paid to pass. North it climbs gently toward the heart of the\ntunnel, while south it runs to Durgan's Gate.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650302,
+     "max": 1
+    }
+   ]
   },
   "213003": {
    "vnum": 213003,
@@ -99,8 +113,15 @@
      "description": "To the south lies The Main Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
-   "placeholder": true
+   "description": "This reach of the Main Tunnel is roughly cut and uneven, as if the\nworkers laid down their picks before the final dressing. Long chisel-\nmarks run slantwise across the rock, and chips of broken stone lie\nscattered in the gutters. A rotted rope still hangs from two hooks\nacross the way, set there to mark the end of some old repair. The tunnel\nruns on north to a bend and south toward the gate.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650304,
+     "max": 1
+    }
+   ]
   },
   "213004": {
    "vnum": 213004,
@@ -124,8 +145,15 @@
      "description": "To the south lies The Main Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The passage bends here, coming up from the south and turning to run east\ntoward the halls. The corner is squared off by a block of black marble\nset into the floor, carved with the wind-rose of the dwarven road\nwardens. A crack runs across it from edge to edge. The roof is lower\nthan elsewhere and sweats with a cold condensation that drips steadily\nonto the stone.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650302,
+     "max": 1
+    }
+   ]
   },
   "213005": {
    "vnum": 213005,
@@ -149,8 +177,9 @@
      "description": "To the west lies A Bend In The Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A narrow stretch of tunnel runs between the Ambassadors Halls to the\neast and a bend to the west. Little care went into its cutting, for it\nwas only a servants' way, and the ceiling is low enough that a tall man\nmust stoop. Bare hooks line the rock, where cloaks and lanterns once\nhung for the footmen of departed embassies. A bitter smell of cold ash\nlingers in the air.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "213006": {
    "vnum": 213006,
@@ -172,8 +201,14 @@
      "description": "To the west lies The Main Tunnel."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north and west.",
-   "placeholder": true
+   "description": "The Ambassadors Halls open as a line of high, echoing chambers, where\nthe envoys of far kingdoms were once lodged in splendour. Each doorway\nis flanked by a carved pillar bearing the crest of some distant house,\nand the doors themselves are chained shut, their lacquer peeling in long\ncurls. Mosaic floors of coloured stone have lost half their tesserae to\nthieves. A passage runs north into the Main Tunnel, and another leads\nwest along the dim flank of the halls.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650303,
+     "max": 1
+    }
+   ]
   },
   "213007": {
    "vnum": 213007,
@@ -197,8 +232,9 @@
      "description": "To the south lies The Ambassadors Halls."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The tunnel brightens and broadens, for ahead lie the Ambassadors Halls,\nand the masons here took more care. Slender fluted pilasters stand at\nregular intervals along both walls, each capped with a leaf-shaped\ncapital gone black with smoke. A strip of faded carpet runs down the\nmiddle of the road, worn through to the threads. The way runs north back\nto a bend and south into the halls.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "213008": {
    "vnum": 213008,
@@ -222,8 +258,15 @@
      "description": "To the west lies The Main Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
-   "placeholder": true
+   "description": "The road turns a sharp corner here, coming in from the west and plunging\naway south through a tall, narrow passage. A heavy iron ring is sunk in\nthe rock at the turning, and a coil of chain is still fastened to it,\nrusted into a single mass. The walls bear the dark prints of countless\nhands that steadied themselves at the corner. The air from the south is\nwarmer and carries faint scents of incense and polished wood.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650302,
+     "max": 1
+    }
+   ]
   },
   "213009": {
    "vnum": 213009,
@@ -247,8 +290,9 @@
      "description": "To the west lies The Main Tunnel."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long frieze of marching dwarves is carved along the wall at head\nheight, axes shouldered and beards braided, though the chisel-work ends\nin a ragged line where the commission ran out. Below it the plaster has\nfallen away in broad leprous patches. The road continues east to a bend\nand west toward a lower stretch. Somewhere far off, a slow drip counts\nout the hours.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "213010": {
    "vnum": 213010,
@@ -272,8 +316,9 @@
      "description": "To the west lies A Bend In The Tunnel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The road runs straight east and west here through a low, wide passage,\nits roof held up by squat columns left standing as the dwarves cut the\nrock away. Between the columns stretch shallow alcoves, once resting\nplaces for drovers, now bare floors littered with ash. A faint draught\nblows through from the east, bringing the smell of old dust and distant\nsmoke. Behind you to the west the road dips toward a bend.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "213011": {
    "vnum": 213011,
@@ -297,8 +342,15 @@
      "description": "To the east lies The Main Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "The tunnel bends here from its northward course to run east, and the\nouter face of the curve is polished smooth where wagons scraped it going\nround. A lamp-niche in the rock is choked with glass and soot. Beyond\nthe corner the passage narrows and the roof sinks lower, pressing down\nwith the weight of the mountain. The air smells of cold iron and damp\nwool.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650302,
+     "max": 1
+    }
+   ]
   },
   "213012": {
    "vnum": 213012,
@@ -322,8 +374,9 @@
      "description": "To the south lies A Bend In The Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A cross-vault of rough stone arches over the road here, and a pair of\nsquare pillars stand at the middle of the way, leaving a narrow lane to\neither side. Initials and tally-marks have been scratched into them by\ngenerations of passing drovers. The floor is dusted with fine pale grit\nthat muffles every step. North the passage runs back toward the gate,\nand south it comes to a bend.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "213013": {
    "vnum": 213013,
@@ -347,8 +400,15 @@
      "description": "To the south lies The Main Tunnel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "Water seeps from a hairline crack in the vault and runs down the rock in\na bright thread to a drainage channel cut along the road's edge. The\nstone beneath it is stained green and slick, and a cold dampness hangs\nin the air. Pale crusts of mineral have grown over a row of carved\ndwarf-runes, hiding what they once said. The tunnel runs on north toward\nthe gate and south into the dark.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650302,
+     "max": 1
+    }
+   ]
   },
   "213014": {
    "vnum": 213014,
@@ -372,8 +432,15 @@
      "description": "To the south lies The Main Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "Beyond the gate chamber the tunnel falls quiet, and the noise behind you\nfades to a faint metallic ticking as the old iron cools and settles. The\nrock here is blank and unadorned, plainly cut by builders who cared for\nstrength over beauty. Scraps of rotted sacking and a broken wheel lie\npiled in a niche. The tunnel runs on south, and the dark seems to lean\nin from that way.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650304,
+     "max": 1
+    }
+   ]
   },
   "213015": {
    "vnum": 213015,
@@ -404,8 +471,20 @@
      }
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The road swells into a vast vaulted chamber where the great gate to the\nstronghold stands, a towering arch of black iron and bronze whose\nportcullis hangs half-raised, jammed by rust. Barricades of timber and\noverturned carts crowd the flagstones beneath it, and tattered battle-\nbanners droop from the twin towers. A bronze-studded door in the west\nwall leads into the Hall of Splendor. The Main Tunnel runs away north\nand south from the chamber.",
+   "extra_descs": {
+    "portcullis gate banners": "The portcullis bars are as thick as a dwarf's thigh and crusted with\nrust, but scraped bright where something heavy has been dragged beneath\nthem. Beyond the half-raised teeth, a ramp of dressed stone climbs into\nthe stronghold."
+   },
+   "mob_resets": [
+    {
+     "vnum": 650301,
+     "max": 1
+    },
+    {
+     "vnum": 650306,
+     "max": 1
+    }
+   ]
   },
   "213016": {
    "vnum": 213016,
@@ -429,8 +508,9 @@
      "description": "To the south lies The Gate To The Stronghold."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The tunnel widens and its walls begin to show their old splendour, with\npanels of pale stone inlaid in the rock and cut with chains of\ninterlocking runes. Most of the inlay has been prised out, leaving raw\nsockets. The road runs south to the Gate To The Stronghold, and the air\ngrows thick with the cold smell of iron. A broken lantern chain trails\nfrom the vault above, swaying a little in the draught.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "213017": {
    "vnum": 213017,
@@ -454,8 +534,15 @@
      "description": "To the south lies The Main Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A long stretch of the Main Tunnel runs on here, its ceiling arched with\nribs of fitted stone that spring from corbels shaped like bearded heads.\nMany of the faces have been chipped away, leaving blank, weeping scars.\nDust lies thick along the rock, but the middle of the road is scuffed\nbare. North the passage meets a sharp bend, while south it runs toward a\nbroader, grander dark.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650302,
+     "max": 1
+    }
+   ]
   },
   "13018": {
    "vnum": 13018,
@@ -479,8 +566,9 @@
      "description": "To the south lies The Main Tunnel."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "The tunnel bends hard here, swinging from the long run coming up from\nthe south into a short reach that runs east. The walls are hewn rock,\nscored with the long grooves of dwarven picks, and the floor is worn\ninto a shallow trough by generations of boots. An iron lamp-bracket,\nlong empty, hangs rusted at the corner. Cold air drifts along the bend,\ncarrying a smell of stone dust and old oil.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13019": {
    "vnum": 13019,
@@ -504,8 +592,9 @@
      "description": "To the west lies A Bend In The Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "Here the tunnel turns again, the passage from the west curving up into a\nstraighter road that runs north. The ceiling lifts a little at the\ncorner, and the old masons left a ring of carved knotwork about the\nkeystone, its edges blurred by dust. A line of black soot streaks the\nrock where lamps once burned. Your footfalls come back from the dark\nwith a hollow, patient echo.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13020": {
    "vnum": 13020,
@@ -529,8 +618,15 @@
      "description": "To the south lies A Bend In The Tunnel."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Main Tunnel runs straight and broad here, wide enough for two ox-\ncarts to pass, its walls cut square and true from the living rock. Deep\nruts, worn by wheels long since gone, mark the floor. Rusted rings are\nset into the rock at intervals, where beasts of burden were once\ntethered. The road runs north toward a faint grey glow and falls away\nsouth into dimness.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650302,
+     "max": 1
+    }
+   ]
   },
   "13021": {
    "vnum": 13021,
@@ -563,8 +659,9 @@
      "description": "To the south lies The Main Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The tunnel ends in a small squared chamber, where a heavy oak door\nbanded with iron stands in the east wall, scarred by old blows. To the\nnorth the road opens out into Valin's Gate, its great arch just visible\nin the gloom. Racks for spears and lanterns line the rock beside the\ndoor, all of them bare. The air is fresher here, as if some far breath\nof the outer world still reaches this far.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "13022": {
    "vnum": 13022,
@@ -582,8 +679,16 @@
      "description": "To the south lies The Main Tunnel."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. A way leads south.",
-   "placeholder": true
+   "description": "Valin's Gate rises as a vast arch of dressed grey stone, its twin leaves\nof black iron shut and barred with a beam as thick as an old tree.\nDwarf-kings in relief march up either pillar, each holding an axe, their\nfaces worn smooth by the dust of centuries. Before the barred leaves\nlies a paved forecourt, its flagstones cracked and heaped with drifted\ngrit. The only way out of this forlorn place is back along the tunnel to\nthe south.",
+   "extra_descs": {
+    "kings relief pillar": "Carved on the pillars are eight dwarf-kings in procession, the foremost\nbearing a key. Valin's name is cut beneath him, with the date of the\nfounding."
+   },
+   "mob_resets": [
+    {
+     "vnum": 650301,
+     "max": 1
+    }
+   ]
   },
   "13023": {
    "vnum": 13023,
@@ -601,8 +706,14 @@
      "description": "To the west lies The Main Tunnel."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. A way leads west.",
-   "placeholder": true
+   "description": "The guardhouse is a long low room, its stone benches and pegged tables\nleft as if the watch had risen in the middle of a meal. A cold hearth\nstands in one wall beneath a soot-blackened hood, and a rack of bent\nhalberd-heads rusts beside it. Narrow arrow slits look down on the\ntunnel beyond. The only way out is the iron-banded door to the west,\nback into the Main Tunnel.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650301,
+     "max": 1
+    }
+   ]
   },
   "13024": {
    "vnum": 13024,
@@ -626,8 +737,14 @@
      "description": "To the up lies The Central Plaza."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and up.",
-   "placeholder": true
+   "description": "Once the proudest audience hall of the city, the Hall of Splendor is a\nforest of vast pillars carved as dwarf-kings, each bearing the vault\nupon his shoulders. The mosaic floor shows a map of the old realm, now\ncracked and pitted. A sweeping stair climbs up to the Central Plaza, and\nthe bronze-studded door to the east gives onto the Gate To The\nStronghold. Dust hangs in the air like fine smoke, lit by a dull glow\nfalling from above.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650303,
+     "max": 1
+    }
+   ]
   },
   "13025": {
    "vnum": 13025,
@@ -661,8 +778,10 @@
      "description": "To the down lies The Hall Of Splendor."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north, east, south, west and\ndown.",
-   "placeholder": true
+   "description": "The Central Plaza spreads wide beneath the vast hollowed roof of the\nmountain, paved with great flags of grey and rose stone laid in a\nsunburst around a dry fountain. The basin is cracked, and the statue of\na dwarf at its centre has lost an arm and half a face. Broad ways lead\nnorth, east, south and west to the other arms of the plaza, while a\nstair goes down into the Hall of Splendor. Lamps on tall iron stands\nburn here and there, leaving great pools of shadow between.",
+   "extra_descs": {
+    "fountain statue basin": "The dry fountain is ringed with carved water-lilies, and its statue of a\ndwarf holding a ladle has lost an arm. Dark stains in the basin show\nwhere it once held water."
+   }
   },
   "13026": {
    "vnum": 13026,
@@ -688,8 +807,8 @@
      "description": "To the west lies A Nobles House."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The road continues here between rows of walled gardens, their rock-cut\nbeds long since overgrown with pale tangled roots. A gateway in the west\nwall gives onto another noble house, its door ajar. A statue of a dwarf\nlord lies in the road, toppled from its plinth and cracked in two.\nValin's Road runs on north and south.",
+   "extra_descs": {}
   },
   "13027": {
    "vnum": 13027,
@@ -715,8 +834,8 @@
      "description": "To the west lies The Baker's Guild."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The smell of long-dead ovens lingers about this stretch of Valin's Road,\nwhere a broad doorway to the west leads to the Baker's Guild. A painted\nwheatsheaf above the door has weathered to a brown smear. Spilled flour\nhas caked on the doorstep like dried plaster. The road runs on north and\nsouth.",
+   "extra_descs": {}
   },
   "13028": {
    "vnum": 13028,
@@ -736,8 +855,8 @@
      "description": "To the east lies Valin's Road."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "The guild hall is dominated by a vast brick oven, big enough to bake a\nhundred loaves at once, its iron door hanging open on a black mouth.\nLong tables stand floured with the dust of years, and a wall of\npigeonholes holds the guild's rolls and seals. A bronze plaque lists the\nmasters of the craft. The door to the east leads back to Valin's Road.",
+   "extra_descs": {}
   },
   "13029": {
    "vnum": 13029,
@@ -767,8 +886,8 @@
      "description": "To the west lies A Nobles House."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "This was once a busy junction of Valin's Road, where a shop opens to the\neast and a gated house stands to the west. The paving is worn into a dip\nin front of the General Store, where customers used to queue. Over the\nhouse a canopy of carved stone leaves hangs, its edges chipped. Valin's\nRoad goes on both north and south from the junction.",
+   "extra_descs": {}
   },
   "13030": {
    "vnum": 13030,
@@ -788,8 +907,8 @@
      "description": "To the west lies Valin's Road."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "The general store is long and narrow, shelves stretching to the roof\nbeams and ladders on brass rails. Most shelves are bare, though a few\ncrates remain, nailed shut. A scale on the counter is clogged with rust,\nand an old ledger lies open to a page of faded sums. The door to the\nwest leads out to Valin's Road.",
+   "extra_descs": {}
   },
   "13031": {
    "vnum": 13031,
@@ -815,8 +934,8 @@
      "description": "To the west lies A Nobles House."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The road ends in a broad terrace before the Grand Stairs, which sweep\nnorth into the lofty hall beyond, flanked by pillars carved as dwarf-\nwarriors. A noble house stands to the west behind a fence of black iron\nspears. The terrace is littered with fragments of a smashed fountain.\nThe road runs back south.",
+   "extra_descs": {}
   },
   "13032": {
    "vnum": 13032,
@@ -842,8 +961,8 @@
      "description": "To the west lies Bolgrim's Way."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Bolgrim's Way begins as a smooth road of black basalt setts, running\nbeneath a ceiling hung with the soot of ten thousand lamps. A lamp-post\nof beaten iron stands at the corner, its glass long shattered. The walls\nof the rich quarter rise on either hand, windowless and proud. South the\nway meets Eryn's Road, while the Way itself runs east toward a squat\ntower and west toward the jewellers' houses.",
+   "extra_descs": {}
   },
   "13033": {
    "vnum": 13033,
@@ -874,8 +993,8 @@
      "description": "To the west lies The Grand Stairs."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Bolgrim's Way begins at the foot of the Grand Stairs, whose pale marble\nflanks the road to the west. A narrow door in the south wall, half\nhidden by a drooping canopy, leads into Buccia's Alley. The paving is\nlaid with river-pebbles brought long ago from the surface. The Way runs\non east toward the jewellers.",
+   "extra_descs": {}
   },
   "13034": {
    "vnum": 13034,
@@ -901,8 +1020,8 @@
      "description": "To the west lies Bolgrim's Way."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A glass-fronted house of white stone stands on the north side, its\nlintel carved with faceted gems: the House of Gems. Its windows are\nshuttered with iron grilles, and a stone dwarf in armour stands on each\nside of the door. Bolgrim's Way continues east toward a crossroad and\nwest toward the stairs.",
+   "extra_descs": {}
   },
   "13035": {
    "vnum": 13035,
@@ -920,8 +1039,8 @@
      "description": "To the south lies Bolgrim's Way."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. A way leads south.",
-   "placeholder": true
+   "description": "The jeweller's showroom has glass-topped cases set along its walls,\nempty save for scraps of velvet. A chandelier of cut crystal hangs from\nthe ceiling, dull with dust. Mirrors behind the counter have clouded to\nthe colour of pewter. The way out is south, onto Bolgrim's Way.",
+   "extra_descs": {}
   },
   "13036": {
    "vnum": 13036,
@@ -947,8 +1066,8 @@
      "description": "To the west lies Bolgrim's Way."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Fine shopfronts line this stretch of Bolgrim's Way, their glass long\ngone and their shutters hanging by one hinge. A signboard painted with a\nstar and a wand sways over a doorway to the south, announcing Theo's\nMagical Things. The cobbles are patched with slabs of different stone,\nas though the street had been mended in haste, again and again. The Way\nruns on east and west.",
+   "extra_descs": {}
   },
   "13037": {
    "vnum": 13037,
@@ -979,8 +1098,8 @@
      "description": "To the west lies Bolgrim's Way."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A narrow house with a door of dark wood stands to the north, set back\nbehind a worn step and a pair of stone urns that hold only dead roots.\nBolgrim's Way continues east toward a squat tower and west back along\nthe shopfronts. The paving is clean here, swept recently, which is\nstrange in so neglected a street. Carved vines climb the pillars on\neither side of the house door.",
+   "extra_descs": {}
   },
   "13038": {
    "vnum": 13038,
@@ -1011,8 +1130,14 @@
      "description": "To the west lies Bolgrim's Way."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The road widens into a cobbled yard before the watchtower, whose walls\nof grey stone rise straight up to the roof of the mountain. A heavy door\nto the east stands ajar, the entrance to the guard room, and a worn\nmounting-block squats beside it. Bolgrim's Way comes in from the west,\nand Fain's Highway leaves south along a gentler slope. Scorch marks\nblacken the cobbles, souvenirs of some old fight.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650301,
+     "max": 1
+    }
+   ]
   },
   "13039": {
    "vnum": 13039,
@@ -1036,8 +1161,14 @@
      "description": "To the up lies The Iron Staircase."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead west and up.",
-   "placeholder": true
+   "description": "The guard room is cramped and smoky, with a squat iron stove, a rack of\ndented shields on one wall, and a table pitted by dagger points. Maps of\nthe city's tunnels are pinned up, curling and brown. A stair of iron\nspirals upward through a hole in the ceiling, ringing faintly whenever\nthe draught stirs. The door to the west opens onto the yard before the\nwatchtower.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650301,
+     "max": 1
+    }
+   ]
   },
   "13041": {
    "vnum": 13041,
@@ -1061,8 +1192,8 @@
      "description": "To the down lies A Guard Room."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
-   "placeholder": true
+   "description": "The iron staircase winds in a tight spiral inside the watchtower's\nshaft, each step a perforated plate that shows glimpses of the dark\nbelow. The handrail is cold and pitted with rust, and the whole\nstructure hums softly under any weight. Arrow slits cut through the\nthick wall at each turn let in thin bars of grey light. The stair leads\nup to the top of the tower and down to the guard room.",
+   "extra_descs": {}
   },
   "13042": {
    "vnum": 13042,
@@ -1080,8 +1211,8 @@
      "description": "To the down lies The Iron Staircase."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. A way leads down.",
-   "placeholder": true
+   "description": "The watchtower's summit is a round platform of fitted stone, ringed by a\ncrenellated parapet that overlooks the whole upper city. From here the\nCentral Plaza looks like a dim coin, and the dark roads below are strung\nwith the occasional lamp. A great iron brazier, long cold, holds a drift\nof grey ash, and the cracked signal-horn mounted beside it has not\nsounded for years. The only way down is the iron stair.",
+   "extra_descs": {}
   },
   "13043": {
    "vnum": 13043,
@@ -1112,8 +1243,8 @@
      "description": "To the south lies Fain's Highway."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north, east\nand south.",
-   "placeholder": true
+   "description": "Fain's Highway starts here as a wide thoroughfare running away from the\nwatchtower, its centre line marked by a strip of bronze studs worn\nbright by wheels. A door of dark oak on the east side opens into a\nprivate home, its brass knocker shaped like a dwarf's fist. Gutters run\nalong either kerb, choked with the black mud of years. The highway goes\nnorth to the watchtower yard and south along the tunnel city.",
+   "extra_descs": {}
   },
   "13044": {
    "vnum": 13044,
@@ -1139,8 +1270,14 @@
      "description": "To the west lies A Dark Alley."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, south and\nwest.",
-   "placeholder": true
+   "description": "A dark alley mouths on the west side of the highway here, a slot of deep\nshadow between two blank-walled warehouses. The highway itself is lit by\na pair of wall-lamps burning a sullen yellow, the only ones still tended\nin this stretch. Stains and scrapes on the paving tell of fights that\nwere never reported. North the highway runs back toward the watchtower,\nand south it descends the slope.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650300,
+     "max": 1
+    }
+   ]
   },
   "13045": {
    "vnum": 13045,
@@ -1166,8 +1303,8 @@
      "description": "To the south lies Fain's Highway."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east and\nsouth.",
-   "placeholder": true
+   "description": "The door of an abandoned house stands crooked on its hinges to the east,\nits lintel marked with a chalk cross, the old sign that none live\nwithin. Pale fungus pushes up between the cobbles at the foot of the\nwall. Across the highway a row of iron hitching posts leans like drunks\nat closing time. Fain's Highway runs on north and south.",
+   "extra_descs": {}
   },
   "13046": {
    "vnum": 13046,
@@ -1193,8 +1330,8 @@
      "description": "To the south lies Fain's Highway."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A broad archway of polished granite marks the entrance to the Hall of\nWeaponry on the east side, carved with crossed axes and a battle-scene\nin shallow relief. Shop-signs of other trades hang rusted from brackets\nup and down the highway. The paving is smoother here, laid by better\nmasons than those who built the rest. Fain's Highway continues north and\nsouth.",
+   "extra_descs": {}
   },
   "13047": {
    "vnum": 13047,
@@ -1224,8 +1361,10 @@
      "description": "To the west lies Durgar's Street."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Fain's Highway meets Durgar's Street here at a rough crossing, the\ncross-street running away west toward the plaza. On the east side, a\nboarded door under a rotted lintel marks another abandoned house. A\nmilestone at the corner, carved as a seated dwarf with a beard to his\nknees, gives distances in a script few can read now. The highway runs on\nnorth and south.",
+   "extra_descs": {
+    "milestone dwarf seated": "The milestone is cut as a seated dwarf with his hands on his knees, and\nthe distances to the gates and the mines are scored down his beard in\nrune-script. Someone has scratched out the figure for the stronghold and\ncut a crown in its place."
+   }
   },
   "13048": {
    "vnum": 13048,
@@ -1251,8 +1390,8 @@
      "description": "To the west lies Helm's Armory."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, south and\nwest.",
-   "placeholder": true
+   "description": "Helm's Armory squats to the west in a stout building of riveted iron\nplates, a great shield of beaten bronze hanging over its door. The\nsounds of the street are dulled here, as if the heavy walls swallowed\nthem. Deep wheel-ruts in the paving show where armour carts once made\ntheir deliveries. North and south the highway goes on.",
+   "extra_descs": {}
   },
   "13049": {
    "vnum": 13049,
@@ -1278,8 +1417,8 @@
      "description": "To the south lies The Mining District."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east\nand south.",
-   "placeholder": true
+   "description": "The highway slopes down toward the mining district, and the air grows\nheavy with the smell of coal-smoke and hot metal. An abandoned house\nstands to the east with its windows gaping like missing teeth. Grit and\nslag have been tracked up the road on miners' boots, and the paving here\nis black. The highway leads north back up the slope, and south into the\nMining District.",
+   "extra_descs": {}
   },
   "13050": {
    "vnum": 13050,
@@ -1301,8 +1440,15 @@
      "description": "To the west lies Bard's Street."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nwest.",
-   "placeholder": true
+   "description": "Black slag heaps rise on every side, and the walls are streaked with the\nrust and soot of the ore-smelters that once roared here. Rails of\nrotting timber cross the floor where carts of ore once rolled between\nthe workings, and a great cracked bellows hangs from a gantry overhead.\nThe air tastes of old coal and iron. The highway climbs north, while\nBard's Street leads off west along the face of the diggings.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650300,
+     "max": 1
+    }
+   ]
   },
   "13051": {
    "vnum": 13051,
@@ -1328,8 +1474,8 @@
      "description": "To the west lies Bard's Street."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east, south\nand west.",
-   "placeholder": true
+   "description": "Bard's Street begins here, lined with low, soot-grimed shops and\ntenements whose upper floors lean out until they almost touch overhead.\nA door to the south, under a painted sign of a barrel and a loaf,\nbelongs to the Corner Store. The cobbles are black and slippery, and the\ngutter runs with a thin trickle of grey water. The street runs east to\nthe Mining District and west along the tenements.",
+   "extra_descs": {}
   },
   "13052": {
    "vnum": 13052,
@@ -1351,8 +1497,8 @@
      "description": "To the west lies Bard's Street."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "The tenements press close on both sides here, their stairwells open to\nthe street and reeking of damp. Strings of dead lanterns are slung from\nwindow to window, and a shrine to some forgotten dwarf-saint is cut into\nthe wall at head height, its candle-cup empty. A battered cart-wheel\nleans against a doorway. Bard's Street runs on east and west.",
+   "extra_descs": {}
   },
   "13053": {
    "vnum": 13053,
@@ -1378,8 +1524,8 @@
      "description": "To the west lies Bard's Street."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A crossing where Eryn's Road comes in from the north and Bard's Street\nruns on east and west. The corner building has a shop front of iron\ngrilles, now locked, and its doorstep is worn into a shallow dish by\nmany feet. A stone trough stands at the crossing, dry and green with old\nslime. Faint voices from the plaza sometimes echo down the road from the\nnorth, and are gone.",
+   "extra_descs": {}
   },
   "13054": {
    "vnum": 13054,
@@ -1410,8 +1556,8 @@
      "description": "To the west lies Bard's Street."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east and west.",
-   "placeholder": true
+   "description": "Bard's Street ends in a stretch of loading bays, and a heavy door of\niron-bound planks to the north leads into the mineral storage. Rusty\nstreaks stain the ground below a crane-arm hung with frayed chains. The\nstreet runs east toward Eryn's Road and west toward the miners' halls. A\nsingle lamp over the door burns a dim, steady blue.",
+   "extra_descs": {}
   },
   "13055": {
    "vnum": 13055,
@@ -1437,8 +1583,8 @@
      "description": "To the west lies The Mining District."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Bard's Street is lined here with the narrow doors of miners' lodgings,\nrow on row, each with a chalked number faded to a ghost. A wide double\ndoor in the north wall, painted with a pair of crossed picks, is the\nentrance to the Miner's Hall. Boots have worn its step to a smooth\nhollow. Bard's Street runs east, and west toward the square of the\nMining District.",
+   "extra_descs": {}
   },
   "13056": {
    "vnum": 13056,
@@ -1460,8 +1606,9 @@
      "description": "To the east lies Bard's Street."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "The heart of the mining quarter is a ragged square of trampled slag,\nringed by sheds and pit-head frames, where the diggers once gathered at\nthe shift-bell. A rusted bell hangs from a timber gantry, its clapper\ngone. Water drips from a split spout into a trough stained orange.\nValin's Road climbs away north, and Bard's Street leads off east between\nthe lodgings.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "13057": {
    "vnum": 13057,
@@ -1483,8 +1630,8 @@
      "description": "To the south lies The Mining District."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north and south.",
-   "placeholder": true
+   "description": "The road narrows and slopes downward, the pale stone of the nobles'\nquarter turning to rough grey flags blackened with soot. Gouges left by\niron-shod wheels score the paving in deep parallel lines. A leaning\nsignpost with its arms snapped off stands at the edge of the road, its\nlettering scoured away. Valin's Road climbs back north, while to the\nsouth the air thickens with the taste of smoke.",
+   "extra_descs": {}
   },
   "13058": {
    "vnum": 13058,
@@ -1515,8 +1662,8 @@
      }
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Valin's Road dips here toward the working quarter, the fine paving of\nthe nobles' houses giving way to plain flags rutted by heavy cart-\nwheels. A door of thick planks to the west bears the iron-bound crest of\nLord Brute, a boar's head above crossed picks. Soot has begun to stain\nthe walls and the lamp-standards. The road runs north toward the great\nhouses and south toward the diggings.",
+   "extra_descs": {}
   },
   "13059": {
    "vnum": 13059,
@@ -1551,8 +1698,8 @@
      }
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Valin's Road is a handsome thoroughfare of pale paving, running between\nthe walls of the great houses. A door of carved cedar to the west\nbelongs to a noble family now vanished, and the golden anvil of its\ncrest is flaking. The road runs north up a gentle ramp, south toward the\nworkings, and east to join Durgar's Street. Ornate lamp-standards line\nthe roadway, every one of them dark.",
+   "extra_descs": {}
   },
   "13060": {
    "vnum": 13060,
@@ -1580,8 +1727,8 @@
      "description": "To the up lies At The End Of A Long Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, south and up.",
-   "placeholder": true
+   "description": "The Grand Stairs rise in a magnificent sweep of white marble, wide\nenough for twenty dwarves abreast, though the stone is cracked and\nstained with black. At the head of the flight the way up stands open, a\ntall archway giving onto the upper halls, no longer barred. A passage\nleads east onto Bolgrim's Way, and the terrace outside lies south. A\ncarved balustrade follows the stairs, its newel posts shaped like\ncrowned lions.",
+   "extra_descs": {}
   },
   "13061": {
    "vnum": 13061,
@@ -1611,8 +1758,8 @@
      "description": "To the west lies Northwest Plaza."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "This arm of the plaza is lined with the shuttered fronts of old guild\nhalls, their lintels carved with hammers, anvils and scales. The\npavement is stained dark in long lines where water ran from broken\ngutters. A road leaves north as Eryn's Road, and the open paving goes on\neast, south and west to the rest of the plaza. A banner pole stands bare\nin the middle of the flags, its rope swaying against it in the draught.",
+   "extra_descs": {}
   },
   "13062": {
    "vnum": 13062,
@@ -1634,8 +1781,8 @@
      "description": "To the west lies North Plaza."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead south and west.",
-   "placeholder": true
+   "description": "This corner of the plaza is closed in by a collapsed arcade whose rubble\nspills across the flags in a fan of broken columns. A tall stone clock\nstands against the wall, its face gone black and its hands snapped off\nat the hour of some forgotten disaster. Dwarf-runes ring the dial. The\nplaza continues west to the North Plaza and south to the East Plaza.",
+   "extra_descs": {}
   },
   "13063": {
    "vnum": 13063,
@@ -1665,8 +1812,8 @@
      "description": "To the west lies The Central Plaza."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The plaza's east edge is marked by a long low wall topped with iron\nspikes, behind which gardens of pale stone mushrooms once grew. Traders'\npitches are scratched out in white on the paving, worn almost invisible.\nDurgar's Street leaves east through a gap in the wall. The plaza goes on\nnorth and south, and west to its centre.",
+   "extra_descs": {}
   },
   "13064": {
    "vnum": 13064,
@@ -1688,8 +1835,8 @@
      "description": "To the west lies South Plaza."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north and west.",
-   "placeholder": true
+   "description": "The plaza ends in a corner here, where two walls of carved stone meet in\na point and a bench has been built into the angle. The carvings show a\nprocession of craftsmen bearing the tools of their trades, and each has\na different face. Lamplight is poor, and the corner is full of shifting\nshadow. The paving leads north to the East Plaza and west along the\nSouth Plaza.",
+   "extra_descs": {}
   },
   "13065": {
    "vnum": 13065,
@@ -1719,8 +1866,8 @@
      "description": "To the west lies Southwest Plaza."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The south arm of the plaza is a wide apron of paving, bounded by the\ndark arches of a colonnade whose pillars are carved like bundled axe-\nhafts. Ash-grey dust lies in drifts against the base of each column. A\nrusty iron lamp-standard leans at an angle, its crown of glass long\ngone. The plaza spreads on to the north, east and west, and Eryn's Road\nleaves to the south.",
+   "extra_descs": {}
   },
   "13066": {
    "vnum": 13066,
@@ -1742,8 +1889,8 @@
      "description": "To the east lies South Plaza."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north and east.",
-   "placeholder": true
+   "description": "A quiet corner of the plaza, where a bronze plaque set in the paving\nlists the names of the city's founders, half of them worn to nothing. A\nstone bench faces a wall of reliefs showing the first digging of the\nmountain. The lamps here have been unlit so long that their wicks have\nturned to stone. The plaza runs north to the West Plaza and east to the\nSouth Plaza.",
+   "extra_descs": {}
   },
   "13067": {
    "vnum": 13067,
@@ -1773,8 +1920,8 @@
      "description": "To the west lies Durgar's Street."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The plaza's west edge opens onto Durgar's Street through a high gateway,\nits keystone carved with an anvil and a crown. A row of stone benches\nstands under a colonnade, their seats broken and furred with pale\nlichen. Light from distant lamps barely reaches the corners. The plaza\ngoes on north and south, and east to its centre.",
+   "extra_descs": {}
   },
   "13068": {
    "vnum": 13068,
@@ -1805,8 +1952,8 @@
      "description": "To the south lies West Plaza."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A tall house-front of rose-coloured stone rises to the north, its great\ndouble door topped with a carved stag's head, the mansion of Lord Stern.\nIron railings enclose a forecourt of dead ornamental shrubs. The paving\nis swept clean in a path to the door, while elsewhere it lies thick with\ndust. The plaza runs east to the North Plaza and south to the West\nPlaza.",
+   "extra_descs": {}
   },
   "13069": {
    "vnum": 13069,
@@ -1836,8 +1983,14 @@
      "description": "To the west lies East Plaza."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Durgar's Street is a handsome avenue wide enough for a marching column,\nits flagstones laid in long bands of grey and ochre. Hanging signs on\nthe north side advertise the Market Hall, while a creaking sign shaped\nlike a brass bell marks the tavern to the south. The street runs east\ntoward Fain's Highway and west to the plaza. Blackened lamp-brackets jut\nfrom every second pillar.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650300,
+     "max": 1
+    }
+   ]
   },
   "13070": {
    "vnum": 13070,
@@ -1857,8 +2010,8 @@
      "description": "To the south lies Durgar's Street."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "The market hall is a high stone barn of a room, its stalls ranged in\norderly rows beneath a ceiling of painted beams that show the seasons of\nthe world above. Most stalls are bare boards on trestles, though a few\nstill carry faded awnings and counting-slates. Dust sits on everything\nin an even grey blanket. The only door is on the south side, onto\nDurgar's Street.",
+   "extra_descs": {}
   },
   "13071": {
    "vnum": 13071,
@@ -1878,8 +2031,8 @@
      "description": "To the north lies Durgar's Street."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "A big square taproom with a low beamed ceiling and a great hearth, where\na huge bronze bell hangs above the bar and rings faintly when the\ndraught moves. Long tables of black oak, scarred by generations of mugs,\nfill the floor, and the benches are worn pale by sitting. The smell of\nold ale has soaked into the very walls. The door north leads out to\nDurgar's Street.",
+   "extra_descs": {}
   },
   "13072": {
    "vnum": 13072,
@@ -1909,8 +2062,8 @@
      "description": "To the west lies Valin's Road."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Durgar's Street meets Valin's Road here in a wide junction, and a carved\nstone wellhead stands in the middle, its windlass long gone. The Ruby\nInn lies to the north behind a window of red glass, and the vault-door\nof Clem's Bank squats to the south. The street continues east toward the\nplaza, and Valin's Road runs away west. A bar of pale light from a high\nshaft falls across the wellhead.",
+   "extra_descs": {}
   },
   "13073": {
    "vnum": 13073,
@@ -1938,8 +2091,8 @@
      "description": "To the up lies Reception."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south, west and up.",
-   "placeholder": true
+   "description": "The Ruby Inn's entrance hall glows dull crimson from windows of red\nglass, and a long polished counter of dark wood runs along one wall. A\nstair climbs up to the reception rooms above, and an archway on the west\nside opens on the common room. The floor is strewn with rushes gone\nbrittle and brown, and the lamps are unlit. The street door is south.",
+   "extra_descs": {}
   },
   "13074": {
    "vnum": 13074,
@@ -1959,8 +2112,8 @@
      "description": "To the east lies The Ruby Inn."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "A long, low common room with a fireplace big enough to roast an ox, now\ncold. Dozens of mismatched stools and benches are pushed against the\nwalls, and a dartboard of pitted wood hangs askew. A mural of dwarves at\na feast has been half washed away by seepage. The only way out is the\narchway to the east.",
+   "extra_descs": {}
   },
   "13075": {
    "vnum": 13075,
@@ -1980,8 +2133,8 @@
      "description": "To the down lies The Ruby Inn."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads down.",
-   "placeholder": true
+   "description": "A quiet upper chamber with a writing desk, a bell-pull of tarnished\nvelvet, and a ledger the size of a paving slab chained to the counter.\nFaded portraits of the inn's owners watch from the walls, their eyes\nmostly scratched out. The air is stuffy and smells of old paper. A stair\nleads down to the lobby of the Ruby Inn.",
+   "extra_descs": {}
   },
   "13076": {
    "vnum": 13076,
@@ -1999,8 +2152,8 @@
      "description": "To the north lies Durgar's Street."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads north.",
-   "placeholder": true
+   "description": "A vault of grey stone, its walls lined with iron-bound strongboxes that\nstand open and empty. A heavy teller's counter is guarded by thick brass\nbars, and a great scale hangs over it, its pans bent. The ceiling bears\na mosaic of coins and a laughing dwarf with a ledger. The only way out\nis north, onto Durgar's Street.",
+   "extra_descs": {}
   },
   "13077": {
    "vnum": 13077,
@@ -2026,8 +2179,8 @@
      "description": "To the south lies North Plaza."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Eryn's Road begins here, a broad paved way between tall townhouses with\ncarved stone balconies, most of them dark. The cobbles are set in a\nherringbone of grey and rust-red, though many have sunk or been prised\nout. To the east stands the squat, heavily barred Cityguard's\nHeadquarters, its door yawning open. North the road continues up the\nstreet, and south it opens onto the plaza.",
+   "extra_descs": {}
   },
   "13078": {
    "vnum": 13078,
@@ -2057,8 +2210,8 @@
      "description": "To the west lies Guards Barracks."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "A cramped crossing on Eryn's Road, where a narrow dark alley slips away\neast between two leaning houses, and a heavy-timbered doorway to the\nwest opens on the Guards Barracks. Old oil lamps hang from iron arms\nover the street, rusted and unlit. A drain grating in the middle of the\nroad gurgles faintly. The road runs on north and south from the\ncrossing.",
+   "extra_descs": {}
   },
   "13079": {
    "vnum": 13079,
@@ -2084,8 +2237,8 @@
      "description": "To the west lies The Prison."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, south and west.",
-   "placeholder": true
+   "description": "The road narrows here between blank walls of dressed stone, and a squat,\ngrim building to the west shows a barred door, the city prison. Iron-\nshod posts along the kerb carry hanging chains where prisoners were once\nled. The paving is greasy with old soot. North the road meets Bolgrim's\nWay, and south it runs back toward the plaza.",
+   "extra_descs": {}
   },
   "13080": {
    "vnum": 13080,
@@ -2111,8 +2264,14 @@
      "description": "To the south lies Bard's Street."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east and south.",
-   "placeholder": true
+   "description": "Eryn's Road ends in a short paved approach to the plaza, which glimmers\ndimly ahead to the north. The Cartographers' house stands to the east,\nits door set with a brass plate engraved with a compass, tarnished\ngreen. The road is clean and well swept here, as though the guild still\ncared about its doorstep. South the road meets Bard's Street.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650300,
+     "max": 1
+    }
+   ]
   },
   "13081": {
    "vnum": 13081,
@@ -2138,8 +2297,8 @@
      "description": "To the west lies Eryn's Road."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east and\nwest.",
-   "placeholder": true
+   "description": "The headquarters is a stone hall with a long counter, a notice board of\ncurling bills, and a wall-map of the city bristling with pins. A brazier\nstands cold in the middle of the floor. Doors lead north to the\nofficers' room and east to the sleeping quarters. The street lies to the\nwest.",
+   "extra_descs": {}
   },
   "13082": {
    "vnum": 13082,
@@ -2159,8 +2318,8 @@
      "description": "To the south lies The Cityguard's Headquarters."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "A tidy room with a brass-bound desk, a map table, and a rack of\nceremonial halberds standing in the corner. A hat-stand holds a\ncaptain's plumed helm under a coat of dust. The window is just a slit\nonto an airshaft. The only door leads south into the headquarters.",
+   "extra_descs": {}
   },
   "13083": {
    "vnum": 13083,
@@ -2178,8 +2337,8 @@
      "description": "To the west lies The Cityguard's Headquarters."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. A way leads west.",
-   "placeholder": true
+   "description": "Cots stand in rows under a low vaulted ceiling, blankets folded at their\nfeet, a cold stove squatting in the middle of the room. The air is stale\nwith years of sleeping soldiers. A single lantern hangs unlit from a\nhook above the door. The only way out is west, into the headquarters.",
+   "extra_descs": {}
   },
   "13084": {
    "vnum": 13084,
@@ -2199,8 +2358,14 @@
      "description": "To the east lies Eryn's Road."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
-   "placeholder": true
+   "description": "Rows of bunks line the walls of the barracks, each with a footlocker and\na grey blanket tucked tight. Pegs hold the shadows of armour that no\nlonger hangs there, and a long table in the middle carries the ring-\nmarks of many mugs. A regimental pennant, black with soot, droops from a\npole. The only exit is the door to the east, onto Eryn's Road.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650301,
+     "max": 1
+    }
+   ]
   },
   "13085": {
    "vnum": 13085,
@@ -2227,8 +2392,8 @@
      }
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
-   "placeholder": true
+   "description": "The prison is a squat guardroom of grey stone, with a table scarred by\nknives and a rack of iron keys hanging on hooks. Manacles are bolted to\na post in the middle of the floor. A heavy iron door in the west wall\nleads to the cell beyond, and the street lies to the east. The air is\nsour with damp and old sweat.",
+   "extra_descs": {}
   },
   "13086": {
    "vnum": 13086,
@@ -2248,8 +2413,9 @@
      "description": "To the east lies The Prison."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "A tiny cell, a bare stone floor and a rock shelf for a bed, with iron\nstaples in the wall where chains once hung. Scratched tallies cover one\nwall in uneven rows of five. A narrow barred slit lets in a sliver of\ndim lamplight. The iron door to the east opens onto the prison.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "13087": {
    "vnum": 13087,
@@ -2271,8 +2437,8 @@
      "description": "To the west lies Eryn's Road."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "The alley mouth opens west onto Eryn's Road, a dim rectangle of\nlamplight at the end of the passage. The walls are sooty, scrawled over\nwith thieves' marks and tally-lines. A drain runs down the middle,\nclogged with old rubbish. The alley goes on east, deeper into the dark.",
+   "extra_descs": {}
   },
   "13088": {
    "vnum": 13088,
@@ -2303,8 +2469,8 @@
      "description": "To the west lies A Dark Alley."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Darkness crowds this stretch of the alley, and the walls lean in from\nboth sides until the ceiling of the mountain is lost above. A thread of\ngreen light shows beneath a door in the south wall, the entrance to the\nShop Of Small And Wondrous Things. Puddles of black water lie between\nthe cobbles. The alley runs east toward Fain's Highway and west into\ndeeper shadow.",
+   "extra_descs": {}
   },
   "13089": {
    "vnum": 13089,
@@ -2324,8 +2490,8 @@
      "description": "To the north lies A Dark Alley."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "Shelves and glass cases crowd every wall of this narrow shop, crammed\nwith curiosities and oddments of brass and glass. A clockwork bird\nperches on the counter, its wings frozen halfway through a beat. Lamps\nof coloured glass cast a mottled light on the ceiling. The way out is\nnorth, into the alley.",
+   "extra_descs": {}
   },
   "13090": {
    "vnum": 13090,
@@ -2358,8 +2524,8 @@
      "description": "To the west lies The Miner's Office."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A low timbered hall where the miners' guild once held its meetings and\npaid out wages at a long counter. Benches are ranged along the walls,\nand the pay-window is shuttered with an iron grille. A door in the north\nwall, black with grease, leads to the shaft-head, and an opening to the\nwest gives onto the guild office. The street entrance stands to the\nsouth.",
+   "extra_descs": {}
   },
   "13091": {
    "vnum": 13091,
@@ -2383,8 +2549,11 @@
      "description": "To the down lies The Entrance To The Mines."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and down.",
-   "placeholder": true
+   "description": "A square pit-head built of massive timbers, with the great wheel of a\nwinding-gear overhead, its rope long since rotted away. The floor is a\nplatform of planks laid around a black opening, from which a cold breath\nrises with a smell of wet stone. The gate that once locked the way down\nhas been thrown wide, and iron rungs lead into the darkness. The door\nsouth leads back to the hall.",
+   "look": "mine",
+   "extra_descs": {
+    "gate rungs opening": "The iron gate hangs from one hinge, and its lock has been cut through.\nThe rungs below it are worn bright in the middle, as if used often and\nlately."
+   }
   },
   "13092": {
    "vnum": 13092,
@@ -2404,8 +2573,8 @@
      "description": "To the east lies Miner's Hall."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "A cramped office with a slanted drafting desk, pigeonholes stuffed with\nsurvey scrolls, and a wall-map of the galleries inked in a careful,\nfaded hand. Red lines mark the seams that were richest, and black\ncrosses mark the places where roofs fell in. A stub of candle has melted\ninto a saucer. The only way out is the opening east, into the hall.",
+   "extra_descs": {}
   },
   "13093": {
    "vnum": 13093,
@@ -2425,8 +2594,8 @@
      "description": "To the west lies Fain's Highway."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "Long racks line the walls of this lofty hall, mostly bare now, with only\nthe outlines of what once hung there picked out in clean stone behind\nthem. A forge-hearth in the corner is cold, and the great stone anvil\nbeside it is dented by countless blows. The vaulted ceiling is stained\nwith the smoke of generations of smiths. The archway on the west side\nleads back to Fain's Highway.",
+   "extra_descs": {}
   },
   "13094": {
    "vnum": 13094,
@@ -2446,8 +2615,8 @@
      "description": "To the east lies Fain's Highway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads east.",
-   "placeholder": true
+   "description": "The armory smells of cold iron and oil. Rows of empty stands shaped like\ndwarves with raised arms line the walls, awaiting plate that was sold\noff or stolen. A great bellows hangs over a forge-pit and a pair of\ntongs lies rusting on the anvil. The door to the east leads out to\nFain's Highway.",
+   "extra_descs": {}
   },
   "13095": {
    "vnum": 13095,
@@ -2465,8 +2634,8 @@
      "description": "To the north lies Bolgrim's Way."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads north.",
-   "placeholder": true
+   "description": "A wizard's shop of crooked shelves, the floor scrawled with sigils in\nwhite chalk and a brazier of violet embers burning cold in one corner.\nStrings of dried herbs and bundles of feathers hang from the rafters.\nThe shop sign swings above the door with a faint squeak. The door in the\nnorth wall leads back out to Bolgrim's Way.",
+   "extra_descs": {}
   },
   "13096": {
    "vnum": 13096,
@@ -2484,8 +2653,14 @@
      "description": "To the south lies Bard's Street."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads south.",
-   "placeholder": true
+   "description": "A long warehouse of stone bays, each one heaped with spilled chips of\ncoloured rock: green, ochre, grey-blue. Scales hang on iron arms over\nevery bay, and sorting-tables stand nearby, riddled with the pits of\ncountless hammer-blows. The air tastes of dust. The door to the south\nleads out to Bard's Street.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650300,
+     "max": 1
+    }
+   ]
   },
   "13097": {
    "vnum": 13097,
@@ -2503,8 +2678,8 @@
      "description": "To the east lies Valin's Road."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads east.",
-   "placeholder": true
+   "description": "The residence of Lord Brute is a fortress of a house, its hall hung with\nthe tusked heads of boars and the shields of defeated rivals. A great\nchair of black iron stands on a dais, its arms worn bright by a heavy\nhand. The floor is scored with the scrapes of dragged furniture, as if\nthe household left in a hurry. The door in the east wall opens on\nValin's Road.",
+   "extra_descs": {}
   },
   "13098": {
    "vnum": 13098,
@@ -2522,8 +2697,8 @@
      "description": "To the west lies Fain's Highway."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads west.",
-   "placeholder": true
+   "description": "A tidy dwarven parlour with a low ceiling of dark beams, where an iron\nkettle hangs over a cold hearth and a faded rug lies before it. Shelves\nalong one wall hold crocks and a few leather-bound ledgers. Chalk tally\nmarks on the mantel record some forgotten household reckoning. The only\nway out is the door to the west, onto Fain's Highway.",
+   "extra_descs": {}
   },
   "13099": {
    "vnum": 13099,
@@ -2541,8 +2716,8 @@
      "description": "To the south lies Bolgrim's Way."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads south.",
-   "placeholder": true
+   "description": "This is the front room of a modest dwarven house, snug and low-beamed,\nwith a hearth swept clean and a heavy table scarred by long years of\nmeals. Pegs on the wall hold a few threadbare cloaks, and a shuttered\nwindow lets in a thin slant of lamplight from the street. Blankets lie\nfolded on a bench by the fire. The door to the south leads back out onto\nBolgrim's Way.",
+   "extra_descs": {}
   },
   "13100": {
    "vnum": 13100,
@@ -2565,8 +2740,8 @@
      }
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. A way leads east.",
-   "placeholder": true
+   "description": "The hall of a once-grand house, its floor of black and white tile now\ncracked, and its walls hung with the pale ghosts of vanished paintings.\nA chandelier of rusted iron lies in a heap in the middle of the room,\nwhere its chain gave way. Gilded door-frames hang open on empty rooms.\nThe great door in the east wall leads out to Valin's Road.",
+   "extra_descs": {}
   },
   "13101": {
    "vnum": 13101,
@@ -2589,8 +2764,8 @@
      }
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads east.",
-   "placeholder": true
+   "description": "A drawing room with a hearth of carved marble and a pair of high-backed\nchairs, their upholstery eaten to the stuffing. Heavy curtains of green\nvelvet hang rotting from their rods. A harp with a few snapped strings\nleans in the corner, gathering dust. The door in the east wall leads\nback to Valin's Road.",
+   "extra_descs": {}
   },
   "13102": {
    "vnum": 13102,
@@ -2613,8 +2788,14 @@
      }
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. A way leads east.",
-   "placeholder": true
+   "description": "A long dining hall, its table a single slab of grey granite ringed with\nhigh-backed chairs of black wood. Silver candle-stands, green with\ntarnish, still march down the middle of the board, each stub of wax\nburned to a puddle. Tapestries of a boar hunt hang in rags from the\nwalls, and the hearth is choked with old soot. The door in the east wall\nleads back out to Valin's Road.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650300,
+     "max": 1
+    }
+   ]
   },
   "13103": {
    "vnum": 13103,
@@ -2632,8 +2813,8 @@
      "description": "To the east lies Valin's Road."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. A way leads east.",
-   "placeholder": true
+   "description": "A noble bedchamber, its great bed canopied in dust-grey brocade, and its\nwardrobe doors hanging open on empty hooks. A dressing-table holds a\ncracked mirror and a dried-up pot of paint. Over the mantel hangs a\nportrait of a stern dwarf lady, her face slashed by some vandal. The\ndoor to the east leads out to Valin's Road.",
+   "extra_descs": {}
   },
   "13104": {
    "vnum": 13104,
@@ -2651,8 +2832,8 @@
      "description": "To the west lies Fain's Highway."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads west.",
-   "placeholder": true
+   "description": "Dust lies over everything in this house, thick enough to show a single\nline of prints crossing the floor from door to hearth. Chairs are\noverturned, a cupboard hangs open, and plaster has fallen in grey lumps\nfrom the ceiling. A cold fireplace gapes in the far wall, a few charred\nsticks still in the grate. The door to the west lets in a thin lamp-glow\nfrom the highway.",
+   "extra_descs": {}
   },
   "13105": {
    "vnum": 13105,
@@ -2670,8 +2851,8 @@
      "description": "To the west lies Fain's Highway."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. A way leads west.",
-   "placeholder": true
+   "description": "A long-empty house, its shutters nailed across the windows and its door\nhanging by a single strap of leather. In the main room the furniture has\nbeen dragged into a heap in one corner, and a moth-eaten tapestry sags\non its rod. Fine pale roots of some fungus have lifted several\nflagstones. The way out is back through the door to the west.",
+   "extra_descs": {}
   },
   "13106": {
    "vnum": 13106,
@@ -2689,8 +2870,8 @@
      "description": "To the west lies Fain's Highway."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads west.",
-   "placeholder": true
+   "description": "The third of the empty houses along this stretch has fared worst: the\nroof has partly caved, and a heap of fallen stone fills one corner of\nthe room. A faded mural of a bear-hunt covers the one wall still sound,\nblistered with damp. A draught whines through a crack in the ceiling.\nThe door to the west is the only way out.",
+   "extra_descs": {}
   },
   "13107": {
    "vnum": 13107,
@@ -2708,8 +2889,14 @@
      "description": "To the south lies Northwest Plaza."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads south.",
-   "placeholder": true
+   "description": "Lord Stern's hall is vast and hung with moth-eaten banners of crimson\nand gold, beneath a vault painted with the deeds of his forefathers. A\nlong table of polished black stone runs the length of the floor, set for\na feast that no one has come to eat. A gallery runs along the far wall,\nits balustrade broken in several places. The only door leads south onto\nthe plaza.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650305,
+     "max": 1
+    }
+   ]
   },
   "13108": {
    "vnum": 13108,
@@ -2727,8 +2914,14 @@
      "description": "To the west lies Eryn's Road."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads west.",
-   "placeholder": true
+   "description": "The cartographers' workshop is lined with sloping tables, where yellowed\nmaps of the roads and tunnels are pinned down by lead weights. A great\npainted globe of the underworld stands in the corner, its lower half\ncracked. Brass compasses and dividers hang on the walls, dull with age.\nThe door to the west opens on Eryn's Road.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650300,
+     "max": 1
+    }
+   ]
   },
   "13109": {
    "vnum": 13109,
@@ -2748,8 +2941,8 @@
      "description": "To the north lies Bard's Street."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
-   "placeholder": true
+   "description": "A cramped little shop, its counter scarred and its shelves mostly empty,\nwith only a few jars and crocks lined up at the back. The ceiling is\nhung with iron hooks that once held smoked fish and sausage. A lantern\non a chain gives a feeble, wavering light. The door to the north opens\nonto Bard's Street.",
+   "extra_descs": {}
   },
   "13110": {
    "vnum": 13110,
@@ -2771,8 +2964,8 @@
      "description": "To the south lies A Slight Bend In The Alleyway."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A cramped alley slopes down between the high backs of mansions, its\ncobbles slick with seepage. Tangles of wire and old rope hang between\nthe walls, strung with the remnants of washing lines. The only light\ncomes from a shuttered lamp at the head of the alley. The alley winds\nsouth and opens north onto Bolgrim's Way.",
+   "extra_descs": {}
   },
   "13111": {
    "vnum": 13111,
@@ -2794,8 +2987,8 @@
      "description": "To the east lies Buccia's Alley."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and east.",
-   "placeholder": true
+   "description": "A slight bend in the alley, where the walls lean toward each other until\nthey almost meet overhead. A stone drain runs down the centre, gurgling\nfaintly. Chalked arrows on the wall point the ways out, and beside them\nis a word in an unreadable hand. The alley goes north toward its head\nand east to a longer stretch.",
+   "extra_descs": {}
   },
   "13112": {
    "vnum": 13112,
@@ -2817,8 +3010,8 @@
      "description": "To the west lies A Slight Bend In The Alleyway."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth and west.",
-   "placeholder": true
+   "description": "The alley runs along the back of a long building, and a smell of stale\nbeer and frying grease drifts from an open arch to the south, the way\ninto the Golden Plough. Barrel staves and broken crates are stacked\nagainst the wall. A hanging lamp in an iron cage gives a weak orange\nglow. The alley turns back west.",
+   "extra_descs": {}
   },
   "13113": {
    "vnum": 13113,
@@ -2845,8 +3038,8 @@
      }
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Golden Plough is a noisy tavern room gone silent, with a great wheel\nof a plough hung above the hearth and its brass long tarnished. Tables\nare heaped with upturned stools, and a counter of scarred oak is lit by\na single guttering lamp. A heavy door in the south wall leads to the\nback room. The alley lies north.",
+   "extra_descs": {}
   },
   "13114": {
    "vnum": 13114,
@@ -2870,11 +3063,372 @@
      "description": "To the down lies Below The Tavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and down.",
-   "placeholder": true
+   "description": "A windowless back room, with a rough table, a rack of casks, and a\ntrapdoor in the floor that stands wide open on a ladder of cold iron. A\ndraught of mineral-scented air rises from the dark below. The wall is\nscratched with tally-marks and the initials of smugglers. The door north\nleads back to the tavern.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "650300": {
+   "vnum": 650300,
+   "name": "dwarf citizen townsman",
+   "short_desc": "a gaunt dwarf citizen",
+   "long_desc": "A gaunt dwarf citizen hurries past, hugging a worn cloak and glancing at the shadows.",
+   "description": "A short, broad dwarf with a greying beard braided in mourning knots. His\ncoat was fine once, but is darned and patched at the elbows, and he eyes\nyou with wary, tired courtesy.",
+   "level": 33,
+   "alignment": 300,
+   "hp_dice": "33d8+497",
+   "damage_dice": "9d6+18",
+   "armor_class": -2,
+   "exp": 1835,
+   "gold": 396,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": []
+  },
+  "650301": {
+   "vnum": 650301,
+   "name": "renegade dwarf guard soldier",
+   "short_desc": "a renegade dwarf guard",
+   "long_desc": "A renegade dwarf guard stands watch with a notched axe, his livery stripped of the city's crest.",
+   "description": "The dwarf wears the grey tabard of the city watch, the crest torn off\nand replaced with a crude crown daubed in red. His helm is dented, his\neyes hard, and he grips his axe like a man who has already chosen a\nside.",
+   "level": 36,
+   "alignment": -300,
+   "hp_dice": "36d8+556",
+   "damage_dice": "10d6+19",
+   "armor_class": -11,
+   "exp": 2000,
+   "gold": 432,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750303,
+     "chance": 20
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650302": {
+   "vnum": 650302,
+   "name": "pale tunnel spider",
+   "short_desc": "a pale tunnel spider",
+   "long_desc": "A pale tunnel spider clings to the rock overhead, its many eyes catching the lamplight.",
+   "description": "The spider is as big as a wolf, bloated and bone-white from a life\nwithout light. Its legs end in hooked claws that rasp on the stone, and\nthick strands of grey silk trail from its spinnerets.",
+   "level": 34,
+   "alignment": -100,
+   "hp_dice": "34d8+449",
+   "damage_dice": "9d6+19",
+   "armor_class": -5,
+   "exp": 1890,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750304,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "650303": {
+   "vnum": 650303,
+   "name": "stone golem guardian",
+   "short_desc": "a hulking stone golem",
+   "long_desc": "A hulking stone golem stands motionless among the pillars, until it turns its blank face toward you.",
+   "description": "The golem is hewn from a single block of grey granite, carved in the\nlikeness of a dwarf in plate armour. Rune-lines glow dull orange in its\nchest, and each slow step shakes dust from the vault above.",
+   "level": 42,
+   "alignment": 0,
+   "hp_dice": "42d8+858",
+   "damage_dice": "11d6+30",
+   "armor_class": -20,
+   "exp": 2330,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750302,
+     "chance": 25
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650304": {
+   "vnum": 650304,
+   "name": "usurper champion dwarf warrior",
+   "short_desc": "the usurper's champion",
+   "long_desc": "The usurper's champion paces the tunnel in black plate, a warhammer resting on his shoulder.",
+   "description": "A massive dwarf in blackened plate, his beard bound in iron rings and\nhis face scarred across both cheeks. He bears a crown stamped in red wax\nupon his breastplate and swings a warhammer as easily as a walking\nstick.",
+   "level": 41,
+   "alignment": -500,
+   "hp_dice": "41d8+662",
+   "damage_dice": "11d6+22",
+   "armor_class": -20,
+   "exp": 2275,
+   "gold": 492,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750303,
+     "chance": 25
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650305": {
+   "vnum": 650305,
+   "name": "lord stern turncloak noble dwarf",
+   "short_desc": "Lord Stern the Turncloak",
+   "long_desc": "Lord Stern the Turncloak sits at his long table in crimson and gold, a drawn blade across his knees.",
+   "description": "Lord Stern is a lean, silver-bearded dwarf in the faded finery of an old\nnoble house. He sold his city's gates to the usurper for a promise of\npower, and the sleepless pallor in his eyes tells how well that bargain\nhas served him.",
+   "level": 41,
+   "alignment": -600,
+   "hp_dice": "41d8+662",
+   "damage_dice": "11d6+22",
+   "armor_class": -20,
+   "exp": 2275,
+   "gold": 492,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750301,
+     "chance": 35
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650306": {
+   "vnum": 650306,
+   "name": "hrodgar ironcrown usurper dwarf king",
+   "short_desc": "Hrodgar Ironcrown, the usurper king",
+   "long_desc": "Hrodgar Ironcrown, the usurper king, stands before the great gate with a crown of black iron on his brow.",
+   "description": "Hrodgar is broad as a door and nearly as hard, clad in ancient king's\nplate stolen from the stronghold's vault. His beard is shot with iron\nwire, and in his fist he carries a cleaver-axe that has tasted the blood\nof the old royal line.",
+   "level": 43,
+   "alignment": -800,
+   "hp_dice": "43d8+706",
+   "damage_dice": "11d6+25",
+   "armor_class": -20,
+   "exp": 2385,
+   "gold": 516,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750300,
+     "chance": 35
+    },
+    {
+     "vnum": 750301,
+     "chance": 10
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "750300": {
+   "vnum": 750300,
+   "name": "ironcrown cleaver axe",
+   "short_desc": "the Ironcrown cleaver",
+   "room_desc": "A broad-bladed cleaver-axe of black iron lies here.",
+   "description": "A broad-bladed axe of black dwarven iron, its haft bound in strips of royal purple. A crown is etched on the blade, and the edge still holds a wicked shine.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 43,
+   "damage_dice": "2d9",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 1115,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  },
+  "750301": {
+   "vnum": 750301,
+   "name": "stern signet ring gold",
+   "short_desc": "Lord Stern's signet ring",
+   "room_desc": "A heavy gold signet ring lies here.",
+   "description": "A heavy ring of red gold set with a flat stone, bearing the crest of a stag over an anvil. The band is worn thin on the inside from long wearing.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 41,
+   "wear_slot": "finger1",
+   "armor": 3,
+   "weight": 1,
+   "value": 850,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 1
+    }
+   ]
+  },
+  "750302": {
+   "vnum": 750302,
+   "name": "heartstone golem stone red",
+   "short_desc": "a golem's heartstone",
+   "room_desc": "A fist-sized red stone, faintly warm, lies here.",
+   "description": "A fist-sized stone of deep red, scored with a ring of tiny runes. It stays faintly warm to the touch, and jewellers would pay well for it.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 42,
+   "weight": 1,
+   "value": 1285
+  },
+  "750303": {
+   "vnum": 750303,
+   "name": "tower shield iron guard",
+   "short_desc": "a dented iron tower shield",
+   "room_desc": "A dented iron tower shield lies here.",
+   "description": "A tall shield of riveted iron, scored by axe-blows. The crest of the city watch has been hammered flat on its face.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 36,
+   "wear_slot": "shield",
+   "armor": 6,
+   "weight": 6,
+   "value": 750,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  },
+  "750304": {
+   "vnum": 750304,
+   "name": "silk cloak pale spider",
+   "short_desc": "a pale spider-silk cloak",
+   "room_desc": "A pale, glimmering cloak of spun silk lies here.",
+   "description": "A cloak woven from the pale silk of tunnel spiders, light as breath and surprisingly strong. It clings to the shoulders like cobweb and turns aside a glancing blow.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 34,
+   "wear_slot": "about",
+   "armor": 3,
+   "weight": 3,
+   "value": 710,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  }
+ }
 }

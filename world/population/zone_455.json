@@ -1,0 +1,152 @@
+{
+ "zone": 455,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Aldric, the Barrow-King as the boss.",
+ "creatures": {
+  "645500": {
+   "helpers": {
+    "group": "z455_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a lean grey shark"
+  },
+  "645501": {
+   "helpers": {
+    "group": "z455_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a gaunt ruin hound"
+  },
+  "645502": {
+   "helpers": {
+    "group": "z455_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a drowned sailor"
+  },
+  "645503": {
+   "helpers": {
+    "group": "z455_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a barrow guard",
+   "rank": "elite"
+  },
+  "645504": {
+   "helpers": {
+    "group": "z455_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a wailing rim wraith",
+   "rank": "elite"
+  },
+  "645505": {
+   "helpers": {
+    "group": "z455_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Captain Harrowmere the Drowned",
+   "rank": "sub-boss"
+  },
+  "645506": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "Aldric, the Barrow-King",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Aldric, the Barrow-King rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Aldric, the Barrow-King gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Aldric, the Barrow-King raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Aldric, the Barrow-King begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 645502,
+   "route": [
+    10903,
+    10904,
+    10905,
+    10906,
+    10907,
+    10913
+   ],
+   "why": "a drowned sailor walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 645506,
+   "room": 10910,
+   "why": "Aldric, the Barrow-King in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "645502": 2
+     },
+     "shout": "Aldric, the Barrow-King calls, and a drowned sailors come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

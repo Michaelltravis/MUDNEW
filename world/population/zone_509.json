@@ -1,0 +1,176 @@
+{
+ "zone": 509,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Gorrakh the Rock-Eater, a stone troll as the boss.",
+ "creatures": {
+  "650900": {
+   "helpers": {
+    "group": "z509_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a skeleton miner"
+  },
+  "650901": {
+   "helpers": {
+    "group": "z509_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a gaunt mine ghoul"
+  },
+  "650902": {
+   "helpers": {
+    "group": "z509_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a pale rock worm"
+  },
+  "650903": {
+   "helpers": {
+    "group": "z509_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "the Khukal wight foreman",
+   "rank": "elite"
+  },
+  "650904": {
+   "helpers": {
+    "group": "z509_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a razorleg spider",
+   "rank": "elite"
+  },
+  "650905": {
+   "helpers": {
+    "group": "z509_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Thane Oskar Ironbrow, the skeleton warlord",
+   "rank": "sub-boss"
+  },
+  "650906": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Gorrakh the Rock-Eater, a stone troll",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Gorrakh the Rock-Eater, a stone troll rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Gorrakh the Rock-Eater, a stone troll gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+12",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Gorrakh the Rock-Eater, a stone troll raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+9",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Gorrakh the Rock-Eater, a stone troll begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+16",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 650900,
+   "route": [
+    13151,
+    13180,
+    13181,
+    13182,
+    13183,
+    13184,
+    13185,
+    13186,
+    13187,
+    13191,
+    13192,
+    13193,
+    13194,
+    13219,
+    13218,
+    13217,
+    13216,
+    13215,
+    13214,
+    13213,
+    13212,
+    13279,
+    13282,
+    13285,
+    13286,
+    13287
+   ],
+   "why": "a skeleton miner walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 650906,
+   "room": 13175,
+   "why": "Gorrakh the Rock-Eater, a stone troll in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "650902": 2
+     },
+     "shout": "Gorrakh the Rock-Eater, a stone troll calls, and a pale rock worms come!",
+     "why": "its brood"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

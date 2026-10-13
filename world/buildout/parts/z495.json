@@ -1,0 +1,611 @@
+{
+ "job": "z495",
+ "rooms": {
+  "3700": {
+   "description": "A narrow strip of grey shingle is the island's only landing, where a gap in a row of rotted stakes lets a boat nose in from the water to the south. Dead trees lean over the tideline, and tilted stones mark the grass above it. Mist drifts off the sea and settles cold on your clothes. The shore runs away east and west, both ways fading into the whiteness.",
+   "look": "shore"
+  },
+  "3701": {
+   "description": "The shingle gives way to coarse grass and flat grey pebbles, and the sea breathes slowly against the stones. Nothing cries on this coast; the only sound is the drip of mist from a driftwood spar propped upright in the sand. The shore goes on east toward a pale cairn, and west back to the landing.",
+   "look": "shore"
+  },
+  "3702": {
+   "description": "A cairn of pale stones stands waist-high above the tideline, each one laid with care and none of them carrying a name. Behind it the island rises into a wall of bare black trees that hold the mist like wool. The grass is flattened and silvered with damp, and the shore continues east and west along the same low line.",
+   "look": "shore"
+  },
+  "3703": {
+   "description": "Here the shore begins to lean away, the shingle narrowing between the dull water and a bank of tangled brambles. A great curved rib of some long-drowned beast lies bleached on the stones. The sea hushes in and out, in and out. East the strand bends round a corner of the island, and west it runs straight back toward the landing.",
+   "look": "shore"
+  },
+  "3704": {
+   "description": "The shore turns a corner here, the sea wrapping round the island's edge and the strand bending with it. Rushes hiss in the wind off the water, and small flat stones lie in neat rows as though someone once sorted them by weight. The shore runs on north along a steadier line, while the way west returns along the shingle.",
+   "look": "shore"
+  },
+  "3705": {
+   "description": "A long grey beach stretches ahead, empty but for ribbons of black kelp and the splintered keel of a boat that no one ever came back for. The mist is thick enough to taste, cold and faintly of iron. Behind you the shore bends back south toward the corner, and it carries on north into the whiteness.",
+   "look": "shore"
+  },
+  "3706": {
+   "description": "A standing stone as tall as a man stands on the dry sand just above the waves, its face worn smooth by salt. Something is cut into it, a pair of scales and a single feather, though the sea wind has softened the lines. The grass about its foot is trodden flat. The shore runs south and north past it.",
+   "look": "shore"
+  },
+  "3707": {
+   "description": "Tidal pools glisten among the rocks here, each one still and dark as an eye. A scatter of grey feathers lies in the wrack, wet and matted, and the wind turns them over without ever lifting them. Dead trees crowd close behind the strand, hung with strands of mist. The shore goes on north and south.",
+   "look": "shore"
+  },
+  "3708": {
+   "description": "A single gnarled yew leans out over the sand, its trunk split and hollow, its bark gone the colour of old ash. Under it the ground is dry and bare, and the sound of the sea seems oddly far off. Past the tree the shore is a thin pale ribbon running north, and it runs back south the way you came.",
+   "look": "shore"
+  },
+  "3709": {
+   "description": "A rusted anchor lies half sunk in the shingle, its chain trailing down into the surf like something that gave up pulling. The breakers come in long and slow and break without foam. Ahead the shore curves faintly toward the trees, and the mist presses so close that the next stretch of beach seems a rumour. You can go north or south.",
+   "look": "shore"
+  },
+  "3710": {
+   "description": "Dark sand drifts up here into low dunes, held together by pale clumps of sea grass that rattle softly in the breeze. Wet footprints would last no time in this light, and you see none. The shore keeps to the water's edge, running south toward the anchor and north toward a sharper bend.",
+   "look": "shore"
+  },
+  "3711": {
+   "description": "The island's edge turns again here, and the surf curls round it in a long grey arc. Black rocks stand out of the shallows like the knuckles of a buried hand, and the tide mutters in the gaps between them. The way back south follows the beach, while west the shore sweeps on along the island's far side.",
+   "look": "shore"
+  },
+  "3712": {
+   "description": "A narrow stream tumbles over the shingle and loses itself in the sea, cutting a dark channel through the pale stones. Where it comes from, the forest begins in earnest, a thick dark wall of oak and hornbeam leaning together. A faint trail follows the stream into the trees to the south, and the shore stretches east round the curve.",
+   "look": "shore"
+  },
+  "3725": "The stream runs clear and cold beside you, talking to itself among the roots of ancient oaks. Overhead the leaves are so thick that the mist comes down only in threads, silvering the ferns. The ground is soft and black with old leaf-fall, and a trodden line follows the water. North the trees open toward the grey sea, and south the stream winds deeper in.",
+  "3726": "The forest closes in here, hornbeam and holly crowding the bank until the water has to push between them. Moss grows thick on every north-facing trunk, but nothing stirs in the branches overhead. The path is a muddy ribbon beside the stream, and it carries on north toward the light and south into the shadows.",
+  "3727": "The trees lean together over the water and form a low green roof, through which the grey sky shows in coins. A fallen alder lies across part of the stream and has gathered a drift of pale leaves. The air smells of wet earth and something older, like stone cellars. The path follows the stream north and south.",
+  "3728": "A line of flat stepping stones crosses the stream here, each one worn into a shallow dish by passing feet. The water runs quick and brown between them, and its chatter is the only sound in the wood. Either side the forest is dense and dark, and the path picks up again north and south of the crossing.",
+  "3729": "The stream slackens and widens into a still brown pool among the roots, and a few dead leaves turn on its surface. Bracken stands waist-high on the bank, beaded with moisture. The wood presses in from all sides, but the trail is clear enough, running north back along the water and south to where it bends away from it.",
+  "3730": "The trail leaves the stream and makes a sharp turn among thick-boled oaks, as if bending round something that was once there. Roots break the ground in knuckles, and a lichen like grey hair hangs from the lowest boughs. The path runs north back toward the stream and west deeper into the forest.",
+  "3731": "A path of beaten earth winds between close-set trunks, the way marked by a few flat stones that someone laid long ago. Dead branches creak above you though no wind reaches this far in. The light is a dim green-grey, and the smell of leaf mould lies heavy. The path goes east toward the turn and west toward a lighter place.",
+  "3732": "The trees step back and leave a small round clearing, floored with short pale grass and ringed by silent trunks. At its edge a low wall of fitted stone is half swallowed by ivy, and the ground feels hushed, as though the air itself were listening. A path runs back east into the forest, and west the stonework thickens toward the ruin ahead.",
+  "3741": "A broad court of cracked paving lies before a huge ruined necropolis, its columns leaning and its steps strewn with fallen leaves. A great bronze-bound door stands in the front wall, shut but not locked, with a weathered lintel above it. A dark stair slopes down into the ground beside the steps, and the clearings of the forest lie to either side, east and west.",
+  "3742": {
+   "description": "This is a high bare hall, its flagstones scuffed by the feet of ages and its pillars rising into shadow. Pale light leaks in through the doorway, and the air is cool and utterly still. Doorways open on three sides, one onto a small chamber ahead, others toward the antechambers east and west. The great door stands behind you to the south.",
+   "look": "crypt"
+  },
+  "3747": {
+   "description": "A small stone room with a low ceiling, bare except for a stone bench along the wall and a shallow niche where a lamp once burned. Dust lies thick on everything, unmarked, and the silence presses on your ears. The only way out is the doorway back to the entrance hall.",
+   "look": "crypt"
+  },
+  "3748": {
+   "description": "A square antechamber, its walls painted with faded figures walking in procession, each carrying a small pair of scales. The paint has flaked away from the faces and left only grey stone. A heavy door in the far wall stands ajar to the east, and an open archway leads west back to the entrance hall.",
+   "look": "crypt"
+  },
+  "3749": {
+   "description": "The room is a corner of the temple's passages, where two walls meet in a tight angle and a lone stone urn stands in the fork. The floor has been worn into a slight trough by countless slow steps. A door of black wood leads north, and an archway returns west to the antechamber.",
+   "look": "crypt"
+  },
+  "3750": {
+   "description": "The corridor winds sharply here, its walls close enough to touch both at once. Faint carvings of long-necked birds run along the stone at shoulder height, their beaks all pointing the same way. A cold draught moves along the floor. The passage goes west deeper into the temple, and a door lies south.",
+   "look": "crypt"
+  },
+  "3751": {
+   "description": "The passage bends again, and the old plaster has fallen from the walls in leprous patches to show the grey blocks beneath. A single iron bracket juts from the wall, empty, rimmed with soot. The floor slopes subtly beneath your feet. You may follow the corridor north or turn back east.",
+   "look": "crypt"
+  },
+  "3752": {
+   "description": "A hush lies on this stretch of corridor so deep that your own breathing seems intrusive. The ceiling is lower here and stained dark in lines, as if water once ran in from above. Dry flakes of old reed matting crunch underfoot. The way goes east along the winding passage, and south back down it.",
+   "look": "crypt"
+  },
+  "3753": {
+   "description": "Several long cracks run up the walls here, and through them you can feel cold air from somewhere deeper. A bundle of dry reeds lies tied with faded cord against the wall, an offering long forgotten, and its knots have gone grey with dust. The corridor winds on north and returns west."
+  },
+  "3754": {
+   "description": "Three passages meet in this dim junction, and the stone floor is polished to a dull shine by the passing of countless slow feet. Wax drippings have hardened in a thick crust below an iron sconce. A heavy door stands shut to the north, another to the west, and the corridor you came along winds back south.",
+   "look": "crypt"
+  },
+  "3755": {
+   "description": "A small chamber with walls of fitted blocks, bare and square, where the air smells of cold ash and old stone. A shallow basin is set into the floor, dry and rimmed with white crust. Ahead a low door leads west into a straight corridor, and the passage you came by opens south.",
+   "look": "crypt"
+  },
+  "3756": {
+   "description": "A tiny cell of a room, hardly larger than a closet, with a stone ledge running round three walls at the height of a seat. Tallow stains darken the wall above each place, as though patient people once sat here and waited. Nothing else remains. The only way out is the door east into the junction.",
+   "look": "crypt"
+  },
+  "3757": {
+   "description": "A long straight corridor runs on ahead, the roof held up by squat square pillars set into the walls. Each pillar bears a faded red band, and the bands blur toward the far end. Your footsteps return as thin echoes. The passage goes west deeper in, and a doorway opens east into the small chamber behind you.",
+   "look": "crypt"
+  },
+  "3758": {
+   "description": "The corridor is dead straight and perfectly level here, and the light from the entrance has long since given out. Chips of dark tile are scattered across the floor, fragments of a mosaic that was prised up long ago. A faint smell of myrrh lingers in the cold air. Straight passage lies east and west of you.",
+   "look": "crypt"
+  },
+  "3759": {
+   "description": "At this end of the long corridor the walls are cut with rows of small square niches, every one empty and blackened inside. Fine grey dust lies in them, soft as flour. The stillness has the quality of a held breath. A door to the west leads on into a chamber, and the corridor runs back east.",
+   "look": "crypt"
+  },
+  "3760": {
+   "description": "A tight chamber where two passages meet at a right angle, the corner ringed by a low stone curb. Painted on the wall is a faded figure with the head of a bird, its beak raised as if to speak. The air is dry and faintly sweet. A door in the wall leads south, and the straight corridor lies east.",
+   "look": "crypt"
+  },
+  "3761": {
+   "description": "A short corridor with a floor of rough black flags and walls hung with old frayed cords that once held tablets. The ceiling is only just above your head, and condensation gleams along it. Everything is very quiet. The passage leads back north to the chamber and on south.",
+   "look": "crypt"
+  },
+  "3762": {
+   "description": "The short corridor ends against a plain wall of sooty stone, its last yard dressed with a row of seven small clay lamps, all cold. A carved stone lintel arches over a doorway set in the east wall. You may go east through it, or back north along the passage.",
+   "look": "crypt"
+  },
+  "3763": {
+   "description": "This round chamber is hung with grey curtains that stir though no breeze moves, and a three-legged bronze stool stands in the centre over a crack in the floor. The air is heavy with old incense, and a pale light seems to come from nowhere in particular. A door stands in the north wall, and the way west leads back into the short corridor.",
+   "look": "crypt"
+  },
+  "3764": {
+   "description": "The corridor twists here like a stair that has lost its steps, bending slowly left and then right between walls scored with spiral lines. A trickle of damp has left a green stain down one side. Your own shadow lengthens and shrinks as you pass the lamp-niches. The twisting passage goes north, and south through a door to the chamber behind.",
+   "look": "crypt"
+  },
+  "3765": {
+   "description": "The passage doubles back on itself in a slow curve, the grey walls running with delicate carved vines that frame small faces, all worn blank. A chill breath of air passes over your hands. Underfoot a few tiles show a pattern of waves. East the twisting passage continues, and south it winds back.",
+   "look": "crypt"
+  },
+  "3766": {
+   "description": "The last twist of the corridor ends in a narrow landing before a pair of tall doors, their panels carved with doves and roses. Petals of dried rose lie scattered on the floor, brown and brittle as paper. A sweet and sorrowful scent clings to the air. The doors lead south, and the corridor winds back west.",
+   "look": "crypt"
+  },
+  "3767": {
+   "description": "An airy vaulted chamber, once beautiful, its walls painted in softened pinks and golds that have gone chalky. Marble doves with broken wings perch along a cornice, and a mosaic of a rising shell is half intact in the floor. A sweet dust hangs in the air. Doors lead back north, and a low archway opens south to the altar.",
+   "look": "crypt"
+  },
+  "3768": {
+   "description": "A small shrine room, its walls hung with the grey remains of silk, and in the centre a low altar of rose-veined marble heaped with withered garlands. Black candle stubs stand in a ring about it, and a thin ash lies in the offering bowl. It is tender, hushed, and utterly cold. The only way out leads back north.",
+   "look": "crypt"
+  },
+  "3743": {
+   "description": "A broad antechamber, its walls ranked with shallow alcoves, each holding a small stone figure of a seated judge with a feather in his hair. The floor is checkered pale and dark, laid in neat squares. A pale light spills from the great hall to the east, and a passage leads north, while a door stands west.",
+   "look": "crypt"
+  },
+  "3744": {
+   "description": "The corridor turns here along a gentle arc, following the curve of some great round room that lies hidden beyond the wall. Cold iron rings are set into the stone at regular intervals, hung with the rotted remains of rope. The only sounds are your steps and a faint drip. The passage runs west, and back south to the antechamber.",
+   "look": "crypt"
+  },
+  "3745": {
+   "description": "A turning in the corridor, where the floor dips slightly toward a drain choked with grey sediment. The walls are bare and cold to the touch, and the faint tang of copper hangs in the air. Someone has scratched a tally of short vertical lines into the plaster, row upon row. East lies the other half of the corridor, and south a door leads to a corner room.",
+   "look": "crypt"
+  },
+  "3746": {
+   "description": "A small square chamber where two heavy doors meet at a corner, a stone lamp-stand between them. The ceiling is plain beams blackened by old smoke, and the dust beneath your feet is deep and soft. A door opens north into the turning corridor, and another stands east into the antechamber.",
+   "look": "crypt"
+  },
+  "3740": "A second small clearing opens among the trees, its grass bleached and short as if grazed, though no beast has been this way. A flat stone lies in the centre, round and worn, and mist gathers about it in a slow pool. To the east the ruined necropolis shows its broken pillars through the trunks, while west the forest path continues.",
+  "3739": "Here the path runs between two great hollow oaks, their trunks seamed and black, their roots reaching across the track like fingers. A lone grey feather has caught in a crack of bark and trembles without falling. The leaf mould is deep and silent underfoot. The way east leads to a clearing, and the path continues west.",
+  "3738": "The path turns sharply round a boulder furred with moss, which sits in the middle of the trail like a sleeping head. Ferns spill over it in untidy tufts, beaded with the day's mist. The air tastes of damp earth and old leaves. A trail leads north through the trees, and the way east returns toward the clearing.",
+  "3737": "The forest is thick here, and the light comes down in dim bars, grey and green. Brambles tug at your sleeves along the path's edge, while the trunks are wrapped in ivy like old bandages. A dead branch has fallen across the trail and been trampled flat. The path runs north and south through the wood.",
+  "3736": "A line of stunted thorn trees follows the trail here, each one bent the same way by a wind that you cannot feel. The ground between them is bare and hard, as if swept. Mist hangs at knee height. The path goes on north and south through the thorns.",
+  "3735": "A pair of tall beeches arch over the path, their smooth grey trunks marked with old, healed scars where names might once have been cut. Fallen mast crunches softly underfoot. The air is cooler here and somehow expectant. You can follow the track north or south.",
+  "3734": "The path climbs a few paces over a low swell of ground, rooted with ancient knotted oak. At the top the trees thin a little and the sky shows through as a pale grey patch. A scatter of black feathers lies in the dirt, long dry and brittle. The trail leads north toward lighter air and south back into the dark.",
+  "3733": "The forest begins to thin here, the trunks growing slimmer and farther apart, and a cool wind carrying salt comes in from beyond the trees. The path is sandy and pale, bordered by wiry bent grass. Through the last of the trunks to the north the sky opens wide and grey over the water, and the trail leads south back into the dense wood.",
+  "3724": {
+   "description": "The forest path spills out onto a bank of pale sand where the tree line ends in a ragged edge. Beyond lies the grey water, flat and wide, its far side lost in mist. A few bleached logs have been thrown up on the sand, rolled smooth by the waves. The trail leads south back into the trees, and the shore bends away west.",
+   "look": "shore"
+  },
+  "3723": {
+   "description": "The island's edge turns another corner here, and black rocks run out into the surf like a broken causeway. Thick weed drapes them, and the water sucks and gurgles in the gaps. The wind off the sea has a taste of old brine. East the sand returns toward the forest edge, and the shore sweeps south along the water.",
+   "look": "shore"
+  },
+  "3722": {
+   "description": "A line of rotted stakes stands in the sand, still festooned with the shreds of an old net that hangs like grey cobweb. Beyond them a skein of mist lies on the water, motionless. The tide has left a perfect line of small shells along the shingle. The shore runs on south, and curves back north toward a rocky point.",
+   "look": "shore"
+  },
+  "3721": {
+   "description": "Black pilings stand out of the shallows here in a crooked row, the stumps of a jetty that must once have reached far out. No gull calls here, and only the wash of small waves breaks the silence. The grass behind the strand is tall and silver. You can follow the shore north or south.",
+   "look": "shore"
+  },
+  "3720": {
+   "description": "A tall spike of rock stands offshore, wearing a cap of pale guano and a skirt of weed, and the surf breaks around it in lazy lines. On the dry sand lies a long scatter of white cuttlebone and driftwood. A low murmur comes from the water, like many people whispering. The shore runs on north and south.",
+   "look": "shore"
+  },
+  "3719": {
+   "description": "Great flat slabs of grey slate run down to the water in terraces, slick with spray and green at the edges. Pools collect in their hollows and hold still reflections of the sky. The trees behind are bent permanently toward the land by old storms. The shore continues north and south.",
+   "look": "shore"
+  },
+  "3718": {
+   "description": "Here the sea has eaten into the edge of the island, leaving the pale roots of drowned trees thrust up through the sand like bones. The ground is soft, and a faint sour smell of rot lies in the mist. A line of thin grey weed marks the highest tide. North and south the shore runs on.",
+   "look": "shore"
+  },
+  "3717": {
+   "description": "A stone cross, taller than you, leans against the wind at the top of the beach, its arms worn to stumps. At its foot someone has set a ring of white pebbles, and the grass inside the ring is greener than the rest. The shore curves south toward a low roofed ruin, and runs back north the way you came.",
+   "look": "shore"
+  },
+  "3716": {
+   "description": "The remains of a long boathouse crouch at the water's edge, its roof half fallen in and its timbers grey as driftwood. Slimy stone ramps slope down from its open mouth into the shallows. Inside, only damp and shadow. The strand runs on east along the water, and the shore goes back north past the ruin.",
+   "look": "shore"
+  },
+  "3715": {
+   "description": "A band of tall pale reeds grows thick along the strand here, whispering whenever the air stirs. Between the stems the sand is dark and firm, scored by the shallow furrows of an old dragged keel. The mist gathers beyond the reeds into a solid wall. The shore leads east toward the landing, and west toward a ruined shed.",
+   "look": "shore"
+  },
+  "3714": {
+   "description": "Flotsam has collected in a long drift along the tideline: splintered planks, a cracked oar, cork floats gone black, a tangle of rope. None of it looks to have been touched in years. The grey sea slaps and withdraws. The shore runs on east and west.",
+   "look": "shore"
+  },
+  "3713": {
+   "description": "The shingle is firm and pale here, and out in the shallows to the east you can make out the line of rotted stakes that guards the landing. A cold stillness lies over the water, and the dead trees on the bank are hung with drifting mist. The shore leads east to the landing and west along the island's edge.",
+   "look": "shore"
+  },
+  "3771": {
+   "description": "A steep, narrow stair of worn stone drops from the forest above into the rock, its steps hollowed by long use and damp with seeping water. The air turns cold and still, and the light from above shrinks behind you to a pale square. Rough walls close in on both sides, running with silver threads of moisture. The stair leads up to the necropolis court, and the passage runs on north.",
+   "look": "cave"
+  },
+  "3772": {
+   "description": "The tunnel opens onto a broad ledge of black rock above a wide underground river, whose slow oily water slides past in the dark. The far bank cannot be seen, and a faint wind blows off the water bringing the smell of cold iron. A narrow ledge of stone follows the bank north toward a wharf, and the way back leads south up the passage.",
+   "look": "cave"
+  },
+  "3773": "You are afloat on the Styx, a wide black river that moves without sound, its surface smooth as polished slate. No stars, no reflections, only the dim luminous edge of the water on either side of the boat. Cold bites at your fingers whenever they stray near the rail. Behind you the near bank lies south, a pale smudge of stone on the dark.",
+  "3774": {
+   "description": "A wharf of black stone juts out into the river, its edge worn into scallops by countless ferry-hulls, a mooring ring still set into it. Beyond is a wide stair rising to a pair of towering gates, their tops lost in gloom. Cold water laps softly against the stone below, and the way south leads out onto the Styx. The gates lie north.",
+   "look": "cave"
+  },
+  "3775": {
+   "description": "Two vast gates of dark metal stand before you, each leaf wrought with writhing figures that seem to stir when you look away. The floor is polished stone laid in squares, scattered with the dull glint of old coin. The air is thick and utterly still. A door in the gates lies ajar north, and the wharf stair lies south.",
+   "look": "cave"
+  },
+  "3776": {
+   "description": "A vast cavern, grey and dim, stretches around you with a roof lost in shadow. Pale shapes drift along the rock without ever quite arriving, and the air is cold and faintly sweet. Distant murmurs rise and fall like a crowd that has forgotten its words. Beyond lie more gates north, and the great doors south.",
+   "look": "cave"
+  },
+  "3777": {
+   "description": "Three ways divide here before a tall archway, with a tall black spear of stone standing sentinel in the middle of the floor. Beyond the arch to the north rise the grim gates to Tartarus, white, grey and black. A door opens east to a long low room where voices murmur. The path south returns to the cavern, with its pale drifting shapes.",
+   "look": "crypt"
+  },
+  "3778": {
+   "description": "A broad stone hall filled with low benches of grey slab, their seats worn into hollows by the dead who have sat here waiting. A single dim lamp hangs from a chain and sways with no wind. Four doorways open from it, each marked by a pair of carved scales: west to the gates, and chambers lying north, east and south.",
+   "look": "crypt"
+  },
+  "3779": {
+   "description": "A high chamber of pale stone, its far wall hung with a huge balance whose pans of beaten gold hang level and still. A long bench stands empty before it, and a quill lies abandoned on a writing-desk, its ink long dried. The room smells of dust and parchment. The only exit is south, back to the waiting room.",
+   "look": "crypt"
+  },
+  "3780": {
+   "description": "A narrow chamber dominated by a great seat of bone and black wood set high on a dais, its arms carved to the likeness of folded wings. Rows of empty benches face it in tiers. A single beam of grey light falls from a high crack onto the dais. The way out lies west to the waiting room.",
+   "look": "crypt"
+  },
+  "3781": {
+   "description": "A low-ceilinged judge's room, its walls lined with ledgers bound in grey hide, shelf upon shelf of them, each spine bearing a name. A long table stands in the middle, spread with a black cloth. A feather of white and a feather of black lie crossed on its surface. The room opens north into the waiting hall.",
+   "look": "crypt"
+  },
+  "3782": {
+   "description": "A tall gate of white marble stands in an arch of polished stone, its two leaves carved with pale rows of laurel leaves. Light from nowhere falls on it evenly, and not a speck of dust lies on the floor. It feels like a place for the blameless. The way south returns to the archway, and a door leads north to the next gate.",
+   "look": "crypt"
+  },
+  "3783": {
+   "description": "The gate of grey stone is neither fair nor foul, a heavy arch of weathered slate carved with an endless pattern of woven reeds. The floor is the colour of ash, and the air has a neutral, waiting chill. A small stone bench stands against the wall for those who cannot decide. A door leads north, and the white gate lies south.",
+   "look": "crypt"
+  },
+  "3784": {
+   "description": "A gate of black iron towers here, its bars as thick as a man's arm and wrought into the shape of folded wings. Cold wells up from the floor, and the stone around the arch is scorched and cracked. A smell of old smoke and hot metal drifts down from the passage beyond. A door leads north toward Tartarus, and the grey gate lies south.",
+   "look": "crypt"
+  },
+  "3785": {
+   "description": "A narrow stone path winds away from the black gate along the top of a steep slope, with no wall to either side and only a dark and silent drop. The rock underfoot is rough and cracked, and warm air rises from below with a faint stink of brimstone. A rail of old chain follows the edge. The path slopes down into Tartarus, while south it returns to the gate.",
+   "look": "crypt"
+  },
+  "3786": {
+   "description": "You stand at the foot of a bleak hill of loose black shale, where nothing grows and the air is heavy and thick. Rills of slow, tarry water gather in the hollows. A faint wail drifts across the slope, rising and falling, and never comes any closer. A path leads back up the hill, and the way south descends toward a river.",
+   "look": "crypt"
+  },
+  "3787": {
+   "description": "A wide dark river flows past in silence here, between banks of smooth grey stones, its surface lapping soundlessly. Pale flowers of poppy grow in the cracks, nodding in a breath of air. A sweet drowsiness steals over you, and the thoughts of the living world grow faint. The path leads north up toward the hill, and south onto a garden walk.",
+   "look": "crypt"
+  },
+  "3788": {
+   "description": "A paved garden walk runs between low hedges of grey-green yew, each trimmed square and neat, and the light is like an even dusk. Small cold flowers blossom along the border, white and unscented. Doors of pale wood stand to east and west, leading into the garden proper, and another passage runs south through a heavy arch of black stone. The path returns north to the river.",
+   "look": "crypt"
+  },
+  "3790": "Here is the Garden of Everlasting Peace, a vast round lawn of silver grass ringed with slender white trees whose leaves never fall. A shallow pool lies in the centre, perfectly clear, reflecting a sky that is not there. Everything is still and bright and lovely, yet no bird sings and no wind stirs. The door west leads back to the garden path.",
+  "3789": "The Garden of Everlasting Peace spreads out in terraces of soft turf and beds of pale blossom, each flower perfect and cold to the touch. A winding stream runs through it in a bed of white pebbles, and a marble bench waits beside it. It is peaceful in the way of a held breath. The door east leads back out to the garden path.",
+  "3791": {
+   "description": "The passage is a long hall of dark scorched stone, its walls carved with the figures of three winged women in torment, mouths open in silent screams. Whips of braided bronze hang from iron hooks beside each. The air is hot and tastes of blood. The path runs north back to the garden and south through the trial.",
+   "look": "crypt"
+  },
+  "3792": {
+   "description": "Deep gashes mark the walls of this trial hall, as if great claws had raked them over and over. A pair of tall braziers stand cold, ringed with ash, and the floor is dark with old stains. The noise of distant shrieking seems to come from the stone. You can go north toward the entrance or south deeper into the trial.",
+   "look": "crypt"
+  },
+  "3793": {
+   "description": "Chains hang in swags from the ceiling here, and each link is carved with a tiny and terrible face. The floor is hot underfoot, and sparks sometimes crackle among the rusted iron. Somewhere beyond, wings beat slowly in the dark. The hall leads north back toward the first trial and south to a fiery door.",
+   "look": "crypt"
+  },
+  "3794": {
+   "description": "A massive door of red-hot bronze fills the south wall, its surface rippling with heat and its handle glowing like an ember. The stones of the floor glow faintly orange at the cracks. Sweat runs down your face in moments. The passage lies north, and the door south opens to a colder room.",
+   "look": "crypt"
+  },
+  "3795": {
+   "description": "A door of blue-white ice fills the south wall, its panels clouded and rimed with frost so thick it hides what lies behind. The room is bitterly cold, the breath freezing in your beard, and frozen crystals sparkle on every stone. Your fingers ache. The door south opens to a misty room, and the fiery door lies north.",
+   "look": "snow"
+  },
+  "3796": {
+   "description": "A door of thick grey vapour hangs in the south wall, shifting and curling like a living thing. The floor is damp and slick, and every sound comes back muffled, as if heard through wet wool. You can see no more than an arm's length. The vapour opens south onto the throne room, and the cold door is north.",
+   "look": "crypt"
+  },
+  "3797": {
+   "description": "A mighty hall opens here, its pillars of black marble climbing into a roof lost in darkness. Rows of torches burn with a cold green flame that casts no warmth. At the far end, between the pillars, the floor rises toward great seats, and the air is heavy with authority. A mist-door leads north, and the hall continues east and west before the thrones.",
+   "look": "crypt"
+  },
+  "3799": {
+   "description": "A wide dais of black onyx rises here, polished to a mirror, with a towering throne carved from one huge block of glittering stone. The arms are worked into the shapes of hounds, their eyes set with dull red gems. Cold seems to pour from the seat. You may only go back west toward the hall.",
+   "look": "crypt"
+  },
+  "3798": {
+   "description": "A second dais of black onyx stands here, narrower than its twin and set with a lesser throne, its high back inlaid with a pomegranate in veins of garnet. A cloak of dark wool lies draped across the seat, and its folds are stiff with dust. Pale seeds are scattered on the step. The only way out lies east to the hall.",
+   "look": "crypt"
+  }
+ },
+ "extras": {
+  "3706": [
+   {
+    "keywords": "stone standing scales feather",
+    "description": "The carving shows a pair of balanced scales, and on one pan a single feather no bigger than your thumb. The sea wind has worn the lines nearly smooth, but whoever cut them was careful."
+   }
+  ],
+  "3741": [
+   {
+    "keywords": "lintel inscription",
+    "description": "Worn letters on the lintel read, in an old script, that all who enter are weighed and none are lost. Below them a carved feather has been chipped half away."
+   }
+  ],
+  "3763": [
+   {
+    "keywords": "stool bronze crack",
+    "description": "The bronze stool is three-legged, green with age, and stands squarely over a crack in the floor from which a faint cold air seems to rise. Whoever sat here once spoke for the dead."
+   }
+  ],
+  "3768": [
+   {
+    "keywords": "altar marble garlands",
+    "description": "The altar is carved from rose-veined marble, smooth as skin, and heaped with garlands that crumble to powder when stirred. A line of faded words runs round its edge, praising love that outlasts the grave."
+   }
+  ],
+  "3717": [
+   {
+    "keywords": "cross stone pebbles",
+    "description": "The cross is worn so smooth that no carving remains, only a faint shadow where an inscription once ran. The pebbles in the ring at its foot are all white and all the same size."
+   }
+  ],
+  "3779": [
+   {
+    "keywords": "balance scales pans gold",
+    "description": "The great balance hangs from a bronze beam, its pans of beaten gold hanging level though nothing rests in either. A small feather is cast into the base, as the standard against which all hearts are weighed."
+   }
+  ],
+  "3790": [
+   {
+    "keywords": "pool clear water",
+    "description": "The pool is clear to its bed of white pebbles, and no ripple ever crosses it. Its surface shows a blue sky and a drifting white cloud, though no sky can be seen above."
+   }
+  ],
+  "3798": [
+   {
+    "keywords": "pomegranate throne garnet",
+    "description": "The pomegranate is inlaid in garnet and split to show its seeds, each seed a tiny polished stone. It is the queen's chair, and the dust upon it is thin."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "drowned-shade",
+   "keywords": "shade ghost drowned grey",
+   "short_desc": "a drowned shade",
+   "long_desc": "A drowned shade drifts above the tideline, water streaming from its grey and weeping face.",
+   "description": "The shade is a pale shape of a man long lost to the sea, his clothes still dripping onto stones that never get wet. His hollow eyes look past you toward the water, and his mouth works in silent apology.",
+   "kind": "undead",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -300,
+   "sectors": [
+    "field"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "grey-feather",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "carrion-raven",
+   "keywords": "raven carrion grey bird",
+   "short_desc": "a grey carrion raven",
+   "long_desc": "A grey carrion raven sits hunched on a dead bough, watching you with one pitiless eye.",
+   "description": "Its feathers are the colour of ash, ragged at the edges, and its beak is stained dark. It cocks its head at every step you take, as if counting, and weighs you with a patient and unfriendly stare.",
+   "kind": "animal",
+   "level": 15,
+   "aggressive": true,
+   "alignment": -100,
+   "sectors": [
+    "forest"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "grey-feather",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "temple-skeleton",
+   "keywords": "skeleton temple warden bones",
+   "short_desc": "a temple skeleton",
+   "long_desc": "A temple skeleton stands rigid in the passage, a corroded bronze spear clutched in its bony hands.",
+   "description": "The bones are yellow with age and bound by nothing but old magic, and a scrap of grey linen still hangs from its ribs. Its empty sockets turn to follow you as you move.",
+   "kind": "undead",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -500,
+   "sectors": [
+    "inside"
+   ],
+   "count": 8,
+   "drops": [
+    {
+     "item": "sentinel-shield",
+     "chance": 10
+    },
+    {
+     "item": "grey-feather",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "winged-fury",
+   "keywords": "fury winged harpy",
+   "short_desc": "a winged fury",
+   "long_desc": "A winged fury screams from the shadows, her bronze whip trailing from her taloned fist.",
+   "description": "She is a gaunt woman with the wings of a vast bat and eyes like heated coals, her hair a mass of writhing serpents. Her whip is bronze and ends in barbs, and she holds it like one who has used it for ages.",
+   "kind": "monster",
+   "level": 24,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "Facing a Fury",
+    "Trials Of The Underworld - Facing A Fury"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "fury-whip",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "gate-guard",
+   "keywords": "guard gate sentinel bronze-helmed",
+   "short_desc": "a bronze-helmed gate guard",
+   "long_desc": "A bronze-helmed gate guard stands grimly before the arch, its shield raised and its pale eyes unblinking.",
+   "description": "Beneath the helm is a face of grey, withered skin drawn tight over the bone, and its mail has long since fused to the body. It does not breathe, and it does not move unless you try to pass.",
+   "kind": "undead",
+   "level": 23,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "A White Gate",
+    "A Gray Gate",
+    "A Black Gate",
+    "At The Gates Of Hades"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "sentinel-shield",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "charon",
+   "keywords": "charon ferryman boatman",
+   "short_desc": "Charon the Ferryman",
+   "long_desc": "Charon the Ferryman leans on his long black pole at the end of the wharf, a hooded and silent figure.",
+   "description": "Charon is old beyond reckoning, his beard a tangled grey cloud and his eyes like two sunken coals under his hood. He holds a long pole of black wood and speaks to no one without payment, and his patience has run out for those who bring none.",
+   "kind": "humanoid",
+   "level": 24,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Before The Gates Of Hades"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "ferryman-pole",
+     "chance": 35
+    },
+    {
+     "item": "judge-pall",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "judge-of-the-dead",
+   "keywords": "judge dead weigher",
+   "short_desc": "the Judge of the Dead",
+   "long_desc": "The Judge of the Dead sits in perfect stillness before the scales, weighing you with his gaze.",
+   "description": "He is a tall figure in a robe of grey feathers, his head that of a long-beaked bird and his eyes bright and cold as stars. One hand rests on a golden balance, and in the other he holds a single white feather. Whatever you are, he already knows.",
+   "kind": "undead",
+   "level": 25,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "A Judge's Chamber"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "judge-pall",
+     "chance": 35
+    },
+    {
+     "item": "fury-whip",
+     "chance": 10
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "grey-feather",
+   "keywords": "grey feather truth",
+   "short_desc": "a grey feather of the dead",
+   "room_desc": "A long grey feather lies here, perfectly still.",
+   "description": "It is a long feather of soft ash-grey, unnaturally light, and whatever bird it came from has not flown in an age. Collectors of the strange pay well for such things.",
+   "kind": "treasure",
+   "level": 16
+  },
+  {
+   "id": "ferryman-pole",
+   "keywords": "pole ferryman black staff",
+   "short_desc": "a black ferryman's pole",
+   "room_desc": "A long black ferryman's pole lies here.",
+   "description": "A pole of black wood, nearly twice a man's height and cold to hold. Its tip is iron-shod and worn bright from pushing off the bed of the Styx.",
+   "kind": "weapon",
+   "level": 24,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "sentinel-shield",
+   "keywords": "shield bronze sentinel round",
+   "short_desc": "a bronze sentinel shield",
+   "room_desc": "A dented bronze shield lies here.",
+   "description": "A round shield of corroded bronze, its face dented by many blows and its rim stamped with a pattern of scales. It is heavy but sound.",
+   "kind": "armor",
+   "level": 23,
+   "wear_slot": "shield"
+  },
+  {
+   "id": "fury-whip",
+   "keywords": "whip bronze barbed fury",
+   "short_desc": "a barbed bronze whip",
+   "room_desc": "A barbed bronze whip lies here, coiled like a snake.",
+   "description": "A whip of braided bronze wire, tipped with small hooked barbs. It is horribly supple in the hand and seems to hunger for someone to wield it on.",
+   "kind": "weapon",
+   "level": 24,
+   "weapon_type": "slash",
+   "bonus": {
+    "hitroll": 1
+   }
+  },
+  {
+   "id": "judge-pall",
+   "keywords": "pall feather cloak grey judge",
+   "short_desc": "a pall of grey feathers",
+   "room_desc": "A pall of grey feathers lies here, light as breath.",
+   "description": "A mantle sewn from thousands of grey feathers, overlapping like scales and weighing nothing at all. It hangs about the shoulders with a grave, quiet dignity.",
+   "kind": "armor",
+   "level": 25,
+   "wear_slot": "about",
+   "bonus": {
+    "wis": 1
+   }
+  }
+ ]
+}

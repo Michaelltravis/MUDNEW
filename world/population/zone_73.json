@@ -1,0 +1,70 @@
+{
+ "zone": 73,
+ "_about": "The Mindflayer's Lair (levels 18-30): the flayers answer each other's psychic call, the mind flayers are elites, and the Master Mindflayer in its sanctum darkens your mind as it weakens and calls its brood.",
+ "creatures": {
+  "7302": {
+   "helpers": {
+    "group": "flayers",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A psychic shriek fills your skull: the brood comes!"
+   },
+   "why": "flayers"
+  },
+  "7303": {
+   "rank": "elite",
+   "helpers": {
+    "group": "flayers",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A psychic shriek fills your skull: the brood comes!"
+   },
+   "why": "a mind flayer"
+  },
+  "7301": {
+   "rank": "elite",
+   "why": "the basilisk"
+  },
+  "7304": {
+   "rank": "boss",
+   "why": "the Master Mindflayer"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 7302,
+   "route": [
+    7350,
+    7351
+   ],
+   "why": "a flayer moves between the warrens and the feeding chamber"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 7304,
+   "room": 7352,
+   "why": "the Master Mindflayer in its sanctum",
+   "mechanics": [
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "shout": "Darkness seeps into your mind...",
+     "why": "its mind blots out the light"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "7302": 2
+     },
+     "shout": "The Master Mindflayer calls, and its brood crawls out of the walls!",
+     "why": "its brood"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,167 @@
+{
+ "zone": 424,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Aldric Vane, the skeletal crypt lord as the boss.",
+ "creatures": {
+  "642400": {
+   "helpers": {
+    "group": "z424_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a fat grave rat"
+  },
+  "642401": {
+   "helpers": {
+    "group": "z424_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a clattering tomb skeleton"
+  },
+  "642402": {
+   "helpers": {
+    "group": "z424_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a mouldering zombie"
+  },
+  "642403": {
+   "helpers": {
+    "group": "z424_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a gaunt crypt ghoul",
+   "rank": "elite"
+  },
+  "642404": {
+   "helpers": {
+    "group": "z424_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a weeping ghost",
+   "rank": "elite"
+  },
+  "642405": {
+   "helpers": {
+    "group": "z424_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Harl Gravewhisper, the grave cultist",
+   "rank": "sub-boss"
+  },
+  "642406": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "Aldric Vane, the skeletal crypt lord",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Aldric Vane, the skeletal crypt lord rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Aldric Vane, the skeletal crypt lord gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+4",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Aldric Vane, the skeletal crypt lord raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Aldric Vane, the skeletal crypt lord begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 642401,
+   "route": [
+    15314,
+    15315,
+    15320,
+    15311,
+    15323,
+    15328,
+    15331,
+    15332,
+    15333,
+    15334,
+    15335,
+    15336,
+    15337,
+    15342,
+    15343,
+    15344,
+    15345,
+    15346,
+    15347,
+    15348,
+    15349
+   ],
+   "why": "a clattering tomb skeleton walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 642406,
+   "room": 15318,
+   "why": "Aldric Vane, the skeletal crypt lord in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "642401": 2
+     },
+     "shout": "Aldric Vane, the skeletal crypt lord calls, and a clattering tomb skeletons come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

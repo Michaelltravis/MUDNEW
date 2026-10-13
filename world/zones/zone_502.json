@@ -24,8 +24,10 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east and west.",
-   "placeholder": true
+   "description": "A palisade of sharpened stakes, lashed with rawhide and braced with\nthornbrush, stretches away through the trees, and in the middle of it\nthe timber gate now stands open, its bar hauled aside. Beyond the gap\nthe open plains lie pale to the east. Westward the ground is beaten hard\nand bare, and the smell of smoke and roasting meat hangs over the pines.\nA skull on a pole beside the gate grins at all who pass.",
+   "extra_descs": {
+    "skull pole": "The skull is that of a man, bleached and cracked, with a rag of red\ncloth knotted through its eye socket as a warning."
+   }
   },
   "2001": {
    "vnum": 2001,
@@ -51,8 +53,14 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The path is a stripe of packed earth, rutted by heavy feet, running\nbetween stunted pines whose lower branches have been hacked off for\nfirewood. Gouges in the bark show where blades are tried on the trunks.\nThe gate lies back east, and the path forks here, one arm turning north\nand the other running on west into the camp. A rack of broken spears\nleans against a stump.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650203,
+     "max": 1
+    }
+   ]
   },
   "2002": {
    "vnum": 2002,
@@ -78,8 +86,8 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north, east and\nwest.",
-   "placeholder": true
+   "description": "Three paths meet at a broad crossing where the earth is trampled to dust\nby drilling feet. Clawed prints in orderly rows show where warriors have\nformed ranks and wheeled. Stakes notched at intervals mark the distances\nfor spear-casting. The way north leads to a pot-hung hearth, the track\neast returns toward the gate, and the path west leads deeper into the\ncamp.",
+   "extra_descs": {}
   },
   "2003": {
    "vnum": 2003,
@@ -109,8 +117,10 @@
      "description": "To the down lies In The Dark."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north,\neast, west and down.",
-   "placeholder": true
+   "description": "A great split boulder stands where the path divides, its two halves\nleaning apart like a cracked skull. To the west the trees open on a\npatch of bright bare ground, while at your feet a black hole yawns where\nthe earth has fallen in, its rim worn smooth by hands and claws. A rope\nruns down into it, tied to an iron peg. The path goes north toward a\nrock face and east back toward the crossing.",
+   "extra_descs": {
+    "hole pit rope peg": "The pit is a squared shaft cut into the earth and about three times a\nman's height deep. The rope looks sound, and the dark at the bottom\ngives back no echo."
+   }
   },
   "2004": {
    "vnum": 2004,
@@ -130,8 +140,9 @@
      "description": "To the up lies A Trodden Path."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads up.",
-   "placeholder": true
+   "description": "The dark is total, a heavy blindness smelling of old urine, wet clay and\nlong fear. Iron rings are set into the earth walls at head height, with\nrusted shackles dangling from them. The floor is hard-packed and sticky\nunderfoot. A rope hangs down the shaft from the world above, the only\nway out.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "2006": {
    "vnum": 2006,
@@ -157,8 +168,14 @@
      "description": "To the west lies A Narrow Tunnel."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "On the west side of the path a low black opening has been cut into a\nbank of rock and shored with rough timbers, and a tunnel leads away into\nit. Shavings of wood and heaps of spoil lie before the mouth. The air\nthat comes out is cool and smells of wet stone. The path runs north\ntoward the huts and south to the split boulder.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650200,
+     "max": 1
+    }
+   ]
   },
   "2007": {
    "vnum": 2007,
@@ -182,8 +199,9 @@
      "description": "To the west lies A Narrow Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "The daylight fades behind you as the tunnel leads inward, so low that a\ntall man must stoop, propped every few paces by black timber props.\nChisel scars run along the rock in long shallow strokes. The air is cool\nand still and smells of stone dust. The path lies back east, and the\ntunnel goes on west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2008": {
    "vnum": 2008,
@@ -207,8 +225,15 @@
      "description": "To the west lies A Narrow Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The props give out here and the walls are bare rock, glistening wet in\nthe light of a single torch in a bracket. A thin trickle runs along a\ngutter in the floor and vanishes into a crack. Your steps echo flatly\nahead and behind. The tunnel runs on west and back east.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650202,
+     "max": 1
+    }
+   ]
   },
   "2009": {
    "vnum": 2009,
@@ -232,8 +257,9 @@
      "description": "To the west lies A Narrow Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "The tunnel widens briefly into a bay where a pile of broken wedges and\nrusted hammers has been tipped against the wall. A niche in the rock\nholds a clay lamp, its wick burned to a black crust. Soot has smeared a\nlong dark streak across the roof. The passage continues west and back\neast.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2010": {
    "vnum": 2010,
@@ -257,8 +283,9 @@
      "description": "To the west lies End Of The Narrow Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The tunnel squeezes in until your shoulders brush the walls, and long\nclaw-marks gouge the stone at the height of a man's chest. A faint\ndraught stirs from ahead and carries a tang of smoke. The rock is warmer\nhere than it has any right to be. East the way leads back toward the\nentrance, and west it narrows to its end.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2011": {
    "vnum": 2011,
@@ -278,8 +305,9 @@
      "description": "To the east lies A Narrow Tunnel."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "The tunnel ends in a wall of chiselled rock, flat and blank, where the\ndiggers must have given up or been called away. Rubble is heaped in a\ndrift across the floor, and a tally of scratches in groups of five\ncovers the wall as high as a hand can reach. Dull knocks from somewhere\ndeep in the stone are felt rather than heard. The only way back is east.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2012": {
    "vnum": 2012,
@@ -301,8 +329,8 @@
      "description": "To the south lies A Trodden Path."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead east and south.",
-   "placeholder": true
+   "description": "A tripod of lashed poles stands over a ring of cold ashes, a big black\npot hanging from it by a chain. The grass round about is trampled flat\nand strewn with gnawed ribs. A pile of kindling has been stacked against\na pine as high as a man. The path comes in from the east and turns\nsouth.",
+   "extra_descs": {}
   },
   "2013": {
    "vnum": 2013,
@@ -324,8 +352,8 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead south and west.",
-   "placeholder": true
+   "description": "The path bends round a clump of blackened stumps, the remains of a tree\nthat was burned for sport. A heap of charred bones lies by the wayside,\npicked clean by something with strong teeth. Smoke drifts low through\nthe branches, bitter and greasy on the tongue. The track returns south\ntoward the gate and goes on west.",
+   "extra_descs": {}
   },
   "2014": {
    "vnum": 2014,
@@ -347,8 +375,8 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east and west.",
-   "placeholder": true
+   "description": "The trees thin to stumps as the path nears the clearing, the felled\ntrunks dragged aside and left to rot in rows. Deep wagon ruts score the\nmud, filled with brown rainwater. A tall pole at the verge flies a\ntattered pennant of black and red. The Large Clearing opens east, and\nthe path leads back west among the huts.",
+   "extra_descs": {}
   },
   "2015": {
    "vnum": 2015,
@@ -374,8 +402,14 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A signal gong hangs from a gallows of crossed poles at a widening of the\npath, its bronze dented and green. Bone dice lie scattered in the dust\nwhere soldiers have gambled away their pay. The trees thin to the east,\nwhere a trampled track runs out toward a clearing. The path goes north\namong the huts and west back along the hut row.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650200,
+     "max": 1
+    }
+   ]
   },
   "2016": {
    "vnum": 2016,
@@ -401,8 +435,8 @@
      "description": "To the south lies A Trodden Path."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A small hut of lashed timber and hide squats on the north side of the\npath, its door-flap tied back. The ground in front is bare and swept,\nwith a row of lance-heads stuck point-down in the earth. A smell of\ntallow drifts from the doorway. The path runs east toward a gong and\nsouth to the tunnel mouth.",
+   "extra_descs": {}
   },
   "2017": {
    "vnum": 2017,
@@ -422,8 +456,8 @@
      "description": "To the south lies A Trodden Path."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
-   "placeholder": true
+   "description": "The hut is a single low room of lashed poles and stretched hide, hardly\nhigh enough to stand in. A pallet of bracken lies against one wall\nbeside a chest with a broken lid. Smoke from a tiny fire-pit finds its\nway out through a hole in the roof, leaving the air thick and acrid. The\ndoorway leads out south to the path.",
+   "extra_descs": {}
   },
   "2018": {
    "vnum": 2018,
@@ -449,8 +483,8 @@
      "description": "To the west lies A Small Hut."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Hides are stretched on frames along this stretch of the path, scraped\nclean and drying in the smoke, with a sour smell of curing. A hut with a\nroof of turf and bark sits to the west, its door a lashed hurdle. A\nbucket by the door holds arrows with black fletching. The path runs\nnorth and south.",
+   "extra_descs": {}
   },
   "2019": {
    "vnum": 2019,
@@ -474,8 +508,8 @@
      "description": "To the east lies A Trodden Path."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and east.",
-   "placeholder": true
+   "description": "A hut with two doors, one in the north wall and one in the east, both\nhung with hides. Bedrolls are laid out in a row, each with a leather\nhelm placed carefully at its head. A smoky lantern gives a red wavering\nlight on the bare poles. The air smells of oil, sweat and old leather.",
+   "extra_descs": {}
   },
   "2020": {
    "vnum": 2020,
@@ -497,8 +531,14 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead south and west.",
-   "placeholder": true
+   "description": "The path turns sharply here between two lean pines hung with strings of\nknucklebones that rattle dryly in the smoke. The ground is churned by\ncartwheels, and a broken axle lies half sunk in the mud. Charred timbers\nshow where a shed once stood. The path runs south and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650203,
+     "max": 1
+    }
+   ]
   },
   "2021": {
    "vnum": 2021,
@@ -516,8 +556,8 @@
      "description": "To the west lies A Small Hut."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. A way leads west.",
-   "placeholder": true
+   "description": "The path ends in a trampled turning-place behind a hut, ringed by\nkitchen scraps and the fly-buzzing mess of a refuse pit. Pegs hold a\nline of grey rags to dry. A pair of black wings has been nailed to the\nhut wall as a charm against ill luck. The only way on is west, through\nthe hut.",
+   "extra_descs": {}
   },
   "2022": {
    "vnum": 2022,
@@ -547,8 +587,14 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Two huts face each other across the path, one to the north and one to\nthe south, their roofs of turf and bark black with smoke. Between them\nstands a post carved with ranks of grinning dragon heads, painted red. A\nfirepit is dug into the trodden earth and ringed with stones. The path\nruns east and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650200,
+     "max": 1
+    }
+   ]
   },
   "2023": {
    "vnum": 2023,
@@ -570,10 +616,14 @@
     "south": {
      "to_room": 2022,
      "description": "To the south lies A Trodden Path."
+    },
+    "north": {
+     "to_room": 2043,
+     "description": "To the north lies The Wandering Caves."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and south.",
-   "placeholder": true
+   "description": "A cramped hut with walls of daubed wattle and a floor of beaten earth,\ndry and warm. Racks of curved blades hang from the rafters on hooks, and\na whetstone sits on an upturned bucket. The roof is blackened by years\nof smoke. A door south opens onto the path, and a low gap in the east\nwall leads out to a muddy yard.",
+   "extra_descs": {}
   },
   "2024": {
    "vnum": 2024,
@@ -603,8 +653,8 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Four ways meet round a rough square of packed earth, with a hut to the\nsouth and one to the north whose roof has half collapsed. A well-worn\npath leads east and west. Weeds push up through the cracked mud where\nthe troops no longer march. A broken spear stands in the ground with a\nscrap of cloth hanging from it.",
+   "extra_descs": {}
   },
   "2025": {
    "vnum": 2025,
@@ -630,8 +680,8 @@
      "description": "To the south lies A Small Abandoned Hut."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A rack for drying meat stands in the middle of the path, hung with long\ndark strips that buzz with flies. A hut sits to the north and a ruined\none to the south, the second leaning drunkenly on a prop. The ground\nbeyond is a tangle of thorn and fallen pine, and the only way back is\neast along the trodden earth.",
+   "extra_descs": {}
   },
   "2026": {
    "vnum": 2026,
@@ -655,8 +705,8 @@
      "description": "To the west lies A Small Abandoned Hut."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "This hut is cleaner than most, the floor swept and a neat stack of\nrations in wicker baskets along the wall. A table of planks bears a clay\ntablet scratched with a rough map, all ridges and notches. A low opening\nin the west wall leads into the neighbouring hut. The door north gives\nonto the path.",
+   "extra_descs": {}
   },
   "2027": {
    "vnum": 2027,
@@ -680,8 +730,14 @@
      "description": "To the east lies A Small Hut."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "Whatever lived here left in a hurry: a clay pot lies shattered by the\ncold hearth, and a belt still hangs from a peg. Dust covers everything,\nand a cobweb stretches from corner to corner of the low roof. A gap in\nthe east wall opens into the inhabited hut beside it, and the doorway\nnorth looks out on the path.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650201,
+     "max": 1
+    }
+   ]
   },
   "2028": {
    "vnum": 2028,
@@ -701,8 +757,16 @@
      "description": "To the north lies A Trodden Path."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "The chief's hut is the largest in the camp, its beams carved and its\nwalls hung with the scaled hides of old foes. A long table is spread\nwith maps drawn on hide, weighted down with daggers and a cracked skull.\nA rack holds polished spears and a heavy two-handed sword, and a brazier\nwarms the room to stuffiness. The single door is north, to the path.",
+   "extra_descs": {
+    "maps hides table": "The maps show the lands round the camp in rough strokes, with fords,\nroads and farmsteads marked by small red crosses. Some of the crosses\nhave been struck through."
+   },
+   "mob_resets": [
+    {
+     "vnum": 650205,
+     "max": 1
+    }
+   ]
   },
   "2029": {
    "vnum": 2029,
@@ -722,8 +786,8 @@
      "description": "To the north lies A Trodden Path."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
-   "placeholder": true
+   "description": "Half the roof has fallen in, burying one corner under turf and\nsplintered poles. Scorch marks blacken the floor and one wall, as if\nfire swept through here long ago and was never mended. A ring of stones\nin the middle holds only damp ash. The doorway north is the only part\nthat still stands whole.",
+   "extra_descs": {}
   },
   "2030": {
    "vnum": 2030,
@@ -747,8 +811,8 @@
      "description": "To the west lies A Small Hut."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
-   "placeholder": true
+   "description": "A hut crowded with barrels and sacks, smelling of grain, salt fish and\ntar. A tally stick hangs from a nail, notched in groups of five. The\nceiling is hung with ropes of dried onion. The door is south on the\npath, and a gap in the west wall leads into a second hut.",
+   "extra_descs": {}
   },
   "2031": {
    "vnum": 2031,
@@ -768,8 +832,8 @@
      "description": "To the south lies A Trodden Path."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "Rain has come in through a hole in the roof of this long-empty hut, and\nthe floor is a mat of rotting leaves and pale fungus. A pallet lies\nagainst one wall, chewed to splinters by mice. The hide door has fallen\noff its pegs and lies in the corner. Nothing here has been touched in\nyears, and the doorway is south.",
+   "extra_descs": {}
   },
   "2032": {
    "vnum": 2032,
@@ -793,8 +857,8 @@
      "description": "To the south lies A Trodden Path."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "This hut is a smithy of sorts: a stone anvil sits on a tree stump, and a\npair of goat-hide bellows hangs from a post beside a bed of cold coals.\nTongs, hammers and half-finished blades lie in untidy rows. Flakes of\nrust litter the floor like russet leaves. The wall opens east into a\nstore, and a door south leads out to a path.",
+   "extra_descs": {}
   },
   "2033": {
    "vnum": 2033,
@@ -820,8 +884,8 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A fine hut of squared logs stands to the south, the only building here\nwith a proper plank door, and over it hangs a banner of black cloth\nworked with a red dragon's head. Two spears are planted on either side\nof the threshold. The ground before it is swept clean and edged with\nwhite stones. The path leads west, and a hut lies to the north.",
+   "extra_descs": {}
   },
   "2034": {
    "vnum": 2034,
@@ -851,8 +915,14 @@
      "description": "To the west lies A Small Hut."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "A crossing in the heart of the camp, where the ground is churned to\nblack mud by the passage of many feet. A hut stands to the west and a\nderelict one to the south, its door fallen in. A rain barrel overflows\nbeside a sheltered fire. Paths run north and east.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650200,
+     "max": 1
+    }
+   ]
   },
   "2035": {
    "vnum": 2035,
@@ -872,8 +942,14 @@
      "description": "To the east lies A Trodden Path."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "This hut serves as a surgeon's den: rolled bandages fill a basket, jars\nof foul-smelling salve crowd a shelf, and a table of boards with leather\nstraps stands stained and scrubbed. A kettle of herbs steams over a\nlittle fire, thick with bitter vapour. Needles and gut hang from a nail.\nThe door is east, on the path.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650201,
+     "max": 1
+    }
+   ]
   },
   "2036": {
    "vnum": 2036,
@@ -893,8 +969,8 @@
      "description": "To the east lies A Trodden Path."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "A barracks for the rank and file: crude bunks are stacked three high\nagainst the walls, with gear heaped in untidy mounds beneath them.\nCharcoal drawings of dragons in flight cover the beams, some of them\nquite skilful. A rope of knotted cords hangs from the rafters for\nclimbing practice. The door is east, onto the path.",
+   "extra_descs": {}
   },
   "2037": {
    "vnum": 2037,
@@ -920,8 +996,8 @@
      "description": "To the west lies A Small Hut."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north, south and\nwest.",
-   "placeholder": true
+   "description": "A stand of old pines survives here, a few tall trees spared the axe,\nwith ropes slung between them and sacks of sand hanging from the ropes\nwhere fists have beaten them smooth. The ground is scuffed into circles\nby footwork. A hut sits to the west, and the path goes north and south.",
+   "extra_descs": {}
   },
   "2038": {
    "vnum": 2038,
@@ -951,8 +1027,8 @@
      "description": "To the west lies A Small Hut."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The path ends at a wall of grey rock rising from the trees, in which a\nrift gapes, a crooked mouth breathing out a warm stink of smoke and\nsulphur. Huts crouch to the east and west with their doors turned toward\nit. Black stains streak the rock above the opening where fumes have\nlicked it. The path runs back south, and the rift leads north.",
+   "extra_descs": {}
   },
   "2039": {
    "vnum": 2039,
@@ -972,8 +1048,8 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
-   "placeholder": true
+   "description": "A hut kept by someone who values order: the sleeping mats are rolled,\nthe cooking pots hang by size, and there is not a speck of dust on the\nsword rack. Faint daylight comes in at the door and through a slit in\nthe wall that faces the rift. The great curved horn of some beast hangs\nover the doorway. The only exit is west.",
+   "extra_descs": {}
   },
   "2040": {
    "vnum": 2040,
@@ -993,8 +1069,8 @@
      "description": "To the east lies A Trodden Path."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "The walls of this hut bristle with the pelts of wolves and bears, so\nthat the whole room smells strongly of musk and old blood. A bone-\nhandled knife is stuck in a stump beside a bowl of stale stew. Feathers\nlie drifted across the trodden floor where a pallet has been torn apart.\nThe only way out is east, through the low door to the path.",
+   "extra_descs": {}
   },
   "2041": {
    "vnum": 2041,
@@ -1008,9 +1084,29 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 2038,
+     "description": "To the south lies A Trodden Path."
+    },
+    "east": {
+     "to_room": 2042,
+     "description": "To the east lies The Wandering Caves."
+    },
+    "north": {
+     "to_room": 2048,
+     "description": "To the north lies The Wandering Caves."
+    }
+   },
+   "description": "The rift opens into a cave of dark grey rock, the roof lost in gloom and\nthe floor sloping gently down. Soot has blackened the walls near the\nentrance, and a few guttering torches burn in iron brackets driven into\ncracks. Drips ring in the dark ahead. The smell of smoke is stronger,\nand beneath it lies something sweeter, like incense.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650204,
+     "max": 1
+    }
+   ]
   },
   "2042": {
    "vnum": 2042,
@@ -1024,9 +1120,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 2041,
+     "description": "To the west lies The Wandering Caves."
+    },
+    "north": {
+     "to_room": 2047,
+     "description": "To the north lies The Wandering Caves."
+    }
+   },
+   "description": "A pool of still black water fills the floor of this cave, so dark and\nclear that the stalactites above hang twice, once in the roof and once\nreflected. Drips fall at intervals, and each ring spreads outward in a\nlong, slow circle. The walls are glossy with damp, and the air is thick\nwith the smell of wet stone.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2043": {
    "vnum": 2043,
@@ -1040,9 +1146,23 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 2023,
+     "description": "To the south lies A Small Hut."
+    },
+    "east": {
+     "to_room": 2044,
+     "description": "To the east lies The Wandering Caves."
+    },
+    "north": {
+     "to_room": 2046,
+     "description": "To the north lies The Wandering Caves."
+    }
+   },
+   "description": "Bones are heaped in a low alcove in the wall of this cave, gnawed and\ncracked for the marrow, some of them far too large for a deer. A tally\nof long scratches runs across the rock in groups of five. The roof\npresses low, and the floor is greasy underfoot. The smoke smell is faint\nhere, the animal smell strong.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2044": {
    "vnum": 2044,
@@ -1056,9 +1176,25 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 2043,
+     "description": "To the west lies The Wandering Caves."
+    },
+    "north": {
+     "to_room": 2045,
+     "description": "To the north lies The Wandering Caves."
+    }
+   },
+   "description": "The cave narrows to a crawl where the roof comes down to within a yard\nof the floor, polished by the shoulders of those who have squeezed\nthrough. Soot from passing torches has painted a long black streak along\nthe rock. Every sound is swallowed. The stone is cold and the dark\nabsolute outside the reach of your light.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650202,
+     "max": 1
+    }
+   ]
   },
   "2045": {
    "vnum": 2045,
@@ -1072,9 +1208,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 2044,
+     "description": "To the south lies The Wandering Caves."
+    },
+    "north": {
+     "to_room": 2050,
+     "description": "To the north lies The Wandering Caves."
+    }
+   },
+   "description": "Patches of pale fungus glow on the walls of this cave in sickly greens\nand whites, giving just enough light to show the shapes of things. The\nfloor is soft with mould and bat droppings, and the smell is rich and\nsweetish. Threads of rootlets hang from cracks in the roof like grey\nhair. The air is warm and wet.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2046": {
    "vnum": 2046,
@@ -1088,9 +1234,15 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 2043,
+     "description": "To the south lies The Wandering Caves."
+    }
+   },
+   "description": "A broad cave where dry grass has been laid in rows as bedding, dozens of\npallets in all, each with a soot-black cooking pot at its head. Skulls\nof beasts and men sit on ledges round the walls as trophies. A heap of\ndiscarded armour rusts in one corner. The fires are low and the smoke\nclings to the roof.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2047": {
    "vnum": 2047,
@@ -1104,9 +1256,15 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 2042,
+     "description": "To the south lies The Wandering Caves."
+    }
+   },
+   "description": "A crack in the floor of this cave breathes out warm air with a thin\nhiss, and the rock around it is crusted a bright sulphur yellow. Wisps\nof vapour curl upward and cling to the stalactites. The stink is eye-\nwatering. Streaks of orange run down the walls where the hot water has\ndried.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2048": {
    "vnum": 2048,
@@ -1120,9 +1278,21 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 2041,
+     "description": "To the south lies The Wandering Caves."
+    },
+    "north": {
+     "to_room": 2049,
+     "description": "To the north lies The Wandering Caves."
+    }
+   },
+   "description": "The walls of this dry cavern are covered with paintings in red ochre:\ndragons in flight, columns of armoured warriors, and the great flame of\na burning city. Handprints dot the rock around the pictures, some small,\nsome clawed. The floor is swept clean of rubble. Dust hangs motionless\nin the dull torchlight.",
+   "look": "cave",
+   "extra_descs": {
+    "paintings ochre dragons": "The paintings are old, older than the camp, and the burning city in them\nis not drawn with any hatred, only with a kind of awe."
+   }
   },
   "2049": {
    "vnum": 2049,
@@ -1136,9 +1306,25 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 2048,
+     "description": "To the south lies The Wandering Caves."
+    }
+   },
+   "description": "A ledge runs along a drop here, and a bridge of rope and rotting planks\nspans a gap in the rock, creaking in a draught from below. Far beneath,\nwater moves with a hollow, murmuring sound. The ledge is slick with\ndamp. Stalagmites rise from the shelf like a row of broken teeth.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650202,
+     "max": 1
+    },
+    {
+     "vnum": 650204,
+     "max": 1
+    }
+   ]
   },
   "2050": {
    "vnum": 2050,
@@ -1156,10 +1342,19 @@
     "north": {
      "to_room": 2053,
      "description": "To the north lies The Draconian Shrine."
+    },
+    "south": {
+     "to_room": 2045,
+     "description": "To the south lies The Wandering Caves."
+    },
+    "east": {
+     "to_room": 2051,
+     "description": "To the east lies The Wandering Caves."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "The cave rises in rough steps worn smooth by countless feet, ending in\nan arched mouth where two iron braziers burn with a heavy red flame.\nIncense smoke rolls out thick and sweet, stinging the eyes. Dragon heads\nare chiselled on the rock about the arch, mouths open. To the north lies\nthe Draconian Shrine.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2051": {
    "vnum": 2051,
@@ -1173,9 +1368,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 2050,
+     "description": "To the west lies The Wandering Caves."
+    },
+    "east": {
+     "to_room": 2052,
+     "description": "To the east lies The Wandering Caves."
+    }
+   },
+   "description": "A rusted iron cage hangs on a chain from the roof of this cave, its door\ntorn open and its floor strewn with old bones. The ground slopes steeply\nand loose gravel slides away underfoot. Black burns smear the rock\nbehind the cage. Somewhere not far off a drum is being beaten, slow and\nheavy.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2052": {
    "vnum": 2052,
@@ -1189,9 +1394,15 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 2051,
+     "description": "To the west lies The Wandering Caves."
+    }
+   },
+   "description": "Crystals as white as bone cover the walls of this cave, glinting in the\ntorchlight in long, angular spears. The floor is smooth and cold, and\nthe roof curves overhead like an upturned bowl. A chain of footprints\nleads across the dust and stops at the centre of the floor. Your breath\nhangs before your face in the chill.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2053": {
    "vnum": 2053,
@@ -1205,9 +1416,23 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 2050,
+     "description": "To the south lies The Wandering Caves."
+    }
+   },
+   "description": "The shrine is a vaulted cavern of black rock, its walls carved with\nscales so that the whole chamber seems the belly of some vast sleeping\nbeast. An altar of black stone stands before an idol of a five-headed\ndragon, its jewelled eyes glittering in the light of iron braziers.\nSmoke rises from the bowls and gathers beneath the roof in a slow,\nshifting cloud. The air is thick with incense and the smell of burnt\nofferings.",
+   "look": "cave",
+   "extra_descs": {
+    "idol dragon five-headed statue": "The idol has five heads, each of a different colour of stone, and the\neyes of all of them are red glass. Its claws are worn bright by the\ntouch of the faithful."
+   },
+   "mob_resets": [
+    {
+     "vnum": 650206,
+     "max": 1
+    }
+   ]
   },
   "2054": {
    "vnum": 2054,
@@ -1225,8 +1450,14 @@
      "description": "To the west lies A Trodden Path."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. A way leads west.",
-   "placeholder": true
+   "description": "A great open parade ground lies here, ringed with stumps and tall pines,\nthe earth stamped flat as a threshing floor. Racks of practice spears\nand wooden swords stand in rows along the rim. At the centre rises a\nscarred post for punishments, and beside it a platform of logs from\nwhich a commander can address the ranks. The sky overhead is grey with\nsmoke, and the only path out is west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650201,
+     "max": 1
+    }
+   ]
   },
   "2055": {
    "vnum": 2055,
@@ -1244,11 +1475,377 @@
      "description": "To the east lies A Trodden Path."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. A way leads east.",
-   "placeholder": true
+   "description": "A bright glade where the pines have been felled so that the sun falls\nfull on the bare earth. After the smoke of the camp the light is\nstartling, and warm stones lie in the sun, flat and smooth as\nhearthstones. Dry grass crackles at the edges. A path leads back east to\nthe shade and the split boulder.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650200,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "650200": {
+   "vnum": 650200,
+   "name": "baaz draconian soldier brass",
+   "short_desc": "a brass-scaled draconian",
+   "long_desc": "A brass-scaled draconian soldier stalks the path, hissing and flexing his clawed hands.",
+   "description": "A stocky, lizard-faced soldier whose body is covered in dull brass\nscales, with leathery wings folded tight against his back. His yellow\neyes follow you with greedy menace, and he wears a ragged tabard of\nblack and red.",
+   "level": 12,
+   "alignment": -300,
+   "hp_dice": "12d8+156",
+   "damage_dice": "4d6+5",
+   "armor_class": 61,
+   "exp": 680,
+   "gold": 144,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750200,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "650201": {
+   "vnum": 650201,
+   "name": "kapak draconian bronze archer",
+   "short_desc": "a bronze-scaled draconian",
+   "long_desc": "A bronze-scaled draconian archer crouches at the edge of the huts, an arrow already on the string.",
+   "description": "A lean, hunched warrior in bronze scale, with a long snout and narrow\ngleaming eyes. A short bow is slung across his shoulder and a curved\ndagger glints at his belt, its edge dark with something sticky.",
+   "level": 14,
+   "alignment": -350,
+   "hp_dice": "14d8+182",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 168,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750200,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "650202": {
+   "vnum": 650202,
+   "name": "cave spider giant pale",
+   "short_desc": "a giant cave spider",
+   "long_desc": "A giant cave spider the colour of old bone clings to the rock, its fangs dripping.",
+   "description": "The spider's body is the size of a sheepdog, pale and swollen, with\neight pale eyes that shimmer like wet pebbles. It moves in sudden stabs\nover the rock and dangles on threads from the roof.",
+   "level": 13,
+   "alignment": -100,
+   "hp_dice": "13d8+146",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "650203": {
+   "vnum": 650203,
+   "name": "sivak draconian warrior silver",
+   "short_desc": "a silver-scaled draconian",
+   "long_desc": "A silver-scaled draconian champion strides across the ground with a cruel, drawn blade.",
+   "description": "Taller than any of the lesser kind, he is armoured in silver scale and\nbears wings that carry him in great leaping glides. His eyes are cold\nand keen, and his snout is scarred by many fights.",
+   "level": 19,
+   "alignment": -500,
+   "hp_dice": "19d8+255",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 228,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750201,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "650204": {
+   "vnum": 650204,
+   "name": "bozak draconian shaman mage priest",
+   "short_desc": "a bozak draconian shaman",
+   "long_desc": "A bozak draconian shaman mutters at the rock, fire licking about his talons.",
+   "description": "A gaunt draconian in robes of smoke-grey, wings tattered at the edges\nand a crown of small horns. His claws crackle with a sullen red light,\nand the air about him is hot and tastes of cinders.",
+   "level": 20,
+   "alignment": -550,
+   "hp_dice": "20d8+270",
+   "damage_dice": "6d6+10",
+   "armor_class": 37,
+   "exp": 1120,
+   "gold": 240,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750201,
+     "chance": 15
+    },
+    {
+     "vnum": 750204,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "650205": {
+   "vnum": 650205,
+   "name": "skarrag chief guard draconian captain",
+   "short_desc": "Skarrag, the chief guard",
+   "long_desc": "Skarrag the chief guard stands in the lamplit hut, hand on the haft of a spiked flail.",
+   "description": "A massive draconian with scales of scarred, dull gold and a ragged crest\ndown his spine. A necklace of fangs rattles at his throat, and he fights\nwith a spiked flail and the cruel patience of a veteran who has never\nbeen beaten.",
+   "level": 18,
+   "alignment": -500,
+   "hp_dice": "18d8+240",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 216,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750202,
+     "chance": 35
+    },
+    {
+     "vnum": 750200,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "650206": {
+   "vnum": 650206,
+   "name": "zhaarok high priest draconian",
+   "short_desc": "Zhaarok, the draconian high priest",
+   "long_desc": "Zhaarok, the draconian high priest, stands before the altar in robes of red and black, chanting.",
+   "description": "An ancient draconian in robes the colour of dried blood, his scales gone\nto a dull black and his wings scarred where they were once burnt. A\nstaff topped with a dragon's skull is in his claws, and when he turns\nhis terrible stare on you the braziers flare as if in answer.",
+   "level": 21,
+   "alignment": -700,
+   "hp_dice": "21d8+286",
+   "damage_dice": "6d6+11",
+   "armor_class": 34,
+   "exp": 1175,
+   "gold": 252,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750203,
+     "chance": 35
+    },
+    {
+     "vnum": 750204,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "750200": {
+   "vnum": 750200,
+   "name": "draconian scimitar curved notched",
+   "short_desc": "a notched draconian scimitar",
+   "room_desc": "A notched, curved scimitar lies here.",
+   "description": "A heavy scimitar with a brass hilt moulded to fit a clawed hand. The edge is notched with use and stained dark.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 12,
+   "damage_dice": "2d5",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 340
+  },
+  "750201": {
+   "vnum": 750201,
+   "name": "silver war helm draconian horned",
+   "short_desc": "a horned silver war-helm",
+   "room_desc": "A horned silver war-helm lies here.",
+   "description": "A helm of silvered scales, shaped to fit a long snout and fitted with a pair of swept-back horns. Heavy but well made.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 410
+  },
+  "750202": {
+   "vnum": 750202,
+   "name": "chief golden scale mail armour",
+   "short_desc": "the chief guard's golden scale mail",
+   "room_desc": "A coat of golden scale mail lies here.",
+   "description": "Overlapping scales of dull gold riveted to a thick leather jerkin, scarred by many blows and well kept. It is heavy but turns a blade well.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 18,
+   "wear_slot": "body",
+   "armor": 5,
+   "weight": 10,
+   "value": 390
+  },
+  "750203": {
+   "vnum": 750203,
+   "name": "amulet dragon black stone zhaarok",
+   "short_desc": "a black dragon amulet",
+   "room_desc": "A black stone amulet in the shape of a dragon lies here.",
+   "description": "A dragon carved in black stone, cold to the touch, hanging from a chain of blackened links. A faint murmur of prayers seems to cling to it.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 21,
+   "wear_slot": "neck1",
+   "armor": 2,
+   "weight": 1,
+   "value": 450,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "750204": {
+   "vnum": 750204,
+   "name": "dragonclaw dagger curved claw",
+   "short_desc": "a dagger made from a dragon's claw",
+   "room_desc": "A curved dagger made from a great claw lies here.",
+   "description": "The curved claw of some great lizard has been ground to a point and mounted in a hilt of blackened iron. It is surprisingly light, and wickedly sharp.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 21,
+   "damage_dice": "2d6",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 565,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  }
+ }
 }
