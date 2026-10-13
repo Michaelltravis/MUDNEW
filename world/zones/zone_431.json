@@ -16,7 +16,12 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
+   "exits": {
+    "west": {
+     "to_room": 4465,
+     "description": "To the west lies The Catacombs."
+    }
+   },
    "description": "A lightless nothing presses in on every side, with no floor to feel and\nno wall to lean on. Cold and stillness are all there is, and even your\nown heartbeat sounds muffled and far away. Whatever prayers once drew\nyou toward this blackness have left no mark upon it, and no way out can\nbe found.",
    "extra_descs": {}
   },
@@ -1906,6 +1911,10 @@
     "west": {
      "to_room": 4462,
      "description": "To the west lies The Tunnel."
+    },
+    "east": {
+     "to_room": 4400,
+     "description": "To the east lies The Sunless Lands."
     }
    },
    "description": "A corner of the catacombs where the burial niches are stacked three\nhigh, their slabs carved with worn names and faded dates. A faint\ntrickle of water runs down one wall and pools on the floor in a black,\nstill mirror. North the passage returns to a wider chamber, and a tunnel\nleads west. The cold is bone-deep and utterly still.",
@@ -2134,6 +2143,5 @@
   }
  },
  "mobs": {},
- "objects": {},
- "sealed": true
+ "objects": {}
 }

@@ -120,6 +120,14 @@ async def main():
     for v in (24505, 24805, 28020, 28520, 29020, 29520, 30020):
         b = npcs(v)[0]
         check(getattr(b, 'is_boss', False) and b.abilities and b.mechanics, f'{b.name}: a boss with abilities and mechanics')
+    # ---- opened: Garathorm's districts, Hommlet's upper rooms, the Haunted House, Ancalador
+    shut = [z for z in (431, 517, 420, 418, 423, 482, 479) if getattr(world.zones[z], 'sealed', False)]
+    check(not shut, f'the districts and the new zones are open ({shut})')
+    canon = npcs(42310)[0]
+    lord = npcs(48210)[0]
+    check(canon.room.vnum == 8244 and lord.room.vnum == 1924, 'the false Canon in his chambers; the Lord of the House in the master bedroom')
+    morticia = [m for m in world.npcs if 'morticia' in (m.name or '').lower()]
+    check(morticia and morticia[0].rank == 'boss', 'Morticia rules the Bloodstone guild')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 
