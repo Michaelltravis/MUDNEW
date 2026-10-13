@@ -403,3 +403,35 @@ export async function showGearGallery(engine) {
   engine.setMood('day', true);
   return new THREE.Vector3(width / 2 - step / 2, 0, (rows.length - 1) * gap / 2);
 }
+
+// /play?demo&gallery=corpses — the dead as loot.js lays them (corpse.js): a body of each kind
+// (a model with a death clip, one without, bodies built in code, a person in their gear), darkened
+// over its stain under the gold ring, and a hero's grave. MH3D.gallery.loot for probes.
+export async function showCorpseGallery(engine, kits) {
+  const [{ GroundLoot }, { Entities }] = await Promise.all([import('./loot.js'), import('./entities.js')]);
+  const dead = ['a goblin', 'a large rat', 'the wolf', 'the cityguard', 'the huge, poisonous spider', "a charred adventurer's skeleton",
+    'a red dragon', 'a giant web spider', 'a vampire bat', 'a green slime', 'Elowen'];
+  const cols = 6, step = 3.4;
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, 2 * step + 8), new THREE.MeshStandardMaterial({ color: 0x6d6a60, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2; floor.position.set((cols - 1) * step / 2, 0, step / 2); floor.receiveShadow = true;
+  engine.scene.add(floor);
+  const ents = new Entities(engine, document.createElement('div'), kits);
+  const spot = i => new THREE.Vector3((i % cols) * step, 0, Math.floor(i / cols) * step);
+  const keyIndex = new Map();
+  const loot = new GroundLoot(engine, {
+    slot: (v, key) => spot(keyIndex.get(key) || 0), icon: () => document.createElement('canvas'),
+    body: (name, key) => ents.body({ name, short: name }, key), hero: name => name === 'Elowen' });
+  const items = dead.map(n => ({ name: `corpse of ${n}`, short: `the corpse of ${n}`, type: 'container', contents: [], gold: 0 }));
+  groundOrder(items).forEach((key, i) => keyIndex.set(key, i));
+  loot.sync({ nearby: [{ vnum: 1, items }] });
+  engine.onTick((dt, t) => loot.update(dt, t));
+  window.MH3D_gallery = { loot };
+  console.log('corpse gallery:', dead.join(', '));
+  engine.setMood('day', true);
+  return new THREE.Vector3((cols - 1) * step / 2, 0, step / 2);
+}
+// the keys loot.js gives these items (lootlogic.groundItems), in order
+function groundOrder(items) {
+  const seen = {};
+  return items.map(it => { const base = `1:${it.name}`; seen[base] = (seen[base] || 0) + 1; return `i${base}#${seen[base]}`; });
+}

@@ -31,6 +31,7 @@ import { ActionClock } from './actionclock.js';
 import { musicFor, bedFor, surfaceFor } from './soundtable.js';
 import { interiorKind } from './terrain-town.js';
 import { GroundLoot } from './loot.js';
+import { nameKey } from './corpse.js';
 import { mountRider, makeRaft } from './steed.js';
 import { groundItems } from './lootlogic.js';
 import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
@@ -59,6 +60,7 @@ async function runDemo() {
       : g === 'kin' ? await showBeastGallery(engine, kits, KIN_SAMPLES)
       : g === 'abilities' ? await showAbilityGallery(engine)
       : g === 'gear' ? await showGearGallery(engine)
+      : g === 'corpses' ? await (await import('./gallery.js')).showCorpseGallery(engine, kits)
       : g === 'icons' ? (await showIconGallery()) || new THREE.Vector3()
       : g === 'sounds' ? (await showSoundGallery()) || new THREE.Vector3()
       : g === 'rooms' ? (await import('./demo.js')).buildLooksGallery(engine, kits)
@@ -110,6 +112,13 @@ async function runGame() {
     const c = document.createElement('canvas'); c.width = c.height = 64;
     try { if (MH.itemIcons) MH.itemIcons.intoCanvas(c, it); } catch (_) {}
     return c;
+  },
+  // a corpse keeps the body that fell, or gets one; a hero's (yours, or a player's here) is a grave
+  claim: name => ents.claimFallen(name),
+  body: (name, key) => ents.body({ name, short: name }, key),
+  hero: name => {
+    const k = nameKey(name);
+    return k === nameKey(MH.state.playerName) || [...ents.list.values()].some(e => e.kind === 'player' && nameKey(e.data.name) === k);
   } });
   engine.onTick((dt, t) => loot.update(dt, t));
   const fx = new FX(engine, $('#fct'));
