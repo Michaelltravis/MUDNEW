@@ -350,6 +350,13 @@ def build(write=False):
                 if not any(isinstance(e, dict) and e.get('to_room') == v for e in back.values()):
                     r['exits'].pop(d)
                     notes['one-way leftovers into the atlas dropped'] += 1
+    # ways the atlas lost that the area's original files have (overrides.json "exits": {room: {dir: room}})
+    for v, ways in (ov.get('exits') or {}).items():
+        r = new_rooms.get(int(v))
+        for d, t in (ways or {}).items():
+            if r is not None and int(t) in new_rooms and d not in (r.get('exits') or {}):
+                r.setdefault('exits', {})[d] = {'to_room': int(t)}
+                notes['ways restored from the original areas'] += 1
 
     # ---- zones: names, fields, prototypes, sealed marks
     new_zones = {}

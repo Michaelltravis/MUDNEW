@@ -95,6 +95,10 @@ async def main():
         if c['kind'] == 'annex' and c.get('attach_atlas'):
             allowed.add((vn[c['attach_atlas']], c['dir']))
             allowed.add((c['entry'], OPP[c['dir']]))
+    # ways restored from an area's original files (world/atlas/overrides.json "exits")
+    with open(os.path.join(ROOT, 'world', 'atlas', 'overrides.json'), encoding='utf-8') as f:
+        for v, ways in (json.load(f).get('exits') or {}).items():
+            allowed |= {(int(v), d) for d in ways}
     atlas_vnums = {vn[a] for a in A if a not in stubs}
     extra = []
     for a, r in A.items():
