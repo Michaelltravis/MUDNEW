@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import { Batcher, trs } from './assets.js';
 import { cutout } from './cutout.js';
 import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard } from './terrain-town.js';
-import { underground, dressHall, outdoorEdge, outdoorDress, mountainCliffs, sunkenRuins, RUIN_RE, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
+import { underground, dressHall, outdoorEdge, outdoorDress, mountainCliffs, sunkenRuins, webDress, RUIN_RE, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
 
 export const ROOM_W = 24, ROOM_H = 15;
 const FLOOR = 0, BLOCK = 1, WATER = 4;
@@ -247,6 +247,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
     // ground clutter on open floor (not on the paths): a look's own (terrain-looks.js), or grass
     if (edge && edge.cliffs) mountainCliffs(ctx());
     if (theme === 'underwater' && RUIN_RE.test(layout.name || (room && room.data && room.data.name) || '')) sunkenRuins(ctx());
+    if (theme === 'web') webDress(ctx());
     if (bare || theme === 'desert') outdoorDress(ctx(), theme);
     else {
       for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) {
@@ -344,6 +345,7 @@ function waterSurface(layout, ox, oz, group) {
 const FILL = {
   forest: { trees: 0.2, bushes: 0.05, rocks: 0.01, grass: 0.06 },
   darkforest: { trees: 0.2, bushes: 0.05, rocks: 0.01, grass: 0.05 },
+  web: { trees: 0.22, bushes: 0, rocks: 0.01, grass: 0 },
   field: { trees: 0.025, bushes: 0.035, rocks: 0.008, grass: 0.1 },
   hills: { trees: 0.04, bushes: 0.04, rocks: 0.03, grass: 0.08 },
   mountain: { trees: 0.02, bushes: 0, rocks: 0.13, grass: 0, cliff: true },

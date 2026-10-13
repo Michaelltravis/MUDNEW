@@ -152,12 +152,12 @@ export function surfaceFor({ theme, zoneKey, snowy, icy, interior } = {}) {
 
 // music by the zone's look; fights bring in the battle track
 export const MUSIC = ['town', 'wilds', 'inn', 'dungeon', 'dark', 'battle'];
-const DARK = new Set(['darkforest', 'swamp', 'necropolis', 'darkcastle', 'voidstar', 'volcanic', 'drow']);
+const DARK = new Set(['web', 'darkforest', 'swamp', 'necropolis', 'darkcastle', 'voidstar', 'volcanic', 'drow']);
 const DUNGEON = new Set(['sewer', 'mines', 'dwarvenhall', 'clockwork', 'arcane']);
 const TOWN = new Set(['midgaard', 'rome', 'sandstone', 'castle', 'temple', 'chessboard']);
 export function musicFor({ theme, zoneKey, dark, interior } = {}) {
   if (theme === 'inside' && interior === 'tavern') return 'inn';
-  if (theme === 'crypt' || theme === 'volcanic') return 'dark';
+  if (theme === 'crypt' || theme === 'volcanic' || theme === 'web') return 'dark';
   if (theme === 'cave' || theme === 'mine' || theme === 'sewer') return 'dungeon';
   if (DARK.has(zoneKey)) return 'dark';
   if (DUNGEON.has(zoneKey) || dark || theme === 'dungeon' || theme === 'cave') return 'dungeon';
@@ -200,7 +200,7 @@ const BED_OF_THEME = { forest: 'forest', field: 'meadow', hills: 'meadow', swamp
   water_noswim: 'sunken', underwater: 'sunken' };
 // a room's look (room_looks.py) says more than its zone's old theme
 export const LOOK_BED = { cave: 'mines', mine: 'mines', sewer: 'sewer', crypt: 'necropolis', dungeon: 'sewer',
-  snow: 'frozen', desert: 'desert', volcanic: 'volcanic', shore: 'sunken', swamp: 'swamp' };
+  snow: 'frozen', desert: 'desert', volcanic: 'volcanic', shore: 'sunken', swamp: 'swamp', web: 'darkforest' };
 export function bedFor({ theme, zoneKey } = {}) {
   if (LOOK_BED[theme]) return LOOK_BED[theme];
   if (theme === 'inside') return 'castle';                     // indoors: a quiet room tone

@@ -28,9 +28,9 @@ from collections import Counter
 
 logger = logging.getLogger('Misthollow')
 
-LOOKS = ('cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp')
+LOOKS = ('cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'castle')
 UNDERGROUND = {'cave', 'mine', 'crypt', 'sewer', 'dungeon'}
-OUTDOOR = {'desert', 'snow', 'volcanic', 'swamp'}          # (a shore is an edge: it doesn't spread)
+OUTDOOR = {'desert', 'snow', 'volcanic', 'swamp', 'web'}   # (a shore is an edge: it doesn't spread)
 
 # first match wins: the specific before the general
 LOOK_WORDS = [
@@ -39,6 +39,8 @@ LOOK_WORDS = [
     ('mine', r'\b(mines?|mineshafts?|shafts?|ore|mining|quarry|lode)\b'),
     ('cave', r'\b(caves?|caverns?|cavernous|grottos?|grottoes|stalactites?|stalagmites?|crawlways?|underground|subterranean)\b'),
     ('dungeon', r'\b(dungeons?|oubliettes?|torture chambers?|prison cells?|cell ?blocks?)\b'),
+    # a spider's lair: webbed trees and tunnels (Arachnos, the spider queens' dens)
+    ('web', r'\b(webs?|webbed|webby|webbing|cobwebs?|cocoon\w*|egg ?sacs?|spider ?silk)\b'),
     ('volcanic', r'\b(lava|magma|volcan\w*|molten|caldera|ashen|ashlands?|cinders?|obsidian)\b'),
     ('desert', r'\b(deserts?|dunes?|sands|oasis|wastes of sand)\b'),
     ('snow', r'\b(snow\w*|frozen|glaciers?|glacial|tundra|icy|ice|frost\w*|winterlands?|blizzard)\b'),
@@ -53,6 +55,8 @@ TELLING = {
     'sewer': re.compile(r'\b(sewage|sewer water|in the sewers?)\b', re.I),
     'mine': re.compile(r'\b(mine cart|ore cart|mining tunnel|support beams|pick ?axes? marks)\b', re.I),
     'crypt': re.compile(r'\b(burial niches?|coffins? line|stone coffins?|sarcophagi)\b', re.I),
+    'web': re.compile(r'\b(coated with (?:cob)?webs?|covered in (?:cob)?webs?|thick (?:cob)?webs?|webbed (?:remains|bodies|corpses)|'
+                      r'strands? of (?:web|silk)|spider ?silk)\b', re.I),
 }
 # a room that reads as a building's never takes an underground look from its neighbours
 INTERIOR_RE = re.compile(
@@ -72,6 +76,7 @@ SPREAD = {
     'dungeon': (2, ENCLOSED_SECTORS), 'crypt': (1, ENCLOSED_SECTORS),
     'desert': (3, {'field', 'hills', 'mountain', 'desert'}), 'volcanic': (3, {'field', 'hills', 'mountain'}),
     'snow': (3, {'field', 'hills', 'mountain', 'forest'}), 'swamp': (2, {'field', 'swamp'}),
+    'web': (3, {'field', 'hills', 'forest', 'city', 'mountain'}),
 }
 
 ZONE_MIN = 5
@@ -125,8 +130,21 @@ def _neighbours(room, rooms):
             yield other
 
 
-FOREST_WORDS = r'\b(forests?|woods|woodlands?|groves?|copse|thickets?|jungle|wildwood|greenwood|glades?|clearing|trees)\b'
+FOREST_WORDS = r'\b(forests?|woods|woodlands?|groves?|copse|thickets?|jungle|wildwood|greenwood|glades?|clearing|trees?|treetops?|branch(?:es)?)\b'
 FOREST_RE = re.compile(FOREST_WORDS, re.I)
+# a description plainly among trees: three or more of these (a field or a road through woods)
+TREE_CUES = re.compile(r'\b(trees?|branch(?:es)?|boughs?|limbs?|canopy|foliage|trunks?|undergrowth|forest|woods|leaves|treetops?)\b', re.I)
+CITY_CUES = re.compile(r'\b(streets?|shops?|buildings?|houses?|market|plaza|alley|cobble\w*|town|city)\b', re.I)
+TUNNEL_RE = re.compile(r'\b(tunnels?|burrows?)\b', re.I)
+# a castle's outside (its yard, walls and gate) is drawn as one: curtain walls with merlons, towers
+# at the corners, banners; its halls and chambers stay rooms (INTERIOR_RE)
+CASTLE_RE = re.compile(r'\b(castle|keep|fortress|citadel|stronghold|bailey|battlements?|ramparts?|gatehouse|'
+                       r'portcullis|drawbridge|barbican|parapets?|wall ?walk|outer ward|inner ward|bastion)\b', re.I)
+# a courtyard or a turret is a castle's only when the castle is named in its words or its zone's
+# (a temple's courtyard, a mage's garden court stay as they are)
+CASTLE_WEAK = re.compile(r'\b(courtyard|turrets?)\b', re.I)
+CAVERN_RE = re.compile(r'\b(caverns?|caves?|shaft)\b', re.I)
+ROCK_CUES = re.compile(r'\b(caves?|caverns?|rock|stone|earth|dark(?:ness)?|damp|underground|walls?)\b', re.I)
 MOUNTAIN_WORDS = (r'\b(mountains?|mountainside|peaks?|summit|cliffs?|cliff\'s edge|crags?|ledges?|ravine|gorge|'
                   r'canyon|scree|slopes?|rocky|boulders?|the pass|mountain pass|precipice)\b')
 MOUNTAIN_RE = re.compile(MOUNTAIN_WORDS, re.I)
@@ -184,13 +202,30 @@ def open_country(room):
     return None
 
 
+def _castle(room, sector, name, desc):
+    """A castle's yard, walls or gate by its name (not a street toward the keep, not a hall in it,
+    not a cavern called a castle's way)."""
+    if INTERIOR_RE.search(name) or CAVERN_RE.search(desc) or (sector == 'city' and STREET_RE.search(name)):
+        return False
+    if CASTLE_RE.search(name):
+        return True
+    zone = getattr(getattr(room, 'zone', None), 'name', '') or ''
+    return bool(CASTLE_WEAK.search(name) and (CASTLE_RE.search(desc) or CASTLE_RE.search(zone)))
+
+
 def _own_look(room):
     """(look, why) from the room's own words, or (None, None)."""
     sector = getattr(room, 'sector_type', '') or ''
     if sector in WATER_SECTORS:
         return None, None
+    name, desc = room.name or '', room.description or ''
+    # a tunnel through rock is a cave, whatever it was typed (the Mountain Range's were 'forest')
+    if TUNNEL_RE.search(name) and ROCK_CUES.search(desc) and sector != 'city' and not INTERIOR_RE.search(name):
+        return 'cave', 'name'
     look = words_look(room.name)
     why = 'name'
+    if not look and _castle(room, sector, name, desc):
+        return 'castle', 'name'
     if not look:
         look = open_country(room)
         # a forest or a mountain stays one whatever its description says, unless it is snowbound
@@ -204,7 +239,7 @@ def _own_look(room):
         look, why = description_look(room.description), 'description'
     if not look:
         return None, None
-    if sector == 'city' and look not in ('sewer', 'forest'):
+    if sector == 'city' and look not in ('sewer', 'forest', 'web'):
         return None, None
     # an outdoor look found only in a description keeps an enclosed room enclosed
     if look in OUTDOOR | {'shore'} and why == 'description' and sector not in OUTDOOR_FROM_DESC:
@@ -213,6 +248,17 @@ def _own_look(room):
     if look in UNDERGROUND and why == 'description' and sector not in ENCLOSED_SECTORS:
         return None, None
     return look, why
+
+
+def _trees(room):
+    """Open country (or a 'city' road) that its description plainly puts among trees."""
+    sector = getattr(room, 'sector_type', '') or ''
+    if sector not in ('field', 'hills', 'city') or INTERIOR_RE.search(room.name or ''):
+        return False
+    d = room.description or ''
+    if sector == 'city' and (STREET_RE.search(room.name or '') or len(CITY_CUES.findall(d)) >= 2):
+        return False
+    return len(TREE_CUES.findall(d)) >= 3
 
 
 def _fits(room, look):
@@ -235,6 +281,8 @@ def classify(world, overrides=None):
             room.look, room.look_why = stated, 'stated'
             continue
         look, why = _own_look(room)
+        if not look and _trees(room):
+            look, why = 'forest', 'description'
         if not look and _zone(room) in ov['zones'] and _fits(room, ov['zones'][_zone(room)]):
             look, why = ov['zones'][_zone(room)], 'zone'
         room.look, room.look_why = (look, why) if look else (sector, None)

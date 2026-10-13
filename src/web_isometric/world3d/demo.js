@@ -130,9 +130,13 @@ export const LOOK_SAMPLES = [
   { look: 'mountain', sector: 'mountain', name: 'A High Mountain Pass', description: 'Cliffs rise on every side of the pass, and scree slides underfoot.' },
   { look: 'water_swim', sector: 'water_swim', name: 'On Mira Retrum', description: 'The river runs wide and slow between grassy banks.' },
   { look: 'water_noswim', sector: 'water_noswim', name: 'On Mira Retrum', description: 'Deep water, too deep to wade.' },
+  { look: 'web', sector: 'field', name: 'Webbed Entrance', description: 'Sticky webs coat the limbs of the trees; webbed remains of crickets, rats and men hang in cocoons.' },
 ];
 export function buildLooksGallery(engine, kits) {
   const world = new World(engine, kits);
+  // &only=web,cave: just those looks
+  const only = typeof location !== 'undefined' && new URLSearchParams(location.search).get('only');
+  const LOOK_SAMPLES = only ? ALL_LOOK_SAMPLES.filter(r => only.split(',').includes(r.look)) : ALL_LOOK_SAMPLES;
   const COLS = 4;
   const vnumAt = (cx, cy) => 991000 + cy * COLS + cx;
   const rooms = [];
@@ -155,6 +159,8 @@ export function buildLooksGallery(engine, kits) {
   window.MH3D_gallery = { rooms, world };
   return new THREE.Vector3(rooms[0].x, 0, rooms[0].z);
 }
+
+const ALL_LOOK_SAMPLES = LOOK_SAMPLES;
 
 // /play?demo&gallery=steeds: a knight on each kind of mount (steed.js), walking on the spot
 export const STEED_SAMPLES = ['horse', 'warhorse', 'nightmare', 'griffin', 'clockwork_steed', 'moonstag', 'stoneboar', 'merchant_camel', 'shadowpanther', 'dire_warg'];
