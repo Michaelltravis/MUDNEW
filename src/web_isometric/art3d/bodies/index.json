@@ -139,5 +139,128 @@
   "tris": 5820,
   "height": 0.804,
   "for": "the Spider Queens"
+ },
+ "demon": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2900,
+  "height": 2.093,
+  "for": "demons, devils, succubi, gargoyles; tinted by bestiary.js"
+ },
+ "fiend": {
+  "kind": "boss",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 4380,
+  "height": 3.573,
+  "for": "the balor, pit fiend, demon lords, the Cinder Tyrant; tinted by bestiary.js",
+  "look": {
+   "glow": 0.12
+  }
+ },
+ "imp": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2899,
+  "height": 0.936,
+  "for": "imps, quasits, gremlins; tinted by bestiary.js"
+ },
+ "kobold": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2290,
+  "height": 1.109,
+  "for": "kobolds; tinted by bestiary.js"
+ },
+ "minotaur": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1852,
+  "height": 2.809,
+  "for": "minotaurs and King Minos; tinted by bestiary.js"
+ },
+ "ogre": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1670,
+  "height": 2.617,
+  "for": "ogres, giants, ettins, cyclopes, titans; tinted by bestiary.js"
+ },
+ "troll": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1886,
+  "height": 2.706,
+  "for": "trolls; tinted by bestiary.js"
+ },
+ "yeti": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1600,
+  "height": 2.247,
+  "for": "yetis, sasquatches, flesh golems, umber hulks; tinted by bestiary.js"
  }
 }
