@@ -392,6 +392,10 @@
     "south": {
      "to_room": 13858,
      "description": "To the south lies The Tomb Of The Pale."
+    },
+    "north": {
+     "to_room": 13857,
+     "description": "To the north lies The Great Hall Of The Pale."
     }
    },
    "description": "The Stone Of Sealing is a slab of pale rock as wide as a barn door, set\nupright into the cave wall and carved from edge to edge with warding\nglyphs. Ash lies in drifts at its foot, scorched where something tried\nto break through long ago. A dry, throbbing heat leaks around its edges,\nand the glyphs glow faintly red. The only way back is south, into the\nTomb Of The Pale.",
@@ -1395,6 +1399,5 @@
     }
    ]
   }
- },
- "sealed": true
+ }
 }

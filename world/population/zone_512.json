@@ -1,0 +1,279 @@
+{
+ "zone": 512,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Orschnag the orc king as the boss.",
+ "creatures": {
+  "651200": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a Skull Clan orc"
+  },
+  "651201": {
+   "helpers": {
+    "group": "z512_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a scarred tunnel warg"
+  },
+  "651202": {
+   "helpers": {
+    "group": "z512_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale giant cave spider"
+  },
+  "651203": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a bone-hung orc shaman"
+  },
+  "651204": {
+   "helpers": {
+    "group": "z512_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking ice troll"
+  },
+  "651205": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a raging orc berserker"
+  },
+  "651206": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Bolg Ironjaw, warden of the Black Gate"
+  },
+  "651207": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Ugdush Skullsplitter, war-chief of the Skull Clan",
+   "rank": "sub-boss"
+  },
+  "651208": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a tusked orc warrior"
+  },
+  "651209": {
+   "helpers": {
+    "group": "z512_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a gaunt cave wolf"
+  },
+  "651210": {
+   "helpers": {
+    "group": "z512_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale cave spider"
+  },
+  "651211": {
+   "helpers": {
+    "group": "z512_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a blind lake eel"
+  },
+  "651213": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "an orc blackguard"
+  },
+  "651214": {
+   "helpers": {
+    "group": "z512_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking cave troll"
+  },
+  "651215": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Vrakk the Red-Eyed, lieutenant of Morkai"
+  },
+  "651216": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Gorbash Skullcleaver, the orc war-chief",
+   "rank": "elite"
+  },
+  "651218": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Gruzgash, captain of the orc guard"
+  },
+  "651219": {
+   "helpers": {
+    "group": "z512_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking manticore"
+  },
+  "651220": {
+   "helpers": {
+    "group": "z512_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "the great weaver spider",
+   "rank": "elite"
+  },
+  "651221": {
+   "helpers": {
+    "group": "z512_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a tunnel orc warrior"
+  },
+  "651222": {
+   "helpers": {
+    "group": "z512_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a gaunt cave wolf"
+  },
+  "651217": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Orschnag the orc king",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Orschnag the orc king rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Orschnag the orc king gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+13",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Orschnag the orc king raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+10",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Orschnag the orc king begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+17",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 651217,
+   "room": 13659,
+   "why": "Orschnag the orc king in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      651200
+     ],
+     "shout": "Orschnag the orc king calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

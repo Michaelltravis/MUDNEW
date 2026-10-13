@@ -9616,7 +9616,7 @@
    "zone": 512,
    "atlas_area": 112,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 450,
    "steps_from_temple": 161,
    "terrain": [
@@ -9682,9 +9682,7 @@
     "13827 north -> 13824",
     "13928 south -> 13700"
    ],
-   "no_exits": [
-    13791
-   ],
+   "no_exits": [],
    "locked_doors_left_unlocked": [
     "13301 west",
     "13359 south",
@@ -9724,14 +9722,27 @@
     13773,
     13774
    ],
-   "connections_added": []
+   "connections_added": [
+    {
+     "from": 13791,
+     "dir": "east",
+     "to": 13790,
+     "why": "map neighbour"
+    },
+    {
+     "from": 13790,
+     "dir": "west",
+     "to": 13791,
+     "why": "map neighbour"
+    }
+   ]
   },
   "514": {
    "name": "Morkai",
    "zone": 514,
    "atlas_area": 114,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 33,
    "steps_from_temple": 216,
    "terrain": [
@@ -9765,7 +9776,6 @@
    },
    "one_way": [
     "13811 east -> 13862",
-    "13857 south -> 13862",
     "13858 south -> 13859"
    ],
    "no_exits": [],
@@ -9774,14 +9784,21 @@
     "13857 south"
    ],
    "water_rooms": [],
-   "connections_added": []
+   "connections_added": [
+    {
+     "from": 13862,
+     "dir": "north",
+     "to": 13857,
+     "why": "the way back"
+    }
+   ]
   },
   "515": {
    "name": "Orcus Temple",
    "zone": 515,
    "atlas_area": 115,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 29,
    "steps_from_temple": 207,
    "terrain": [
@@ -10341,9 +10358,9 @@
   503,
   509,
   508,
-  12,
   512,
   515,
-  514
+  514,
+  12
  ]
 }

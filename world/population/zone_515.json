@@ -1,0 +1,149 @@
+{
+ "zone": 515,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Malgrath, High Priest of Orcus as the boss.",
+ "creatures": {
+  "651500": {
+   "helpers": {
+    "group": "z515_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a black-robed cultist of Orcus"
+  },
+  "651501": {
+   "helpers": {
+    "group": "z515_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a robed skeleton"
+  },
+  "651502": {
+   "helpers": {
+    "group": "z515_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a black-armoured templar guard",
+   "rank": "elite"
+  },
+  "651503": {
+   "helpers": {
+    "group": "z515_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking stone gargoyle",
+   "rank": "elite"
+  },
+  "651504": {
+   "helpers": {
+    "group": "z515_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "the ghost of the Beautiful Maid",
+   "rank": "sub-boss"
+  },
+  "651505": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Malgrath, High Priest of Orcus",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Malgrath, High Priest of Orcus rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Malgrath, High Priest of Orcus gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+13",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Malgrath, High Priest of Orcus raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+11",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Malgrath, High Priest of Orcus begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+18",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 651500,
+   "route": [
+    13903,
+    13904,
+    13910,
+    13911,
+    13912,
+    13913
+   ],
+   "why": "a black-robed cultist of Orcus walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 651505,
+   "room": 13927,
+   "why": "Malgrath, High Priest of Orcus in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      651500
+     ],
+     "shout": "Malgrath, High Priest of Orcus calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

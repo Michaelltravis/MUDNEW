@@ -10533,6 +10533,10 @@
       "state": "closed",
       "locked": false
      }
+    },
+    "west": {
+     "to_room": 13791,
+     "description": "To the west lies The Inescapable Prison."
     }
    },
    "description": "A prison cut straight out of the living rock: a low windowless cell with\na ring of iron in the floor, a chain and a trough for water. The walls\nare scratched with the marks of those who waited here. The air is thick\nwith despair and old straw. The only way out is the door south.",
@@ -10549,7 +10553,12 @@
    },
    "sector_type": "hills",
    "flags": [],
-   "exits": {},
+   "exits": {
+    "east": {
+     "to_room": 13790,
+     "description": "To the east lies A Prison Set In Stone."
+    }
+   },
    "description": "Smooth walls of black stone close in on every side, seamless as polished\nglass, with neither door nor window. A faint humming comes from the\nstone itself, and the air is stale and still. The floor is scratched\nwith tally marks, rows upon rows, made by hands that gave up counting\nlong ago.",
    "look": "dungeon",
    "extra_descs": {},
@@ -13509,6 +13518,5 @@
     }
    ]
   }
- },
- "sealed": true
+ }
 }

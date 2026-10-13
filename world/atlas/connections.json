@@ -1956,6 +1956,24 @@
    "dir": "south",
    "to": 12386,
    "why": "the way back"
+  },
+  {
+   "from": 13862,
+   "dir": "north",
+   "to": 13857,
+   "why": "the way back"
+  },
+  {
+   "from": 13791,
+   "dir": "east",
+   "to": 13790,
+   "why": "map neighbour"
+  },
+  {
+   "from": 13790,
+   "dir": "west",
+   "to": 13791,
+   "why": "map neighbour"
   }
  ],
  "still_cut_off": []

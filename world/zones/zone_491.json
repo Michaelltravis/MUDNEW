@@ -754,7 +754,13 @@
     }
    },
    "description": "The raft bumps against a towering wall of dark coral and barnacled\nstone, its surface carved with the faces of tritons. A great arched door\nof pearl-inlaid bronze stands in the wall to the south, ajar above the\nwaterline. Lamps of cold blue light glow in niches either side. The\nwater behind you leads north into the weeds.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649104,
+     "max": 1
+    }
+   ]
   },
   "15129": {
    "vnum": 15129,
@@ -1051,13 +1057,7 @@
     }
    },
    "description": "The throne room of the Sea King is a vast domed chamber of pearl and\nblue glass, in which pale light ripples across the walls like water. A\nthrone of twisted coral stands upon a dais of nacre, flanked by tall\ncolumns wound with golden chains. Scattered shells and pearls glitter in\nthe gloom. The only way out is the door north.",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 649104,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "15141": {
    "vnum": 15141,
