@@ -418,6 +418,7 @@ class Boss(Mobile):
                 continue
             for _ in range(count):
                 add = Mobile.from_prototype(proto, self.world)
+                add.summoned_by = self                    # an add, whatever its file says (mob_ai roles)
                 if getattr(self, '_dmg_scale', 1) != 1:
                     add._dmg_scale = self._dmg_scale      # weighed like the boss (a quest's own re-weighs below)
                 spawned.append(add)
@@ -482,8 +483,9 @@ class Boss(Mobile):
 # Zone bosses (the dungeon bosses of the world's zones; world_events.py's event bosses are another
 # thing) are sized for a lone hero at their level, like a marquee trial's boss (docs/balance/marquee.md,
 # "Zone bosses"). Their files were written for far weaker heroes: a party of three felled every one
-# of the 20 in 2-6 rounds for 0-15% of its health. Health is ZONE_BOSS_ROUNDS of what the median
-# hero of the boss's level deals (marquee_scale.dpr): about two minutes alone, under one for three.
+# of the first 20 in 2-6 rounds for 0-15% of its health (111 now, with the populated zones' bosses).
+# Health is ZONE_BOSS_ROUNDS of what the median hero of the boss's level deals (marquee_scale.dpr):
+# about two minutes alone, under one for three.
 # Each boss's own blows and abilities are then weighed (ZONE_BOSS_DAMAGE, measured with
 # tools/balance/bosses.py --calibrate) so that a lone hero at its level loses about half their
 # health at the worst moment: the frailest classes most of it. Bosses above the mortal level cap
@@ -491,41 +493,135 @@ class Boss(Mobile):
 # are placed (marquee_scale).
 ZONE_BOSS_ROUNDS = 40
 # vnum -> share of the boss's own blows, abilities, poison and adds, measured (--calibrate --runs 2):
-# a file with no damage dice hits with 1d6, a caster's kit can hit nine times too hard
+# a file with no damage dice hits with 1d6, a caster's kit can hit nine times too hard, and a boss
+# whose followers or waves come (boss_mechanics.py) holds out longer, so its blows weigh less
 ZONE_BOSS_DAMAGE = {
-    20007: 0.57,    # L12 spider queen
-    20008: 0.99,    # L14 alpha wolf
-    3014: 0.47,     # L15 sewer king
-    3503: 0.4,      # L22 the Goblin King (and his goblins)
-    3016: 1.21,     # L25 ancient guardian
-    6314: 0.61,     # L26 the Spider Queen
-    5318: 0.12,     # L28 the Necromancer
-    19007: 0.85,    # L28 frozen dwarven king
-    7304: 0.78,     # L30 master mindflayer
-    19010: 0.52,    # L30 Vyrkothas the Frost Wyrm
-    27015: 2.27,    # L36 Grimclaw the Great Bear (no damage dice in its file)
-    27010: 2.25,    # L40 the Oakfather (no damage dice in its file)
-    27016: 0.65,    # L40 the Blightlord
-    5360: 1.04,     # L44 Aurexus the Bronze Dragon
-    5200: 0.83,     # L45 beholder
-    14030: 0.43,    # L47 Verdraxx the Green Dragon
-    8003: 0.66,     # L50 Scorathax the Red Dragon
-    16025: 0.81,    # L50 Kaleidos the Prismatic Dragon
-    22030: 1.08,    # L60 gate guardian
-    22031: 1.08,    # L60 gate guardian
+    3610: 0.39,     # L10 the Black King
+    3611: 0.38,     # L10 the White King
+    20007: 0.34,    # L12 spider queen
+    641606: 0.2,    # L13 Lord Khal, the necromancer
+    644906: 0.43,   # L13 the fire spirit of the crest
+    20008: 0.61,    # L14 alpha wolf
+    3014: 0.6,      # L15 sewer king
+    6114: 0.48,     # L15 the Queen spider
+    6210: 0.19,     # L15 Elstar
+    18009: 0.67,    # L15 the alpha wolf
+    42310: 0.44,    # L16 the false Canon
+    642606: 0.5,    # L16 Hrungar the hill giant
+    644103: 0.49,   # L16 a barrow wight
+    643907: 0.58,   # L17 Hyperion, the Chained Titan
+    648806: 0.55,   # L17 Vhaz'ul, demon of the abyss
+    43550: 0.28,    # L18 Farrot the great roc
+    47150: 0.28,    # L18 the Black Priest
+    72000: 0.7,     # L18 the Rat King
+    642406: 0.65,   # L18 Aldric Vane, the skeletal crypt lord
+    645207: 0.56,   # L18 the Scaled Beast of Zaebos
+    645306: 0.24,   # L18 Zikrak, the Kobold Shaman
+    40050: 0.5,     # L20 Grondar, the Hill Giant Chieftain
+    45150: 0.65,    # L20 the Ice Leviathan
+    48210: 0.54,    # L20 the Lord of the House
+    52150: 0.25,    # L20 the Winter Witch
+    90500: 0.24,    # L20 the Bog Witch
+    647408: 0.29,   # L20 Ilvareth, the Cave Elf King
+    652207: 0.41,   # L20 Hrimgar, the Frost Giant King
+    645407: 0.48,   # L21 the Pale Man, a bone-white ogre lord
+    645506: 0.45,   # L21 Aldric, the Barrow-King
+    646507: 0.49,   # L21 a towering balrog
+    647006: 0.17,   # L21 Ostragoth, the sorcerer-lord
+    650206: 0.29,   # L21 Zhaarok, the draconian high priest
+    2537: 0.39,     # L22 the Master Summoner
+    3503: 0.59,     # L22 the Goblin King (and his goblins)
+    6450: 0.24,     # L22 Rand the Dreamer
+    641406: 0.25,   # L22 Doctor Ilmeric Vane, the Mad Botanist
+    641906: 0.15,   # L22 Maelgrim the Pale, high priest of the cult
+    644506: 0.33,   # L22 Brogg Skullsplitter, the Ogre Chieftain
+    645806: 0.47,   # L22 Lord Aldric Varok, a vampire
+    648007: 0.46,   # L22 Lord Aldric Tudor, the Pale Master
+    649906: 0.15,   # L22 Phaeton, master of the Academy
+    651806: 0.09,   # L22 Malvoran, the Master Necromancer
+    47902: 0.53,    # L23 Morticia
+    646107: 0.45,   # L23 Acrasia, the ghost queen of the tombs
+    5010: 0.71,     # L24 the dracolich
+    66050: 0.56,    # L24 Hrimgar the Frost Jarl
+    643607: 0.24,   # L24 Baron Kalveh, lord of the fief
+    646406: 0.33,   # L24 Overseer Harrok the Corrupted
+    3016: 1.48,     # L25 ancient guardian
+    10050: 0.41,    # L25 Skarg the goblin warlord
+    23513: 0.28,    # L25 Goblin King Grizznak
+    43130: 0.29,    # L25 the Hollow Bishop
+    642906: 0.48,   # L25 the Ancient Champion
+    644706: 0.25,   # L25 the Lord of Mahn-Tor
+    649106: 0.25,   # L25 Morvoct, the goblin warlord
+    649506: 0.55,   # L25 the Judge of the Dead
+    649606: 0.41,   # L25 the Lag Wyrm
+    907: 0.68,      # L26 King Minos the Minotaur
+    6314: 0.49,     # L26 the Spider Queen
+    13130: 0.39,    # L26 Nerathis, the Drowned King
+    47250: 0.23,    # L26 the Wyvern Matriarch
+    646706: 0.38,   # L27 Asmolov the ogre warlord
+    647607: 0.08,   # L27 Ulgrathar, the High Druid
+    647807: 0.38,   # L27 Machk-Gyi, the fire lord
+    5318: 0.11,     # L28 the Necromancer
+    19007: 0.58,    # L28 frozen dwarven king
+    51200: 0.42,    # L28 the High Priestess of Lloth
+    79000: 0.17,    # L28 Redferne the Wizard
+    6516: 0.2,      # L29 the mazekeeper
+    3305: 0.37,     # L30 Aglandiir
+    7304: 0.48,     # L30 master mindflayer
+    19010: 0.24,    # L30 Vyrkothas the Frost Wyrm
+    40820: 0.64,    # L30 the Barrow King
+    42030: 0.32,    # L30 the First Hero
+    47530: 0.33,    # L30 the Lord of Chaos
+    651906: 0.09,   # L31 Archmagus Vorlath the Gilded
+    9910: 0.83,     # L33 the Deep Dragon
+    15001: 0.83,    # L33 King Welmar
+    120501: 0.44,   # L34 the High Priest of Terror
+    652006: 0.56,   # L34 Hadrec Vael, the cursed Warden
+    6704: 0.76,     # L35 the raider chieftain
+    23812: 0.5,     # L35 the Abbot's Ghost
+    27015: 1.69,    # L36 Grimclaw the Great Bear (no damage dice in its file)
+    5317: 0.96,     # L38 Ramses the Damned
+    21050: 0.75,    # L38 the Stick Mother
+    27010: 1.58,    # L40 the Oakfather (no damage dice in its file)
+    27016: 0.37,    # L40 the Blightlord
+    650106: 0.29,   # L42 Karrak, the stone troll of the deep shaft
+    650306: 0.23,   # L43 Hrodgar Ironcrown, the usurper king
+    5360: 0.92,     # L44 Aurexus the Bronze Dragon
+    650507: 0.36,   # L44 Bone Gnasher
+    5200: 0.76,     # L45 beholder
+    6805: 0.76,     # L45 Captain Blackhand
+    14050: 0.58,    # L45 Morthul the Lich Lord
+    650706: 0.58,   # L46 the Vampire Lord
+    650806: 0.52,   # L46 Durgrim, the undead Dwarf King
+    14030: 0.58,    # L47 Verdraxx the Green Dragon
+    650906: 0.32,   # L49 Gorrakh the Rock-Eater, a stone troll
+    2564: 0.58,     # L50 the Grand Mistress
+    8003: 0.28,     # L50 Scorathax the Red Dragon
+    16025: 0.63,    # L50 Kaleidos the Prismatic Dragon
+    24006: 0.67,    # L50 the Kraken
+    6950: 0.59,     # L52 the Cinder Tyrant
+    651217: 0.3,    # L52 Orschnag the orc king
+    24505: 0.36,    # L55 Shadow Lord Malachar
+    651407: 0.28,   # L55 Moloch, the Ancient Demon Lord
+    651505: 0.24,   # L55 Malgrath, High Priest of Orcus
+    22030: 1.11,    # L60 gate guardian
+    22031: 1.11,    # L60 gate guardian
+    24805: 0.2,     # L60 Archon Prime
 }
 
 
 def size_zone_boss(boss):
-    """A zone boss's health (never below its file's) and the weight of its blows."""
+    """A zone boss's health and the weight of its blows. Its health is the sizing's, whatever its
+    file or its rank in a population file says: the old files were written for far weaker heroes,
+    a population rank lifts a boss to eleven times a regular's health (about 1.45 times this), and
+    a few designed files hold five or seven times it (a fight of ten minutes or more alone)."""
     import marquee_scale as ms
     from config import Config
     level = getattr(boss, 'level', 1) or 1
     if level > getattr(Config, 'MAX_MORTAL_LEVEL', 60) or 9700 <= (getattr(boss, 'vnum', 0) or 0) <= 9799:
         return                  # a raid boss, or a marquee quest's own (marquee_quests.py: 9700-9799)
     want = int(ZONE_BOSS_ROUNDS * ms.dpr(level))
-    if want > (getattr(boss, 'max_hp', 0) or 0):
-        boss.max_hp = boss.hp = want
+    boss.max_hp = boss.hp = want
     share = ZONE_BOSS_DAMAGE.get(getattr(boss, 'vnum', None))
     if share:
         boss._dmg_scale = share

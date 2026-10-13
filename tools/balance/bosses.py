@@ -70,6 +70,11 @@ async def duel(world, vnum, classes, level, seed, a, share=None):
     foe = create_mob_from_prototype(dict(world.mob_prototypes[vnum]), world)
     if share is not None:
         foe._dmg_scale = share
+    # a call for help (boss_mechanics.CallGuards) raises its followers here: the temple's
+    # neighbours aren't the boss's, and those who came would be gone for the next fight
+    for m in getattr(foe, 'mechanics', ()):
+        if m.spec.get('type') == 'call_guards':
+            m.spec = dict(m.spec, rooms=0)
     sim.DEATHS.clear()
     secs = await sim.fight(world, room, heroes, [foe], a.mode, a.dodge, {}, max_secs=a.max_minutes * 60)
     dead = len(sim.DEATHS)

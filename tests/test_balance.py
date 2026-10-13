@@ -189,16 +189,21 @@ async def main():
     room.characters.append(king)
     await king._spawn_adds({'3501': 1})                     # a phase's adds: they always come
     check(getattr(room.characters[-1], '_dmg_scale', 1) == king._dmg_scale, "a zone boss's adds hit as it does")
-    lackeys = next(a for a in king.abilities if a.get('summon'))
+    # a summoning ability: the Goblin King's own Summon Lackeys from his zone file (his population
+    # file gives him a call for help instead, boss_mechanics.call_guards)
+    import json
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'world', 'zones', 'zone_060.json')) as f:
+        lackeys = next(a for a in json.load(f)['mobs']['3503']['boss_config']['abilities'] if a.get('summon'))
+    n = king._count(lackeys['summon'])
     for _ in range(4):
         await king._start_ability(lackeys)
     called = list(king._called)
-    check(len(called) == 6, f'a boss calls for help only while fewer than twice the call stand ({len(called)} came of 4 calls of 3)')
-    for a in called[:4]:
+    check(len(called) == 2 * n, f'a boss calls for help only while fewer than twice the call stand ({len(called)} came of 4 calls of {n})')
+    for a in called[:n + 1]:
         a.hp = 0
         room.characters.remove(a)
     await king._start_ability(lackeys)
-    check(len(king._called) == 5, f'…and calls again once they fall ({len(king._called)} standing)')
+    check(len(king._called) == 2 * n - 1, f'…and calls again once they fall ({len(king._called)} standing)')
     spider = create_mob_from_prototype(dict(world.mob_prototypes[20007]), world)     # spider queen, level 12
     spider.room = room
     room.characters.append(spider)
