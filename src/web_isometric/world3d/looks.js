@@ -187,6 +187,11 @@ function undead(m, all) {
   const scale = ((m.boss || (m.flags || []).includes('boss')) ? 1.25 : 1) * big;
   const s = scale !== 1 ? scale : undefined, why = 'undead';
   if (/\b(vampire|vampires)\b/.test(all)) return { model: 'rogue_hooded', loadout: ['Knife'], tint: 0x8a6a8a, scale: s, why };
+  // the walking dead in their own flesh (the Quaternius zombies); a woman's body for a woman
+  if (/\b(zombies?|zombified)\b/.test(all) && !/\b(skeleton|skeletal|bones?)\b/.test(all)) {
+    const she = m.sex === 'female' || /\b(woman|women|girl|maiden|bride|widow|she)\b/.test(all);
+    return { beast: { mob: she ? 'zombie_f' : 'zombie_m', h: +(2.1 * scale).toFixed(2), prefer: true }, why };
+  }
   const tint = /\bdrowned\b/.test(all) ? 0x8ab0a8 : /\b(mummy|mummies)\b/.test(all) ? 0xd8c8a0
     : /\b(zombies?|ghouls?|ghast|revenant|corpse|rotting)\b/.test(all) ? 0x9ab08a : /\blich\b/.test(all) ? 0xc8b8e8 : undefined;
   const model = /\b(lich|necromancer|mage|priests?|priestess|vicar|cantor|choir|sorcerer|wizard|shaman|witch|warlock|cleric|acolyte|sovereign|king|queen|herald|sanctifier)\b/.test(all) ? 'skeleton_mage'
@@ -201,7 +206,22 @@ function undead(m, all) {
 const GHOSTLY = /\b(ghostly|spectral|phantom|phantasmal)\b/;
 
 export function creatureLook(m) {
-  return withKin(lookOf(m), m);
+  let look = lookOf(m);
+  // a female of a kind with its own female model (goblins)
+  const b = look.beast;
+  if (b && b.alt && (m.sex === 'female' || /\b(woman|women|girl|wife|mother|maiden|queen|matron|crone|she)\b/.test(`${m.short || ''} ${m.name || ''}`.toLowerCase())))
+    look = { ...look, beast: { ...b, mob: b.alt } };
+  // a colour the model can't wear: the body that can
+  const c = look.beast;
+  const said = `${m.short || ''} ${m.name || ''}`.toLowerCase();
+  if (c && c.orTinted && c.tint != null) {
+    if (c.own && new RegExp(`\\b${c.own}\\b`).test(said)) look = { ...look, beast: { ...c, tint: undefined } };   // already that colour
+    else {
+      const { mob, prefer, orTinted, own, ...rest } = c;
+      look = { ...look, beast: { ...rest, ...orTinted } };
+    }
+  }
+  return withKin(look, m);
 }
 
 // a creature body the kit builds gets its own recipe (kinrecipe.js): from all its words, and

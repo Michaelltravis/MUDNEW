@@ -6,7 +6,10 @@
 // rabbits, slimes). `fly` lifts flyers off the ground; `tint` recolours untextured models.
 // `person` entries use a KayKit adventurer (constructs, statues, folk with their own skin);
 // `prop` a kit model (a mimic is a chest), `h` being its longest side. Undead and people by
-// trade are in looks.js.
+// trade are in looks.js. `prefer` keeps the model file even where creatures get bodies built in
+// code (kin.js): for the creatures a pack models better than the kit does; `alt` is the model
+// a female of the kind gets; `orTinted` the body it takes instead when asked for a colour the
+// model can't wear ("a grey ooze"; `own` is the colour it already is).
 export const BESTIARY = [
   // things that are not animals at all: constructs, elementals, animated objects, plants
   [/\b(statue|statues|caryatid)\b/, { person: 'knight', loadout: [], tint: 0xb8b4ac, scale: 1.35, still: true, flat: true }],
@@ -69,7 +72,8 @@ export const BESTIARY = [
   // oozes and blobs
   [/\b(mudmonster|mud monster|mud)\b/, { proc: 'slime', h: 1.4, tint: 0x7a5a3a }],
   [/\bochre (jelly|jello)\b/, { proc: 'slime', h: 1.0, tint: 0xc8902a }],
-  [/\b(slime|slimeball|ooze|jelly|blob|pudding|gelatinous|lemure|yochlol|pit beast|dustdigger|cube)\b/, { proc: 'slime', h: 0.85 }],
+  [/\b(slime|slimes|slimeball|ooze|oozes)\b/, { mob: 'q_slime', h: 0.8, prefer: true, own: 'green', orTinted: { proc: 'slime', h: 0.85 } }],
+  [/\b(jelly|blob|pudding|gelatinous|lemure|yochlol|pit beast|dustdigger|cube)\b/, { proc: 'slime', h: 0.85 }],
   // crawling things (not bees)
   [/\b(drider|driders)\b/, { proc: 'spider', h: 1.4, tint: 0x4a3a5a }],
   [/\b(spider|spiders|arachnid|tarantula|broodmother|spiderling|spinner|cleaver|reaver)\b/, { proc: 'spider', h: 0.8 }],
@@ -92,7 +96,7 @@ export const BESTIARY = [
   [/\b(snake|snakes|serpent|viper|asp|cobra|adder|python|anaconda|rattlesnake)\b/, { proc: 'snake', h: 0.45 }],
   [/\b(rabbit|rabbits|bunny|hare|jackrabbit|woundwort)\b/, { proc: 'rabbit', h: 0.5 }],
   [/\b(frog|toad|frogs|toads)\b/, { proc: 'slime', h: 0.6, tint: 0x6a9a4a }],
-  [/\b(bat|bats|vampire bat)\b/, { mob: 'bat', h: 0.75, fly: 1.3 }],
+  [/\b(bat|bats|vampire bat)\b/, { mob: 'q_bat', h: 0.8, fly: 1.3, prefer: true }],
   [/\b(shadow beast|nightmare beast|stalker|shadow hound|hell ?hounds?|barghest)\b/, { mob: 'wolf', h: 1.25, tint: 0x2e2a36 }],
   [/\b(wolf|wolves|warg|worg|direwolf)\b/, { mob: 'wolf', h: 1.0, tint: 0x8d93a0 }],
   [/\b(fox|foxes|vixen)\b/, { mob: 'fox', h: 0.7, tint: 0xd6732c }],
@@ -135,10 +139,11 @@ export const BESTIARY = [
   [/\b(crab|crabs|lobster|crawfish|crayfish|scorpion)\b/, { mob: 'crab', h: 0.7 }],
   [/\b(bee|bees|wasp|wasps|hornet|hornets|insect|fly|flies|mosquito|dragonfly|moth|locust|firefly|butterfly)\b/, { mob: 'bee', h: 0.6, fly: 1.2 }],
   [/\b(dracolich)\b/, { mob: 'yellowdragon', h: 3.5, fly: 0.7, tint: 0xd8d0c0 }],
-  [/\b(dragonling|whelp|hatchling)\b/, { mob: 'yellowdragon', h: 1.4, fly: 0.7 }],
+  [/\b(dragonling|whelp|hatchling|wyrmling)\b/, { mob: 'q_dragon', h: 1.5, fly: 0.7, prefer: true }],
   [/\b(wyvern|harrier|drake)\b/, { mob: 'yellowdragon', h: 2.4, fly: 0.9 }],
   [/\b(dragon|dragons|wyrm|fractal dragon|puff|yevaud)\b/, { mob: 'yellowdragon', h: 3.6, fly: 0.7 }],
-  [/\b(imp|imps|gremlin|quasit|homunculus|goblin|goblins|kobold|kobolds)\b/, { mob: 'greendemon', h: 0.8 }],
+  [/\b(goblin|goblins)\b/, { mob: 'goblin_m', alt: 'goblin_f', h: 1.35, prefer: true }],
+  [/\b(imp|imps|gremlin|quasit|homunculus|kobold|kobolds)\b/, { mob: 'greendemon', h: 0.8 }],
   [/\b(balor|pit fiend|demon lord|archdevil)\b/, { mob: 'demon', h: 2.6 }],
   [/\b(demon|demons|devil|fiend|succubus|daemon|hellspawn)\b/, { mob: 'demon', h: 1.5 }],
   [/\b(wraith|wraiths|shade|shades|shadow|shadows|soul|souls|spectral|ghostly|void|being|feeling|nightmare)\b/, { mob: 'ghost', h: 1.4, fly: 0.3, tint: 0x6a5a8a }],

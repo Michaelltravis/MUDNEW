@@ -18,8 +18,13 @@ test('the head noun decides: a blob is a slime, a giant hornet a hornet, a goat 
   assert.ok(look('the giant hornet').beast.h > 0.6, 'a giant hornet is bigger than a hornet');
   assert.ok(!look('the goat herder').beast, 'the goat herder is a person');
   assert.ok(!look('the vampire hunter').beast && !/skeleton/.test(look('the vampire hunter').model), 'hunts vampires, is not one');
-  assert.equal(body(look('a goblin mushroom farmer')), 'greendemon');
-  assert.equal(body(look('King of the Goblins', { name: 'king' })), 'greendemon');
+  assert.equal(body(look('a goblin mushroom farmer')), 'goblin_m');
+  assert.equal(body(look('King of the Goblins', { name: 'king' })), 'goblin_m');
+  assert.equal(body(look('a goblin woman')), 'goblin_f', 'a goblin woman has her own body');
+  assert.equal(body(look('a goblin scout', { sex: 'female' })), 'goblin_f');
+  assert.ok(look('a goblin scout').beast.prefer, 'the pack goblin, not one built in code');
+  assert.equal(body(look('a green slime')), 'q_slime');
+  assert.equal(body(look('a grey ooze')), 'slime', 'a colour the pack slime cannot wear: the slime built in code');
   assert.equal(body(look('the Spider Queen')), 'spider');
   assert.equal(body(look('the fire elemental')), 'ghost');
   assert.equal(body(look('the giant lizard')), 'lizard');
@@ -53,7 +58,10 @@ test('people are dressed for their trade, the same way every time', () => {
 test('the dead: dressed by what they were', () => {
   assert.equal(look('a skeletal warrior').model, 'skeleton_warrior');
   assert.equal(look('an ancient lich').model, 'skeleton_mage');
-  assert.equal(look('a rotting zombie').model, 'skeleton_minion');
+  assert.equal(body(look('a rotting zombie')), 'zombie_m', 'a zombie in its own rotting flesh');
+  assert.equal(body(look('a zombie bride')), 'zombie_f');
+  assert.ok(look('a rotting zombie').beast.prefer);
+  assert.equal(look('a skeletal zombie').model, 'skeleton_minion', 'bones are bones');
   assert.equal(look('a vampire spawn').model, 'rogue_hooded');
   assert.equal(look('the undead giant').beast.tint, 0x9ab08a, 'an undead giant is a rotten giant');
 });

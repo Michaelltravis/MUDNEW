@@ -32,7 +32,7 @@ export function spawnLook(look, { kits = null, seed = 0 } = {}) {
   const b = look.beast;
   if (!b) return spawnCharacter(look.model, { tint: look.tint, scale: look.scale, loadout: look.loadout, flat: look.flat });
   // its own body from the creature kit (kin.js), unless the player chose the classic models
-  if (b.kin && kinBodies()) return Promise.resolve(makeKin(b.kin, { height: b.h }));
+  if (b.kin && kinBodies() && !b.prefer) return Promise.resolve(makeKin(b.kin, { height: b.h }));
   if (b.proc) return Promise.resolve(makeProc(b.proc, { height: b.h, tint: b.tint, seed }));
   if (b.prop) {
     const model = kits && kits[b.prop[0]] && kits[b.prop[0]].get(b.prop[1]);

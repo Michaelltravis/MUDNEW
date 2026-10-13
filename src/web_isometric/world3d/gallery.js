@@ -86,8 +86,10 @@ export const KIN_SAMPLES = ['a lean grey wolf', 'a black dire wolf', 'a tawny pr
   'a green slime', 'a grey ooze', 'a giant river frog', 'a pale moon jellyfish', 'a giant clam', 'a gelatinous cube'];
 
 export async function showBeastGallery(engine, kits, samples = SAMPLES) {
-  const only = new URLSearchParams(location.search).get('only');
-  const list = [{ short: 'the knight (hero)' }, ...samples.map(s => typeof s === 'string' ? { short: s } : s)]
+  const q = new URLSearchParams(location.search), only = q.get('only');
+  // &add=a goblin,the vampire bat: more descriptions to show (&add alone, with &only=, to see just those)
+  const add = (q.get('add') || '').split(',').map(s => s.trim()).filter(Boolean);
+  const list = [{ short: 'the knight (hero)' }, ...[...samples, ...add].map(s => typeof s === 'string' ? { short: s } : s)]
     .filter(m => !only || only.split(',').some(o => m.short.toLowerCase().includes(o)));
   const cols = 10, step = 3.2, rows = Math.ceil(list.length / cols);
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, rows * step * 1.4 + 6), new THREE.MeshStandardMaterial({ color: 0x6f7a5a, roughness: 1 }));
