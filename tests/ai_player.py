@@ -85,6 +85,10 @@ class SimpleMUDClient:
             response = self.send_and_receive("warrior", 1.5)
         if "race" in response.lower():
             response = self.send_and_receive("human", 1.5)
+        if "male or female" in response.lower():
+            response = self.send_and_receive("male", 1.5)
+        if "class" in response.lower():
+            response = self.send_and_receive("warrior", 1.5)
         
         # Confirm login
         response = self.send_and_receive("look", 1.0)

@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { planLook, swingClips, starterLook, kitIndex, CLASS_BASE, PROC, rangedBlow } from '../../src/web_isometric/world3d/gearlook.js';
+import { planLook, swingClips, starterLook, kitIndex, CLASS_BASE, PROC, rangedBlow, SEX_BUILD } from '../../src/web_isometric/world3d/gearlook.js';
 import { buildProc, buildAddon, SHAPES, ADDONS, MOTIFS, HANGING } from '../../src/web_isometric/world3d/procgear.js';
 
 const ART = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../src/web_isometric/art3d');
@@ -215,6 +215,25 @@ test('race: its skin on every part of the body, its build, a dark elf\'s white h
   const toned = kitted({ ...starterLook('mage'), race: 'human', tone: 3, sig: 'ht' }, 'mage');
   assert.ok(toned.props.some(p => Object.values(p.remap || {}).includes(kit.col('skin_dark'))), '…unless given a tone');
   assert.deepEqual(human.build, { h: 1, w: 1 });
+});
+
+test('male or female: the face (the pack\'s one woman is the rogue) and a lighter build; unsaid, the class\'s own', () => {
+  const head = plan => names(plan).find(n => /-(Head|HeadHooded)$/.test(n));
+  for (const cls of CLASSES) {
+    const look = starterLook(cls);
+    const plain = planLook(look, cls, kit), her = planLook({ ...look, sex: 'female' }, cls, kit), him = planLook({ ...look, sex: 'male' }, cls, kit);
+    const hooded = CLASS_BASE[cls].hood;
+    assert.equal(head(plain), hooded ? 'rogue-HeadHooded' : `${CLASS_BASE[cls].model}-Head`, `${cls}: one who never said keeps the class's face`);
+    assert.equal(head(her), hooded ? 'rogue-HeadHooded' : 'rogue-Head', `${cls}: a woman's face (a hood still hides it)`);
+    assert.equal(head(him), hooded ? 'rogue-HeadHooded' : CLASS_BASE[cls].model === 'rogue' ? 'mage-Head' : `${CLASS_BASE[cls].model}-Head`, `${cls}: a man's face`);
+    assert.equal(torso(her), torso(plain), `${cls}: the class keeps its body`);
+    assert.ok(her.build.w < plain.build.w && her.build.h < plain.build.h && him.build.w === plain.build.w, `${cls}: her build is lighter`);
+    for (const n of [...names(her), ...names(him)]) assert.ok(kit.pieces[n], `${cls}: ${n} is in the kit`);
+  }
+  const dwarf = planLook({ ...starterLook('warrior'), race: 'dwarf', sex: 'female' }, 'warrior', kit);
+  assert.ok(Math.abs(dwarf.build.h - 0.82 * SEX_BUILD.female.h) < 1e-9, 'race and sex together');
+  const npc = planLook({ ...starterLook('warrior'), base: { model: 'knight', w: 3 }, sex: 'female' }, 'warrior', kit);
+  assert.equal(head(npc), 'knight-Head', "a creature their zone dressed keeps its trade's body");
 });
 
 test('people the world dressed: their trade\'s body, their race, their gear', async () => {

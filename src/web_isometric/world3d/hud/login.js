@@ -1,6 +1,6 @@
 // Login and character creation for the 3D client. The protocol is the server's own
 // prompts, driven through net.js (MH.connect): name/password, then for a new hero the
-// race, class and stat-roll prompts, answered from these screens. The class step shows the
+// race, male or female, class and stat-roll prompts, answered from these screens. The class step shows the
 // class's 3D model turning on a small stage.
 import { makeStage } from './stage.js';
 import { starterLook } from '../gearlook.js';
@@ -32,6 +32,7 @@ const CLASSES = [
   ['bard', 'Support', 'Charismatic performer who inspires with magical songs.', 'CHA'],
   ['assassin', 'Burst', 'Deadly killer who eliminates targets with precision.', 'DEX'],
 ];
+const SEXES = [['male', 'He, his, him.'], ['female', 'She, her, hers.']];
 const FIRST = new Set(['warrior', 'cleric', 'ranger']);
 // what the hollow's folk say, turning slowly under the login
 const LORE = [
@@ -108,15 +109,20 @@ export function setupLogin() {
     create.querySelector('.body').innerHTML = body;
   }
   function races() {
-    wizard('STEP 1 OF 3', 'CHOOSE YOUR LINEAGE', 'Your bloodline shapes your gifts and your fate.',
+    wizard('STEP 1 OF 4', 'CHOOSE YOUR LINEAGE', 'Your bloodline shapes your gifts and your fate.',
       `<div class="grid">${RACES.map(([id, de]) => `<div class="pick" data-v="${id}"><b>${id.replace('_', ' ')}</b><small>${de}</small></div>`).join('')}</div>`);
     create.querySelectorAll('.pick').forEach(el => el.addEventListener('click', () => { lineage = el.dataset.v; send(el.dataset.v); wizard('', 'FORGE YOUR HERO', 'Weaving your lineage…', ''); }));
   }
-  let stage = null, lineage = null;
-  // the class's starting gear on the race just chosen (its skin and its build)
-  const preview = id => (lineage ? { ...starterLook(id), race: lineage, sig: `starter:${id}:${lineage}` } : null);
+  function sexes() {
+    wizard('STEP 2 OF 4', 'CHOOSE YOUR FORM', 'How the world will know you: your words, your face and your build.',
+      `<div class="grid">${SEXES.map(([id, de]) => `<div class="pick" data-v="${id}"><b>${id}</b><small>${de}</small></div>`).join('')}</div>`);
+    create.querySelectorAll('.pick').forEach(el => el.addEventListener('click', () => { chosenSex = el.dataset.v; send(el.dataset.v); wizard('', 'FORGE YOUR HERO', 'Shaping your form…', ''); }));
+  }
+  let stage = null, lineage = null, chosenSex = null;
+  // the class's starting gear on the race and form just chosen (skin, face and build)
+  const preview = id => (lineage ? { ...starterLook(id), race: lineage, ...(chosenSex ? { sex: chosenSex } : {}), sig: `starter:${id}:${lineage}:${chosenSex || ''}` } : null);
   function classes() {
-    wizard('STEP 2 OF 3', 'CHOOSE YOUR CALLING', 'Pick a class to see it up close. Three are marked as good first picks.',
+    wizard('STEP 3 OF 4', 'CHOOSE YOUR CALLING', 'Pick a class to see it up close. Three are marked as good first picks.',
       `<div class="split"><div class="grid">${CLASSES.map(([id, role]) =>
         `<div class="pick cls" data-v="${id}" style="--cc:#${(THEMES[id] || THEMES.creature).core.toString(16).padStart(6, '0')}"><img class="pk-ic" alt="" src="${uiIcon((THEMES[id] || THEMES.creature).glyph, { size: 72, color: '#' + (THEMES[id] || THEMES.creature).core.toString(16).padStart(6, '0'), glow: 'rgba(0,0,0,.6)' })}"><b>${id}</b><small>${role}</small>${FIRST.has(id) ? '<div class="first">★ first pick</div>' : ''}</div>`).join('')}</div>`
       + `<div class="focus"><canvas width="520" height="600"></canvas><div class="fn"></div><p class="fd"></p><p class="fs"></p>`
@@ -144,7 +150,7 @@ export function setupLogin() {
     const re = /(Strength|Intelligence|Wisdom|Dexterity|Constitution|Charisma):\s*(\d+)/g;
     let m, cells = '';
     while ((m = re.exec(text))) cells += `<div class="${map[m[1]] === prime ? 'prime' : ''}"><div class="v">${m[2]}</div><div class="k">${map[m[1]]}</div></div>`;
-    wizard('STEP 3 OF 3', 'ROLL YOUR FATE', 'The dice favour the bold — keep them, or tempt fate again.',
+    wizard('STEP 4 OF 4', 'ROLL YOUR FATE', 'The dice favour the bold — keep them, or tempt fate again.',
       `<div class="stats">${cells}</div><div class="row2"><button class="btn" id="keep">Keep these</button><button class="btn alt" id="reroll">Reroll</button></div>`);
     $('#keep').addEventListener('click', () => { send('y'); wizard('', 'FORGE YOUR HERO', 'Your story begins…', ''); });
     $('#reroll').addEventListener('click', () => send('n'));
@@ -152,6 +158,7 @@ export function setupLogin() {
   MH.bus.on('terminal.output', ({ text }) => {
     if (!creating || MH.state.isLoggedIn || !text) return;
     if (/choose your race|race name or number/i.test(text)) return races();
+    if (/male or female/i.test(text)) return sexes();
     if (/choose your class|class name or number/i.test(text)) return classes();
     if (/accept these stats|to reroll/i.test(text) || /Strength:\s*\d+/.test(text)) return stats(text);
     const note = text.split('\n').map(l => l.trim()).filter(Boolean).slice(-1)[0];

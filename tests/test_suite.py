@@ -131,6 +131,10 @@ class MUDClient:
                 self.send("human")
             elif "enter race" in resp_lower or "valid race" in resp_lower:
                 self.send("human")
+            elif "account>" in resp_lower:
+                self.send(f"play {username}")      # a name kept in an account: its menu
+            elif "male or female" in resp_lower:
+                self.send("female")
             elif "choose" in resp_lower and "class" in resp_lower:
                 self.send("warrior")
             elif "enter class" in resp_lower or "select" in resp_lower:

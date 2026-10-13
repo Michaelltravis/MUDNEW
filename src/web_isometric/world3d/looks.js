@@ -47,7 +47,7 @@ const TITLES = new Set(('king queen lord lady chief chieftain leader master mist
   + 'sentry watchman lieutenant sergeant recruit veteran novice initiate zealot templar inquisitor herald').split(/\s+/));
 // the race words a role word defers to
 const RACES = /\b(goblins?|hobgoblins?|kobolds?|orcs?|half-orcs?|gnolls?|bugbears?|trolls?|ogres?|giants?|skeleton|skeletal|zombies?|ghouls?|undead|vampires?|spectral|ghostly|ghosts?|demons?|imps?|minotaurs?|sahuagin|myconoids?|myconids?)\b/;
-const UNDEAD = /\b(skeleton|skeletons|skeletal|zombie|zombies|ghoul|ghouls|ghast|undead|lich|wight|bone|bones|corpse|mummy|mummies|revenant|vampire|vampires|deathknight|death knight|drowned|ossuary|ribcage|charnel)\b/;
+const UNDEAD = /\b(skeleton|skeletons|skeletal|zombie|zombies|ghoul|ghouls|ghast|undead|lich|wight|bone|bones|corpse|mummy|mummies|revenant|vampire|vampires|deathknight|death knight|drowned|ossuary|ribcage|charnel|draugr|undying|dead performers?)\b/;
 // an undead creature that is not a person keeps its body, rotten or bare to the bone
 const ROTTEN = /\b(undead|zombie|zombies|zombified|rotting|rotten|drowned|ghoul|plague)\b/;
 const BONY = /\b(skeleton|skeletal|bone|bones)\b/;
