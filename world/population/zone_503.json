@@ -1,0 +1,153 @@
+{
+ "zone": 503,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Hrodgar Ironcrown, the usurper king as the boss.",
+ "creatures": {
+  "650301": {
+   "helpers": {
+    "group": "z503_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a renegade dwarf guard"
+  },
+  "650302": {
+   "helpers": {
+    "group": "z503_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale tunnel spider"
+  },
+  "650303": {
+   "helpers": {
+    "group": "z503_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking stone golem",
+   "rank": "elite"
+  },
+  "650304": {
+   "helpers": {
+    "group": "z503_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "the usurper's champion",
+   "rank": "elite"
+  },
+  "650305": {
+   "helpers": {
+    "group": "z503_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Lord Stern the Turncloak",
+   "rank": "sub-boss"
+  },
+  "650306": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Hrodgar Ironcrown, the usurper king",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Hrodgar Ironcrown, the usurper king rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Hrodgar Ironcrown, the usurper king gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+10",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Hrodgar Ironcrown, the usurper king raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+8",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Hrodgar Ironcrown, the usurper king begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+14",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 650300,
+   "route": [
+    13044,
+    13045,
+    13046,
+    13047,
+    13069,
+    13063,
+    13064,
+    13065,
+    13080,
+    13108
+   ],
+   "why": "a gaunt dwarf citizen walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 650306,
+   "room": 213015,
+   "why": "Hrodgar Ironcrown, the usurper king in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      650301
+     ],
+     "shout": "Hrodgar Ironcrown, the usurper king calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

@@ -18,7 +18,7 @@
  "connectors": [8, 10, 35, 40, 72, 73, 71, 121, 41, 15, 90, 48, 51, 25, 13],
 
  "_open_too": "Atlas-only areas that open with the connectors although they are not connectors: the city wall (3); the World of Chaos (75) and Ghenna (81), built from the original Ghenna area and opened together, the way to Ghenna running through the World of Chaos; Garathorm's districts written and peopled (the Cathedral 31, the School House 117, Fameland 20, the Vineyard 18); Hommlet's upper rooms (23), the Haunted House and its carnival (82) and Ancalador (79).",
- "open_too": [3, 75, 81, 31, 117, 20, 18, 23, 82, 79, 14, 16, 24, 26, 29, 55, 61, 94, 19, 36, 39, 45, 49, 52, 53, 58, 47, 54, 64, 67, 96, 74, 78, 65, 76, 80, 70, 91, 95, 101, 104, 122, 88, 99],
+ "open_too": [3, 75, 81, 31, 117, 20, 18, 23, 82, 79, 14, 16, 24, 26, 29, 55, 61, 94, 19, 36, 39, 45, 49, 52, 53, 58, 47, 54, 64, 67, 96, 74, 78, 65, 76, 80, 70, 91, 95, 101, 104, 122, 88, 99, 102, 103, 108, 118],
 
  "_city_annex": "Our zones that stay beside the city when the atlas leaves them a free side there (otherwise they too take a connector).",
  "city_annex": [186, 260, 250, 200, 79, 36],

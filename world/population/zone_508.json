@@ -1,0 +1,150 @@
+{
+ "zone": 508,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Durgrim, the undead Dwarf King as the boss.",
+ "creatures": {
+  "650800": {
+   "helpers": {
+    "group": "z508_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a crumbling skeleton guard"
+  },
+  "650801": {
+   "helpers": {
+    "group": "z508_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a restless ghost"
+  },
+  "650802": {
+   "helpers": {
+    "group": "z508_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a hooded embalmer cultist"
+  },
+  "650803": {
+   "helpers": {
+    "group": "z508_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a skeletal hero in rusted plate",
+   "rank": "elite"
+  },
+  "650804": {
+   "helpers": {
+    "group": "z508_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a great gryphon",
+   "rank": "elite"
+  },
+  "650805": {
+   "helpers": {
+    "group": "z508_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Orlen, the ghost of the Archivist",
+   "rank": "sub-boss"
+  },
+  "650806": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "Durgrim, the undead Dwarf King",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Durgrim, the undead Dwarf King rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Durgrim, the undead Dwarf King gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+11",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Durgrim, the undead Dwarf King raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+9",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Durgrim, the undead Dwarf King begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+15",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 650800,
+   "route": [
+    13118,
+    13137,
+    13138,
+    13139
+   ],
+   "why": "a crumbling skeleton guard walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 650806,
+   "room": 13118,
+   "why": "Durgrim, the undead Dwarf King in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "650800": 2
+     },
+     "shout": "Durgrim, the undead Dwarf King calls, and a crumbling skeleton guards come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

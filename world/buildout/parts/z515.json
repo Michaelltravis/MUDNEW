@@ -1,0 +1,268 @@
+{
+ "job": "z515",
+ "rooms": {
+  "13900": "A cold vestibule of black basalt lies before the temple proper, its floor worn into shallow dips by the feet of the faithful. Cressets burn with a greasy violet flame, and incense hangs heavy over a fainter, sweeter smell of rot. A heavy bronze door stands in the north wall, carved with a grinning skull in a crown of horns. It is not locked; Orcus has never feared visitors.",
+  "13901": "A tall arch of black stone frames the entranceway, its keystone carved into a leering skull with ram's horns. Draughts breathe through it smelling of incense laid over something rotten and sweet. Worn flagstones lead north out into the courtyard under a bruised, starless sky, while the door south shuts off the vestibule. Somewhere ahead a woman is singing softly, without words.",
+  "13902": "Four paths of chequered black and bone-white flags meet at a broad basin of dark water, its rim carved with a ring of weeping skulls. The water never ripples, though the air is full of whispers. Incense smoke from hanging censers curls across the yard and gathers in the corners. The path south returns to the entranceway, and the others run west, east and north into the rest of the courtyard.",
+  "13905": "The courtyard ends here against a high wall of fitted black blocks, hung with a thicket of dead thorn that rattles even when there is no wind. Iron braziers stand in a row below it, each burning with a low violet light. A pair of kneeling stone figures with their faces worn smooth flank the flagged way. Paths lead east and west along the wall and south back toward the basin.",
+  "13904": "A studded door of black oak, banded with rusted iron, stands in this corner of the courtyard and opens east into a corridor. Before it the flags are scuffed by the passing of many robed feet, and a gutter beside them stains the stone rust-brown. A cracked urn holds a few blackened stalks. The courtyard continues south and west from here.",
+  "13903": "The courtyard's edge is a ragged strip of paving where a stunted yew bends over a bench of pale stone. Its needles are black and lie thick underfoot, giving off a smell like cold smoke. A line of narrow slit windows in the temple wall lets out a bar of dim violet light. The paving runs north toward the corner with the oak door and west toward the basin.",
+  "13906": "A shrine niche in the wall holds a statue of a veiled woman, her hands cupped as if to catch tears, though the face behind the veil is bare bone. Candle stubs gutter at her feet in drifts of old wax. The flags are damp here and carpeted with soft grey moss. The yard opens east along the wall and south toward the stable side.",
+  "13907": "A hitching rail of blackened oak runs along the wall here, its rings polished by years of leather reins. Spilled straw and the sharp smell of horses mingle with the incense drifting across the yard. A low door leads west into the stable, and its hinges groan whenever the wind stirs. The yard turns back north toward the shrine niche and runs east toward the basin.",
+  "13908": "Long stalls of black timber line the stable, their gates hanging open and their mangers packed with hay gone grey as cobweb. Harness hangs from pegs, the leather stiff and cracked, and a single lantern throws shifting shadows up into the rafters. The cobbles are strewn with straw nobody has swept in years. A faint singing drifts in from the yard, and the only way out is back east through the door.",
+  "13910": "The corridor begins at the oak door, a narrow passage of damp black stone lit by torches in iron claws. Their smoke has blackened the ceiling into a low, greasy vault. Faded tapestries of writhing figures hang between the torches, and the floor is covered by a runner of worn crimson cloth. The passage leads north into the temple's heart, and the door west gives onto the courtyard.",
+  "13911": "Niches cut into the walls hold human skulls, each with a stub of candle burning in its crown. The light makes the hollows of their eyes seem to follow you along the passage. The air is thick and warm, and the incense has a cloying edge. The corridor runs on north, and back south toward the oak door.",
+  "13912": "The corridor turns here in a square corner, and the torches are fewer, so that long stretches lie in gloom. Bronze plaques on the wall list names in a spidery script, and some have been scratched out with a blade. The carpet is wet underfoot with something that does not smell like water. The passage goes west deeper into the temple, or south the way you came.",
+  "13913": "Three ways meet in a small square hall under a vault painted with a night sky of silver stars. The sweetness in the air is strongest here, and with it comes the clear, lovely voice of a woman, drifting from behind a lacquered door in the south wall. The door is carved with roses and has no handle but a pull of silk cord. The corridor leads east back toward the corner, and west to a great stair.",
+  "13929": "Silk hangs from every wall in soft waves of rose and cream, and a hundred candles burn in silver stands, so that the room glows like a summer dawn. A tall mirror in a gilded frame leans against one wall, and a harp rests beside a cushioned couch, its strings trembling as if just touched. Everything is lovely and everything is wrong: the silk is rotten at the hems, and small bones lie scattered in its folds. The voice is sweet and close, coaxing you to stay forever, and the only way out is the door north.",
+  "13914": "The corridor ends at the foot of a broad stair of black stone, its steps hollowed by countless climbing feet. Above the first tread, letters are cut into the wall in a flowing hand, and a rope of braided hair serves as a banister. Cold air comes down from the heights, carrying the smell of burning oils. The stair rises up into shadow, and the corridor lies back east.",
+  "13915": "The stair turns here onto a narrow landing lit by a single hanging lamp whose glass is black with soot. Handprints, some of them small, are pressed into the grime of the wall as though someone climbed in the dark. A plain wooden door leads east to the disciples' rooms, and low chanting hums behind it. The stair climbs on above, or descends to its foot.",
+  "13916": "A second landing opens off the stair, its floor tiled in a pattern of interlocking snakes that seem to move when you glance away. A carved door with a bronze knocker shaped like a clutching hand opens east into the priests' quarters. The air is warmer here, thick with myrrh and candle-fat. Steps run down to the lower landing and up toward a darker height.",
+  "13919": "The stair ends at a small gallery under the roof beams, where thick black curtains shut out the world. A door of dark red wood to the east is banded with silver and carries the sigil of a skull in a circle. A plainer door of iron to the west opens on a long hall. Cold draughts stir the curtains, and the stair falls away below.",
+  "13918": "Rows of narrow pallets of straw line this long, low room, each with a folded grey robe and a wooden bowl at its foot. Scourges of knotted cord hang on pegs, their ends stiff with old stains. A rack of tallow candles burns down in the draught, and the walls are scrawled with chalk prayers in a dozen cramped hands. The only way out is the door west to the stair.",
+  "13917": "Fine beds with posts carved as twisting serpents stand in a row, hung with curtains of faded purple velvet. A long table is set with silver goblets stained dark at the bottom and a scatter of illuminated books. Perfumed oil burns in hanging lamps, and its sweetness cannot quite cover the stench rising from beneath the floor. The door west leads out onto the stair.",
+  "13920": "A vast bed with a canopy of black silk dominates the chamber, heaped with furs and pillows that sag as if recently left. Shelves of grimoires bound in pale leather line the wall, beside a reliquary whose glass is clouded from within. Rugs of beast hide cover the floor, and a great brass brazier glows with coals that give no warmth. The door west is the only way back to the top of the stair.",
+  "13921": "A long hall begins beyond the iron door, a gallery of black pillars joined by arches of fitted stone. Each pillar bears a carved face with its mouth open in a silent cry, and the lamps hang from those mouths on chains. The floor is a mosaic of tiny tiles, forming a road that runs on west. From somewhere far ahead comes a low, steady drone like a hundred voices.",
+  "13922": "The mosaic underfoot shows a procession of hooded souls walking in single file down a winding stair toward a throne of bones. The lamps here burn with a sickly green flame, and the pillars lean close above them. Cold seeps through your boots from the tiles. The hall stretches on west, and the way back lies east.",
+  "13923": "Wax has run down the carved faces of the pillars in thick, yellow tears, and pools on the floor in glistening puddles. The chanting is clearer now, a cadence of words in a tongue that makes the teeth ache. A bronze brazier stands in an alcove, full of cold embers and what look like small knucklebones. The hall continues west, while east is the way back.",
+  "13924": "The ceiling drops lower here, and long banners of crimson cloth hang limp, each stitched with the horned skull of Orcus. Black veins of damp run through the cracked flagstones, and the smell of rot rises thick through the incense. A draught moves along the hall, as if the temple were breathing. You can go on west, or return east.",
+  "13925": "Half the mosaic has been torn up here, leaving a rough trough of earth through the tiles, as though something dragged itself up from beneath. The lamps are few and burn low, and the gaps between them are very dark. A wind pulls steadily at your clothes from the end of the hall. The way goes on west, and east leads back.",
+  "13926": "A great archway of bone-white stone ends the hall, ringed with sigils that crawl and shift in the lamplight. Two tall bronze braziers flank it, their flames burning backward toward the threshold as though drawn through. The incense is almost solid here, and the drone swells to a roar that you feel in your chest. West through the arch lies the sanctuary, and east the long hall behind you.",
+  "13927": "A great round sanctuary opens beneath a dome that is no ceiling at all but a swirling dark, flecked with pale sparks like dying stars. At its centre rises a black altar carved with the horned skull of Orcus, its channels crusted with old offerings. Rows of bone-white pews ring it, and the incense is thick enough to taste. In the floor beside the altar a ragged pit yawns open, and a stair of rough steps leads down into the void and the dark tunnels waiting below.",
+  "13930": "You stand at the edge of the temple's own undoing, where the floor frays away into a darkness without stars or sound. Wisps of pale light drift past, never settling, and the air tastes of cold iron and old prayers. There is no ground beyond your feet, only the sense of falling that never ends. A faint glow of violet lamplight marks the only path, running east back to the vestibule before the temple."
+ },
+ "extras": {
+  "13929": [
+   {
+    "keywords": "mirror gilded frame",
+    "description": "The mirror shows the room as it should be, warm and fair, with a slender woman standing just behind your shoulder. When you turn, nobody is there, and the glass in the frame is cold as grave dirt."
+   }
+  ],
+  "13914": [
+   {
+    "keywords": "letters inscription wall",
+    "description": "The letters read, in a flowing hand: Climb, and be saved from the wearying world. Beneath, in smaller scratches, a later hand has added: Do not."
+   }
+  ],
+  "13927": [
+   {
+    "keywords": "altar black skull",
+    "description": "The altar is cut from a single block of black stone, and the skull of Orcus grins from its front, ram's horns curling to the floor. The channels in its top run down to a bowl that has never been allowed to dry."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "orcus-cultist",
+   "keywords": "cultist orcus robed",
+   "short_desc": "a black-robed cultist of Orcus",
+   "long_desc": "A black-robed cultist of Orcus murmurs a litany, fingering a chain of knucklebones.",
+   "description": "The cultist wears a hood of black wool, and his pale eyes shine with a feverish joy. A skull-shaped brand is burned into his palm, and he smells of incense and old blood.",
+   "kind": "humanoid",
+   "level": 46,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "In The Courtyard",
+    "In The Corridor",
+    "Disciples Quarters"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "cultist-dagger",
+     "chance": 25
+    },
+    {
+     "item": "silver-censer",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "robed-skeleton",
+   "keywords": "skeleton robed acolyte bones",
+   "short_desc": "a robed skeleton",
+   "long_desc": "A robed skeleton stands in the shadows with a rusted censer swinging from its fingers.",
+   "description": "Tatters of grey acolyte's robe hang from the yellowed bones, and a point of green light burns in each empty socket. It moves in a soft clatter, as if still keeping to the temple's old hours.",
+   "kind": "undead",
+   "level": 47,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "Hallway To Destiny",
+    "On The Stair"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "silver-censer",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "templar-guard",
+   "keywords": "templar guard knight black armoured",
+   "short_desc": "a black-armoured templar guard",
+   "long_desc": "A black-armoured templar guard stands rigid at his post, a spiked mace across his chest.",
+   "description": "The templar's helm is wrought into a horned skull and shows no face behind it. His armour is hung with chains of tiny teeth that chime softly as he breathes.",
+   "kind": "humanoid",
+   "level": 52,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "Top Of The Stair",
+    "Hallway To Destiny",
+    "Priests Quarters"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "templar-helm",
+     "chance": 25
+    },
+    {
+     "item": "cultist-dagger",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "stone-gargoyle",
+   "keywords": "gargoyle stone winged",
+   "short_desc": "a hulking stone gargoyle",
+   "long_desc": "A hulking stone gargoyle crouches on the rim of the wall, its wings folded, watching.",
+   "description": "The gargoyle is carved in the likeness of a horned demon, with cracked grey wings and talons like chisels. Dust trickles from its joints when it moves, and its stare never wavers.",
+   "kind": "monster",
+   "level": 51,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "In The Courtyard",
+    "In The Entranceway"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "silver-censer",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "beautiful-maid",
+   "keywords": "maid beautiful ghost spirit woman lure",
+   "short_desc": "the ghost of the Beautiful Maid",
+   "long_desc": "The ghost of the Beautiful Maid sits by the harp, singing a song that pulls at your heart.",
+   "description": "She is lovely in the way a painting is lovely: pale, perfect and still, with eyes that follow you a moment too long. Where the light falls through her, you see a hollow of rot and bone, and her song never stops.",
+   "kind": "undead",
+   "level": 53,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "Room Of The Beautiful Maid"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "maidens-veil",
+     "chance": 35
+    },
+    {
+     "item": "cultist-dagger",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "high-priest-orcus",
+   "keywords": "high priest orcus malgrath",
+   "short_desc": "Malgrath, High Priest of Orcus",
+   "long_desc": "Malgrath, High Priest of Orcus, stands before the black altar with his arms raised to the void.",
+   "description": "The high priest is tall and gaunt, robed in layers of black and crimson, with a ram-horned mitre upon his bald head. His eyes are pits of violet light, and the air around him sighs like a mouth.",
+   "kind": "humanoid",
+   "level": 55,
+   "aggressive": true,
+   "alignment": -1000,
+   "rooms": [
+    "Sanctuary Of Orcus"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "mace-of-orcus",
+     "chance": 35
+    },
+    {
+     "item": "maidens-veil",
+     "chance": 15
+    },
+    {
+     "item": "silver-censer",
+     "chance": 30
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "cultist-dagger",
+   "keywords": "dagger skull cultist",
+   "short_desc": "a skull-hilted dagger",
+   "room_desc": "A skull-hilted dagger lies here.",
+   "description": "The hilt is carved as a tiny grinning skull. The blade is stained dark to the guard.",
+   "kind": "weapon",
+   "level": 46,
+   "weapon_type": "pierce"
+  },
+  {
+   "id": "silver-censer",
+   "keywords": "censer silver incense",
+   "short_desc": "a tarnished silver censer",
+   "room_desc": "A tarnished silver censer lies here, trailing a thread of smoke.",
+   "description": "A censer on a chain, pierced with a pattern of leering faces. It still smells of that sweet, rotten incense.",
+   "kind": "treasure",
+   "level": 48
+  },
+  {
+   "id": "templar-helm",
+   "keywords": "helm horned skull templar",
+   "short_desc": "a horned skull helm",
+   "room_desc": "A horned skull helm lies here.",
+   "description": "A heavy black helm wrought into the shape of a horned skull. Tiny teeth are strung along its rim.",
+   "kind": "armor",
+   "level": 51,
+   "wear_slot": "head",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "maidens-veil",
+   "keywords": "veil silk maiden rose",
+   "short_desc": "a rose-coloured silk veil",
+   "room_desc": "A rose-coloured silk veil lies here.",
+   "description": "A veil of the finest silk, soft and faintly warm to the touch. It carries a distant scent of roses and a few notes of song.",
+   "kind": "armor",
+   "level": 53,
+   "wear_slot": "about",
+   "bonus": {
+    "cha": 1
+   }
+  },
+  {
+   "id": "mace-of-orcus",
+   "keywords": "mace orcus horned black",
+   "short_desc": "the Mace of Orcus",
+   "room_desc": "A black-headed mace lies here, its horned head cold to the eye.",
+   "description": "A heavy mace whose head is cast as the horned skull of Orcus. It hums faintly in the hand and hungers for a blow.",
+   "kind": "weapon",
+   "level": 55,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  }
+ ]
+}

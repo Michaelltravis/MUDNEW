@@ -22,8 +22,14 @@
      "description": "To the east lies A Long Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "Shelves of black oak climb into the gloom of the Grand Hall Of Records,\neach one crowded with scroll cases, ledgers and cracked tablets that\nchronicle the kings of Durmandel. Dust lies thick on the reading desks,\nand a cold, dry smell of old parchment hangs in the air. A single\narchway opens east onto a long corridor, and the dim light from it\nbarely reaches the farthest stacks.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650805,
+     "max": 1
+    }
+   ]
   },
   "13115": {
    "vnum": 13115,
@@ -47,8 +53,8 @@
      "description": "To the down lies The Grand Stairs."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and down.",
-   "placeholder": true
+   "description": "The long hallway comes to its end here at a landing of worn flagstones,\nwith a broad stairway falling steeply away into the dark. The steps are\ncut from pale stone, and a cold breath from below stirs the cobwebs at\nthe edge. A dwarf-made lantern hook juts from the wall, empty and\nrusted. The corridor leads north, and the grand stairs lead down toward\nthe older halls.",
+   "extra_descs": {}
   },
   "13116": {
    "vnum": 13116,
@@ -72,8 +78,8 @@
      "description": "To the south lies At The End Of A Long Hallway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A Long Corridor stretches here between close walls of cold, damp stone.\nA bare iron sconce hangs every few paces, though not one still holds a\ntorch. The floor is scattered with scraps of rotted cloth and a few\nsmall bones, as if something had passed this way long ago. The corridor\nleads north toward the throne chambers, and south to the end of a long\nhallway.",
+   "extra_descs": {}
   },
   "13117": {
    "vnum": 13117,
@@ -105,8 +111,8 @@
      "description": "To the west lies The Grand Hall Of Records."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A Long Corridor runs here between walls hung with the faded banners of\nDurmandel's royal houses, their dwarf-forged thread gone dull as ash.\nWorn flagstones, polished by centuries of royal feet, echo faintly\nunderfoot. Archways open north into the Throne Hall and east toward a\nchapel, while the corridor stretches on south and a door of the records\nhall stands to the west.",
+   "extra_descs": {}
   },
   "13118": {
    "vnum": 13118,
@@ -134,8 +140,20 @@
      "description": "To the west lies The Royal Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The Throne Hall is a vast chamber of grey granite pillars carved with\nthe beards and axes of dwarf kings. A great stone throne sits on a dais\nat its heart, its arms worn smooth, the cushion long since rotted to\nthreads. Cold braziers stand cracked and empty on every side. Archways\nlead west into the Royal Hall, east to a broad stair, and south back to\nthe corridor.",
+   "extra_descs": {
+    "throne dais stone throne": "The throne is hewn from one block of grey granite, its back carved with\na mountain and a crown. Deep grooves in the arms show where gauntleted\nhands once gripped them."
+   },
+   "mob_resets": [
+    {
+     "vnum": 650800,
+     "max": 1
+    },
+    {
+     "vnum": 650806,
+     "max": 1
+    }
+   ]
   },
   "13119": {
    "vnum": 13119,
@@ -163,8 +181,8 @@
      "description": "To the west lies The Queen's Bed Chamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The Royal Hall is a long hall of dark stone, its high ceiling hung with\nthe tattered remains of silk pennants. A strip of faded crimson carpet\nruns down the middle, worn thin along the line where courtiers once\nwalked. Tall windows of grey glass cast a dim, watery light across the\nfloor. An archway on the east side opens to the Throne Hall, and another\npassage runs west toward the queen's chamber, while the hall continues\nnorth.",
+   "extra_descs": {}
   },
   "13120": {
    "vnum": 13120,
@@ -193,8 +211,14 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The royal hall ends here in a high, shadowed alcove where the pennants\nhang in rotted tatters from iron poles. A heavy table of ironwood stands\nagainst the wall, its surface carved with the runes of Durmandel's long\ndynasty. Dust motes drift in the pale light of a narrow window. A\nstudded oak door leads west into the king's chamber, and the hall runs\nback south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650801,
+     "max": 1
+    }
+   ]
   },
   "13121": {
    "vnum": 13121,
@@ -214,8 +238,8 @@
      "description": "To the east lies The Royal Hall."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "The King's Bed Chamber holds a vast bed of carved ironwood, hung with\ncurtains of heavy brocade gone brittle and brown. Rich tapestries of\nhunts and battles cover the walls, though moths have eaten holes through\nthe dwarf warriors' faces. A heavy iron-bound chest, long since opened\nand emptied, lies at the foot of the bed. The only way out is the door\neast, back into the royal hall.",
+   "extra_descs": {}
   },
   "13122": {
    "vnum": 13122,
@@ -235,8 +259,8 @@
      "description": "To the east lies The Royal Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "The Queen's Bed Chamber is a small, high room hung with pale blue silk\nthat has faded to the colour of ash. A dressing table of inlaid bone\nstands before a clouded mirror, its drawers hanging open and empty.\nDried petals lie in a crust across the floor, and the faint ghost of\nlavender still lingers in the cold air. The one doorway opens east onto\nthe Royal Hall.",
+   "extra_descs": {}
   },
   "13123": {
    "vnum": 13123,
@@ -265,8 +289,8 @@
      "description": "To the west lies A Long Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The Chapel is a quiet vaulted room where rows of stone benches face an\naltar of white marble veined with grey. Narrow windows of coloured glass\nthrow faded patches of red and blue across the floor. A basin of\nstagnant water stands by the altar, and a tarnished hammer-and-anvil\nsymbol hangs on the wall behind. The corridor lies west, and a heavy\ndoor leads east into a chamber that smells of spice and rot.",
+   "extra_descs": {}
   },
   "13124": {
    "vnum": 13124,
@@ -290,8 +314,14 @@
      "description": "To the west lies The Chapel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The Embalming Chamber is lined with long slabs of cold stone, each one\ngrooved to drain away the water of the dead. Racks along the walls hold\nglass jars of dry herbs, bundles of linen strips, and rusted hooks and\nknives. A sharp smell of resin, myrrh and old decay clings to\neverything. A door west leads out to the chapel, and an opening north\nleads deeper in toward the royal dead.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650802,
+     "max": 1
+    }
+   ]
   },
   "13125": {
    "vnum": 13125,
@@ -315,8 +345,14 @@
      "description": "To the south lies The Embalming Chamber."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Burial Chamber is cut into a series of shallow burial niches, each\none holding a stone coffin carved with the face of a long-dead noble.\nBronze lamps hang from the ceiling on chains, though none have burned\nfor an age. The air is utterly still and bitterly cold, and your breath\nhangs before you in a pale cloud. The embalmers' work lies south, and\nthe chamber goes on north.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650800,
+     "max": 1
+    }
+   ]
   },
   "13126": {
    "vnum": 13126,
@@ -345,8 +381,14 @@
      "description": "To the south lies The Burial Chamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The far end of the burial chamber is lined with stone coffins stacked in\nheavy tiers, each marked with a name in dwarf runes. Garlands of dead\nflowers crumble on the lids, and a few have slipped to scatter petals\nacross the stone. The silence is thick and watchful, as though the dead\nare waiting. A heavy door stands to the north, leading to a hall of\nhonoured warriors, and the chamber ends south toward the embalmers.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650802,
+     "max": 1
+    }
+   ]
   },
   "13127": {
    "vnum": 13127,
@@ -383,8 +425,18 @@
      "description": "To the west lies The Hall Of Heroes."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The Hall Of Heroes is a high, echoing gallery where statues of dwarf\nchampions stand in rows on plinths, each gripping a weapon of worn\nstone. Their names are carved beneath them, and many have been scoured\nby weeping and pilgrimage. Battle-torn banners droop from the rafters\nabove. Passages of the hall run east and west, a door leads north into a\nwalled place, and the burial chambers lie south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650801,
+     "max": 1
+    },
+    {
+     "vnum": 650803,
+     "max": 1
+    }
+   ]
   },
   "13128": {
    "vnum": 13128,
@@ -416,8 +468,8 @@
      "description": "To the west lies The Hall Of Heroes."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "This eastern reach of the Hall Of Heroes is lined with more statues,\ntheir faces pitted by long ages of damp. A ring of worn shields hangs\nfrom the wall, each one dented by a battle no one now remembers. The\nfloor is laid with stones of black and white, in the pattern of a\nchessboard. Low openings lead north, east and south onto mounds of\nearth, and the hall runs back west.",
+   "extra_descs": {}
   },
   "13129": {
    "vnum": 13129,
@@ -449,8 +501,14 @@
      "description": "To the west lies A Burial Mound."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The western arm of the Hall Of Heroes is a gallery of weapons, with\nracks of notched axes and mattocks rusting where they hang. A long\nmosaic along the wall shows dwarves marching to war beneath a mountain.\nGrains of earth have drifted in from the mounds beyond and settled in\nthe corners. Openings lead north, south and west to mounds outside,\nwhile the hall runs east toward its centre.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650803,
+     "max": 1
+    }
+   ]
   },
   "13130": {
    "vnum": 13130,
@@ -468,8 +526,8 @@
      "description": "To the north lies The Hall Of Heroes."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. A way leads north.",
-   "placeholder": true
+   "description": "A Burial Mound is heaped here under a low sky, bare of all growth except\na few stalks of pale, dry grass. A shattered urn of grey clay lies\nbroken against the mound's flank, and a scatter of black beads mixes\nwith the dirt around it. Wind moans in a crack of the great wall. The\ngallery lies north, the only way from this lonely place.",
+   "extra_descs": {}
   },
   "13131": {
    "vnum": 13131,
@@ -487,8 +545,8 @@
      "description": "To the east lies The Hall Of Heroes."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads east.",
-   "placeholder": true
+   "description": "A Burial Mound stands here near the edge of the court, tucked against a\ncorner of the great wall. Tufts of rust-coloured heather cover its\ncrown, and a cluster of small, pale mushrooms grows at its foot. Ancient\nofferings of coin and rusted nails are sunk in the soil. The only way\nout is east, back into the hall.",
+   "extra_descs": {}
   },
   "13132": {
    "vnum": 13132,
@@ -506,8 +564,8 @@
      "description": "To the south lies The Hall Of Heroes."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads south.",
-   "placeholder": true
+   "description": "A Burial Mound lies here in the shade of the great hall wall, its earth\nheaped over a low stone cist. Moss as thick as a blanket covers the\nstones, and drops of water fall slowly from the dripping eaves. The air\nsmells of wet clay and old iron. The way back lies south, where an arm\nof the Hall Of Heroes waits.",
+   "extra_descs": {}
   },
   "13133": {
    "vnum": 13133,
@@ -525,8 +583,10 @@
      "description": "To the south lies The Hall Of Heroes."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads south.",
-   "placeholder": true
+   "description": "A Nameless Place lies beyond the door, a small walled court of bare\nflagstones where nothing grows. A single slab of black stone stands in\nthe centre, its face polished smooth and without a mark or a letter. The\nsky above is a leaden, silent grey, and the wind seems to avoid the\nplace. The only way out is the door south, back into the hall.",
+   "extra_descs": {
+    "slab black stone": "The black slab bears no name, no rune and no date. Though the stone is\ncold, it feels oddly smooth, as if many hands have touched it."
+   }
   },
   "13134": {
    "vnum": 13134,
@@ -544,8 +604,8 @@
      "description": "To the south lies The Hall Of Heroes."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads south.",
-   "placeholder": true
+   "description": "A Burial Mound rises here, a grassy hump of earth ringed with a low wall\nof fitted stones. A cracked headstone leans at the foot of the mound,\nits rune-carved face weathered almost smooth. The grass is thin and\nsilvered with frost, and a damp chill breathes out of the soil. Only the\ngallery of the Hall Of Heroes lies south, back through a low arch.",
+   "extra_descs": {}
   },
   "13135": {
    "vnum": 13135,
@@ -563,8 +623,8 @@
      "description": "To the west lies The Hall Of Heroes."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nwest.",
-   "placeholder": true
+   "description": "A Burial Mound swells here beneath a single leaning pine, its roots\ngripping the stones of an old cairn. Cold white pebbles are scattered\nover the earth, and a bronze axe-head, green with age, is set into the\nturf as a marker. The wind sighs through the needles, and somewhere a\ncrow croaks. The hall gallery is the only way out, a short step west.",
+   "extra_descs": {}
   },
   "13136": {
    "vnum": 13136,
@@ -582,8 +642,8 @@
      "description": "To the north lies The Hall Of Heroes."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nnorth.",
-   "placeholder": true
+   "description": "A Burial Mound slumps here, its turf sunken as though something below\nhad settled. A ring of weathered standing stones circles it, each cut\nwith the same rune of mourning. Brown thistles push through the cracks,\nand a thin mist clings to the hollow. The only path leads north, back\nthrough a low arch into the Hall Of Heroes.",
+   "extra_descs": {}
   },
   "13137": {
    "vnum": 13137,
@@ -611,8 +671,8 @@
      "description": "To the up lies A Narrow Stairway."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east, west and up.",
-   "placeholder": true
+   "description": "You stand at the foot of a broad stair at the end of the Throne Hall,\nwhere the floor is scattered with flakes of old plaster fallen from the\nceiling. A tight, winding flight of narrow steps climbs from the corner\nof the landing, its treads hollowed by many feet. A wide arch leads back\nwest into the Throne Hall, and a broad marble stair leads away east.",
+   "extra_descs": {}
   },
   "13138": {
    "vnum": 13138,
@@ -636,8 +696,8 @@
      "description": "To the down lies At The Bottom Of The Stairway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead up and down.",
-   "placeholder": true
+   "description": "This narrow stairway winds tightly upward through the thickness of the\nwall, its steps no wider than a pair of boots. The stone is bare and\nsweating, and the only light is the faint glow that filters up from the\nlanding below. Scratched marks of long-dead sentries cover the walls at\nshoulder height, tally upon tally. The stair climbs on and drops back\ntoward the foot of the grand stair.",
+   "extra_descs": {}
   },
   "13139": {
    "vnum": 13139,
@@ -661,8 +721,14 @@
      "description": "To the down lies A Narrow Stairway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "The narrow stairway turns sharply in the wall, forming a tiny landing no\nlarger than a cupboard. An arrow slit in the stone lets in a thin blade\nof daylight, and a few dead leaves have blown in to rest on the step.\nThe air is cooler here and smells faintly of wind and bird droppings.\nThe stairs go on climbing, and descend again toward the lower flight.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650800,
+     "max": 1
+    }
+   ]
   },
   "13140": {
    "vnum": 13140,
@@ -686,8 +752,8 @@
      "description": "To the down lies A Narrow Stairway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "The last turns of the narrow stairway end in a low, steep flight where\nthe walls are stained with old streaks of white. A strong draught pours\ndown from above, carrying the wild cry of some large bird. Loose\nfeathers, long and tawny, are stuck in the cracks of the steps. The\nstair rises to a doorway of grey sky, and falls back the way you came.",
+   "extra_descs": {}
   },
   "13141": {
    "vnum": 13141,
@@ -709,8 +775,8 @@
      "description": "To the down lies A Narrow Stairway."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead west and down.",
-   "placeholder": true
+   "description": "The Look-Out is a ring of crumbling battlement on the highest tower of\nDurmandel's halls, open to the sky and a restless wind. Far below, the\nmountain valleys fold away in blue distance, and mist drifts between the\npeaks. A rusted iron brazier stands in the centre, filled with old ash\nand grey feathers. The stair drops back into the tower, and a narrow\nledge of rock leads west along the cliff.",
+   "extra_descs": {}
   },
   "13142": {
    "vnum": 13142,
@@ -732,8 +798,8 @@
      "description": "To the west lies A Rocky Ledge."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead east and west.",
-   "placeholder": true
+   "description": "A Rocky Ledge clings to the mountain face here, a shelf of wind-scoured\nstone barely wide enough for a single traveller. Beyond the lip, the\ndrop plunges into a haze of cloud and distant crags. Patches of orange\nlichen cover the rock, and old claw-marks gouge the stone near your\nfeet. The ledge leads on west and returns east to the battlements of the\nLook-Out.",
+   "extra_descs": {}
   },
   "13143": {
    "vnum": 13143,
@@ -755,8 +821,14 @@
      "description": "To the west lies The Gryphon's Nest."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead east and west.",
-   "placeholder": true
+   "description": "The ledge narrows as it bends around a shoulder of the mountain, the\nrock slick with spray and wind-driven grit. Bones of goats and mountain\nsheep lie scattered along the base of the cliff, picked clean and\nbleached white. A heavy musk of beast and carrion hangs on the wind. The\npath leads east back to another stretch of the ledge, and west toward a\ngreat jumble of sticks and fur.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650804,
+     "max": 1
+    }
+   ]
   },
   "13144": {
    "vnum": 13144,
@@ -774,8 +846,14 @@
      "description": "To the east lies A Rocky Ledge."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. A way leads east.",
-   "placeholder": true
+   "description": "The Gryphon's Nest is a broad bowl of woven branches, bones and shed\nfeathers, wedged into a hollow of the cliff and as wide as a feast\ntable. The floor is lined with thick matted down, strewn with the gnawed\nremains of mountain goats. Wind howls across the open lip of the hollow,\nand the sky is a distant blue. The only way out is the ledge winding\naway east.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650804,
+     "max": 1
+    }
+   ]
   },
   "13198": {
    "vnum": 13198,
@@ -804,11 +882,404 @@
      "description": "To the down lies The Grand Stairway."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead west and down.",
-   "placeholder": true
+   "description": "The Grand Stairway is a sweeping flight of marble steps, each one as\nwide as a wagon and carved along its edges with a frieze of marching\ndwarves. A pair of great bronze doors, long since green with age, stand\nopen to the hall behind you at the west. Below, the stairs plunge in a\nwide spiral down into the darkness of the old mines, and a faint warm\ndraught breathes up from the deep.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "650800": {
+   "vnum": 650800,
+   "name": "skeleton guard royal crumbling",
+   "short_desc": "a crumbling skeleton guard",
+   "long_desc": "A crumbling skeleton guard in rusted mail stands rigid at its post, a notched halberd in its bony hands.",
+   "description": "The bones are yellow with age and held together by little more than\nwill. Faded royal livery hangs in rags from its ribs.",
+   "level": 38,
+   "alignment": -300,
+   "hp_dice": "38d8+674",
+   "damage_dice": "10d6+22",
+   "armor_class": -17,
+   "exp": 2110,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750800,
+     "chance": 20
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650801": {
+   "vnum": 650801,
+   "name": "ghost restless grave pale",
+   "short_desc": "a restless ghost",
+   "long_desc": "A restless ghost drifts through the cold air, wringing hands that are no more than smoke.",
+   "description": "The pale shape of a long-dead courtier wavers before you, its mouth open\nin a soundless wail. Its robes flutter in a wind that you cannot feel.",
+   "level": 40,
+   "alignment": -400,
+   "hp_dice": "40d8+722",
+   "damage_dice": "11d6+21",
+   "armor_class": -20,
+   "exp": 2220,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750800,
+     "chance": 15
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650802": {
+   "vnum": 650802,
+   "name": "cultist embalmer hooded priest",
+   "short_desc": "a hooded embalmer cultist",
+   "long_desc": "A hooded embalmer cultist shuffles about the slabs, muttering over a jar of resin.",
+   "description": "A gaunt figure in a stained grey robe, with hands blackened by years of\nresin and spice. A curved bone knife hangs from a cord at his belt.",
+   "level": 39,
+   "alignment": -500,
+   "hp_dice": "39d8+619",
+   "damage_dice": "10d6+23",
+   "armor_class": -20,
+   "exp": 2165,
+   "gold": 468,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750800,
+     "chance": 25
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650803": {
+   "vnum": 650803,
+   "name": "skeleton hero champion plate",
+   "short_desc": "a skeletal hero in rusted plate",
+   "long_desc": "A skeletal hero in rusted plate armour stands among the statues, a great hammer held ready.",
+   "description": "The skeleton of a dwarf champion, still wearing a battered breastplate\nand a helm crowned with a ring of tarnished gold. Pale green fire burns\nin its empty eye sockets.",
+   "level": 44,
+   "alignment": -300,
+   "hp_dice": "44d8+821",
+   "damage_dice": "12d6+23",
+   "armor_class": -20,
+   "exp": 2440,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750801,
+     "chance": 25
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650804": {
+   "vnum": 650804,
+   "name": "gryphon great wild beast",
+   "short_desc": "a great gryphon",
+   "long_desc": "A great gryphon crouches on the rock, its hooked beak open and its eagle eyes fixed on you.",
+   "description": "A huge beast with the body of a lion and the wings and head of a\nmountain eagle. Its talons scrape the stone with a sound like knives on\na whetstone.",
+   "level": 43,
+   "alignment": 0,
+   "hp_dice": "43d8+616",
+   "damage_dice": "11d6+25",
+   "armor_class": -20,
+   "exp": 2385,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750802,
+     "chance": 30
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650805": {
+   "vnum": 650805,
+   "name": "orlen archivist ghost scribe",
+   "short_desc": "Orlen, the ghost of the Archivist",
+   "long_desc": "Orlen, the ghost of the Archivist, glides between the shelves, a quill of smoke in his hand.",
+   "description": "A spectral scholar in a hooded robe, his face a gaunt mask of mist and\nsorrow. Ink drips endlessly from his fingertips and vanishes before it\nstrikes the floor.",
+   "level": 45,
+   "alignment": -200,
+   "hp_dice": "45d8+847",
+   "damage_dice": "12d6+25",
+   "armor_class": -20,
+   "exp": 2495,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750803,
+     "chance": 35
+    },
+    {
+     "vnum": 750800,
+     "chance": 30
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "650806": {
+   "vnum": 650806,
+   "name": "durgrim dwarf king undead skeleton",
+   "short_desc": "Durgrim, the undead Dwarf King",
+   "long_desc": "Durgrim, the undead Dwarf King, sits upon his granite throne, a crowned skeleton wreathed in cold fire.",
+   "description": "The bones of a mighty king, bound in a mantle of rotted ermine and\ncrowned with a heavy circlet of iron. He grips a mighty axe, and his\nhollow gaze burns with a terrible white light.",
+   "level": 46,
+   "alignment": -700,
+   "hp_dice": "46d8+873",
+   "damage_dice": "12d6+26",
+   "armor_class": -20,
+   "exp": 2550,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750804,
+     "chance": 35
+    },
+    {
+     "vnum": 750801,
+     "chance": 30
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "750800": {
+   "vnum": 750800,
+   "name": "gilded death mask",
+   "short_desc": "a gilded death mask",
+   "room_desc": "A gilded death mask lies here, staring at nothing.",
+   "description": "A thin mask of beaten gold, shaped to the calm face of a dwarf noble. It is worth a good price to the right buyer.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 38,
+   "weight": 1,
+   "value": 1165
+  },
+  "750801": {
+   "vnum": 750801,
+   "name": "hero hammer warhammer heavy",
+   "short_desc": "a hero's warhammer",
+   "room_desc": "A hero's warhammer lies here, its haft worn dark.",
+   "description": "A heavy dwarf-forged warhammer with a head of grey steel stamped with a mountain rune. The grip has been worn smooth by a champion's hands.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 44,
+   "damage_dice": "2d10",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 1140,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "750802": {
+   "vnum": 750802,
+   "name": "gryphon feather cloak tawny",
+   "short_desc": "a tawny gryphon-feather cloak",
+   "room_desc": "A tawny cloak of gryphon feathers lies here.",
+   "description": "A light cloak woven from the long tawny feathers of a mountain gryphon. It rustles like a breeze in the high crags.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 43,
+   "wear_slot": "about",
+   "armor": 4,
+   "weight": 3,
+   "value": 890,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  },
+  "750803": {
+   "vnum": 750803,
+   "name": "archivist signet ring silver",
+   "short_desc": "the Archivist's signet ring",
+   "room_desc": "A silver signet ring lies here, engraved with a quill.",
+   "description": "A heavy silver ring bearing the seal of Durmandel's keeper of records. Ink-black runes wind about the band.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 45,
+   "wear_slot": "finger1",
+   "armor": 4,
+   "weight": 1,
+   "value": 930,
+   "affects": [
+    {
+     "type": "int",
+     "value": 1
+    }
+   ]
+  },
+  "750804": {
+   "vnum": 750804,
+   "name": "durgrim iron crown circlet",
+   "short_desc": "the iron crown of Durgrim",
+   "room_desc": "A heavy iron crown lies here, rimed in cold frost.",
+   "description": "A broad circlet of black iron, set with a single grey gem and engraved with the names of forty kings. It is cold to the touch and strangely heavy.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 46,
+   "wear_slot": "head",
+   "armor": 5,
+   "weight": 3,
+   "value": 950,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  }
+ }
 }

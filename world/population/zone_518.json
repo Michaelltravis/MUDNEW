@@ -1,0 +1,165 @@
+{
+ "zone": 518,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Malvoran, the Master Necromancer as the boss.",
+ "creatures": {
+  "651800": {
+   "helpers": {
+    "group": "z518_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a shambling corpse-miner"
+  },
+  "651801": {
+   "helpers": {
+    "group": "z518_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a giant cave rat"
+  },
+  "651802": {
+   "helpers": {
+    "group": "z518_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a black-robed cultist"
+  },
+  "651803": {
+   "helpers": {
+    "group": "z518_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a skeleton overseer",
+   "rank": "elite"
+  },
+  "651804": {
+   "helpers": {
+    "group": "z518_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a stitched flesh ogre",
+   "rank": "elite"
+  },
+  "651805": {
+   "helpers": {
+    "group": "z518_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "Gnawmother, the Cave Rat Queen",
+   "rank": "sub-boss"
+  },
+  "651806": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Malvoran, the Master Necromancer",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Malvoran, the Master Necromancer rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Malvoran, the Master Necromancer gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Malvoran, the Master Necromancer raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Malvoran, the Master Necromancer begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 651800,
+   "route": [
+    4206,
+    4205,
+    4202,
+    4203,
+    4204,
+    4218,
+    4219,
+    4236,
+    4237,
+    4238,
+    4239,
+    4243,
+    4244
+   ],
+   "why": "a shambling corpse-miner walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 651806,
+   "room": 4213,
+   "why": "Malvoran, the Master Necromancer in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      651802
+     ],
+     "shout": "Malvoran, the Master Necromancer calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

@@ -8752,7 +8752,7 @@
    "zone": 502,
    "atlas_area": 102,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 55,
    "steps_from_temple": 91,
    "terrain": [
@@ -8765,112 +8765,182 @@
      22
     ]
    ],
-   "creatures": 0,
+   "creatures": 17,
    "items": 0,
    "bosses": [],
    "services": [],
-   "level_band": null,
+   "level_band": {
+    "min": 12,
+    "median": 14,
+    "max": 21
+   },
    "needs": [
-    "descriptions for 55 rooms",
-    "creatures",
     "items",
     "a boss"
    ],
-   "need_description": [
-    2000,
-    2001,
-    2002,
-    2003,
-    2004,
-    2006,
-    2007,
-    2008,
-    2009,
-    2010,
-    2011,
-    2012,
-    2013,
-    2014,
-    2015,
-    2016,
-    2017,
-    2018,
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
-    2026,
-    2027,
-    2028,
-    2029,
-    2030,
-    2031,
-    2032,
-    2033,
-    2034,
-    2035,
-    2036,
-    2037,
-    2038,
-    2039,
-    2040,
-    2041,
-    2042,
-    2043,
-    2044,
-    2045,
-    2046,
-    2047,
-    2048,
-    2049,
-    2050,
-    2051,
-    2052,
-    2053,
-    2054,
-    2055
-   ],
+   "need_description": [],
    "links": {
     "471": [
      "Entrance To The Draconian Encampment (2000) east to The Plains (9134)"
     ]
    },
-   "one_way": [
-    "2038 north -> 2041",
-    "2050 north -> 2053"
-   ],
-   "no_exits": [
-    2041,
-    2042,
-    2043,
-    2044,
-    2045,
-    2046,
-    2047,
-    2048,
-    2049,
-    2051,
-    2052,
-    2053
-   ],
+   "one_way": [],
+   "no_exits": [],
    "locked_doors_left_unlocked": [],
    "water_rooms": [],
-   "connections_added": [],
-   "suggested_band": {
-    "min": 7,
-    "median": 12,
-    "max": 17
-   }
+   "connections_added": [
+    {
+     "from": 2041,
+     "dir": "south",
+     "to": 2038,
+     "why": "the way back"
+    },
+    {
+     "from": 2042,
+     "dir": "west",
+     "to": 2041,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2041,
+     "dir": "east",
+     "to": 2042,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2043,
+     "dir": "south",
+     "to": 2023,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2023,
+     "dir": "north",
+     "to": 2043,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2048,
+     "dir": "south",
+     "to": 2041,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2041,
+     "dir": "north",
+     "to": 2048,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2044,
+     "dir": "west",
+     "to": 2043,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2043,
+     "dir": "east",
+     "to": 2044,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2046,
+     "dir": "south",
+     "to": 2043,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2043,
+     "dir": "north",
+     "to": 2046,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2047,
+     "dir": "south",
+     "to": 2042,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2042,
+     "dir": "north",
+     "to": 2047,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2049,
+     "dir": "south",
+     "to": 2048,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2048,
+     "dir": "north",
+     "to": 2049,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2045,
+     "dir": "south",
+     "to": 2044,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2044,
+     "dir": "north",
+     "to": 2045,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2050,
+     "dir": "south",
+     "to": 2045,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2045,
+     "dir": "north",
+     "to": 2050,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2053,
+     "dir": "south",
+     "to": 2050,
+     "why": "the way back"
+    },
+    {
+     "from": 2051,
+     "dir": "west",
+     "to": 2050,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2050,
+     "dir": "east",
+     "to": 2051,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2052,
+     "dir": "west",
+     "to": 2051,
+     "why": "map neighbour"
+    },
+    {
+     "from": 2051,
+     "dir": "east",
+     "to": 2052,
+     "why": "map neighbour"
+    }
+   ]
   },
   "503": {
    "name": "Durmandel I",
    "zone": 503,
    "atlas_area": 103,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 114,
    "steps_from_temple": 113,
    "terrain": [
@@ -8887,133 +8957,20 @@
      28
     ]
    ],
-   "creatures": 0,
+   "creatures": 27,
    "items": 0,
    "bosses": [],
    "services": [],
-   "level_band": null,
+   "level_band": {
+    "min": 33,
+    "median": 34,
+    "max": 43
+   },
    "needs": [
-    "descriptions for 114 rooms",
-    "creatures",
     "items",
     "a boss"
    ],
-   "need_description": [
-    13018,
-    13019,
-    13020,
-    13021,
-    13022,
-    13023,
-    13024,
-    13025,
-    13026,
-    13027,
-    13028,
-    13029,
-    13030,
-    13031,
-    13032,
-    13033,
-    13034,
-    13035,
-    13036,
-    13037,
-    13038,
-    13039,
-    13041,
-    13042,
-    13043,
-    13044,
-    13045,
-    13046,
-    13047,
-    13048,
-    13049,
-    13050,
-    13051,
-    13052,
-    13053,
-    13054,
-    13055,
-    13056,
-    13057,
-    13058,
-    13059,
-    13060,
-    13061,
-    13062,
-    13063,
-    13064,
-    13065,
-    13066,
-    13067,
-    13068,
-    13069,
-    13070,
-    13071,
-    13072,
-    13073,
-    13074,
-    13075,
-    13076,
-    13077,
-    13078,
-    13079,
-    13080,
-    13081,
-    13082,
-    13083,
-    13084,
-    13085,
-    13086,
-    13087,
-    13088,
-    13089,
-    13090,
-    13091,
-    13092,
-    13093,
-    13094,
-    13095,
-    13096,
-    13097,
-    13098,
-    13099,
-    13100,
-    13101,
-    13102,
-    13103,
-    13104,
-    13105,
-    13106,
-    13107,
-    13108,
-    13109,
-    13110,
-    13111,
-    13112,
-    13113,
-    13114,
-    213000,
-    213001,
-    213002,
-    213003,
-    213004,
-    213005,
-    213006,
-    213007,
-    213008,
-    213009,
-    213010,
-    213011,
-    213012,
-    213013,
-    213014,
-    213015,
-    213016,
-    213017
-   ],
+   "need_description": [],
    "links": {
     "471": [
      "Durgan's Gate (213000) south to Durgar's Gate - The Doors To The Dwarven Kingdom (9160)"
@@ -9036,12 +8993,7 @@
     "13113 south"
    ],
    "water_rooms": [],
-   "connections_added": [],
-   "suggested_band": {
-    "min": 7,
-    "median": 12,
-    "max": 17
-   }
+   "connections_added": []
   },
   "504": {
    "name": "Elvandar",
@@ -9443,7 +9395,7 @@
    "zone": 508,
    "atlas_area": 108,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 32,
    "steps_from_temple": 139,
    "terrain": [
@@ -9460,51 +9412,20 @@
      4
     ]
    ],
-   "creatures": 0,
+   "creatures": 13,
    "items": 0,
    "bosses": [],
    "services": [],
-   "level_band": null,
+   "level_band": {
+    "min": 38,
+    "median": 40,
+    "max": 46
+   },
    "needs": [
-    "descriptions for 32 rooms",
-    "creatures",
     "items",
     "a boss"
    ],
-   "need_description": [
-    13040,
-    13115,
-    13116,
-    13117,
-    13118,
-    13119,
-    13120,
-    13121,
-    13122,
-    13123,
-    13124,
-    13125,
-    13126,
-    13127,
-    13128,
-    13129,
-    13130,
-    13131,
-    13132,
-    13133,
-    13134,
-    13135,
-    13136,
-    13137,
-    13138,
-    13139,
-    13140,
-    13141,
-    13142,
-    13143,
-    13144,
-    13198
-   ],
+   "need_description": [],
    "links": {
     "503": [
      "At The End Of A Long Hallway (13115) down to The Grand Stairs (13060)"
@@ -9738,7 +9659,12 @@
    "water_rooms": [
     13297
    ],
-   "connections_added": []
+   "connections_added": [],
+   "suggested_band": {
+    "min": 32,
+    "median": 37,
+    "max": 42
+   }
   },
   "512": {
    "name": "Orc Tunnels",
@@ -10302,7 +10228,12 @@
     13773,
     13774
    ],
-   "connections_added": []
+   "connections_added": [],
+   "suggested_band": {
+    "min": 44,
+    "median": 49,
+    "max": 54
+   }
   },
   "514": {
    "name": "Morkai",
@@ -10404,47 +10335,19 @@
      13
     ]
    ],
-   "creatures": 0,
+   "creatures": 12,
    "items": 0,
    "bosses": [],
    "services": [],
-   "level_band": null,
+   "level_band": {
+    "min": 46,
+    "median": 49,
+    "max": 55
+   },
    "needs": [
-    "descriptions for 29 rooms",
-    "creatures",
     "items"
    ],
-   "need_description": [
-    13900,
-    13901,
-    13902,
-    13903,
-    13904,
-    13905,
-    13906,
-    13907,
-    13908,
-    13910,
-    13911,
-    13912,
-    13913,
-    13914,
-    13915,
-    13916,
-    13917,
-    13918,
-    13919,
-    13920,
-    13921,
-    13922,
-    13923,
-    13924,
-    13925,
-    13926,
-    13927,
-    13929,
-    13930
-   ],
+   "need_description": [],
    "links": {
     "512": [
      "Sanctuary Of Orcus (13927) down to Near The Prime Material Plane (13928)"
@@ -10513,7 +10416,7 @@
    "zone": 518,
    "atlas_area": 118,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 52,
    "steps_from_temple": 16,
    "terrain": [
@@ -10522,71 +10425,20 @@
      52
     ]
    ],
-   "creatures": 0,
+   "creatures": 13,
    "items": 0,
    "bosses": [],
    "services": [],
-   "level_band": null,
+   "level_band": {
+    "min": 12,
+    "median": 14,
+    "max": 22
+   },
    "needs": [
-    "descriptions for 52 rooms",
-    "creatures",
     "items",
     "a boss"
    ],
-   "need_description": [
-    4200,
-    4201,
-    4202,
-    4203,
-    4204,
-    4205,
-    4206,
-    4207,
-    4208,
-    4209,
-    4210,
-    4211,
-    4212,
-    4213,
-    4214,
-    4215,
-    4216,
-    4217,
-    4218,
-    4219,
-    4220,
-    4221,
-    4222,
-    4223,
-    4224,
-    4225,
-    4226,
-    4227,
-    4228,
-    4229,
-    4230,
-    4231,
-    4232,
-    4233,
-    4234,
-    4236,
-    4237,
-    4238,
-    4239,
-    4240,
-    4242,
-    4243,
-    4244,
-    4245,
-    4246,
-    4247,
-    4248,
-    4249,
-    4250,
-    4251,
-    4252,
-    4253
-   ],
+   "need_description": [],
    "links": {
     "408": [
      "Into the Mine (4200) south to Into The Mine (8573)"
@@ -10601,12 +10453,7 @@
     "4232 east"
    ],
    "water_rooms": [],
-   "connections_added": [],
-   "suggested_band": {
-    "min": 8,
-    "median": 13,
-    "max": 18
-   }
+   "connections_added": []
   },
   "519": {
    "name": "White Gold Cathedral",
@@ -11074,6 +10921,7 @@
   435,
   140,
   418,
+  518,
   458,
   431,
   442,
@@ -11150,19 +10998,18 @@
   290,
   295,
   454,
+  502,
   481,
   300,
   522,
+  503,
+  508,
   12,
-  518,
   519,
   505,
   520,
   507,
-  502,
-  503,
   509,
-  508,
   512,
   515,
   514
