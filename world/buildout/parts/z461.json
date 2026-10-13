@@ -1,0 +1,423 @@
+{
+ "job": "z461",
+ "rooms": {
+  "10800": {
+   "look": "crypt",
+   "description": "Cold air breathes against your face in a low vault of black stone, and your footsteps come back to you a heartbeat late. Rows of burial niches line the walls, each sealed with a slab carved with the same watching eye. Dust lies undisturbed on the floor, except for one long groove where something once dragged itself. The silence here is attentive, as though the dead were listening."
+  },
+  "10801": {
+   "look": "crypt",
+   "description": "A tall vault of fitted stone block rises into shadow here, its pillars carved with hooded figures who press both hands over their eyes. A single lamp-niche still holds a crust of black tallow. The walls sweat a slow, cold damp that gathers in dark beads and runs down in thin lines. Somewhere deeper in the tombs, water drips with the patience of centuries."
+  },
+  "10802": {
+   "look": "crypt",
+   "description": "Broken sarcophagi sprawl across the floor of this chamber, their lids cracked and slid aside to show empty hollows lined with rotted velvet. Scraps of bronze and bone crunch underfoot. Faded sigils crawl across the ceiling in spirals, and the air tastes of cold ash. You feel unseen eyes settle on the back of your neck."
+  },
+  "10803": {
+   "look": "crypt",
+   "description": "Spider silk drapes this crypt in grey curtains, thick as cloth and sagging under the weight of dust. Between the strands you glimpse a long stone table scored with channels, and shallow bowls stained dark. The floor is gritty with the husks of dead insects. Every sound you make is swallowed by the webs."
+  },
+  "10804": {
+   "look": "crypt",
+   "description": "A pool of black water fills the middle of the vault, perfectly still and perfectly clear, reflecting the roof so exactly that it seems a second chamber lies beneath. Narrow ledges of wet stone run around its edge, worn by the feet of long-dead mourners. A chill rises from the surface and clings to your skin. Smudged handprints mark the walls at shoulder height."
+  },
+  "10805": {
+   "look": "crypt",
+   "description": "Pillars like fat stone trunks crowd this hall, each carved with the name of a long-dead priestess in letters older than any tongue of the realm. The floor is a mosaic of black and bone-white tiles, many cracked, laid in the spiral of a great eye. A thin draught carries a whisper that might be words or only wind in the stone."
+  },
+  "10806": {
+   "look": "crypt",
+   "description": "Part of the roof has fallen here, and a heap of tumbled slabs and earth fills one end of the vault, spilling bones across the floor. Shards of painted pottery lie among them, still bright with ochre and indigo. Dust hangs in the air, motionless. The walls lean, and you step softly, afraid to wake the stone."
+  },
+  "10807": {
+   "look": "crypt",
+   "description": "A low gallery of niches runs around this chamber, each holding a skull on a little shelf, jaws gaping. Dried flowers, brown and brittle as paper, lie at their bases as if placed by hand a thousand years ago. A brazier of rusted iron stands cold in the middle of the floor. The air is still and tastes of old incense."
+  },
+  "10808": {
+   "look": "crypt",
+   "description": "Four stone statues of hooded women ring this crypt, their faces worn smooth, their arms outstretched toward the centre with the palms turned up. A shallow bowl of stone between them is crusted with something black. The chill is deeper here than elsewhere in the tombs, and your breath turns to pale smoke that hangs before you."
+  },
+  "10809": {
+   "look": "crypt",
+   "description": "Heavy iron bands bind a great stone door set in the far wall of this vault, its surface carved with rows of weeping masks. Soot stains the roof where lamps once burned. Splintered coffin wood is stacked against the walls like firewood for a funeral. The stone seems to hum faintly under your feet."
+  },
+  "10810": {
+   "look": "crypt",
+   "description": "Every inch of wall and ceiling in this square chamber is painted: processions of pale figures with black eyes, serpents swallowing stars, a veiled woman in a high crown seated among the dead. The colours are astonishingly fresh, as if the artist had only just stepped away. A heavy door in the west wall leads out to the Curving Road to Distrust."
+  },
+  "10811": {
+   "look": "crypt",
+   "description": "A broad stair of black stone comes down from the ruined city and ends in a small, square vestibule whose walls are carved with ranks of closed eyes. Cold, still air flows from the dark below, and daylight from the ruins reaches only this far. Steps climb up to the centre of the ruins, and a low archway opens down into the Tombs of Atuan."
+  },
+  "10812": {
+   "look": "crypt",
+   "description": "Hundreds of figures of grey stone stand in tiers around this circular hall, each frozen in a gesture of terror, mouths open and hands raised. Their faces are those of living people, down to the lines about the eyes. The whole assembly is turned inward toward the empty centre, as if waiting. A thin, chorus-like moaning seems to come from the stone itself."
+  },
+  "10820": {
+   "look": "cave",
+   "description": "The ridge is a spine of dark rock, narrow as a plank, running through an echoing cavern whose roof you cannot see. On either hand the dark falls away into a hush that swallows pebbles without a sound. The stone is rubbed smooth by centuries of cautious feet. A cold breeze tugs at your clothes."
+  },
+  "10821": {
+   "look": "cave",
+   "description": "Old bones lie scattered along the ridge, some wedged into cracks and some half over the edge, picked clean and bleached. The rock is slick with a skin of damp. Far below, something glows faintly, a dull red that never flickers. You keep your eyes on your feet."
+  },
+  "10822": {
+   "look": "cave",
+   "description": "The ridge bends around a pillar of stone, forcing you to inch round its girth with your back to the open cavern. Tally marks and prayers are scratched into the pillar, hundreds of them, in many hands. A dull echo answers each step. The darkness around feels vast and attentive."
+  },
+  "10823": {
+   "look": "cave",
+   "description": "Part of the ridge has sheared away, leaving a gap you must stride across with the dark yawning beneath. Loose grit rattles from your boots and falls for a long time. A rusted chain is anchored in the rock, its far end vanishing into the gloom. The wind moans in the hollows of the cavern."
+  },
+  "10824": {
+   "look": "cave",
+   "description": "Here the ridge broadens to a stone shelf strewn with offerings: cracked bowls, tarnished coins, small clay figures with their faces rubbed away. Each lies where it was placed, untouched by dust. A low, regular sound like breathing rises from the depths. The feeling of being watched is strongest on this shelf."
+  },
+  "10825": {
+   "look": "cave",
+   "description": "Veins of pale crystal glitter in the rock, giving the dark just enough glimmer to show the sheer fall on both sides. Your footfalls jump from wall to wall and return changed, as if answered. A cluster of black stalactites hangs low overhead. The ridge tilts slightly under you."
+  },
+  "10826": {
+   "look": "cave",
+   "description": "The ridge ends in a wide, flat platform of worn rock, ringed by crude pillars topped with spear-shaped stones. Scorch marks and old wax blotch the floor where rites were once held. A great silence lies on the place, thick as felt. In the hush you can hear your own pulse."
+  },
+  "10813": {
+   "look": "crypt",
+   "description": "The road of the tombs begins its slow curve here, a wide paved way between walls that lean inward overhead. Narrow slits are cut into the stone at the height of a man's eyes, empty and dark, so that you feel watched from within the walls. Each flagstone is engraved with a crude padlock. The road bends away north into dimness."
+  },
+  "10814": {
+   "look": "crypt",
+   "description": "The road bends hard here, hugging a wall of grey stone. Little niches in the wall hold clay masks, each one turned to face the road with a sly, sidelong smile. The floor is gritty with cold ash. The way runs east along the bend, and south back to the road's beginning."
+  },
+  "10815": {
+   "look": "crypt",
+   "description": "The curve tightens and the roof comes down low, forcing you to stoop. Words are scratched into the wall in a hundred different hands, all of them variations of the same warning: trust none who walk behind you. Echoes follow a step too quickly. The road runs on north along the curve, and west back toward the bend."
+  },
+  "10816": {
+   "look": "crypt",
+   "description": "Here the road straightens into a long colonnade of squat, round pillars, each bearing a stone eye set in its face. Lamps hang unlit from chains between them. The darkness ahead looks too deep and still to be the ordinary dark. The way runs north toward the end of the road and south back to the curve."
+  },
+  "10817": {
+   "look": "crypt",
+   "description": "The road ends against a blank wall of seamless black stone, polished until it throws your own face back at you. A doorway has been filled in with masonry, its carved frame still trailing cobwebs, as if the builders changed their minds. A heap of old bones lies in one corner. The only way out is south, back along the road."
+  },
+  "10827": {
+   "look": "cave",
+   "description": "The landing is a ledge of cut stone facing the lip of a vast chasm, whose far side is lost in darkness. A rail of iron has half rotted from the edge and hangs by a single bolt. Echoes ring back from the opposite wall, strangely delayed. A stair of worn steps climbs up from the landing to the Ascension to Pride."
+  },
+  "10828": {
+   "look": "crypt",
+   "description": "The stair climbs steeply between walls carved in tall relief: crowned figures treading on bowed backs, one rank above the next. Each step is worn into a shallow dish by long use. Torch brackets hold nothing but char. The stair rises to a higher landing, and falls back to the ledge above the chasm."
+  },
+  "10829": {
+   "look": "crypt",
+   "description": "At the head of the climb the stair levels into a short hall of polished black marble, its walls lined with tall mirrors dulled by age. Your reflection, pale and wavering, seems to arrive a moment late. A cold light spills from the north end of the hall, where wide doors stand open on the throne room. The stair falls away down behind you."
+  },
+  "10831": {
+   "description": "A high round hall opens here, domed in black stone and ringed with tall pillars carved with the figure of a crowned and veiled woman. At its centre a throne of dark glass stands on a dais of seven steps, so polished that the room seems to hang inside it. The air is thick with old incense and stranger things. The only way out is south, through the hall of the Ascension to Pride."
+  },
+  "10832": {
+   "look": "crypt",
+   "description": "A steep stair spirals downward here into colder stone, its walls sooted and bare. An archway to the west opens on a small chamber where an altar can be glimpsed. The steps are cut shorter than a stride, so that every footfall must be careful. Somewhere below, a slow dripping marks the time, and the stair continues down."
+  },
+  "10835": {
+   "look": "crypt",
+   "description": "A small round chamber holds a single altar of white marble, stained dark in a ring around its rim. Over it hangs a hammered gold sun, long tarnished, gazing blindly at the floor. Offering plates lie scattered, their gifts rotted to dust. The way out is north, back to the stair."
+  },
+  "10833": {
+   "look": "crypt",
+   "description": "The descent narrows to a gullet of stone where your shoulders almost brush both walls. Faint scratches, as of fingernails, mark the rock at head height. A damp wind breathes up from below and smells of the grave. The stair runs on south into the dark, and climbs back up toward the altar chamber."
+  },
+  "10836": {
+   "look": "crypt",
+   "description": "The stair turns sharply here beside a pit of blackness where a landing should be. Chains hang from the roof, ending in empty iron collars that sway when you pass. Every step is slick with condensation. The way back lies north, while the stair drops on down."
+  },
+  "10837": {
+   "look": "dungeon",
+   "description": "At the bottom of the stair the walls close around a low vault of dripping rock. A heavy smell of rust and wet stone hangs in the air. A passage opens east into a chamber ringed with iron rings, and behind you the stair rises up the way you came."
+  },
+  "10834": {
+   "look": "dungeon",
+   "description": "The floor of this round room is a lattice of iron bars laid over a pit of darkness. Rusted jaws and wire loops hang from the ceiling on slack chains, waiting. Bleached bones lie where the unwary stopped. The only way out is west, back to the foot of the stair."
+  },
+  "10850": {
+   "look": "crypt",
+   "description": "Heaps of tarnished treasure lie in this vault: chests burst open, gold gone green, jewelled cups, tapestries rotted to threads. Tall pillars carved with coiling serpents hold up a ceiling blackened by old smoke. A passage opens in the east wall, and from it comes the faint, salt-smelling light of the ruins by the sea, where it climbs toward the Mound among the Ruins."
+  }
+ },
+ "extras": {
+  "10810": [
+   {
+    "keywords": "painted figures procession paintings wall",
+    "description": "The pale figures walk in single file toward the woman in the crown, each holding something out to her: a key, a mirror, a severed braid. Every black eye in the procession seems to be turned toward whoever stands in the doorway."
+   }
+  ],
+  "10812": [
+   {
+    "keywords": "figures statues souls",
+    "description": "Up close the stone has a faint warmth. Each figure wears the clothes of its own age: a farmer's smock, a soldier's mail, a child's shift. Not one of them has been carved, only caught."
+   }
+  ],
+  "10831": [
+   {
+    "keywords": "throne glass dais",
+    "description": "The throne is a single block of black glass, its arms carved as clasped hands. Looking into it, you see the hall behind you, with a seated shape that is not in the room."
+   }
+  ],
+  "10835": [
+   {
+    "keywords": "altar marble sun",
+    "description": "The altar's rim is worn into a groove by a thousand years of hands. A line of letters on its face reads that pride is the last sacrifice, and the first."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "crypt-spider",
+   "keywords": "spider crypt pale",
+   "short_desc": "a pale crypt spider",
+   "long_desc": "A pale crypt spider clings to the stone, its bloated body twitching.",
+   "description": "A spider as large as a dog, its body white as a grub and its legs banded in grey. It has lived on the dead so long that it knows nothing else.",
+   "kind": "animal",
+   "level": 14,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Tombs of Atuan",
+    "The Ridge of Death"
+   ],
+   "count": 2,
+   "drops": []
+  },
+  {
+   "id": "tomb-skeleton",
+   "keywords": "skeleton tomb bones warrior",
+   "short_desc": "a tomb skeleton",
+   "long_desc": "A tomb skeleton shambles forward, bits of burial bronze clinking on its ribs.",
+   "description": "Yellowed bones wired together by old magic, still wearing the scraps of a burial mask and chain. Its jaw clacks silently as it comes.",
+   "kind": "undead",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Tombs of Atuan",
+    "The Ridge of Death",
+    "Entrance to the Undertombs"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "gilded-burial-mask",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "nameless-acolyte",
+   "keywords": "acolyte cultist nameless robed",
+   "short_desc": "a hooded acolyte of the Nameless",
+   "long_desc": "A hooded cultist of the Nameless stands very still, hands tucked into long sleeves.",
+   "description": "A pale cultist in a black robe, eyes hidden by a deep hood. The robe is stitched with a single open eye in red thread.",
+   "kind": "humanoid",
+   "level": 17,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Curving Road to Distrust",
+    "The Painted Room",
+    "The Dead End of Distrust"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "acolyte-robe",
+     "chance": 25
+    },
+    {
+     "item": "gilded-burial-mask",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "weeping-gargoyle",
+   "keywords": "gargoyle stone weeping",
+   "short_desc": "a weeping stone gargoyle",
+   "long_desc": "A weeping stone gargoyle crouches among the pale figures, its grey cheeks streaked with damp.",
+   "description": "A hunched monster of grey stone with folded wings and a human face, always weeping a thin trickle of water. It moves only when no one is looking, or so it seems.",
+   "kind": "monster",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "The Panopticum of Petrified Souls",
+    "The Landing opposite the Chasm"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "gilded-burial-mask",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "stone-guardian",
+   "keywords": "guardian stone guard golem",
+   "short_desc": "a stone guardian",
+   "long_desc": "A stone guardian stands against the wall, one great hand resting on a spiked mace.",
+   "description": "A towering guard hewn from black stone, with a blank face and hollow eyes that follow you. It was set here to keep the way and never learned that the war was over.",
+   "kind": "monster",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "Ascension to Pride",
+    "Descent to Despair"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "guardian-gauntlets",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "nameless-priest",
+   "keywords": "priest cultist nameless grey",
+   "short_desc": "a grey priest of the Nameless",
+   "long_desc": "A grey priest of the Nameless chants low beside the dark, ash smeared on his brow.",
+   "description": "A gaunt cultist with ash-grey skin and a shaved skull marked by three blue lines. He tends the old rites with grim patience, and his eyes are quite empty of mercy.",
+   "kind": "humanoid",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "The Snare of Despair",
+    "The Treasure Room",
+    "Descent to Despair"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "acolyte-robe",
+     "chance": 20
+    },
+    {
+     "item": "guardian-gauntlets",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "kossil-priestess",
+   "keywords": "kossil priestess cultist high",
+   "short_desc": "Kossil, high priestess of the Nameless",
+   "long_desc": "Kossil, high priestess of the Nameless, kneels at the altar with a knife in her hand.",
+   "description": "A thin, severe woman in a black robe stiff with silver thread, her face as hard as the altar before her. A curved knife of black glass never leaves her hand.",
+   "kind": "humanoid",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "the Altar of Pride"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "kossil-obsidian-knife",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "acrasia",
+   "keywords": "acrasia ghost queen veiled",
+   "short_desc": "Acrasia, the ghost queen of the tombs",
+   "long_desc": "Acrasia, the ghost queen of the tombs, sits veiled upon her throne and watches you come.",
+   "description": "The ancient queen of the tombs, a tall figure veiled in shadow whose glass-clear form lets the throne show through. Her voice is a cold, soft whisper that seems to speak from inside your own head.",
+   "kind": "undead",
+   "level": 23,
+   "aggressive": true,
+   "alignment": -1000,
+   "rooms": [
+    "Before the Throne of Acrasia"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "acrasia-diadem",
+     "chance": 35
+    },
+    {
+     "item": "kossil-obsidian-knife",
+     "chance": 15
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "gilded-burial-mask",
+   "keywords": "burial mask gilded gold",
+   "short_desc": "a gilded burial mask",
+   "room_desc": "A gilded burial mask stares up from the floor here.",
+   "description": "A thin sheet of gold beaten into a calm human face, with closed eyes and a faint, secret smile. It was made to cover the dead.",
+   "kind": "treasure",
+   "level": 16
+  },
+  {
+   "id": "acolyte-robe",
+   "keywords": "robe black hooded acolyte",
+   "short_desc": "a black hooded robe",
+   "room_desc": "A black hooded robe lies crumpled here.",
+   "description": "A heavy black robe, its hem stiff with grave-dust and an open red eye stitched across the breast.",
+   "kind": "armor",
+   "level": 17,
+   "wear_slot": "body",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "guardian-gauntlets",
+   "keywords": "gauntlets stone guardian hands",
+   "short_desc": "a pair of stone gauntlets",
+   "room_desc": "A pair of stone gauntlets lies here, heavy as anvils.",
+   "description": "Gauntlets carved from dark, fine-grained stone and fitted with iron hinges. They are astonishingly heavy, and astonishingly sure.",
+   "kind": "armor",
+   "level": 21,
+   "wear_slot": "hands",
+   "bonus": {
+    "str": 1
+   }
+  },
+  {
+   "id": "kossil-obsidian-knife",
+   "keywords": "knife obsidian black glass curved",
+   "short_desc": "a curved obsidian knife",
+   "room_desc": "A curved obsidian knife lies here, edge gleaming.",
+   "description": "A sacrificial knife with a blade of black volcanic glass, so sharp that the edge cannot be seen from the side. The bone grip is bound in red thread.",
+   "kind": "weapon",
+   "level": 22,
+   "weapon_type": "pierce",
+   "bonus": {
+    "hitroll": 2
+   }
+  },
+  {
+   "id": "acrasia-diadem",
+   "keywords": "diadem acrasia black silver crown",
+   "short_desc": "the black diadem of Acrasia",
+   "room_desc": "A black diadem rests here, cold as a well.",
+   "description": "A slender band of black metal woven with silver threads and set with one clouded white stone, like a blind eye. It is cold to the touch, and when worn it seems to hear.",
+   "kind": "armor",
+   "level": 23,
+   "wear_slot": "head",
+   "bonus": {
+    "int": 1
+   }
+  }
+ ]
+}
