@@ -244,7 +244,28 @@ function aliasFor(names) {
   return has(idle) ? a : a;
 }
 export async function spawnMob(name, opts = {}) {
-  const gltf = await loadMob(name);
+  return actorFrom(await loadMob(name), opts.height || 1, opts);
+}
+
+// ---- bodies made in Blender (tools/art3d/blender -> bodies/*.glb: real size in metres, facing +Z,
+// feet at 0, one skinned mesh, the creature clip names; bodies/index.json lists them with height) ----
+const bodyCache = new Map();
+let bodyIndex = null;
+export function bodyIndexReady() {
+  if (!bodyIndex) bodyIndex = fetch(ART + 'bodies/index.json').then(r => (r.ok ? r.json() : {})).catch(() => ({}));
+  return bodyIndex;
+}
+// opts.height: stand this tall (else its own size)
+export async function spawnBody(name, opts = {}) {
+  const index = await bodyIndexReady();
+  const entry = index[name];
+  if (!entry) throw new Error(`no body ${name}`);
+  if (!bodyCache.has(name)) bodyCache.set(name, load(`bodies/${name}.glb`));
+  const s = opts.height ? opts.height / (entry.height || 1) : 1;
+  return actorFrom(await bodyCache.get(name), s, opts);
+}
+
+function actorFrom(gltf, scale, opts) {
   const root = SkeletonUtils.clone(gltf.scene);
   root.traverse(o => {
     if (o.isMesh) {
@@ -253,7 +274,7 @@ export async function spawnMob(name, opts = {}) {
       if (opts.tint) o.material.color.multiply(new THREE.Color(opts.tint));
     }
   });
-  root.scale.setScalar(opts.height || 1);
+  root.scale.setScalar(scale);
   const clips = new Map(gltf.animations.map(c => [c.name, c]));
   return new Actor(root, clips, aliasFor([...clips.keys()]));
 }

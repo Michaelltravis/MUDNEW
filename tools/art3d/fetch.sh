@@ -75,5 +75,9 @@ oga "cute_animated_monsters_-_aug_2020.zip" quaternius-cute-monsters
 oga "Animal%20Pack%20Vol.2%20by%20%40Quaternius.zip" quaternius-animals-2
 oga "Animals%20Pack%20by%20Quaternius.zip" quaternius-animals
 oga "Farm%20Animals%20by%20%40Quaternius.zip" quaternius-farm
+# Animated Monster Pack (dragon, bat, slime, skeleton) and the Ultimate Animated Character Pack
+# (its goblins and zombies; the rest are chibi townsfolk that don't fit the KayKit look)
+oga "Animated%20Monster%20Pack%20by%20%40Quaternius.zip" quaternius-monsters
+oga "ultimate_animated_character_pack_by_quaternius.zip" quaternius-characters
 
 echo "cache ready: $CACHE"

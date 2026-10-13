@@ -12,6 +12,9 @@
 //   mob   - an animated creature from an FBX (Quaternius packs): converted with FBX2glTF,
 //           its texture attached, turned to face +Z, scaled to 1 m tall with its feet at
 //           the origin, animation names cleaned ("MonsterArmature|Walk" -> "Walk")
+//   blend - a model made in Blender by tools/art3d/blender (run.sh models/<name>.py): its .glb
+//           and sidecar .json from blender/out, optimised into art3d/bodies/ with an index.json.
+//           Only these:   node build.mjs blend [name]
 import fs from 'node:fs';
 import os from 'node:os';
 import { spawnSync } from 'node:child_process';
@@ -22,7 +25,9 @@ import { dedup, prune, weld, resample, meshopt, textureCompress, mergeDocuments,
 import { MeshoptEncoder, MeshoptDecoder } from 'meshoptimizer';
 import sharp from 'sharp';
 
-const CACHE = path.resolve(process.argv[2] || '.cache');
+const BLEND_ONLY = process.argv[2] === 'blend';
+const CACHE = path.resolve(BLEND_ONLY ? '.cache' : (process.argv[2] || '.cache'));
+const BLEND = path.resolve(path.dirname(new URL(import.meta.url).pathname), 'blender/out');
 const OUT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../src/web_isometric/art3d');
 
 const ADV = 'kaykit-adventurers/addons/kaykit_character_pack_adventures/Characters/gltf';
@@ -48,6 +53,8 @@ const CUTE = 'quaternius-cute-monsters/Cute Animated Monsters - Aug 2020';
 const ANV2 = 'quaternius-animals-2/Animal Pack Vol.2 by @Quaternius';
 const ANV1 = 'quaternius-animals/Animals Pack by Quaternius';
 const FARM = 'quaternius-farm/Farm Animals by @Quaternius';
+const QMON = 'quaternius-monsters/Animated Monster Pack by @Quaternius';
+const QCHR = 'quaternius-characters/Ultimate Animated Character Pack - Nov 2019';
 // yaw (radians) turns each model to face +Z, the way the client points every actor
 const MOBS = [
   ...['Alien', 'Alien_Tall', 'Bat', 'Bee', 'Cactus', 'Chicken', 'Crab', 'Cthulhu', 'Cyclops', 'Deer', 'Demon',
@@ -58,6 +65,14 @@ const MOBS = [
     .map(([n, k]) => ({ name: k, fbx: `${ANV1}/FBX/${n}.fbx`, yaw: 0 })),
   ...['Cow', 'Horse', 'Llama', 'Pig', 'Pug', 'Sheep', 'Zebra']
     .map(n => ({ name: n === 'Pig' ? 'farm_pig' : n.toLowerCase(), fbx: `${FARM}/FBX/${n}.fbx`, yaw: 0 })),
+  // their clips are named for the model ("Dragon_Flying"): renamed to the names assets.js maps
+  // (these two packs' FBX colours come through linearised twice: gamma undoes one)
+  ...['Dragon', 'Bat', 'Slime'].map(n => ({ name: `q_${n.toLowerCase()}`, fbx: `${QMON}/FBX/${n}.fbx`, yaw: 0, gamma: true,
+    rename: { [`${n}_Flying`]: 'Flying', [`${n}_Idle`]: 'Idle', [`${n}_Walk`]: 'Walk', [`${n}_Attack`]: 'Bite_Front',
+      [`${n}_Attack2`]: 'Bite_InPlace', [`${n}_Hit`]: 'HitRecieve', [`${n}_Death`]: 'Death' } })),
+  ...[['Goblin_Male', 'goblin_m'], ['Goblin_Female', 'goblin_f'], ['Zombie_Male', 'zombie_m'], ['Zombie_Female', 'zombie_f']]
+    .map(([n, k]) => ({ name: k, fbx: `${QCHR}/FBX/${n}.fbx`, yaw: 0, gamma: true,
+      rename: { Punch: 'Bite_Front', RecieveHit: 'HitRecieve', Victory: 'Jump', Idle: 'Idle', Walk: 'Walk' } })),   // 'Defeat' kneels: no death clip, so corpse.js tips them over
 ];
 const MOB_YAW = JSON.parse(fs.existsSync(new URL('./mob-yaw.json', import.meta.url)) ? fs.readFileSync(new URL('./mob-yaw.json', import.meta.url), 'utf8') : '{}');
 
@@ -100,6 +115,7 @@ const JOBS = [
 
 function findFile(dir, key) {
   for (const f of [`${key}.gltf.glb`, `${key}.glb`]) if (fs.existsSync(path.join(CACHE, dir, f))) return `${dir}/${f}`;
+  if (BLEND_ONLY || process.argv[3]) return null;   // building only some files: other packs may be absent
   throw new Error(`missing ${dir}/${key}`);
 }
 
@@ -418,7 +434,7 @@ async function buildEquip(job) {
 }
 
 // each source pack's licence travels with the built files
-const LICENCES = {
+const LICENCES = BLEND_ONLY ? {} : {
   'kaykit-adventurers.txt': 'kaykit-adventurers/addons/kaykit_character_pack_adventures/LICENSE.txt',
   'kaykit-skeletons.txt': 'kaykit-skeletons/addons/kaykit_character_pack_skeletons/LICENSE.txt',
   'kaykit-dungeon-remastered.txt': 'kaykit-dungeon/addons/kaykit_dungeon_remastered/Assets/LICENSE.txt',
@@ -427,9 +443,20 @@ const LICENCES = {
   'kaykit-medieval-hexagon.txt': 'kaykit-hexagon/addons/kaykit_medieval_hexagon_pack/LICENSE.txt',
   'kaykit-furniture-bits.txt': 'kaykit-furniture/addons/kaykit_furniture_bits/Assets/LICENSE.txt',
   'kaykit-halloween-bits.txt': 'kaykit-halloween/addons/kaykit_halloween_bits/Assets/LICENSE.txt',
+  'quaternius-animated-monster-pack.txt': 'quaternius-monsters/Animated Monster Pack by @Quaternius/License.txt',
 };
+// the Blender models: every .json sidecar blender/out holds (build them with blender/run.sh first)
+if (fs.existsSync(BLEND)) {
+  for (const f of fs.readdirSync(BLEND).filter(f => f.endsWith('.json')).sort()) {
+    const side = JSON.parse(fs.readFileSync(path.join(BLEND, f), 'utf8'));
+    if (fs.existsSync(path.join(BLEND, `${side.name}.glb`))) JOBS.push({ kind: 'blend', side, out: `bodies/${side.name}.glb` });
+  }
+}
 fs.mkdirSync(path.join(OUT, 'licenses'), { recursive: true });
-for (const [dst, src] of Object.entries(LICENCES)) fs.copyFileSync(path.join(CACHE, src), path.join(OUT, 'licenses', dst));
+for (const [dst, src] of Object.entries(LICENCES)) {
+  if (fs.existsSync(path.join(CACHE, src))) fs.copyFileSync(path.join(CACHE, src), path.join(OUT, 'licenses', dst));
+  else if (!process.argv[3]) throw new Error(`missing licence ${src}`);
+}
 
 // ---- animated creatures from FBX ----
 const FBX2GLTF = path.resolve(path.dirname(new URL(import.meta.url).pathname),
@@ -451,7 +478,20 @@ async function buildMob(job) {
     for (const m of root.listMaterials()) m.setBaseColorTexture(tex).setBaseColorFactor([1, 1, 1, 1]);
   }
   for (const m of root.listMaterials()) m.setMetallicFactor(0).setRoughnessFactor(0.85);
+  if (job.gamma) {
+    for (const m of root.listMaterials()) {
+      const [r, g, b, a] = m.getBaseColorFactor();
+      m.setBaseColorFactor([r ** (1 / 2.2), g ** (1 / 2.2), b ** (1 / 2.2), a]);
+    }
+  }
   for (const a of root.listAnimations()) a.setName(a.getName().replace(/^.*\|/, '').replace(/\.\d+$/, (x) => x));
+  // a job's renames; with renames, the clips it doesn't name are dropped (sitting down, carrying...)
+  if (job.rename) {
+    for (const a of root.listAnimations()) {
+      const to = job.rename[a.getName()];
+      if (to) a.setName(to); else dropAnimation(a);
+    }
+  }
   // face +Z, feet on the ground, 1 m tall
   const scene = root.getDefaultScene() || root.listScenes()[0];
   const holder = doc.createNode(job.name);
@@ -471,11 +511,24 @@ async function buildMob(job) {
 }
 const MOB_INDEX = {};
 
+async function buildBlend(job) {
+  const doc = await io.read(path.join(BLEND, `${job.side.name}.glb`));
+  const root = doc.getRoot();
+  for (const m of root.listMaterials()) m.setMetallicFactor(0).setRoughnessFactor(0.85);
+  await doc.transform(resample(), weld());
+  BODY_INDEX[job.side.name] = { kind: job.side.kind, anims: root.listAnimations().map(a => a.getName()),
+    tris: job.side.tris, height: job.side.height, ...(job.side.for ? { for: job.side.for } : {}) };
+  return finish(doc, job);
+}
+const BODY_INDEX = {};
+
 const only = process.argv[3];
 for (const job of JOBS) {
   if (only && !job.out.includes(only)) continue;
+  if (BLEND_ONLY && job.kind !== 'blend') continue;
   const size = job.kind === 'char' ? await buildChar(job) : job.kind === 'anims' ? await buildAnims(job)
-    : job.kind === 'mob' ? await buildMob(job) : job.kind === 'equip' ? await buildEquip(job) : await buildKit(job);
+    : job.kind === 'mob' ? await buildMob(job) : job.kind === 'equip' ? await buildEquip(job)
+    : job.kind === 'blend' ? await buildBlend(job) : await buildKit(job);
   console.log(`${job.out}  ${(size / 1024).toFixed(0)} KB`);
 }
 // the client's creature registry reads each model's clip names from here
@@ -484,10 +537,17 @@ if (Object.keys(MOB_INDEX).length) {
   const prev = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
   fs.writeFileSync(file, JSON.stringify({ ...prev, ...MOB_INDEX }, null, 1));
 }
+// the client reads which Blender bodies exist, and their clips, from here
+if (Object.keys(BODY_INDEX).length) {
+  const file = path.join(OUT, 'bodies', 'index.json');
+  const prev = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
+  fs.writeFileSync(file, JSON.stringify({ ...prev, ...BODY_INDEX }, null, 1));
+}
 // packs that ship without a licence file: record the licence stated on their OpenGameArt page
 const NOTE = (name, url) => `${name} by Quaternius (quaternius.com)\nLicence: CC0 1.0 Universal (public domain dedication), as stated at ${url}\n`;
 for (const [f, n, u] of [
   ['quaternius-cute-animated-monsters.txt', 'Cute Animated Monsters (Aug 2020)', 'https://opengameart.org/content/textured-cute-monster-pack'],
   ['quaternius-animal-pack-vol2.txt', 'Animal Pack Vol.2', 'https://opengameart.org/content/animated-animales-low-poly'],
   ['quaternius-animals-pack.txt', 'Animals Pack', 'https://opengameart.org/content/5-low-poly-animals'],
+  ['quaternius-ultimate-animated-character-pack.txt', 'Ultimate Animated Character Pack (Nov 2019)', 'https://opengameart.org/content/animated-characters-pack'],
 ]) fs.writeFileSync(path.join(OUT, 'licenses', f), NOTE(n, u));

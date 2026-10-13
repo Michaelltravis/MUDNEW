@@ -344,5 +344,67 @@
    "Walk",
    "WalkSlow"
   ]
+ },
+ "q_dragon": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Death",
+   "Flying",
+   "HitRecieve"
+  ]
+ },
+ "q_bat": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Death",
+   "Flying",
+   "HitRecieve"
+  ]
+ },
+ "q_slime": {
+  "anims": [
+   "Bite_Front",
+   "Death",
+   "Idle",
+   "Walk"
+  ]
+ },
+ "goblin_m": {
+  "anims": [
+   "Idle",
+   "Bite_Front",
+   "HitRecieve",
+   "Jump",
+   "Walk"
+  ]
+ },
+ "goblin_f": {
+  "anims": [
+   "Idle",
+   "Bite_Front",
+   "HitRecieve",
+   "Jump",
+   "Walk"
+  ]
+ },
+ "zombie_m": {
+  "anims": [
+   "Idle",
+   "Bite_Front",
+   "HitRecieve",
+   "Jump",
+   "Walk"
+  ]
+ },
+ "zombie_f": {
+  "anims": [
+   "Idle",
+   "Bite_Front",
+   "HitRecieve",
+   "Jump",
+   "Walk"
+  ]
  }
 }

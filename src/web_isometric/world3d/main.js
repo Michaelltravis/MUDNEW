@@ -63,6 +63,7 @@ async function runDemo() {
       : g === 'gear' ? await showGearGallery(engine)
       : g === 'corpses' ? await (await import('./gallery.js')).showCorpseGallery(engine, kits)
       : g === 'wards' ? await (await import('./gallery.js')).showWardGallery(engine)
+      : g === 'bodies' ? await (await import('./gallery.js')).showBodyGallery(engine)
       : g === 'icons' ? (await showIconGallery()) || new THREE.Vector3()
       : g === 'sounds' ? (await showSoundGallery()) || new THREE.Vector3()
       : g === 'rooms' ? (await import('./demo.js')).buildLooksGallery(engine, kits)

@@ -86,8 +86,10 @@ export const KIN_SAMPLES = ['a lean grey wolf', 'a black dire wolf', 'a tawny pr
   'a green slime', 'a grey ooze', 'a giant river frog', 'a pale moon jellyfish', 'a giant clam', 'a gelatinous cube'];
 
 export async function showBeastGallery(engine, kits, samples = SAMPLES) {
-  const only = new URLSearchParams(location.search).get('only');
-  const list = [{ short: 'the knight (hero)' }, ...samples.map(s => typeof s === 'string' ? { short: s } : s)]
+  const q = new URLSearchParams(location.search), only = q.get('only');
+  // &add=a goblin,the vampire bat: more descriptions to show (&add alone, with &only=, to see just those)
+  const add = (q.get('add') || '').split(',').map(s => s.trim()).filter(Boolean);
+  const list = [{ short: 'the knight (hero)' }, ...[...samples, ...add].map(s => typeof s === 'string' ? { short: s } : s)]
     .filter(m => !only || only.split(',').some(o => m.short.toLowerCase().includes(o)));
   const cols = 10, step = 3.2, rows = Math.ceil(list.length / cols);
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, rows * step * 1.4 + 6), new THREE.MeshStandardMaterial({ color: 0x6f7a5a, roughness: 1 }));
@@ -480,4 +482,50 @@ export async function showWardGallery(engine) {
   window.MH3D_gallery = { actors, wards, fx };
   engine.setMood('day', true);
   return new THREE.Vector3((cols - 1) * step / 2, 0, gap / 2);
+}
+
+// /play?demo&gallery=bodies[&only=a,b] — the models made in Blender (tools/art3d/blender, art3d/bodies)
+// at their own size beside a 1.8 m post, each playing its clips in turn (the clip's name under it).
+export async function showBodyGallery(engine) {
+  const { bodyIndexReady, spawnBody } = await import('./assets.js');
+  const index = await bodyIndexReady();
+  const only = new URLSearchParams(location.search).get('only');
+  const names = Object.keys(index).sort().filter(n => !only || only.split(',').includes(n));
+  const step = 4, cols = Math.max(1, Math.min(6, names.length));
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 8, Math.ceil(names.length / cols) * step + 8),
+    new THREE.MeshStandardMaterial({ color: 0x6d6a60, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.set((cols - 1) * step / 2, 0, (Math.ceil(names.length / cols) - 1) * step / 2);
+  floor.receiveShadow = true;
+  engine.scene.add(floor);
+  const post = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.8, 0.08), new THREE.MeshStandardMaterial({ color: 0xd8c8a0 }));
+  post.position.set(-1.6, 0.9, 0);
+  engine.scene.add(post);
+  const shown = [], labels = [];
+  for (let i = 0; i < names.length; i++) {
+    const a = await spawnBody(names[i]);
+    a.root.position.set((i % cols) * step, 0, Math.floor(i / cols) * step);
+    engine.scene.add(a.root);
+    const el = document.createElement('div');
+    el.style.cssText = 'position:fixed;left:0;top:0;font:11px sans-serif;color:#fff;background:#000a;padding:1px 4px;border-radius:3px;pointer-events:none;white-space:nowrap;z-index:50';
+    document.body.appendChild(el);
+    labels.push({ el, at: a.root.position.clone().setZ(a.root.position.z + 1.3) });
+    shown.push({ a, name: names[i], clips: index[names[i]].anims || ['Idle'], at: 0, t: 0, el });
+  }
+  const v = new THREE.Vector3();
+  const play = s => { const c = s.clips[s.at % s.clips.length]; s.a.play(c, 0.2, 1); s.el.textContent = `${s.name} · ${c}`; s.t = 0; };
+  shown.forEach(play);
+  engine.onTick(dt => {
+    for (const s of shown) { s.a.update(dt); if ((s.t += dt) > 2.6) { s.at++; play(s); } }
+    const cv = engine.renderer.domElement.getBoundingClientRect();
+    for (const l of labels) {
+      v.copy(l.at).project(engine.camera);
+      l.el.style.display = v.z > 1 ? 'none' : '';
+      l.el.style.transform = `translate(${(cv.left + (v.x + 1) / 2 * cv.width).toFixed(0)}px, ${(cv.top + (1 - v.y) / 2 * cv.height).toFixed(0)}px) translate(-50%, 0)`;
+    }
+  });
+  window.MH3D_gallery = { bodies: shown };
+  console.log('body gallery:', names.join(', '));
+  engine.setMood('day', true);
+  return new THREE.Vector3((cols - 1) * step / 2, 0, (Math.ceil(names.length / cols) - 1) * step / 2);
 }

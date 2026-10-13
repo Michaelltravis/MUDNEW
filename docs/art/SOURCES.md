@@ -63,6 +63,8 @@ stored once, meshopt-compressed).
 | Animal Pack Vol.2 | Quaternius | wolf, dog, cat, eagle, piranha (FBX) | https://opengameart.org/content/animated-animales-low-poly |
 | Animals Pack | Quaternius | fox, fish, bird, chick, whale (FBX) | https://opengameart.org/content/5-low-poly-animals |
 | Farm Animals | Quaternius | cow, horse, zebra, llama, pig, pug, sheep (FBX) | https://opengameart.org/content/lowpoly-animated-farm-animal-pack |
+| Animated Monster Pack | Quaternius | dragon (young dragons), bat, slime (FBX) | https://opengameart.org/content/lowpoly-animated-monsters |
+| Ultimate Animated Character Pack (Nov 2019) | Quaternius | goblins and zombies, male and female (FBX; the pack's chibi townsfolk with black faces don't fit the KayKit look and are left out) | https://opengameart.org/content/animated-characters-pack |
 
 | KayKit Medieval Hexagon 1.0 | Kay Lousberg | town houses, tavern, smithy, church, market, towers, wells, town walls, street props (64 used) | https://kaylousberg.itch.io/kaykit-medieval-hexagon (mirror: github.com/KayKit-Game-Assets/KayKit-Medieval-Hexagon-Pack-1.0) |
 | KayKit Furniture Bits 1.0 | Kay Lousberg | beds, tables, chairs, shelves, cabinets, rugs, lamps, books, pictures (all 53) | https://kaylousberg.itch.io/furniture-bits (mirror: github.com/KayKit-Game-Assets/KayKit-Furniture-Bits-1.0) |
@@ -91,5 +93,10 @@ this environment — "quota exceeded" — so the OpenGameArt packs above are use
 Build notes: the nature kit's COLOR_0 (wind masks for Quaternius' own shader) is dropped
 because glTF multiplies it into the colour; its bushes use the twisted tree's autumn-red leaf
 atlas, which the build remixes to green; normal maps are dropped and textures resized to 512.
-Candidates for later milestones (CC0): Quaternius Animated Monster Pack (OpenGameArt), KayKit
-Medieval Hexagon, Halloween Bits and Furniture Bits (GitHub mirrors).
+Those two packs' FBX colours come through linearised twice; the build undoes one (`gamma`), and
+renames their clips to the names `assets.js` maps (dropping the rest). Creatures normally get a
+body built in code (kin.js); a `prefer`red bestiary entry keeps the pack model instead (goblins,
+zombies, bats, young dragons, slimes).
+Models we make ourselves in Blender: see STYLE3D.md (art3d/bodies).
+Another CC0 candidate: isaiah658's "50+ Monsters Pack 3D" (OpenGameArt, static OBJ, would need
+rigging in Blender).
