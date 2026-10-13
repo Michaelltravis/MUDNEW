@@ -9055,7 +9055,7 @@
    "zone": 505,
    "atlas_area": 105,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 107,
    "steps_from_temple": 86,
    "terrain": [
@@ -9064,126 +9064,20 @@
      107
     ]
    ],
-   "creatures": 0,
+   "creatures": 25,
    "items": 0,
    "bosses": [],
    "services": [],
-   "level_band": null,
+   "level_band": {
+    "min": 34,
+    "median": 36,
+    "max": 44
+   },
    "needs": [
-    "descriptions for 107 rooms",
-    "creatures",
     "items",
     "a boss"
    ],
-   "need_description": [
-    24830,
-    24831,
-    24832,
-    24833,
-    24834,
-    24835,
-    24836,
-    24837,
-    24838,
-    24839,
-    24840,
-    24841,
-    24842,
-    24843,
-    24844,
-    24845,
-    24846,
-    24847,
-    24848,
-    24849,
-    24850,
-    24851,
-    24853,
-    24854,
-    24855,
-    24856,
-    24857,
-    24858,
-    24859,
-    24860,
-    24861,
-    24862,
-    24863,
-    24864,
-    24865,
-    24866,
-    24867,
-    24868,
-    24870,
-    24871,
-    24872,
-    24873,
-    24874,
-    24875,
-    24876,
-    24877,
-    24878,
-    24879,
-    24880,
-    24881,
-    24882,
-    24883,
-    24884,
-    24885,
-    24886,
-    24887,
-    24888,
-    24889,
-    24890,
-    24891,
-    24892,
-    24893,
-    24894,
-    24895,
-    24896,
-    24897,
-    24898,
-    24899,
-    24940,
-    24957,
-    24958,
-    24959,
-    24960,
-    24961,
-    24962,
-    24963,
-    24964,
-    24998,
-    224801,
-    224802,
-    224803,
-    224804,
-    224805,
-    224806,
-    224807,
-    224808,
-    224809,
-    224810,
-    224811,
-    224812,
-    224813,
-    224814,
-    224815,
-    224816,
-    224817,
-    224818,
-    224819,
-    224820,
-    224821,
-    224822,
-    224823,
-    224824,
-    224825,
-    224826,
-    224827,
-    224828,
-    224829
-   ],
+   "need_description": [],
    "links": {
     "501": [
      "Entrance To The Lost Crypt (224801) up to The Graveyard Of Aredrel Dwarven (224800)"
@@ -9193,53 +9087,323 @@
      "At The Narrow Stairway (24964) down to End Of The Narrow Stairway (24965)"
     ]
    },
-   "one_way": [
-    "24857 north -> 24890",
-    "24866 north -> 24889",
-    "24889 north -> 24857",
-    "224825 north -> 224827"
-   ],
-   "no_exits": [
-    24830,
-    24831,
-    24832,
-    24833,
-    24834,
-    24835,
-    24836,
-    24837,
-    24840,
-    24841,
-    24842,
-    24843,
-    24844,
-    24845,
-    24846,
-    24847,
-    224826,
-    224827,
-    224828,
-    224829
-   ],
+   "one_way": [],
+   "no_exits": [],
    "locked_doors_left_unlocked": [
     "24864 east"
    ],
    "water_rooms": [],
-   "connections_added": [],
-   "suggested_band": {
-    "min": 30,
-    "median": 35,
-    "max": 40
-   }
+   "connections_added": [
+    {
+     "from": 224827,
+     "dir": "south",
+     "to": 224825,
+     "why": "the way back"
+    },
+    {
+     "from": 24830,
+     "dir": "south",
+     "to": 224827,
+     "why": "map neighbour"
+    },
+    {
+     "from": 224827,
+     "dir": "north",
+     "to": 24830,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24960,
+     "dir": "south",
+     "to": 24849,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24849,
+     "dir": "north",
+     "to": 24960,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24963,
+     "dir": "east",
+     "to": 24849,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24849,
+     "dir": "west",
+     "to": 24963,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24964,
+     "dir": "south",
+     "to": 24870,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24870,
+     "dir": "north",
+     "to": 24964,
+     "why": "map neighbour"
+    },
+    {
+     "from": 224826,
+     "dir": "west",
+     "to": 224827,
+     "why": "map neighbour"
+    },
+    {
+     "from": 224827,
+     "dir": "east",
+     "to": 224826,
+     "why": "map neighbour"
+    },
+    {
+     "from": 224828,
+     "dir": "east",
+     "to": 224827,
+     "why": "map neighbour"
+    },
+    {
+     "from": 224827,
+     "dir": "west",
+     "to": 224828,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24831,
+     "dir": "west",
+     "to": 24830,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24830,
+     "dir": "east",
+     "to": 24831,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24847,
+     "dir": "south",
+     "to": 24848,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24848,
+     "dir": "north",
+     "to": 24847,
+     "why": "map neighbour"
+    },
+    {
+     "from": 224829,
+     "dir": "east",
+     "to": 24830,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24830,
+     "dir": "west",
+     "to": 224829,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24832,
+     "dir": "west",
+     "to": 24831,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24831,
+     "dir": "east",
+     "to": 24832,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24846,
+     "dir": "south",
+     "to": 24847,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24847,
+     "dir": "north",
+     "to": 24846,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24833,
+     "dir": "west",
+     "to": 24832,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24832,
+     "dir": "east",
+     "to": 24833,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24845,
+     "dir": "west",
+     "to": 24846,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24846,
+     "dir": "east",
+     "to": 24845,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24834,
+     "dir": "west",
+     "to": 24833,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24833,
+     "dir": "east",
+     "to": 24834,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24844,
+     "dir": "west",
+     "to": 24845,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24845,
+     "dir": "east",
+     "to": 24844,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24835,
+     "dir": "west",
+     "to": 24834,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24834,
+     "dir": "east",
+     "to": 24835,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24843,
+     "dir": "west",
+     "to": 24844,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24844,
+     "dir": "east",
+     "to": 24843,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24836,
+     "dir": "west",
+     "to": 24835,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24835,
+     "dir": "east",
+     "to": 24836,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24842,
+     "dir": "west",
+     "to": 24843,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24843,
+     "dir": "east",
+     "to": 24842,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24837,
+     "dir": "west",
+     "to": 24836,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24836,
+     "dir": "east",
+     "to": 24837,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24841,
+     "dir": "west",
+     "to": 24842,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24842,
+     "dir": "east",
+     "to": 24841,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24840,
+     "dir": "west",
+     "to": 24841,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24841,
+     "dir": "east",
+     "to": 24840,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24838,
+     "dir": "south",
+     "to": 24840,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24840,
+     "dir": "north",
+     "to": 24838,
+     "why": "map neighbour"
+    },
+    {
+     "from": 24889,
+     "dir": "south",
+     "to": 24866,
+     "why": "the way back"
+    },
+    {
+     "from": 24857,
+     "dir": "south",
+     "to": 24889,
+     "why": "the way back"
+    },
+    {
+     "from": 24890,
+     "dir": "south",
+     "to": 24857,
+     "why": "the way back"
+    }
+   ]
   },
   "507": {
    "name": "Lost Crypt II",
    "zone": 507,
    "atlas_area": 107,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 84,
-   "steps_from_temple": 90,
+   "steps_from_temple": 89,
    "terrain": [
     [
      "inside",
@@ -9250,103 +9414,20 @@
      1
     ]
    ],
-   "creatures": 0,
+   "creatures": 23,
    "items": 0,
    "bosses": [],
    "services": [],
-   "level_band": null,
+   "level_band": {
+    "min": 37,
+    "median": 39,
+    "max": 46
+   },
    "needs": [
-    "descriptions for 84 rooms",
-    "creatures",
     "items",
     "a boss"
    ],
-   "need_description": [
-    24900,
-    24901,
-    24902,
-    24903,
-    24904,
-    24905,
-    24906,
-    24907,
-    24908,
-    24909,
-    24910,
-    24911,
-    24912,
-    24913,
-    24914,
-    24915,
-    24916,
-    24917,
-    24918,
-    24919,
-    24920,
-    24921,
-    24922,
-    24923,
-    24924,
-    24925,
-    24926,
-    24927,
-    24928,
-    24929,
-    24930,
-    24931,
-    24932,
-    24933,
-    24934,
-    24935,
-    24936,
-    24937,
-    24938,
-    24939,
-    24941,
-    24942,
-    24943,
-    24944,
-    24945,
-    24946,
-    24950,
-    24951,
-    24952,
-    24953,
-    24954,
-    24955,
-    24965,
-    24966,
-    24967,
-    24968,
-    24969,
-    24970,
-    24971,
-    24972,
-    24973,
-    24974,
-    24975,
-    24976,
-    24977,
-    24978,
-    24979,
-    24980,
-    24981,
-    24982,
-    24983,
-    24984,
-    24985,
-    24986,
-    24987,
-    24988,
-    24989,
-    24990,
-    24991,
-    24992,
-    24993,
-    24994,
-    24995,
-    24996
-   ],
+   "need_description": [],
    "links": {
     "501": [
      "The Rift Of Garzuk (24955) north to The Graveyard Of Aredrel Dwarven (224800)"
@@ -9358,22 +9439,15 @@
    },
    "one_way": [
     "24913 east -> 24910",
-    "24925 north -> 24920",
     "24932 west -> 24938",
     "24938 west -> 24920",
-    "24950 west -> 24951",
-    "24951 west -> 24952",
-    "24952 west -> 24953",
-    "24953 west -> 24954",
     "24955 north -> 224800",
     "24965 down -> 24965",
     "24979 east -> 24980",
     "24984 south -> 24969",
     "24988 west -> 24986"
    ],
-   "no_exits": [
-    24920
-   ],
+   "no_exits": [],
    "locked_doors_left_unlocked": [
     "24913 west",
     "24935 west",
@@ -9383,12 +9457,38 @@
     "24995 north"
    ],
    "water_rooms": [],
-   "connections_added": [],
-   "suggested_band": {
-    "min": 30,
-    "median": 35,
-    "max": 40
-   }
+   "connections_added": [
+    {
+     "from": 24951,
+     "dir": "east",
+     "to": 24950,
+     "why": "the way back"
+    },
+    {
+     "from": 24952,
+     "dir": "east",
+     "to": 24951,
+     "why": "the way back"
+    },
+    {
+     "from": 24953,
+     "dir": "east",
+     "to": 24952,
+     "why": "the way back"
+    },
+    {
+     "from": 24954,
+     "dir": "east",
+     "to": 24953,
+     "why": "the way back"
+    },
+    {
+     "from": 24920,
+     "dir": "south",
+     "to": 24925,
+     "why": "the way back"
+    }
+   ]
   },
   "508": {
    "name": "Durmandel II",
@@ -10253,52 +10353,20 @@
      3
     ]
    ],
-   "creatures": 0,
+   "creatures": 13,
    "items": 0,
    "bosses": [],
    "services": [],
-   "level_band": null,
+   "level_band": {
+    "min": 46,
+    "median": 50,
+    "max": 55
+   },
    "needs": [
-    "descriptions for 33 rooms",
-    "creatures",
     "items",
     "a boss"
    ],
-   "need_description": [
-    13811,
-    13849,
-    13850,
-    13851,
-    13852,
-    13853,
-    13854,
-    13855,
-    13856,
-    13857,
-    13858,
-    13859,
-    13862,
-    13863,
-    13864,
-    13865,
-    13866,
-    13867,
-    13868,
-    13869,
-    13870,
-    13871,
-    13872,
-    13873,
-    13874,
-    13875,
-    13876,
-    13877,
-    13878,
-    13879,
-    13880,
-    13881,
-    13882
-   ],
+   "need_description": [],
    "links": {
     "512": [
      "A Glowing Tunnel (13863) up to The Granite Stairs (13699)"
@@ -10460,7 +10528,7 @@
    "zone": 519,
    "atlas_area": 119,
    "status": "atlas-only",
-   "state": "sealed until built",
+   "state": "open",
    "rooms": 100,
    "steps_from_temple": 60,
    "terrain": [
@@ -10473,119 +10541,20 @@
      1
     ]
    ],
-   "creatures": 0,
+   "creatures": 26,
    "items": 0,
    "bosses": [],
    "services": [],
-   "level_band": null,
+   "level_band": {
+    "min": 22,
+    "median": 24,
+    "max": 31
+   },
    "needs": [
-    "descriptions for 100 rooms",
-    "creatures",
     "items",
     "a boss"
    ],
-   "need_description": [
-    3400,
-    3401,
-    3402,
-    3403,
-    3404,
-    3405,
-    3406,
-    3407,
-    3408,
-    3409,
-    3410,
-    3411,
-    3412,
-    3413,
-    3414,
-    3415,
-    3416,
-    3417,
-    3418,
-    3419,
-    3420,
-    3421,
-    3422,
-    3423,
-    3424,
-    3425,
-    3426,
-    3427,
-    3428,
-    3429,
-    3430,
-    3431,
-    3432,
-    3433,
-    3434,
-    3435,
-    3436,
-    3437,
-    3438,
-    3439,
-    3440,
-    3441,
-    3442,
-    3443,
-    3444,
-    3445,
-    3446,
-    3447,
-    3448,
-    3449,
-    3450,
-    3451,
-    3452,
-    3453,
-    3454,
-    3455,
-    3456,
-    3457,
-    3458,
-    3459,
-    3460,
-    3461,
-    3462,
-    3463,
-    3464,
-    3465,
-    3466,
-    3467,
-    3468,
-    3469,
-    3470,
-    3471,
-    3472,
-    3473,
-    3474,
-    3475,
-    3476,
-    3477,
-    3478,
-    3479,
-    3480,
-    3481,
-    3482,
-    3483,
-    3484,
-    3485,
-    3486,
-    3487,
-    3488,
-    3489,
-    3490,
-    3491,
-    3492,
-    3493,
-    3494,
-    3495,
-    3496,
-    3497,
-    3498,
-    3499
-   ],
+   "need_description": [],
    "links": {
     "436": [
      "A Shady Path (3400) south to A Colorful Park (105847)"
@@ -10595,19 +10564,25 @@
     ]
    },
    "one_way": [
-    "3409 down -> 3414",
-    "3448 down -> 3463",
     "3497 down -> 12302"
    ],
    "no_exits": [],
    "locked_doors_left_unlocked": [],
    "water_rooms": [],
-   "connections_added": [],
-   "suggested_band": {
-    "min": 13,
-    "median": 18,
-    "max": 23
-   }
+   "connections_added": [
+    {
+     "from": 3414,
+     "dir": "up",
+     "to": 3409,
+     "why": "the way back"
+    },
+    {
+     "from": 3463,
+     "dir": "up",
+     "to": 3448,
+     "why": "the way back"
+    }
+   ]
   },
   "520": {
    "name": "Warded Castle",
@@ -10974,6 +10949,7 @@
   521,
   68,
   496,
+  519,
   475,
   220,
   495,
@@ -10998,6 +10974,8 @@
   290,
   295,
   454,
+  505,
+  507,
   502,
   481,
   300,
@@ -11005,10 +10983,7 @@
   503,
   508,
   12,
-  519,
-  505,
   520,
-  507,
   509,
   512,
   515,

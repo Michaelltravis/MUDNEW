@@ -1,0 +1,582 @@
+{
+ "job": "z507",
+ "rooms": {
+  "24900": {
+   "description": "A low vaulted tunnel of black stone, its floor worn into two shallow troughs by countless dragging feet. A heavy door of iron-banded oak stands open in the east wall, and a dry, sour draught leaks through it from the passage beyond. Red light creeps in from somewhere ahead, painting the damp ceiling the colour of old blood. The tunnel runs on west into a heavier cold.",
+   "look": "crypt"
+  },
+  "24901": {
+   "description": "Burial niches line both walls of this narrow tunnel, stacked three high, most of them gaping and empty. Scraps of grey linen and a scatter of knuckle bones crunch underfoot. The air is bitterly cold here, yet a faint warmth breathes from the far end, where the tunnel opens out to the west. The way back east is a dark mouth ringed with soot.",
+   "look": "crypt"
+  },
+  "24902": {
+   "description": "The tunnel swells into a ragged round chamber where the dead have been piled in untidy heaps against the curved wall. Rusted grave-hooks hang from the ceiling on chains, and the flagstones are scored with long scratches as though something has clawed at them for centuries. A black shaft in the middle of the floor drops steeply down into a red-lit cavern below. East, the tunnel you came by is a narrow slot of shadow.",
+   "look": "crypt"
+  },
+  "24903": {
+   "description": "A broad cavern of dark, glassy stone opens beneath the lair, its roof lost in smoke-coloured gloom. Lava-light pulses faintly on the walls, and between the pillars stand rows of huge stone sarcophagi, their lids carved with faceless figures. Passages leave the cavern on three sides, east, south and west. A cold, crooked stair of rock climbs back up to the lair overhead.",
+   "look": "cave"
+  },
+  "24915": {
+   "description": "Four corridors meet here in a worn stone crossing, the flags at its centre polished by passing feet and bare of dust. Tall sarcophagi stand shoulder to shoulder against the corners, sealed with leaden bands. A red glow drifts up from somewhere below the maze and flickers over the carved lids. The ways lead north, east, south and west, and each looks as gloomy as the others.",
+   "look": "crypt"
+  },
+  "24921": {
+   "description": "A straight corridor of black stone runs through the heart of the maze, just wide enough for two to walk abreast. Stone coffins lie sunk into alcoves in the walls, their lids pushed a hand's breadth ajar. The floor is gritty with ash, and the chill is thick enough to taste. The path goes on north into dimness and back south to the crossing.",
+   "look": "crypt"
+  },
+  "24922": {
+   "description": "Here the corridor narrows, and the ceiling presses low enough to brush a tall man's hair. Names have been chiselled into the walls by long-dead hands, then scored through again with deep, angry cuts. A thin trickle of warm air smells of sulphur and hot iron. The path continues north, and south lies the way you came.",
+   "look": "crypt"
+  },
+  "24923": {
+   "description": "Part of the floor here has been pulled away, and a ragged stair of crooked steps drops into a hole beside the path. Spades with rotted handles lean against the wall, and heaped earth has dried to grey crust on the flags. A dull red light climbs out of the opening and touches the walls. The corridor keeps to its line, north and south, while the stairway winds down into the dark.",
+   "look": "crypt"
+  },
+  "24924": {
+   "description": "The walls of this stretch are pocked with hundreds of tiny niches, each holding a little clay urn sealed with wax. Some urns have burst, spilling fine pale ash that drifts about the floor in the draught. Underfoot the stone is cold as a frozen pond. North the corridor goes on toward a faint reddish glimmer, and south it returns to the middle of the maze.",
+   "look": "crypt"
+  },
+  "24925": {
+   "description": "The corridor ends in a sagging arch hung with grey threads that sway though no wind stirs. Past the arch the floor disappears into a chamber thick with tangled strands that cling to everything. A smell of damp rot and old webbing hangs in the still air. The path lies back south, and the arch opens north into the tangle.",
+   "look": "crypt"
+  },
+  "24920": {
+   "description": "Every surface of this round chamber is wrapped in a dense tangle of pale roots, rusted chain and grey webbing, hung in thick curtains from the vaulted ceiling. The strands sag and shiver as if the room itself were breathing, and each step is dragged at by a thousand clinging threads. Between the knots, glimpses of old sarcophagi show, bound fast in the mesh. A dim red glow filters through the snarl from some unseen crack.",
+   "look": "crypt"
+  },
+  "24926": {
+   "description": "Steep steps cut from raw black stone spiral downward, each one hollowed by the tread of the gravediggers who once carried the dead this way. Iron rings are set into the wall at shoulder height for a rope to steady the bearers. The air grows warmer with every turn, and an ugly red glow stains the curve of the wall. Above, the stair climbs back to the maze, while below it plunges on.",
+   "look": "crypt"
+  },
+  "24927": {
+   "description": "The stairway turns sharply here, and the walls sweat with a greasy dew that runs in thin lines to the steps. Faded marks of chalk tally the burials of forgotten years along the curving stone. Somewhere far below a slow drip falls, then silence, then falls again. Steps lead up toward the maze and down toward the heat.",
+   "look": "crypt"
+  },
+  "24928": {
+   "description": "Wedges of splintered coffin wood are jammed under a bent iron rail on this landing, as though someone once tried to stop a descent. The red glow is brighter now, and the stone under your boots is warm. Scratched into the wall in a shaking hand are the words of a prayer, half finished. The steps run up behind you and down ahead.",
+   "look": "crypt"
+  },
+  "24929": {
+   "description": "The stairway comes to an end in a small square landing floored with cracked slabs, and the cold returns like a slap. A great door of blackened bronze, studded with iron nails and etched with batwinged shapes, stands in the north wall, ajar. From beyond comes the smell of old blood and cellar earth. The stair climbs away up into the red-lit dark.",
+   "look": "crypt"
+  },
+  "24930": {
+   "description": "Beyond the bronze door a long hall of columns begins, each pillar carved as a robed figure with bared teeth. Black wax has run down the stone in thick drips from sconces where the candles have long guttered. The floor slopes gently away and the cold deepens, as though this were the throat of a great tomb. The hall stretches on north, and the door south leads back toward the stairs.",
+   "look": "crypt"
+  },
+  "24931": {
+   "description": "Long benches of stone line this part of the tunnel, scarred and stained, set before niches in which the dead are laid out in rows. Heavy dust lies in a smooth blanket over the benches, yet the central aisle is swept clean. A distant murmur rises and fades, like voices behind a wall. The tunnel runs north into the dark and south toward the bronze door.",
+   "look": "crypt"
+  },
+  "24932": {
+   "description": "A junction of tunnels where the pillars give way to bare walls hung with torn tapestries of dark crimson. Their stitched scenes show a gaunt figure feasting before crowds of kneeling peasants, and the threads are still rust-bright. Passages open east and west, while the main tunnel runs on north and returns south. The air tastes like copper.",
+   "look": "crypt"
+  },
+  "24933": {
+   "description": "A wide, round-vaulted crossing where four tunnels come together under a ceiling blackened by torch smoke. In the middle a stone basin stands dry and cracked, a dark crust coating its bowl. Bats' wings of carved basalt spread over each archway like a canopy. The tunnels lead north, east, south and west, and a faint draught of cellar cold moves between them.",
+   "look": "crypt"
+  },
+  "24934": {
+   "description": "The tunnel grows tight and ceremonial here, its walls inlaid with strips of dull silver tarnished almost black. Every few paces a stone lamp bracket holds only a smear of soot. The silence is so complete that your footsteps seem to be listened to. North, the passage opens toward a grand archway, while south it runs back to the crossing.",
+   "look": "crypt"
+  },
+  "24935": {
+   "description": "The tunnel ends before a monumental double door of black iron that stands in the west wall, its handles shaped like clutching hands. Dried flowers, brown as old leather, lie scattered before the threshold in a long-dead offering. The cold from behind the door is bitter and the red lamp glow at its seams pulses like a heartbeat. The only other way is the tunnel south, behind you.",
+   "look": "crypt"
+  },
+  "24936": {
+   "description": "The Vampire Lord's den is a vast vaulted hall roofed in black stone ribs, its floor tiled in a chequer of onyx and bone-white marble. A high throne of carved coffin lids stands upon a dais, draped with a moth-eaten crimson cloak, and braziers of red coals burn on either side. Tattered banners hang from the ribs of the ceiling, and the air is thick with the smell of cold blood. The only way out is the iron door to the east.",
+   "look": "crypt"
+  },
+  "24937": {
+   "description": "This short stub of tunnel ends in a blank wall of fitted black blocks, scrawled with the nail-scratches of the desperate. A broken stone bench is pushed into one corner, and a layer of fine grey ash covers the floor in a perfect smooth sheet. It is a dead end, and the cold here is deeper than anywhere else in the tunnel. The only passage leads back west.",
+   "look": "crypt"
+  },
+  "24938": {
+   "description": "A narrow connecting passage where the floor tilts gently and old rope fibres stick to the walls like cobwebs. Faint scrapes mark the dust, as though something were hauled along the stone in the distant past. The tunnel runs east to the junction behind you. Westward it bends toward a place where the air hangs thick with clinging threads.",
+   "look": "crypt"
+  },
+  "24939": {
+   "description": "A small, sealed-looking chamber ends this branch of the tunnel, its walls lined with narrow slabs where the dead lie in tight, silent ranks. Rusted manacles hang from a post at the middle of the floor, and the stone around them is stained a deep brown. Faint warmth seeps from a crack in the far wall, making the air feel oddly stale. The only way out is west, back to the junction.",
+   "look": "crypt"
+  },
+  "24916": {
+   "description": "A short corridor of fitted black blocks runs east from the crossing, and the cold seems to gather here in the low places. Glossy fungus grows in the seams between the stones and gives off a faint, sickly blue glimmer. The ceiling is hung with fine grey roots that tick softly against one another. West is the crossing, and east the passage narrows to its end.",
+   "look": "crypt"
+  },
+  "24917": {
+   "description": "The corridor halts against a wall carved with a huge relief of a skull wearing a crown, its eyes hollowed to dark sockets. Offerings of coins, green with age, lie heaped in the hollows beneath it, long untouched. The air is dead still and stinks of old stone dampness. Only the passage back west leads out of this dead end.",
+   "look": "crypt"
+  },
+  "24941": {
+   "description": "The path bends sharply here between two leaning sarcophagi that almost block the way, their stone lids carved with the likenesses of mourning women. Water drips from the ceiling onto one lid with a steady, mournful tick. A smear of red light trembles at the corner of the bend, throwing long shadows. The path leads north to a crossing and west to another.",
+   "look": "crypt"
+  },
+  "24918": {
+   "description": "A four-way crossing in the lower maze, its floor inlaid with a faded star of white marble set into the black. Dust-grey cobwebs sag from the corners, heavy as wet cloth, and a low moaning of wind rises and falls in the distant passages. The corridors lead north toward the great entrance cavern, east around a bend, south down a narrow path, and west to a shadowed byway.",
+   "look": "crypt"
+  },
+  "24919": {
+   "description": "A short blind corridor leads away from the crossing, ending in a curtain of grey hanging webs. Small bones, picked clean, lie in neat piles along the base of the walls as though sorted by someone with time to spare. A thin hot wind creeps from a crack in the stone and smells of struck flint. The only way back is north.",
+   "look": "crypt"
+  },
+  "24942": {
+   "description": "A cramped spur of the maze ends here in a wall of unmortared black stone, as if the builders lost heart. Pale lichen climbs the corners in lacy rosettes, and the floor is littered with tiny cracked shells and dry splinters. A rotten wooden bier lies tipped on its side against the end wall. The only way out is the path east.",
+   "look": "crypt"
+  },
+  "24904": {
+   "description": "The passage bends here around a great pillar of fused stone and bone, its surface studded with the smooth domes of buried skulls. A guttering red glow shows at the bend, thrown off by a seam of slow lava deep in the rock. Hand-prints in soot trail along the wall at waist height. Ahead the path goes north, while east it returns to the entrance cavern.",
+   "look": "crypt"
+  },
+  "24905": {
+   "description": "A three-way meeting in the western maze where the walls are pitted with hundreds of empty niches, like the cells of a great dead honeycomb. Cold air pools along the floor, while the ceiling is warm enough to make the stone ping and tick. The corridor continues north, bends south toward the bend you came by, and a side passage opens west.",
+   "look": "crypt"
+  },
+  "24906": {
+   "description": "Wide stone slabs, each etched with a ring of unreadable runes, pave this stretch of the path. Some slabs have sunk, leaving gaps that breathe a faint warmth up into your face. Dry, brittle strands of hair cling to a rusted iron lamp-hook on the wall. The corridor goes north and south.",
+   "look": "crypt"
+  },
+  "24907": {
+   "description": "A hush lies heavy over this part of the maze, as if the stone had swallowed all sound. A stone sarcophagus stands half-way across the path, split down its side by some old violence, its lid slid to the floor. The cracks glow with faint red from the heat below, and the air smells of burnt cloth. North the path leads on toward a closed end, south it drops back toward the junction.",
+   "look": "crypt"
+  },
+  "24908": {
+   "description": "The path ends at a wall of bare black rock, beaded with condensation and streaked with rust-coloured stains. A shallow stone trough runs along the base, filled with fine pale dust. Faint, regular thumps carry through the wall, as if the mountain had a pulse. The only way back is south.",
+   "look": "crypt"
+  },
+  "24909": {
+   "description": "A narrow crossing lit by a dull red crack in the floor, from which hot air rises in sluggish waves. Stone caskets, lidded and bound with bronze straps, stand one upon another along the wall like a grim warehouse. The heat and the cold fight here, and a thin mist hangs between them. The corridor leads east to the bend and west to another crossing.",
+   "look": "crypt"
+  },
+  "24910": {
+   "description": "A crossing of four short passages, one of which has collapsed into a heap of black rubble. Fallen stones have split an old sarcophagus, and a withered hand of grey bone juts out of the breach, the fingers curled. Soot lies thick on the ceiling above a scorched patch. Ways lead north, east and west from here.",
+   "look": "crypt"
+  },
+  "24912": {
+   "description": "A plain straight corridor, scoured by countless years of draughts until its walls are polished smooth. Narrow shelves of stone climb the wall on either side, laden with rows of pale skulls turned all the same way. A trace of incense, centuries stale, lingers in the cold. The passage runs north toward a wider chamber and south to a crossing.",
+   "look": "crypt"
+  },
+  "24913": {
+   "description": "Three paths meet in a small round chamber ringed by tall black columns, each carved with a coiled serpent biting its own tail. A rack of rusted pikes leans in one corner, the shafts long since crumbled to splinters. To the west a stout door of iron-bound timber is half open, and a glint of gold shows beyond. Other passages lead north to a dead end, east back to the crossing and south down the path.",
+   "look": "crypt"
+  },
+  "24914": {
+   "description": "A dead-end niche, deeper than most, where the corridor stops against a blank altar-slab of black marble. Old candle stubs are fused to its surface in congealed pools, and a ring of burn marks scars the floor. The silence is almost solid. The sole exit is south.",
+   "look": "crypt"
+  },
+  "24946": {
+   "description": "A broad cavern hewn from the living rock, its floor glittering with scattered coin and a heap of tarnished plate that has slid in drifts against the walls. Deep claw gouges furrow the stone floor and the pillars, and the sour reek of a beast's den lies thick in the air. A door of dark iron stands on the north side, set into the rock, and the three-way chamber lies back east. Red firelight leaks from the far end.",
+   "look": "cave"
+  },
+  "24945": {
+   "description": "This treasure cave belongs to a lord of the dead, and the walls are inlaid with silvered runes that still glimmer in the gloom. Broken staves, splintered glass phials and tomes eaten to lace litter a long stone table. The air crackles faintly, as though old spells lingered in the stone. South the cavern leads back to the wolf's den, and a stout door in the west wall opens onto a bigger, colder dark.",
+   "look": "cave"
+  },
+  "24944": {
+   "description": "A huge ribbed cavern, its walls bristling with the great curved bones of some long-dead beast fused into the rock. Piled treasures lie scattered among them: tarnished goblets, spilled jewels, a rotted chest burst open. A heavy door in the north wall leads out onto a ledge, and the glow of red fire flickers from behind it. East, the cave runs back to the dark chamber of the lich.",
+   "look": "cave"
+  },
+  "24943": {
+   "description": "A vast fissure plunges through the mountain here, a rough chimney of black rock lit from far below by a molten glow that turns the drifting smoke to red. Hot wind roars up the throat with a low drone, tugging at your cloak. Cinders and flakes of ash whirl in the updraft, and the ledge underfoot is sharp-edged and rough. The only path leads south, back to the cavern of bones.",
+   "look": "volcanic"
+  },
+  "24911": {
+   "description": "The side passage ends here in a small cell cut in the stone, hardly wider than a coffin itself. A bronze lamp hangs from the ceiling on a single chain, long dry. Scratches on the floor form a ring, as though someone paced it for years. East lies the crossing and the only way out.",
+   "look": "crypt"
+  },
+  "24950": {
+   "description": "A flat ledge of black basalt juts out before a river of molten rock, which crawls past in a slow, glowing flood far below the lip. Heat beats against your face in waves, and the air shimmers and stinks of sulphur. A bridge of pale, faintly humming light springs from the lip of the plateau and arcs out over the fire. It leads west across the stream, a thin shining road above the glare.",
+   "look": "volcanic"
+  },
+  "24951": {
+   "description": "You stand on a ribbon of shimmering force, narrow as a plank, that spans the lavastream like a drawn silver thread. Through its glassy surface you can see the molten river crawl below, throwing up sparks and gouts of fire. The bridge hums beneath your feet, and the heat rises in rippling sheets on both sides. The span goes on west and rises ahead.",
+   "look": "volcanic"
+  },
+  "24952": {
+   "description": "The magical bridge climbs to its crest here, an arc of cold light that bows upward over the very middle of the fire. Spits of molten rock leap up and fall hissing against the pillars of heat. The far wall of the cavern is a ragged cliff, scarlet and black, scattered with glimmering ore. The bridge slopes away west and back down behind you.",
+   "look": "volcanic"
+  },
+  "24953": {
+   "description": "The glowing path dips now toward the western bank, humming a little higher with every step. Warm gusts roll off the lava and toss the loose ash in spirals along the span. A jagged shelf of volcanic stone shows ahead, crusted with glassy black slag. The bridge continues west down to the landing.",
+   "look": "volcanic"
+  },
+  "24954": {
+   "description": "The bridge ends upon a narrow shelf of cooled lava, wrinkled and ropy, still giving off a heavy heat. The ground is cracked in a hundred places, with hair-thin lines of orange glowing within. Ahead a great split in the mountain yawns, venting hot gas. The shelf leads on north toward the rift, and the shining span lies behind you.",
+   "look": "volcanic"
+  },
+  "24955": {
+   "description": "The Rift of Garzuk is a vast crack in the earth, its edges tumbled with blocks of black stone and cinders. Deep in the chasm below a dim red glow throbs, and the wind that rises from it is hot and dry. Dwarven carving survives upon one wall, a row of stern bearded heads worn nearly smooth. The path winds on north toward an old dwarven graveyard, and south it returns to the landfall.",
+   "look": "volcanic"
+  },
+  "24965": {
+   "description": "A cramped landing of rough-cut stone lies at the foot of a narrow stair that spirals up into darkness. The steps are slick with a thin film of damp, and the walls close in so tightly that a man's pack scrapes both sides. An oak door bound in black iron stands east, its hinges rusted to scabs. The air is hot and still, scented with sulphur and wet earth.",
+   "look": "cave"
+  },
+  "24966": {
+   "description": "A low, hand-hewn tunnel in the rock, its ceiling chipped by pick-marks that run in long slanted rows. Moisture runs down the walls in glistening threads and drips with a tiny regular patter. The tunnel carries on east, deeper into the stone, and west it comes to a door and a narrow stair. A faint warmth flows against your face.",
+   "look": "cave"
+  },
+  "24967": {
+   "description": "The tunnel narrows to the width of a single man, and its roof sags so low you must stoop. Flakes of pale mineral glitter in the walls, catching a faint orange light from ahead. Boot-prints of a hundred travellers have pressed into a thin layer of gritty clay. Eastward the tunnel keeps on into the stone, and west it runs back to the stair.",
+   "look": "cave"
+  },
+  "24968": {
+   "description": "Here the tunnel starts to widen as the walls break away, opening ahead into a wider space. Stone has been shaved smooth in places, and old black soot streaks the ceiling above a niche where a torch once burned. The echo of your steps wanders off and returns changed. A hot breath comes along the tunnel east, from the cavern, while west the way runs back toward the stair.",
+   "look": "cave"
+  },
+  "24969": {
+   "description": "A wide underground cavern opens here, a ragged hollow in the rock hung with pale stone icicles dripping slowly into shallow pools. The floor is knobbed and uneven, and the ceiling vanishes into red-tinted darkness overhead. Tunnel-mouths lead off in several directions: the tunnel back west, a passage south into more cavern, and the cavern continuing east.",
+   "look": "cave"
+  },
+  "24970": {
+   "description": "Massive columns of flowstone join floor to ceiling in this cavern, their ribbed sides banded orange and rust-red. Wisps of warm vapour drift up from cracks in the rock and curl around them. The cavern floor slopes and rolls like a frozen sea, with passages leading west back to the tunnel, south into further hollows and east into a larger space.",
+   "look": "cave"
+  },
+  "24981": {
+   "description": "The cavern opens at a junction of four ways, with its roof held up by thick slanting pillars of smooth black rock. A glassy vein of obsidian runs through the floor in a bright seam, throwing back the red glow like a mirror. The cooling hiss of stone fills the air. Passages go north, east, south and west, all turning quickly out of sight.",
+   "look": "cave"
+  },
+  "24982": {
+   "description": "A bowl-shaped chamber, its floor bare and baked hard, with scorch marks fanning out across the rock like the spokes of a wheel. The air is dry as an oven, and the faint smell of burnt hair hangs about. Dusty rubble is heaped in one corner beneath a crumbling overhang. The cavern runs on west, and a way leads south back to the junction.",
+   "look": "cave"
+  },
+  "24983": {
+   "description": "A triple meeting of ways in the broken cavern, where a low shelf of rock rises toward a narrower passage. The ground here is scattered with chips of black glass that crack underfoot. A warm draught drifts down from the tunnel, carrying a smell like a forge left to cool. The cavern runs east and west, and a tunnel climbs gently north into the rock.",
+   "look": "cave"
+  },
+  "24994": {
+   "description": "A hand-cut tunnel climbs gently through the rock, its walls rubbed smooth at the height of a shoulder by the passing of many bodies. Streaks of ash trace a pattern along the floor, wide and strangely regular. The air grows hotter and drier with each pace. The tunnel goes north, deeper toward a lair, and south it drops to the cavern.",
+   "look": "cave"
+  },
+  "24995": {
+   "description": "The tunnel ends before a rounded door of dull red iron, riveted and heat-blistered, which stands slightly open in the north wall. Heaps of dry bone and curled scales are swept aside to either hand, as if by a wide, heavy sweep. The heat seeping from the doorway presses on your skin like a hand. Behind you the tunnel runs south, back toward the cavern.",
+   "look": "cave"
+  },
+  "24996": {
+   "description": "Cerzyl's nest is a dome of fused rock, its floor deep with a litter of ash, charred bone and shards of glittering glass. Orange coals glow among the debris, and the high walls are scorched in great sweeping arcs. Heaps of gnawed treasure lie half buried in the cinders. The only way out is the tunnel south.",
+   "look": "cave"
+  },
+  "24984": {
+   "description": "The cavern floor tips sharply here toward a little pit, where thick black mud bubbles slowly, giving off a rotten-egg stink. Slick green deposits streak the walls beneath a row of dripping stone fangs. A dull heat rises from the hollow and stings the eyes. Narrow ways lead east toward the junction cave and south into the larger cavern.",
+   "look": "cave"
+  },
+  "24980": {
+   "description": "A small side-cavern with a roof of low, rippled rock like a frozen wave, so close overhead that taller travellers must stoop. A few thin stalagmites poke up from the floor, and the bare stone is stained with rust and sulphur yellow. Hot vapour curls from a crevice in one corner and spreads along the roof. The cave leads south and west.",
+   "look": "cave"
+  },
+  "24979": {
+   "description": "A mean little chamber where three passages pinch together, its floor laid with coarse gravel that grinds loudly underfoot. Strands of dull red rock cross the ceiling like old veins, warm to the touch. Beyond the north and east openings, the cave curls round on itself and reaches the same chamber again. Westward, a broader cave opens up.",
+   "look": "cave"
+  },
+  "24972": {
+   "description": "A crossroads cavern where the roof lifts into a broken dome, pierced by dark chimneys that breathe out warm air. The floor is crusted with hard grey scale, scored by wide, shallow furrows leading in all directions. A faint tapping of falling grit comes from above. Ways lead north, east, south and west through low arches of stone.",
+   "look": "cave"
+  },
+  "24973": {
+   "description": "The walls of this cavern are streaked with bright seams of copper-green, glittering in the dull orange light that seeps from every crack. A broad flat boulder squats in the middle of the floor, its top worn into a shallow dish by dripping water. The air tastes of metal. Passages lead north to the crossroads, west deeper into the cavern, and south into a hand-cut tunnel.",
+   "look": "cave"
+  },
+  "24974": {
+   "description": "The cavern narrows into a rough tunnel whose walls bear fresh-looking gouges, as though something heavy squeezed through. Black stones glisten with a thin film of oily moisture. A low rumble carries through the rock now and then, making fine dust fall from the ceiling. The tunnel runs north into the cavern and east along a winding course.",
+   "look": "cave"
+  },
+  "24975": {
+   "description": "A winding bend in the tunnel, where the walls glow dull red as though lit from within and the stone is hot beneath the hand. Droplets of molten mineral have hardened into glassy beads along the ceiling. The air crackles faintly and smells of scorched dust. The tunnel turns west and south, always sinking.",
+   "look": "cave"
+  },
+  "24976": {
+   "description": "The tunnel drops and twists in a long slanting curve, its floor ground down to a polished slick. Great pale streaks cross the walls where something huge has dragged its flank along the rock. The heat is heavy and damp, and sweat runs freely. North the passage rises toward the bend, and east it slopes toward a darker, hotter place.",
+   "look": "cave"
+  },
+  "24977": {
+   "description": "A short straight stretch of tunnel ends at a ring-shaped door of fire-blackened iron, set in the south wall and ajar. The stone at its foot is glassy and cracked, melted and cooled in swirls. A heavy, sweet reek of burnt earth wells up through the gap. West the tunnel winds back toward the caverns.",
+   "look": "cave"
+  },
+  "24978": {
+   "description": "The lair of the great lavaworm is a long, tube-shaped cavern, its walls glazed smooth by the passing of a fiery body. A pool of orange slag glows sluggishly in a hollow, and drifts of ash lie in coiled ridges across the floor. Heat shimmers on every surface, making the air swim. The tunnel to the north is the only way out.",
+   "look": "volcanic"
+  },
+  "24987": {
+   "description": "A broad cavern with four exits, its centre dominated by a heap of fallen rock that has half buried a squat altar of pitted stone. Smears of old red pigment are still visible on the altar's face, though the shapes they once formed are lost. The air is oppressively close and tastes of ash. Passages lead off north, east, south and west, with little to choose between them.",
+   "look": "cave"
+  },
+  "24971": {
+   "description": "Another meeting of ways in the great cavern, with ribs of grey rock curving overhead like the inside of some hollow beast. The floor runs in smooth steps down toward a shallow basin, pale with mineral crust. A distant dripping answers every sound you make. Openings lead north, east, south and west.",
+   "look": "cave"
+  },
+  "24985": {
+   "description": "The cavern narrows between two fat pillars of dripping flowstone, forming a natural gate in the rock. The ground is spattered with white droppings of mineral water that has hardened into cups and ridges. Warmth flows steadily out of the ground. Paths lead north toward the cavern mouth, east into the heart of the caves and south along a winding hollow.",
+   "look": "cave"
+  },
+  "24986": {
+   "description": "A long hollow in the rock whose floor is strewn with sharp splinters of dark flint. Nests of dry, grey moss cling to the stone where moisture seeps, a rare pale growth in this scorched place. Somewhere beyond the next turn a low, steady roar can be heard, like surf on far-off rocks. The hollow runs north and east and south.",
+   "look": "cave"
+  },
+  "24988": {
+   "description": "A rough chamber where the walls fold in on themselves in thick, wrinkled curtains of stone, frozen as if by a moment's pause. Fissures shine red along the floor, and little gouts of fume rise from each. The ground is warm even through thick boots. Ways lead out north, east, south and west, though the western one loops back among the folds.",
+   "look": "cave"
+  },
+  "24989": {
+   "description": "A passage-like cavern pinches in on both sides, so that the walls almost touch overhead and form a narrow slit of a roof. The floor is a mat of dry gravel and pale ash, impressed with great curving tracks. A hissing comes from a crack in the wall, thin and constant. The cave runs north and south and also opens west.",
+   "look": "cave"
+  },
+  "24990": {
+   "description": "The end of a branch of the cavern, a rounded hollow with ceiling and floor both ribbed in dark glassy waves. A dead torch lies flattened under a fall of stones against one wall, its binding burnt to threads. The heat here is thick and dry as a baker's oven. The paths lead north and west.",
+   "look": "cave"
+  },
+  "24991": {
+   "description": "The cavern closes to a funnel here, where several ways come together before a long passage leading on. Chalk marks scrawled on the rock, crosses and arrows and little skulls, are heaped one upon another until none can be read. A cool draught slips against the heat from somewhere ahead. Paths lead north and east, and a tunnel runs south.",
+   "look": "cave"
+  },
+  "24992": {
+   "description": "A long slanting tunnel, its walls hung with sheets of grey flowstone that sparkle in a faint, far-off light. The heat of the caves falls away, replaced by a damp, mineral chill. Pebbles roll and chink away down the slope when you step. The tunnel climbs north to the cavern and falls south toward an opening.",
+   "look": "cave"
+  },
+  "24993": {
+   "description": "The tunnel breaks off at a high natural balcony, a ledge of rough stone overlooking a vast, glowing hollow. Below, a lake of slow lava lights the dark in reds and oranges, and a hot updraft billows past the rail of rock. Everything from here to the far wall is bathed in a ruddy, shifting glow. The only way from the ledge is the tunnel north.",
+   "look": "cave"
+  }
+ },
+ "extras": {},
+ "creatures": [
+  {
+   "id": "crypt-ghoul",
+   "keywords": "crypt ghoul gaunt",
+   "short_desc": "a gaunt crypt ghoul",
+   "long_desc": "A gaunt crypt ghoul crouches among the sarcophagi, scraping at a coffin lid with black nails.",
+   "description": "Grey skin hangs in loose folds over the ghoul's ribs, and its jaw is stretched wide on rows of broken teeth. It smells of wet earth and old graves, and its eyes burn with a dull, hungry light.",
+   "kind": "undead",
+   "level": 37,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "A Path Inside The Sarcofag",
+    "A Crossing Inside The Sarcofag",
+    "A Bend Inside The Sarcofag",
+    "A Three Way Inside The Sarcofag",
+    "Entrance Cavern Inside The Sarcofag",
+    "Tunnel Of Living Dead",
+    "The Lair Of Living Dead",
+    "Gravedigger's Stairway",
+    "End Of The Stairway"
+   ],
+   "count": 7,
+   "drops": [
+    {
+     "item": "grave-shroud",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "vampire-thrall",
+   "keywords": "vampire thrall pale servant",
+   "short_desc": "a pale vampire thrall",
+   "long_desc": "A pale vampire thrall stands motionless in the gloom, hands folded, watching with unblinking eyes.",
+   "description": "The thrall wears the rotted livery of a house long fallen, its face waxen and bloodless. Two small dark wounds mark its throat, and it moves with the terrible patience of the bound dead.",
+   "kind": "undead",
+   "level": 41,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "Tunnel Of Vampires",
+    "Entrance To Tunnel Of Vampires",
+    "End Of The Tunnel Of Vampires",
+    "The Room Of Entangleness"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "grave-shroud",
+     "chance": 15
+    },
+    {
+     "item": "bloodglass-ring",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "ember-salamander",
+   "keywords": "ember salamander lizard",
+   "short_desc": "an ember salamander",
+   "long_desc": "An ember salamander clings to the cavern wall, its scaled flanks glowing like a forge-coal.",
+   "description": "The salamander is as long as a hound, black-scaled with cracks of orange fire running down its back. Smoke curls from its nostrils, and the rock beneath its claws blisters and smokes.",
+   "kind": "monster",
+   "level": 39,
+   "aggressive": true,
+   "alignment": -100,
+   "rooms": [
+    "The Underground Cavern",
+    "The Underground Tunnel",
+    "At The Plateau Before The Lavastream",
+    "The Landfall Before The Rift",
+    "The Rift Of Garzuk"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "bloodglass-ring",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "bone-dragon",
+   "keywords": "bone dragon skeletal drake",
+   "short_desc": "a hulking bone dragon",
+   "long_desc": "A hulking bone dragon lies coiled upon a mound of treasure, its empty eye sockets burning pale blue.",
+   "description": "Every bone of the dragon's frame has been bleached white and bound together with threads of grave-magic. Its jaws are lined with yellow fangs as long as daggers, and a cold light flickers in the hollows of its skull.",
+   "kind": "undead",
+   "level": 44,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "The Bone Dragon's Treasure Cave",
+    "The Arch-Lich's Treasure Cave"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "dragonrib-maul",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "lavaworm",
+   "keywords": "lavaworm worm great",
+   "short_desc": "a great lavaworm",
+   "long_desc": "A great lavaworm lifts its blunt, glowing head from a coil of molten slag and hisses.",
+   "description": "The lavaworm is thick as a barrel and many paces long, its hide a crust of black plates split by veins of liquid fire. The heat coming off it is enough to scorch a man at arm's length.",
+   "kind": "monster",
+   "level": 43,
+   "aggressive": true,
+   "alignment": -200,
+   "rooms": [
+    "The Lavaworm's Lair"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "bloodglass-ring",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "cerzyl",
+   "keywords": "cerzyl ember wyrm matriarch",
+   "short_desc": "Cerzyl, the Ember Wyrm",
+   "long_desc": "Cerzyl, the Ember Wyrm, rears over her nest, smoke pouring between her glowing teeth.",
+   "description": "Cerzyl is a slender wyrm with scales of dark red and bronze, her wings tattered by fire and age. Her eyes are molten gold, and she hoards bones and glass in her nest with a jealous, brooding fury.",
+   "kind": "monster",
+   "level": 45,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Cerzyl's Nest"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "cerzyl-scale-mantle",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "vampire-lord",
+   "keywords": "vampire lord undying master",
+   "short_desc": "the Vampire Lord",
+   "long_desc": "The Vampire Lord sits upon his coffin-lid throne, a pale hand raised and his red eyes fixed on you.",
+   "description": "The Vampire Lord is tall and terrible, his face finely cut and white as candle wax, his black cloak lined in crimson. His smile reveals long fangs, and the cold that flows from him puts out the very braziers beside his throne.",
+   "kind": "undead",
+   "level": 46,
+   "aggressive": true,
+   "alignment": -1000,
+   "rooms": [
+    "The Vampire Lord's Den"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "lords-bloodblade",
+     "chance": 35
+    },
+    {
+     "item": "grave-shroud",
+     "chance": 35
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "grave-shroud",
+   "keywords": "grave shroud cloak grey",
+   "short_desc": "a grey grave-shroud",
+   "room_desc": "A grey grave-shroud lies crumpled here.",
+   "description": "A long shroud of heavy grey linen, stiff with age and still faintly cold to the touch. It is worn as a cloak, and the dead seem to hesitate at it.",
+   "kind": "armor",
+   "level": 38,
+   "wear_slot": "about",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "bloodglass-ring",
+   "keywords": "bloodglass ring red",
+   "short_desc": "a ring of bloodglass",
+   "room_desc": "A ring of red glass glints here.",
+   "description": "A ring of smoky red volcanic glass, cooled in a single piece. It holds a faint warmth, as if a coal slept in it.",
+   "kind": "armor",
+   "level": 40,
+   "wear_slot": "finger",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "dragonrib-maul",
+   "keywords": "dragonrib maul bone club",
+   "short_desc": "a dragonrib maul",
+   "room_desc": "A maul made from a great curved bone lies here.",
+   "description": "A great curved rib of a dragon, bound in iron bands and weighted at one end. It is as pale as ivory and strikes with a hollow, ringing crack.",
+   "kind": "weapon",
+   "level": 43,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "cerzyl-scale-mantle",
+   "keywords": "cerzyl scale mantle wyrm",
+   "short_desc": "a mantle of wyrm scales",
+   "room_desc": "A mantle of dark red scales lies here.",
+   "description": "Overlapping red-bronze scales are stitched over a leather harness, still warm. They shed sparks when struck and turn aside blades with ease.",
+   "kind": "armor",
+   "level": 44,
+   "wear_slot": "body",
+   "bonus": {
+    "hp": 15
+   }
+  },
+  {
+   "id": "lords-bloodblade",
+   "keywords": "bloodblade blade black rapier",
+   "short_desc": "the Vampire Lord's bloodblade",
+   "room_desc": "A slender black blade with a crimson edge lies here.",
+   "description": "A slender blade of black steel, its edge stained a permanent crimson. It seems to hunger in the hand, and it wakes to thirst when drawn.",
+   "kind": "weapon",
+   "level": 46,
+   "weapon_type": "pierce",
+   "bonus": {
+    "hitroll": 2
+   }
+  }
+ ]
+}

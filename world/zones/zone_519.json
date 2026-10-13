@@ -24,8 +24,8 @@
      "description": "To the south lies A Colorful Park."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead north and south.",
-   "placeholder": true
+   "description": "Tall beeches and dark yews close overhead along this shady path, and the\ngravel is soft with last autumn's leaves. Dapples of light fall through\nthe branches, and from somewhere ahead comes a faint white-gold glow\nthat looks strangely out of place among the trees. The path climbs north\ntoward a great archway of pale stone. Behind you it winds south back to\na colorful park, and a hum like a struck glass sings faintly in the air.",
+   "extra_descs": {}
   },
   "3401": {
    "vnum": 3401,
@@ -49,8 +49,10 @@
      "description": "To the south lies A Shady Path."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The archway is a tall vault of white marble veined with gold, its\nkeystone carved into an open eye ringed by flames. Wards crackle faintly\nin the stone, and the hair on your arms lifts as you pass beneath.\nDaylight from the shady path lies behind you to the south, while to the\nnorth the vault opens into the cathedral proper. Names of wizards long\ndead are chiselled in neat rows along the inner faces of the arch.",
+   "extra_descs": {
+    "names inscription arch wizards": "The names run in tight, proud script, each followed by a title:\nArchmagus, Warden, Master of the Seven Wards. The newest are still\nfaintly warm to the touch."
+   }
   },
   "3402": {
    "vnum": 3402,
@@ -74,8 +76,8 @@
      "description": "To the south lies Archway to the White Gold Cathedral."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "This broad vestibule is floored in polished white stone, inlaid with a\nsunburst of gold wire that gleams under unseen light. Tall niches along\nthe walls hold glass lamps that glow with a steady, shadowless radiance,\nthough no flame burns in them. The air smells of hot metal and of\nlightning after rain. The vestibule opens north into the cathedral's\ngreat nave, and the archway lies south.",
+   "extra_descs": {}
   },
   "3403": {
    "vnum": 3403,
@@ -107,8 +109,8 @@
      "description": "To the west lies Behind the Pews."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "You stand at the crossing of the cathedral, beneath a lofty dome whose\nribs are plated in white gold and flash with every shift of the light.\nRows of pews stretch north toward a far altar, while narrow aisles run\neast and west behind them. Threads of blue fire crawl along the\nvaulting, held in check by the wards. The floor is a mosaic of\nconstellations in pale marble, and the entrance vestibule lies south.",
+   "extra_descs": {}
   },
   "3404": {
    "vnum": 3404,
@@ -132,8 +134,8 @@
      "description": "To the west lies At the Corner of the Cathedral."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "This low passage behind the pews smells of beeswax and old paper. Hooks\nalong the wall hold choir robes of white and gold, stiff with starch. In\na small alcove a bowl of water holds a flame that floats upon it without\nsinking. The passage runs east toward the crossing and west to the\ncathedral's corner.",
+   "extra_descs": {}
   },
   "3405": {
    "vnum": 3405,
@@ -157,8 +159,8 @@
      "description": "To the west lies The White Gold Cathedral."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "A narrow aisle runs behind the last rank of pews, its walls panelled in\npale wood and hung with brass plaques naming the cathedral's donors. A\nrack of staves leans in one niche, each tipped with a dull crystal that\nbrightens as you approach. The passage runs west to the crossing and\neast to the cathedral's corner. It smells of candle wax and ozone.",
+   "extra_descs": {}
   },
   "3406": {
    "vnum": 3406,
@@ -182,8 +184,8 @@
      "description": "To the south lies The White Gold Cathedral."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "Long pews of bleached ash stand in ranks on either hand, their ends\ncarved with sigils of fire, water, air and earth. The kneelers are\nworked in gold thread, worn pale by many proud knees. A faint static\nprickles over the wood whenever you brush it. The aisle runs north\ntoward the altar and south back to the crossing.",
+   "extra_descs": {}
   },
   "3407": {
    "vnum": 3407,
@@ -207,8 +209,8 @@
      "description": "To the south lies Between the Pews."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "Here the pews are benches of dark, iron-bound oak with heavy books\nchained to their backs, and the pages turn slowly of their own accord,\nwhispering. A chandelier of beaten gold hangs overhead without chain or\nhook, revolving at the pace of a sleepwalker. The glare of the altar\ngrows stronger along the aisle, which goes on north, while the way south\nleads back between the pews.",
+   "extra_descs": {}
   },
   "3408": {
    "vnum": 3408,
@@ -232,8 +234,8 @@
      "description": "To the south lies Between the Pews."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The pews end at a low step of white granite, and the light pouring from\nthe altar is almost too bright to face. Gold dust drifts in the air like\npollen and settles on your sleeves. Each floor tile is etched with a\nwarding glyph that flares as you tread on it and fades behind you. The\naltar stands just north, and the rows of pews lie south.",
+   "extra_descs": {}
   },
   "3409": {
    "vnum": 3409,
@@ -265,8 +267,16 @@
      "description": "To the down lies The Warded Labyrinth."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, south, west and down.",
-   "placeholder": true
+   "description": "The White Gold Altar is a great block of white marble sheathed in beaten\ngold, haloed in light so pure that nothing here casts a shadow. Chains\nof runes crawl over its face and spit sparks into the air with a sound\nlike frying fat. Curved walkways sweep east and west around it, and the\naisle of pews runs south. A black iron grate in the floor, rimmed with\nglowing wards, opens a stair down into the labyrinth beneath.",
+   "extra_descs": {
+    "altar runes marble": "The runes on the altar shift and rearrange as you watch, forming lines\nin a tongue you almost understand. Whatever they say, they seem to be\nwaiting for you to flinch."
+   },
+   "mob_resets": [
+    {
+     "vnum": 651906,
+     "max": 1
+    }
+   ]
   },
   "3410": {
    "vnum": 3410,
@@ -290,8 +300,8 @@
      "description": "To the west lies Behind the Pews."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and west.",
-   "placeholder": true
+   "description": "At the corner of the cathedral two walls of pale stone meet beneath a\nbuttress carved as a crouching gargoyle of gilded bronze. The wards on\nthe stone hiss softly like water on a hot plate, and a narrow window\ngives a glimpse of the grounds. The hall turns north from here, and a\nlow passage leads west behind the pews.",
+   "extra_descs": {}
   },
   "3411": {
    "vnum": 3411,
@@ -315,8 +325,8 @@
      "description": "To the east lies Behind the Pews."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "The corner of the cathedral here forms a small round turret room, ringed\nwith slit windows that look out over a sloping lawn and dark trees. A\nspiral of gold is set into the floor, and a faint warmth rises from it.\nThe way leads north along a hallway, and a low passage opens east behind\nthe pews. A stool and an abandoned practice wand lie against the wall,\nlong forgotten.",
+   "extra_descs": {}
   },
   "3412": {
    "vnum": 3412,
@@ -340,8 +350,8 @@
      "description": "To the south lies At the Corner of the Cathedral."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The hallway begins to bend here, and the light turns warm and sunset-\ncoloured through tall panes of amber glass. Faded tapestries show\nwizards hurling lightning at dragons, and their hems are singed black.\nFootsteps echo from the vaulted ceiling. To the south the corner of the\ncathedral waits, and the hall runs back north toward the transept.",
+   "extra_descs": {}
   },
   "3413": {
    "vnum": 3413,
@@ -365,8 +375,8 @@
      "description": "To the south lies The Eastern Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "Sconces of gold shaped like clasped hands line this stretch of hallway,\neach holding a flame that burns without fuel and gives off no heat. The\nfloor is scored with faint scorch marks, some in neat circles where\nspells have been practised. A bench of white stone sits against the\nwall, scratched with the initials of bored apprentices. The hall\ncontinues north and south.",
+   "extra_descs": {}
   },
   "3414": {
    "vnum": 3414,
@@ -396,10 +406,14 @@
     "west": {
      "to_room": 3425,
      "description": "To the west lies The Wasteroom."
+    },
+    "up": {
+     "to_room": 3409,
+     "description": "To the up lies The White Gold Altar."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "You are at a crossing in the warded labyrinth beneath the altar, a hall\nof black stone where lines of gold light form a lattice over every wall.\nEach line hums, and it would be unwise to touch the wrong one. Corridors\nlead north toward the enchanters, east toward the alchemists, south\ntoward the sleeping quarters and west to a wasteroom. The air is hot and\ndry, like a forge at rest.",
+   "extra_descs": {}
   },
   "3415": {
    "vnum": 3415,
@@ -427,8 +441,8 @@
      "description": "To the west lies The Sleeping Quarters."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A broad stone passage leads toward the sleeping quarters, with a row of\nidentical narrow doors set in the wall and numbered in gold paint.\nFootsteps are hushed by a runner of deep grey felt. The lamps are turned\nlow, and a smell of soap and spent candles lingers. The passage leads\nnorth to the labyrinth, south along the cells, and west to a further\ncorridor.",
+   "extra_descs": {}
   },
   "3416": {
    "vnum": 3416,
@@ -452,8 +466,8 @@
      "description": "To the west lies The Warded Labyrinth."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
-   "placeholder": true
+   "description": "The alchemist's corridor begins here, running east from the labyrinth\ncrossing, and the air grows hot and acrid at once. The walls are tiled\nin glazed white ceramic, stained in places with rainbow splashes of old\nspills. A line of copper pipes runs overhead, tapping and gurgling. The\ncorridor continues east, and the labyrinth lies west.",
+   "extra_descs": {}
   },
   "3417": {
    "vnum": 3417,
@@ -477,8 +491,14 @@
      "description": "To the south lies The Eastern Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A long hallway lined with narrow arched windows, each throwing a bar of\nwhite light across the flagstones. Between them hang portraits of stern\nrobed figures whose painted eyes seem to follow you, and one gilt frame\ncrackles when you pass. The hallway runs north to the transept and south\nalong the wing. Not a speck of dust lies anywhere, burnt away by the\nwards.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651902,
+     "max": 1
+    }
+   ]
   },
   "3418": {
    "vnum": 3418,
@@ -502,8 +522,8 @@
      "description": "To the west lies Approaching the White Gold Altar."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south and west.",
-   "placeholder": true
+   "description": "This transept is a high-ceilinged arm of the cathedral, its walls hung\nwith banners of white silk stitched in gold with the arms of old wizard\nhouses. A stone lectern stands in one corner with a great book chained\nto it, its edges glowing like a coal. The walkway returns west toward\nthe altar, while a hallway leads south. Sparks jump between the banner\npoles with soft snaps.",
+   "extra_descs": {}
   },
   "3419": {
    "vnum": 3419,
@@ -527,8 +547,8 @@
      "description": "To the west lies The White Gold Altar."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A wide walkway curves around the altar's flank, its floor a spiral of\ngold inlay on white stone. Tall windows of colourless glass, set with\nprisms, scatter small rainbows across the wall. The glare of the altar\nlies back to the west, and the walkway goes on east toward a transept.\nThe air tingles and tastes faintly of copper.",
+   "extra_descs": {}
   },
   "3420": {
    "vnum": 3420,
@@ -552,8 +572,8 @@
      "description": "To the south lies At the Corner of the Cathedral."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The hall dips by two shallow steps, and the walls close in, panelled in\ndark wood inlaid with little gold stars. A runner of white wool, singed\nin a hundred tiny places, muffles your steps. A single lamp burns with a\ncold blue flame beside an unmarked door that will not open. The hall\nruns north toward the transept, and the cathedral's corner lies south.",
+   "extra_descs": {}
   },
   "3421": {
    "vnum": 3421,
@@ -577,8 +597,8 @@
      "description": "To the south lies The Western Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Glass cases of curiosities line this hallway: a shard of living flame in\na bottle, a feather that will not fall, a pebble that hums to itself.\nEach case bears a small plaque in a crabbed, haughty hand. The cases\nrattle gently whenever a pulse of the wards travels through the floor.\nPassages lead north and south from here.",
+   "extra_descs": {}
   },
   "3422": {
    "vnum": 3422,
@@ -602,8 +622,8 @@
      "description": "To the south lies The Western Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "Frosted windows fill one wall of this hallway, and the light that\nfilters through is pale and cold as moonlight. The floor is flagged in\nwhite stone with a seam of gold running down its centre like a vein of\nore. A coat-stand of wrought silver holds a few scorched cloaks. The\nwing carries on south, and the transept lies north.",
+   "extra_descs": {}
   },
   "3423": {
    "vnum": 3423,
@@ -627,8 +647,14 @@
      "description": "To the south lies The Warded Labyrinth."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The enchanter's corridor begins here in a passage of smooth dark stone,\nhung with strings of tiny glass beads that chime together as the wards\npulse. Panels of gold leaf along the walls glow faintly from within. The\nsmell is of hot wax, ink and something sweet and burnt. The corridor\nruns north, and the labyrinth crossing lies south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651902,
+     "max": 1
+    }
+   ]
   },
   "3424": {
    "vnum": 3424,
@@ -652,8 +678,10 @@
      "description": "To the south lies The Western Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "This transept rises into shadowy vaults, and its windows of stained\nglass show the four elements as crowned figures in red, blue, gold and\ngreen. A great brass orrery stands in the middle of the floor, its rings\nand little moons turning by themselves with a soft tick. The walkway\nleads east back toward the altar, and a hallway runs south. Coloured\nlight falls across the tiles in slow, shifting patches.",
+   "extra_descs": {
+    "orrery brass rings": "The orrery's brass rings carry a sun of gold and nine little moons, and\nthey do not agree with any sky you know. The innermost moon stops and\nstarts, as if listening."
+   }
   },
   "3425": {
    "vnum": 3425,
@@ -677,8 +705,14 @@
      "description": "To the south lies The Sleeping Quarters."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The wasteroom is a cramped, tiled chamber with a stone trough running\nalong one wall and a vent in the ceiling that sucks in the air with a\nthin whistle. Buckets of spent reagents and scorched robes are heaped in\nthe corner, awaiting the burning-pit. Everything here smells of lye and\nrot. The labyrinth crossing is east of here, and a bunk-hall lies south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651900,
+     "max": 1
+    }
+   ]
   },
   "3426": {
    "vnum": 3426,
@@ -702,8 +736,8 @@
      "description": "To the west lies The Enchanter's Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The corridor turns here, and the ceiling lowers to brush the tops of the\nlamps. Shelves cut into the wall hold hundreds of small rings and\namulets, set out on velvet and glowing faintly where they await their\ncharms. The passage leads west along the corridor, and south back toward\nthe labyrinth. Little blue sparks drift between the shelves like\nfireflies.",
+   "extra_descs": {}
   },
   "3427": {
    "vnum": 3427,
@@ -727,8 +761,8 @@
      "description": "To the west lies The Western Transept."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The walkway curves around the altar's other flank, and here the pillars\nare of white marble, each one wrapped by a spiralling serpent of gold.\nThe floor is worn bright by the passage of many robes. Heat and light\nroll off the altar close by to the east, while the walkway sweeps on\nwest toward a transept. A single stray spark skitters along the floor\nand vanishes.",
+   "extra_descs": {}
   },
   "3428": {
    "vnum": 3428,
@@ -752,8 +786,8 @@
      "description": "To the east lies The Enchanter's Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
-   "placeholder": true
+   "description": "Etched on the walls here are long columns of tiny runes, each glowing a\ndifferent shade as though it were counting something. The floor is\nscattered with filings of gold and silver that swirl in small whirlwinds\naround your feet. The passage turns north toward the corridor's heart,\nand the way east leads back round the bend. The air thrums with slow,\npatient power.",
+   "extra_descs": {}
   },
   "3429": {
    "vnum": 3429,
@@ -781,8 +815,8 @@
      "description": "To the west lies The Master Enchanter's Quarters ."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The corridor opens into a small junction before a heavy door of gilded\noak that stands ajar to the west, the way into the Master Enchanter's\nquarters. A brass plate on the door gives the master's name and a long\nlist of grudges. The floor here is paved in alternate squares of black\nand white stone, and some squares glow when stepped upon. The corridor\nleads east, and back south toward the bend.",
+   "extra_descs": {}
   },
   "3430": {
    "vnum": 3430,
@@ -802,8 +836,10 @@
      "description": "To the east lies The Enchanter's Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "The Master Enchanter's quarters are crowded with the clutter of a long\nand conceited life: a four-poster bed hung with gold-threaded curtains,\na desk piled with unfinished commissions, a mirror whose reflections lag\nbehind you by a heartbeat. Rugs of white fur overlap on the floor, and a\ntall window of frosted glass lets in a diffuse, flawless light. A fire\nburns in a grate without ever consuming its logs. The only door leads\neast to the corridor.",
+   "extra_descs": {
+    "mirror": "The mirror shows you a heartbeat late, and its reflection looks far more\nconfident than you feel. The frame is cast in gold, engraved with the\nwords Know Your Betters."
+   }
   },
   "3431": {
    "vnum": 3431,
@@ -827,8 +863,14 @@
      "description": "To the west lies The Enchanter's Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "Glass-fronted cabinets line this stretch of the corridor, each full of\nhalf-finished charms: gloves that flex by themselves, boots stitched\nwith silver thread, belts that coil like sleeping snakes. A thin film of\ngold dust coats everything, and nobody seems to mind. The passage runs\neast and west, and every footstep sets the cabinet doors chattering.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651902,
+     "max": 1
+    }
+   ]
   },
   "3432": {
    "vnum": 3432,
@@ -852,8 +894,8 @@
      "description": "To the west lies The Enchanter's Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "Round windows of coloured glass pierce the wall here, though they look\nonto nothing but solid stone, and they cast beams of ruby and sapphire\nacross the floor. A workbench of pale wood stands against the wall,\nstained and scorched by years of careless incantation. The corridor goes\non east and back west. The air is thick with the scent of cloves and\nburnt hair.",
+   "extra_descs": {}
   },
   "3433": {
    "vnum": 3433,
@@ -877,8 +919,8 @@
      "description": "To the west lies The Enchanter's Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The corridor bends sharply here, and the walls are hung with rolls of\nparchment pinned in rows, each scrawled with a different binding\nformula. Several have charred edges, as though their authors lost an\nargument with them. Oil lamps burn with a green flame along the way. The\npassage leads north to a dead-end alcove, and west back along the\ncorridor.",
+   "extra_descs": {}
   },
   "3434": {
    "vnum": 3434,
@@ -898,8 +940,8 @@
      "description": "To the south lies The Enchanter's Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads south.",
-   "placeholder": true
+   "description": "This is a dead-end alcove, and its ceiling is hung with dozens of tiny\nbells of gold that ring softly with no breeze to stir them. A cushioned\nstool stands before a cracked scrying bowl, and a ring of scorch marks\non the floor shows where some experiment went wrong. Only the corridor\nsouth offers a way back. A heavy stillness presses on the ears.",
+   "extra_descs": {}
   },
   "3435": {
    "vnum": 3435,
@@ -923,8 +965,8 @@
      "description": "To the south lies The Sleeping Quarters."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A long dormitory passage, its walls lined with narrow bunks built into\nalcoves and curtained with white linen. Trunks sit at the foot of each,\nstrapped and padlocked, some bearing the scorch marks of failed wards. A\nsingle glass lamp swings from a hook, throwing wide, slow shadows. The\npassage runs north and south.",
+   "extra_descs": {}
   },
   "3436": {
    "vnum": 3436,
@@ -948,8 +990,8 @@
      "description": "To the west lies The Sleeping Quarters."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "The passage bends here, and the bunks give way to a small common space,\nwith a table of scarred oak and a few stools, still littered with a\nhalf-played game of rune-stones. A cold hearth fills one wall, its\nmantel crowded with candle stubs. The way leads north back along the\ncells and west toward a further hall.",
+   "extra_descs": {}
   },
   "3437": {
    "vnum": 3437,
@@ -973,8 +1015,14 @@
      "description": "To the west lies The Sleeping Quarters."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "Here the dormitory narrows to a low, plain hall, its bunks stacked two\nhigh and hung with threadbare quilts. Chalk drawings of spell circles\ncover the lower walls, some smudged out in a hurry, and the whole hall\nsmells of damp wool. A draught of cool air flows along it. You may go\neast or west along the hall.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651900,
+     "max": 1
+    }
+   ]
   },
   "3438": {
    "vnum": 3438,
@@ -998,8 +1046,8 @@
      "description": "To the east lies The Sleeping Quarters."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
-   "placeholder": true
+   "description": "The dormitory turns a corner here, and the air grows close and warm from\nthe heat of a stove that never goes out. A row of cots lines each wall\nunder shelves of battered spell-books bristling with paper markers.\nSomeone has scratched a rude caricature of the Archmagus into the\nplaster, and a sharp-eyed monitor has tried to scrub it out. The hall\nleads north and east.",
+   "extra_descs": {}
   },
   "3439": {
    "vnum": 3439,
@@ -1023,8 +1071,8 @@
      "description": "To the south lies The Sleeping Quarters."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow part of the dormitory, where the walls are hung with long rows\nof pegs bearing grey travelling cloaks and pointed hats. A bench runs\nbeneath them, scattered with boots, and the stone floor is polished by\nthousands of nervous footsteps. Lamps in wire cages give a dim,\nyellowish light. You can go north or back south.",
+   "extra_descs": {}
   },
   "3440": {
    "vnum": 3440,
@@ -1052,8 +1100,8 @@
      "description": "To the west lies The Hit Wizards Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "This landing is a meeting of three passages, and the floor is chalked\nwith a great ring of duelling lines in red and gold. The walls bear\nscars of scorching and long gouges cut by spell-fire. A rack of practice\nwands stands by the west passage, which is lined with banners of crimson\nsilk. The dormitory leads south and east, while a harsher corridor runs\nwest.",
+   "extra_descs": {}
   },
   "3441": {
    "vnum": 3441,
@@ -1077,8 +1125,8 @@
      "description": "To the west lies The Hit Wizards Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The hit wizards' corridor starts as a grim, bare passage of grey stone,\nits walls hung with crossed wands of black ebony and the bright red\nbanners of the order. The floor is scored with bootmarks from endless\ndrills. A tang of singed air lingers. The passage runs east back toward\nthe sleeping quarters and west deeper into the order's wing.",
+   "extra_descs": {}
   },
   "3442": {
    "vnum": 3442,
@@ -1106,8 +1154,14 @@
      "description": "To the west lies The Sleeping Quarters."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The sleeping quarters broaden here into a bunk-hall with a high beamed\nceiling, hung with paper charms against bad dreams. Rows of cots are\nmade up with military neatness under blankets of undyed wool. A distant\ndripping drifts in from the north, where a foul-smelling room waits.\nWays lead east and west along the hall.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651900,
+     "max": 1
+    }
+   ]
   },
   "3443": {
    "vnum": 3443,
@@ -1127,8 +1181,14 @@
      "description": "To the north lies The Hit Wizards Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "The Master Hit Wizards' quarters are spare and martial: a bare cot, a\nchest bound in iron, a rack of wands and a wall hung with ranks of\nbroken enemy staves as trophies. A single red banner hangs over the bed,\nstitched with a lightning bolt. The floor shows the marks of pacing, a\nworn path from door to window. The only way out is north.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651903,
+     "max": 1
+    }
+   ]
   },
   "3444": {
    "vnum": 3444,
@@ -1156,8 +1216,8 @@
      "description": "To the south lies The Master Hit Wizards Quarters."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A small guardroom opens off the corridor here, with a table bearing a\nmap of the cathedral weighted with daggers. Racks of long gloves and\nwand-cases line the walls, all oiled and ready. The air is charged, and\na tinge of blue lightning crawls over the iron lamp brackets. The\ncorridor runs north and east, and a door south leads to the master's\nquarters.",
+   "extra_descs": {}
   },
   "3445": {
    "vnum": 3445,
@@ -1181,8 +1241,8 @@
      "description": "To the south lies The Hit Wizards Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "Targets of straw-stuffed leather hang from the walls of this passage,\nblackened and pierced by spell-fire. Sand has been spread thickly over\nthe floor to catch stray sparks, and it crunches underfoot. Spent wand-\ncores lie in the corners, burnt to charcoal. The corridor runs north and\nsouth.",
+   "extra_descs": {}
   },
   "3446": {
    "vnum": 3446,
@@ -1206,8 +1266,8 @@
      "description": "To the south lies The Hit Wizards Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "The corridor makes a right angle here, and the vaulted ceiling is lined\nwith sheets of beaten iron, dented and blistered by the practice of\ngenerations. A line of crimson paint marks where the novices must stand.\nThe floor is pocked with small craters. The way leads east along the\nwing and south back toward the guardroom.",
+   "extra_descs": {}
   },
   "3447": {
    "vnum": 3447,
@@ -1231,8 +1291,14 @@
      "description": "To the west lies The Hit Wizards Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
-   "placeholder": true
+   "description": "A plain stone passage, brightly lit by a row of white-gold crystals set\nin iron cages along the ceiling. The crystals buzz like angry wasps.\nNames are carved in the walls beside small dents the size of a fist, as\nif a hundred graduates had struck them in passing. The passage runs on\neast, and back west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651903,
+     "max": 1
+    }
+   ]
   },
   "3448": {
    "vnum": 3448,
@@ -1256,8 +1322,8 @@
      "description": "To the down lies The Crumbling Labyrinth."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead west and down.",
-   "placeholder": true
+   "description": "The corridor ends in a round, bare chamber whose floor is crossed with\nseared lines, the marks of a hundred failed duels. A circle of black\niron is set in the middle of it, and beneath is a rough stair spiralling\ndown into darkness and cold dust. A scrap of scorched red silk hangs\nfrom the lintel. The corridor leads west, and the stair goes down.",
+   "extra_descs": {}
   },
   "3449": {
    "vnum": 3449,
@@ -1281,8 +1347,8 @@
      "description": "To the west lies The Alchemist's Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "The corridor turns here, and a stained drain in the middle of the floor\nleaks a thin curl of yellow vapour. Shelves of stoppered jars climb the\nwalls, each labelled in a tiny cramped hand with warnings no sane person\nwould ignore. A faint hissing comes from behind the tiles. The way leads\nsouth along the corridor, and west back toward the labyrinth.",
+   "extra_descs": {}
   },
   "3450": {
    "vnum": 3450,
@@ -1306,8 +1372,8 @@
      "description": "To the south lies The Alchemist's Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "Racks of glass tubing hang along this passage, bubbling with liquids of\nimpossible colours: violet, sulphur-yellow, an oily black that swallows\nthe light. A drip falls somewhere with a slow, regular plink. The air\nstings the eyes and the throat. Corridors run north and south from here.",
+   "extra_descs": {}
   },
   "3451": {
    "vnum": 3451,
@@ -1331,8 +1397,14 @@
      "description": "To the south lies The Alchemist's Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A long bench of grey slate runs down one wall, crowded with alembics,\nmortars and spirit lamps, their burners left lit to simmer. Splashes of\nacid have eaten pits into the slate, and a hand-lettered sign begs\nvisitors not to breathe too deeply. The corridor goes on north and\nsouth. Somewhere a kettle shrieks and falls silent.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651900,
+     "max": 1
+    }
+   ]
   },
   "3452": {
    "vnum": 3452,
@@ -1364,8 +1436,8 @@
      "description": "To the west lies The Apprentice's Quarters."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Three ways meet at this junction of the alchemist's corridor, beneath a\nceiling blackened by fumes. A round door of brass stands to the east,\nmarked with the sign of the Alchemist, while to the west a plainer\nwooden door leads to the apprentice's quarters. The floor is crusted\nwith dried reagents that crunch beneath your feet. The corridor\ncontinues north and south.",
+   "extra_descs": {}
   },
   "3453": {
    "vnum": 3453,
@@ -1385,8 +1457,8 @@
      "description": "To the west lies The Alchemist's Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "The alchemist's private quarters are crowded with books and jars, and a\nnarrow cot is shoved into a corner as though sleep were an afterthought.\nA great copper still squats in the middle of the floor, its coils\nswollen and green with verdigris. Dried herbs hang in bunches from the\nbeams, and the room reeks of mint and sulphur. The only way out is west,\nback to the corridor.",
+   "extra_descs": {}
   },
   "3454": {
    "vnum": 3454,
@@ -1410,8 +1482,8 @@
      "description": "To the south lies The Alchemist's Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
-   "placeholder": true
+   "description": "Stained tiles lead on through this stretch of corridor, and a trail of\nfootprints in white powder marks the floor, as if somebody had walked it\ndragging a split sack. Gas lamps burn low and blue, their glass cracked\nand mended with wire. The air is warm and carries a metallic tang. The\ncorridor runs north to the junction and south to a crossing.",
+   "extra_descs": {}
   },
   "3455": {
    "vnum": 3455,
@@ -1431,8 +1503,14 @@
      "description": "To the east lies The Alchemist's Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
-   "placeholder": true
+   "description": "The apprentice's quarters are tiny, and every surface is covered with\nscribbled notes and stained garments. A narrow cot sits under a dripping\npipe, its blanket singed in several places, and a bowl of something\ngreen is left to sour on the sill. Burnt fingerprints dot the doorframe.\nThe only way out is east, back to the corridor.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651900,
+     "max": 1
+    }
+   ]
   },
   "3456": {
    "vnum": 3456,
@@ -1460,8 +1538,8 @@
      "description": "To the west lies The Alchemist's Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The passage divides into a crossing here: it runs east into a short\nblind spur and west toward the chamber of the alchemists, while the\ncorridor you came by runs north. Ladles and tongs hang from hooks,\nblackened by heat, and a bucket of grey sand stands ready for fires. The\ntiles are cracked and spotted with old burns. A low roar sounds from\nsomewhere deep in the walls.",
+   "extra_descs": {}
   },
   "3457": {
    "vnum": 3457,
@@ -1485,8 +1563,8 @@
      "description": "To the west lies The Alchemy Chamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "A short and narrow corridor leads toward the alchemy chamber, its walls\npatched with sheets of lead to keep the fumes in. Warning symbols are\nchalked above the arch of the entrance, a skull, a flame, a bubbling\nflask. The corridor runs east back toward the crossing, and the chamber\nopens west. The heat that rolls through the arch is like an oven door\nopening.",
+   "extra_descs": {}
   },
   "3458": {
    "vnum": 3458,
@@ -1514,8 +1592,16 @@
      "description": "To the west lies The Alchemy Chamber."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The alchemy chamber is a great vaulted room of white-glazed brick, with\na ring of furnaces round its walls that glow orange through iron\ngrilles. Heavy tables hold crucibles, retorts and graduated cylinders,\nand coils of glass pipe connect them in tangled loops. A bitter vapour\nhangs under the ceiling. The chamber opens east to the corridor and\ncontinues south and west.",
+   "extra_descs": {
+    "furnaces grilles": "The furnaces burn white-orange behind their grilles. Each is stamped\nwith a maker's mark of an open flame over a gold crown."
+   },
+   "mob_resets": [
+    {
+     "vnum": 651904,
+     "max": 1
+    }
+   ]
   },
   "3459": {
    "vnum": 3459,
@@ -1539,8 +1625,8 @@
      "description": "To the west lies The Alchemy Chamber."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "A line of vats stands along the wall here, each as tall as a man and\nfilled with a slowly stirring liquid that glows green and then gold.\nBrass rails run round them, polished by the sleeves of many hurried\nworkers. The floor is wet and slick in patches. The chamber goes on\nnorth and west.",
+   "extra_descs": {}
   },
   "3460": {
    "vnum": 3460,
@@ -1564,8 +1650,14 @@
      "description": "To the south lies The Alchemy Chamber."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "A great athanor, a tall furnace shaped like a tower, dominates this\ncorner of the alchemy chamber and fills it with a deep red glow. Pans of\nlead and mercury bubble on iron trivets, and the heat is almost solid\nagainst the skin. The scorched floor leads east and south through the\nsmoke.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651904,
+     "max": 1
+    }
+   ]
   },
   "3461": {
    "vnum": 3461,
@@ -1585,8 +1677,8 @@
      "description": "To the west lies The Alchemist's Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads west.",
-   "placeholder": true
+   "description": "This short spur ends in a blank wall of soot-black brick, plainly once a\nfurnace room. A cold iron stove stands open against the wall, full of\ngrey ash and fused glass. The air is stale and smells of scorched metal\nand old smoke. The only way out is west, back to the crossing.",
+   "extra_descs": {}
   },
   "3462": {
    "vnum": 3462,
@@ -1610,8 +1702,8 @@
      "description": "To the east lies The Alchemy Chamber."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "This corner of the chamber is crowded with towering shelves of dusty\nreagents: salts, sulphurs, pale powders and the dried parts of things\nbest left unnamed. A rolling ladder leans against the shelves, and a\nscale of fine gold sits on a stand, tipped to one side by a forgotten\nweight. The air is cold here after the furnace heat. Gaps in the shelves\nlead north and east.",
+   "extra_descs": {}
   },
   "3463": {
    "vnum": 3463,
@@ -1641,10 +1733,20 @@
     "west": {
      "to_room": 3467,
      "description": "To the west lies A Well Used Path."
+    },
+    "up": {
+     "to_room": 3448,
+     "description": "To the up lies The Hit Wizards Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "You are in a crumbling crossing of passages that once belonged to a\ngreater labyrinth. The ceiling has sagged, and fallen plaster lies in\ndrifts, with the old wards still sputtering through the cracks like\ntrapped insects. Dust hangs heavy in the air and clings to your tongue.\nCorridors lead north, east, south and west from this ruined hub.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651902,
+     "max": 1
+    }
+   ]
   },
   "3464": {
    "vnum": 3464,
@@ -1668,8 +1770,14 @@
      "description": "To the south lies The Elementalist's Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The elementalist's corridor starts here, a passage where the stones are\nstreaked with soot on one side and glazed with frost on the other. Warm\nand cold winds seem to chase each other along its length, tugging at\nyour clothes. Puddles stand where the frost melts, and cinders glow\nwhere the soot burns. The corridor runs north to the crumbling crossing\nand south into the wing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651901,
+     "max": 1
+    }
+   ]
   },
   "3465": {
    "vnum": 3465,
@@ -1693,8 +1801,14 @@
      "description": "To the west lies The Crumbling Labyrinth."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "This end of the old sleeping quarters opens toward a ruined crossing.\nThe walls are cracked from floor to ceiling, and a spill of rubble\nblocks one corner, the fallen stones glittering with flecks of gold.\nMoss grows in the seams where moisture seeps in. The hall runs east into\nthe old quarters and west to the crumbling crossing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651900,
+     "max": 1
+    }
+   ]
   },
   "3466": {
    "vnum": 3466,
@@ -1718,8 +1832,8 @@
      "description": "To the south lies The Crumbling Labyrinth."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "A wide corridor of cold grey marble, grander than anything in the wing\nbehind you, though cracked and stained by seepage. Tall pilasters rise\nalong the walls, topped by gold leaf capitals half flaked away. A carpet\nof faded crimson runs down the middle, rotted to threads at the edges.\nThe corridor leads north, and south to the crumbling crossing.",
+   "extra_descs": {}
   },
   "3467": {
    "vnum": 3467,
@@ -1743,8 +1857,8 @@
      "description": "To the west lies A Well Used Path."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "A well used path of trodden stone crosses this hall, its flags worn into\nshallow troughs by countless feet. Iron lanterns hang from hooks in the\nwall, giving a steady yellow light. The air is chill and carries a damp,\nmossy smell. The path runs east to the crumbling crossing and west\nfurther into the dark.",
+   "extra_descs": {}
   },
   "3468": {
    "vnum": 3468,
@@ -1768,8 +1882,8 @@
      "description": "To the south lies The Grand Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "Great arched niches line the walls here, each empty of the statue it\nonce held, only the plinths remaining with their carved names. A draught\nblows the dust in curling streamers along the floor. High above, a line\nof dark windows is crusted with ancient grime. The grand corridor\ncontinues north and south.",
+   "extra_descs": {}
   },
   "3469": {
    "vnum": 3469,
@@ -1793,8 +1907,8 @@
      "description": "To the south lies The Grand Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The corridor rises a step or two here, and the marble floor is inlaid\nwith a long band of gold set with ruby chips that leads onward. Bronze\nlamps hang in their brackets, dented and green. A scorched patch the\nsize of a cart-wheel marks the stone. The way runs north to a junction\nand south the way you came.",
+   "extra_descs": {}
   },
   "3470": {
    "vnum": 3470,
@@ -1818,8 +1932,8 @@
      "description": "To the west lies The Grand Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The grand corridor continues west of the hall of four ways, and its\npillars lean slightly, tilted by some old convulsion of the earth. Faded\nmurals of battling elementals peel from the plaster in long curls. A\nthin shaft of white-gold light falls from a crack in the vault. The way\nruns east to the hall of columns and west toward a guardpost.",
+   "extra_descs": {}
   },
   "3471": {
    "vnum": 3471,
@@ -1851,8 +1965,14 @@
      "description": "To the west lies The Grand Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The grand corridor opens into a hall of four ways, its roof upheld by\ntall columns of veined white marble. Straight ahead to the north stands\na pair of towering doors, plated with beaten gold, flung wide to show\nthe throne beyond. Cross-corridors lead east and west, and the passage\nruns back south. The light is gold, bright and unforgiving.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651902,
+     "max": 1
+    }
+   ]
   },
   "3472": {
    "vnum": 3472,
@@ -1876,8 +1996,10 @@
      "description": "To the west lies The Grand Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "Here the corridor is hung with long gilt-framed portraits, each of a\nstern, jewelled figure in the white robes of an archmagus. The glass\nover several of them is cracked, and one frame is empty, its canvas cut\naway. The floor is worn into a shallow groove down the middle. The\ncorridor leads east and back west.",
+   "extra_descs": {
+    "portraits frames": "Every portrait shows an archmagus with the same lifted chin and the same\ndisdainful eyes. The empty frame bears a brass plate with a name that\nhas been scratched out."
+   }
   },
   "3473": {
    "vnum": 3473,
@@ -1905,8 +2027,8 @@
      "description": "To the west lies The Grand Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The grand corridor ends in a small marble landing with branching doors.\nTo the north stands a vault door of black steel banded with gold,\nstudded with locks that seem to shift, and a plainer passage leads south\nto the sleeping quarters. The air carries a faint smell of oil and iron.\nThe corridor leads back west.",
+   "extra_descs": {}
   },
   "3474": {
    "vnum": 3474,
@@ -1926,8 +2048,16 @@
      "description": "To the south lies The Grand Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "The Grand Throne rises at the far end of a high vaulted room, a seat of\nwhite marble and gold elevated on seven steps, its back carved like a\nsunburst. Banners of gold-and-white hang limp from the rafters, and the\nfloor is a vast mosaic of an eye within a flame. Static crackles around\nthe throne, and the air feels weighed down with arrogance. The only way\nout is south, back to the grand corridor.",
+   "extra_descs": {
+    "throne sunburst steps": "The throne's marble is cold as a grave. The sunburst on its back has\nbeen carved with such pride that you can almost hear the sculptor's\npatron insisting on more rays."
+   },
+   "mob_resets": [
+    {
+     "vnum": 651905,
+     "max": 1
+    }
+   ]
   },
   "3475": {
    "vnum": 3475,
@@ -1951,8 +2081,8 @@
      "description": "To the south lies The Sleeping Quarters."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A long hall of cots stretches here, but the beds are older and grander,\nwith carved headboards and canopies of faded gold brocade. Dust lies\nthick on the pillows, and the sheets are spotted with mildew. A tall\nmirror stands cracked in one corner. The hall leads north to the grand\ncorridor and south further into the old quarters.",
+   "extra_descs": {}
   },
   "3476": {
    "vnum": 3476,
@@ -1972,8 +2102,8 @@
      "description": "To the south lies The Grand Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "The treasury is a small, windowless chamber of white stone, its walls\nlined with iron-bound chests and shelves of ingots stamped with a\nsunburst. Most of the vaults stand open and empty, their locks long ago\npicked or blasted. A scatter of dull coin lies trodden into the dust. A\nsingle lamp hangs from the ceiling, burning with a steady, miserly\nflame. A door south is the sole way out.",
+   "extra_descs": {}
   },
   "3477": {
    "vnum": 3477,
@@ -1997,8 +2127,8 @@
      "description": "To the west lies The Sleeping Quarters."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A low hall running through the oldest of the sleeping quarters, its\nceiling stained black by centuries of lamp smoke. Rusted bed frames line\nthe walls, and the only decoration left is a single faded sunburst\npainted high above the doorway. A cold draught carries the smell of damp\nstone along the hall. It leads east and west.",
+   "extra_descs": {}
   },
   "3478": {
    "vnum": 3478,
@@ -2022,8 +2152,14 @@
      "description": "To the west lies The Sleeping Quarters."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "A bend in the old quarters where the bunks have been broken for\nfirewood, leaving only a few blackened frames. A cold hearth in the wall\nis choked with ash and charred bone-white splinters. Faint scratches of\nrunes still glimmer on the flagstones, flickering when you pass. The\nhall leads north and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651900,
+     "max": 1
+    }
+   ]
   },
   "3479": {
    "vnum": 3479,
@@ -2051,8 +2187,8 @@
      "description": "To the south lies The Sleeping Quarters."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A junction of the old sleeping quarters, where the beds have been shoved\naside to make room for a heap of broken furniture. A rotted tapestry of\na mountain sunset still clings to the wall, its colours leached to grey.\nFaint scratch marks run across the flagstones. Passages lead north, east\nand south.",
+   "extra_descs": {}
   },
   "3480": {
    "vnum": 3480,
@@ -2076,8 +2212,8 @@
      "description": "To the west lies The Sleeping Quarters."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and west.",
-   "placeholder": true
+   "description": "A square room of cots, many overturned, with broken lamps and shattered\nglass crunching underfoot. Someone has scrawled a chalk warning on the\nwall in a wavering hand, though time has half erased it. The air is cold\nand still, and a draught whispers under the door. The passage leads\nsouth and west.",
+   "extra_descs": {}
   },
   "3481": {
    "vnum": 3481,
@@ -2097,8 +2233,8 @@
      "description": "To the west lies The Sleeping Quarters."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "This tiny cell, hardly more than a closet, holds a single narrow bed and\na washstand with a cracked basin. A shuttered window of black glass is\nset in the wall, and no light has come through it in years. The air is\nstale and still. The only way out is west.",
+   "extra_descs": {}
   },
   "3482": {
    "vnum": 3482,
@@ -2122,8 +2258,14 @@
      "description": "To the east lies The Sleeping Quarters."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "The old quarters turn east here, and a row of tall wardrobes stands open\nagainst the wall, spilling moth-eaten robes onto the floor. A ruined\nharp leans in a corner, its strings snapped and curled. The plaster is\nstained in long dark streaks where water has crept in. You may go north,\nor east along the hall.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651900,
+     "max": 1
+    }
+   ]
   },
   "3483": {
    "vnum": 3483,
@@ -2143,8 +2285,14 @@
      "description": "To the east lies The Elementalist's Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "A dead-end alcove at the end of the elementalist's corridor, with a\nbench of soapstone and a small hearth set in the wall. A ring of\nscorched flagstones shows where some practice went wrong, and a bucket\nof sand and a bucket of water stand ready. A dusty window of green glass\ncasts a watery light. The only way out is east.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651901,
+     "max": 1
+    }
+   ]
   },
   "3484": {
    "vnum": 3484,
@@ -2168,8 +2316,8 @@
      "description": "To the south lies The Well."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The path ends against a wall of old, mossy stone with a low arch cut\ninto it, from which a cool draught blows. A stone bench stands beside\nit, polished by long use. Black beetles hurry along a crack in the wall.\nYou may go east, or south through the arch.",
+   "extra_descs": {}
   },
   "3485": {
    "vnum": 3485,
@@ -2197,8 +2345,8 @@
      "description": "To the west lies The Elementalist's Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Three passages meet in a small round hall, and its dome has been painted\nwith a cloudy sky that rumbles quietly with thunder. A thin film of\nwater runs down the wall opposite a ledge of smouldering charcoal. The\nfloor tiles are cracked from alternate heat and chill. The hall opens\nnorth, and east and west along the elementalist's corridor.",
+   "extra_descs": {}
   },
   "3486": {
    "vnum": 3486,
@@ -2222,8 +2370,14 @@
      "description": "To the west lies The Elementalist's Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A passage lit by fire-opals set into the ceiling, each throwing a ruddy\nglow. The walls are black glass, smooth and cold, reflecting your\npassage in warped red shapes. Little lizards of flame, carved in relief,\nseem to scurry along the wall when the light shifts. The corridor goes\neast and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651901,
+     "max": 1
+    }
+   ]
   },
   "3487": {
    "vnum": 3487,
@@ -2247,8 +2401,8 @@
      "description": "To the west lies The Elementalist's Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The air is damp here, and the stone walls are slick with condensation,\npearling and running in thin rivulets onto the floor. Blue-green\ncrystals jut from the ceiling, glowing like deep sea lanterns. Your\nfootsteps splash faintly in the standing water. The corridor continues\neast and west.",
+   "extra_descs": {}
   },
   "3488": {
    "vnum": 3488,
@@ -2272,8 +2426,8 @@
      "description": "To the south lies The Elementalist's Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The passage descends gently through a stretch lined with shelves of clay\njars sealed with wax, each stamped with an element's sign. A smell of\ndamp earth and sulphur drifts up. The tiles are swept clean, but a layer\nof grit coats the windowsills. The way runs north to the crossing and\nsouth along the corridor.",
+   "extra_descs": {}
   },
   "3489": {
    "vnum": 3489,
@@ -2301,8 +2455,14 @@
      "description": "To the west lies The Elementalist's Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A crossing where gusts blow from every direction, scattering chalk dust\nand torn scraps of parchment. Brass weathervanes spin on the ceiling,\npointing nowhere in particular. The walls are scored with scorch marks\nthat spiral outward. Passages run east and west, and another leads\nsouth.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651901,
+     "max": 1
+    }
+   ]
   },
   "3490": {
    "vnum": 3490,
@@ -2326,8 +2486,8 @@
      "description": "To the west lies The Elementalist's Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "Stone pillars here are cracked down the middle by some elemental blow,\nsplit with veins of fused glass. Gravel and loose rubble crunch\nunderfoot, and the air smells of struck flint. A line of iron braziers\nstands cold along the wall. The corridor runs east and back west.",
+   "extra_descs": {}
   },
   "3491": {
    "vnum": 3491,
@@ -2351,8 +2511,14 @@
      "description": "To the west lies The Elementalist's Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and west.",
-   "placeholder": true
+   "description": "The corridor makes a turn, and along its walls are mounted shields of\nbeaten copper, each embossed with a roaring face of storm, flame, stone\nor wave. The copper has gone green with age, and the metal faces seem to\nscowl at passers-by. A thin smell of lightning hangs in the air. The way\nleads north toward the master's door and west along the corridor.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651901,
+     "max": 1
+    }
+   ]
   },
   "3492": {
    "vnum": 3492,
@@ -2376,8 +2542,8 @@
      "description": "To the south lies The Elementalist's Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A short, well-kept passage ends in a tall door of dark oak bound with\ncopper and carved with swirling storms. A mat of woven reeds lies before\nit, scrubbed clean. The door stands north of here, set in a frame that\nglows with a restless amber light. The passage leads south to the\ncorridor.",
+   "extra_descs": {}
   },
   "3493": {
    "vnum": 3493,
@@ -2397,8 +2563,8 @@
      "description": "To the south lies The Elementalist's Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads south.",
-   "placeholder": true
+   "description": "The Master Elementalist's quarters are a round chamber with a domed\nceiling painted with four great faces, one for each element, glaring\ndown. A bed stands on a dais of volcanic glass, and a desk is covered in\nnotes and half-melted candles. A brazier burns beside a basin of still\nwater, and neither has ever put out the other. The door south returns to\nthe corridor.",
+   "extra_descs": {}
   },
   "3494": {
    "vnum": 3494,
@@ -2422,8 +2588,14 @@
      "description": "To the south lies The Elementalist's Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The corridor narrows between two walls of bare, rough stone, damp and\ncold to the touch, as if the room had been carved from a cavern. Tiny\ncrystals glimmer in the crevices. A trickle runs along a channel in the\nfloor and vanishes through a grate. You may go north or south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651901,
+     "max": 1
+    }
+   ]
   },
   "3495": {
    "vnum": 3495,
@@ -2443,8 +2615,10 @@
      "description": "To the north lies A Well Used Path."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads north.",
-   "placeholder": true
+   "description": "The Well is a small round chamber, its centre taken up by a wide stone\nwell-head with a rusty windlass and a rotted rope. A ring of pale moss\ngrows around the rim, and the water far below gives back a faint glimmer\nof gold. Drips echo in the shaft, and the air is cold and smells of\nminerals. The passage back leads north.",
+   "extra_descs": {
+    "well windlass rope": "The well is very deep, and a coin dropped into it would take a long time\nto answer. The water below shimmers with gold, as though the altar's\nlight had seeped down through the stone."
+   }
   },
   "3496": {
    "vnum": 3496,
@@ -2468,8 +2642,8 @@
      "description": "To the west lies The Elementalist's Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The corridor makes a sharp turn, and the air grows chill and dry. Frost\ngathers on the iron fittings, and the lamps burn small and low. Traces\nof old claw marks run down the walls, filled with grime. The way leads\nnorth back along the corridor and west to a stairhead.",
+   "extra_descs": {}
   },
   "3497": {
    "vnum": 3497,
@@ -2493,8 +2667,8 @@
      "description": "To the down lies Entrance to the Warded Castle."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and down.",
-   "placeholder": true
+   "description": "A small landing opens on a stairwell of black stone, spiralling steeply\ndown into a deep, chill darkness. The arch above it bears the faded\ninscription of the Warded Castle, and the great iron gate that once\nbarred it hangs open on broken hinges. Cold air rises from below,\ntasting of wet stone and old magic. The corridor runs east, and the\nstair goes down.",
+   "extra_descs": {}
   },
   "3498": {
    "vnum": 3498,
@@ -2518,8 +2692,8 @@
      "description": "To the south lies The Guards Room."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "The corridor turns here, its gold-edged flagstones lifted and cracked\nlike a dried riverbed. A pair of statues in white robes flanks the way\nsouth, both headless, their stumps scorched. The air feels brittle and\ncharged, like the moment before a thunderclap. The passage leads east\nalong the grand corridor and south to a guard room.",
+   "extra_descs": {}
   },
   "3499": {
    "vnum": 3499,
@@ -2539,11 +2713,409 @@
      "description": "To the north lies The Grand Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "The guard room is a bare square chamber of grey stone, furnished with a\nheavy table, a rack of halberds and a bench worn smooth by waiting. A\nbrazier of white-gold coals burns at its heart, the only light, and\nshadows leap on the walls. Scratched tallies of days and duties cover a\nwhole panel of wall. The only door opens north.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651902,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "651900": {
+   "vnum": 651900,
+   "name": "apprentice wizard singed",
+   "short_desc": "a singed apprentice wizard",
+   "long_desc": "A singed apprentice wizard in a scorched white robe hurries about with a smug, hurried air.",
+   "description": "A young wizard in a white robe with gold piping, the hem blackened by\nfailed experiments. Sparks crawl over the fingers of one hand, and the\nlook in the eyes is disdainful.",
+   "level": 22,
+   "alignment": -150,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751904,
+     "chance": 12
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "651901": {
+   "vnum": 651901,
+   "name": "elementalist mage robed",
+   "short_desc": "a robed elementalist",
+   "long_desc": "A robed elementalist stands amid swirling gusts of flame and frost, muttering over a hovering spark.",
+   "description": "A tall mage in robes that shift from ember red to glacier blue as they\nmove. Wind and cinders circle the hands, and the eyes burn with arrogant\npower.",
+   "level": 25,
+   "alignment": -250,
+   "hp_dice": "25d8+351",
+   "damage_dice": "7d6+13",
+   "armor_class": 22,
+   "exp": 1395,
+   "gold": 300,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751904,
+     "chance": 18
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "651902": {
+   "vnum": 651902,
+   "name": "golem guardian gold white",
+   "short_desc": "a white-gold golem",
+   "long_desc": "A white-gold golem stands motionless in the way, runes glowing along its limbs.",
+   "description": "A hulking figure of white stone plated with beaten gold, its fists as\nlarge as anvils. Runes burn along its limbs, and a point of cold light\nshines where a face should be.",
+   "level": 24,
+   "alignment": 0,
+   "hp_dice": "24d8+423",
+   "damage_dice": "7d6+15",
+   "armor_class": 20,
+   "exp": 1340,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751904,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "651903": {
+   "vnum": 651903,
+   "name": "hit wizard crimson battle",
+   "short_desc": "a crimson hit wizard",
+   "long_desc": "A crimson hit wizard prowls the corridor with a crackling wand held ready.",
+   "description": "A hard-faced battle wizard in a crimson coat laced with iron wire. Two\nebony wands ride at the hip, and a bolt of lightning dances along a\nthird in the off hand.",
+   "level": 28,
+   "alignment": -400,
+   "hp_dice": "28d8+404",
+   "damage_dice": "8d6+14",
+   "armor_class": 13,
+   "exp": 1560,
+   "gold": 336,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751903,
+     "chance": 28
+    },
+    {
+     "vnum": 751902,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "651904": {
+   "vnum": 651904,
+   "name": "alchemist master vial",
+   "short_desc": "the master alchemist",
+   "long_desc": "The master alchemist hovers over a bubbling crucible, tossing powders into a green flame.",
+   "description": "A stooped alchemist in a leather apron etched with acid burns and belted\nwith a clinking row of vials. The skin of the hands is stained gold and\nsilver, and the smile is cold.",
+   "level": 27,
+   "alignment": -350,
+   "hp_dice": "27d8+386",
+   "damage_dice": "7d6+16",
+   "armor_class": 16,
+   "exp": 1505,
+   "gold": 324,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751904,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "651905": {
+   "vnum": 651905,
+   "name": "kestrane warden mage throne",
+   "short_desc": "Kestrane, Warden of the Grand Throne",
+   "long_desc": "Kestrane, Warden of the Grand Throne, stands beside the seat with a staff of white gold, as stern as the stone.",
+   "description": "A towering mage in armoured white robes, a gold circlet on the brow and\na staff in both hands. Her stare is flat and imperious, and the air near\nher trembles with held lightning.",
+   "level": 29,
+   "alignment": -500,
+   "hp_dice": "29d8+422",
+   "damage_dice": "8d6+16",
+   "armor_class": 10,
+   "exp": 1615,
+   "gold": 348,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751902,
+     "chance": 35
+    },
+    {
+     "vnum": 751901,
+     "chance": 12
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "651906": {
+   "vnum": 651906,
+   "name": "archmagus vorlath wizard gilded",
+   "short_desc": "Archmagus Vorlath the Gilded",
+   "long_desc": "Archmagus Vorlath the Gilded stands before the White Gold Altar, wreathed in light that no shadow can cross.",
+   "description": "An ancient, regal wizard in robes of woven gold, the face smooth and\nunlined as a mask. His eyes are white with power, and the wards of the\ncathedral flare to his every breath. He regards intruders with the weary\nscorn of one who has never been bested.",
+   "level": 31,
+   "alignment": -600,
+   "hp_dice": "31d8+459",
+   "damage_dice": "8d6+18",
+   "armor_class": 4,
+   "exp": 1725,
+   "gold": 372,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751900,
+     "chance": 35
+    },
+    {
+     "vnum": 751901,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "751900": {
+   "vnum": 751900,
+   "name": "staff gilded wardstaff white gold",
+   "short_desc": "a gilded wardstaff",
+   "room_desc": "A gilded wardstaff of white gold lies here, humming softly.",
+   "description": "A tall staff of pale wood sheathed in white gold, capped by a crystal that burns like a tiny sun. It hums in the hand, and sparks leap from its butt when it strikes the floor.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 31,
+   "damage_dice": "2d8",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 815,
+   "affects": [
+    {
+     "type": "int",
+     "value": 1
+    }
+   ]
+  },
+  "751901": {
+   "vnum": 751901,
+   "name": "mantle cloak gold archmagus",
+   "short_desc": "a mantle of woven gold",
+   "room_desc": "A mantle of woven gold lies here in a shining heap.",
+   "description": "A heavy cloak of white wool shot through with threads of gold, lined with silk the colour of dawn. Faint wards crackle along its hem.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 30,
+   "wear_slot": "about",
+   "armor": 3,
+   "weight": 3,
+   "value": 630,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 12
+    }
+   ]
+  },
+  "751902": {
+   "vnum": 751902,
+   "name": "signet ring warden gold",
+   "short_desc": "a warden's gold signet",
+   "room_desc": "A gold signet ring lies here, glinting.",
+   "description": "A heavy gold ring set with a flat white stone carved with a throne in a flame. It is warm against the skin and tingles slightly.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 28,
+   "wear_slot": "finger1",
+   "armor": 2,
+   "weight": 1,
+   "value": 590,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "751903": {
+   "vnum": 751903,
+   "name": "dagger wand ebony hit wizard",
+   "short_desc": "an ebony wand-dagger",
+   "room_desc": "An ebony wand-dagger with a crimson grip lies here.",
+   "description": "A slim dagger of black ebony with a blade of ground crystal, balanced for thrust and spell alike. A thin crimson cord is wound round the grip.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 28,
+   "damage_dice": "2d7",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 740,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ]
+  },
+  "751904": {
+   "vnum": 751904,
+   "name": "shard wardstone crystal white",
+   "short_desc": "a shard of wardstone",
+   "room_desc": "A glittering shard of wardstone lies here.",
+   "description": "A sliver of white crystal veined with gold, still faintly warm. Collectors of arcane curios would pay well for it.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 24,
+   "weight": 1,
+   "value": 745
+  }
+ }
 }

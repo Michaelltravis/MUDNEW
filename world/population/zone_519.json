@@ -1,0 +1,168 @@
+{
+ "zone": 519,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Archmagus Vorlath the Gilded as the boss.",
+ "creatures": {
+  "651900": {
+   "helpers": {
+    "group": "z519_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a singed apprentice wizard"
+  },
+  "651901": {
+   "helpers": {
+    "group": "z519_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a robed elementalist"
+  },
+  "651902": {
+   "helpers": {
+    "group": "z519_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a white-gold golem"
+  },
+  "651903": {
+   "helpers": {
+    "group": "z519_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a crimson hit wizard",
+   "rank": "elite"
+  },
+  "651904": {
+   "helpers": {
+    "group": "z519_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "the master alchemist",
+   "rank": "elite"
+  },
+  "651905": {
+   "helpers": {
+    "group": "z519_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Kestrane, Warden of the Grand Throne",
+   "rank": "sub-boss"
+  },
+  "651906": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Archmagus Vorlath the Gilded",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Archmagus Vorlath the Gilded rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Archmagus Vorlath the Gilded gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+7",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Archmagus Vorlath the Gilded raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+6",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Archmagus Vorlath the Gilded begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+10",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 651900,
+   "route": [
+    3425,
+    3442,
+    3440,
+    3441,
+    3444,
+    3445,
+    3446,
+    3447,
+    3448,
+    3463,
+    3465,
+    3477,
+    3478,
+    3479,
+    3480,
+    3482
+   ],
+   "why": "a singed apprentice wizard walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 651906,
+   "room": 3409,
+   "why": "Archmagus Vorlath the Gilded in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      651900
+     ],
+     "shout": "Archmagus Vorlath the Gilded calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

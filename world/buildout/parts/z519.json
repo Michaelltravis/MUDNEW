@@ -1,0 +1,391 @@
+{
+ "job": "z519",
+ "rooms": {
+  "3400": "Tall beeches and dark yews close overhead along this shady path, and the gravel is soft with last autumn's leaves. Dapples of light fall through the branches, and from somewhere ahead comes a faint white-gold glow that looks strangely out of place among the trees. The path climbs north toward a great archway of pale stone. Behind you it winds south back to a colorful park, and a hum like a struck glass sings faintly in the air.",
+  "3401": "The archway is a tall vault of white marble veined with gold, its keystone carved into an open eye ringed by flames. Wards crackle faintly in the stone, and the hair on your arms lifts as you pass beneath. Daylight from the shady path lies behind you to the south, while to the north the vault opens into the cathedral proper. Names of wizards long dead are chiselled in neat rows along the inner faces of the arch.",
+  "3402": "This broad vestibule is floored in polished white stone, inlaid with a sunburst of gold wire that gleams under unseen light. Tall niches along the walls hold glass lamps that glow with a steady, shadowless radiance, though no flame burns in them. The air smells of hot metal and of lightning after rain. The vestibule opens north into the cathedral's great nave, and the archway lies south.",
+  "3403": "You stand at the crossing of the cathedral, beneath a lofty dome whose ribs are plated in white gold and flash with every shift of the light. Rows of pews stretch north toward a far altar, while narrow aisles run east and west behind them. Threads of blue fire crawl along the vaulting, held in check by the wards. The floor is a mosaic of constellations in pale marble, and the entrance vestibule lies south.",
+  "3406": "Long pews of bleached ash stand in ranks on either hand, their ends carved with sigils of fire, water, air and earth. The kneelers are worked in gold thread, worn pale by many proud knees. A faint static prickles over the wood whenever you brush it. The aisle runs north toward the altar and south back to the crossing.",
+  "3407": "Here the pews are benches of dark, iron-bound oak with heavy books chained to their backs, and the pages turn slowly of their own accord, whispering. A chandelier of beaten gold hangs overhead without chain or hook, revolving at the pace of a sleepwalker. The glare of the altar grows stronger along the aisle, which goes on north, while the way south leads back between the pews.",
+  "3408": "The pews end at a low step of white granite, and the light pouring from the altar is almost too bright to face. Gold dust drifts in the air like pollen and settles on your sleeves. Each floor tile is etched with a warding glyph that flares as you tread on it and fades behind you. The altar stands just north, and the rows of pews lie south.",
+  "3409": "The White Gold Altar is a great block of white marble sheathed in beaten gold, haloed in light so pure that nothing here casts a shadow. Chains of runes crawl over its face and spit sparks into the air with a sound like frying fat. Curved walkways sweep east and west around it, and the aisle of pews runs south. A black iron grate in the floor, rimmed with glowing wards, opens a stair down into the labyrinth beneath.",
+  "3419": "A wide walkway curves around the altar's flank, its floor a spiral of gold inlay on white stone. Tall windows of colourless glass, set with prisms, scatter small rainbows across the wall. The glare of the altar lies back to the west, and the walkway goes on east toward a transept. The air tingles and tastes faintly of copper.",
+  "3418": "This transept is a high-ceilinged arm of the cathedral, its walls hung with banners of white silk stitched in gold with the arms of old wizard houses. A stone lectern stands in one corner with a great book chained to it, its edges glowing like a coal. The walkway returns west toward the altar, while a hallway leads south. Sparks jump between the banner poles with soft snaps.",
+  "3417": "A long hallway lined with narrow arched windows, each throwing a bar of white light across the flagstones. Between them hang portraits of stern robed figures whose painted eyes seem to follow you, and one gilt frame crackles when you pass. The hallway runs north to the transept and south along the wing. Not a speck of dust lies anywhere, burnt away by the wards.",
+  "3413": "Sconces of gold shaped like clasped hands line this stretch of hallway, each holding a flame that burns without fuel and gives off no heat. The floor is scored with faint scorch marks, some in neat circles where spells have been practised. A bench of white stone sits against the wall, scratched with the initials of bored apprentices. The hall continues north and south.",
+  "3412": "The hallway begins to bend here, and the light turns warm and sunset-coloured through tall panes of amber glass. Faded tapestries show wizards hurling lightning at dragons, and their hems are singed black. Footsteps echo from the vaulted ceiling. To the south the corner of the cathedral waits, and the hall runs back north toward the transept.",
+  "3410": "At the corner of the cathedral two walls of pale stone meet beneath a buttress carved as a crouching gargoyle of gilded bronze. The wards on the stone hiss softly like water on a hot plate, and a narrow window gives a glimpse of the grounds. The hall turns north from here, and a low passage leads west behind the pews.",
+  "3405": "A narrow aisle runs behind the last rank of pews, its walls panelled in pale wood and hung with brass plaques naming the cathedral's donors. A rack of staves leans in one niche, each tipped with a dull crystal that brightens as you approach. The passage runs west to the crossing and east to the cathedral's corner. It smells of candle wax and ozone.",
+  "3427": "The walkway curves around the altar's other flank, and here the pillars are of white marble, each one wrapped by a spiralling serpent of gold. The floor is worn bright by the passage of many robes. Heat and light roll off the altar close by to the east, while the walkway sweeps on west toward a transept. A single stray spark skitters along the floor and vanishes.",
+  "3424": "This transept rises into shadowy vaults, and its windows of stained glass show the four elements as crowned figures in red, blue, gold and green. A great brass orrery stands in the middle of the floor, its rings and little moons turning by themselves with a soft tick. The walkway leads east back toward the altar, and a hallway runs south. Coloured light falls across the tiles in slow, shifting patches.",
+  "3422": "Frosted windows fill one wall of this hallway, and the light that filters through is pale and cold as moonlight. The floor is flagged in white stone with a seam of gold running down its centre like a vein of ore. A coat-stand of wrought silver holds a few scorched cloaks. The wing carries on south, and the transept lies north.",
+  "3421": "Glass cases of curiosities line this hallway: a shard of living flame in a bottle, a feather that will not fall, a pebble that hums to itself. Each case bears a small plaque in a crabbed, haughty hand. The cases rattle gently whenever a pulse of the wards travels through the floor. Passages lead north and south from here.",
+  "3420": "The hall dips by two shallow steps, and the walls close in, panelled in dark wood inlaid with little gold stars. A runner of white wool, singed in a hundred tiny places, muffles your steps. A single lamp burns with a cold blue flame beside an unmarked door that will not open. The hall runs north toward the transept, and the cathedral's corner lies south.",
+  "3411": "The corner of the cathedral here forms a small round turret room, ringed with slit windows that look out over a sloping lawn and dark trees. A spiral of gold is set into the floor, and a faint warmth rises from it. The way leads north along a hallway, and a low passage opens east behind the pews. A stool and an abandoned practice wand lie against the wall, long forgotten.",
+  "3404": "This low passage behind the pews smells of beeswax and old paper. Hooks along the wall hold choir robes of white and gold, stiff with starch. In a small alcove a bowl of water holds a flame that floats upon it without sinking. The passage runs east toward the crossing and west to the cathedral's corner.",
+  "3414": "You are at a crossing in the warded labyrinth beneath the altar, a hall of black stone where lines of gold light form a lattice over every wall. Each line hums, and it would be unwise to touch the wrong one. Corridors lead north toward the enchanters, east toward the alchemists, south toward the sleeping quarters and west to a wasteroom. The air is hot and dry, like a forge at rest.",
+  "3423": "The enchanter's corridor begins here in a passage of smooth dark stone, hung with strings of tiny glass beads that chime together as the wards pulse. Panels of gold leaf along the walls glow faintly from within. The smell is of hot wax, ink and something sweet and burnt. The corridor runs north, and the labyrinth crossing lies south.",
+  "3426": "The corridor turns here, and the ceiling lowers to brush the tops of the lamps. Shelves cut into the wall hold hundreds of small rings and amulets, set out on velvet and glowing faintly where they await their charms. The passage leads west along the corridor, and south back toward the labyrinth. Little blue sparks drift between the shelves like fireflies.",
+  "3428": "Etched on the walls here are long columns of tiny runes, each glowing a different shade as though it were counting something. The floor is scattered with filings of gold and silver that swirl in small whirlwinds around your feet. The passage turns north toward the corridor's heart, and the way east leads back round the bend. The air thrums with slow, patient power.",
+  "3429": "The corridor opens into a small junction before a heavy door of gilded oak that stands ajar to the west, the way into the Master Enchanter's quarters. A brass plate on the door gives the master's name and a long list of grudges. The floor here is paved in alternate squares of black and white stone, and some squares glow when stepped upon. The corridor leads east, and back south toward the bend.",
+  "3431": "Glass-fronted cabinets line this stretch of the corridor, each full of half-finished charms: gloves that flex by themselves, boots stitched with silver thread, belts that coil like sleeping snakes. A thin film of gold dust coats everything, and nobody seems to mind. The passage runs east and west, and every footstep sets the cabinet doors chattering.",
+  "3432": "Round windows of coloured glass pierce the wall here, though they look onto nothing but solid stone, and they cast beams of ruby and sapphire across the floor. A workbench of pale wood stands against the wall, stained and scorched by years of careless incantation. The corridor goes on east and back west. The air is thick with the scent of cloves and burnt hair.",
+  "3433": "The corridor bends sharply here, and the walls are hung with rolls of parchment pinned in rows, each scrawled with a different binding formula. Several have charred edges, as though their authors lost an argument with them. Oil lamps burn with a green flame along the way. The passage leads north to a dead-end alcove, and west back along the corridor.",
+  "3434": "This is a dead-end alcove, and its ceiling is hung with dozens of tiny bells of gold that ring softly with no breeze to stir them. A cushioned stool stands before a cracked scrying bowl, and a ring of scorch marks on the floor shows where some experiment went wrong. Only the corridor south offers a way back. A heavy stillness presses on the ears.",
+  "3430": "The Master Enchanter's quarters are crowded with the clutter of a long and conceited life: a four-poster bed hung with gold-threaded curtains, a desk piled with unfinished commissions, a mirror whose reflections lag behind you by a heartbeat. Rugs of white fur overlap on the floor, and a tall window of frosted glass lets in a diffuse, flawless light. A fire burns in a grate without ever consuming its logs. The only door leads east to the corridor.",
+  "3416": "The alchemist's corridor begins here, running east from the labyrinth crossing, and the air grows hot and acrid at once. The walls are tiled in glazed white ceramic, stained in places with rainbow splashes of old spills. A line of copper pipes runs overhead, tapping and gurgling. The corridor continues east, and the labyrinth lies west.",
+  "3449": "The corridor turns here, and a stained drain in the middle of the floor leaks a thin curl of yellow vapour. Shelves of stoppered jars climb the walls, each labelled in a tiny cramped hand with warnings no sane person would ignore. A faint hissing comes from behind the tiles. The way leads south along the corridor, and west back toward the labyrinth.",
+  "3450": "Racks of glass tubing hang along this passage, bubbling with liquids of impossible colours: violet, sulphur-yellow, an oily black that swallows the light. A drip falls somewhere with a slow, regular plink. The air stings the eyes and the throat. Corridors run north and south from here.",
+  "3451": "A long bench of grey slate runs down one wall, crowded with alembics, mortars and spirit lamps, their burners left lit to simmer. Splashes of acid have eaten pits into the slate, and a hand-lettered sign begs visitors not to breathe too deeply. The corridor goes on north and south. Somewhere a kettle shrieks and falls silent.",
+  "3452": "Three ways meet at this junction of the alchemist's corridor, beneath a ceiling blackened by fumes. A round door of brass stands to the east, marked with the sign of the Alchemist, while to the west a plainer wooden door leads to the apprentice's quarters. The floor is crusted with dried reagents that crunch beneath your feet. The corridor continues north and south.",
+  "3453": "The alchemist's private quarters are crowded with books and jars, and a narrow cot is shoved into a corner as though sleep were an afterthought. A great copper still squats in the middle of the floor, its coils swollen and green with verdigris. Dried herbs hang in bunches from the beams, and the room reeks of mint and sulphur. The only way out is west, back to the corridor.",
+  "3454": "Stained tiles lead on through this stretch of corridor, and a trail of footprints in white powder marks the floor, as if somebody had walked it dragging a split sack. Gas lamps burn low and blue, their glass cracked and mended with wire. The air is warm and carries a metallic tang. The corridor runs north to the junction and south to a crossing.",
+  "3456": "The passage divides into a crossing here: it runs east into a short blind spur and west toward the chamber of the alchemists, while the corridor you came by runs north. Ladles and tongs hang from hooks, blackened by heat, and a bucket of grey sand stands ready for fires. The tiles are cracked and spotted with old burns. A low roar sounds from somewhere deep in the walls.",
+  "3461": "This short spur ends in a blank wall of soot-black brick, plainly once a furnace room. A cold iron stove stands open against the wall, full of grey ash and fused glass. The air is stale and smells of scorched metal and old smoke. The only way out is west, back to the crossing.",
+  "3457": "A short and narrow corridor leads toward the alchemy chamber, its walls patched with sheets of lead to keep the fumes in. Warning symbols are chalked above the arch of the entrance, a skull, a flame, a bubbling flask. The corridor runs east back toward the crossing, and the chamber opens west. The heat that rolls through the arch is like an oven door opening.",
+  "3458": "The alchemy chamber is a great vaulted room of white-glazed brick, with a ring of furnaces round its walls that glow orange through iron grilles. Heavy tables hold crucibles, retorts and graduated cylinders, and coils of glass pipe connect them in tangled loops. A bitter vapour hangs under the ceiling. The chamber opens east to the corridor and continues south and west.",
+  "3459": "A line of vats stands along the wall here, each as tall as a man and filled with a slowly stirring liquid that glows green and then gold. Brass rails run round them, polished by the sleeves of many hurried workers. The floor is wet and slick in patches. The chamber goes on north and west.",
+  "3462": "This corner of the chamber is crowded with towering shelves of dusty reagents: salts, sulphurs, pale powders and the dried parts of things best left unnamed. A rolling ladder leans against the shelves, and a scale of fine gold sits on a stand, tipped to one side by a forgotten weight. The air is cold here after the furnace heat. Gaps in the shelves lead north and east.",
+  "3460": "A great athanor, a tall furnace shaped like a tower, dominates this corner of the alchemy chamber and fills it with a deep red glow. Pans of lead and mercury bubble on iron trivets, and the heat is almost solid against the skin. The scorched floor leads east and south through the smoke.",
+  "3455": "The apprentice's quarters are tiny, and every surface is covered with scribbled notes and stained garments. A narrow cot sits under a dripping pipe, its blanket singed in several places, and a bowl of something green is left to sour on the sill. Burnt fingerprints dot the doorframe. The only way out is east, back to the corridor.",
+  "3415": "A broad stone passage leads toward the sleeping quarters, with a row of identical narrow doors set in the wall and numbered in gold paint. Footsteps are hushed by a runner of deep grey felt. The lamps are turned low, and a smell of soap and spent candles lingers. The passage leads north to the labyrinth, south along the cells, and west to a further corridor.",
+  "3435": "A long dormitory passage, its walls lined with narrow bunks built into alcoves and curtained with white linen. Trunks sit at the foot of each, strapped and padlocked, some bearing the scorch marks of failed wards. A single glass lamp swings from a hook, throwing wide, slow shadows. The passage runs north and south.",
+  "3436": "The passage bends here, and the bunks give way to a small common space, with a table of scarred oak and a few stools, still littered with a half-played game of rune-stones. A cold hearth fills one wall, its mantel crowded with candle stubs. The way leads north back along the cells and west toward a further hall.",
+  "3437": "Here the dormitory narrows to a low, plain hall, its bunks stacked two high and hung with threadbare quilts. Chalk drawings of spell circles cover the lower walls, some smudged out in a hurry, and the whole hall smells of damp wool. A draught of cool air flows along it. You may go east or west along the hall.",
+  "3438": "The dormitory turns a corner here, and the air grows close and warm from the heat of a stove that never goes out. A row of cots lines each wall under shelves of battered spell-books bristling with paper markers. Someone has scratched a rude caricature of the Archmagus into the plaster, and a sharp-eyed monitor has tried to scrub it out. The hall leads north and east.",
+  "3439": "A narrow part of the dormitory, where the walls are hung with long rows of pegs bearing grey travelling cloaks and pointed hats. A bench runs beneath them, scattered with boots, and the stone floor is polished by thousands of nervous footsteps. Lamps in wire cages give a dim, yellowish light. You can go north or back south.",
+  "3440": "This landing is a meeting of three passages, and the floor is chalked with a great ring of duelling lines in red and gold. The walls bear scars of scorching and long gouges cut by spell-fire. A rack of practice wands stands by the west passage, which is lined with banners of crimson silk. The dormitory leads south and east, while a harsher corridor runs west.",
+  "3442": "The sleeping quarters broaden here into a bunk-hall with a high beamed ceiling, hung with paper charms against bad dreams. Rows of cots are made up with military neatness under blankets of undyed wool. A distant dripping drifts in from the north, where a foul-smelling room waits. Ways lead east and west along the hall.",
+  "3425": "The wasteroom is a cramped, tiled chamber with a stone trough running along one wall and a vent in the ceiling that sucks in the air with a thin whistle. Buckets of spent reagents and scorched robes are heaped in the corner, awaiting the burning-pit. Everything here smells of lye and rot. The labyrinth crossing is east of here, and a bunk-hall lies south.",
+  "3441": "The hit wizards' corridor starts as a grim, bare passage of grey stone, its walls hung with crossed wands of black ebony and the bright red banners of the order. The floor is scored with bootmarks from endless drills. A tang of singed air lingers. The passage runs east back toward the sleeping quarters and west deeper into the order's wing.",
+  "3444": "A small guardroom opens off the corridor here, with a table bearing a map of the cathedral weighted with daggers. Racks of long gloves and wand-cases line the walls, all oiled and ready. The air is charged, and a tinge of blue lightning crawls over the iron lamp brackets. The corridor runs north and east, and a door south leads to the master's quarters.",
+  "3445": "Targets of straw-stuffed leather hang from the walls of this passage, blackened and pierced by spell-fire. Sand has been spread thickly over the floor to catch stray sparks, and it crunches underfoot. Spent wand-cores lie in the corners, burnt to charcoal. The corridor runs north and south.",
+  "3446": "The corridor makes a right angle here, and the vaulted ceiling is lined with sheets of beaten iron, dented and blistered by the practice of generations. A line of crimson paint marks where the novices must stand. The floor is pocked with small craters. The way leads east along the wing and south back toward the guardroom.",
+  "3447": "A plain stone passage, brightly lit by a row of white-gold crystals set in iron cages along the ceiling. The crystals buzz like angry wasps. Names are carved in the walls beside small dents the size of a fist, as if a hundred graduates had struck them in passing. The passage runs on east, and back west.",
+  "3448": "The corridor ends in a round, bare chamber whose floor is crossed with seared lines, the marks of a hundred failed duels. A circle of black iron is set in the middle of it, and beneath is a rough stair spiralling down into darkness and cold dust. A scrap of scorched red silk hangs from the lintel. The corridor leads west, and the stair goes down.",
+  "3463": "You are in a crumbling crossing of passages that once belonged to a greater labyrinth. The ceiling has sagged, and fallen plaster lies in drifts, with the old wards still sputtering through the cracks like trapped insects. Dust hangs heavy in the air and clings to your tongue. Corridors lead north, east, south and west from this ruined hub.",
+  "3466": "A wide corridor of cold grey marble, grander than anything in the wing behind you, though cracked and stained by seepage. Tall pilasters rise along the walls, topped by gold leaf capitals half flaked away. A carpet of faded crimson runs down the middle, rotted to threads at the edges. The corridor leads north, and south to the crumbling crossing.",
+  "3468": "Great arched niches line the walls here, each empty of the statue it once held, only the plinths remaining with their carved names. A draught blows the dust in curling streamers along the floor. High above, a line of dark windows is crusted with ancient grime. The grand corridor continues north and south.",
+  "3469": "The corridor rises a step or two here, and the marble floor is inlaid with a long band of gold set with ruby chips that leads onward. Bronze lamps hang in their brackets, dented and green. A scorched patch the size of a cart-wheel marks the stone. The way runs north to a junction and south the way you came.",
+  "3471": "The grand corridor opens into a hall of four ways, its roof upheld by tall columns of veined white marble. Straight ahead to the north stands a pair of towering doors, plated with beaten gold, flung wide to show the throne beyond. Cross-corridors lead east and west, and the passage runs back south. The light is gold, bright and unforgiving.",
+  "3474": "The Grand Throne rises at the far end of a high vaulted room, a seat of white marble and gold elevated on seven steps, its back carved like a sunburst. Banners of gold-and-white hang limp from the rafters, and the floor is a vast mosaic of an eye within a flame. Static crackles around the throne, and the air feels weighed down with arrogance. The only way out is south, back to the grand corridor.",
+  "3472": "Here the corridor is hung with long gilt-framed portraits, each of a stern, jewelled figure in the white robes of an archmagus. The glass over several of them is cracked, and one frame is empty, its canvas cut away. The floor is worn into a shallow groove down the middle. The corridor leads east and back west.",
+  "3473": "The grand corridor ends in a small marble landing with branching doors. To the north stands a vault door of black steel banded with gold, studded with locks that seem to shift, and a plainer passage leads south to the sleeping quarters. The air carries a faint smell of oil and iron. The corridor leads back west.",
+  "3476": "The treasury is a small, windowless chamber of white stone, its walls lined with iron-bound chests and shelves of ingots stamped with a sunburst. Most of the vaults stand open and empty, their locks long ago picked or blasted. A scatter of dull coin lies trodden into the dust. A single lamp hangs from the ceiling, burning with a steady, miserly flame. A door south is the sole way out.",
+  "3475": "A long hall of cots stretches here, but the beds are older and grander, with carved headboards and canopies of faded gold brocade. Dust lies thick on the pillows, and the sheets are spotted with mildew. A tall mirror stands cracked in one corner. The hall leads north to the grand corridor and south further into the old quarters.",
+  "3482": "The old quarters turn east here, and a row of tall wardrobes stands open against the wall, spilling moth-eaten robes onto the floor. A ruined harp leans in a corner, its strings snapped and curled. The plaster is stained in long dark streaks where water has crept in. You may go north, or east along the hall.",
+  "3480": "A square room of cots, many overturned, with broken lamps and shattered glass crunching underfoot. Someone has scrawled a chalk warning on the wall in a wavering hand, though time has half erased it. The air is cold and still, and a draught whispers under the door. The passage leads south and west.",
+  "3479": "A junction of the old sleeping quarters, where the beds have been shoved aside to make room for a heap of broken furniture. A rotted tapestry of a mountain sunset still clings to the wall, its colours leached to grey. Faint scratch marks run across the flagstones. Passages lead north, east and south.",
+  "3481": "This tiny cell, hardly more than a closet, holds a single narrow bed and a washstand with a cracked basin. A shuttered window of black glass is set in the wall, and no light has come through it in years. The air is stale and still. The only way out is west.",
+  "3478": "A bend in the old quarters where the bunks have been broken for firewood, leaving only a few blackened frames. A cold hearth in the wall is choked with ash and charred bone-white splinters. Faint scratches of runes still glimmer on the flagstones, flickering when you pass. The hall leads north and west.",
+  "3477": "A low hall running through the oldest of the sleeping quarters, its ceiling stained black by centuries of lamp smoke. Rusted bed frames line the walls, and the only decoration left is a single faded sunburst painted high above the doorway. A cold draught carries the smell of damp stone along the hall. It leads east and west.",
+  "3465": "This end of the old sleeping quarters opens toward a ruined crossing. The walls are cracked from floor to ceiling, and a spill of rubble blocks one corner, the fallen stones glittering with flecks of gold. Moss grows in the seams where moisture seeps in. The hall runs east into the old quarters and west to the crumbling crossing.",
+  "3470": "The grand corridor continues west of the hall of four ways, and its pillars lean slightly, tilted by some old convulsion of the earth. Faded murals of battling elementals peel from the plaster in long curls. A thin shaft of white-gold light falls from a crack in the vault. The way runs east to the hall of columns and west toward a guardpost.",
+  "3498": "The corridor turns here, its gold-edged flagstones lifted and cracked like a dried riverbed. A pair of statues in white robes flanks the way south, both headless, their stumps scorched. The air feels brittle and charged, like the moment before a thunderclap. The passage leads east along the grand corridor and south to a guard room.",
+  "3499": "The guard room is a bare square chamber of grey stone, furnished with a heavy table, a rack of halberds and a bench worn smooth by waiting. A brazier of white-gold coals burns at its heart, the only light, and shadows leap on the walls. Scratched tallies of days and duties cover a whole panel of wall. The only door opens north.",
+  "3464": "The elementalist's corridor starts here, a passage where the stones are streaked with soot on one side and glazed with frost on the other. Warm and cold winds seem to chase each other along its length, tugging at your clothes. Puddles stand where the frost melts, and cinders glow where the soot burns. The corridor runs north to the crumbling crossing and south into the wing.",
+  "3485": "Three passages meet in a small round hall, and its dome has been painted with a cloudy sky that rumbles quietly with thunder. A thin film of water runs down the wall opposite a ledge of smouldering charcoal. The floor tiles are cracked from alternate heat and chill. The hall opens north, and east and west along the elementalist's corridor.",
+  "3486": "A passage lit by fire-opals set into the ceiling, each throwing a ruddy glow. The walls are black glass, smooth and cold, reflecting your passage in warped red shapes. Little lizards of flame, carved in relief, seem to scurry along the wall when the light shifts. The corridor goes east and west.",
+  "3487": "The air is damp here, and the stone walls are slick with condensation, pearling and running in thin rivulets onto the floor. Blue-green crystals jut from the ceiling, glowing like deep sea lanterns. Your footsteps splash faintly in the standing water. The corridor continues east and west.",
+  "3489": "A crossing where gusts blow from every direction, scattering chalk dust and torn scraps of parchment. Brass weathervanes spin on the ceiling, pointing nowhere in particular. The walls are scored with scorch marks that spiral outward. Passages run east and west, and another leads south.",
+  "3490": "Stone pillars here are cracked down the middle by some elemental blow, split with veins of fused glass. Gravel and loose rubble crunch underfoot, and the air smells of struck flint. A line of iron braziers stands cold along the wall. The corridor runs east and back west.",
+  "3491": "The corridor makes a turn, and along its walls are mounted shields of beaten copper, each embossed with a roaring face of storm, flame, stone or wave. The copper has gone green with age, and the metal faces seem to scowl at passers-by. A thin smell of lightning hangs in the air. The way leads north toward the master's door and west along the corridor.",
+  "3492": "A short, well-kept passage ends in a tall door of dark oak bound with copper and carved with swirling storms. A mat of woven reeds lies before it, scrubbed clean. The door stands north of here, set in a frame that glows with a restless amber light. The passage leads south to the corridor.",
+  "3493": "The Master Elementalist's quarters are a round chamber with a domed ceiling painted with four great faces, one for each element, glaring down. A bed stands on a dais of volcanic glass, and a desk is covered in notes and half-melted candles. A brazier burns beside a basin of still water, and neither has ever put out the other. The door south returns to the corridor.",
+  "3488": "The passage descends gently through a stretch lined with shelves of clay jars sealed with wax, each stamped with an element's sign. A smell of damp earth and sulphur drifts up. The tiles are swept clean, but a layer of grit coats the windowsills. The way runs north to the crossing and south along the corridor.",
+  "3494": "The corridor narrows between two walls of bare, rough stone, damp and cold to the touch, as if the room had been carved from a cavern. Tiny crystals glimmer in the crevices. A trickle runs along a channel in the floor and vanishes through a grate. You may go north or south.",
+  "3496": "The corridor makes a sharp turn, and the air grows chill and dry. Frost gathers on the iron fittings, and the lamps burn small and low. Traces of old claw marks run down the walls, filled with grime. The way leads north back along the corridor and west to a stairhead.",
+  "3497": "A small landing opens on a stairwell of black stone, spiralling steeply down into a deep, chill darkness. The arch above it bears the faded inscription of the Warded Castle, and the great iron gate that once barred it hangs open on broken hinges. Cold air rises from below, tasting of wet stone and old magic. The corridor runs east, and the stair goes down.",
+  "3483": "A dead-end alcove at the end of the elementalist's corridor, with a bench of soapstone and a small hearth set in the wall. A ring of scorched flagstones shows where some practice went wrong, and a bucket of sand and a bucket of water stand ready. A dusty window of green glass casts a watery light. The only way out is east.",
+  "3467": "A well used path of trodden stone crosses this hall, its flags worn into shallow troughs by countless feet. Iron lanterns hang from hooks in the wall, giving a steady yellow light. The air is chill and carries a damp, mossy smell. The path runs east to the crumbling crossing and west further into the dark.",
+  "3484": "The path ends against a wall of old, mossy stone with a low arch cut into it, from which a cool draught blows. A stone bench stands beside it, polished by long use. Black beetles hurry along a crack in the wall. You may go east, or south through the arch.",
+  "3495": "The Well is a small round chamber, its centre taken up by a wide stone well-head with a rusty windlass and a rotted rope. A ring of pale moss grows around the rim, and the water far below gives back a faint glimmer of gold. Drips echo in the shaft, and the air is cold and smells of minerals. The passage back leads north.",
+  "3443": "The Master Hit Wizards' quarters are spare and martial: a bare cot, a chest bound in iron, a rack of wands and a wall hung with ranks of broken enemy staves as trophies. A single red banner hangs over the bed, stitched with a lightning bolt. The floor shows the marks of pacing, a worn path from door to window. The only way out is north."
+ },
+ "extras": {
+  "3401": [
+   {
+    "keywords": "names inscription arch wizards",
+    "description": "The names run in tight, proud script, each followed by a title: Archmagus, Warden, Master of the Seven Wards. The newest are still faintly warm to the touch."
+   }
+  ],
+  "3409": [
+   {
+    "keywords": "altar runes marble",
+    "description": "The runes on the altar shift and rearrange as you watch, forming lines in a tongue you almost understand. Whatever they say, they seem to be waiting for you to flinch."
+   }
+  ],
+  "3424": [
+   {
+    "keywords": "orrery brass rings",
+    "description": "The orrery's brass rings carry a sun of gold and nine little moons, and they do not agree with any sky you know. The innermost moon stops and starts, as if listening."
+   }
+  ],
+  "3430": [
+   {
+    "keywords": "mirror",
+    "description": "The mirror shows you a heartbeat late, and its reflection looks far more confident than you feel. The frame is cast in gold, engraved with the words Know Your Betters."
+   }
+  ],
+  "3458": [
+   {
+    "keywords": "furnaces grilles",
+    "description": "The furnaces burn white-orange behind their grilles. Each is stamped with a maker's mark of an open flame over a gold crown."
+   }
+  ],
+  "3474": [
+   {
+    "keywords": "throne sunburst steps",
+    "description": "The throne's marble is cold as a grave. The sunburst on its back has been carved with such pride that you can almost hear the sculptor's patron insisting on more rays."
+   }
+  ],
+  "3472": [
+   {
+    "keywords": "portraits frames",
+    "description": "Every portrait shows an archmagus with the same lifted chin and the same disdainful eyes. The empty frame bears a brass plate with a name that has been scratched out."
+   }
+  ],
+  "3495": [
+   {
+    "keywords": "well windlass rope",
+    "description": "The well is very deep, and a coin dropped into it would take a long time to answer. The water below shimmers with gold, as though the altar's light had seeped down through the stone."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "wg-apprentice",
+   "keywords": "apprentice wizard singed",
+   "short_desc": "a singed apprentice wizard",
+   "long_desc": "A singed apprentice wizard in a scorched white robe hurries about with a smug, hurried air.",
+   "description": "A young wizard in a white robe with gold piping, the hem blackened by failed experiments. Sparks crawl over the fingers of one hand, and the look in the eyes is disdainful.",
+   "kind": "humanoid",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -150,
+   "rooms": [
+    "The Sleeping Quarters",
+    "The Apprentice's Quarters",
+    "The Wasteroom",
+    "The Alchemist's Corridor"
+   ],
+   "count": 8,
+   "drops": [
+    {
+     "item": "wardstone-shard",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "wg-elementalist",
+   "keywords": "elementalist mage robed",
+   "short_desc": "a robed elementalist",
+   "long_desc": "A robed elementalist stands amid swirling gusts of flame and frost, muttering over a hovering spark.",
+   "description": "A tall mage in robes that shift from ember red to glacier blue as they move. Wind and cinders circle the hands, and the eyes burn with arrogant power.",
+   "kind": "humanoid",
+   "level": 25,
+   "aggressive": true,
+   "alignment": -250,
+   "rooms": [
+    "The Elementalist's Corridor",
+    "The Master Elementalist's Quarters",
+    "A Well Used Path"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "wardstone-shard",
+     "chance": 18
+    }
+   ]
+  },
+  {
+   "id": "wg-golem",
+   "keywords": "golem guardian gold white",
+   "short_desc": "a white-gold golem",
+   "long_desc": "A white-gold golem stands motionless in the way, runes glowing along its limbs.",
+   "description": "A hulking figure of white stone plated with beaten gold, its fists as large as anvils. Runes burn along its limbs, and a point of cold light shines where a face should be.",
+   "kind": "monster",
+   "level": 24,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Warded Labyrinth",
+    "The Enchanter's Corridor",
+    "The Grand Corridor",
+    "The Guards Room",
+    "The Crumbling Labyrinth",
+    "The Western Hallway",
+    "The Eastern Hallway"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "wardstone-shard",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "wg-hit-wizard",
+   "keywords": "hit wizard crimson battle",
+   "short_desc": "a crimson hit wizard",
+   "long_desc": "A crimson hit wizard prowls the corridor with a crackling wand held ready.",
+   "description": "A hard-faced battle wizard in a crimson coat laced with iron wire. Two ebony wands ride at the hip, and a bolt of lightning dances along a third in the off hand.",
+   "kind": "humanoid",
+   "level": 28,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "The Hit Wizards Corridor",
+    "The Master Hit Wizards Quarters"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "hit-wizard-dagger",
+     "chance": 28
+    },
+    {
+     "item": "warden-signet",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "wg-master-alchemist",
+   "keywords": "alchemist master vial",
+   "short_desc": "the master alchemist",
+   "long_desc": "The master alchemist hovers over a bubbling crucible, tossing powders into a green flame.",
+   "description": "A stooped alchemist in a leather apron etched with acid burns and belted with a clinking row of vials. The skin of the hands is stained gold and silver, and the smile is cold.",
+   "kind": "humanoid",
+   "level": 27,
+   "aggressive": true,
+   "alignment": -350,
+   "rooms": [
+    "The Alchemy Chamber"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "wardstone-shard",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "kestrane",
+   "keywords": "kestrane warden mage throne",
+   "short_desc": "Kestrane, Warden of the Grand Throne",
+   "long_desc": "Kestrane, Warden of the Grand Throne, stands beside the seat with a staff of white gold, as stern as the stone.",
+   "description": "A towering mage in armoured white robes, a gold circlet on the brow and a staff in both hands. Her stare is flat and imperious, and the air near her trembles with held lightning.",
+   "kind": "humanoid",
+   "level": 29,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Grand Throne"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "warden-signet",
+     "chance": 35
+    },
+    {
+     "item": "archmagus-mantle",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "archmagus-vorlath",
+   "keywords": "archmagus vorlath wizard gilded",
+   "short_desc": "Archmagus Vorlath the Gilded",
+   "long_desc": "Archmagus Vorlath the Gilded stands before the White Gold Altar, wreathed in light that no shadow can cross.",
+   "description": "An ancient, regal wizard in robes of woven gold, the face smooth and unlined as a mask. His eyes are white with power, and the wards of the cathedral flare to his every breath. He regards intruders with the weary scorn of one who has never been bested.",
+   "kind": "humanoid",
+   "level": 31,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The White Gold Altar"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "gilded-wardstaff",
+     "chance": 35
+    },
+    {
+     "item": "archmagus-mantle",
+     "chance": 30
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "gilded-wardstaff",
+   "keywords": "staff gilded wardstaff white gold",
+   "short_desc": "a gilded wardstaff",
+   "room_desc": "A gilded wardstaff of white gold lies here, humming softly.",
+   "description": "A tall staff of pale wood sheathed in white gold, capped by a crystal that burns like a tiny sun. It hums in the hand, and sparks leap from its butt when it strikes the floor.",
+   "kind": "weapon",
+   "level": 31,
+   "weapon_type": "pound",
+   "bonus": {
+    "int": 1
+   }
+  },
+  {
+   "id": "archmagus-mantle",
+   "keywords": "mantle cloak gold archmagus",
+   "short_desc": "a mantle of woven gold",
+   "room_desc": "A mantle of woven gold lies here in a shining heap.",
+   "description": "A heavy cloak of white wool shot through with threads of gold, lined with silk the colour of dawn. Faint wards crackle along its hem.",
+   "kind": "armor",
+   "level": 30,
+   "wear_slot": "about",
+   "bonus": {
+    "hp": 12
+   }
+  },
+  {
+   "id": "warden-signet",
+   "keywords": "signet ring warden gold",
+   "short_desc": "a warden's gold signet",
+   "room_desc": "A gold signet ring lies here, glinting.",
+   "description": "A heavy gold ring set with a flat white stone carved with a throne in a flame. It is warm against the skin and tingles slightly.",
+   "kind": "armor",
+   "level": 28,
+   "wear_slot": "finger",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "hit-wizard-dagger",
+   "keywords": "dagger wand ebony hit wizard",
+   "short_desc": "an ebony wand-dagger",
+   "room_desc": "An ebony wand-dagger with a crimson grip lies here.",
+   "description": "A slim dagger of black ebony with a blade of ground crystal, balanced for thrust and spell alike. A thin crimson cord is wound round the grip.",
+   "kind": "weapon",
+   "level": 28,
+   "weapon_type": "pierce",
+   "bonus": {
+    "hitroll": 1
+   }
+  },
+  {
+   "id": "wardstone-shard",
+   "keywords": "shard wardstone crystal white",
+   "short_desc": "a shard of wardstone",
+   "room_desc": "A glittering shard of wardstone lies here.",
+   "description": "A sliver of white crystal veined with gold, still faintly warm. Collectors of arcane curios would pay well for it.",
+   "kind": "treasure",
+   "level": 24
+  }
+ ]
+}
