@@ -8,7 +8,8 @@
 // `prop` a kit model (a mimic is a chest), `h` being its longest side. Undead and people by
 // trade are in looks.js. `prefer` keeps the model file even where creatures get bodies built in
 // code (kin.js): for the creatures a pack models better than the kit does; `alt` is the model
-// a female of the kind gets; `orTinted` the body it takes instead when asked for a colour the
+// a female of the kind gets; `body` a model made in Blender (art3d/bodies, docs/art/STYLE3D.md),
+// used first when it exists; `orTinted` the body it takes instead when asked for a colour the
 // model can't wear ("a grey ooze"; `own` is the colour it already is).
 export const BESTIARY = [
   // things that are not animals at all: constructs, elementals, animated objects, plants
@@ -97,10 +98,10 @@ export const BESTIARY = [
   [/\b(rabbit|rabbits|bunny|hare|jackrabbit|woundwort)\b/, { proc: 'rabbit', h: 0.5 }],
   [/\b(frog|toad|frogs|toads)\b/, { proc: 'slime', h: 0.6, tint: 0x6a9a4a }],
   [/\b(bat|bats|vampire bat)\b/, { mob: 'q_bat', h: 0.8, fly: 1.3, prefer: true }],
-  [/\b(shadow beast|nightmare beast|stalker|shadow hound|hell ?hounds?|barghest)\b/, { mob: 'wolf', h: 1.25, tint: 0x2e2a36 }],
-  [/\b(wolf|wolves|warg|worg|direwolf)\b/, { mob: 'wolf', h: 1.0, tint: 0x8d93a0 }],
+  [/\b(shadow beast|nightmare beast|stalker|shadow hound|hell ?hounds?|barghest)\b/, { mob: 'wolf', body: 'wolf', h: 1.25, tint: 0x2e2a36 }],
+  [/\b(wolf|wolves|warg|worg|direwolf)\b/, { mob: 'wolf', body: 'wolf', h: 1.0, tint: 0x8d93a0 }],
   [/\b(fox|foxes|vixen)\b/, { mob: 'fox', h: 0.7, tint: 0xd6732c }],
-  [/\b(jackal|coyote|hyena)\b/, { mob: 'wolf', h: 0.85, tint: 0xbf9e6c }],
+  [/\b(jackal|coyote|hyena)\b/, { mob: 'wolf', body: 'wolf', h: 0.85, tint: 0xbf9e6c }],
   [/\b(pug)\b/, { mob: 'pug', h: 0.55 }],
   [/\b(dog|dogs|hound|hounds|puppy|mastiff|cur|mongrel|wolfhound|beagle|rottweiler|terrier|fido|odif)\b/, { mob: 'dog', h: 0.85, tint: 0x9c6c44 }],
   [/\b(cat|cats|kitten|wildcat|alley cat)\b/, { mob: 'cat', h: 0.55, tint: 0xc78e52 }],
@@ -138,10 +139,11 @@ export const BESTIARY = [
   [/\b(fish|trout|salmon|carp|perch|bass|pike|catfish|minnow)\b/, { mob: 'fish', h: 0.45, tint: 0x7fa8c8 }],
   [/\b(crab|crabs|lobster|crawfish|crayfish|scorpion)\b/, { mob: 'crab', h: 0.7 }],
   [/\b(bee|bees|wasp|wasps|hornet|hornets|insect|fly|flies|mosquito|dragonfly|moth|locust|firefly|butterfly)\b/, { mob: 'bee', h: 0.6, fly: 1.2 }],
-  [/\b(dracolich)\b/, { mob: 'yellowdragon', h: 3.5, fly: 0.7, tint: 0xd8d0c0 }],
+  [/\b(vyrkothas|frost wyrm)\b/, { mob: 'yellowdragon', body: 'frost_wyrm', h: 4.2, fly: 0.7 }],
+  [/\b(dracolich)\b/, { mob: 'yellowdragon', body: 'dragon', h: 3.5, fly: 0.7, tint: 0xd8d0c0 }],
   [/\b(dragonling|whelp|hatchling|wyrmling)\b/, { mob: 'q_dragon', h: 1.5, fly: 0.7, prefer: true }],
-  [/\b(wyvern|harrier|drake)\b/, { mob: 'yellowdragon', h: 2.4, fly: 0.9 }],
-  [/\b(dragon|dragons|wyrm|fractal dragon|puff|yevaud)\b/, { mob: 'yellowdragon', h: 3.6, fly: 0.7 }],
+  [/\b(wyvern|harrier|drake)\b/, { mob: 'yellowdragon', body: 'dragon', h: 2.4, fly: 0.9, tint: 0x7a8a5a }],
+  [/\b(dragon|dragons|wyrm|fractal dragon|puff|yevaud)\b/, { mob: 'yellowdragon', body: 'dragon', h: 3.6, fly: 0.7, tint: 0xa85a44 }],
   [/\b(goblin|goblins)\b/, { mob: 'goblin_m', alt: 'goblin_f', h: 1.35, prefer: true }],
   [/\b(imp|imps|gremlin|quasit|homunculus|kobold|kobolds)\b/, { mob: 'greendemon', h: 0.8 }],
   [/\b(balor|pit fiend|demon lord|archdevil)\b/, { mob: 'demon', h: 2.6 }],

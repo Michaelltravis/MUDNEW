@@ -3,7 +3,7 @@
 // slots; when the server moves it to another room it walks there instead of popping.
 // Which body each creature gets is decided in looks.js.
 import * as THREE from 'three';
-import { spawnCharacter, spawnMob } from './assets.js';
+import { spawnCharacter, spawnMob, spawnBody, bodyIndexReady } from './assets.js';
 import { mountRider } from './steed.js';
 import { spawnDressed, dress } from './equip.js';
 import { creatureLook, hashStr, npcDress } from './looks.js';
@@ -28,9 +28,17 @@ export function kinBodies() {
 }
 
 // the body for a look (looks.js): a creature model, a procedural body, a kit prop or a person
+const noBodies = () => typeof location !== 'undefined' && /[?&]nobodies\b/.test(location.search || '');
 export function spawnLook(look, { kits = null, seed = 0 } = {}) {
   const b = look.beast;
   if (!b) return spawnCharacter(look.model, { tint: look.tint, scale: look.scale, loadout: look.loadout, flat: look.flat });
+  // a body made in Blender for this kind (art3d/bodies), when there is one; else as below
+  // (?nobodies shows what it replaced, to compare)
+  if (b.body && !noBodies()) {
+    const rest = { ...look, beast: { ...b, body: null } };
+    return bodyIndexReady().then(ix => (ix[b.body] ? spawnBody(b.body, { height: b.h, tint: b.tint }) : spawnLook(rest, { kits, seed })))
+      .catch(() => spawnLook(rest, { kits, seed }));
+  }
   // its own body from the creature kit (kin.js), unless the player chose the classic models
   if (b.kin && kinBodies() && !b.prefer) return Promise.resolve(makeKin(b.kin, { height: b.h }));
   if (b.proc) return Promise.resolve(makeProc(b.proc, { height: b.h, tint: b.tint, seed }));

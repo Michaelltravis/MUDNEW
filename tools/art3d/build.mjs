@@ -72,7 +72,7 @@ const MOBS = [
       [`${n}_Attack2`]: 'Bite_InPlace', [`${n}_Hit`]: 'HitRecieve', [`${n}_Death`]: 'Death' } })),
   ...[['Goblin_Male', 'goblin_m'], ['Goblin_Female', 'goblin_f'], ['Zombie_Male', 'zombie_m'], ['Zombie_Female', 'zombie_f']]
     .map(([n, k]) => ({ name: k, fbx: `${QCHR}/FBX/${n}.fbx`, yaw: 0, gamma: true,
-      rename: { Punch: 'Bite_Front', RecieveHit: 'HitRecieve', Defeat: 'Death', Victory: 'Jump', Idle: 'Idle', Walk: 'Walk' } })),
+      rename: { Punch: 'Bite_Front', RecieveHit: 'HitRecieve', Victory: 'Jump', Idle: 'Idle', Walk: 'Walk' } })),   // 'Defeat' kneels: no death clip, so corpse.js tips them over
 ];
 const MOB_YAW = JSON.parse(fs.existsSync(new URL('./mob-yaw.json', import.meta.url)) ? fs.readFileSync(new URL('./mob-yaw.json', import.meta.url), 'utf8') : '{}');
 

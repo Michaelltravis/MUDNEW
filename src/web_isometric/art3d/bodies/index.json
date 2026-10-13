@@ -1,0 +1,47 @@
+{
+ "wolf": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1744,
+  "height": 1.1,
+  "for": "wolves, wargs, dogs of war; tinted by bestiary.js"
+ },
+ "dragon": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 3000,
+  "height": 2.617,
+  "for": "dragons; tinted by bestiary.js"
+ },
+ "frost_wyrm": {
+  "kind": "boss",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 3322,
+  "height": 2.617,
+  "for": "Vyrkothas the Frost Wyrm"
+ }
+}

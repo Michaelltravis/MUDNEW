@@ -146,6 +146,23 @@ def part(kind, name, at, size, rot=(0, 0, 0), segments=8):
     return o
 
 
+def poly(name, verts, faces, thickness=0.0):
+    """A part from its own points and faces (a wing's membrane, a fin, a frill), given a little
+    thickness so it shows from both sides."""
+    me = bpy.data.meshes.new(name)
+    me.from_pydata([tuple(v) for v in verts], [], [tuple(f) for f in faces])
+    me.update()
+    o = link(bpy.data.objects.new(name, me))
+    if thickness:
+        m = o.modifiers.new('Solidify', 'SOLIDIFY')
+        m.thickness = thickness
+        m.offset = 0
+        select_only(o)
+        with bpy.context.temp_override(object=o, active_object=o):
+            bpy.ops.object.modifier_apply(modifier=m.name)
+    return o
+
+
 def _pin(obj, bone):
     vg = obj.vertex_groups.new(name=bone)
     vg.add([v.index for v in obj.data.vertices], 1.0, 'REPLACE')

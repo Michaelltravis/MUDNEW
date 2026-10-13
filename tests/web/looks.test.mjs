@@ -94,6 +94,8 @@ test('every creature in the world gets a body that exists, and no creature is dr
   const bad = suspects(mobs);
   assert.deepEqual(bad.map(({ m, look }) => `${m.pv} ${m.short} -> ${lookLabel(look)}`), []);
   const mobModels = new Set(Object.keys(JSON.parse(fs.readFileSync(path.join(ART, 'mobs/index.json'), 'utf8'))));
+  const bodyFile = path.join(ART, 'bodies/index.json');
+  const bodies = new Set(fs.existsSync(bodyFile) ? Object.keys(JSON.parse(fs.readFileSync(bodyFile, 'utf8'))) : []);
   const accessories = {}, kitModels = {};
   const accOf = model => accessories[model] || (accessories[model] = new Set(glbJson(path.join(ART, `chars/${model}.glb`)).nodes
     .filter(n => n.mesh != null && n.skin == null).map(n => n.name)));
@@ -104,6 +106,7 @@ test('every creature in the world gets a body that exists, and no creature is dr
     if (l.beast) {
       const b = l.beast;
       assert.ok(b.h > 0.1 && b.h < 6, `${where}: height ${b.h}`);
+      if (b.body) assert.ok(bodies.has(b.body), `${where}: no Blender body ${b.body} (art3d/bodies)`);
       if (b.mob) assert.ok(mobModels.has(b.mob), `${where}: no creature model ${b.mob}`);
       else if (b.proc) assert.ok(procs.has(b.proc), `${where}: no body ${b.proc}`);
       else assert.ok(kitOf(b.prop[0]).has(b.prop[1]), `${where}: no prop ${b.prop}`);

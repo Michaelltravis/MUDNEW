@@ -6,7 +6,7 @@ texture, clips are keyed by bone, and the whole is exported as one skinned .glb 
 """
 from .scene import reset, args, OUT
 from .palette import Palette
-from .body import Skel, part, finish_body, tris
+from .body import Skel, part, poly, finish_body, tris
 from .clips import Clips
 from .export import export
 from .preview import preview

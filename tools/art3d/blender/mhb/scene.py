@@ -15,13 +15,14 @@ def reset():
 
 
 def args():
-    """The script's own options: --preview (render turntable PNGs), --out DIR."""
+    """The script's own options: --preview (render turntable PNGs), --out DIR, --variant NAME."""
     argv = sys.argv[1:]
     out = OUT
     if '--out' in argv:
         out = argv[argv.index('--out') + 1]
     os.makedirs(out, exist_ok=True)
-    return {'preview': '--preview' in argv, 'out': out}
+    variant = argv[argv.index('--variant') + 1] if '--variant' in argv else None
+    return {'preview': '--preview' in argv, 'out': out, 'variant': variant}
 
 
 def link(obj):

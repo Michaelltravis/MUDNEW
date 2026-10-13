@@ -23,6 +23,7 @@ class _Keys:
         self.arm = arm
         self.frames = frames
         self.keyed = {}          # (bone, path) -> {frame: value}
+        self.world = {}          # (frame, bone) -> its aimed rotation (aim)
 
     def _put(self, bone, path, frame, values):
         d = self.keyed.setdefault((bone, path), {})
@@ -30,6 +31,22 @@ class _Keys:
 
     def rot(self, bone, frame, x=0.0, y=0.0, z=0.0):
         self._put(bone, 'rotation_euler', frame, (math.radians(x), math.radians(y), math.radians(z)))
+        return self
+
+    def aim(self, bone, frame, to):
+        """Point a bone along `to` (a direction in the body's own rest frame: -Y forward, +Z up),
+        whatever its own axes are: "the wing laid back along the flank" instead of guessed angles.
+        A bone whose parent was aimed in the same frame follows from the parent's new pose."""
+        from mathutils import Quaternion, Vector
+        b = self.arm.data.bones[bone]
+        rest = b.matrix_local.to_quaternion()
+        d0 = (b.tail_local - b.head_local).normalized()
+        total = d0.rotation_difference(Vector(to).normalized())
+        qp = self.world.get((frame, b.parent.name)) if b.parent else None
+        qp = qp if qp is not None else Quaternion()
+        local = rest.inverted() @ qp.inverted() @ total @ rest
+        self.world[(frame, bone)] = total
+        self._put(bone, 'rotation_euler', frame, tuple(local.to_euler('XYZ')))
         return self
 
     def loc(self, bone, frame, x=0.0, y=0.0, z=0.0):
