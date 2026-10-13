@@ -10,3 +10,4 @@ from .body import Skel, part, poly, finish_body, tris
 from .clips import Clips
 from .export import export
 from .preview import preview
+from . import gaits

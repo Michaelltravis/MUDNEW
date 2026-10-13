@@ -49,6 +49,23 @@ class _Keys:
         self._put(bone, 'rotation_euler', frame, tuple(local.to_euler('XYZ')))
         return self
 
+    def turn(self, bone, frame, axis, deg):
+        """Turn a bone `deg` degrees about an axis of the body's rest frame (-Y forward, +Z up),
+        on top of any turn already given it (or its parent) in this frame: a spider's leg swung
+        about the vertical, then lifted, whichever way the leg itself points."""
+        import math as _m
+        from mathutils import Quaternion, Vector
+        b = self.arm.data.bones[bone]
+        rest = b.matrix_local.to_quaternion()
+        qp = self.world.get((frame, b.parent.name)) if b.parent else None
+        qp = qp if qp is not None else Quaternion()
+        prev = self.world.get((frame, bone), qp)
+        total = Quaternion(Vector(axis).normalized(), _m.radians(deg)) @ prev
+        self.world[(frame, bone)] = total
+        local = rest.inverted() @ qp.inverted() @ total @ rest
+        self._put(bone, 'rotation_euler', frame, tuple(local.to_euler('XYZ')))
+        return self
+
     def loc(self, bone, frame, x=0.0, y=0.0, z=0.0):
         self._put(bone, 'location', frame, (x, y, z))
         return self

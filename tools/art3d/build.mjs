@@ -517,7 +517,8 @@ async function buildBlend(job) {
   for (const m of root.listMaterials()) m.setMetallicFactor(0).setRoughnessFactor(0.85);
   await doc.transform(resample(), weld());
   BODY_INDEX[job.side.name] = { kind: job.side.kind, anims: root.listAnimations().map(a => a.getName()),
-    tris: job.side.tris, height: job.side.height, ...(job.side.for ? { for: job.side.for } : {}) };
+    tris: job.side.tris, height: job.side.height, ...(job.side.for ? { for: job.side.for } : {}),
+    ...(job.side.look ? { look: job.side.look } : {}) };          // how it's drawn: { opacity, glow }
   return finish(doc, job);
 }
 const BODY_INDEX = {};

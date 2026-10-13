@@ -43,5 +43,101 @@
   "tris": 3322,
   "height": 2.617,
   "for": "Vyrkothas the Frost Wyrm"
+ },
+ "elemental": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1026,
+  "height": 1.84,
+  "for": "elementals; tinted by bestiary.js",
+  "look": {
+   "opacity": 0.9,
+   "glow": 0.35
+  }
+ },
+ "ghost": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1106,
+  "height": 1.49,
+  "for": "ghosts, wraiths, shades; tinted by bestiary.js",
+  "look": {
+   "opacity": 0.72,
+   "glow": 0.15
+  }
+ },
+ "serpent": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1132,
+  "height": 0.65,
+  "for": "serpents, nagas, hydras; tinted by bestiary.js"
+ },
+ "snake": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1244,
+  "height": 0.35,
+  "for": "snakes; tinted by bestiary.js"
+ },
+ "spider": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2800,
+  "height": 0.72,
+  "for": "spiders; tinted by bestiary.js"
+ },
+ "spider_queen": {
+  "kind": "boss",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 5820,
+  "height": 0.804,
+  "for": "the Spider Queens"
  }
 }
