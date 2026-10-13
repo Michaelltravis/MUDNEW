@@ -1,0 +1,230 @@
+{
+ "zone": 420,
+ "_about": "Fameland (levels 20-30): the hall of heroes. Its first halls are quiet; deeper, the spectral champions test the living and answer each other's horn. Weeping shades haunt the Chambers of Sorrow, honour guards stand in the Honor Rooms, the Keeper of Mercy and the Mourner are its elites, and the First Hero waits on the Way of Heroes and calls the fallen champions to his side.",
+ "creatures": {
+  "42000": {
+   "name": "champion spectral",
+   "short_desc": "a spectral champion",
+   "long_desc": "A spectral champion in ancient armour stands to attention, then turns to face you.",
+   "description": "A hero of some forgotten war, pale and translucent, the wounds that killed them still showing through the mail. They test every living soul who walks these halls.",
+   "level": 24,
+   "flags": [
+    "aggressive",
+    "stay_zone",
+    "undead"
+   ],
+   "race": "undead",
+   "alignment": 400,
+   "helpers": {
+    "group": "fameland",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A horn sounds from nowhere, and the honoured dead answer!"
+   }
+  },
+  "42001": {
+   "name": "honour guard spirit",
+   "short_desc": "an honour guard",
+   "long_desc": "An honour guard spirit stands motionless beside the honour roll.",
+   "description": "A ghostly soldier in parade armour, sword grounded, eyes fixed ahead. It guards the names of the honoured dead.",
+   "level": 26,
+   "flags": [
+    "sentinel",
+    "undead"
+   ],
+   "race": "undead",
+   "alignment": 500,
+   "helpers": {
+    "group": "fameland",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A horn sounds from nowhere, and the honoured dead answer!"
+   }
+  },
+  "42002": {
+   "name": "shade weeping",
+   "short_desc": "a weeping shade",
+   "long_desc": "A weeping shade drifts through the chamber, sobbing for the fallen.",
+   "description": "A grey wisp of a figure with its face in its hands. Its grief is cold enough to frost the marble where it passes.",
+   "level": 22,
+   "flags": [
+    "aggressive",
+    "stay_zone",
+    "undead"
+   ],
+   "race": "undead",
+   "alignment": 0
+  },
+  "42010": {
+   "name": "keeper mercy",
+   "short_desc": "the Keeper of Mercy",
+   "long_desc": "The Keeper of Mercy stands by an eternal flame, hands folded on a sword.",
+   "description": "A tall spirit in white, who granted mercy to the defeated in life. To the living who come armed into these halls she grants none.",
+   "level": 27,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "undead"
+   ],
+   "race": "undead",
+   "rank": "elite",
+   "alignment": 600,
+   "helpers": {
+    "group": "fameland",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A horn sounds from nowhere, and the honoured dead answer!"
+   }
+  },
+  "42011": {
+   "name": "mourner",
+   "short_desc": "the Mourner",
+   "long_desc": "The Mourner kneels in the small chamber, keening over an empty bier.",
+   "description": "Veiled in black from head to foot, the Mourner has wept here for centuries; to disturb that grief is to share it.",
+   "level": 27,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "undead"
+   ],
+   "race": "undead",
+   "rank": "elite",
+   "alignment": 0
+  },
+  "42030": {
+   "name": "first hero",
+   "short_desc": "the First Hero",
+   "long_desc": "The First Hero stands upon the Way of Heroes, blade drawn, waiting for a worthy foe.",
+   "description": "The first name on the first honour roll: a giant of a warrior in bronze armour green with age, a crested helm and a sword as long as a man. He has waited a thousand years for someone worth fighting.",
+   "level": 30,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "undead"
+   ],
+   "race": "undead",
+   "rank": "boss",
+   "alignment": 500,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The First Hero raises his sword in salute: \"At last, a worthy foe!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Hero's Cleave",
+      "telegraph": "The First Hero sweeps his great sword back for a mighty cleave!",
+      "cast_time": 1.5,
+      "cooldown": 10,
+      "damage_dice": "3d10+8",
+      "aoe": true,
+      "radius": 4.0
+     },
+     {
+      "name": "Challenge",
+      "telegraph": "The First Hero levels his blade at you: \"Face me!\"",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+7",
+      "dodge": true
+     },
+     {
+      "name": "Last Stand",
+      "telegraph": "The First Hero plants his feet and calls upon a thousand years of glory!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d10+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 42000,
+   "rooms": [
+    15205,
+    15207,
+    15220,
+    15225,
+    15227
+   ]
+  },
+  {
+   "vnum": 42001,
+   "rooms": [
+    15242,
+    15243,
+    15244,
+    15245
+   ]
+  },
+  {
+   "vnum": 42002,
+   "rooms": [
+    15212,
+    15213,
+    15214,
+    15217
+   ]
+  },
+  {
+   "vnum": 42010,
+   "rooms": [
+    15228
+   ]
+  },
+  {
+   "vnum": 42011,
+   "rooms": [
+    15216
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 42000,
+   "route": [
+    15233,
+    15234,
+    15236,
+    15237,
+    15238,
+    15239,
+    15240,
+    15241
+   ],
+   "why": "a champion walks the Halls of Eternity"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 42030,
+   "room": 15222,
+   "why": "the First Hero on the Way of Heroes",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      75,
+      40
+     ],
+     "count": 3,
+     "rooms": 3,
+     "raise": [
+      42000
+     ],
+     "shout": "The First Hero roars: \"Champions of Fameland, to me!\"",
+     "why": "the fallen champions come to his side"
+    }
+   ]
+  }
+ ]
+}

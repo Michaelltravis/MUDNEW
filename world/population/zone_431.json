@@ -1,0 +1,342 @@
+{
+ "zone": 431,
+ "_about": "Garathorm Cathedral (levels 15-25): the abandoned cathedral and its catacombs. Grave rats and belfry bats; the restless dead and skeletal acolytes who answer each other's call; a bone warden, a fallen choirmaster and a roof gargoyle; the Sexton in the Ossuary; and the Hollow Bishop at the Diamond Altar, whose risen come in waves while the light dies and his rot spreads across the floor.",
+ "creatures": {
+  "43100": {
+   "name": "rat grave",
+   "short_desc": "a grave rat",
+   "long_desc": "A grave rat noses among the leaning headstones.",
+   "description": "Big as a cat and bald in patches, with a pink tail and a taste for what lies beneath the churchyard.",
+   "level": 15,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "rodent",
+   "alignment": 0
+  },
+  "43101": {
+   "name": "restless dead corpse",
+   "short_desc": "a restless dead",
+   "long_desc": "A restless dead shambles through the dark in a rotted burial shroud.",
+   "description": "Grey flesh, a slack jaw, and grave-dirt under the nails. Whatever the bishop prays to, it does not let the dead of Garathorm sleep.",
+   "level": 18,
+   "flags": [
+    "aggressive",
+    "undead",
+    "stay_zone"
+   ],
+   "race": "undead",
+   "alignment": -800,
+   "helpers": {
+    "group": "cathedral_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A dry rattle echoes through the stone, and the dead stir!"
+   }
+  },
+  "43102": {
+   "name": "beetle crypt",
+   "short_desc": "a crypt beetle",
+   "long_desc": "A crypt beetle the size of a shield clicks across the stone.",
+   "description": "A glossy black carapace, mandibles like shears, and a smell of old tombs.",
+   "level": 16,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "race": "insect",
+   "alignment": 0
+  },
+  "43103": {
+   "name": "bats belfry swarm",
+   "short_desc": "a swarm of belfry bats",
+   "long_desc": "A swarm of belfry bats wheels and chitters overhead.",
+   "description": "Hundreds of small brown bats that roost among the bells and boil out at any noise.",
+   "level": 15,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "bat",
+   "alignment": 0
+  },
+  "43104": {
+   "name": "skeletal acolyte skeleton",
+   "short_desc": "a skeletal acolyte",
+   "long_desc": "A skeletal acolyte drifts between the pews, still swinging a censer of cold ash.",
+   "description": "Bones in the rags of a novice's robe, a rusted censer on a chain. It keeps the services its master has twisted, and calls the dead when it is disturbed.",
+   "level": 19,
+   "flags": [
+    "aggressive",
+    "undead",
+    "stay_zone"
+   ],
+   "race": "undead",
+   "alignment": -800,
+   "helpers": {
+    "group": "cathedral_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A dry rattle echoes through the stone, and the dead stir!"
+   }
+  },
+  "43110": {
+   "name": "bone warden",
+   "short_desc": "the bone warden",
+   "long_desc": "The bone warden stands among the skulls, a great maul of fused bone in its hands.",
+   "description": "A towering thing built from the bones of many, its ribcage a cage of femurs and its head a horned ox-skull. It guards the corridors of the ossuary.",
+   "level": 22,
+   "flags": [
+    "aggressive",
+    "undead",
+    "sentinel"
+   ],
+   "race": "undead",
+   "rank": "elite",
+   "alignment": -900,
+   "helpers": {
+    "group": "cathedral_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A dry rattle echoes through the stone, and the dead stir!"
+   }
+  },
+  "43111": {
+   "name": "choirmaster fallen",
+   "short_desc": "the fallen choirmaster",
+   "long_desc": "The fallen choirmaster sways at the great organ, singing a hymn backwards.",
+   "description": "Once the finest voice in Garathorm; now a withered shade in a mouldering surplice whose song makes the ears bleed.",
+   "level": 22,
+   "flags": [
+    "aggressive",
+    "undead",
+    "sentinel"
+   ],
+   "race": "undead",
+   "rank": "elite",
+   "alignment": -900
+  },
+  "43112": {
+   "name": "gargoyle roof",
+   "short_desc": "a roof gargoyle",
+   "long_desc": "A gargoyle crouches on the roof edge, too still to be stone.",
+   "description": "Lichen-spotted granite wings, a lion's face worn by rain, and claws that score the leads when it moves.",
+   "level": 21,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "gargoyle",
+   "rank": "elite",
+   "alignment": -400
+  },
+  "43120": {
+   "name": "sexton sunless",
+   "short_desc": "the Sexton of the Sunless Lands",
+   "long_desc": "The Sexton of the Sunless Lands leans on his spade among the bones of the Ossuary.",
+   "description": "The cathedral's gravedigger, who dug for the bishop long after the last honest burial. His spade is black with grave-earth and his eyes are two cold coals.",
+   "level": 23,
+   "flags": [
+    "aggressive",
+    "undead",
+    "sentinel"
+   ],
+   "race": "undead",
+   "rank": "sub-boss",
+   "alignment": -900,
+   "helpers": {
+    "group": "cathedral_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A dry rattle echoes through the stone, and the dead stir!"
+   }
+  },
+  "43130": {
+   "name": "hollow bishop",
+   "short_desc": "the Hollow Bishop",
+   "long_desc": "The Hollow Bishop kneels before the Diamond Altar, and rises as you enter.",
+   "description": "A tall figure in rotting vestments of white and gold, a mitre on a head that is only a shell: the face is a mask over darkness. He turned his prayers to something under the cathedral, and it answered.",
+   "level": 25,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "undead"
+   ],
+   "race": "undead",
+   "rank": "boss",
+   "alignment": -1000,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Hollow Bishop spreads his arms, and the Diamond Altar blazes with black light!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Black Sermon",
+      "telegraph": "The Hollow Bishop begins a dreadful sermon, and the air grows heavy!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crozier Strike",
+      "telegraph": "The Hollow Bishop raises his crozier high!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Last Rites",
+      "telegraph": "The Hollow Bishop begins to read your last rites!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 43100,
+   "rooms": [
+    4407,
+    4409,
+    4410,
+    4411
+   ]
+  },
+  {
+   "vnum": 43101,
+   "rooms": [
+    4459,
+    4460,
+    4464,
+    4465
+   ]
+  },
+  {
+   "vnum": 43102,
+   "rooms": [
+    4455,
+    4458,
+    4469,
+    4466
+   ]
+  },
+  {
+   "vnum": 43103,
+   "rooms": [
+    4452,
+    4451,
+    4446
+   ]
+  },
+  {
+   "vnum": 43104,
+   "rooms": [
+    4419,
+    4420,
+    4433,
+    4439
+   ]
+  },
+  {
+   "vnum": 43110,
+   "rooms": [
+    4470
+   ]
+  },
+  {
+   "vnum": 43111,
+   "rooms": [
+    4440
+   ]
+  },
+  {
+   "vnum": 43112,
+   "rooms": [
+    4449
+   ]
+  },
+  {
+   "vnum": 43120,
+   "rooms": [
+    4472
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 43101,
+   "route": [
+    4454,
+    4463,
+    4462,
+    4461,
+    4456,
+    4457,
+    4458
+   ],
+   "why": "the dead walk the catacomb tunnels"
+  },
+  {
+   "vnum": 43104,
+   "route": [
+    4422,
+    4423,
+    4424,
+    4428,
+    4427,
+    4426
+   ],
+   "why": "an acolyte keeps its round of the great hall"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 43130,
+   "room": 4430,
+   "why": "the Hollow Bishop at the Diamond Altar",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "43101": 2
+     },
+     "shout": "The Hollow Bishop lifts his crozier, and the dead of the catacombs climb up through the floor!",
+     "why": "his risen at 66% and 33%"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Consecrated Rot",
+     "school": "necrotic",
+     "every": 11,
+     "radius": 2.4,
+     "last": 12,
+     "pct": 0.04,
+     "why": "rot spreads where he points: step out"
+    },
+    {
+     "type": "gloom",
+     "max": 0.75,
+     "shout": "The candles of the cathedral gutter out one by one...",
+     "why": "the light dies as he weakens"
+    }
+   ]
+  }
+ ]
+}

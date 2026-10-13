@@ -211,6 +211,19 @@ async function waitFor(page, fn, arg, secs = 60) {
     }
   }
 
+  if (MODE === 'garathorm') {
+    // Garathorm and its districts: the watch in the streets, the wall, the cathedral and its bishop, Fameland
+    for (const [v, name] of [[3014, 'market'], [2913, 'wall'], [4408, 'churchyard'], [4422, 'greathall'], [4472, 'ossuary'],
+                             [4430, 'altar'], [4452, 'belfry'], [15222, 'firsthero'], [2815, 'fencing']]) {
+      check(await goto(v), `in ${name} (${v})`);
+      await sleep(3500);
+      const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look, sector: r.data.sector,
+        mobs: [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === r.vnum).map(e => e.data.name) }; });
+      console.log(v, JSON.stringify(info));
+      await page.screenshot({ path: path.join(OUT, `garathorm-${name}.png`) });
+    }
+  }
+
   if (MODE === 'castlelife') {
     // the castle is alive: the Bone Marshal (a sub-boss) at the junction, sentries in the halls
     check(await goto(14139), 'at the Junction of the Inner Halls (14139)');

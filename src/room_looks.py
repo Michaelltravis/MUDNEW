@@ -58,7 +58,8 @@ TELLING = {
 INTERIOR_RE = re.compile(
     r'\b(temple|church|chapel|cathedral|shrine|taverna?|inn|pub|bar|alehouse|bank|library|study|'
     r'bedroom|bed ?chamber|quarters|dormitory|throne|palace|shop|store|market|merchant|smithy|'
-    r'guild|barracks|house|home|cottage|kitchen|parlou?r|dining|living room|stable|great hall|lore-hall)\b', re.I)
+    r'guild|barracks|house|home|cottage|kitchen|parlou?r|dining|living room|stable|great hall|lore-hall|'
+    r'belfry|bell ?tower|sacristy|vestry|nave|pews?|organ|choir|rose window|vestments)\b', re.I)
 
 ENCLOSED_SECTORS = {'inside', 'cave', 'dungeon', 'underground'}
 WATER_SECTORS = {'water_swim', 'water_noswim', 'underwater'}

@@ -940,10 +940,18 @@ class World:
                     if existing_in_zone >= max_existing:
                         continue
                 
+                route = mob_reset.get('route')
+                if route:       # a patrol (population.py): one walks each route
+                    max_count = 1
+                    current = sum(1 for npc in self.npcs
+                                  if getattr(npc, 'vnum', None) == mob_vnum and getattr(npc, 'patrol_route', None) == route)
+
                 if current < max_count:
                     proto = self.mob_prototypes.get(mob_vnum)
                     if proto:
                         mob = create_mob_from_prototype(proto, self)
+                        if route:
+                            mob.patrol_route = list(route)
                         mob.room = room
                         mob.home_room = room  # Set home room for AI
                         mob.home_zone = zone.number  # Set home zone for movement restrictions

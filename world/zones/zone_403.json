@@ -24,8 +24,8 @@
      "description": "To the west lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
-   "placeholder": true
+   "description": "Narrow arrow slits pierce the parapet here, set at the height of a\nkneeling archer and splayed wide on the inner face, tight as a finger on\nthe outer. The flagstones are worn into shallow troughs by generations\nof boots, and rainwater lies in them after every shower. The walk goes\non east along the crenels and back west toward the stairhead above the\ngate.",
+   "extra_descs": {}
   },
   "2902": {
    "vnum": 2902,
@@ -47,8 +47,8 @@
      "description": "To the west lies On The City Wall."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "A banner of the city hangs from an iron pole socketed in the parapet,\nits colours bleached by the sun and its hem frayed to ribbons by the\nwind. The pole creaks in its bracket with every gust. Out past the\ncrenels the plains roll away in squares of field and fallow, cut by the\npale thread of the Trade Road. The wall bends round a corner a little\nway east, and west lies the way back to the gate.",
+   "extra_descs": {}
   },
   "2903": {
    "vnum": 2903,
@@ -70,8 +70,8 @@
      "description": "To the west lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nsouth and west.",
-   "placeholder": true
+   "description": "The wall turns here at a hard angle, the parapet swelling into a rounded\nbuttress that juts out over the foot of the wall. A stone bench is built\ninto the inner side, its seat polished by sitters, and the gusts drop\naway in the lee of the corner. The walk leads west along the battlements\nand south along the next long run of wall. Far across the plains the\nhills lie low and blue.",
+   "extra_descs": {}
   },
   "2904": {
    "vnum": 2904,
@@ -93,8 +93,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "A beacon stack stands on a round iron grate in the middle of the walk, a\nheap of tar-blackened logs under a tarred canvas hood, waiting for the\nnight it must be lit. Soot streaks the stone around it up to the height\nof the crenels. Below the inner side the long roof of a timber warehouse\nshows, with a cart track running past it toward the market. The wall\nruns north toward the corner and south along the parapet.",
+   "extra_descs": {}
   },
   "2905": {
    "vnum": 2905,
@@ -116,8 +116,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "Someone has cut a row of initials and tally marks into the soft stone of\na merlon at shoulder height, the oldest worn round and shallow, the\nnewest still sharp and white. A rain barrel stands at the foot of the\nparapet, its lid weighted with a flat stone. The wind slides along the\nwall here carrying the smell of cut grass from the fields beyond.\nBattlements stretch away both north and south.",
+   "extra_descs": {}
   },
   "2906": {
    "vnum": 2906,
@@ -139,8 +139,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
-   "placeholder": true
+   "description": "The paving beneath your boots turns from pale grey to a darker, newer\nflagging where the walk was relaid, the join marked by a ridge of mortar\nlike a scar. Iron spikes crown the outer parapet to discourage climbers,\nrust bleeding down the stone below each one. Over the rooftops of the\ninner side the Temple dome shows as a green copper hemisphere catching\nthe light. North the walk runs back along the battlements, and south it\nreaches a stairhead tower.",
+   "extra_descs": {}
   },
   "2907": {
    "vnum": 2907,
@@ -162,8 +162,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A catapult emplacement fills a widened bay of the wall here, a squat\nstone platform ringed with low sandbags. The throwing engine rests\ncocked beneath a tarpaulin, its arm bound down with a rope as thick as a\nwrist, and pale scars from its wheels are cut deep into the flags. A\npyramid of round stone shot waits beside it. The walk goes on north and\nsouth past the platform.",
+   "extra_descs": {}
   },
   "2908": {
    "vnum": 2908,
@@ -185,8 +185,10 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow shrine niche is cut into the inner parapet, hardly deeper than\na hand, where a small figure of a woman holding a lamp is carved from\nthe stone itself. Stubs of candles and a few withered flowers lie on the\nsill, stirred by the wind. Lichen has crept up from the sill around the\nfigure like a green shawl. The wall-walk runs on to the north and to the\nsouth.",
+   "extra_descs": {
+    "shrine niche figure lamp": "The little carved woman holds a stone lamp in both hands, her face\nrubbed featureless by the touch of passing fingers. Someone has pushed a\nsprig of dried lavender into the crack beside her."
+   }
   },
   "2909": {
    "vnum": 2909,
@@ -208,8 +210,10 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "A stretch of the outer parapet the length of a cart is built of newer,\nyellower stone, its courses neat against the weathered grey on either\nside. A mason's mark, a hammer and a square, is cut in the corner block\nof the mended breach. Beyond it the ground slopes away to a ditch, its\nbank trampled and scorched by some old assault. You can follow the wall\nnorth or south from here.",
+   "extra_descs": {
+    "mended breach newer stone mason mark": "The yellow stone is cleanly cut and closely jointed, far better work\nthan the old wall around it. The mason's hammer-and-square mark is cut\ndeep, as if the builder wished to be remembered for filling the gap."
+   }
   },
   "2910": {
    "vnum": 2910,
@@ -231,8 +235,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
-   "placeholder": true
+   "description": "A square watchtower rises from the wall here and the walk passes through\nits open archway, the vault above streaked with old rain and soot. A\nwooden bench runs along one wall of the passage, and an arrow loop looks\nout over the fields. The door of the tower's upper room is barred and\nshut fast. Beyond the arch the battlements continue north and south.",
+   "extra_descs": {}
   },
   "2911": {
    "vnum": 2911,
@@ -254,8 +258,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "A wooden pigeon loft on stilts stands against the inner parapet, its\nslatted face stuffed with straw and its perches white with droppings.\nThe little doors are hooked open, and the cote is silent and empty. A\nwicker message basket hangs from a nail beside the door. The walk heads\noff north along the crenels, and south as well.",
+   "extra_descs": {}
   },
   "2912": {
    "vnum": 2912,
@@ -277,8 +281,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "From the inner parapet the whole market lies below, a crowded sprawl of\nstriped awnings, stalls and carts, with the hum of bargaining drifting\nup on the wind. The smell of baking bread and frying onions rises with\nit. Out beyond the crenels the plains are quiet by comparison. The wall\ncarries on north and south.",
+   "extra_descs": {}
   },
   "2913": {
    "vnum": 2913,
@@ -300,8 +304,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The Trade Road lies below the outer wall here, a pale dusty ribbon\nbetween ditches, with a waymark stone at the verge and the ruts of\nwagons pressed deep in the dirt. Dust hangs over it in dry weather. The\ncrenels frame a long view of the road running out across the plains\ntoward the far hills. Walkers on the wall can go north or south from\nthis spot.",
+   "extra_descs": {}
   },
   "2914": {
    "vnum": 2914,
@@ -323,8 +327,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "Carved stone spouts jut from the outer parapet at intervals, each shaped\ninto a snarling hound with its mouth gaping to throw rain clear of the\nwall. Their muzzles are stained green and streaked white with lime. The\ncoping between them is cracked and patched with lead. The wall continues\nnorth toward the corner and south along the parapet.",
+   "extra_descs": {}
   },
   "2915": {
    "vnum": 2915,
@@ -346,8 +350,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "A timber crane stands on the inner edge of the walk, a stout post and a\nswinging jib with a pulley and a coil of tarred rope, used to haul\nstores up from the street. Its arm is swung in and lashed to the post\nagainst the wind. The flags beneath are scuffed and stained with oil.\nThe parapet leads north and also south from the crane.",
+   "extra_descs": {}
   },
   "2916": {
    "vnum": 2916,
@@ -369,8 +373,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north and south.",
-   "placeholder": true
+   "description": "A little sentry box with a pitched shingle roof stands against the outer\nparapet, open on the side that faces the walk, with a narrow slot for a\nlantern cut in the back plank. Initials and crude drawings of ships\ncover the inside boards. The wind whistles through the gaps between the\nplanks. Beyond the box the wall goes on north and south.",
+   "extra_descs": {}
   },
   "2917": {
    "vnum": 2917,
@@ -392,8 +396,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A small stone garderobe juts from the outer face of the wall here, its\nlow door hanging ajar on a leather hinge, and a sour smell clings about\nit despite the breeze. A drain channel runs down through the wall below.\nNearby the coping is dark with damp. The battlements run north and south\nof this corner of the wall.",
+   "extra_descs": {}
   },
   "2918": {
    "vnum": 2918,
@@ -415,8 +419,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "Orange and grey lichen blooms across the parapet in rings, and tufts of\nstonecrop and thrift grow from the cracks in the coping. An iron lantern\nhangs from a post at the inner edge, its horn panes yellowed and\ncracked. The air up here is quiet and the wind comes in long even\nbreaths. The walk lies open north and south.",
+   "extra_descs": {}
   },
   "2919": {
    "vnum": 2919,
@@ -438,8 +442,10 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "An alarm bell hangs in a timber frame beside the walk, a bronze bell as\nbig as a barrel with a worn rope dangling from its clapper. Green stains\nstreak its shoulder, and its note sounds faintly when the wind catches\nit. A cleared space around the frame keeps the way free. The wall-walk\npasses on north and south.",
+   "extra_descs": {
+    "alarm bell frame": "The bronze is thick and pitted, and a band of letters round its lip is\ntoo corroded to read. The frame is braced with iron straps, and its rope\nhas been spliced many times."
+   }
   },
   "2920": {
    "vnum": 2920,
@@ -461,8 +467,8 @@
      "description": "To the south lies A Turn On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A long scorched smear blackens the outer parapet where fire arrows once\nstruck, the stone cracked and flaking beneath the soot. Fresh mortar\nfills a few of the worst gaps. Inward the crowded roofs fall away into a\nnarrow lane of tiled gables. The walk runs north back along the\nbattlements and south to a turn in the wall.",
+   "extra_descs": {}
   },
   "2921": {
    "vnum": 2921,
@@ -484,8 +490,8 @@
      "description": "To the west lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nwest.",
-   "placeholder": true
+   "description": "A round turret caps the corner, its conical slate roof held up on stone\npillars so that the wind sweeps freely through. A stone seat curves\nround the inside of the turret, and the mounting for a signal horn is\nbolted to a pillar. The long wall runs away on both sides, north back\ntoward the gate and west along the next stretch. Beyond the crenels the\nplains stretch off to the hills in a haze.",
+   "extra_descs": {}
   },
   "2922": {
    "vnum": 2922,
@@ -507,8 +513,8 @@
      "description": "To the west lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "A windmill stands on a low rise out on the plains, its sails turning\nslowly with a creak that carries faintly even this high. Fields of\nbarley and beans surround it in neat strips. The parapet underfoot is\nsmooth and dry, and a crack in the coping holds a line of tufted grass.\nThe walk runs east to the corner turret and west along the battlements.",
+   "extra_descs": {}
   },
   "2923": {
    "vnum": 2923,
@@ -530,8 +536,8 @@
      "description": "To the west lies On The City Wall."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "Over the inner parapet a slender bell tower topped with a green copper\ncap rises above the nearest roofs, and its notes come across the\nrooftops on the wind. The battlements here are cut by a row of deep\ncrenels with stone seats built into the merlons. The walk leads east\ntoward the corner and west toward the stair tower.",
+   "extra_descs": {}
   },
   "2924": {
    "vnum": 2924,
@@ -553,8 +559,8 @@
      "description": "To the west lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
-   "placeholder": true
+   "description": "A lone oak stands out on the plains beyond a hedgerow, its crown bent by\nthe prevailing wind, with a low cairn of stones at its foot. The outer\nparapet is sound here and the crenels are wide enough to lean out. The\nflagstones are lightly dusted with chalky grit blown from the road. You\ncan go east back to the stair tower, or west along the battlements.",
+   "extra_descs": {}
   },
   "2925": {
    "vnum": 2925,
@@ -576,8 +582,8 @@
      "description": "To the west lies A Turn On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "A machicolation juts out from the outer face, and the slots in the floor\nof the little projection show the base of the wall far below and the\nditch at its foot. A cold draught rises through the slots. Stone corbels\ncarry the projection, each carved with a blunt face. The walk goes east\ntoward the stair tower and west to a turn in the wall.",
+   "extra_descs": {}
   },
   "2926": {
    "vnum": 2926,
@@ -599,8 +605,8 @@
      "description": "To the east lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and east.",
-   "placeholder": true
+   "description": "A tall flagstaff stands planted in the corner of the wall, its halyard\ndrumming against the pole and the great banner of Garathorm streaming\nout stiff as a board in the wind. The parapet curves round the corner in\na thick rounded bastion. The walk leads north along the next stretch of\nwall and east back along the battlements.",
+   "extra_descs": {}
   },
   "2927": {
    "vnum": 2927,
@@ -622,8 +628,8 @@
      "description": "To the south lies A Turn On The City Wall."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "The inner parapet is lower than the outer here, barely waist high, its\ncoping rounded smooth by elbows. Below it the yards and back lanes of\nthe city look small and tidy, with washing lines strung between\nchimneys. The outer face shows blank grey stone and tiny arrow slits.\nThe wall-walk goes north along the battlements and south to the corner\nbastion.",
+   "extra_descs": {}
   },
   "2928": {
    "vnum": 2928,
@@ -645,8 +651,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Moss and small ferns sprout from the joints of the coping, and long\ngreen stains show where rainwater runs down the outer face. A puddle\nfills a dip in the flagstones, rippling in the gusts. The air smells of\ndamp stone and distant hay. The wall-walk stretches away to the north\nand the south.",
+   "extra_descs": {}
   },
   "2929": {
    "vnum": 2929,
@@ -668,8 +674,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A black iron cauldron big enough to bathe a child hangs from a tripod\nbeside the outer parapet, a bed of ash beneath it, for heating oil to\npour on besiegers. Soot has darkened the crenel above it in a long\nstreak. A trough of dry kindling stands against the wall. Past the\ntripod the battlements go on north and south.",
+   "extra_descs": {}
   },
   "2930": {
    "vnum": 2930,
@@ -691,8 +697,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "A timber hoarding has been built out over the outer face on stout\ncorbels, a roofed gallery of planks with gaps in the floor and shutters\non its front. The wood is silvered by weather and smells of pitch.\nThrough the cracks you can see the foot of the wall far below. The walk\nheads north and south beneath the gallery.",
+   "extra_descs": {}
   },
   "2931": {
    "vnum": 2931,
@@ -714,8 +720,10 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "A bronze sundial is set into the inner parapet, its gnomon green with\nage and its numerals worn nearly smooth by many palms. When the sun is\nout its shadow slides across the dial in a thin dark line. The stone\naround it has been scrubbed pale. From the dial the walk runs north and\nalso south.",
+   "extra_descs": {
+    "sundial gnomon dial": "The dial is cast in bronze and bolted into the coping, its hour lines\ncut deep. The gnomon leans a little out of true, as though someone once\nused it as a handhold."
+   }
   },
   "2932": {
    "vnum": 2932,
@@ -737,8 +745,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Rows of apple trees stand in an orchard beyond the ditch below the outer\nwall, their branches propped with forked poles. A low stone fence\nencloses them, and a path leads off through the grass toward the hills.\nThe crenels here are fitted with worn stone sills. The battlements lead\non to the north and to the south.",
+   "extra_descs": {}
   },
   "2933": {
    "vnum": 2933,
@@ -760,8 +768,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A low stone hut squats against the inner parapet, its chimney leaking a\nthin thread of smoke and its shutters closed against the wind. A\nwoodpile stacked beneath the eaves is capped with turf. The door is\nshut, and an iron boot-scraper stands beside it. The walk passes the hut\ngoing north or south.",
+   "extra_descs": {}
   },
   "2934": {
    "vnum": 2934,
@@ -783,8 +791,10 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
-   "placeholder": true
+   "description": "A weathered plaque is set into the inner parapet, its chiselled letters\nrecording the raising of this stretch of the wall, the lines filled with\nmoss and the last words worn away. A shallow gutter has been cut beneath\nit to carry the rain clear. The wall-walk runs on past the plaque, north\nand south alike.",
+   "extra_descs": {
+    "plaque letters inscription": "The plaque says that this length of the wall was raised by the city's\nmasons and its labouring people, and the date is cut in old numerals.\nThe final line has crumbled into smooth stone."
+   }
   },
   "2935": {
    "vnum": 2935,
@@ -806,8 +816,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "Smoke and the ring of hammers rise from a smithy's yard below the inner\nside, and the warm smell of charcoal and hot iron reaches the walk.\nSparks from the forge chimney sometimes swirl up over the parapet. Out\nbeyond the outer face the plains are green and still. Walkers may go\nnorth or south along the top of the wall.",
+   "extra_descs": {}
   },
   "2936": {
    "vnum": 2936,
@@ -829,8 +839,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Here the wall stands at its tallest, where the ground outside dips into\na hollow, and the outer face drops sheer to a dry ditch far below. The\narrow slits are fitted with stout iron bars. The wind pulls hardest at\nyour cloak in this stretch. The walk leads off both north and south.",
+   "extra_descs": {}
   },
   "2937": {
    "vnum": 2937,
@@ -852,8 +862,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
-   "placeholder": true
+   "description": "One merlon of the outer parapet has been split by lightning, the broken\nhalves bound together with iron straps, and the stone around the crack\nis glassy and black. A fused patch in the flagging shows where the bolt\nstruck. Rain gathers there and drains slowly through the crack. North\nand south the walk continues.",
+   "extra_descs": {}
   },
   "2938": {
    "vnum": 2938,
@@ -875,8 +885,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
-   "placeholder": true
+   "description": "In the inner wall an arched doorway has been bricked up, its outline\npicked out in paler mortar, so that it leads nowhere but into solid\nwall. Someone has chalked a tally of days on the infill. Beside it a\nstone water trough stands empty, cracked along its base. The battlements\ngo on north and south from here.",
+   "extra_descs": {}
   },
   "2939": {
    "vnum": 2939,
@@ -898,8 +908,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "A pair of crenels are fitted with hinged wooden shutters painted with\nthe city's sign, their leather hinges creaking whenever the wind pushes\nagainst them. Through the gaps you can see the plains stretching away to\nthe dim line of the hills. The air smells of rain far off. You may\nfollow the wall north or south.",
+   "extra_descs": {}
   },
   "2940": {
    "vnum": 2940,
@@ -921,8 +931,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Ahead the roof of the tower over the gate rises above the walk, and the\nstone underfoot is stained dark with the ash of its brazier. A bracket\nof black iron holds a lantern at head height. The parapet on either side\nis thick and stout, built to guard the approach. The walk runs north to\nthe tower and south along the wall.",
+   "extra_descs": {}
   },
   "2941": {
    "vnum": 2941,
@@ -944,8 +954,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "Beyond the outer parapet terraced rows of vines climb a gentle slope\ntoward a small stone house, the leaves turning rust and gold along their\ntrellises. The scent of crushed grapes sometimes rides up on the wind.\nThe coping is smooth, with a groove where leaning arms have rested.\nNorth of the platform the walk goes on, and south it returns to the\ntower.",
+   "extra_descs": {}
   },
   "2942": {
    "vnum": 2942,
@@ -967,8 +977,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
-   "placeholder": true
+   "description": "A lead-lined channel runs along the inner foot of the parapet, carrying\nrainwater to a covered cistern whose stone lid has an iron ring. The\nlead is dented and patched with pewter. Over the roofs inward the grey\nsprawl of streets climbs to a cluster of tall slate-roofed spires. The\nwall runs north toward a corner and south toward the gate tower.",
+   "extra_descs": {}
   },
   "2943": {
    "vnum": 2943,
@@ -990,8 +1000,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "Rust streaks the parapet below the iron cramps that hold the coping\ntogether, and the stone is stained a dull orange. Wind hums through an\narrow loop that has lost its shutter. The inner side overlooks a long\nnarrow court of drying racks and sheds. The walk goes north to the\ncorner and south along the wall.",
+   "extra_descs": {}
   },
   "2944": {
    "vnum": 2944,
@@ -1013,8 +1023,8 @@
      "description": "To the south lies On The City Wall."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and south.",
-   "placeholder": true
+   "description": "A heavy drum of masonry forms the corner here, the walk curving around\nit and the parapet scratched with old sling-bullet scars. From the bend\nthe wall can be seen running away in two long straight arms, one of them\npale and narrowing into the haze. A stone spout drains the rain from the\ncorner. The walk leads east along the battlements and south along the\nother arm.",
+   "extra_descs": {}
   },
   "2945": {
    "vnum": 2945,
@@ -1036,8 +1046,8 @@
      "description": "To the west lies A Turn On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "A row of iron hooks is set along the inner parapet for hanging festival\nbanners, and they stand bare now, rusty and bent. Below the inner edge\nthe steep roof of a great hall shows, its ridge capped with crow-stepped\ngables. The air is thin and cold at this height. The walk leads east\ntoward the stair tower and west to the corner.",
+   "extra_descs": {}
   },
   "2946": {
    "vnum": 2946,
@@ -1059,8 +1069,8 @@
      "description": "To the west lies On The City Wall."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
-   "placeholder": true
+   "description": "Scratched into one of the flagstones is the grid of a game of nine men's\nmorris, its lines worn pale by idle hours of play. The wind rushes up\nthe outer face and over the coping in a steady sigh. Ahead you can make\nout the slate roof of a stairhead, with a thread of smoke curling from\nits brazier. The walk leads east to the stairhead and west along the\nbattlements.",
+   "extra_descs": {}
   },
   "203070": {
    "vnum": 203070,
@@ -1086,8 +1096,8 @@
      "description": "To the down lies The Gate Of The Inner City."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead east, west\nand down.",
-   "placeholder": true
+   "description": "Here the wall-walk swells into a small paved landing over the inner\ngate, where a squat stairhead roofed in grey slate shelters the top of\nthe stair down to The Gate Of The Inner City. An iron brazier on a\ntripod stands by the stairhead door, its ashes stirring in the wind, and\na rack of ash-shafted spears leans against the parapet. The battlements\nrun on east and west from the landing, and beyond the inner edge the\nroofs of the city lie spread in a patchwork of tile and smoke.",
+   "extra_descs": {}
   },
   "203071": {
    "vnum": 203071,
@@ -1113,8 +1123,8 @@
      "description": "To the down lies The Gate To The Inner City."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, south and down.",
-   "placeholder": true
+   "description": "A stout tower stands over the gate here, its iron-banded oak door\nopening on the head of a stair that winds down to The Gate To The Inner\nCity. A brazier burns in a blackened basket beside the door, and a water\nbutt and a stack of kindling sit under a lean-to roof. Inward, the\nfootbridge between the gate towers spans the heavy gate like a stitched\nseam. From the tower the walk leads north and south along the\ncrenellated wall.",
+   "extra_descs": {}
   },
   "203072": {
    "vnum": 203072,
@@ -1140,8 +1150,8 @@
      "description": "To the down lies The Gate Of The Inner City."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east, west\nand down.",
-   "placeholder": true
+   "description": "A low stair tower caps the walk here, its roof of mossy green slate\nsloping over a door that opens on the top of the stair down to The Gate\nOf The Inner City. Orders for the wall are pinned on a weathered board\nby the doorpost, the ink faded to brown. A hooded cresset hangs from a\nbracket, black with old pitch. The wall-walk goes on east and west.",
+   "extra_descs": {}
   },
   "203073": {
    "vnum": 203073,
@@ -1167,8 +1177,8 @@
      "description": "To the down lies Inside the West Gate of Garathorm."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, south\nand down.",
-   "placeholder": true
+   "description": "A broad watch platform ringed by a thick crenelled parapet stands over\nthe gate, with a stair winding down from its flagged floor to the gate\nhall below. Above the stairhead a shadowed ledge under the tower's\noverhang makes a snug post for a sentry, with a stone stool and a view\nalong the road. A brazier glows in an iron stand, and the wind snaps at\na banner on the tower. The walk leads north and south from the platform.",
+   "extra_descs": {}
   }
  },
  "mobs": {},

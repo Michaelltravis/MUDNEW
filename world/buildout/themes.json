@@ -121,6 +121,46 @@
    "mood": "Grey, wind-scoured and grim; ghosts in the Spirit Wood; vertigo on the bridges.",
    "creatures": "Carrion crows and badland jackals (6-10), gnolls and a hill troll on the plains (10-14), restless spirits and a hanged man's ghost in the Spirit Wood (12-16).",
    "items": "A gnoll's flail, a hangman's rope token, a lodge-keeper's lantern, spirit-ash."
+  },
+  "403": {
+   "name": "Garathorm Wall",
+   "levels": [5, 15],
+   "theme": "The walk along the top of Garathorm's great curtain wall: a parapet of pale weathered stone with crenels and arrow slits, guard towers and stairheads at the four turns, braziers and racks of spears, banners of the city. Inward the roofs, spires and smoke of the Inner City, the Temple dome and the market; outward the plains, the Trade Road and the far hills. Gulls and crows ride the wind. The watch walks it day and night.",
+   "mood": "High, windy and watchful; the city at your back, the wide world in front.",
+   "creatures": "",
+   "items": ""
+  },
+  "431": {
+   "name": "Garathorm Cathedral",
+   "levels": [15, 25],
+   "theme": "Garathorm's old cathedral, abandoned when its bishop turned to darker prayers, standing beyond the walls in a shaded churchyard of leaning graves and a mausoleum. Inside: the great hall of fallen pews under a broken rose window, galleries, a huge silent organ, the sacristy, a stair up the tower to the belfry and the roof. Secret passages behind the panelling lead down to catacombs, bone tunnels lined with skulls, vaults and a well shaft, and at the heart a diamond altar where the Hollow Bishop keeps his vigil. The dead do not rest here.",
+   "mood": "Holy ground gone wrong: dust, cold candle-wax, dead silence broken by a far bell.",
+   "creatures": "",
+   "items": ""
+  },
+  "517": {
+   "name": "Garathorm School House",
+   "levels": [1, 6],
+   "theme": "The city's school house on a dirt track: a two-storey timber and stone building with hallways of pegs and slates, classrooms for philosophy, mathematics, history and science, a woodcrafting workshop, a fencing hall, the principal's, counselor's, coach's and janitor's offices, a stable behind and an outhouse. Lessons, chalk, ink and noise; a safe and gentle place for the young.",
+   "mood": "Warm, busy and a little comic: chalk dust, scuffed floors, a bell for lessons.",
+   "creatures": "",
+   "items": ""
+  },
+  "420": {
+   "name": "Fameland",
+   "levels": [20, 30],
+   "theme": "A hall of heroes reached from Garathorm: the Gate of Fameland, the Way of Heroes, the Halls of Eternity and of Victory, the Chambers of Heroes, the Chambers of Sorrow, the Chamber of the Fallen Ones, the Rooms of Mercy and of Honour, and the Corridors of Remembrance. Marble statues, honour rolls carved in stone, trophies and banners of old wars, braziers that never go out. The spirits of the honoured dead still walk here and test the living.",
+   "mood": "Solemn, grand and haunted by honour; marble, gold leaf and eternal flame.",
+   "creatures": "",
+   "items": ""
+  },
+  "418": {
+   "name": "Garathorm Vineyard",
+   "levels": [8, 14],
+   "theme": "The vintner's house above Garathorm's vineyard: a modest bedroom, a stair down to a vaulted wine cellar of casks, and a storage room of racked bottles, cobwebbed and dark, where something large has spun its web.",
+   "mood": "Cool, musty and sweet with old wine.",
+   "creatures": "",
+   "items": ""
   }
  }
 }

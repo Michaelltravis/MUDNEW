@@ -1,0 +1,178 @@
+{
+ "zone": 403,
+ "_about": "Garathorm Wall: the walk along the top of the city wall. The night watch walks it in two halves; a sergeant keeps each far turn; gulls and crows ride the wind; a cutpurse uses the wall as a road over the rooftops.",
+ "creatures": {
+  "40300": {
+   "name": "wall watchman sentry",
+   "short_desc": "a sentry of the wall",
+   "long_desc": "A sentry of the wall paces the battlements, spear in hand, watching the plains.",
+   "description": "A wind-burned soldier in a quilted coat and steel cap, a spear and a horn at the hip. From up here the watch sees trouble coming long before it reaches the gates.",
+   "level": 12,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": 500,
+   "helpers": {
+    "group": "wall_watch",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The sentry winds his horn: the wall is under attack!"
+   }
+  },
+  "40301": {
+   "name": "sergeant wall",
+   "short_desc": "a sergeant of the wall",
+   "long_desc": "A sergeant of the wall stands at the turn of the battlements, barking orders.",
+   "description": "Grizzled and broad, with a crossbow slung across his back and a short sword at his belt. He has held this turn of the wall for twenty winters.",
+   "level": 15,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "elite",
+   "alignment": 500,
+   "helpers": {
+    "group": "wall_watch",
+    "rooms": 3,
+    "count": 2
+   }
+  },
+  "40302": {
+   "name": "gull grey",
+   "short_desc": "a grey gull",
+   "long_desc": "A grey gull perches on a merlon, screaming at the wind.",
+   "description": "A big, bold, yellow-eyed gull that has learned the sentries carry bread.",
+   "level": 5,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "race": "bird",
+   "alignment": 0
+  },
+  "40303": {
+   "name": "crow carrion",
+   "short_desc": "a carrion crow",
+   "long_desc": "A carrion crow hops along the parapet, watching you with one black eye.",
+   "description": "Glossy black and clever, the crows of the wall pick over whatever the gulls leave.",
+   "level": 6,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "race": "bird",
+   "alignment": 0
+  },
+  "40304": {
+   "name": "cutpurse rooftop",
+   "short_desc": "a rooftop cutpurse",
+   "long_desc": "A rooftop cutpurse crouches in the shadow of a merlon.",
+   "description": "Lean and soft-footed, dressed in dark grey, a thin knife at the wrist. The wall is the quickest road over the city for those who do not want to be seen in the streets.",
+   "level": 11,
+   "flags": [
+    "stay_zone"
+   ],
+   "race": "human",
+   "alignment": -300
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 40301,
+   "rooms": [
+    2921,
+    2944
+   ]
+  },
+  {
+   "vnum": 40302,
+   "rooms": [
+    2905,
+    2913,
+    2930,
+    2938
+   ]
+  },
+  {
+   "vnum": 40303,
+   "rooms": [
+    2917,
+    2934,
+    2942
+   ]
+  },
+  {
+   "vnum": 40304,
+   "rooms": [
+    2925
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 40300,
+   "route": [
+    203070,
+    2901,
+    2902,
+    2903,
+    2904,
+    2905,
+    2906,
+    203071,
+    2907,
+    2908,
+    2909,
+    2910,
+    2911,
+    2912,
+    2913,
+    2914,
+    2915,
+    2916,
+    2917,
+    2918,
+    2919,
+    2920,
+    2921,
+    2922,
+    2923,
+    203072
+   ],
+   "why": "the north and east walls"
+  },
+  {
+   "vnum": 40300,
+   "route": [
+    203072,
+    2924,
+    2925,
+    2926,
+    2927,
+    2928,
+    2929,
+    2930,
+    2931,
+    2932,
+    2933,
+    2934,
+    2935,
+    2936,
+    2937,
+    2938,
+    2939,
+    2940,
+    203073,
+    2941,
+    2942,
+    2943,
+    2944,
+    2945,
+    2946,
+    203070
+   ],
+   "why": "the south and west walls"
+  }
+ ]
+}

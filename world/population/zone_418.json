@@ -1,0 +1,65 @@
+{
+ "zone": 418,
+ "_about": "Garathorm Vineyard: the vintner's house, his cellar rats, and the giant wine spider that has taken the storage room.",
+ "creatures": {
+  "41800": {
+   "name": "vintner old",
+   "short_desc": "the old vintner",
+   "long_desc": "The old vintner sits on the edge of his bed, worrying about his cellar.",
+   "description": "Purple-stained hands and a red nose, and a look of real fear whenever his eyes go to the cellar stair. Something has taken his best vintages, and he dares not go down.",
+   "level": 10,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 500
+  },
+  "41801": {
+   "name": "rat cellar",
+   "short_desc": "a fat cellar rat",
+   "long_desc": "A fat cellar rat gnaws at the bung of a cask.",
+   "description": "Sleek and bold from a diet of spilled wine and grape skins.",
+   "level": 8,
+   "flags": [
+    "aggressive"
+   ],
+   "race": "rodent",
+   "alignment": 0
+  },
+  "41802": {
+   "name": "spider wine giant",
+   "short_desc": "a giant wine spider",
+   "long_desc": "A giant wine spider hangs in its web among the bottle racks, its belly the colour of claret.",
+   "description": "A bloated spider as big as a cart, its swollen abdomen stained a deep wine-red. Wrapped bottles and wrapped rats hang in its web like fruit.",
+   "level": 14,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "spider",
+   "rank": "sub-boss",
+   "alignment": -200
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 41800,
+   "rooms": [
+    209005
+   ]
+  },
+  {
+   "vnum": 41801,
+   "rooms": [
+    209007,
+    209007
+   ]
+  },
+  {
+   "vnum": 41802,
+   "rooms": [
+    209008
+   ]
+  }
+ ]
+}
