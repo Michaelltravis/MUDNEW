@@ -18,10 +18,8 @@
   // sectors, and the looks the server gives rooms (room_looks.py: a cave that was typed 'inside')
   const THEMES = ['inside', 'city', 'dungeon', 'cave', 'forest', 'field', 'hills', 'mountain', 'desert',
     'swamp', 'water_swim', 'water_noswim', 'underwater', 'flying', 'default',
-    'mine', 'crypt', 'sewer', 'snow', 'shore', 'volcanic', 'web'];
-  // a look the client has no drawing of yet borrows the nearest one (a castle: stone walls and torches)
-  const STANDIN = { castle: 'dungeon' };
-  MH.themeForSector = MH.themeForSector || (s => THEMES.includes(s) ? s : STANDIN[s] || 'default');
+    'mine', 'crypt', 'sewer', 'snow', 'shore', 'volcanic', 'web', 'castle'];
+  MH.themeForSector = MH.themeForSector || (s => THEMES.includes(s) ? s : 'default');
   MH.hashStr = MH.hashStr || function (s) {
     let h = 2166136261;
     for (const ch of String(s)) h = Math.imul(h ^ ch.charCodeAt(0), 16777619);

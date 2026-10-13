@@ -1704,9 +1704,30 @@ says a cave, the room should look like a cave. Let's think how to fix this going
   - **outdoors:** desert (sand, cacti, bleached bones), snow (white ground, frosted pines, ice),
     shore (a waterline and driftwood), volcanic (ash, jagged lava cracks, scorched trees) and
     swamp pools.
+  - **spider lairs (`web`):** dead trees hung with web sheets and strands, cocoons, egg sacs and
+    bones, in a grey-green gloom (`terrain-looks.js webDress`). The owner's example was Arachnos's
+    Webbed Entrance [6301], drawn as plains with a town.
+  - **castles (`castle`, `terrain-castle.js`):** for a castle's yard, walls and gates by name.
+    Streets toward a keep, halls and caverns are left out, and a courtyard counts only when a
+    castle is named. The client draws:
+    - a 3.8 m curtain wall with merlons and buttresses; the side nearest the camera is a parapet;
+    - a tower at each closed corner;
+    - banners and torches on the walls the camera faces;
+    - a gatehouse with a raised portcullis over every way out;
+    - a yard of a well, crates, weapon racks and targets;
+    - the stone tinted black, white, red or bone from the room's words.
+  - **ways into another region (any room):** a stone gateway over every cardinal exit of kind
+    `zone`. It has two great pillars, a lintel carrying the region's name on a carved plaque,
+    banners, and a fire either side. Indoors and underground it is lower and plainer. On the
+    side nearest the camera it stays low, with the name turned to the camera.
+    - The owner: "castle and main zone entrances should look interesting too. Everything is too
+      generic."
   - **Moods** (`engine.js`): cave, desert, snow and volcanic, plus footsteps, ambience, music and
     minimap colours by look.
-  - `/play?demo&gallery=rooms` shows one room of each look.
+  - `/play?demo&gallery=rooms` shows one room of each look, plus castles and gateways
+    (`&only=castle,blackcastle,gate,gatecity,gatecave,gatesouth`).
+  - `tools/qc_room_looks.py [--zone N]` lists rooms whose look conflicts with strong words in
+    their description (webs, trees, caves, streets).
 - **Keeping it true:**
   - `tests/test_room_looks.py` (the world check): every room looks like what its name says
     unless pinned, stated looks never contradict names, overrides are valid, plus known rooms

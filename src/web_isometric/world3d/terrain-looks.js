@@ -431,7 +431,7 @@ export const LOOK_GROUND = {
   snow: { a: 0xd8e2ec, b: 0xf2f6fa, path: 0xb4c0ca, wet: 0x9cc4dc },
   shore: { a: 0xd4c08a, b: 0xe6d6a6, path: 0xc0a874, wet: 0x5a8a98 },
   volcanic: { a: 0x2a2422, b: 0x40342c, path: 0x56443a, wet: 0x4a1a08 },
-  web: { a: 0x3a3428, b: 0x4c4434, path: 0x5a5242, wet: 0x22282a },
+  web: { a: 0x4c4636, b: 0x5e5644, path: 0x6c6250, wet: 0x2a3030 },
   // a water room's banks, and the sandy bed seen through the shallows
   water_swim: { a: 0x6f8a4a, b: 0x8aa060, path: 0x8a7a58, wet: 0x2e5a6a },
   water_noswim: { a: 0x6a8448, b: 0x86985c, path: 0x8a7a58, wet: 0x22485a },
