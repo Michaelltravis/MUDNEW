@@ -224,6 +224,19 @@ async function waitFor(page, fn, arg, secs = 60) {
     }
   }
 
+  if (MODE === 'gates') {
+    // just outside the gates: the Rat King, Black Jory, the Barrow King, the dracolich, the Alpha Wolf, Redferne
+    for (const [v, name] of [[7320, 'ratking'], [19742, 'jory'], [8690, 'barrowking'], [5011, 'dracolich'], [20009, 'alphawolf'], [7911, 'redferne']]) {
+      check(await goto(v), `in ${name} (${v})`);
+      await sleep(3500);
+      const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look,
+        mobs: [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === r.vnum).map(e => e.data.name),
+        plates: [...document.querySelectorAll('.plate')].map(p => p.className) }; });
+      console.log(v, JSON.stringify(info));
+      await page.screenshot({ path: path.join(OUT, `gates-${name}.png`) });
+    }
+  }
+
   if (MODE === 'castlelife') {
     // the castle is alive: the Bone Marshal (a sub-boss) at the junction, sentries in the halls
     check(await goto(14139), 'at the Junction of the Inner Halls (14139)');

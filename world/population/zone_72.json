@@ -1,0 +1,202 @@
+{
+ "zone": 72,
+ "_about": "The Sewer under Garathorm (levels 1-18): rats that swarm to each other's squeal, wererats, the mindflayers' colony (the master mindflayer, a sub-boss), basilisks, a hag and an otyugh as elites, and the Rat King in the deep Square Lair, spitting plague and calling his swarm.",
+ "creatures": {
+  "7002": {
+   "helpers": {
+    "group": "sewer_rats",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rat squeals, and the tunnels answer with a rush of claws!"
+   },
+   "why": "rats swarm"
+  },
+  "7101": {
+   "helpers": {
+    "group": "sewer_rats",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rat squeals, and the tunnels answer with a rush of claws!"
+   },
+   "why": "rats swarm"
+  },
+  "7207": {
+   "helpers": {
+    "group": "sewer_rats",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rat squeals, and the tunnels answer with a rush of claws!"
+   },
+   "why": "rats swarm"
+  },
+  "7204": {
+   "helpers": {
+    "group": "sewer_rats",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rat squeals, and the tunnels answer with a rush of claws!"
+   },
+   "why": "rats swarm"
+  },
+  "7203": {
+   "helpers": {
+    "group": "wererats",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The wererat shrieks for its kin!"
+   },
+   "why": "wererats help each other"
+  },
+  "7201": {
+   "helpers": {
+    "group": "mindflayers",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A psychic scream rips through the tunnels: the colony stirs!"
+   },
+   "why": "the colony"
+  },
+  "7202": {
+   "helpers": {
+    "group": "mindflayers",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A psychic scream rips through the tunnels: the colony stirs!"
+   },
+   "why": "the colony"
+  },
+  "7200": {
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "mindflayers",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The master mindflayer summons its brood with a silent command!"
+   },
+   "why": "the colony's master"
+  },
+  "7048": {
+   "rank": "elite",
+   "why": "a sewer elite"
+  },
+  "7047": {
+   "rank": "elite",
+   "why": "a sewer elite"
+  },
+  "7103": {
+   "rank": "elite",
+   "why": "a sewer elite"
+  },
+  "7000": {
+   "rank": "elite",
+   "why": "a sewer elite"
+  },
+  "72000": {
+   "name": "rat king",
+   "short_desc": "the Rat King",
+   "long_desc": "The Rat King squats on a throne of filth, a crown of bent spoons on his matted head.",
+   "description": "A rat the size of a man, grey-furred and pink-eyed, his tail knotted with a dozen smaller rats' tails into a writhing mass. Plague drips from his yellow teeth, and every rat in the sewer is his subject.",
+   "level": 18,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "rodent",
+   "rank": "boss",
+   "alignment": -600,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Rat King hurls his crown aside: \"My children! Feast!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Plague Squall",
+      "telegraph": "The Rat King rears up and screeches, and the air fills with filth!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+4",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Gnashing Bite",
+      "telegraph": "The Rat King bares his yellow teeth at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Call of the Swarm",
+      "telegraph": "The Rat King drums his tail on the floor in a rising frenzy!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 7207,
+   "route": [
+    7208,
+    7204,
+    7203,
+    7202,
+    7205
+   ],
+   "why": "a giant rat walks the Lair"
+  },
+  {
+   "vnum": 7104,
+   "route": [
+    7102,
+    7104,
+    7112,
+    7122
+   ],
+   "why": "a sewer thief keeps to the lower tunnels"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 72000,
+   "room": 7320,
+   "why": "the Rat King at the Lair End",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Plague Bile",
+     "school": "poison",
+     "every": 10,
+     "radius": 2.2,
+     "last": 12,
+     "pct": 0.04,
+     "why": "bile where he spits: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "7207": 3
+     },
+     "shout": "The Rat King squeals, and giant rats pour out of the walls!",
+     "why": "his swarm at 60% and 30%"
+    }
+   ]
+  }
+ ]
+}

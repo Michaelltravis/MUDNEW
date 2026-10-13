@@ -1,0 +1,145 @@
+{
+ "zone": 50,
+ "_about": "The Great Eastern Desert's river and the caves under the mountain (levels 5-28): the myconids of the Fungus Temple, with their shaman a sub-boss; the drider and the brass dragon as elites; and the dracolich in its giant cave, whose breath rots the ground and whose wings darken the cavern.",
+ "creatures": {
+  "5013": {
+   "helpers": {
+    "group": "myconids",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A cloud of spores puffs into the air: the myconids gather!"
+   },
+   "why": "myconids"
+  },
+  "5014": {
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "myconids",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A cloud of spores puffs into the air: the myconids gather!"
+   },
+   "why": "the myconid shaman"
+  },
+  "5011": {
+   "rank": "elite",
+   "why": "an elite of the caves"
+  },
+  "5005": {
+   "rank": "elite",
+   "why": "an elite of the caves"
+  },
+  "605003": {
+   "helpers": {
+    "group": "kobolds",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The kobold yips for its pack!"
+   },
+   "why": "kobolds"
+  },
+  "5010": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "boss",
+    "undead"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The dracolich spreads its tattered wings, and the cavern goes cold!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Necrotic Breath",
+      "telegraph": "The dracolich draws in a rattling breath!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Bone Claw",
+      "telegraph": "The dracolich rears back, claws raised!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Death Knell",
+      "telegraph": "The dracolich begins a dreadful, keening roar!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the dracolich is the caves' boss"
+  },
+  "50000": {
+   "name": "myconid sentry",
+   "short_desc": "a myconid sentry",
+   "long_desc": "A myconid sentry sways here, its cap pulsing faintly.",
+   "description": "A man-high mushroom on two stubby legs, its grey cap spotted with luminous blue. It guards the way to the Fungus Temple and speaks only in spores.",
+   "level": 12,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "race": "plant",
+   "alignment": 0,
+   "helpers": {
+    "group": "myconids",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A cloud of spores puffs into the air: the myconids gather!"
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 50000,
+   "rooms": [
+    5019,
+    5020,
+    5022
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 5010,
+   "room": 5011,
+   "why": "the dracolich in the Giant Cave",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Necrotic Breath",
+     "school": "necrotic",
+     "every": 10,
+     "radius": 2.6,
+     "last": 12,
+     "pct": 0.045,
+     "why": "its breath rots the ground: step out"
+    },
+    {
+     "type": "gloom",
+     "max": 0.7,
+     "shout": "The dracolich's wings blot out the torchlight...",
+     "why": "the cavern darkens as it weakens"
+    }
+   ]
+  }
+ ]
+}
