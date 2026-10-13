@@ -1,0 +1,113 @@
+{
+ "zone": 190,
+ "_about": "The Frostspire (levels 15-30): the frozen dwarven guards answer each other, ice trolls are elites, the frozen commander a sub-boss, the Frozen Dwarven King in his ancient vault raising his frozen guard as the vault goes dark, and Vyrkothas the Frost Wyrm on the summit breathing killing frost and calling ice elementals.",
+ "creatures": {
+  "19004": {
+   "helpers": {
+    "group": "frozen_hold",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A horn of ice sounds, and the frozen dead march to answer!"
+   },
+   "why": "the frozen hold"
+  },
+  "19003": {
+   "helpers": {
+    "group": "frozen_hold",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A horn of ice sounds, and the frozen dead march to answer!"
+   },
+   "why": "the frozen hold"
+  },
+  "19005": {
+   "rank": "elite",
+   "why": "an ice troll"
+  },
+  "19006": {
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "frozen_hold",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A horn of ice sounds, and the frozen dead march to answer!"
+   },
+   "why": "the frozen commander"
+  },
+  "19007": {
+   "rank": "boss",
+   "why": "the Frozen Dwarven King"
+  },
+  "19010": {
+   "rank": "boss",
+   "why": "Vyrkothas"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 19000,
+   "route": [
+    19000,
+    19001,
+    19002,
+    19003
+   ],
+   "why": "a frost wolf ranges the lower slopes"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 19010,
+   "room": 19011,
+   "why": "Vyrkothas on the summit",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Frost Breath",
+     "school": "frost",
+     "every": 9,
+     "radius": 3.0,
+     "last": 12,
+     "pct": 0.05,
+     "why": "killing frost: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "19002": 1
+     },
+     "shout": "Vyrkothas roars, and an ice elemental rises from the snow!",
+     "why": "ice elementals"
+    }
+   ]
+  },
+  {
+   "vnum": 19007,
+   "room": 19038,
+   "why": "the Frozen Dwarven King in the Ancient Vault",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "19004": 2
+     },
+     "shout": "The Frozen King raises his axe, and his guard breaks out of the ice!",
+     "why": "his frozen guard"
+    },
+    {
+     "type": "gloom",
+     "max": 0.7,
+     "why": "the vault goes dark"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,170 @@
+{
+ "zone": 100,
+ "_about": "The Dwarven Mines of Khaz-Durum (levels 8-25), overrun: goblin raiders swarm from the Kobold Nest and help each other, cave spiders lurk, the earth elemental is an elite, the dwarves call their guard, and Skarg the goblin warlord holds the Hall of the Mountain King, calling his raiders and bringing down the roof.",
+ "creatures": {
+  "10004": {
+   "helpers": {
+    "group": "khaz_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin raider screeches, and the raiders come running!"
+   },
+   "why": "goblin raiders"
+  },
+  "10006": {
+   "helpers": {
+    "group": "khaz_spiders",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The spider's web trembles, and more come!"
+   },
+   "why": "cave spiders"
+  },
+  "10007": {
+   "rank": "elite",
+   "why": "the earth elemental"
+  },
+  "10002": {
+   "helpers": {
+    "group": "khaz_guard",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The dwarven guard bellows: \"Raiders in the mine!\""
+   },
+   "why": "the dwarven guard"
+  },
+  "10001": {
+   "helpers": {
+    "group": "khaz_guard",
+    "rooms": 3,
+    "count": 2,
+    "shout": "Help! Goblins!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "10003": {
+   "helpers": {
+    "group": "khaz_guard",
+    "rooms": 3,
+    "count": 2,
+    "shout": "Help! Goblins!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "10008": {
+   "helpers": {
+    "group": "khaz_guard",
+    "rooms": 3,
+    "count": 2,
+    "shout": "Help! Goblins!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "10050": {
+   "name": "skarg goblin warlord",
+   "short_desc": "Skarg the goblin warlord",
+   "long_desc": "Skarg the goblin warlord lounges on the Mountain King's throne, picking his teeth with a dwarven dagger.",
+   "description": "A big goblin in a dwarf king's stolen mail, far too long for him, with a crown jammed over one ear and a cleaver in his fist. He took the hall, and he means to keep it.",
+   "level": 25,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "goblin",
+   "rank": "boss",
+   "alignment": -600,
+   "helpers": {
+    "group": "khaz_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin raider screeches, and the raiders come running!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Skarg leaps up on the throne: \"Kill them, lads!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "War Screech",
+      "telegraph": "Skarg screeches a war cry that echoes through the hall!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Cleaver Chop",
+      "telegraph": "Skarg raises his cleaver high!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Bring It Down",
+      "telegraph": "Skarg hammers at a pillar to bring down the roof!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 10004,
+   "route": [
+    10010,
+    10006,
+    10002
+   ],
+   "why": "a goblin raider runs from the nest to the hall"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 10050,
+   "room": 10002,
+   "why": "Skarg on the Mountain King's throne",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      10004
+     ],
+     "shout": "Skarg screams for his raiders!",
+     "why": "his raiders"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Falling Rock",
+     "school": "physical",
+     "every": 11,
+     "radius": 2.3,
+     "last": 6,
+     "pct": 0.045,
+     "why": "the roof comes down: step out"
+    }
+   ]
+  }
+ ]
+}

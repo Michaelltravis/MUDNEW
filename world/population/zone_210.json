@@ -1,0 +1,120 @@
+{
+ "zone": 210,
+ "_about": "The Tunnel of Sticks (levels 18-38): stick stalkers that answer each other's clatter, one walking the tunnel, and deep at the tunnel's far end the Stick Mother, a great nest of living branches, splintering the ground and birthing stalkers.",
+ "creatures": {
+  "21011": {
+   "helpers": {
+    "group": "stick_stalkers",
+    "rooms": 2,
+    "count": 2,
+    "shout": "Sticks clatter in the dark, and stalkers unfold from the walls!"
+   },
+   "why": "stick stalkers"
+  },
+  "21050": {
+   "name": "stick mother",
+   "short_desc": "the Stick Mother",
+   "long_desc": "The Stick Mother fills the tunnel's end, a great nest of living branches that creaks as it breathes.",
+   "description": "Thousands of sticks woven into a shape like a huge spider, with a heart of dark wood that beats slowly. Every stalker in the tunnel was broken off from her.",
+   "level": 38,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "plant",
+   "rank": "boss",
+   "alignment": -500,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Stick Mother creaks and groans, and the tunnel shakes!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Splinter Storm",
+      "telegraph": "The Stick Mother shudders, and splinters fly everywhere!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+9",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Branch Lash",
+      "telegraph": "The Stick Mother lashes out with a thorned branch!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+7",
+      "dodge": true
+     },
+     {
+      "name": "Entangle",
+      "telegraph": "The Stick Mother begins weaving branches around you!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+12",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 21011,
+   "route": [
+    21001,
+    21030,
+    21016,
+    21035,
+    21006,
+    21059,
+    21094,
+    21049,
+    21173,
+    21132,
+    21235,
+    21368,
+    21206
+   ],
+   "why": "a stick stalker walks the tunnel"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 21050,
+   "room": 21144,
+   "why": "the Stick Mother at the tunnel's far end",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Splinter Storm",
+     "school": "physical",
+     "every": 9,
+     "radius": 2.6,
+     "last": 8,
+     "pct": 0.05,
+     "why": "splinters: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "21011": 2
+     },
+     "shout": "The Stick Mother cracks, and stick stalkers break away from her!",
+     "why": "her stalkers"
+    }
+   ]
+  }
+ ]
+}

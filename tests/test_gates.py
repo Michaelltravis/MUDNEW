@@ -104,6 +104,11 @@ async def main():
     # ---- MiNar, the southern sea, Arachnos
     check(npcs(43550)[0].room.name == "Farrot's Nest" and npcs(45150)[0].room.zone.number == 451, 'Farrot in her nest; the Ice Leviathan in the southern sea')
     check(npcs(6314)[0].room.vnum == 6399 and npcs(6302)[0].rank == 'sub-boss', 'Zyraxxis in the Lair of Arachnos; Yevaud a sub-boss')
+    # ---- the dwarven holds, the Frostspire, the monastery, the Tunnel of Sticks
+    check(npcs(6516)[0].room.vnum == 6553 and npcs(10050)[0].room.name == 'Hall of the Mountain King', 'the Mazekeeper at the maze\'s end; Skarg in the Mountain King\'s hall')
+    check(npcs(19010)[0].room.vnum == 19011 and npcs(19007)[0].room.vnum == 19038, 'Vyrkothas on the summit; the Frozen King in his vault')
+    mother = npcs(21050)[0]
+    check(npcs(23812)[0].rank == 'boss' and mother.room.zone.number == 210, "the Abbot's Ghost a boss; the Stick Mother deep in the tunnel")
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

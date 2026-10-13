@@ -1,0 +1,204 @@
+{
+ "zone": 65,
+ "_about": "The Dwarven Kingdom (levels 3-33): a living dwarf hold whose guards answer any dwarf in trouble and walk the tunnel to the village; the giant snakes of the maze and the wraith are elites, the giant a sub-boss, and the Mazekeeper at the maze's end darkens the twisting ways and sends his snakes.",
+ "creatures": {
+  "6500": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "A dwarven horn booms through the halls: the guard is coming!"
+   },
+   "why": "the dwarf guard"
+  },
+  "6514": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "A dwarven horn booms through the halls: the guard is coming!"
+   },
+   "why": "the dwarf guard"
+  },
+  "6501": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! To me!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "6503": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! To me!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "6504": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! To me!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "6507": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! To me!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "6508": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! To me!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "6509": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! To me!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "6510": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! To me!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "6511": {
+   "helpers": {
+    "group": "dwarf_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! To me!",
+    "answer": false
+   },
+   "why": "dwarves call the guard"
+  },
+  "6517": {
+   "rank": "elite",
+   "why": "a terror of the maze"
+  },
+  "6502": {
+   "rank": "elite",
+   "why": "a terror of the maze"
+  },
+  "6506": {
+   "rank": "sub-boss",
+   "why": "the giant"
+  },
+  "6516": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Mazekeeper roars: \"No one leaves my maze!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Shifting Walls",
+      "telegraph": "The Mazekeeper spreads his hands, and the walls lurch!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+7",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Stone Fist",
+      "telegraph": "The Mazekeeper swings a fist of living stone!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Lose Your Way",
+      "telegraph": "The Mazekeeper begins to twist the paths around you!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+9",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Mazekeeper"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 6500,
+   "route": [
+    6505,
+    6503,
+    6502,
+    6501,
+    6500
+   ],
+   "why": "a dwarf guard walks to the village"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 6516,
+   "room": 6553,
+   "why": "the Mazekeeper at the End of the Maze",
+   "mechanics": [
+    {
+     "type": "gloom",
+     "max": 0.75,
+     "shout": "The torches of the maze gutter out...",
+     "why": "the maze goes dark"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "6517": 1
+     },
+     "shout": "The Mazekeeper whistles, and a giant snake slides out of the dark!",
+     "why": "his snakes"
+    }
+   ]
+  }
+ ]
+}
