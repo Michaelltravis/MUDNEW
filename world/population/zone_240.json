@@ -1,0 +1,116 @@
+{
+ "zone": 240,
+ "_about": "The Sunken Temple of Nereus (levels 40-50): the sahuagin, the corrupted merfolk and the sea witches each answer their own, the Sea Witch Elders are elites, and the Kraken in its grotto clouds the water with ink and drags the light down with it.",
+ "creatures": {
+  "24001": {
+   "helpers": {
+    "group": "nereus_sahuagin",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The sahuagin screeches, and the water fills with teeth!"
+   },
+   "why": "sahuagin"
+  },
+  "24003": {
+   "helpers": {
+    "group": "nereus_merfolk",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The corrupted merfolk calls through the water!"
+   },
+   "why": "corrupted merfolk"
+  },
+  "24002": {
+   "helpers": {
+    "group": "sea_witches",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The sea witch chants, and her sisters answer!"
+   },
+   "why": "sea witches"
+  },
+  "24005": {
+   "rank": "elite",
+   "helpers": {
+    "group": "sea_witches",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The Elder calls her coven!"
+   },
+   "why": "a Sea Witch Elder"
+  },
+  "24006": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Kraken rises in full, and the temple shakes!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Tentacle Sweep",
+      "telegraph": "The Kraken's tentacles sweep through the grotto!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+12",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Grip",
+      "telegraph": "A great tentacle coils toward you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+10",
+      "dodge": true
+     },
+     {
+      "name": "Maelstrom",
+      "telegraph": "The Kraken churns the water into a maelstrom!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+16",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Kraken"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 24006,
+   "room": 24022,
+   "why": "the Kraken in its grotto",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Ink Cloud",
+     "school": "poison",
+     "every": 9,
+     "radius": 3.0,
+     "last": 12,
+     "pct": 0.05,
+     "why": "stinging ink: swim clear"
+    },
+    {
+     "type": "gloom",
+     "max": 0.85,
+     "shout": "The Kraken's ink blots out the last of the light...",
+     "why": "the water goes black"
+    }
+   ]
+  }
+ ]
+}

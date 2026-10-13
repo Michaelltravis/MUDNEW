@@ -109,6 +109,13 @@ async def main():
     check(npcs(19010)[0].room.vnum == 19011 and npcs(19007)[0].room.vnum == 19038, 'Vyrkothas on the summit; the Frozen King in his vault')
     mother = npcs(21050)[0]
     check(npcs(23812)[0].rank == 'boss' and mother.room.zone.number == 210, "the Abbot's Ghost a boss; the Stick Mother deep in the tunnel")
+    # ---- the Ashlands, the Sunken Coast, the upper tower, Nereus, Minos
+    tyrant = npcs(6950)[0]
+    check(tyrant.room.vnum == 6907 and npcs(6805)[0].rank == 'boss', 'the Cinder Tyrant at the Magma Flows; Captain Blackhand a boss')
+    mistress = npcs(2564)[0]
+    check(mistress.room.vnum == 2677 and len(npcs(24006)) == 1, 'the Grand Mistress in the Audience Chamber; one Kraken')
+    minos = npcs(907)[0]
+    check(minos.room.vnum == 934 and len(npcs(904)) == 1, 'King Minos on his throne; Woundwort only once')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

@@ -1,0 +1,119 @@
+{
+ "zone": 68,
+ "_about": "The Sunken Coast (levels 30-45): pirates and smugglers answer each other's whistle, the sea serpent and the giant crab are elites, and Captain Blackhand on the Outer Pier calls his crew to the fight.",
+ "creatures": {
+  "6800": {
+   "helpers": {
+    "group": "blackhand_crew",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A pirate's whistle shrills along the shore: the crew is coming!"
+   },
+   "why": "the crew"
+  },
+  "6802": {
+   "helpers": {
+    "group": "blackhand_crew",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A pirate's whistle shrills along the shore: the crew is coming!"
+   },
+   "why": "the crew"
+  },
+  "6803": {
+   "rank": "elite",
+   "why": "a beast of the coast"
+  },
+  "6801": {
+   "rank": "elite",
+   "why": "a beast of the coast"
+  },
+  "6805": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "boss"
+   ],
+   "helpers": {
+    "group": "blackhand_crew",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A pirate's whistle shrills along the shore: the crew is coming!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Captain Blackhand snarls: \"No one takes my coast!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Broadside",
+      "telegraph": "Captain Blackhand roars: \"Give 'em a broadside, lads!\"",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+11",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Cutlass",
+      "telegraph": "Captain Blackhand slashes with his cutlass!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+9",
+      "dodge": true
+     },
+     {
+      "name": "Powder Keg",
+      "telegraph": "Captain Blackhand lights the fuse on a powder keg!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+15",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "Captain Blackhand"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 6800,
+   "route": [
+    6800,
+    6801,
+    6802
+   ],
+   "why": "a pirate walks from the bluffs to the dock"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 6805,
+   "room": 6805,
+   "why": "Captain Blackhand on the Outer Pier",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      6800
+     ],
+     "shout": "Captain Blackhand bellows: \"All hands!\"",
+     "why": "his crew"
+    }
+   ]
+  }
+ ]
+}

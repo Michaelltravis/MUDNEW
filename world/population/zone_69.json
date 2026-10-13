@@ -1,0 +1,98 @@
+{
+ "zone": 69,
+ "_about": "The Ashlands (levels 20-55), the burnt road to the Clockwork Foundry and the Apocalypse: the volcanic drake and the magma crawler are elites, and the Cinder Tyrant, a fire giant, holds the Magma Flows, pooling magma at your feet and calling fire elementals out of the flows.",
+ "creatures": {
+  "6903": {
+   "rank": "elite",
+   "why": "a terror of the Ashlands"
+  },
+  "6902": {
+   "rank": "elite",
+   "why": "a terror of the Ashlands"
+  },
+  "6950": {
+   "name": "cinder tyrant fire giant",
+   "short_desc": "the Cinder Tyrant",
+   "long_desc": "The Cinder Tyrant stands astride the magma, a fire giant wreathed in smoke.",
+   "description": "Twenty feet of black iron armour over skin like cooling lava, a beard of living flame and a greatsword glowing from the forge. He rules the Ashlands, and the fire answers him.",
+   "level": 52,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "giant",
+   "rank": "boss",
+   "alignment": -700,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Cinder Tyrant roars, and the magma rises with him!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Eruption",
+      "telegraph": "The Cinder Tyrant drives his sword into the ground, and the earth erupts!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+13",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Molten Blade",
+      "telegraph": "The Cinder Tyrant swings his glowing greatsword!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+10",
+      "dodge": true
+     },
+     {
+      "name": "Firestorm",
+      "telegraph": "The Cinder Tyrant raises his arms, calling down fire!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+17",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 6950,
+   "room": 6907,
+   "why": "the Cinder Tyrant at the Magma Flows",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Magma",
+     "school": "fire",
+     "every": 9,
+     "radius": 2.8,
+     "last": 12,
+     "pct": 0.05,
+     "why": "magma at your feet: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "6900": 1
+     },
+     "shout": "The Cinder Tyrant bellows, and a fire elemental climbs out of the magma!",
+     "why": "fire from the flows"
+    }
+   ]
+  }
+ ]
+}

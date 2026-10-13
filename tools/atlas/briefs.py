@@ -45,6 +45,7 @@ JOBS = {
     # rooms whose original writing came back (circle-contrib-areas): tools/atlas/contrib.py
     'ghenna': ([481], 1, 1, False),
     'chaos': ([475], 1, 1, False),
+    'minos': ([9], 1, 1, False),
 }
 FIXUPS = [3516, 4002, 6602, 6610, 6612, 12003, 12005, 12006, 12007, 12010, 12015, 12018, 12019, 12022, 12023,
           12024, 12029, 12031, 12035, 12036, 12039, 12043, 12044, 12049, 12050, 12051, 12062, 12063, 15061,

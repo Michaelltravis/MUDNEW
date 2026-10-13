@@ -1,0 +1,168 @@
+{
+ "zone": 469,
+ "_about": "The upper High Tower of Magic (levels 8-50): the golems wake together, the witches help each other, the golems and the Necromancer are elites, the three Masters (Neutrality, the Black Robes, Goodness) are sub-bosses, and the Grand Mistress in the Audience Chamber burns glyphs into the floor and opens the tower's eyes on you.",
+ "creatures": {
+  "2539": {
+   "helpers": {
+    "group": "golems",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The golem grinds round, and its brothers lurch to answer!"
+   },
+   "why": "golems"
+  },
+  "2542": {
+   "helpers": {
+    "group": "golems",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The golem grinds round, and its brothers lurch to answer!"
+   },
+   "why": "golems"
+  },
+  "2543": {
+   "helpers": {
+    "group": "golems",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The golem grinds round, and its brothers lurch to answer!"
+   },
+   "why": "golems"
+  },
+  "2544": {
+   "helpers": {
+    "group": "golems",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The golem grinds round, and its brothers lurch to answer!"
+   },
+   "why": "golems"
+  },
+  "2545": {
+   "helpers": {
+    "group": "golems",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The golem grinds round, and its brothers lurch to answer!"
+   },
+   "why": "golems"
+  },
+  "2546": {
+   "rank": "elite",
+   "why": "a power of the upper tower"
+  },
+  "2547": {
+   "helpers": {
+    "group": "golems",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The golem grinds round, and its brothers lurch to answer!"
+   },
+   "why": "golems"
+  },
+  "2552": {
+   "helpers": {
+    "group": "witches",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The witch cackles, and her sisters join in!"
+   },
+   "why": "witches"
+  },
+  "2549": {
+   "rank": "elite",
+   "why": "a power of the upper tower"
+  },
+  "2556": {
+   "rank": "sub-boss",
+   "why": "a Master of the tower"
+  },
+  "2559": {
+   "rank": "sub-boss",
+   "why": "a Master of the tower"
+  },
+  "2562": {
+   "rank": "sub-boss",
+   "why": "a Master of the tower"
+  },
+  "2564": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Grand Mistress rises: \"You have come far. No farther.\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Arcane Torrent",
+      "telegraph": "The Grand Mistress raises her staff, and raw magic floods the chamber!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+12",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Spellblade",
+      "telegraph": "The Grand Mistress conjures a blade of force!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+10",
+      "dodge": true
+     },
+     {
+      "name": "Word of Unmaking",
+      "telegraph": "The Grand Mistress begins to speak a word of unmaking!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+16",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Grand Mistress"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 2564,
+   "room": 2677,
+   "why": "the Grand Mistress in the Audience Chamber",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Arcane Glyph",
+     "school": "arcane",
+     "every": 8,
+     "radius": 2.4,
+     "last": 10,
+     "pct": 0.05,
+     "why": "burning glyphs: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "2513": 2
+     },
+     "shout": "The Grand Mistress opens her hands, and disembodied eyes float out of the air!",
+     "why": "the tower's eyes"
+    }
+   ]
+  }
+ ]
+}
