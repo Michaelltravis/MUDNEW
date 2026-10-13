@@ -108,6 +108,13 @@ class AffectManager:
         Returns:
             The created Affect object
         """
+        # cast again on the same character, a spell is refreshed, not doubled: the copy it already
+        # holds (the same spell, on the same thing, of the same kind) gives way to the new one
+        for old in [a for a in getattr(character, 'affects', None) or []
+                    if a.name == affect_data['name'] and a.applies_to == affect_data['applies_to']
+                    and a.type == affect_data['type']]:
+            AffectManager.remove_affect(character, old)
+
         # Create the affect object
         affect = Affect(
             name=affect_data['name'],

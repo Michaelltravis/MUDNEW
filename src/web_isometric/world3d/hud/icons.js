@@ -252,6 +252,70 @@ export const PICTO = {
   },
 };
 
+// a picture of their own for abilities of one class that would otherwise look alike
+// ({picto: PICTO name} or {glyph: glyphs.js name})
+export const ICON_OVERRIDE = {
+  warrior: {
+    cleave: {picto: 'sword'}, heroic_leap: {picto: 'arrowUp'}, rallying_cry: {picto: 'banner'},
+    mortal_strike: {picto: 'sword'}, protect: {picto: 'shield'},
+  },
+  paladin: {
+    unfettered: {picto: 'chain'}, lay_on_hands: {glyph: 'cross'}, holy_shield: {picto: 'armor'},
+    protect: {picto: 'helm'}, avenging_wrath: {picto: 'banner'}, ascendant_hour: {picto: 'people'},
+    verdict_of_the_order: {glyph: 'sun'}, beacon_of_light: {glyph: 'star'}, layhands: {glyph: 'drop'},
+    shield_of_faith: {glyph: 'ring'}, divine_shield: {picto: 'cage'}, divine_shield_master: {picto: 'wings'},
+    divine_guardian: {glyph: 'feather'},
+  },
+  cleric: {
+    dispel_evil: {glyph: 'cross'}, group_heal: {picto: 'heal'}, divine_hymn: {glyph: 'notes'},
+    heal: {glyph: 'cross'}, summon: {glyph: 'skull'}, word_of_recall: {picto: 'burst'},
+    resurrect: {glyph: 'sun'}, cure_serious: {glyph: 'drop'}, cure_critical: {picto: 'fountain'},
+    renew: {glyph: 'petal'}, shield_of_faith: {picto: 'armor'}, divine_shield: {picto: 'helm'},
+    power_word_shield: {picto: 'rings'}, aegis_ward: {glyph: 'ring'}, cleansing_rite: {glyph: 'sun'},
+    font_of_the_vigil: {glyph: 'drop'}, shadow_word_pain: {picto: 'rings'}, inner_focus: {glyph: 'eye'},
+    holy_aura: {glyph: 'feather'}, protection_from_evil: {picto: 'cage'}, pain_suppression: {glyph: 'wisp'},
+    guardian_spirit: {glyph: 'bone'},
+  },
+  mage: {
+    enchant_weapon: {picto: 'sword'}, tower_echoes: {picto: 'rings'}, phase_step: {glyph: 'wisp'},
+    stepwise: {picto: 'boot'}, arcane_power: {picto: 'fist'}, magic_missile: {picto: 'arrows'},
+    arcane_missiles: {picto: 'blast'}, summon: {picto: 'people'}, singularity: {glyph: 'ring'},
+    rimeheart: {picto: 'crack'}, deep_freeze: {picto: 'cage'}, pyroblast: {picto: 'blast'},
+    identify: {picto: 'book'}, meteor_storm: {picto: 'rain'}, shield: {picto: 'armor'},
+    mana_shield: {picto: 'helm'}, resonance_burst: {glyph: 'sun'},
+  },
+  necromancer: {
+    imbue: {glyph: 'rune'}, soulstone: {picto: 'lich'}, leechcraft: {glyph: 'drop'},
+    energy_drain: {picto: 'arrows'}, dark_mending: {picto: 'heal'}, siphon_unlife: {picto: 'implode'},
+    soul_harvest: {picto: 'people'}, ritual: {picto: 'rings'}, mistgrasp: {glyph: 'star'},
+    corpse_shield: {picto: 'shield'}, mass_animate: {glyph: 'wisp'}, curse: {glyph: 'eye'},
+    animate: {picto: 'clones'}, raise: {picto: 'arrowUp'},
+  },
+  thief: {
+    jackpot: {picto: 'crosshair'}, circle: {picto: 'sword'}, eviscerate: {picto: 'axe'},
+    kidneyshot: {picto: 'crack'}, fade: {glyph: 'wisp'}, marked_for_death_thief: {glyph: 'skull'},
+    shadow_step: {picto: 'boot'},
+  },
+  assassin: {
+    execute_contract: {picto: 'sword'}, feint: {picto: 'axe'}, shadowstrike: {picto: 'pierce'},
+    fan_of_knives: {picto: 'fan'}, death_mark: {glyph: 'skull'}, rupture: {glyph: 'drop'},
+    shadow_blades_master: {glyph: 'wisp'}, hide: {glyph: 'wisp'}, envenom: {glyph: 'star'},
+  },
+  ranger: {
+    bestial_wrath: {picto: 'banner'}, briskness: {glyph: 'chevron'}, detect_magic: {picto: 'book'},
+    volley: {picto: 'arrows'}, wyvern_sting: {glyph: 'drop'}, stampede: {picto: 'horseshoe'},
+  },
+  bard: {
+    pick_lock: {glyph: 'coin'}, lore: {picto: 'book'}, polymorph: {picto: 'swirl'},
+    mesmerize: {glyph: 'petal'}, charm_person: {glyph: 'die'}, epic_tale: {picto: 'scroll'},
+    song_of_battle: {picto: 'banner'}, perform: {glyph: 'star'}, invisibility: {picto: 'smoke'},
+    magnum_opus: {glyph: 'sun'}, mass_charm: {glyph: 'skull'}, refrain_of_hope: {picto: 'arrows'},
+    chord_of_disruption: {glyph: 'bone'}, bless: {glyph: 'sun'}, legend_lore: {glyph: 'eye'},
+    identify: {picto: 'question'}, anthem_of_defense: {glyph: 'notes'}, discordant_chord: {glyph: 'cross'},
+    grand_illusion: {picto: 'rings'},
+  },
+};
+
 // which pictogram shows what an ability does: what it throws, else how it lands, else what it
 // leaves on you; a weapon blow shows the class's weapon
 function pictoFor(r, cls) {
@@ -322,12 +386,12 @@ function motionBadge(c, motion, S) {
 
 const cache = new Map();
 
-// an ability's icon (a data URL), `cls` the class it is drawn for, `type` spell | skill
-export function abilityIcon(id, cls, { type = 'skill', passive = false, size = 96 } = {}) {
+// What an ability's icon shows, and in what colour: the picture its recipe suggests, unless two
+// of a class's abilities would then look alike (stepwise and tower echoes both fell back to the
+// mage's rune): those get a picture of their own (ICON_OVERRIDE; the animations are untouched).
+// tests/web/icons.test.mjs keeps every class's icons distinct.
+export function iconOf(id, cls, type = 'skill') {
   cls = THEMES[String(cls || '').toLowerCase()] ? String(cls).toLowerCase() : 'creature';
-  const key = `${cls}:${id}:${type}:${passive}:${size}`;
-  if (cache.has(key)) return cache.get(key);
-  const S = size, cv = canvas(S), c = cv.getContext('2d');
   const theme = THEMES[cls] || THEMES.creature;
   const r = recipeFor(RECIPES, id, cls, { k: type === 'spell' ? 'spell' : 'ability' });
   const cc = hex(theme.core), ac = hex(theme.accent);
@@ -336,6 +400,17 @@ export function abilityIcon(id, cls, { type = 'skill', passive = false, size = 9
   const guard = r.flags.has('ally') || ['bubble', 'banner', 'seraph', 'halo', 'wings', 'sigil', 'glow', 'stone', 'bark', 'mirror', 'fade', 'shroud'].includes(r.aura && r.aura.kind)
     || ['heal', 'bubble', 'dome', 'halo', 'wings', 'pillar'].includes(r.land && r.land.kind);
   const sc = r.school && SCHOOL_RGB[r.school] ? SCHOOL_RGB[r.school] : guard ? ac : cc;
+  const own = (ICON_OVERRIDE[cls] || {})[id];
+  return { r, theme, cc, ac, sc, p: own ? { ...own } : pictoFor(r, cls) };
+}
+
+// an ability's icon (a data URL), `cls` the class it is drawn for, `type` spell | skill
+export function abilityIcon(id, cls, { type = 'skill', passive = false, size = 96 } = {}) {
+  cls = THEMES[String(cls || '').toLowerCase()] ? String(cls).toLowerCase() : 'creature';
+  const key = `${cls}:${id}:${type}:${passive}:${size}`;
+  if (cache.has(key)) return cache.get(key);
+  const S = size, cv = canvas(S), c = cv.getContext('2d');
+  const { r, theme, cc, ac, sc, p } = iconOf(id, cls, type);
   const h = hash(`${cls}:${id}`);
   const R = S * 0.16;
   // the gem, lit from the upper left
@@ -356,7 +431,6 @@ export function abilityIcon(id, cls, { type = 'skill', passive = false, size = 9
   else { const sh = c.createLinearGradient(0, 0, S, S); sh.addColorStop(0.35, 'rgba(255,255,255,0)'); sh.addColorStop(0.5, 'rgba(255,255,255,.10)'); sh.addColorStop(0.65, 'rgba(255,255,255,0)'); c.fillStyle = sh; c.fillRect(0, 0, S, S); }
   // the pictogram (drawn apart, so its cut-outs don't pierce the gem), tinted, glowing in the
   // school's light
-  const p = pictoFor(r, cls);
   const tilt = (((h >> 8) % 21) - 10) * Math.PI / 180;
   const pc = canvas(S), px = pc.getContext('2d');
   px.translate(S / 2, S / 2); px.rotate(p.picto === 'sword' || p.picto === 'axe' || p.picto === 'daggers' ? 0 : tilt);

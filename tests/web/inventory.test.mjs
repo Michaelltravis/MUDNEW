@@ -9,7 +9,7 @@ if (typeof globalThis.addEventListener !== 'function') globalThis.addEventListen
 globalThis.localStorage = globalThis.localStorage || { getItem: () => null, setItem: () => {} };
 globalThis.document = globalThis.document || { querySelector: () => null, addEventListener: () => {}, createElement: () => ({ getContext: () => null }) };
 if (typeof globalThis.document.addEventListener !== 'function') globalThis.document.addEventListener = () => {};
-const { slotsFor, dropCommand, removeCommand, moveCommands, partnerOf, keywordFor } = await import('../../src/web_isometric/world3d/hud/inventory.js');
+const { slotsFor, dropCommand, removeCommand, moveCommands, partnerOf, keywordFor, matchesSearch } = await import('../../src/web_isometric/world3d/hud/inventory.js');
 
 const ring = (name, slot = 'finger1') => ({ name, short: name, type: 'worn', slot });
 
@@ -42,4 +42,13 @@ test('a ring moved to the other finger, or the two swapped', () => {
   assert.deepEqual(moveCommands({ finger1: a }, [c], 'finger1', 'finger2'), ['remove finger1', 'wear 2.ring finger2']);
   assert.deepEqual(moveCommands({ finger1: a, finger2: b }, [], 'finger1', 'finger2'),
     ['remove finger1', 'remove finger2', 'wear ring finger2', 'wear ring finger1']);
+});
+
+test('the pack\'s search: every word typed, in the name, type, slot or rarity', () => {
+  const ring = { name: 'a silver ring of warding', type: 'worn', slot: 'finger', rarity: 'rare' };
+  const potion = { name: 'a potion of healing', type: 'potion', rarity: 'common' };
+  assert.ok(matchesSearch(ring, ''), 'an empty search shows everything');
+  assert.ok(matchesSearch(ring, 'ring') && matchesSearch(ring, 'RARE silver') && matchesSearch(ring, 'finger'));
+  assert.ok(!matchesSearch(ring, 'potion') && !matchesSearch(ring, 'gold ring'), 'every word must match');
+  assert.ok(matchesSearch(potion, 'potion heal') && !matchesSearch(null, 'x'));
 });

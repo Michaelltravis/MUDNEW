@@ -200,6 +200,16 @@ async def main():
     check(caster.hp == hp, 'invulnerability stops the blow')
     for x in list(caster.affects):
         AffectManager.remove_affect(caster, x)
+    # cast again, a spell is refreshed, not doubled: one copy, its duration renewed, its bonus once
+    hr = caster.hitroll
+    AffectManager.apply_affect(caster, {'name': 'bless', 'type': 'modify_stat', 'applies_to': 'hitroll', 'value': 2, 'duration': 3})
+    caster.affects[-1].remaining = 1
+    AffectManager.apply_affect(caster, {'name': 'bless', 'type': 'modify_stat', 'applies_to': 'hitroll', 'value': 2, 'duration': 3})
+    blessed = [x for x in caster.affects if x.name == 'bless']
+    check(len(blessed) == 1 and blessed[0].remaining == 3 and caster.hitroll == hr + 2,
+          f'a spell cast again is refreshed, not doubled ({len(blessed)} copies, +{caster.hitroll - hr} hitroll)')
+    for x in list(caster.affects):
+        AffectManager.remove_affect(caster, x)
     AffectManager.apply_affect(caster, {'name': 'Mana Shield', 'type': 'flag', 'applies_to': 'mana_shield', 'value': 1, 'duration': 5})
     hp, mana = caster.hp, caster.mana
     await caster.take_damage(40, a, 'physical')
