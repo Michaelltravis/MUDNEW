@@ -1,0 +1,296 @@
+{
+ "job": "z467",
+ "rooms": {
+  "20700": "A broad humped bridge of grey stone carries the road across a chasm whose floor is lost in mist. Low parapets, worn smooth by generations of hands, are all that stand between you and the long fall. A cold wind climbs out of the gorge with the muffled sound of a river far below. The span runs on north toward its near end and south out over the gorge.",
+  "20750": "Here the road ends at the head of the bridge, beside a cairn of mossy stones that marks the last honest ground before the deep. To the north the huge stone gates of Brethrenmere stand open, their great leaves swung wide and rusted fast against the wall. Pines lean over the track and drip with mist. South the paving narrows and rises onto the bridge itself.",
+  "20701": "At the middle of the span the parapet has fallen away in one place, leaving a ragged gap above a sheer drop of black rock. Dwarf-runes, filled with moss, run along the surviving stones in lines no one now reads. The roar of an unseen torrent rises from the chasm and hums in your chest. The bridge goes on north back toward the gates and south toward a darker shore.",
+  "20703": {
+   "description": "The bridge ends in a shelf of bare rock before a towering cliff, and in the cliff face a tall door of iron-banded oak stands in a frame of cut stone. Scratches and old stains mark the threshold, and gnawed bones are ground into the gravel. A thread of torchlight leaks from the crack beneath the door, which leads south into the deep. The span you crossed lies behind you to the north.",
+   "look": "mine"
+  },
+  "20704": {
+   "description": "Beyond the door the rock opens into a bare entry hall, its ceiling lost in smoke and shadow. The walls are cut in great blocks, blackened by old fires, and a rusted brazier gives off a sullen red glow. The air is foul with damp, tallow and something older. A heavy door stands in the far wall, leading south to the guard post, and the door you came by lies back to the north.",
+   "look": "mine"
+  },
+  "20705": {
+   "description": "A cramped guard post has been hacked from the rock, with a table of rough planks, a toppled stool and a rack of spears rusted into one solid lump. Narrow slits in the wall look out on nothing but dark. Spilled lamp oil and old blood stain the floor in dark rings. A door south leads on into a passage, and the entry hall lies back through the door north.",
+   "look": "mine"
+  },
+  "20706": {
+   "description": "The passage ends here in a low square chamber where the hewn walls sweat and the roof presses close overhead. A channel cut in the floor carries a thread of black water off toward the passageway that continues south. Long claw marks score the wall at the height of your chest. The door to the guard post lies behind you to the north, its frame split and hanging.",
+   "look": "mine"
+  },
+  "20707": {
+   "description": "A long passage cut square through the living rock runs on north and south, its walls greasy with damp. Two doors face each other at this junction: a warped one in the west wall opens on Gomel's Hole, and a heavy one in the east wall opens on Zalygin's Yard. Foul smells seep around both. A single guttering torch in an iron ring lights the crossing.",
+   "look": "mine"
+  },
+  "20709": {
+   "description": "What was once a drill yard for the garrison is now a wide chamber of trampled filth and heaped refuse. Rusted weapon stands lean at crazy angles, and the floor is cut with the ruts of dragged and heavy things. A smell of rank hide hangs under the high ceiling. The only way out is the door in the west wall, back to the passageway.",
+   "look": "cave"
+  },
+  "20711": {
+   "description": "The passage bends on, its roof lower and its floor furrowed by countless feet. In the east wall a door scrawled with crude daubs leads into Terasaki's Trashery, and in the west wall a plain door hangs ajar on a rotted cord, giving onto The Empty Room. South the passage dips toward a mouldy stairwell, and the way back lies north. Pale tufts of fungus crowd the join of wall and floor.",
+   "look": "mine"
+  },
+  "20710": {
+   "description": "A midden of broken pots, split barrels, rags and gnawed bones fills this den to knee depth, and the stink lays a hand across your mouth. Someone has piled the worst of it into walls and humps, as a beast builds a nest. Pale fungus feeds on the heap and glows faintly. The door in the west wall is the only clean thing in sight.",
+   "look": "cave"
+  },
+  "20713": {
+   "description": "A narrow stair rises from the passage, each tread worn into a dish by ages of feet and slick with black mould. The walls wear the same fur of grey growth, and water seeps in threads over the stone. Your footsteps sink into the damp without an echo. The steps climb up to a landing above, while the passage lies to the north.",
+   "look": "mine"
+  },
+  "20714": {
+   "description": "The stair ends at a small landing where the mould thins and the air grows dry and cold. A cracked niche in the wall holds a stub of tallow burnt to a black crust. The steps fall away down the way you came, into the damp, and a corridor leads on north. Somewhere beyond it something heavy shifts and settles.",
+   "look": "mine"
+  },
+  "20715": "A long corridor of dressed stone runs on, its floor laid with cracked flagstones and its walls hung with the tatters of ancient banners. The door in the east wall is thick with cobweb and soot and leads to Morhun's Haunt, while the pale-painted door in the west wall opens on Riabev's Lair. A chill creeps from beneath the western door. The corridor goes on north, and the landing of the stairwell lies south.",
+  "20718": "The corridor ends in a small square hall with a door in each of its other three walls. The north door is plain and scarred, the east door is veiled in grey threads, and the great west door is bound in iron and studded with the skulls of beasts. A rumbling voice leaks through it, and the floor before it is trampled bare of dust. Torch brackets on the walls hold only ash, and the corridor you came by lies south.",
+  "20721": {
+   "description": "A narrow cell of black stone, its walls bolted with iron rings, and its floor a litter of chains and shattered shackles. Someone met an end here: the flags are scored with a dark old stain and the rings are worn bright. Water drips somewhere in the dark at slow, steady intervals. The only way out is the door in the south wall.",
+   "look": "dungeon"
+  },
+  "20719": {
+   "description": "Thick grey webs fill this chamber from floor to vault, hanging in sheets and ropes so dense that torchlight dies in them. The strands are sticky and tough as cord, and cocoons of old bundled cloth sway in the draught. Dry husks crunch underfoot. The door in the west wall is the only clear path out.",
+   "look": "cave"
+  },
+  "20720": {
+   "description": "A vast hall with a vault lost in shadow, its floor strewn with the wreckage of feasts: split casks, scorched bones, and a high seat built from broken doors. Banners of cured hide hang from the pillars, each stained with a great red handprint. A fire pit smoulders in the middle of the floor, filling the air with smoke and the reek of burnt fat. The door in the east wall is the only way out.",
+   "look": "cave"
+  },
+  "20717": {
+   "description": "Dust lies like grey felt on the floor of this low chamber, undisturbed but for one narrow track. Niches in the walls hold lumps of rotted cloth and the grin of old bone. The air tastes of cold stone and dead lamp oil, and a faint moaning rides it from nowhere you can find. The door in the west wall leads back to the corridor.",
+   "look": "crypt"
+  },
+  "20716": {
+   "description": "A round chamber of black stone, bare but for a slab bier in the middle and a pale circle worn into the floor around it where something paced for long years. A ring of candle stubs burns with a blue-white flame that gives no warmth. Your breath hangs before you in the air. The door in the east wall opens back onto the corridor.",
+   "look": "crypt"
+  },
+  "20712": "Nothing remains in this small square room but dust, a few dark marks on the floor where furniture once stood, and a smell of long closing. The plaster has been picked from the walls in neat lines, as though by patient fingernails. A single iron hook hangs from the ceiling beam, and the silence has the quality of a held breath.",
+  "20708": {
+   "description": "A ragged hole gnawed from the rock, more burrow than room, its walls scored by tooth and claw and its floor sunk into a bowl of packed earth and rotted bedding. Narrow holes too small for a man lead off into the stone. The reek of musk and old meat is thick enough to taste. The door in the east wall is the only proper way out.",
+   "look": "cave"
+  }
+ },
+ "extras": {
+  "20750": [
+   {
+    "keywords": "cairn stones mossy",
+    "description": "A knee-high cairn of mossy stones, each one scratched with a small mark by some traveller who crossed and was glad to be back, or never was."
+   }
+  ],
+  "20701": [
+   {
+    "keywords": "runes dwarf-runes",
+    "description": "The old dwarf-runes read, in the oldest tongue, only the names of the builders and a warning that the deep keeps what it takes."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "moria-goblin",
+   "keywords": "goblin guard moria",
+   "short_desc": "a Moria goblin",
+   "long_desc": "A Moria goblin crouches here with a notched cleaver, watching the dark with yellow eyes.",
+   "description": "A hunched, grey-skinned goblin in scraps of dwarf mail, long arms hanging to its knees. It smells of tallow and old meat.",
+   "kind": "humanoid",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Guard Post",
+    "The End Of The Passage",
+    "The Passageway",
+    "Gomel's Hole"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "goblin-cleaver",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "deep-rat",
+   "keywords": "giant rat deep",
+   "short_desc": "a giant deep rat",
+   "long_desc": "A giant deep rat sits in the damp, gnawing at something that does not move.",
+   "description": "A rat the size of a hound, bald in patches, with eyes gone milk white from a life without sun and teeth stained brown.",
+   "kind": "animal",
+   "level": 17,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Mouldy Stairwell",
+    "The Empty Room",
+    "Zalygin's Yard",
+    "Fleraw's Fate"
+   ],
+   "count": 2
+  },
+  {
+   "id": "tomb-skeleton",
+   "keywords": "skeleton dwarf tomb",
+   "short_desc": "a dwarf skeleton",
+   "long_desc": "A dwarf skeleton in rotted mail stands motionless here, a rusted axe in its fingers.",
+   "description": "The bones of a dwarf long dead, bound together by something other than sinew. A cold light burns in its empty eye sockets.",
+   "kind": "undead",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Morhun's Haunt",
+    "Along The Corridor",
+    "Top of the Stairwell"
+   ],
+   "count": 1
+  },
+  {
+   "id": "dashuk-spider",
+   "keywords": "spider giant web dashuk",
+   "short_desc": "a giant web spider",
+   "long_desc": "A giant web spider hangs in the grey threads, its legs trembling at every sound.",
+   "description": "A spider the size of a cart, bristling with black hairs, with eight eyes that glitter in the torchlight. Venom beads at the tips of its fangs.",
+   "kind": "animal",
+   "level": 24,
+   "aggressive": true,
+   "alignment": -200,
+   "rooms": [
+    "Dashuk's Web"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "spidersilk-cloak",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "trash-troll",
+   "keywords": "troll cave hulking",
+   "short_desc": "a hulking cave troll",
+   "long_desc": "A hulking cave troll squats in the filth, chewing on something it should not.",
+   "description": "A troll with mottled green hide and knuckles that scrape the ground. Its small eyes are red and watery, and it grins with a mouth full of broken teeth.",
+   "kind": "monster",
+   "level": 25,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "Terasaki's Trashery",
+    "Zalygin's Yard"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "troll-hide-shield",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "riabev-wight",
+   "keywords": "riabev wight pale",
+   "short_desc": "Riabev the Pale",
+   "long_desc": "Riabev the Pale, a gaunt wight in a tattered dwarf lord's robe, stands beside the bier.",
+   "description": "Once a lord of the deep, Riabev is now a wight of grey skin and burning eyes. A thin cold circlet rests on his brow, and the air around him seems to still.",
+   "kind": "undead",
+   "level": 26,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "Riabev's Lair"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "wight-ring",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "asmolov-ogre",
+   "keywords": "asmolov ogre warlord",
+   "short_desc": "Asmolov the ogre warlord",
+   "long_desc": "Asmolov, the ogre warlord of the deep, roars from his high seat and shakes the smoke from the vault.",
+   "description": "Asmolov is a mountain of scarred flesh in a harness of dwarf plate hammered flat to fit him. He carries a maul made from a stone gate-post and curses all who enter in a voice that shakes the hall.",
+   "kind": "monster",
+   "level": 27,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "Asmolov's Tyrade"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "asmolov-maul",
+     "chance": 35
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "goblin-cleaver",
+   "keywords": "cleaver goblin notched",
+   "short_desc": "a notched goblin cleaver",
+   "room_desc": "A notched goblin cleaver lies here.",
+   "description": "A broad, ugly blade of poor iron, nicked from hard use but still sharp enough.",
+   "kind": "weapon",
+   "level": 18,
+   "weapon_type": "slash"
+  },
+  {
+   "id": "spidersilk-cloak",
+   "keywords": "cloak silk spider grey",
+   "short_desc": "a grey spidersilk cloak",
+   "room_desc": "A grey cloak of spidersilk lies here.",
+   "description": "A cloak woven of tough grey strands, light as breath and strong as cord.",
+   "kind": "armor",
+   "level": 24,
+   "wear_slot": "about",
+   "bonus": {
+    "dex": 1
+   }
+  },
+  {
+   "id": "troll-hide-shield",
+   "keywords": "shield troll hide",
+   "short_desc": "a troll-hide shield",
+   "room_desc": "A troll-hide shield lies here.",
+   "description": "A round shield of green hide stretched over a frame of dwarf iron. Troll flesh is slow to cut, even dried.",
+   "kind": "armor",
+   "level": 25,
+   "wear_slot": "shield"
+  },
+  {
+   "id": "wight-ring",
+   "keywords": "ring cold circlet wight",
+   "short_desc": "a cold silver ring",
+   "room_desc": "A cold silver ring lies here.",
+   "description": "A thin silver band that never warms to the touch, set with a pale stone.",
+   "kind": "armor",
+   "level": 26,
+   "wear_slot": "finger",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "asmolov-maul",
+   "keywords": "maul gate-post stone asmolov",
+   "short_desc": "Asmolov's gate-post maul",
+   "room_desc": "A huge stone maul lies here.",
+   "description": "A gate-post of dwarf stone, bound in iron and fitted with a haft as thick as a man's arm. It is brutally heavy.",
+   "kind": "weapon",
+   "level": 27,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  }
+ ]
+}
