@@ -22,6 +22,13 @@ def export(arm, body, name, out, kind='creature', clips=(), meta=None):
         raise SystemExit(f'{name}: {tris(body)} triangles, over the {kind} budget of {BUDGET.get(kind, 3000)}')
     pts = [arm.matrix_world @ v.co for v in body.data.vertices]
     lo_z = min(p.z for p in pts)
+    if lo_z < -0.005:
+        # something hangs below the feet (a drooping tail, a claw): lift the whole rig onto the ground
+        arm.location.z -= lo_z
+        bpy.context.view_layer.update()
+        print(f'{name}: lifted {-lo_z:.3f} so it stands on the ground')
+        pts = [arm.matrix_world @ v.co for v in body.data.vertices]
+        lo_z = min(p.z for p in pts)
     cx = (min(p.x for p in pts) + max(p.x for p in pts)) / 2
     cy = (min(p.y for p in pts) + max(p.y for p in pts)) / 2
     span = max(max(p.x for p in pts) - min(p.x for p in pts), max(p.y for p in pts) - min(p.y for p in pts))
@@ -41,7 +48,11 @@ def export(arm, body, name, out, kind='creature', clips=(), meta=None):
         export_frame_step=1, export_optimize_animation_size=True, export_anim_single_armature=True,
         export_reset_pose_bones=True, export_image_format='AUTO', export_lights=False, export_cameras=False)
     h = max((arm.matrix_world @ v.co).z for v in body.data.vertices) if body.data.vertices else 0
-    side = {'name': name, 'kind': kind, 'clips': list(clips), 'tris': tris(body), 'height': round(h, 3), **(meta or {})}
+    meta = dict(meta or {})
+    if meta.get('ref') == 'length':
+        # a long, low creature (a crocodile) is sized by the game by its length, not its height
+        meta['ref'] = round(max(p.y for p in pts) - min(p.y for p in pts), 3)
+    side = {'name': name, 'kind': kind, 'clips': list(clips), 'tris': tris(body), 'height': round(h, 3), **meta}
     with open(os.path.join(out, f'{name}.json'), 'w') as f:
         json.dump(side, f, indent=1)
     print(f'exported {path}: {side["tris"]} tris, clips {", ".join(clips)}')

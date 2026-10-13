@@ -518,7 +518,7 @@ async function buildBlend(job) {
   await doc.transform(resample(), weld());
   BODY_INDEX[job.side.name] = { kind: job.side.kind, anims: root.listAnimations().map(a => a.getName()),
     tris: job.side.tris, height: job.side.height, ...(job.side.for ? { for: job.side.for } : {}),
-    ...(job.side.look ? { look: job.side.look } : {}) };          // how it's drawn: { opacity, glow }
+    ...(job.side.look ? { look: job.side.look } : {}), ...(job.side.ref ? { ref: job.side.ref } : {}) };   // ref: the size the game's h means          // how it's drawn: { opacity, glow }
   return finish(doc, job);
 }
 const BODY_INDEX = {};
