@@ -86,6 +86,11 @@ async def main():
     check(npcs(3305)[0].rank == 'boss' and npcs(6210)[0].rank == 'boss', 'Aglandiir and Elstar are bosses')
     ramses = npcs(5317)[0]
     check(ramses.room.vnum == 5332 and [m.spec['type'] for m in ramses.mechanics] == ['hunger', 'gloom'], 'Ramses in his tomb, his curse starving the still')
+    # ---- the rest of ring 2
+    check(npcs(8003)[0].room.vnum == 8003 and npcs(7304)[0].room.vnum == 7352, 'Scorathax in the Treasure Cavern; the Master Mindflayer in its sanctum')
+    check(npcs(644103)[0].room.vnum == 8742 and npcs(47150)[0].room.vnum == 8357, 'the barrow wight in the Barrow Mound; the Black Priest before the Dark Castle')
+    newbie = [m for m in world.npcs if getattr(m, 'room', None) is not None and m.room.zone.number == 186]
+    check(not any(getattr(m, 'is_boss', False) for m in newbie), 'the Newbie Zone has no boss')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

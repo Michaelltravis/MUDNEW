@@ -230,7 +230,8 @@ async function waitFor(page, fn, arg, secs = 60) {
                              [2590, 'summoner'], [5406, 'thalos'], [4044, 'grondar'], [3519, 'grukthar'], [12204, 'highpriest'], [8892, 'carcosa'],
                              [5141, 'lloth'], [3605, 'blackking'], [15017, 'welmar'], [14027, 'morthul'], [14030, 'verdraxx'], [4652, 'hrimgar'],
                              [16252, 'lordofchaos'], [16258, 'island'], [9901, 'ghenna'], [9937, 'deepdragon'],
-                             [6411, 'rand'], [3375, 'aglandiir'], [6259, 'elstar'], [5332, 'ramses'], [11000, 'elves']]) {
+                             [6411, 'rand'], [3375, 'aglandiir'], [6259, 'elstar'], [5332, 'ramses'], [11000, 'elves'],
+                             [8003, 'scorathax'], [7352, 'mindflayer'], [8742, 'barrowwight'], [8357, 'blackpriest'], [18629, 'minotaur']]) {
       check(await goto(v), `in ${name} (${v})`);
       await sleep(3500);
       const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look,
