@@ -1,0 +1,98 @@
+{
+ "zone": 64,
+ "_about": "Rand's Tower (levels 8-22): the tower's horrors as elites, and Rand the Dreamer himself in his bedchamber, whose dreams leak into the waking world: the light dies as he weakens, and his worst nightmares step out of the dark.",
+ "creatures": {
+  "6405": {
+   "rank": "elite",
+   "why": "a horror of the tower"
+  },
+  "6403": {
+   "rank": "elite",
+   "why": "a horror of the tower"
+  },
+  "6402": {
+   "rank": "elite",
+   "why": "a horror of the tower"
+  },
+  "6450": {
+   "name": "rand dreamer wizard",
+   "short_desc": "Rand the Dreamer",
+   "long_desc": "Rand the Dreamer sits up in his bed, eyes open but still asleep.",
+   "description": "A thin old wizard in a nightshirt, his eyes wide and blind with dreaming. Everything in this tower came out of his sleep, and he has not woken in years.",
+   "level": 22,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "boss",
+   "alignment": -200,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Rand sits bolt upright: \"You are not part of my dream!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Night Terror",
+      "telegraph": "Rand screams in his sleep, and the room twists!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Dream Lash",
+      "telegraph": "Rand flings out a hand, and the shadows lash at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Waking Nightmare",
+      "telegraph": "Rand begins to dream of you...",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 6450,
+   "room": 6411,
+   "why": "Rand in the Master Bedroom",
+   "mechanics": [
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "shout": "The candles of the tower go out one by one...",
+     "why": "his dream darkens"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "6404": 1
+     },
+     "shout": "Rand whimpers, and a nightmare steps out of the dark!",
+     "why": "his nightmares"
+    }
+   ]
+  }
+ ]
+}

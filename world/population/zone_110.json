@@ -1,0 +1,280 @@
+{
+ "zone": 110,
+ "_about": "The Elven Village (a living village, no boss): its original creatures restored from the area files (circle-contrib-areas/elven) where ours lacked them: the elven soldiers and guardian, the mage, Quintor, the bartender, the Chief of the elven guard (a sub-boss) and the Champion. Villagers call the guard, and the guard and the rangers come; a ranger walks the forest path.",
+ "creatures": {
+  "11050": {
+   "name": "Elf Guardian Elven",
+   "short_desc": "the Elven guardian",
+   "long_desc": "An Elven Guardian is standing here guarding the portal.",
+   "description": "This is a robust built elf in his best years and as far as you can tell.",
+   "level": 19,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/elven",
+   "rank": "elite",
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "An elven horn sounds through the trees: the guard is coming!"
+   },
+   "original_vnum": 19001
+  },
+  "11051": {
+   "name": "Elf Soldier guard elven",
+   "short_desc": "the Elven soldier",
+   "long_desc": "An Elven Soldier is standing here guarding the path.",
+   "description": "This is an elf in his youth, sent by the chief of the village guards, to\nguard the path from any intruder not wanted here.",
+   "level": 10,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/elven",
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "An elven horn sounds through the trees: the guard is coming!"
+   },
+   "original_vnum": 19002
+  },
+  "11052": {
+   "name": "Elf mage elven",
+   "short_desc": "the Elven mage",
+   "long_desc": "A Tiny Elven mage is floating behind the counter.",
+   "description": "You notice a tired look on his face.",
+   "level": 23,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": 900,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/elven",
+   "rank": "elite",
+   "original_vnum": 19006
+  },
+  "11053": {
+   "name": "Elf Quintor grocer",
+   "short_desc": "the Elf named Quintor",
+   "long_desc": "An Elf named Quintor is here counting money behind the counter.",
+   "description": "You notice a tired look on his face.",
+   "level": 23,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": 900,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/elven",
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! Guards of the forest!",
+    "answer": false
+   },
+   "original_vnum": 19007
+  },
+  "11054": {
+   "name": "elf bartender elven",
+   "short_desc": "the Elven bartender",
+   "long_desc": "A fat Elf is standing behind the bar taking orders.",
+   "description": "You notice a tired look on his face.",
+   "level": 23,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": 900,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/elven",
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! Guards of the forest!",
+    "answer": false
+   },
+   "original_vnum": 19008
+  },
+  "11055": {
+   "name": "elf chief elven guard",
+   "short_desc": "the Chief of the elven guard.",
+   "long_desc": "A lazy-looking Elf lies on his bed snoring loudly.",
+   "description": "This elf looks somehow more experienced than any guard in the village\nguard. By the look of the uniform he is probably the chief of the\nvillage guard. You notice some scars on the hands and one on the neck of\nthe elf. He has obviously been in battle in his days.",
+   "level": 25,
+   "flags": [],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/elven",
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "An elven horn sounds through the trees: the guard is coming!"
+   },
+   "original_vnum": 19010
+  },
+  "11056": {
+   "name": "elf elven champion",
+   "short_desc": "the Champion",
+   "long_desc": "An elven Champion is standing here looking at the trophies.",
+   "description": "The elf in front of you is quite good looking and robust build (for an\nelf). As far as you can see.",
+   "level": 30,
+   "flags": [],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/elven",
+   "rank": "elite",
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "An elven horn sounds through the trees: the guard is coming!"
+   },
+   "original_vnum": 19206
+  },
+  "11001": {
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! Guards of the forest!",
+    "answer": false
+   },
+   "why": "villagers call the guard"
+  },
+  "11003": {
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! Guards of the forest!",
+    "answer": false
+   },
+   "why": "villagers call the guard"
+  },
+  "11004": {
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! Guards of the forest!",
+    "answer": false
+   },
+   "why": "villagers call the guard"
+  },
+  "11005": {
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! Guards of the forest!",
+    "answer": false
+   },
+   "why": "villagers call the guard"
+  },
+  "11007": {
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! Guards of the forest!",
+    "answer": false
+   },
+   "why": "villagers call the guard"
+  },
+  "11002": {
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "An elven horn sounds through the trees: the guard is coming!"
+   },
+   "why": "the elven guard"
+  },
+  "11006": {
+   "helpers": {
+    "group": "elven_guard",
+    "rooms": 3,
+    "count": 3,
+    "shout": "An elven horn sounds through the trees: the guard is coming!"
+   },
+   "why": "rangers answer the guard"
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 11050,
+   "rooms": [
+    11000,
+    11000
+   ]
+  },
+  {
+   "vnum": 11051,
+   "rooms": [
+    14306,
+    11005,
+    14308,
+    14312,
+    11014,
+    11004
+   ]
+  },
+  {
+   "vnum": 11052,
+   "rooms": [
+    11007
+   ]
+  },
+  {
+   "vnum": 11053,
+   "rooms": [
+    11006
+   ]
+  },
+  {
+   "vnum": 11054,
+   "rooms": [
+    14316
+   ]
+  },
+  {
+   "vnum": 11055,
+   "rooms": [
+    11001
+   ]
+  },
+  {
+   "vnum": 11056,
+   "rooms": [
+    14319
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 11006,
+   "route": [
+    11000,
+    14302,
+    14307,
+    14308,
+    11014,
+    11004,
+    11005,
+    14312,
+    11008,
+    11009,
+    14332,
+    11010
+   ],
+   "why": "a ranger walks the path through the forest"
+  }
+ ]
+}

@@ -79,6 +79,13 @@ async def main():
     down = world.rooms[16258].exits.get('down') or {}
     check(down.get('room') is world.rooms[9901] and not down.get('door'), 'from the island in the Lake of Blood a way leads down to Ghenna, unbarred')
     check(npcs(47530)[0].room.vnum == 16252 and npcs(9910)[0].room.vnum == 9937, 'the Lord of Chaos in the Hall of Pillars; the Deep Dragon in its lair')
+    # ---- the archive-backed batch: the Elven Village's original creatures back, and the bosses
+    chief = [m for m in world.npcs if 'chief of the elven guard' in (m.short_desc or '').lower()]
+    check(chief and chief[0].rank == 'sub-boss' and chief[0].room.zone.number == 110, 'the Chief of the elven guard is back in the Elven Village')
+    check(npcs(6450)[0].room.vnum == 6411, 'Rand the Dreamer in the Master Bedroom')
+    check(npcs(3305)[0].rank == 'boss' and npcs(6210)[0].rank == 'boss', 'Aglandiir and Elstar are bosses')
+    ramses = npcs(5317)[0]
+    check(ramses.room.vnum == 5332 and [m.spec['type'] for m in ramses.mechanics] == ['hunger', 'gloom'], 'Ramses in his tomb, his curse starving the still')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 
