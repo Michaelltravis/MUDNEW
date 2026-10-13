@@ -13,12 +13,13 @@ mhb.reset()
 opt = mhb.args()
 V = opt['variant'] or 'fish'
 SH = V == 'shark'
+WH = V == 'whale'
 pal = Palette(V, {
     'scale': ['#e8eef2', '#b8c6d0', '#f6f8fa'], 'fin': ['#d8e2ea', '#a8b8c6', '#7a8c9c'], 'eye': '#141418',
     'iris': '#f0e8c0', 'tooth': '#f8f4ea', 'gill': '#8a98a6',
 })
-L = 1.6 if SH else 0.8
-g = 0.11 if SH else 0.12
+L = 3.0 if WH else 1.6 if SH else 0.8
+g = 0.32 if WH else 0.11 if SH else 0.12
 
 s = Skel(V)
 s.node('body', (0, -0.05 * L, 0.2), g * 1.15, sx=0.75)
@@ -39,14 +40,19 @@ def add(p, key, bone):
 ty = 0.44 * L
 # the tail: forked for a fish, a tall crescent for a shark
 tail = [(0, ty - 0.02, 0.2), (0, ty + 0.12 * L ** 0.5, 0.2 + (0.2 if SH else 0.13)), (0, ty + 0.05, 0.2), (0, ty + 0.1 * L ** 0.5, 0.2 - (0.13 if SH else 0.13))]
-add(poly('tailfin', tail, [(0, 1, 2), (0, 2, 3)], 0.012), 'fin', 'tail2')
+if WH:
+    # a whale's flukes lie flat
+    tail = [(0, ty - 0.02, 0.2), (0.35, ty + 0.25, 0.2), (0, ty + 0.12, 0.2), (-0.35, ty + 0.25, 0.2)]
+add(poly('tailfin', tail, [(0, 1, 2), (0, 2, 3)], 0.02 if WH else 0.012), 'fin', 'tail2')
 # the dorsal fin
 dz = 0.2 + g * 0.8
-dorsal = [(0, -0.12 * L, dz), (0, 0.0 * L, dz + (0.22 if SH else 0.08)), (0, 0.08 * L, dz - 0.01)]
+dorsal = [(0, 0.05 * L, dz - 0.04), (0, 0.12 * L, dz + 0.06), (0, 0.16 * L, dz - 0.04)] if WH else \
+    [(0, -0.12 * L, dz), (0, 0.0 * L, dz + (0.22 if SH else 0.08)), (0, 0.08 * L, dz - 0.01)]
 add(poly('dorsal', dorsal, [(0, 1, 2)], 0.012), 'fin', 'body')
 for side, x in (('L', 1), ('R', -1)):
     # pectoral fins, eyes, gills
-    add(poly(f'pec.{side}', [(0.08 * x, -0.2 * L, 0.15), ((0.2 if SH else 0.13) * x, -0.12 * L, 0.08), (0.08 * x, -0.12 * L, 0.15)], [(0, 1, 2)], 0.01), 'fin', 'body')
+    pw = 0.55 if WH else 0.2 if SH else 0.13
+    add(poly(f'pec.{side}', [(g * 0.6 * x, -0.2 * L, 0.15), (pw * x, -0.12 * L, 0.05), (g * 0.6 * x, -0.12 * L, 0.15)], [(0, 1, 2)], 0.02 if WH else 0.01), 'fin', 'body')
     ex = g * 0.62 * x
     add(part('sphere', f'eye.{side}', (ex, -0.36 * L, 0.23), g * (0.18 if SH else 0.3), segments=8), 'iris' if not SH else 'eye', 'head')
     add(part('sphere', f'pupil.{side}', (ex * 1.08, -0.37 * L, 0.23), g * (0.12 if SH else 0.16), segments=6), 'eye', 'head')
@@ -76,6 +82,6 @@ with c.clip('Death', 30) as k:
     k.rot('body', 18, z=150).rot('body', 30, z=178).loc('body', 30, y=-0.05)
 
 mhb.export(arm, body, V, opt['out'], kind='creature', clips=c.names,
-           meta={'for': ('sharks, barracudas' if SH else 'fish, piranhas, anglers') + '; tinted by bestiary.js', 'ref': 'length'})
+           meta={'for': ('whales, seals, leviathans' if WH else 'sharks, barracudas' if SH else 'fish, piranhas, anglers') + '; tinted by bestiary.js', 'ref': 'length'})
 if opt['preview']:
     mhb.preview(arm, body, V, opt['out'], poses=(('Idle', 0), ('Walk', 5), ('Walk', 15), ('Bite_Front', 9), ('Death', 999)))

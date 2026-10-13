@@ -71,3 +71,27 @@ Each new model is compared blind with what it replaces, in the game's gallery an
 reference shot (a KayKit or Quaternius model of the same kind). The comparison uses the
 `gauntlet-loop` skill, with records in `docs/gauntlet/`. The owner signs off each batch before it
 goes into the game.
+
+## The bodies so far (`tools/art3d/blender/models`, `art3d/bodies`)
+
+| Script | Variants (bosses in bold) |
+|---|---|
+| wolf.py | wolf (also dogs, foxes, jackals, hellhounds) |
+| dragon.py | dragon, **frost_wyrm** (Vyrkothas) |
+| spider.py | spider, **spider_queen** |
+| ghost.py | ghost, elemental |
+| snake.py | snake, serpent (also worms and centipedes) |
+| brute.py | ogre, troll, yeti, minotaur (also **King Minos**) |
+| demon.py | demon, **fiend** (balor, pit fiend, Cinder Tyrant), imp, kobold |
+| beast.py | cat, lion, bear, rat, **rat_king** (Sewer King), deer, horse, unicorn, lizard, crocodile, rabbit, pig, sheep, cow |
+| bird.py | bird, eagle, **roc** (Roc Matriarch) |
+| shell.py | crab, scorpion, turtle |
+| fish.py | fish, shark, whale |
+| insect.py | beetle, wasp, **stick_mother** |
+| tentacle.py | mindflayer, **overmind** (Master Mindflayer), horror |
+| growth.py | treant, myconid, beholder |
+
+Shared pieces live in `mhb/forms.py` (humanoid and quadruped frames with their clips) and
+`mhb/gaits.py` (walks, many-legged gaits, slither, wing beats, deaths). A bestiary entry picks a
+body with `body:`; an index `look` gives opacity or glow, and `ref` sizes a long, low body by its
+length. To compare old and new, use `/play?demo&gallery=kin&add=...` with and without `&nobodies`.

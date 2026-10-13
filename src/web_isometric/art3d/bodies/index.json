@@ -567,5 +567,170 @@
   "height": 0.384,
   "for": "bees, wasps, hornets, flies, moths; tinted by bestiary.js",
   "ref": 0.649
+ },
+ "beholder": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2900,
+  "height": 1.626,
+  "for": "beholders, eye tyrants; tinted by bestiary.js"
+ },
+ "cow": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2682,
+  "height": 1.266,
+  "for": "cow; tinted by bestiary.js"
+ },
+ "horror": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2900,
+  "height": 1.385,
+  "for": "krakens, octopi, otyughs, aboleths, aberrations; tinted by bestiary.js"
+ },
+ "mindflayer": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2900,
+  "height": 2.088,
+  "for": "mind flayers, illithids; tinted by bestiary.js"
+ },
+ "myconid": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1560,
+  "height": 1.261,
+  "for": "myconids, fungus folk; tinted by bestiary.js"
+ },
+ "overmind": {
+  "kind": "boss",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 3130,
+  "height": 2.505,
+  "for": "the Master Mindflayer; tinted by bestiary.js",
+  "look": {
+   "glow": 0.1
+  }
+ },
+ "pig": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1940,
+  "height": 0.712,
+  "for": "pig; tinted by bestiary.js"
+ },
+ "rabbit": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1748,
+  "height": 0.627,
+  "for": "rabbit; tinted by bestiary.js"
+ },
+ "sheep": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2480,
+  "height": 0.94,
+  "for": "sheep; tinted by bestiary.js"
+ },
+ "treant": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1512,
+  "height": 3.321,
+  "for": "treants, ancient trees, dryads; tinted by bestiary.js"
+ },
+ "whale": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 732,
+  "height": 0.671,
+  "for": "whales, seals, leviathans; tinted by bestiary.js",
+  "ref": 3.032
  }
 }
