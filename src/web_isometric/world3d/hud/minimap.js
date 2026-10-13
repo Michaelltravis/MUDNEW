@@ -1,6 +1,7 @@
 // Minimap from the zone map: every room as a tile in its cell, the rooms you have explored
 // brighter, shared openings as bridges, passages as dots, the hero as an arrow. Click a
-// room to walk there (main.js plans the route through open exits and stairs).
+// room to walk there (main.js plans the route through open exits and stairs). The big map
+// (`browse`) also zooms (wheel, +/-), pans (drag) and shows another zone than yours (browse(z)).
 import { isDeadly } from '../deathlogic.js';
 const DEADLY = '#8a1c14';
 const SECTOR = {
@@ -11,11 +12,49 @@ const SECTOR = {
   mine: '#7a6450', crypt: '#5e5868', sewer: '#5a6a4a', snow: '#e4ecf4', shore: '#e0cc94', volcanic: '#7a3a2a',
 };
 const CW = 22, CH = 14;      // css px per cell (keeps the 24:15 room shape)
+export const ZOOM_MIN = 0.3, ZOOM_MAX = 3;
+
+// a zone the big map shows without walking it (the zone list): its rooms and cells, as Zone has them
+export function mapOfZone(zm) {
+  const rooms = new Map(), cells = new Map();
+  for (const r of (zm && zm.rooms) || []) {
+    const room = { data: r, vnum: r.vnum, name: r.name, cx: r.cell[0], cy: r.cell[1] };
+    rooms.set(r.vnum, room);
+    cells.set(`${room.cx},${room.cy}`, room);
+  }
+  return { num: zm && zm.zone, name: (zm && zm.name) || '', rooms, cells };
+}
+
+// the middle of a zone's rooms, in cells (where a browsed zone opens)
+export function middleOf(z) {
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  for (const r of z.rooms.values()) {
+    minX = Math.min(minX, r.cx); maxX = Math.max(maxX, r.cx + 1); minY = Math.min(minY, r.cy); maxY = Math.max(maxY, r.cy + 1);
+  }
+  return isFinite(minX) ? { x: (minX + maxX) / 2, y: (minY + maxY) / 2 } : { x: 0, y: 0 };
+}
+
+// the zones the big map's list offers: those you have set foot in, and the one you stand in, by name
+export function zoneIndex(atlas, explored, here = null) {
+  const zoneOf = new Map(((atlas && atlas.rooms) || []).map(r => [r.vnum, r.zone]));
+  const seen = new Map();
+  for (const v of explored || []) {
+    const z = zoneOf.get(v);
+    if (z != null && z >= 0) seen.set(z, (seen.get(z) || 0) + 1);
+  }
+  if (here != null && !seen.has(here)) seen.set(here, 0);
+  const names = new Map(((atlas && atlas.zones) || []).map(z => [z.id, z.name]));
+  return [...seen.entries()].map(([id, n]) => ({ id, name: names.get(id) || `Zone ${id}`, n }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
 
 // `cell` scales the rooms (the big map, M, draws them larger)
-export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
+export function createMinimap(root, onPick, onNorth = null, { cell = 1, browse = false } = {}) {
   const pings = [], PING_MS = 4000;
-  const CWc = CW * cell, CHc = CH * cell;
+  let scale = 1;                              // the big map's zoom
+  let follow = true, vc = { x: 0, y: 0 };     // centred on the hero, or where it was dragged (cells)
+  let shown = null, shownSeen = new Set();    // another zone being looked at, and your rooms there
+  const CWc = () => CW * cell * scale, CHc = () => CH * cell * scale;
   const cv = root.querySelector('canvas');
   const ctx = cv.getContext('2d');
   const S = 2;   // the canvas is drawn at twice its CSS size (it is hidden at creation, so not measured)
@@ -26,21 +65,31 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
   if (north) north.addEventListener('click', e => { e.stopPropagation(); if (onNorth) onNorth(); });
   const W = () => cv.width, H = () => cv.height;
 
+  const centre = () => (follow && !shown ? { x: hero.x / 24, y: hero.z / 15 } : vc);
   function toScreen(cx, cy) {
-    return [(cx - hero.x / 24) * CWc * S + W() / 2, (cy - hero.z / 15) * CHc * S + H() / 2];
+    const c = centre();
+    return [(cx - c.x) * CWc() * S + W() / 2, (cy - c.y) * CHc() * S + H() / 2];
+  }
+  // the cell under a point of the canvas (css px from its corner)
+  function cellAt(px, py) {
+    const c = centre();
+    return [(px * S - W() / 2) / (CWc() * S) + c.x, (py * S - H() / 2) / (CHc() * S) + c.y];
   }
   function draw() {
     ctx.clearRect(0, 0, W(), H());
-    if (!zone) return;
-    const cw = CWc * S, ch = CHc * S, pad = 2.2 * S;
-    for (const r of zone.rooms.values()) {
+    const z = shown || zone;
+    if (!z) return;
+    const cw = CWc() * S, ch = CHc() * S, pad = 2.2 * S * Math.min(1, scale);
+    const fine = scale >= 0.55;               // zoomed far out the rooms are bare tiles
+    for (const r of z.rooms.values()) {
       const [x, y] = toScreen(r.cx, r.cy);
       if (x < -cw || y < -ch || x > W() + cw || y > H() + ch) continue;
-      const seen = explored.has(r.vnum) || r === room;
+      const seen = shown ? shownSeen.has(r.vnum) : explored.has(r.vnum) || r === room;
       ctx.globalAlpha = seen ? 0.95 : 0.32;
       const fill = isDeadly(r.data.flags) ? DEADLY : SECTOR[r.data.look] || SECTOR[r.data.sector] || SECTOR.default;
       ctx.fillStyle = fill;
       ctx.beginPath(); ctx.roundRect(x + pad, y + pad, cw - pad * 2, ch - pad * 2, 3 * S); ctx.fill();
+      if (!fine) continue;
       if (fill === DEADLY) {
         // a death trap: red, a skull on it
         ctx.font = `${10 * S}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
@@ -55,7 +104,7 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
         ctx.fillStyle = e.kind === 'zone' ? '#ffd27a' : '#bfe0ff';
         if (d === 'up' || d === 'down') {
           // stairs: ▲ on the right of the room, ▼ on the left (where they stand in the room)
-          const px = d === 'up' ? x + cw * 0.7 : x + cw * 0.3, py = y + ch / 2, s = 3.2 * S;
+          const px = d === 'up' ? x + cw * 0.7 : x + cw * 0.3, py = y + ch / 2, s = 3.2 * S * Math.min(1, scale);
           ctx.beginPath();
           if (d === 'up') { ctx.moveTo(px, py - s); ctx.lineTo(px + s, py + s * 0.8); ctx.lineTo(px - s, py + s * 0.8); }
           else { ctx.moveTo(px, py + s); ctx.lineTo(px + s, py - s * 0.8); ctx.lineTo(px - s, py - s * 0.8); }
@@ -64,12 +113,13 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
         } else {
           const px = d === 'east' ? x + cw - pad : d === 'west' ? x + pad : x + cw / 2;
           const py = d === 'north' ? y + pad : d === 'south' ? y + ch - pad : y + ch / 2;
-          ctx.beginPath(); ctx.arc(px, py, 2.2 * S, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(px, py, 2.2 * S * Math.min(1, scale), 0, Math.PI * 2); ctx.fill();
         }
         ctx.fillStyle = fill;
       }
     }
     ctx.globalAlpha = 1;
+    if (shown) return;                          // another zone: none of you, your marks or your pings
     // pings (ambient.js): something heard in a room, a ring that swells and fades
     const nowP = performance.now();
     for (let i = pings.length - 1; i >= 0; i--) {
@@ -109,8 +159,9 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
       ctx.beginPath(); ctx.roundRect(x + pad, y + pad, cw - pad * 2, ch - pad * 2, 3 * S); ctx.stroke();
     }
     // where the camera looks: a soft wedge from the hero (the map itself stays north up)
+    const [hx, hy] = toScreen(hero.x / 24, hero.z / 15);
     ctx.save();
-    ctx.translate(W() / 2, H() / 2);
+    ctx.translate(hx, hy);
     ctx.rotate(-hero.cam);                       // yaw 0 looks north (up the map)
     const g = ctx.createRadialGradient(0, 0, 0, 0, 0, 34 * S);
     g.addColorStop(0, 'rgba(243,217,153,.38)'); g.addColorStop(1, 'rgba(243,217,153,0)');
@@ -119,7 +170,7 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
     ctx.restore();
     // the hero: an arrow pointing the way they face
     ctx.save();
-    ctx.translate(W() / 2, H() / 2);
+    ctx.translate(hx, hy);
     ctx.rotate(-hero.yaw + Math.PI);
     ctx.fillStyle = '#fff'; ctx.strokeStyle = '#000'; ctx.lineWidth = 1 * S;
     ctx.beginPath(); ctx.moveTo(0, -5 * S); ctx.lineTo(3.6 * S, 4 * S); ctx.lineTo(0, 2 * S); ctx.lineTo(-3.6 * S, 4 * S); ctx.closePath();
@@ -127,23 +178,69 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
     ctx.restore();
   }
 
+  // the canvas's own css size (the big map's is scaled down to fit small windows)
+  const cssOf = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * (W() / S) / r.width, (e.clientY - r.top) * (H() / S) / r.height]; };
+  let drag = null, dragged = false;
   cv.addEventListener('click', e => {
-    if (!zone) return;
-    const r = cv.getBoundingClientRect();
-    const sx = (e.clientX - r.left) * S, sy = (e.clientY - r.top) * S;
-    const cx = Math.floor((sx - W() / 2) / (CWc * S) + hero.x / 24);
-    const cy = Math.floor((sy - H() / 2) / (CHc * S) + hero.z / 15);
+    if (dragged) { dragged = false; return; }
+    if (!zone || shown) return;                 // another zone's rooms are looked at, not walked to
+    const [cx, cy] = cellAt(...cssOf(e)).map(Math.floor);
     const target = zone.cells.get(`${cx},${cy}`);
     if (target) onPick(target);
   });
+  const zoomAt = (f, px = null, py = null) => {
+    const to = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, scale * f));
+    if (to === scale) return;
+    if (px == null || (follow && !shown)) { scale = to; dirty = true; return; }
+    const [bx, by] = cellAt(px, py);          // the cell under the pointer stays under it
+    scale = to;
+    const [ax, ay] = cellAt(px, py);
+    vc = { x: vc.x + bx - ax, y: vc.y + by - ay };
+    dirty = true;
+  };
+  if (browse) {
+    cv.addEventListener('wheel', e => { e.preventDefault(); zoomAt(Math.exp(-e.deltaY * 0.0015), ...cssOf(e)); }, { passive: false });
+    cv.addEventListener('pointerdown', e => { drag = { at: cssOf(e), c: { ...centre() }, moved: false }; });
+    cv.addEventListener('pointermove', e => {
+      if (!drag) return;
+      const [px, py] = cssOf(e), dx = px - drag.at[0], dy = py - drag.at[1];
+      if (!drag.moved && Math.hypot(dx, dy) < 5) return;
+      if (!drag.moved) { drag.moved = true; try { cv.setPointerCapture(e.pointerId); } catch (_) { /* gone */ } }
+      follow = false;
+      vc = { x: drag.c.x - dx / CWc(), y: drag.c.y - dy / CHc() };
+      cv.style.cursor = 'grabbing';
+      dirty = true;
+    });
+    const end = () => { if (drag && drag.moved) dragged = true; drag = null; cv.style.cursor = ''; };
+    cv.addEventListener('pointerup', end);
+    cv.addEventListener('pointercancel', end);
+  }
+  const label = () => {
+    const z = shown || zone;
+    root.querySelector('.mm-zone').textContent = z ? z.name : '';
+    const rm = root.querySelector('.mm-room');
+    if (rm) rm.textContent = shown ? `Looking at ${shown.name}${zone ? ` · you are in ${zone.name}` : ''}` : room ? room.name : '';
+  };
 
   return {
     // something heard in a room (ambient.js): 'danger' red, else gold
     ping(vnum, kind = 'danger') { pings.push({ vnum, kind, at: performance.now() }); dirty = true; },
     setZone(z) {
       zone = z; dirty = true;
-      root.querySelector('.mm-zone').textContent = z ? z.name : '';
+      if (shown && z && shown.num === z.num) shown = null;
+      label();
     },
+    // another zone to look at (mapOfZone), with the rooms you know (any of the world's); null: yours
+    browse(z, seen = []) {
+      if (!z || (zone && z.num === zone.num)) { this.home(); return; }
+      shown = z; shownSeen = new Set(seen); follow = false; vc = middleOf(z); dirty = true;
+      label();
+    },
+    browsing() { return shown ? shown.num : null; },
+    // back to you: your zone, centred on you (the zoom is kept)
+    home() { shown = null; follow = true; dirty = true; label(); },
+    zoomBy(f) { zoomAt(f); },
+    get zoom() { return scale; },
     setExplored(list) { explored = new Set(list); dirty = true; },
     setGuild(g) {
       const v = g && g.vnum;
@@ -153,7 +250,7 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
     },
     setQuestMark(vnum) { if (vnum === questMark) return; questMark = vnum; dirty = true; },
     redraw() { dirty = true; last = 0; },
-    setRoom(r) { room = r; dirty = true; root.querySelector('.mm-room').textContent = r ? r.name : ''; },
+    setRoom(r) { room = r; dirty = true; label(); },
     setTime(t) {
       if (!t) return;
       const h = t.hour != null ? t.hour : null;

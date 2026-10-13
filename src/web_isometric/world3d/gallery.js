@@ -435,3 +435,49 @@ function groundOrder(items) {
   const seen = {};
   return items.map(it => { const base = `1:${it.name}`; seen[base] = (seen[base] || 0) + 1; return `i${base}#${seen[base]}`; });
 }
+
+// /play?demo&gallery=wards — the spells on a character while they last (wards.js): a hero for each
+// ward, and a few worn together. MH3D_gallery.wards for probes.
+export async function showWardGallery(engine) {
+  const [{ spawnDressed }, { starterLook }, { FX }, { Wards }] = await Promise.all([import('./equip.js'), import('./gearlook.js'), import('./fx.js'), import('./wards.js')]);
+  const SETS = [['shielded'], ['sanctuary'], ['divine_shield'], ['mana_shield'], ['armour_ward'], ['stoneskin'], ['ice_armor'], ['fire_shield'],
+    ['barkskin'], ['fly'], ['haste'], ['regenerating'], ['prot_evil'], ['stunned'], ['bless', 'armour_ward', 'shielded', 'fly'], ['stoneskin', 'fire_shield', 'sanctuary', 'prot_good']];
+  const CLS = ['mage', 'cleric', 'paladin', 'warrior', 'necromancer', 'ranger', 'thief', 'bard'];
+  const cols = 8, step = 3, gap = 4;
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, 2 * gap + 8), new THREE.MeshStandardMaterial({ color: 0x6f6a5f, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2; floor.position.set((cols - 1) * step / 2, 0, gap / 2); floor.receiveShadow = true;
+  engine.scene.add(floor);
+  const fx = new FX(engine, document.body);
+  const wards = new Wards(engine, fx);
+  wards.tier = 'gallery';
+  const actors = [], labels = [];
+  for (let i = 0; i < SETS.length; i++) {
+    const cls = CLS[i % CLS.length];
+    const a = await spawnDressed({ ...starterLook(cls), sig: `wards:${i}` }, cls);
+    a.root.position.set((i % cols) * step, 0, Math.floor(i / cols) * gap);
+    a.play(a.idle || 'Idle', 0, 1);
+    engine.scene.add(a.root);
+    actors.push([a, SETS[i]]);
+    const el = document.createElement('div');
+    el.textContent = SETS[i].join(' + ');
+    el.style.cssText = 'position:fixed;left:0;top:0;font:11px sans-serif;color:#fff;background:#000a;padding:1px 4px;border-radius:3px;pointer-events:none;white-space:nowrap;z-index:50';
+    document.body.appendChild(el);
+    labels.push({ el, at: a.root.position.clone().setZ(a.root.position.z + 1.1).setY(-0.2) });
+  }
+  const v = new THREE.Vector3();
+  let clock = 0;
+  engine.onTick(dt => {
+    clock += dt;
+    for (const [a] of actors) a.update(dt);
+    wards.update(dt, clock, null, [], actors);
+    const cv = engine.renderer.domElement.getBoundingClientRect();
+    for (const l of labels) {
+      v.copy(l.at).project(engine.camera);
+      l.el.style.display = v.z > 1 ? 'none' : '';
+      l.el.style.transform = `translate(${(cv.left + (v.x + 1) / 2 * cv.width).toFixed(0)}px, ${(cv.top + (1 - v.y) / 2 * cv.height).toFixed(0)}px) translate(-50%, 0)`;
+    }
+  });
+  window.MH3D_gallery = { actors, wards, fx };
+  engine.setMood('day', true);
+  return new THREE.Vector3((cols - 1) * step / 2, 0, gap / 2);
+}

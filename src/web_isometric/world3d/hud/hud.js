@@ -22,6 +22,7 @@ import { createStable } from './stable.js';
 import { createServices } from './services.js';
 import { createLegend } from './legend.js';
 import { abilityIcon, uiIcon } from './icons.js';
+import { buffList } from './buffs.js';
 import { lookPortrait, creaturePortrait } from './portrait.js';
 import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable, costLine, rankOf, MAIN, keyOf, slotForKey } from '../abilities.js';
 import { createBars } from './bars.js';
@@ -240,7 +241,7 @@ export function createHud() {
   const BAD = /poison|curse|blind|slow|weak|stun|bleed|burn|fear|snare|root|shatter|mark|expose|sunder|disease|plague|silence|entangle|sleep/;
   let buffSig = '';
   function renderBuffs(aff) {
-    const list = aff.filter(a => a && (a.name || a.spell)).slice(0, 12);
+    const list = buffList(aff);
     const nsig = JSON.stringify(list.map(a => [a.name, a.remaining, a.duration]));
     if (nsig === buffSig) return;
     buffSig = nsig;

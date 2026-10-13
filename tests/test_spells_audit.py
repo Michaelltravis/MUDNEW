@@ -223,6 +223,8 @@ async def main():
     want = ward_ticks(caster.level)
     check(held.get('fly') == want and held.get('shielded') == want,
           f'fly and shield, cast, last as a ward at the caster\'s level ({held.get("fly")}, {held.get("shielded")}; {want})')
+    from map_system import _wards
+    check({'fly', 'shielded'} <= set(_wards(caster)), f'the map payload shows them on the body (wards {_wards(caster)})')
     for x in list(caster.affects):
         AffectManager.remove_affect(caster, x)
     AffectManager.apply_affect(caster, {'name': 'Mana Shield', 'type': 'flag', 'applies_to': 'mana_shield', 'value': 1, 'duration': 5})

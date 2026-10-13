@@ -832,6 +832,13 @@ html.fallen #vignette { background: radial-gradient(ellipse at 50% 46%, rgba(30,
 .sv-why { color: #ff9a7a; font: 12px var(--label); min-height: 16px; }
 .sv-body-text { white-space: pre-wrap; }
 #bigmap .wm-wrap { position: relative; padding: 12px 14px 4px; }
+#bigmap .bm-zones { margin-left: auto; margin-right: 10px; max-width: 220px; padding: 4px 8px; border-radius: 7px; border: 1px solid var(--edge-dim);
+  background: rgba(0,0,0,.45); color: var(--gold-hi); font: 600 13px var(--label); cursor: pointer; }
+#bigmap .bm-zones option { background: #14100c; color: var(--ink); }
+#bigmap .bm-zoom { position: absolute; right: 28px; top: 62px; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
+#bigmap .bm-zoom button { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--edge-dim); background: rgba(14,11,8,.85); color: var(--gold-hi);
+  font: 700 18px var(--label); line-height: 1; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,.5); }
+#bigmap .bm-zoom button:hover { background: rgba(216,180,106,.2); }
 #bigmap .wm-canvas { display: block; width: 880px; height: 540px; max-width: calc(100vw - 80px); max-height: calc(100vh - 200px); border-radius: 8px; cursor: grab; background: #0b0d12; }
 #give-pick { position: fixed; z-index: 30; display: flex; flex-direction: column; min-width: 200px; max-height: 300px; overflow-y: auto; padding: 6px; border-radius: 10px;
   background: rgba(14,11,8,.96); box-shadow: 0 0 0 1px #000, 0 0 0 2px rgba(216,180,106,.5), 0 8px 24px rgba(0,0,0,.6); }
