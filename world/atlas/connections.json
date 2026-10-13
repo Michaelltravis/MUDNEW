@@ -1278,6 +1278,144 @@
    "dir": "east",
    "to": 9154,
    "why": "map neighbour"
+  },
+  {
+   "from": 3989,
+   "dir": "up",
+   "to": 3902,
+   "why": "a way back out"
+  },
+  {
+   "from": 5750,
+   "dir": "up",
+   "to": 5765,
+   "why": "the way back"
+  },
+  {
+   "from": 5801,
+   "dir": "south",
+   "to": 5800,
+   "why": "the way back"
+  },
+  {
+   "from": 5830,
+   "dir": "south",
+   "to": 5845,
+   "why": "the way back"
+  },
+  {
+   "from": 5887,
+   "dir": "west",
+   "to": 5885,
+   "why": "the way back"
+  },
+  {
+   "from": 5764,
+   "dir": "west",
+   "to": 5757,
+   "why": "the way back"
+  },
+  {
+   "from": 5804,
+   "dir": "north",
+   "to": 5805,
+   "why": "the way back"
+  },
+  {
+   "from": 5823,
+   "dir": "up",
+   "to": 5816,
+   "why": "the way back"
+  },
+  {
+   "from": 5830,
+   "dir": "up",
+   "to": 5829,
+   "why": "the way back"
+  },
+  {
+   "from": 5841,
+   "dir": "north",
+   "to": 5840,
+   "why": "the way back"
+  },
+  {
+   "from": 5830,
+   "dir": "east",
+   "to": 5845,
+   "why": "the way back"
+  },
+  {
+   "from": 5802,
+   "dir": "west",
+   "to": 5801,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5801,
+   "dir": "east",
+   "to": 5802,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5804,
+   "dir": "south",
+   "to": 5801,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5801,
+   "dir": "north",
+   "to": 5804,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5803,
+   "dir": "south",
+   "to": 5802,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5802,
+   "dir": "north",
+   "to": 5803,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5842,
+   "dir": "north",
+   "to": 5841,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5841,
+   "dir": "south",
+   "to": 5842,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5844,
+   "dir": "east",
+   "to": 5837,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5837,
+   "dir": "west",
+   "to": 5844,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5843,
+   "dir": "north",
+   "to": 5844,
+   "why": "map neighbour"
+  },
+  {
+   "from": 5844,
+   "dir": "south",
+   "to": 5843,
+   "why": "map neighbour"
   }
  ],
  "still_cut_off": []

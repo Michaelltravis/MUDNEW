@@ -28,8 +28,15 @@
      "description": "To the west lies Along The Southern Island Shore."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A narrow strip of grey shingle is the island's only landing, where a gap\nin a row of rotted stakes lets a boat nose in from the water to the\nsouth. Dead trees lean over the tideline, and tilted stones mark the\ngrass above it. Mist drifts off the sea and settles cold on your\nclothes. The shore runs away east and west, both ways fading into the\nwhiteness.",
+   "look": "shore",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 1
+    }
+   ]
   },
   "3701": {
    "vnum": 3701,
@@ -51,8 +58,9 @@
      "description": "To the west lies Landfall On The Island Of The Dead."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead east and west.",
-   "placeholder": true
+   "description": "The shingle gives way to coarse grass and flat grey pebbles, and the sea\nbreathes slowly against the stones. Nothing cries on this coast; the\nonly sound is the drip of mist from a driftwood spar propped upright in\nthe sand. The shore goes on east toward a pale cairn, and west back to\nthe landing.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3702": {
    "vnum": 3702,
@@ -74,8 +82,9 @@
      "description": "To the west lies Along The Southern Island Shore."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead east and west.",
-   "placeholder": true
+   "description": "A cairn of pale stones stands waist-high above the tideline, each one\nlaid with care and none of them carrying a name. Behind it the island\nrises into a wall of bare black trees that hold the mist like wool. The\ngrass is flattened and silvered with damp, and the shore continues east\nand west along the same low line.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3703": {
    "vnum": 3703,
@@ -97,8 +106,9 @@
      "description": "To the west lies Along The Southern Island Shore."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead east and west.",
-   "placeholder": true
+   "description": "Here the shore begins to lean away, the shingle narrowing between the\ndull water and a bank of tangled brambles. A great curved rib of some\nlong-drowned beast lies bleached on the stones. The sea hushes in and\nout, in and out. East the strand bends round a corner of the island, and\nwest it runs straight back toward the landing.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3704": {
    "vnum": 3704,
@@ -120,8 +130,15 @@
      "description": "To the west lies Along The Southern Island Shore."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and west.",
-   "placeholder": true
+   "description": "The shore turns a corner here, the sea wrapping round the island's edge\nand the strand bending with it. Rushes hiss in the wind off the water,\nand small flat stones lie in neat rows as though someone once sorted\nthem by weight. The shore runs on north along a steadier line, while the\nway west returns along the shingle.",
+   "look": "shore",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 1
+    }
+   ]
   },
   "3705": {
    "vnum": 3705,
@@ -143,8 +160,9 @@
      "description": "To the south lies Following The Curving Shore."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and south.",
-   "placeholder": true
+   "description": "A long grey beach stretches ahead, empty but for ribbons of black kelp\nand the splintered keel of a boat that no one ever came back for. The\nmist is thick enough to taste, cold and faintly of iron. Behind you the\nshore bends back south toward the corner, and it carries on north into\nthe whiteness.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3706": {
    "vnum": 3706,
@@ -166,8 +184,11 @@
      "description": "To the south lies Along The Eastern Island Shore."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north and south.",
-   "placeholder": true
+   "description": "A standing stone as tall as a man stands on the dry sand just above the\nwaves, its face worn smooth by salt. Something is cut into it, a pair of\nscales and a single feather, though the sea wind has softened the lines.\nThe grass about its foot is trodden flat. The shore runs south and north\npast it.",
+   "look": "shore",
+   "extra_descs": {
+    "stone standing scales feather": "The carving shows a pair of balanced scales, and on one pan a single\nfeather no bigger than your thumb. The sea wind has worn the lines\nnearly smooth, but whoever cut them was careful."
+   }
   },
   "3707": {
    "vnum": 3707,
@@ -189,8 +210,9 @@
      "description": "To the south lies Along The Eastern Island Shore."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north and south.",
-   "placeholder": true
+   "description": "Tidal pools glisten among the rocks here, each one still and dark as an\neye. A scatter of grey feathers lies in the wrack, wet and matted, and\nthe wind turns them over without ever lifting them. Dead trees crowd\nclose behind the strand, hung with strands of mist. The shore goes on\nnorth and south.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3708": {
    "vnum": 3708,
@@ -212,8 +234,15 @@
      "description": "To the south lies Along The Eastern Island Shore."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and south.",
-   "placeholder": true
+   "description": "A single gnarled yew leans out over the sand, its trunk split and\nhollow, its bark gone the colour of old ash. Under it the ground is dry\nand bare, and the sound of the sea seems oddly far off. Past the tree\nthe shore is a thin pale ribbon running north, and it runs back south\nthe way you came.",
+   "look": "shore",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 1
+    }
+   ]
   },
   "3709": {
    "vnum": 3709,
@@ -235,8 +264,9 @@
      "description": "To the south lies Along The Eastern Island Shore."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and south.",
-   "placeholder": true
+   "description": "A rusted anchor lies half sunk in the shingle, its chain trailing down\ninto the surf like something that gave up pulling. The breakers come in\nlong and slow and break without foam. Ahead the shore curves faintly\ntoward the trees, and the mist presses so close that the next stretch of\nbeach seems a rumour. You can go north or south.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3710": {
    "vnum": 3710,
@@ -258,8 +288,9 @@
      "description": "To the south lies Along The Eastern Island Shore."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north and south.",
-   "placeholder": true
+   "description": "Dark sand drifts up here into low dunes, held together by pale clumps of\nsea grass that rattle softly in the breeze. Wet footprints would last no\ntime in this light, and you see none. The shore keeps to the water's\nedge, running south toward the anchor and north toward a sharper bend.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3711": {
    "vnum": 3711,
@@ -281,8 +312,9 @@
      "description": "To the west lies Along The Northern Island Shore."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead south and west.",
-   "placeholder": true
+   "description": "The island's edge turns again here, and the surf curls round it in a\nlong grey arc. Black rocks stand out of the shallows like the knuckles\nof a buried hand, and the tide mutters in the gaps between them. The way\nback south follows the beach, while west the shore sweeps on along the\nisland's far side.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3712": {
    "vnum": 3712,
@@ -304,8 +336,15 @@
      "description": "To the south lies Following A Stream In The Dense Forest."
     }
    },
-   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead east and south.",
-   "placeholder": true
+   "description": "A narrow stream tumbles over the shingle and loses itself in the sea,\ncutting a dark channel through the pale stones. Where it comes from, the\nforest begins in earnest, a thick dark wall of oak and hornbeam leaning\ntogether. A faint trail follows the stream into the trees to the south,\nand the shore stretches east round the curve.",
+   "look": "shore",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 1
+    }
+   ]
   },
   "3713": {
    "vnum": 3713,
@@ -327,8 +366,9 @@
      "description": "To the west lies Along The Southern Island Shore."
     }
    },
-   "description": "A worn track crosses the open ground. Wildflowers dot the meadow, and\ninsects hum among them. Ways lead east and west.",
-   "placeholder": true
+   "description": "The shingle is firm and pale here, and out in the shallows to the east\nyou can make out the line of rotted stakes that guards the landing. A\ncold stillness lies over the water, and the dead trees on the bank are\nhung with drifting mist. The shore leads east to the landing and west\nalong the island's edge.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3714": {
    "vnum": 3714,
@@ -350,8 +390,9 @@
      "description": "To the west lies Along The Southern Island Shore."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead east and west.",
-   "placeholder": true
+   "description": "Flotsam has collected in a long drift along the tideline: splintered\nplanks, a cracked oar, cork floats gone black, a tangle of rope. None of\nit looks to have been touched in years. The grey sea slaps and\nwithdraws. The shore runs on east and west.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3715": {
    "vnum": 3715,
@@ -373,8 +414,9 @@
      "description": "To the west lies Following The Curving Shore."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead east and west.",
-   "placeholder": true
+   "description": "A band of tall pale reeds grows thick along the strand here, whispering\nwhenever the air stirs. Between the stems the sand is dark and firm,\nscored by the shallow furrows of an old dragged keel. The mist gathers\nbeyond the reeds into a solid wall. The shore leads east toward the\nlanding, and west toward a ruined shed.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3716": {
    "vnum": 3716,
@@ -398,8 +440,9 @@
      "description": "To the east lies Along The Southern Island Shore."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and east.",
-   "placeholder": true
+   "description": "The remains of a long boathouse crouch at the water's edge, its roof\nhalf fallen in and its timbers grey as driftwood. Slimy stone ramps\nslope down from its open mouth into the shallows. Inside, only damp and\nshadow. The strand runs on east along the water, and the shore goes back\nnorth past the ruin.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3717": {
    "vnum": 3717,
@@ -421,8 +464,17 @@
      "description": "To the south lies Following The Curving Shore."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north and south.",
-   "placeholder": true
+   "description": "A stone cross, taller than you, leans against the wind at the top of the\nbeach, its arms worn to stumps. At its foot someone has set a ring of\nwhite pebbles, and the grass inside the ring is greener than the rest.\nThe shore curves south toward a low roofed ruin, and runs back north the\nway you came.",
+   "look": "shore",
+   "extra_descs": {
+    "cross stone pebbles": "The cross is worn so smooth that no carving remains, only a faint shadow\nwhere an inscription once ran. The pebbles in the ring at its foot are\nall white and all the same size."
+   },
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 1
+    }
+   ]
   },
   "3718": {
    "vnum": 3718,
@@ -444,8 +496,9 @@
      "description": "To the south lies Along The Western Island Shore."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and south.",
-   "placeholder": true
+   "description": "Here the sea has eaten into the edge of the island, leaving the pale\nroots of drowned trees thrust up through the sand like bones. The ground\nis soft, and a faint sour smell of rot lies in the mist. A line of thin\ngrey weed marks the highest tide. North and south the shore runs on.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3719": {
    "vnum": 3719,
@@ -467,8 +520,9 @@
      "description": "To the south lies Along The Western Island Shore."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and south.",
-   "placeholder": true
+   "description": "Great flat slabs of grey slate run down to the water in terraces, slick\nwith spray and green at the edges. Pools collect in their hollows and\nhold still reflections of the sky. The trees behind are bent permanently\ntoward the land by old storms. The shore continues north and south.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3720": {
    "vnum": 3720,
@@ -490,8 +544,9 @@
      "description": "To the south lies Along The Western Island Shore."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north and south.",
-   "placeholder": true
+   "description": "A tall spike of rock stands offshore, wearing a cap of pale guano and a\nskirt of weed, and the surf breaks around it in lazy lines. On the dry\nsand lies a long scatter of white cuttlebone and driftwood. A low murmur\ncomes from the water, like many people whispering. The shore runs on\nnorth and south.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3721": {
    "vnum": 3721,
@@ -513,8 +568,15 @@
      "description": "To the south lies Along The Western Island Shore."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north and south.",
-   "placeholder": true
+   "description": "Black pilings stand out of the shallows here in a crooked row, the\nstumps of a jetty that must once have reached far out. No gull calls\nhere, and only the wash of small waves breaks the silence. The grass\nbehind the strand is tall and silver. You can follow the shore north or\nsouth.",
+   "look": "shore",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 1
+    }
+   ]
   },
   "3722": {
    "vnum": 3722,
@@ -536,8 +598,9 @@
      "description": "To the south lies Along The Western Island Shore."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north and south.",
-   "placeholder": true
+   "description": "A line of rotted stakes stands in the sand, still festooned with the\nshreds of an old net that hangs like grey cobweb. Beyond them a skein of\nmist lies on the water, motionless. The tide has left a perfect line of\nsmall shells along the shingle. The shore runs on south, and curves back\nnorth toward a rocky point.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3723": {
    "vnum": 3723,
@@ -559,8 +622,9 @@
      "description": "To the south lies Along The Western Island Shore."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead east and south.",
-   "placeholder": true
+   "description": "The island's edge turns another corner here, and black rocks run out\ninto the surf like a broken causeway. Thick weed drapes them, and the\nwater sucks and gurgles in the gaps. The wind off the sea has a taste of\nold brine. East the sand returns toward the forest edge, and the shore\nsweeps south along the water.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3724": {
    "vnum": 3724,
@@ -582,8 +646,9 @@
      "description": "To the west lies Following The Curving Shore."
     }
    },
-   "description": "A worn track crosses the open ground. Wildflowers dot the meadow, and\ninsects hum among them. Ways lead south and west.",
-   "placeholder": true
+   "description": "The forest path spills out onto a bank of pale sand where the tree line\nends in a ragged edge. Beyond lies the grey water, flat and wide, its\nfar side lost in mist. A few bleached logs have been thrown up on the\nsand, rolled smooth by the waves. The trail leads south back into the\ntrees, and the shore bends away west.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "3725": {
    "vnum": 3725,
@@ -605,8 +670,8 @@
      "description": "To the south lies Following A Stream In The Dense Forest."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north and south.",
-   "placeholder": true
+   "description": "The stream runs clear and cold beside you, talking to itself among the\nroots of ancient oaks. Overhead the leaves are so thick that the mist\ncomes down only in threads, silvering the ferns. The ground is soft and\nblack with old leaf-fall, and a trodden line follows the water. North\nthe trees open toward the grey sea, and south the stream winds deeper\nin.",
+   "extra_descs": {}
   },
   "3726": {
    "vnum": 3726,
@@ -628,8 +693,8 @@
      "description": "To the south lies Following A Stream In The Dense Forest."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
-   "placeholder": true
+   "description": "The forest closes in here, hornbeam and holly crowding the bank until\nthe water has to push between them. Moss grows thick on every north-\nfacing trunk, but nothing stirs in the branches overhead. The path is a\nmuddy ribbon beside the stream, and it carries on north toward the light\nand south into the shadows.",
+   "extra_descs": {}
   },
   "3727": {
    "vnum": 3727,
@@ -651,8 +716,8 @@
      "description": "To the south lies Crossing A Stream In The Dense Forest."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north and south.",
-   "placeholder": true
+   "description": "The trees lean together over the water and form a low green roof,\nthrough which the grey sky shows in coins. A fallen alder lies across\npart of the stream and has gathered a drift of pale leaves. The air\nsmells of wet earth and something older, like stone cellars. The path\nfollows the stream north and south.",
+   "extra_descs": {}
   },
   "3728": {
    "vnum": 3728,
@@ -674,8 +739,14 @@
      "description": "To the south lies Following A Stream In The Dense Forest."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north and south.",
-   "placeholder": true
+   "description": "A line of flat stepping stones crosses the stream here, each one worn\ninto a shallow dish by passing feet. The water runs quick and brown\nbetween them, and its chatter is the only sound in the wood. Either side\nthe forest is dense and dark, and the path picks up again north and\nsouth of the crossing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 1
+    }
+   ]
   },
   "3729": {
    "vnum": 3729,
@@ -697,8 +768,8 @@
      "description": "To the south lies At A Turn On The Forest Path."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north and south.",
-   "placeholder": true
+   "description": "The stream slackens and widens into a still brown pool among the roots,\nand a few dead leaves turn on its surface. Bracken stands waist-high on\nthe bank, beaded with moisture. The wood presses in from all sides, but\nthe trail is clear enough, running north back along the water and south\nto where it bends away from it.",
+   "extra_descs": {}
   },
   "3730": {
    "vnum": 3730,
@@ -720,8 +791,8 @@
      "description": "To the west lies On A Path In The Dense Forest."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and west.",
-   "placeholder": true
+   "description": "The trail leaves the stream and makes a sharp turn among thick-boled\noaks, as if bending round something that was once there. Roots break the\nground in knuckles, and a lichen like grey hair hangs from the lowest\nboughs. The path runs north back toward the stream and west deeper into\nthe forest.",
+   "extra_descs": {}
   },
   "3731": {
    "vnum": 3731,
@@ -743,8 +814,14 @@
      "description": "To the west lies A Small Clearing."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead east and west.",
-   "placeholder": true
+   "description": "A path of beaten earth winds between close-set trunks, the way marked by\na few flat stones that someone laid long ago. Dead branches creak above\nyou though no wind reaches this far in. The light is a dim green-grey,\nand the smell of leaf mould lies heavy. The path goes east toward the\nturn and west toward a lighter place.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 1
+    }
+   ]
   },
   "3732": {
    "vnum": 3732,
@@ -766,8 +843,8 @@
      "description": "To the west lies Standing Before The Ruined Necropolis."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead east and west.",
-   "placeholder": true
+   "description": "The trees step back and leave a small round clearing, floored with short\npale grass and ringed by silent trunks. At its edge a low wall of fitted\nstone is half swallowed by ivy, and the ground feels hushed, as though\nthe air itself were listening. A path runs back east into the forest,\nand west the stonework thickens toward the ruin ahead.",
+   "extra_descs": {}
   },
   "3733": {
    "vnum": 3733,
@@ -789,8 +866,8 @@
      "description": "To the south lies On A Path In The Dense Forest."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The forest begins to thin here, the trunks growing slimmer and farther\napart, and a cool wind carrying salt comes in from beyond the trees. The\npath is sandy and pale, bordered by wiry bent grass. Through the last of\nthe trunks to the north the sky opens wide and grey over the water, and\nthe trail leads south back into the dense wood.",
+   "extra_descs": {}
   },
   "3734": {
    "vnum": 3734,
@@ -812,8 +889,14 @@
      "description": "To the south lies On A Path In The Dense Forest."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north and south.",
-   "placeholder": true
+   "description": "The path climbs a few paces over a low swell of ground, rooted with\nancient knotted oak. At the top the trees thin a little and the sky\nshows through as a pale grey patch. A scatter of black feathers lies in\nthe dirt, long dry and brittle. The trail leads north toward lighter air\nand south back into the dark.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 1
+    }
+   ]
   },
   "3735": {
    "vnum": 3735,
@@ -835,8 +918,8 @@
      "description": "To the south lies On A Path In The Dense Forest."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
-   "placeholder": true
+   "description": "A pair of tall beeches arch over the path, their smooth grey trunks\nmarked with old, healed scars where names might once have been cut.\nFallen mast crunches softly underfoot. The air is cooler here and\nsomehow expectant. You can follow the track north or south.",
+   "extra_descs": {}
   },
   "3736": {
    "vnum": 3736,
@@ -858,8 +941,8 @@
      "description": "To the south lies On A Path In The Dense Forest."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north and south.",
-   "placeholder": true
+   "description": "A line of stunted thorn trees follows the trail here, each one bent the\nsame way by a wind that you cannot feel. The ground between them is bare\nand hard, as if swept. Mist hangs at knee height. The path goes on north\nand south through the thorns.",
+   "extra_descs": {}
   },
   "3737": {
    "vnum": 3737,
@@ -881,8 +964,8 @@
      "description": "To the south lies At A Turn On The Forest Path."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
-   "placeholder": true
+   "description": "The forest is thick here, and the light comes down in dim bars, grey and\ngreen. Brambles tug at your sleeves along the path's edge, while the\ntrunks are wrapped in ivy like old bandages. A dead branch has fallen\nacross the trail and been trampled flat. The path runs north and south\nthrough the wood.",
+   "extra_descs": {}
   },
   "3738": {
    "vnum": 3738,
@@ -904,8 +987,14 @@
      "description": "To the east lies On A Path In The Dense Forest."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and east.",
-   "placeholder": true
+   "description": "The path turns sharply round a boulder furred with moss, which sits in\nthe middle of the trail like a sleeping head. Ferns spill over it in\nuntidy tufts, beaded with the day's mist. The air tastes of damp earth\nand old leaves. A trail leads north through the trees, and the way east\nreturns toward the clearing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 1
+    }
+   ]
   },
   "3739": {
    "vnum": 3739,
@@ -927,8 +1016,8 @@
      "description": "To the west lies At A Turn On The Forest Path."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead east and west.",
-   "placeholder": true
+   "description": "Here the path runs between two great hollow oaks, their trunks seamed\nand black, their roots reaching across the track like fingers. A lone\ngrey feather has caught in a crack of bark and trembles without falling.\nThe leaf mould is deep and silent underfoot. The way east leads to a\nclearing, and the path continues west.",
+   "extra_descs": {}
   },
   "3740": {
    "vnum": 3740,
@@ -950,8 +1039,8 @@
      "description": "To the west lies On A Path In The Dense Forest."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east and west.",
-   "placeholder": true
+   "description": "A second small clearing opens among the trees, its grass bleached and\nshort as if grazed, though no beast has been this way. A flat stone lies\nin the centre, round and worn, and mist gathers about it in a slow pool.\nTo the east the ruined necropolis shows its broken pillars through the\ntrunks, while west the forest path continues.",
+   "extra_descs": {}
   },
   "3741": {
    "vnum": 3741,
@@ -986,8 +1075,16 @@
      "description": "To the down lies Path To The Underworld."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north, east, west and down.",
-   "placeholder": true
+   "description": "A broad court of cracked paving lies before a huge ruined necropolis,\nits columns leaning and its steps strewn with fallen leaves. A great\nbronze-bound door stands in the front wall, shut but not locked, with a\nweathered lintel above it. A dark stair slopes down into the ground\nbeside the steps, and the clearings of the forest lie to either side,\neast and west.",
+   "extra_descs": {
+    "lintel inscription": "Worn letters on the lintel read, in an old script, that all who enter\nare weighed and none are lost. Below them a carved feather has been\nchipped half away."
+   },
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 1
+    }
+   ]
   },
   "3742": {
    "vnum": 3742,
@@ -1019,8 +1116,9 @@
      "description": "To the west lies An Antechamber."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "This is a high bare hall, its flagstones scuffed by the feet of ages and\nits pillars rising into shadow. Pale light leaks in through the doorway,\nand the air is cool and utterly still. Doorways open on three sides, one\nonto a small chamber ahead, others toward the antechambers east and\nwest. The great door stands behind you to the south.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3743": {
    "vnum": 3743,
@@ -1048,8 +1146,9 @@
      "description": "To the west lies A Corner Chamber."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A broad antechamber, its walls ranked with shallow alcoves, each holding\na small stone figure of a seated judge with a feather in his hair. The\nfloor is checkered pale and dark, laid in neat squares. A pale light\nspills from the great hall to the east, and a passage leads north, while\na door stands west.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3744": {
    "vnum": 3744,
@@ -1073,8 +1172,9 @@
      "description": "To the west lies A Turning Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The corridor turns here along a gentle arc, following the curve of some\ngreat round room that lies hidden beyond the wall. Cold iron rings are\nset into the stone at regular intervals, hung with the rotted remains of\nrope. The only sounds are your steps and a faint drip. The passage runs\nwest, and back south to the antechamber.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3745": {
    "vnum": 3745,
@@ -1098,8 +1198,9 @@
      "description": "To the south lies A Corner Chamber."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "A turning in the corridor, where the floor dips slightly toward a drain\nchoked with grey sediment. The walls are bare and cold to the touch, and\nthe faint tang of copper hangs in the air. Someone has scratched a tally\nof short vertical lines into the plaster, row upon row. East lies the\nother half of the corridor, and south a door leads to a corner room.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3746": {
    "vnum": 3746,
@@ -1133,8 +1234,9 @@
      }
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and east.",
-   "placeholder": true
+   "description": "A small square chamber where two heavy doors meet at a corner, a stone\nlamp-stand between them. The ceiling is plain beams blackened by old\nsmoke, and the dust beneath your feet is deep and soft. A door opens\nnorth into the turning corridor, and another stands east into the\nantechamber.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3747": {
    "vnum": 3747,
@@ -1154,8 +1256,15 @@
      "description": "To the south lies Entrance To The Ruined Temple."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "A small stone room with a low ceiling, bare except for a stone bench\nalong the wall and a shallow niche where a lamp once burned. Dust lies\nthick on everything, unmarked, and the silence presses on your ears. The\nonly way out is the doorway back to the entrance hall.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 1
+    }
+   ]
   },
   "3748": {
    "vnum": 3748,
@@ -1184,8 +1293,9 @@
      "description": "To the west lies Entrance To The Ruined Temple."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "A square antechamber, its walls painted with faded figures walking in\nprocession, each carrying a small pair of scales. The paint has flaked\naway from the faces and left only grey stone. A heavy door in the far\nwall stands ajar to the east, and an open archway leads west back to the\nentrance hall.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3749": {
    "vnum": 3749,
@@ -1214,8 +1324,9 @@
      "description": "To the west lies An Antechamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The room is a corner of the temple's passages, where two walls meet in a\ntight angle and a lone stone urn stands in the fork. The floor has been\nworn into a slight trough by countless slow steps. A door of black wood\nleads north, and an archway returns west to the antechamber.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3750": {
    "vnum": 3750,
@@ -1239,8 +1350,9 @@
      "description": "To the west lies A Winding Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "The corridor winds sharply here, its walls close enough to touch both at\nonce. Faint carvings of long-necked birds run along the stone at\nshoulder height, their beaks all pointing the same way. A cold draught\nmoves along the floor. The passage goes west deeper into the temple, and\na door lies south.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3751": {
    "vnum": 3751,
@@ -1264,8 +1376,9 @@
      "description": "To the east lies A Winding Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "The passage bends again, and the old plaster has fallen from the walls\nin leprous patches to show the grey blocks beneath. A single iron\nbracket juts from the wall, empty, rimmed with soot. The floor slopes\nsubtly beneath your feet. You may follow the corridor north or turn back\neast.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3752": {
    "vnum": 3752,
@@ -1289,8 +1402,9 @@
      "description": "To the south lies A Winding Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and south.",
-   "placeholder": true
+   "description": "A hush lies on this stretch of corridor so deep that your own breathing\nseems intrusive. The ceiling is lower here and stained dark in lines, as\nif water once ran in from above. Dry flakes of old reed matting crunch\nunderfoot. The way goes east along the winding passage, and south back\ndown it.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3753": {
    "vnum": 3753,
@@ -1314,8 +1428,8 @@
      "description": "To the west lies A Winding Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and west.",
-   "placeholder": true
+   "description": "Several long cracks run up the walls here, and through them you can feel\ncold air from somewhere deeper. A bundle of dry reeds lies tied with\nfaded cord against the wall, an offering long forgotten, and its knots\nhave gone grey with dust. The corridor winds on north and returns west.",
+   "extra_descs": {}
   },
   "3754": {
    "vnum": 3754,
@@ -1353,8 +1467,15 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Three passages meet in this dim junction, and the stone floor is\npolished to a dull shine by the passing of countless slow feet. Wax\ndrippings have hardened in a thick crust below an iron sconce. A heavy\ndoor stands shut to the north, another to the west, and the corridor you\ncame along winds back south.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 1
+    }
+   ]
   },
   "3755": {
    "vnum": 3755,
@@ -1383,8 +1504,9 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and west.",
-   "placeholder": true
+   "description": "A small chamber with walls of fitted blocks, bare and square, where the\nair smells of cold ash and old stone. A shallow basin is set into the\nfloor, dry and rimmed with white crust. Ahead a low door leads west into\na straight corridor, and the passage you came by opens south.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3756": {
    "vnum": 3756,
@@ -1404,8 +1526,9 @@
      "description": "To the east lies A Winding Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "A tiny cell of a room, hardly larger than a closet, with a stone ledge\nrunning round three walls at the height of a seat. Tallow stains darken\nthe wall above each place, as though patient people once sat here and\nwaited. Nothing else remains. The only way out is the door east into the\njunction.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3757": {
    "vnum": 3757,
@@ -1429,8 +1552,9 @@
      "description": "To the west lies A Straight Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long straight corridor runs on ahead, the roof held up by squat square\npillars set into the walls. Each pillar bears a faded red band, and the\nbands blur toward the far end. Your footsteps return as thin echoes. The\npassage goes west deeper in, and a doorway opens east into the small\nchamber behind you.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3758": {
    "vnum": 3758,
@@ -1454,8 +1578,9 @@
      "description": "To the west lies A Straight Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The corridor is dead straight and perfectly level here, and the light\nfrom the entrance has long since given out. Chips of dark tile are\nscattered across the floor, fragments of a mosaic that was prised up\nlong ago. A faint smell of myrrh lingers in the cold air. Straight\npassage lies east and west of you.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3759": {
    "vnum": 3759,
@@ -1484,8 +1609,9 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "At this end of the long corridor the walls are cut with rows of small\nsquare niches, every one empty and blackened inside. Fine grey dust lies\nin them, soft as flour. The stillness has the quality of a held breath.\nA door to the west leads on into a chamber, and the corridor runs back\neast.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3760": {
    "vnum": 3760,
@@ -1514,8 +1640,9 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
-   "placeholder": true
+   "description": "A tight chamber where two passages meet at a right angle, the corner\nringed by a low stone curb. Painted on the wall is a faded figure with\nthe head of a bird, its beak raised as if to speak. The air is dry and\nfaintly sweet. A door in the wall leads south, and the straight corridor\nlies east.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3761": {
    "vnum": 3761,
@@ -1539,8 +1666,15 @@
      "description": "To the south lies A Short Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A short corridor with a floor of rough black flags and walls hung with\nold frayed cords that once held tablets. The ceiling is only just above\nyour head, and condensation gleams along it. Everything is very quiet.\nThe passage leads back north to the chamber and on south.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 1
+    }
+   ]
   },
   "3762": {
    "vnum": 3762,
@@ -1569,8 +1703,9 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
-   "placeholder": true
+   "description": "The short corridor ends against a plain wall of sooty stone, its last\nyard dressed with a row of seven small clay lamps, all cold. A carved\nstone lintel arches over a doorway set in the east wall. You may go east\nthrough it, or back north along the passage.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3763": {
    "vnum": 3763,
@@ -1599,8 +1734,11 @@
      "description": "To the west lies A Short Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and west.",
-   "placeholder": true
+   "description": "This round chamber is hung with grey curtains that stir though no breeze\nmoves, and a three-legged bronze stool stands in the centre over a crack\nin the floor. The air is heavy with old incense, and a pale light seems\nto come from nowhere in particular. A door stands in the north wall, and\nthe way west leads back into the short corridor.",
+   "look": "crypt",
+   "extra_descs": {
+    "stool bronze crack": "The bronze stool is three-legged, green with age, and stands squarely\nover a crack in the floor from which a faint cold air seems to rise.\nWhoever sat here once spoke for the dead."
+   }
   },
   "3764": {
    "vnum": 3764,
@@ -1624,8 +1762,9 @@
      "description": "To the south lies The Oracle's Chamber."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The corridor twists here like a stair that has lost its steps, bending\nslowly left and then right between walls scored with spiral lines. A\ntrickle of damp has left a green stain down one side. Your own shadow\nlengthens and shrinks as you pass the lamp-niches. The twisting passage\ngoes north, and south through a door to the chamber behind.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3765": {
    "vnum": 3765,
@@ -1649,8 +1788,9 @@
      "description": "To the south lies A Twisting Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "The passage doubles back on itself in a slow curve, the grey walls\nrunning with delicate carved vines that frame small faces, all worn\nblank. A chill breath of air passes over your hands. Underfoot a few\ntiles show a pattern of waves. East the twisting passage continues, and\nsouth it winds back.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3766": {
    "vnum": 3766,
@@ -1679,8 +1819,9 @@
      "description": "To the west lies A Twisting Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
-   "placeholder": true
+   "description": "The last twist of the corridor ends in a narrow landing before a pair of\ntall doors, their panels carved with doves and roses. Petals of dried\nrose lie scattered on the floor, brown and brittle as paper. A sweet and\nsorrowful scent clings to the air. The doors lead south, and the\ncorridor winds back west.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3767": {
    "vnum": 3767,
@@ -1704,8 +1845,9 @@
      "description": "To the south lies At The Altar To Aphrodite."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "An airy vaulted chamber, once beautiful, its walls painted in softened\npinks and golds that have gone chalky. Marble doves with broken wings\nperch along a cornice, and a mosaic of a rising shell is half intact in\nthe floor. A sweet dust hangs in the air. Doors lead back north, and a\nlow archway opens south to the altar.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3768": {
    "vnum": 3768,
@@ -1725,8 +1867,17 @@
      "description": "To the north lies Aphrodite's Altar Chamber."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "A small shrine room, its walls hung with the grey remains of silk, and\nin the centre a low altar of rose-veined marble heaped with withered\ngarlands. Black candle stubs stand in a ring about it, and a thin ash\nlies in the offering bowl. It is tender, hushed, and utterly cold. The\nonly way out leads back north.",
+   "look": "crypt",
+   "extra_descs": {
+    "altar marble garlands": "The altar is carved from rose-veined marble, smooth as skin, and heaped\nwith garlands that crumble to powder when stirred. A line of faded words\nruns round its edge, praising love that outlasts the grave."
+   },
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 1
+    }
+   ]
   },
   "3771": {
    "vnum": 3771,
@@ -1750,8 +1901,9 @@
      "description": "To the up lies Standing Before The Ruined Necropolis."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and up.",
-   "placeholder": true
+   "description": "A steep, narrow stair of worn stone drops from the forest above into the\nrock, its steps hollowed by long use and damp with seeping water. The\nair turns cold and still, and the light from above shrinks behind you to\na pale square. Rough walls close in on both sides, running with silver\nthreads of moisture. The stair leads up to the necropolis court, and the\npassage runs on north.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3772": {
    "vnum": 3772,
@@ -1775,8 +1927,9 @@
      "description": "To the south lies Path To The Underworld."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The tunnel opens onto a broad ledge of black rock above a wide\nunderground river, whose slow oily water slides past in the dark. The\nfar bank cannot be seen, and a faint wind blows off the water bringing\nthe smell of cold iron. A narrow ledge of stone follows the bank north\ntoward a wharf, and the way back leads south up the passage.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3773": {
    "vnum": 3773,
@@ -1794,8 +1947,8 @@
      "description": "To the south lies Before The River Styx."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. A way leads south.",
-   "placeholder": true
+   "description": "You are afloat on the Styx, a wide black river that moves without sound,\nits surface smooth as polished slate. No stars, no reflections, only the\ndim luminous edge of the water on either side of the boat. Cold bites at\nyour fingers whenever they stray near the rail. Behind you the near bank\nlies south, a pale smudge of stone on the dark.",
+   "extra_descs": {}
   },
   "3774": {
    "vnum": 3774,
@@ -1819,8 +1972,15 @@
      "description": "To the south lies Crossing The River Styx."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "A wharf of black stone juts out into the river, its edge worn into\nscallops by countless ferry-hulls, a mooring ring still set into it.\nBeyond is a wide stair rising to a pair of towering gates, their tops\nlost in gloom. Cold water laps softly against the stone below, and the\nway south leads out onto the Styx. The gates lie north.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649505,
+     "max": 1
+    }
+   ]
   },
   "3775": {
    "vnum": 3775,
@@ -1849,8 +2009,15 @@
      "description": "To the south lies Before The Gates Of Hades."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Two vast gates of dark metal stand before you, each leaf wrought with\nwrithing figures that seem to stir when you look away. The floor is\npolished stone laid in squares, scattered with the dull glint of old\ncoin. The air is thick and utterly still. A door in the gates lies ajar\nnorth, and the wharf stair lies south.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649504,
+     "max": 1
+    }
+   ]
   },
   "3776": {
    "vnum": 3776,
@@ -1874,8 +2041,9 @@
      "description": "To the south lies At The Gates Of Hades."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A vast cavern, grey and dim, stretches around you with a roof lost in\nshadow. Pale shapes drift along the rock without ever quite arriving,\nand the air is cold and faintly sweet. Distant murmurs rise and fall\nlike a crowd that has forgotten its words. Beyond lie more gates north,\nand the great doors south.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "3777": {
    "vnum": 3777,
@@ -1903,8 +2071,9 @@
      "description": "To the south lies In The Underworld."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Three ways divide here before a tall archway, with a tall black spear of\nstone standing sentinel in the middle of the floor. Beyond the arch to\nthe north rise the grim gates to Tartarus, white, grey and black. A door\nopens east to a long low room where voices murmur. The path south\nreturns to the cavern, with its pale drifting shapes.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3778": {
    "vnum": 3778,
@@ -1936,8 +2105,15 @@
      "description": "To the west lies Before The Gates To Tartarus."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A broad stone hall filled with low benches of grey slab, their seats\nworn into hollows by the dead who have sat here waiting. A single dim\nlamp hangs from a chain and sways with no wind. Four doorways open from\nit, each marked by a pair of carved scales: west to the gates, and\nchambers lying north, east and south.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 1
+    }
+   ]
   },
   "3779": {
    "vnum": 3779,
@@ -1957,8 +2133,11 @@
      "description": "To the south lies The Waiting Room Of The Doomed."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
-   "placeholder": true
+   "description": "A high chamber of pale stone, its far wall hung with a huge balance\nwhose pans of beaten gold hang level and still. A long bench stands\nempty before it, and a quill lies abandoned on a writing-desk, its ink\nlong dried. The room smells of dust and parchment. The only exit is\nsouth, back to the waiting room.",
+   "look": "crypt",
+   "extra_descs": {
+    "balance scales pans gold": "The great balance hangs from a bronze beam, its pans of beaten gold\nhanging level though nothing rests in either. A small feather is cast\ninto the base, as the standard against which all hearts are weighed."
+   }
   },
   "3780": {
    "vnum": 3780,
@@ -1978,8 +2157,9 @@
      "description": "To the west lies The Waiting Room Of The Doomed."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
-   "placeholder": true
+   "description": "A narrow chamber dominated by a great seat of bone and black wood set\nhigh on a dais, its arms carved to the likeness of folded wings. Rows of\nempty benches face it in tiers. A single beam of grey light falls from a\nhigh crack onto the dais. The way out lies west to the waiting room.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3781": {
    "vnum": 3781,
@@ -1999,8 +2179,15 @@
      "description": "To the north lies The Waiting Room Of The Doomed."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "A low-ceilinged judge's room, its walls lined with ledgers bound in grey\nhide, shelf upon shelf of them, each spine bearing a name. A long table\nstands in the middle, spread with a black cloth. A feather of white and\na feather of black lie crossed on its surface. The room opens north into\nthe waiting hall.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649506,
+     "max": 1
+    }
+   ]
   },
   "3782": {
    "vnum": 3782,
@@ -2029,8 +2216,9 @@
      "description": "To the south lies Before The Gates To Tartarus."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A tall gate of white marble stands in an arch of polished stone, its two\nleaves carved with pale rows of laurel leaves. Light from nowhere falls\non it evenly, and not a speck of dust lies on the floor. It feels like a\nplace for the blameless. The way south returns to the archway, and a\ndoor leads north to the next gate.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3783": {
    "vnum": 3783,
@@ -2059,8 +2247,15 @@
      "description": "To the south lies A White Gate."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The gate of grey stone is neither fair nor foul, a heavy arch of\nweathered slate carved with an endless pattern of woven reeds. The floor\nis the colour of ash, and the air has a neutral, waiting chill. A small\nstone bench stands against the wall for those who cannot decide. A door\nleads north, and the white gate lies south.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649504,
+     "max": 1
+    }
+   ]
   },
   "3784": {
    "vnum": 3784,
@@ -2089,8 +2284,9 @@
      "description": "To the south lies A Gray Gate."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "A gate of black iron towers here, its bars as thick as a man's arm and\nwrought into the shape of folded wings. Cold wells up from the floor,\nand the stone around the arch is scorched and cracked. A smell of old\nsmoke and hot metal drifts down from the passage beyond. A door leads\nnorth toward Tartarus, and the grey gate lies south.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3785": {
    "vnum": 3785,
@@ -2114,8 +2310,15 @@
      "description": "To the down lies Bottom of a Hill in Tartarus."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and down.",
-   "placeholder": true
+   "description": "A narrow stone path winds away from the black gate along the top of a\nsteep slope, with no wall to either side and only a dark and silent\ndrop. The rock underfoot is rough and cracked, and warm air rises from\nbelow with a faint stink of brimstone. A rail of old chain follows the\nedge. The path slopes down into Tartarus, while south it returns to the\ngate.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 1
+    }
+   ]
   },
   "3786": {
    "vnum": 3786,
@@ -2139,8 +2342,9 @@
      "description": "To the up lies The Path to Tartarus."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and up.",
-   "placeholder": true
+   "description": "You stand at the foot of a bleak hill of loose black shale, where\nnothing grows and the air is heavy and thick. Rills of slow, tarry water\ngather in the hollows. A faint wail drifts across the slope, rising and\nfalling, and never comes any closer. A path leads back up the hill, and\nthe way south descends toward a river.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3787": {
    "vnum": 3787,
@@ -2164,8 +2368,9 @@
      "description": "To the south lies Along A Garden Path."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A wide dark river flows past in silence here, between banks of smooth\ngrey stones, its surface lapping soundlessly. Pale flowers of poppy grow\nin the cracks, nodding in a breath of air. A sweet drowsiness steals\nover you, and the thoughts of the living world grow faint. The path\nleads north up toward the hill, and south onto a garden walk.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3788": {
    "vnum": 3788,
@@ -2207,8 +2412,9 @@
      }
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A paved garden walk runs between low hedges of grey-green yew, each\ntrimmed square and neat, and the light is like an even dusk. Small cold\nflowers blossom along the border, white and unscented. Doors of pale\nwood stand to east and west, leading into the garden proper, and another\npassage runs south through a heavy arch of black stone. The path returns\nnorth to the river.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3789": {
    "vnum": 3789,
@@ -2228,8 +2434,8 @@
      "description": "To the east lies Along A Garden Path."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
-   "placeholder": true
+   "description": "The Garden of Everlasting Peace spreads out in terraces of soft turf and\nbeds of pale blossom, each flower perfect and cold to the touch. A\nwinding stream runs through it in a bed of white pebbles, and a marble\nbench waits beside it. It is peaceful in the way of a held breath. The\ndoor east leads back out to the garden path.",
+   "extra_descs": {}
   },
   "3790": {
    "vnum": 3790,
@@ -2249,8 +2455,10 @@
      "description": "To the west lies Along A Garden Path."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
-   "placeholder": true
+   "description": "Here is the Garden of Everlasting Peace, a vast round lawn of silver\ngrass ringed with slender white trees whose leaves never fall. A shallow\npool lies in the centre, perfectly clear, reflecting a sky that is not\nthere. Everything is still and bright and lovely, yet no bird sings and\nno wind stirs. The door west leads back to the garden path.",
+   "extra_descs": {
+    "pool clear water": "The pool is clear to its bed of white pebbles, and no ripple ever\ncrosses it. Its surface shows a blue sky and a drifting white cloud,\nthough no sky can be seen above."
+   }
   },
   "3791": {
    "vnum": 3791,
@@ -2274,8 +2482,15 @@
      "description": "To the south lies Trials Of The Underworld - Facing A Fury."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The passage is a long hall of dark scorched stone, its walls carved with\nthe figures of three winged women in torment, mouths open in silent\nscreams. Whips of braided bronze hang from iron hooks beside each. The\nair is hot and tastes of blood. The path runs north back to the garden\nand south through the trial.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649503,
+     "max": 1
+    }
+   ]
   },
   "3792": {
    "vnum": 3792,
@@ -2299,8 +2514,19 @@
      "description": "To the south lies Trials Of The Underworld - Facing A Fury."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "Deep gashes mark the walls of this trial hall, as if great claws had\nraked them over and over. A pair of tall braziers stand cold, ringed\nwith ash, and the floor is dark with old stains. The noise of distant\nshrieking seems to come from the stone. You can go north toward the\nentrance or south deeper into the trial.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 1
+    },
+    {
+     "vnum": 649503,
+     "max": 1
+    }
+   ]
   },
   "3793": {
    "vnum": 3793,
@@ -2324,8 +2550,9 @@
      "description": "To the south lies A Fiery Door."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Chains hang in swags from the ceiling here, and each link is carved with\na tiny and terrible face. The floor is hot underfoot, and sparks\nsometimes crackle among the rusted iron. Somewhere beyond, wings beat\nslowly in the dark. The hall leads north back toward the first trial and\nsouth to a fiery door.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3794": {
    "vnum": 3794,
@@ -2354,8 +2581,9 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A massive door of red-hot bronze fills the south wall, its surface\nrippling with heat and its handle glowing like an ember. The stones of\nthe floor glow faintly orange at the cracks. Sweat runs down your face\nin moments. The passage lies north, and the door south opens to a colder\nroom.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3795": {
    "vnum": 3795,
@@ -2384,8 +2612,9 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "A door of blue-white ice fills the south wall, its panels clouded and\nrimed with frost so thick it hides what lies behind. The room is\nbitterly cold, the breath freezing in your beard, and frozen crystals\nsparkle on every stone. Your fingers ache. The door south opens to a\nmisty room, and the fiery door lies north.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "3796": {
    "vnum": 3796,
@@ -2414,8 +2643,9 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A door of thick grey vapour hangs in the south wall, shifting and\ncurling like a living thing. The floor is damp and slick, and every\nsound comes back muffled, as if heard through wet wool. You can see no\nmore than an arm's length. The vapour opens south onto the throne room,\nand the cold door is north.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3797": {
    "vnum": 3797,
@@ -2443,8 +2673,9 @@
      "description": "To the west lies Before An Onyx Throne."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A mighty hall opens here, its pillars of black marble climbing into a\nroof lost in darkness. Rows of torches burn with a cold green flame that\ncasts no warmth. At the far end, between the pillars, the floor rises\ntoward great seats, and the air is heavy with authority. A mist-door\nleads north, and the hall continues east and west before the thrones.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "3798": {
    "vnum": 3798,
@@ -2464,8 +2695,11 @@
      "description": "To the east lies The Throne Room Of Hades."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "A second dais of black onyx stands here, narrower than its twin and set\nwith a lesser throne, its high back inlaid with a pomegranate in veins\nof garnet. A cloak of dark wool lies draped across the seat, and its\nfolds are stiff with dust. Pale seeds are scattered on the step. The\nonly way out lies east to the hall.",
+   "look": "crypt",
+   "extra_descs": {
+    "pomegranate throne garnet": "The pomegranate is inlaid in garnet and split to show its seeds, each\nseed a tiny polished stone. It is the queen's chair, and the dust upon\nit is thin."
+   }
   },
   "3799": {
    "vnum": 3799,
@@ -2485,11 +2719,408 @@
      "description": "To the west lies The Throne Room Of Hades."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads west.",
-   "placeholder": true
+   "description": "A wide dais of black onyx rises here, polished to a mirror, with a\ntowering throne carved from one huge block of glittering stone. The arms\nare worked into the shapes of hounds, their eyes set with dull red gems.\nCold seems to pour from the seat. You may only go back west toward the\nhall.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "649500": {
+   "vnum": 649500,
+   "name": "shade ghost drowned grey",
+   "short_desc": "a drowned shade",
+   "long_desc": "A drowned shade drifts above the tideline, water streaming from its grey and weeping face.",
+   "description": "The shade is a pale shape of a man long lost to the sea, his clothes\nstill dripping onto stones that never get wet. His hollow eyes look past\nyou toward the water, and his mouth works in silent apology.",
+   "level": 16,
+   "alignment": -300,
+   "hp_dice": "16d8+239",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749500,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649501": {
+   "vnum": 649501,
+   "name": "raven carrion grey bird",
+   "short_desc": "a grey carrion raven",
+   "long_desc": "A grey carrion raven sits hunched on a dead bough, watching you with one pitiless eye.",
+   "description": "Its feathers are the colour of ash, ragged at the edges, and its beak is\nstained dark. It cocks its head at every step you take, as if counting,\nand weighs you with a patient and unfriendly stare.",
+   "level": 15,
+   "alignment": -100,
+   "hp_dice": "15d8+170",
+   "damage_dice": "4d6+9",
+   "armor_class": 52,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749500,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649502": {
+   "vnum": 649502,
+   "name": "skeleton temple warden bones",
+   "short_desc": "a temple skeleton",
+   "long_desc": "A temple skeleton stands rigid in the passage, a corroded bronze spear clutched in its bony hands.",
+   "description": "The bones are yellow with age and bound by nothing but old magic, and a\nscrap of grey linen still hangs from its ribs. Its empty sockets turn to\nfollow you as you move.",
+   "level": 19,
+   "alignment": -500,
+   "hp_dice": "19d8+289",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749502,
+     "chance": 10
+    },
+    {
+     "vnum": 749500,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649503": {
+   "vnum": 649503,
+   "name": "fury winged harpy",
+   "short_desc": "a winged fury",
+   "long_desc": "A winged fury screams from the shadows, her bronze whip trailing from her taloned fist.",
+   "description": "She is a gaunt woman with the wings of a vast bat and eyes like heated\ncoals, her hair a mass of writhing serpents. Her whip is bronze and ends\nin barbs, and she holds it like one who has used it for ages.",
+   "level": 24,
+   "alignment": -700,
+   "hp_dice": "24d8+423",
+   "damage_dice": "7d6+15",
+   "armor_class": 20,
+   "exp": 1340,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749503,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649504": {
+   "vnum": 649504,
+   "name": "guard gate sentinel bronze-helmed",
+   "short_desc": "a bronze-helmed gate guard",
+   "long_desc": "A bronze-helmed gate guard stands grimly before the arch, its shield raised and its pale eyes unblinking.",
+   "description": "Beneath the helm is a face of grey, withered skin drawn tight over the\nbone, and its mail has long since fused to the body. It does not\nbreathe, and it does not move unless you try to pass.",
+   "level": 23,
+   "alignment": -600,
+   "hp_dice": "23d8+360",
+   "damage_dice": "6d6+14",
+   "armor_class": 28,
+   "exp": 1285,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749502,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649505": {
+   "vnum": 649505,
+   "name": "charon ferryman boatman",
+   "short_desc": "Charon the Ferryman",
+   "long_desc": "Charon the Ferryman leans on his long black pole at the end of the wharf, a hooded and silent figure.",
+   "description": "Charon is old beyond reckoning, his beard a tangled grey cloud and his\neyes like two sunken coals under his hood. He holds a long pole of black\nwood and speaks to no one without payment, and his patience has run out\nfor those who bring none.",
+   "level": 24,
+   "alignment": -300,
+   "hp_dice": "24d8+334",
+   "damage_dice": "7d6+12",
+   "armor_class": 25,
+   "exp": 1340,
+   "gold": 288,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749501,
+     "chance": 35
+    },
+    {
+     "vnum": 749504,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649506": {
+   "vnum": 649506,
+   "name": "judge dead weigher",
+   "short_desc": "the Judge of the Dead",
+   "long_desc": "The Judge of the Dead sits in perfect stillness before the scales, weighing you with his gaze.",
+   "description": "He is a tall figure in a robe of grey feathers, his head that of a long-\nbeaked bird and his eyes bright and cold as stars. One hand rests on a\ngolden balance, and in the other he holds a single white feather.\nWhatever you are, he already knows.",
+   "level": 25,
+   "alignment": 0,
+   "hp_dice": "25d8+398",
+   "damage_dice": "7d6+13",
+   "armor_class": 22,
+   "exp": 1395,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749504,
+     "chance": 35
+    },
+    {
+     "vnum": 749503,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "749500": {
+   "vnum": 749500,
+   "name": "grey feather truth",
+   "short_desc": "a grey feather of the dead",
+   "room_desc": "A long grey feather lies here, perfectly still.",
+   "description": "It is a long feather of soft ash-grey, unnaturally light, and whatever bird it came from has not flown in an age. Collectors of the strange pay well for such things.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 16,
+   "weight": 1,
+   "value": 505
+  },
+  "749501": {
+   "vnum": 749501,
+   "name": "pole ferryman black staff",
+   "short_desc": "a black ferryman's pole",
+   "room_desc": "A long black ferryman's pole lies here.",
+   "description": "A pole of black wood, nearly twice a man's height and cold to hold. Its tip is iron-shod and worn bright from pushing off the bed of the Styx.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 24,
+   "damage_dice": "2d7",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 640,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "749502": {
+   "vnum": 749502,
+   "name": "shield bronze sentinel round",
+   "short_desc": "a bronze sentinel shield",
+   "room_desc": "A dented bronze shield lies here.",
+   "description": "A round shield of corroded bronze, its face dented by many blows and its rim stamped with a pattern of scales. It is heavy but sound.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 23,
+   "wear_slot": "shield",
+   "armor": 4,
+   "weight": 6,
+   "value": 490
+  },
+  "749503": {
+   "vnum": 749503,
+   "name": "whip bronze barbed fury",
+   "short_desc": "a barbed bronze whip",
+   "room_desc": "A barbed bronze whip lies here, coiled like a snake.",
+   "description": "A whip of braided bronze wire, tipped with small hooked barbs. It is horribly supple in the hand and seems to hunger for someone to wield it on.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 24,
+   "damage_dice": "2d7",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 640,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ]
+  },
+  "749504": {
+   "vnum": 749504,
+   "name": "pall feather cloak grey judge",
+   "short_desc": "a pall of grey feathers",
+   "room_desc": "A pall of grey feathers lies here, light as breath.",
+   "description": "A mantle sewn from thousands of grey feathers, overlapping like scales and weighing nothing at all. It hangs about the shoulders with a grave, quiet dignity.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 25,
+   "wear_slot": "about",
+   "armor": 3,
+   "weight": 3,
+   "value": 530,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  }
+ }
 }

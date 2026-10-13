@@ -1,0 +1,444 @@
+{
+ "job": "z503",
+ "rooms": {
+  "13018": {
+   "description": "The tunnel bends hard here, swinging from the long run coming up from the south into a short reach that runs east. The walls are hewn rock, scored with the long grooves of dwarven picks, and the floor is worn into a shallow trough by generations of boots. An iron lamp-bracket, long empty, hangs rusted at the corner. Cold air drifts along the bend, carrying a smell of stone dust and old oil.",
+   "look": "cave"
+  },
+  "13019": {
+   "description": "Here the tunnel turns again, the passage from the west curving up into a straighter road that runs north. The ceiling lifts a little at the corner, and the old masons left a ring of carved knotwork about the keystone, its edges blurred by dust. A line of black soot streaks the rock where lamps once burned. Your footfalls come back from the dark with a hollow, patient echo.",
+   "look": "cave"
+  },
+  "13020": {
+   "description": "The Main Tunnel runs straight and broad here, wide enough for two ox-carts to pass, its walls cut square and true from the living rock. Deep ruts, worn by wheels long since gone, mark the floor. Rusted rings are set into the rock at intervals, where beasts of burden were once tethered. The road runs north toward a faint grey glow and falls away south into dimness.",
+   "look": "cave"
+  },
+  "13021": {
+   "description": "The tunnel ends in a small squared chamber, where a heavy oak door banded with iron stands in the east wall, scarred by old blows. To the north the road opens out into Valin's Gate, its great arch just visible in the gloom. Racks for spears and lanterns line the rock beside the door, all of them bare. The air is fresher here, as if some far breath of the outer world still reaches this far.",
+   "look": "cave"
+  },
+  "13022": "Valin's Gate rises as a vast arch of dressed grey stone, its twin leaves of black iron shut and barred with a beam as thick as an old tree. Dwarf-kings in relief march up either pillar, each holding an axe, their faces worn smooth by the dust of centuries. Before the barred leaves lies a paved forecourt, its flagstones cracked and heaped with drifted grit. The only way out of this forlorn place is back along the tunnel to the south.",
+  "13023": "The guardhouse is a long low room, its stone benches and pegged tables left as if the watch had risen in the middle of a meal. A cold hearth stands in one wall beneath a soot-blackened hood, and a rack of bent halberd-heads rusts beside it. Narrow arrow slits look down on the tunnel beyond. The only way out is the iron-banded door to the west, back into the Main Tunnel.",
+  "213017": {
+   "description": "A long stretch of the Main Tunnel runs on here, its ceiling arched with ribs of fitted stone that spring from corbels shaped like bearded heads. Many of the faces have been chipped away, leaving blank, weeping scars. Dust lies thick along the rock, but the middle of the road is scuffed bare. North the passage meets a sharp bend, while south it runs toward a broader, grander dark.",
+   "look": "cave"
+  },
+  "213016": {
+   "description": "The tunnel widens and its walls begin to show their old splendour, with panels of pale stone inlaid in the rock and cut with chains of interlocking runes. Most of the inlay has been prised out, leaving raw sockets. The road runs south to the Gate To The Stronghold, and the air grows thick with the cold smell of iron. A broken lantern chain trails from the vault above, swaying a little in the draught.",
+   "look": "cave"
+  },
+  "213015": "The road swells into a vast vaulted chamber where the great gate to the stronghold stands, a towering arch of black iron and bronze whose portcullis hangs half-raised, jammed by rust. Barricades of timber and overturned carts crowd the flagstones beneath it, and tattered battle-banners droop from the twin towers. A bronze-studded door in the west wall leads into the Hall of Splendor. The Main Tunnel runs away north and south from the chamber.",
+  "213014": {
+   "description": "Beyond the gate chamber the tunnel falls quiet, and the noise behind you fades to a faint metallic ticking as the old iron cools and settles. The rock here is blank and unadorned, plainly cut by builders who cared for strength over beauty. Scraps of rotted sacking and a broken wheel lie piled in a niche. The tunnel runs on south, and the dark seems to lean in from that way.",
+   "look": "cave"
+  },
+  "213013": {
+   "description": "Water seeps from a hairline crack in the vault and runs down the rock in a bright thread to a drainage channel cut along the road's edge. The stone beneath it is stained green and slick, and a cold dampness hangs in the air. Pale crusts of mineral have grown over a row of carved dwarf-runes, hiding what they once said. The tunnel runs on north toward the gate and south into the dark.",
+   "look": "cave"
+  },
+  "213012": {
+   "description": "A cross-vault of rough stone arches over the road here, and a pair of square pillars stand at the middle of the way, leaving a narrow lane to either side. Initials and tally-marks have been scratched into them by generations of passing drovers. The floor is dusted with fine pale grit that muffles every step. North the passage runs back toward the gate, and south it comes to a bend.",
+   "look": "cave"
+  },
+  "213011": {
+   "description": "The tunnel bends here from its northward course to run east, and the outer face of the curve is polished smooth where wagons scraped it going round. A lamp-niche in the rock is choked with glass and soot. Beyond the corner the passage narrows and the roof sinks lower, pressing down with the weight of the mountain. The air smells of cold iron and damp wool.",
+   "look": "cave"
+  },
+  "213010": {
+   "description": "The road runs straight east and west here through a low, wide passage, its roof held up by squat columns left standing as the dwarves cut the rock away. Between the columns stretch shallow alcoves, once resting places for drovers, now bare floors littered with ash. A faint draught blows through from the east, bringing the smell of old dust and distant smoke. Behind you to the west the road dips toward a bend.",
+   "look": "cave"
+  },
+  "213009": {
+   "description": "A long frieze of marching dwarves is carved along the wall at head height, axes shouldered and beards braided, though the chisel-work ends in a ragged line where the commission ran out. Below it the plaster has fallen away in broad leprous patches. The road continues east to a bend and west toward a lower stretch. Somewhere far off, a slow drip counts out the hours.",
+   "look": "cave"
+  },
+  "213008": {
+   "description": "The road turns a sharp corner here, coming in from the west and plunging away south through a tall, narrow passage. A heavy iron ring is sunk in the rock at the turning, and a coil of chain is still fastened to it, rusted into a single mass. The walls bear the dark prints of countless hands that steadied themselves at the corner. The air from the south is warmer and carries faint scents of incense and polished wood.",
+   "look": "cave"
+  },
+  "213007": {
+   "description": "The tunnel brightens and broadens, for ahead lie the Ambassadors Halls, and the masons here took more care. Slender fluted pilasters stand at regular intervals along both walls, each capped with a leaf-shaped capital gone black with smoke. A strip of faded carpet runs down the middle of the road, worn through to the threads. The way runs north back to a bend and south into the halls.",
+   "look": "cave"
+  },
+  "213006": "The Ambassadors Halls open as a line of high, echoing chambers, where the envoys of far kingdoms were once lodged in splendour. Each doorway is flanked by a carved pillar bearing the crest of some distant house, and the doors themselves are chained shut, their lacquer peeling in long curls. Mosaic floors of coloured stone have lost half their tesserae to thieves. A passage runs north into the Main Tunnel, and another leads west along the dim flank of the halls.",
+  "213005": {
+   "description": "A narrow stretch of tunnel runs between the Ambassadors Halls to the east and a bend to the west. Little care went into its cutting, for it was only a servants' way, and the ceiling is low enough that a tall man must stoop. Bare hooks line the rock, where cloaks and lanterns once hung for the footmen of departed embassies. A bitter smell of cold ash lingers in the air.",
+   "look": "cave"
+  },
+  "213004": {
+   "description": "The passage bends here, coming up from the south and turning to run east toward the halls. The corner is squared off by a block of black marble set into the floor, carved with the wind-rose of the dwarven road wardens. A crack runs across it from edge to edge. The roof is lower than elsewhere and sweats with a cold condensation that drips steadily onto the stone.",
+   "look": "cave"
+  },
+  "213003": {
+   "description": "This reach of the Main Tunnel is roughly cut and uneven, as if the workers laid down their picks before the final dressing. Long chisel-marks run slantwise across the rock, and chips of broken stone lie scattered in the gutters. A rotted rope still hangs from two hooks across the way, set there to mark the end of some old repair. The tunnel runs on north to a bend and south toward the gate.",
+   "look": "cave"
+  },
+  "213002": {
+   "description": "Painted warnings in an angular dwarven script have been daubed on the wall at shoulder height, now flaking to red dust. Beneath them stands an old toll-post, a stout iron-bound beam with a slot for coins that has long been empty. The road is rutted from the wagons of merchants who once paid to pass. North it climbs gently toward the heart of the tunnel, while south it runs to Durgan's Gate.",
+   "look": "cave"
+  },
+  "213001": {
+   "description": "The air here is fresher and colder, carrying a faint taste of open mountain from the south. A pair of empty lantern-hooks beside a deep-set doorframe mark where the gate-wardens once checked travellers' papers. The paving is cracked and heaved by the cold that creeps in from outside. North the road runs on into the tunnel, and south lies Durgan's Gate.",
+   "look": "cave"
+  },
+  "213000": "Durgan's Gate is a great arch hewn from the mountain, its tall doors of iron and stone swung wide and left to rust open on their hinges. Rows of bearded kings are carved up the jambs, their stone beards chipped by thieves. To the south the doors open on the barren badlands outside, and a bar thick as a man's waist lies split on the flagstones. North the Main Tunnel leads into the dim city.",
+  "13024": "Once the proudest audience hall of the city, the Hall of Splendor is a forest of vast pillars carved as dwarf-kings, each bearing the vault upon his shoulders. The mosaic floor shows a map of the old realm, now cracked and pitted. A sweeping stair climbs up to the Central Plaza, and the bronze-studded door to the east gives onto the Gate To The Stronghold. Dust hangs in the air like fine smoke, lit by a dull glow falling from above.",
+  "13025": "The Central Plaza spreads wide beneath the vast hollowed roof of the mountain, paved with great flags of grey and rose stone laid in a sunburst around a dry fountain. The basin is cracked, and the statue of a dwarf at its centre has lost an arm and half a face. Broad ways lead north, east, south and west to the other arms of the plaza, while a stair goes down into the Hall of Splendor. Lamps on tall iron stands burn here and there, leaving great pools of shadow between.",
+  "13061": "This arm of the plaza is lined with the shuttered fronts of old guild halls, their lintels carved with hammers, anvils and scales. The pavement is stained dark in long lines where water ran from broken gutters. A road leaves north as Eryn's Road, and the open paving goes on east, south and west to the rest of the plaza. A banner pole stands bare in the middle of the flags, its rope swaying against it in the draught.",
+  "13077": "Eryn's Road begins here, a broad paved way between tall townhouses with carved stone balconies, most of them dark. The cobbles are set in a herringbone of grey and rust-red, though many have sunk or been prised out. To the east stands the squat, heavily barred Cityguard's Headquarters, its door yawning open. North the road continues up the street, and south it opens onto the plaza.",
+  "13078": "A cramped crossing on Eryn's Road, where a narrow dark alley slips away east between two leaning houses, and a heavy-timbered doorway to the west opens on the Guards Barracks. Old oil lamps hang from iron arms over the street, rusted and unlit. A drain grating in the middle of the road gurgles faintly. The road runs on north and south from the crossing.",
+  "13079": "The road narrows here between blank walls of dressed stone, and a squat, grim building to the west shows a barred door, the city prison. Iron-shod posts along the kerb carry hanging chains where prisoners were once led. The paving is greasy with old soot. North the road meets Bolgrim's Way, and south it runs back toward the plaza.",
+  "13032": "Bolgrim's Way begins as a smooth road of black basalt setts, running beneath a ceiling hung with the soot of ten thousand lamps. A lamp-post of beaten iron stands at the corner, its glass long shattered. The walls of the rich quarter rise on either hand, windowless and proud. South the way meets Eryn's Road, while the Way itself runs east toward a squat tower and west toward the jewellers' houses.",
+  "13036": "Fine shopfronts line this stretch of Bolgrim's Way, their glass long gone and their shutters hanging by one hinge. A signboard painted with a star and a wand sways over a doorway to the south, announcing Theo's Magical Things. The cobbles are patched with slabs of different stone, as though the street had been mended in haste, again and again. The Way runs on east and west.",
+  "13037": "A narrow house with a door of dark wood stands to the north, set back behind a worn step and a pair of stone urns that hold only dead roots. Bolgrim's Way continues east toward a squat tower and west back along the shopfronts. The paving is clean here, swept recently, which is strange in so neglected a street. Carved vines climb the pillars on either side of the house door.",
+  "13099": "This is the front room of a modest dwarven house, snug and low-beamed, with a hearth swept clean and a heavy table scarred by long years of meals. Pegs on the wall hold a few threadbare cloaks, and a shuttered window lets in a thin slant of lamplight from the street. Blankets lie folded on a bench by the fire. The door to the south leads back out onto Bolgrim's Way.",
+  "13038": "The road widens into a cobbled yard before the watchtower, whose walls of grey stone rise straight up to the roof of the mountain. A heavy door to the east stands ajar, the entrance to the guard room, and a worn mounting-block squats beside it. Bolgrim's Way comes in from the west, and Fain's Highway leaves south along a gentler slope. Scorch marks blacken the cobbles, souvenirs of some old fight.",
+  "13039": {
+   "description": "The guard room is cramped and smoky, with a squat iron stove, a rack of dented shields on one wall, and a table pitted by dagger points. Maps of the city's tunnels are pinned up, curling and brown. A stair of iron spirals upward through a hole in the ceiling, ringing faintly whenever the draught stirs. The door to the west opens onto the yard before the watchtower."
+  },
+  "13041": "The iron staircase winds in a tight spiral inside the watchtower's shaft, each step a perforated plate that shows glimpses of the dark below. The handrail is cold and pitted with rust, and the whole structure hums softly under any weight. Arrow slits cut through the thick wall at each turn let in thin bars of grey light. The stair leads up to the top of the tower and down to the guard room.",
+  "13042": "The watchtower's summit is a round platform of fitted stone, ringed by a crenellated parapet that overlooks the whole upper city. From here the Central Plaza looks like a dim coin, and the dark roads below are strung with the occasional lamp. A great iron brazier, long cold, holds a drift of grey ash, and the cracked signal-horn mounted beside it has not sounded for years. The only way down is the iron stair.",
+  "13043": "Fain's Highway starts here as a wide thoroughfare running away from the watchtower, its centre line marked by a strip of bronze studs worn bright by wheels. A door of dark oak on the east side opens into a private home, its brass knocker shaped like a dwarf's fist. Gutters run along either kerb, choked with the black mud of years. The highway goes north to the watchtower yard and south along the tunnel city.",
+  "13098": "A tidy dwarven parlour with a low ceiling of dark beams, where an iron kettle hangs over a cold hearth and a faded rug lies before it. Shelves along one wall hold crocks and a few leather-bound ledgers. Chalk tally marks on the mantel record some forgotten household reckoning. The only way out is the door to the west, onto Fain's Highway.",
+  "13044": "A dark alley mouths on the west side of the highway here, a slot of deep shadow between two blank-walled warehouses. The highway itself is lit by a pair of wall-lamps burning a sullen yellow, the only ones still tended in this stretch. Stains and scrapes on the paving tell of fights that were never reported. North the highway runs back toward the watchtower, and south it descends the slope.",
+  "13045": "The door of an abandoned house stands crooked on its hinges to the east, its lintel marked with a chalk cross, the old sign that none live within. Pale fungus pushes up between the cobbles at the foot of the wall. Across the highway a row of iron hitching posts leans like drunks at closing time. Fain's Highway runs on north and south.",
+  "13104": "Dust lies over everything in this house, thick enough to show a single line of prints crossing the floor from door to hearth. Chairs are overturned, a cupboard hangs open, and plaster has fallen in grey lumps from the ceiling. A cold fireplace gapes in the far wall, a few charred sticks still in the grate. The door to the west lets in a thin lamp-glow from the highway.",
+  "13046": "A broad archway of polished granite marks the entrance to the Hall of Weaponry on the east side, carved with crossed axes and a battle-scene in shallow relief. Shop-signs of other trades hang rusted from brackets up and down the highway. The paving is smoother here, laid by better masons than those who built the rest. Fain's Highway continues north and south.",
+  "13093": {
+   "description": "Long racks line the walls of this lofty hall, mostly bare now, with only the outlines of what once hung there picked out in clean stone behind them. A forge-hearth in the corner is cold, and the great stone anvil beside it is dented by countless blows. The vaulted ceiling is stained with the smoke of generations of smiths. The archway on the west side leads back to Fain's Highway."
+  },
+  "13047": "Fain's Highway meets Durgar's Street here at a rough crossing, the cross-street running away west toward the plaza. On the east side, a boarded door under a rotted lintel marks another abandoned house. A milestone at the corner, carved as a seated dwarf with a beard to his knees, gives distances in a script few can read now. The highway runs on north and south.",
+  "13105": "A long-empty house, its shutters nailed across the windows and its door hanging by a single strap of leather. In the main room the furniture has been dragged into a heap in one corner, and a moth-eaten tapestry sags on its rod. Fine pale roots of some fungus have lifted several flagstones. The way out is back through the door to the west.",
+  "13048": "Helm's Armory squats to the west in a stout building of riveted iron plates, a great shield of beaten bronze hanging over its door. The sounds of the street are dulled here, as if the heavy walls swallowed them. Deep wheel-ruts in the paving show where armour carts once made their deliveries. North and south the highway goes on.",
+  "13049": "The highway slopes down toward the mining district, and the air grows heavy with the smell of coal-smoke and hot metal. An abandoned house stands to the east with its windows gaping like missing teeth. Grit and slag have been tracked up the road on miners' boots, and the paving here is black. The highway leads north back up the slope, and south into the Mining District.",
+  "13106": "The third of the empty houses along this stretch has fared worst: the roof has partly caved, and a heap of fallen stone fills one corner of the room. A faded mural of a bear-hunt covers the one wall still sound, blistered with damp. A draught whines through a crack in the ceiling. The door to the west is the only way out.",
+  "13050": {
+   "description": "Black slag heaps rise on every side, and the walls are streaked with the rust and soot of the ore-smelters that once roared here. Rails of rotting timber cross the floor where carts of ore once rolled between the workings, and a great cracked bellows hangs from a gantry overhead. The air tastes of old coal and iron. The highway climbs north, while Bard's Street leads off west along the face of the diggings.",
+   "look": "mine"
+  },
+  "13051": "Bard's Street begins here, lined with low, soot-grimed shops and tenements whose upper floors lean out until they almost touch overhead. A door to the south, under a painted sign of a barrel and a loaf, belongs to the Corner Store. The cobbles are black and slippery, and the gutter runs with a thin trickle of grey water. The street runs east to the Mining District and west along the tenements.",
+  "13109": "A cramped little shop, its counter scarred and its shelves mostly empty, with only a few jars and crocks lined up at the back. The ceiling is hung with iron hooks that once held smoked fish and sausage. A lantern on a chain gives a feeble, wavering light. The door to the north opens onto Bard's Street.",
+  "13052": "The tenements press close on both sides here, their stairwells open to the street and reeking of damp. Strings of dead lanterns are slung from window to window, and a shrine to some forgotten dwarf-saint is cut into the wall at head height, its candle-cup empty. A battered cart-wheel leans against a doorway. Bard's Street runs on east and west.",
+  "13053": "A crossing where Eryn's Road comes in from the north and Bard's Street runs on east and west. The corner building has a shop front of iron grilles, now locked, and its doorstep is worn into a shallow dish by many feet. A stone trough stands at the crossing, dry and green with old slime. Faint voices from the plaza sometimes echo down the road from the north, and are gone.",
+  "13080": "Eryn's Road ends in a short paved approach to the plaza, which glimmers dimly ahead to the north. The Cartographers' house stands to the east, its door set with a brass plate engraved with a compass, tarnished green. The road is clean and well swept here, as though the guild still cared about its doorstep. South the road meets Bard's Street.",
+  "13065": "The south arm of the plaza is a wide apron of paving, bounded by the dark arches of a colonnade whose pillars are carved like bundled axe-hafts. Ash-grey dust lies in drifts against the base of each column. A rusty iron lamp-standard leans at an angle, its crown of glass long gone. The plaza spreads on to the north, east and west, and Eryn's Road leaves to the south.",
+  "13064": "The plaza ends in a corner here, where two walls of carved stone meet in a point and a bench has been built into the angle. The carvings show a procession of craftsmen bearing the tools of their trades, and each has a different face. Lamplight is poor, and the corner is full of shifting shadow. The paving leads north to the East Plaza and west along the South Plaza.",
+  "13063": "The plaza's east edge is marked by a long low wall topped with iron spikes, behind which gardens of pale stone mushrooms once grew. Traders' pitches are scratched out in white on the paving, worn almost invisible. Durgar's Street leaves east through a gap in the wall. The plaza goes on north and south, and west to its centre.",
+  "13062": "This corner of the plaza is closed in by a collapsed arcade whose rubble spills across the flags in a fan of broken columns. A tall stone clock stands against the wall, its face gone black and its hands snapped off at the hour of some forgotten disaster. Dwarf-runes ring the dial. The plaza continues west to the North Plaza and south to the East Plaza.",
+  "13069": "Durgar's Street is a handsome avenue wide enough for a marching column, its flagstones laid in long bands of grey and ochre. Hanging signs on the north side advertise the Market Hall, while a creaking sign shaped like a brass bell marks the tavern to the south. The street runs east toward Fain's Highway and west to the plaza. Blackened lamp-brackets jut from every second pillar.",
+  "13070": "The market hall is a high stone barn of a room, its stalls ranged in orderly rows beneath a ceiling of painted beams that show the seasons of the world above. Most stalls are bare boards on trestles, though a few still carry faded awnings and counting-slates. Dust sits on everything in an even grey blanket. The only door is on the south side, onto Durgar's Street.",
+  "13071": "A big square taproom with a low beamed ceiling and a great hearth, where a huge bronze bell hangs above the bar and rings faintly when the draught moves. Long tables of black oak, scarred by generations of mugs, fill the floor, and the benches are worn pale by sitting. The smell of old ale has soaked into the very walls. The door north leads out to Durgar's Street.",
+  "13066": "A quiet corner of the plaza, where a bronze plaque set in the paving lists the names of the city's founders, half of them worn to nothing. A stone bench faces a wall of reliefs showing the first digging of the mountain. The lamps here have been unlit so long that their wicks have turned to stone. The plaza runs north to the West Plaza and east to the South Plaza.",
+  "13067": "The plaza's west edge opens onto Durgar's Street through a high gateway, its keystone carved with an anvil and a crown. A row of stone benches stands under a colonnade, their seats broken and furred with pale lichen. Light from distant lamps barely reaches the corners. The plaza goes on north and south, and east to its centre.",
+  "13068": "A tall house-front of rose-coloured stone rises to the north, its great double door topped with a carved stag's head, the mansion of Lord Stern. Iron railings enclose a forecourt of dead ornamental shrubs. The paving is swept clean in a path to the door, while elsewhere it lies thick with dust. The plaza runs east to the North Plaza and south to the West Plaza.",
+  "13107": "Lord Stern's hall is vast and hung with moth-eaten banners of crimson and gold, beneath a vault painted with the deeds of his forefathers. A long table of polished black stone runs the length of the floor, set for a feast that no one has come to eat. A gallery runs along the far wall, its balustrade broken in several places. The only door leads south onto the plaza.",
+  "13072": "Durgar's Street meets Valin's Road here in a wide junction, and a carved stone wellhead stands in the middle, its windlass long gone. The Ruby Inn lies to the north behind a window of red glass, and the vault-door of Clem's Bank squats to the south. The street continues east toward the plaza, and Valin's Road runs away west. A bar of pale light from a high shaft falls across the wellhead.",
+  "13073": "The Ruby Inn's entrance hall glows dull crimson from windows of red glass, and a long polished counter of dark wood runs along one wall. A stair climbs up to the reception rooms above, and an archway on the west side opens on the common room. The floor is strewn with rushes gone brittle and brown, and the lamps are unlit. The street door is south.",
+  "13074": "A long, low common room with a fireplace big enough to roast an ox, now cold. Dozens of mismatched stools and benches are pushed against the walls, and a dartboard of pitted wood hangs askew. A mural of dwarves at a feast has been half washed away by seepage. The only way out is the archway to the east.",
+  "13075": "A quiet upper chamber with a writing desk, a bell-pull of tarnished velvet, and a ledger the size of a paving slab chained to the counter. Faded portraits of the inn's owners watch from the walls, their eyes mostly scratched out. The air is stuffy and smells of old paper. A stair leads down to the lobby of the Ruby Inn.",
+  "13076": "A vault of grey stone, its walls lined with iron-bound strongboxes that stand open and empty. A heavy teller's counter is guarded by thick brass bars, and a great scale hangs over it, its pans bent. The ceiling bears a mosaic of coins and a laughing dwarf with a ledger. The only way out is north, onto Durgar's Street.",
+  "13059": "Valin's Road is a handsome thoroughfare of pale paving, running between the walls of the great houses. A door of carved cedar to the west belongs to a noble family now vanished, and the golden anvil of its crest is flaking. The road runs north up a gentle ramp, south toward the workings, and east to join Durgar's Street. Ornate lamp-standards line the roadway, every one of them dark.",
+  "13026": "The road continues here between rows of walled gardens, their rock-cut beds long since overgrown with pale tangled roots. A gateway in the west wall gives onto another noble house, its door ajar. A statue of a dwarf lord lies in the road, toppled from its plinth and cracked in two. Valin's Road runs on north and south.",
+  "13027": "The smell of long-dead ovens lingers about this stretch of Valin's Road, where a broad doorway to the west leads to the Baker's Guild. A painted wheatsheaf above the door has weathered to a brown smear. Spilled flour has caked on the doorstep like dried plaster. The road runs on north and south.",
+  "13029": "This was once a busy junction of Valin's Road, where a shop opens to the east and a gated house stands to the west. The paving is worn into a dip in front of the General Store, where customers used to queue. Over the house a canopy of carved stone leaves hangs, its edges chipped. Valin's Road goes on both north and south from the junction.",
+  "13031": "The road ends in a broad terrace before the Grand Stairs, which sweep north into the lofty hall beyond, flanked by pillars carved as dwarf-warriors. A noble house stands to the west behind a fence of black iron spears. The terrace is littered with fragments of a smashed fountain. The road runs back south.",
+  "13060": "The Grand Stairs rise in a magnificent sweep of white marble, wide enough for twenty dwarves abreast, though the stone is cracked and stained with black. At the head of the flight the way up stands open, a tall archway giving onto the upper halls, no longer barred. A passage leads east onto Bolgrim's Way, and the terrace outside lies south. A carved balustrade follows the stairs, its newel posts shaped like crowned lions.",
+  "13033": "Bolgrim's Way begins at the foot of the Grand Stairs, whose pale marble flanks the road to the west. A narrow door in the south wall, half hidden by a drooping canopy, leads into Buccia's Alley. The paving is laid with river-pebbles brought long ago from the surface. The Way runs on east toward the jewellers.",
+  "13034": "A glass-fronted house of white stone stands on the north side, its lintel carved with faceted gems: the House of Gems. Its windows are shuttered with iron grilles, and a stone dwarf in armour stands on each side of the door. Bolgrim's Way continues east toward a crossroad and west toward the stairs.",
+  "13035": "The jeweller's showroom has glass-topped cases set along its walls, empty save for scraps of velvet. A chandelier of cut crystal hangs from the ceiling, dull with dust. Mirrors behind the counter have clouded to the colour of pewter. The way out is south, onto Bolgrim's Way.",
+  "13110": "A cramped alley slopes down between the high backs of mansions, its cobbles slick with seepage. Tangles of wire and old rope hang between the walls, strung with the remnants of washing lines. The only light comes from a shuttered lamp at the head of the alley. The alley winds south and opens north onto Bolgrim's Way.",
+  "13111": "A slight bend in the alley, where the walls lean toward each other until they almost meet overhead. A stone drain runs down the centre, gurgling faintly. Chalked arrows on the wall point the ways out, and beside them is a word in an unreadable hand. The alley goes north toward its head and east to a longer stretch.",
+  "13112": "The alley runs along the back of a long building, and a smell of stale beer and frying grease drifts from an open arch to the south, the way into the Golden Plough. Barrel staves and broken crates are stacked against the wall. A hanging lamp in an iron cage gives a weak orange glow. The alley turns back west.",
+  "13113": "The Golden Plough is a noisy tavern room gone silent, with a great wheel of a plough hung above the hearth and its brass long tarnished. Tables are heaped with upturned stools, and a counter of scarred oak is lit by a single guttering lamp. A heavy door in the south wall leads to the back room. The alley lies north.",
+  "13114": "A windowless back room, with a rough table, a rack of casks, and a trapdoor in the floor that stands wide open on a ladder of cold iron. A draught of mineral-scented air rises from the dark below. The wall is scratched with tally-marks and the initials of smugglers. The door north leads back to the tavern.",
+  "13100": "The hall of a once-grand house, its floor of black and white tile now cracked, and its walls hung with the pale ghosts of vanished paintings. A chandelier of rusted iron lies in a heap in the middle of the room, where its chain gave way. Gilded door-frames hang open on empty rooms. The great door in the east wall leads out to Valin's Road.",
+  "13030": "The general store is long and narrow, shelves stretching to the roof beams and ladders on brass rails. Most shelves are bare, though a few crates remain, nailed shut. A scale on the counter is clogged with rust, and an old ledger lies open to a page of faded sums. The door to the west leads out to Valin's Road.",
+  "13101": "A drawing room with a hearth of carved marble and a pair of high-backed chairs, their upholstery eaten to the stuffing. Heavy curtains of green velvet hang rotting from their rods. A harp with a few snapped strings leans in the corner, gathering dust. The door in the east wall leads back to Valin's Road.",
+  "13028": "The guild hall is dominated by a vast brick oven, big enough to bake a hundred loaves at once, its iron door hanging open on a black mouth. Long tables stand floured with the dust of years, and a wall of pigeonholes holds the guild's rolls and seals. A bronze plaque lists the masters of the craft. The door to the east leads back to Valin's Road.",
+  "13102": "A long dining hall, its table a single slab of grey granite ringed with high-backed chairs of black wood. Silver candle-stands, green with tarnish, still march down the middle of the board, each stub of wax burned to a puddle. Tapestries of a boar hunt hang in rags from the walls, and the hearth is choked with old soot. The door in the east wall leads back out to Valin's Road.",
+  "13058": "Valin's Road dips here toward the working quarter, the fine paving of the nobles' houses giving way to plain flags rutted by heavy cart-wheels. A door of thick planks to the west bears the iron-bound crest of Lord Brute, a boar's head above crossed picks. Soot has begun to stain the walls and the lamp-standards. The road runs north toward the great houses and south toward the diggings.",
+  "13057": "The road narrows and slopes downward, the pale stone of the nobles' quarter turning to rough grey flags blackened with soot. Gouges left by iron-shod wheels score the paving in deep parallel lines. A leaning signpost with its arms snapped off stands at the edge of the road, its lettering scoured away. Valin's Road climbs back north, while to the south the air thickens with the taste of smoke.",
+  "13056": {
+   "description": "The heart of the mining quarter is a ragged square of trampled slag, ringed by sheds and pit-head frames, where the diggers once gathered at the shift-bell. A rusted bell hangs from a timber gantry, its clapper gone. Water drips from a split spout into a trough stained orange. Valin's Road climbs away north, and Bard's Street leads off east between the lodgings.",
+   "look": "mine"
+  },
+  "13055": "Bard's Street is lined here with the narrow doors of miners' lodgings, row on row, each with a chalked number faded to a ghost. A wide double door in the north wall, painted with a pair of crossed picks, is the entrance to the Miner's Hall. Boots have worn its step to a smooth hollow. Bard's Street runs east, and west toward the square of the Mining District.",
+  "13090": "A low timbered hall where the miners' guild once held its meetings and paid out wages at a long counter. Benches are ranged along the walls, and the pay-window is shuttered with an iron grille. A door in the north wall, black with grease, leads to the shaft-head, and an opening to the west gives onto the guild office. The street entrance stands to the south.",
+  "13091": {
+   "description": "A square pit-head built of massive timbers, with the great wheel of a winding-gear overhead, its rope long since rotted away. The floor is a platform of planks laid around a black opening, from which a cold breath rises with a smell of wet stone. The gate that once locked the way down has been thrown wide, and iron rungs lead into the darkness. The door south leads back to the hall.",
+   "look": "mine"
+  },
+  "13092": "A cramped office with a slanted drafting desk, pigeonholes stuffed with survey scrolls, and a wall-map of the galleries inked in a careful, faded hand. Red lines mark the seams that were richest, and black crosses mark the places where roofs fell in. A stub of candle has melted into a saucer. The only way out is the opening east, into the hall.",
+  "13054": "Bard's Street ends in a stretch of loading bays, and a heavy door of iron-bound planks to the north leads into the mineral storage. Rusty streaks stain the ground below a crane-arm hung with frayed chains. The street runs east toward Eryn's Road and west toward the miners' halls. A single lamp over the door burns a dim, steady blue.",
+  "13096": "A long warehouse of stone bays, each one heaped with spilled chips of coloured rock: green, ochre, grey-blue. Scales hang on iron arms over every bay, and sorting-tables stand nearby, riddled with the pits of countless hammer-blows. The air tastes of dust. The door to the south leads out to Bard's Street.",
+  "13097": "The residence of Lord Brute is a fortress of a house, its hall hung with the tusked heads of boars and the shields of defeated rivals. A great chair of black iron stands on a dais, its arms worn bright by a heavy hand. The floor is scored with the scrapes of dragged furniture, as if the household left in a hurry. The door in the east wall opens on Valin's Road.",
+  "13103": "A noble bedchamber, its great bed canopied in dust-grey brocade, and its wardrobe doors hanging open on empty hooks. A dressing-table holds a cracked mirror and a dried-up pot of paint. Over the mantel hangs a portrait of a stern dwarf lady, her face slashed by some vandal. The door to the east leads out to Valin's Road.",
+  "13108": "The cartographers' workshop is lined with sloping tables, where yellowed maps of the roads and tunnels are pinned down by lead weights. A great painted globe of the underworld stands in the corner, its lower half cracked. Brass compasses and dividers hang on the walls, dull with age. The door to the west opens on Eryn's Road.",
+  "13094": "The armory smells of cold iron and oil. Rows of empty stands shaped like dwarves with raised arms line the walls, awaiting plate that was sold off or stolen. A great bellows hangs over a forge-pit and a pair of tongs lies rusting on the anvil. The door to the east leads out to Fain's Highway.",
+  "13088": "Darkness crowds this stretch of the alley, and the walls lean in from both sides until the ceiling of the mountain is lost above. A thread of green light shows beneath a door in the south wall, the entrance to the Shop Of Small And Wondrous Things. Puddles of black water lie between the cobbles. The alley runs east toward Fain's Highway and west into deeper shadow.",
+  "13089": "Shelves and glass cases crowd every wall of this narrow shop, crammed with curiosities and oddments of brass and glass. A clockwork bird perches on the counter, its wings frozen halfway through a beat. Lamps of coloured glass cast a mottled light on the ceiling. The way out is north, into the alley.",
+  "13087": "The alley mouth opens west onto Eryn's Road, a dim rectangle of lamplight at the end of the passage. The walls are sooty, scrawled over with thieves' marks and tally-lines. A drain runs down the middle, clogged with old rubbish. The alley goes on east, deeper into the dark.",
+  "13095": "A wizard's shop of crooked shelves, the floor scrawled with sigils in white chalk and a brazier of violet embers burning cold in one corner. Strings of dried herbs and bundles of feathers hang from the rafters. The shop sign swings above the door with a faint squeak. The door in the north wall leads back out to Bolgrim's Way.",
+  "13085": "The prison is a squat guardroom of grey stone, with a table scarred by knives and a rack of iron keys hanging on hooks. Manacles are bolted to a post in the middle of the floor. A heavy iron door in the west wall leads to the cell beyond, and the street lies to the east. The air is sour with damp and old sweat.",
+  "13086": {
+   "description": "A tiny cell, a bare stone floor and a rock shelf for a bed, with iron staples in the wall where chains once hung. Scratched tallies cover one wall in uneven rows of five. A narrow barred slit lets in a sliver of dim lamplight. The iron door to the east opens onto the prison.",
+   "look": "dungeon"
+  },
+  "13084": "Rows of bunks line the walls of the barracks, each with a footlocker and a grey blanket tucked tight. Pegs hold the shadows of armour that no longer hangs there, and a long table in the middle carries the ring-marks of many mugs. A regimental pennant, black with soot, droops from a pole. The only exit is the door to the east, onto Eryn's Road.",
+  "13081": "The headquarters is a stone hall with a long counter, a notice board of curling bills, and a wall-map of the city bristling with pins. A brazier stands cold in the middle of the floor. Doors lead north to the officers' room and east to the sleeping quarters. The street lies to the west.",
+  "13082": "A tidy room with a brass-bound desk, a map table, and a rack of ceremonial halberds standing in the corner. A hat-stand holds a captain's plumed helm under a coat of dust. The window is just a slit onto an airshaft. The only door leads south into the headquarters.",
+  "13083": "Cots stand in rows under a low vaulted ceiling, blankets folded at their feet, a cold stove squatting in the middle of the room. The air is stale with years of sleeping soldiers. A single lantern hangs unlit from a hook above the door. The only way out is west, into the headquarters."
+ },
+ "extras": {
+  "13047": [
+   {
+    "keywords": "milestone dwarf seated",
+    "description": "The milestone is cut as a seated dwarf with his hands on his knees, and the distances to the gates and the mines are scored down his beard in rune-script. Someone has scratched out the figure for the stronghold and cut a crown in its place."
+   }
+  ],
+  "13091": [
+   {
+    "keywords": "gate rungs opening",
+    "description": "The iron gate hangs from one hinge, and its lock has been cut through. The rungs below it are worn bright in the middle, as if used often and lately."
+   }
+  ],
+  "13025": [
+   {
+    "keywords": "fountain statue basin",
+    "description": "The dry fountain is ringed with carved water-lilies, and its statue of a dwarf holding a ladle has lost an arm. Dark stains in the basin show where it once held water."
+   }
+  ],
+  "213015": [
+   {
+    "keywords": "portcullis gate banners",
+    "description": "The portcullis bars are as thick as a dwarf's thigh and crusted with rust, but scraped bright where something heavy has been dragged beneath them. Beyond the half-raised teeth, a ramp of dressed stone climbs into the stronghold."
+   }
+  ],
+  "13022": [
+   {
+    "keywords": "kings relief pillar",
+    "description": "Carved on the pillars are eight dwarf-kings in procession, the foremost bearing a key. Valin's name is cut beneath him, with the date of the founding."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "dwarf-citizen",
+   "keywords": "dwarf citizen townsman",
+   "short_desc": "a gaunt dwarf citizen",
+   "long_desc": "A gaunt dwarf citizen hurries past, hugging a worn cloak and glancing at the shadows.",
+   "description": "A short, broad dwarf with a greying beard braided in mourning knots. His coat was fine once, but is darned and patched at the elbows, and he eyes you with wary, tired courtesy.",
+   "kind": "humanoid",
+   "level": 33,
+   "aggressive": false,
+   "alignment": 300,
+   "sectors": [
+    "city"
+   ],
+   "count": 7,
+   "drops": []
+  },
+  {
+   "id": "renegade-guard",
+   "keywords": "renegade dwarf guard soldier",
+   "short_desc": "a renegade dwarf guard",
+   "long_desc": "A renegade dwarf guard stands watch with a notched axe, his livery stripped of the city's crest.",
+   "description": "The dwarf wears the grey tabard of the city watch, the crest torn off and replaced with a crude crown daubed in red. His helm is dented, his eyes hard, and he grips his axe like a man who has already chosen a side.",
+   "kind": "humanoid",
+   "level": 36,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Valin's Gate",
+    "Guardhouse",
+    "Before The Watchtower",
+    "A Guard Room",
+    "The Cityguard's Headquarters",
+    "Guards Barracks",
+    "Durgan's Gate",
+    "The Gate To The Stronghold"
+   ],
+   "count": 7,
+   "drops": [
+    {
+     "item": "guards-tower-shield",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "tunnel-spider",
+   "keywords": "pale tunnel spider",
+   "short_desc": "a pale tunnel spider",
+   "long_desc": "A pale tunnel spider clings to the rock overhead, its many eyes catching the lamplight.",
+   "description": "The spider is as big as a wolf, bloated and bone-white from a life without light. Its legs end in hooked claws that rasp on the stone, and thick strands of grey silk trail from its spinnerets.",
+   "kind": "animal",
+   "level": 34,
+   "aggressive": true,
+   "alignment": -100,
+   "rooms": [
+    "The Main Tunnel",
+    "A Bend In The Tunnel"
+   ],
+   "count": 7,
+   "drops": [
+    {
+     "item": "tunnel-silk-cloak",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "stone-golem",
+   "keywords": "stone golem guardian",
+   "short_desc": "a hulking stone golem",
+   "long_desc": "A hulking stone golem stands motionless among the pillars, until it turns its blank face toward you.",
+   "description": "The golem is hewn from a single block of grey granite, carved in the likeness of a dwarf in plate armour. Rune-lines glow dull orange in its chest, and each slow step shakes dust from the vault above.",
+   "kind": "monster",
+   "level": 42,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Hall Of Splendor",
+    "The Ambassadors Halls"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "golem-heartstone",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "usurpers-champion",
+   "keywords": "usurper champion dwarf warrior",
+   "short_desc": "the usurper's champion",
+   "long_desc": "The usurper's champion paces the tunnel in black plate, a warhammer resting on his shoulder.",
+   "description": "A massive dwarf in blackened plate, his beard bound in iron rings and his face scarred across both cheeks. He bears a crown stamped in red wax upon his breastplate and swings a warhammer as easily as a walking stick.",
+   "kind": "humanoid",
+   "level": 41,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Main Tunnel"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "guards-tower-shield",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "lord-stern",
+   "keywords": "lord stern turncloak noble dwarf",
+   "short_desc": "Lord Stern the Turncloak",
+   "long_desc": "Lord Stern the Turncloak sits at his long table in crimson and gold, a drawn blade across his knees.",
+   "description": "Lord Stern is a lean, silver-bearded dwarf in the faded finery of an old noble house. He sold his city's gates to the usurper for a promise of power, and the sleepless pallor in his eyes tells how well that bargain has served him.",
+   "kind": "humanoid",
+   "level": 41,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "Lord Stern's Mansion"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "sterns-signet-ring",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "hrodgar-ironcrown",
+   "keywords": "hrodgar ironcrown usurper dwarf king",
+   "short_desc": "Hrodgar Ironcrown, the usurper king",
+   "long_desc": "Hrodgar Ironcrown, the usurper king, stands before the great gate with a crown of black iron on his brow.",
+   "description": "Hrodgar is broad as a door and nearly as hard, clad in ancient king's plate stolen from the stronghold's vault. His beard is shot with iron wire, and in his fist he carries a cleaver-axe that has tasted the blood of the old royal line.",
+   "kind": "humanoid",
+   "level": 43,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "The Gate To The Stronghold"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "ironcrown-cleaver",
+     "chance": 35
+    },
+    {
+     "item": "sterns-signet-ring",
+     "chance": 10
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "ironcrown-cleaver",
+   "keywords": "ironcrown cleaver axe",
+   "short_desc": "the Ironcrown cleaver",
+   "room_desc": "A broad-bladed cleaver-axe of black iron lies here.",
+   "description": "A broad-bladed axe of black dwarven iron, its haft bound in strips of royal purple. A crown is etched on the blade, and the edge still holds a wicked shine.",
+   "kind": "weapon",
+   "level": 43,
+   "weapon_type": "slash",
+   "bonus": {
+    "damroll": 2
+   }
+  },
+  {
+   "id": "sterns-signet-ring",
+   "keywords": "stern signet ring gold",
+   "short_desc": "Lord Stern's signet ring",
+   "room_desc": "A heavy gold signet ring lies here.",
+   "description": "A heavy ring of red gold set with a flat stone, bearing the crest of a stag over an anvil. The band is worn thin on the inside from long wearing.",
+   "kind": "armor",
+   "level": 41,
+   "wear_slot": "finger",
+   "bonus": {
+    "cha": 1
+   }
+  },
+  {
+   "id": "golem-heartstone",
+   "keywords": "heartstone golem stone red",
+   "short_desc": "a golem's heartstone",
+   "room_desc": "A fist-sized red stone, faintly warm, lies here.",
+   "description": "A fist-sized stone of deep red, scored with a ring of tiny runes. It stays faintly warm to the touch, and jewellers would pay well for it.",
+   "kind": "treasure",
+   "level": 42
+  },
+  {
+   "id": "guards-tower-shield",
+   "keywords": "tower shield iron guard",
+   "short_desc": "a dented iron tower shield",
+   "room_desc": "A dented iron tower shield lies here.",
+   "description": "A tall shield of riveted iron, scored by axe-blows. The crest of the city watch has been hammered flat on its face.",
+   "kind": "armor",
+   "level": 36,
+   "wear_slot": "shield",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "tunnel-silk-cloak",
+   "keywords": "silk cloak pale spider",
+   "short_desc": "a pale spider-silk cloak",
+   "room_desc": "A pale, glimmering cloak of spun silk lies here.",
+   "description": "A cloak woven from the pale silk of tunnel spiders, light as breath and surprisingly strong. It clings to the shoulders like cobweb and turns aside a glancing blow.",
+   "kind": "armor",
+   "level": 34,
+   "wear_slot": "about",
+   "bonus": {
+    "dex": 1
+   }
+  }
+ ]
+}

@@ -1,0 +1,515 @@
+{
+ "job": "z501",
+ "rooms": {
+  "24702": "A bridge of carved stone leaps the ravine, its parapets worn smooth by long ages of boots and weather. The iron gate at the bridge's head now stands open, and the way runs back west toward the badlands. Far below, a pale thread of water glints in the gorge, and the wind sings through the gap in one low note. Ahead, east, the span ends at a broad stone landing under the mountain's shoulder.",
+  "24703": {
+   "description": "The bridge ends in a vaulted landing cut straight into the mountain's flank, where the roof is low and soot-stained from old braziers. Wet gusts from the ravine still push through the arch behind you to the west. Rune-carved lintels mark the way out east, and the floor is worn into two shallow troughs by the wheels of ore carts. The air smells of cold iron and woodsmoke.",
+   "look": "cave"
+  },
+  "24704": "A rocky path winds up from the landing, a ribbon of pale gravel between heaps of broken grey stone. Cairns of fist-sized rocks stand at the verge, set there by dwarven hands to keep travellers from the ravine's lip. Thin grass shivers in the wind that comes off the gorge. The path runs on east toward the mountain, and west it drops back to the landing.",
+  "24705": "The path narrows here between two shoulders of weathered rock, and the gravel gives way to bedrock scored with old wheel ruts. A twisted thorn clings to a crack in the wall, its few leaves rattling dryly. Ahead the ridge looms, dark and bare, and somewhere beyond it a hammer rings faintly on stone. The path leads on east, while west it runs back toward the bridge landing.",
+  "24706": "The path widens into a rough crossing of trampled gravel where a lesser track branches away south across the rocky plain. A squat waymark of piled stones leans at the fork, its top painted with a faded rune of welcome. Wind-bent tufts of heather cling in the lee of the boulders. The main path runs east to the village gate and back west along the ravine.",
+  "24707": "A tall wall of dressed stone rises in front of the mountain, and the great gate of Aredrel Dwarven yawns just ahead, east. Its posts are carved with knotted beards and crossed hammers, and a lantern of green glass hangs from a bracket, throwing an emerald glow over the cobbles. Fine dust from many boots lies drifted against the wall. West, the rocky path dwindles away toward the ravine.",
+  "24708": "Inside the gate stands a small paved court, ringed by squat towers whose slit windows overlook the path. A great oaken door banded with iron stands in the cliff face ahead, east, and the green lamplight of the cave glows beneath it. Two stair-turrets rise at the court's edges, to the north and to the south. West, the gate arch opens on the rocky path outside.",
+  "24709": "The watchtower rises from the courtyard's corner, a stout drum of grey stone chinked with mortar and lichen. Arrow slits stare out over the rocky plain, and an iron-banded door at its foot stands ajar on a spiral stair that climbs up. A rack of weathered practice staves leans against the wall. South, the court of the gate lies open to the wind.",
+  "24710": "A round stone chamber crowns the tower, its walls pierced with narrow embrasures that let in thin streaks of daylight. A brazier of black iron squats in the middle of the floor, ringed with ash and the scorched stubs of old fires. A horn of beaten brass hangs on a peg by the stair, and a signal-lantern waits beside it. The only way out is the stair spiralling down to the court.",
+  "24713": {
+   "description": "Beyond the great door the rock opens into a high hall hewn from the living mountain, its walls veined with seams of green that glitter in the lamplight. Pillars of uncut stone rise to a ceiling lost in shadow, and the air is warm and smells of coal smoke and baked bread. Far down the hall, east, a pulse of hammering carries on the draught. The oaken door lets in the daylight from the west.",
+   "look": "cave"
+  },
+  "24714": {
+   "description": "The main hallway runs on through solid rock, wide enough for two ox-carts abreast and floored with flagstones worn hollow. Lanterns of green glass hang from iron hooks along the walls, each one casting a pool of emerald light across the stone. Fine veins of crystal glint in the roof like frozen stars. The hall continues east into the heart of the village, and west it returns to the great entrance.",
+   "look": "cave"
+  },
+  "24715": {
+   "description": "Here the great hallway divides, with passages leading away north and south into the dim stone. Worn runes cut into the corner pillar name the districts beyond, their letters polished by countless passing hands. A cool breath of air flows down the northern passage, while the southern one carries a faint scent of ale and warm bread. West, the hall runs back to the cave's entrance.",
+   "look": "cave"
+  },
+  "24716": {
+   "description": "The hallway bends sharply here, turning from the long southward run toward the east. The rock wall on the outside of the curve is rubbed shiny where a thousand shoulders have brushed past. A small niche holds a smoky oil lamp and a clay jar of spare wicks. The passage leads on east, and south it returns to the junction.",
+   "look": "cave"
+  },
+  "24717": {
+   "description": "Four passages meet in a round chamber of fitted stone, its ceiling a shallow dome carved with a ring of crossed hammers. A tall pedestal in the centre holds a lamp of green glass, its glow rippling in the draught. The way continues east and west along the hallway, and a broad passage leads north toward the village quarter. Scratches on the floor mark where carts have turned.",
+   "look": "cave"
+  },
+  "24743": {
+   "description": "The northern hallway runs straight and narrow, its walls hewn smooth and set with iron rings for torches. The floor slopes very gently upward, and the air feels fresher, as if it had travelled through some hidden shaft from the open sky. A faint trace of woodsmoke clings to the roof. North the passage carries on, and south it returns to the junction.",
+   "look": "cave"
+  },
+  "24744": {
+   "description": "Long scrapes along the lower walls tell of barrels and crates dragged this way for years. Between the lamps the stone is dark and cold, and the quiet is broken only by the drip of water somewhere out of sight. A line of runes, half worn away, runs along the lintel overhead. The hallway goes on north, and south it leads back toward the main junction.",
+   "look": "cave"
+  },
+  "24745": {
+   "description": "The hallway swings here in a tight curve, the outer wall bulging where the masons followed a vein of hard rock. A single green lantern burns above a wooden bench no one has sat on in a long while. Cold air creeps along the floor. West the passage bends on, and south it runs back down the straight hall.",
+   "look": "cave"
+  },
+  "24746": {
+   "description": "The passage turns north again after its long bend, and the stone here is cleaner, the floor swept and sanded against slipping. Carved on the wall is a bearded face with eyes of inlaid emerald, so old that the nose is worn flat. A warm glow ahead promises the village. The way leads on north, and east it bends back along the hall.",
+   "look": "cave"
+  },
+  "24747": {
+   "description": "The tunnel opens out into a wider antechamber at the very edge of the village district. Painted pennants of faded wool hang from the roof beams, each stitched with the sign of a dwarf clan. A stone trough runs along one wall, full of sand for quenching boots and lamps. South the passage narrows down toward the hallway, and ahead north the village hallway begins.",
+   "look": "cave"
+  },
+  "24760": "Four hallways meet at the village's crossing, where the roof is high and the floor is worn with the tread of generations. A heavy oak door bound in iron stands in the northern wall, marked with the crossed axes of the village guard. Hallways run away east and west, curving out of sight beneath hanging lamps. Water gurgles in a stone gutter along the base of the walls, and south the passage runs back toward the antechamber.",
+  "24734": "The barrack is a long low room of whitewashed stone, lined with plain bunks and chests bolted to the floor. Racks along the walls hold hammers and spears gone dull with use, and a table scarred by dagger-points stands in the middle. A chart of the cave's tunnels is pinned above the hearth, its corners curled with smoke. The only door leads south into the village hallway.",
+  "24758": "The village hallway curves here, narrowing between smooth walls of pale stone. A shuttered window set in the rock lets out the warm smell of a cooking fire, and a brass doorknocker in the shape of a ram's head gleams on a door in the eastern wall. Boot-scrapers of black iron stand beside every threshold. North the hallway climbs on, and west it runs back to the crossing.",
+  "24757": "The hallway runs straight along a row of narrow doors, their frames carved with names in blocky runes. Pots of pale cave-mushrooms sit on the sills, glowing a soft, sickly white. The floor is polished by years of sweeping, and a bucket of sand stands by the wall. The hall runs on north and returns south toward the bend.",
+  "24755": "The hallway swings here around a thick pillar of stone, its surface carved with a long procession of bearded kings. A door of dark oak stands set in the eastern wall, with a lamp of green glass above it, still warm. The air hums with the thud of some distant forge. West the hallway leads on, and south it returns to a straight run.",
+  "24756": "This low, snug dwelling is crammed with stout furniture made to a dwarf's measure. A fire crackles in a stone hearth, throwing ruddy light over a table scattered with wooden bowls, and a rack of copper pans hangs from the beams. Rugs of coarse wool cover the flagstones, and a ladder-backed chair sits by the fire. The only way out is the door west to the hallway.",
+  "24753": "This stretch of hallway is quiet and dry, with shelves of scroll-cases built into the walls on either side. A heavy door of black wood stands to the north, studded with brass and bearing a plaque in dwarven script. Dust gathers thickly in the corners, though the floor is carefully swept. The hallway goes on east and west.",
+  "24754": "Tall shelves of dark oak run to the roof, crowded with scrolls, ledgers and clay tablets, each in its own pigeonhole. A reading desk stands under a green-glass lamp, with a quill and a pot of dried ink left beside an open ledger. The room smells of vellum and old lamp oil. A narrow door leads south to the village hallway, the only way in or out.",
+  "24751": "The hallway bends at a corner where two walls meet at a sharp angle, and a small shrine to the forge-father has been set into the stone. A bowl of cold ash and a little carved hammer lie in the niche. A door in the western wall stands half open, letting out the sweet smell of baking. East and south the hallway carries on.",
+  "24750": "A narrow straight hallway, its ceiling so low that taller travellers must stoop beneath the lamps. The walls are hung with woven tapestries, faded from many years in the smoke, depicting battles under a green sky. A thin trail of sawdust marks the middle of the floor. The hallway leads north to a corner and south to a bend.",
+  "24748": "The hallway bends here beside the crossing, where a rain-barrel stands filled by a trickle from the rock. A rack of pegs holds heavy cloaks and leather aprons, left for all to borrow. In the western wall a round-topped door stands closed against the draughts. North the hallway runs on, and east it opens back to the crossing.",
+  "24759": "This house is cramped but cheerful, its ceiling of bare rock hung with bundles of dried herbs and strings of onions. A wide bed with a patchwork quilt fills one corner, and a cradle of carved pine rocks gently in the warm air. Mugs of horn and clay sit on a shelf above a squat iron stove. The door west gives onto the village hallway.",
+  "24752": "A smith's family keeps this house, to judge by the small anvil on the hearthstone and the tongs hanging by the chimney. Soot lies thick on the beams, and the floor is gritty with iron filings swept into neat piles. A heavy bed-chest stands under a window of green-tinted glass set in the stone. The door east returns to the hallway bend.",
+  "24749": "A neat, dark little dwelling, with a long table of scrubbed oak and benches worn smooth by generations of use. Rows of mugs hang on pegs above the hearth, and a copper kettle ticks as it cools. A carved wooden beard-comb sits on the mantel beside a clay pipe. The door east leads back out to the hallway bend.",
+  "24718": {
+   "description": "The main hallway turns a hard corner here, swinging around a pillar of living stone. The walls are streaked with rust-coloured seams, and a trickle of moisture shines on the floor in the lamplight. Somewhere in the distance a bell tolls once and falls silent. The passage leads south toward the junction, and west it runs back along the hall.",
+   "look": "cave"
+  },
+  "24719": {
+   "description": "This junction is the busiest in the hall, its floor worn into hollows and its walls scuffed to the height of a pack. Hallways lead away north and south around the bend, and a broad passage runs east toward the mining district. Lamps of green glass burn in niches at each corner, throwing long shadows. A faint rumble drifts in from deep in the mountain.",
+   "look": "cave"
+  },
+  "24761": {
+   "description": "The eastern hallway runs between walls of rough-cut stone, cooler and quieter than the main halls. Iron rails sunk into the floor tell of ore carts that once rolled here by the hour. Veins of green crystal glimmer faintly in the rock overhead. The hallway leads on east, and west it opens to the junction.",
+   "look": "cave"
+  },
+  "24762": {
+   "description": "The hall turns a sharp corner as the tunnel follows a seam of hard rock, and the air takes on a metallic tang. A rusty pick leans against the wall, forgotten, its handle split with age. Shallow puddles lie in the hollows of the floor, black and still. The passage runs on north, and west it returns along the hall.",
+   "look": "cave"
+  },
+  "24763": {
+   "description": "A straight run of tunnel, narrower than the rest, where the lamps hang far apart and shadows pool between them. Coal-dust smears the walls at shoulder height, and the floor is deeply grooved by the iron wheels of carts. A cold current flows steadily past, drawing the lamp-flames sideways. North and south the passage carries on.",
+   "look": "cave"
+  },
+  "24764": {
+   "description": "Rough steps cut into the floor mark a change of level as the tunnel curves to the east. Stout timbers prop the roof, and a rope handrail has been looped along the wall. The distant ringing of hammers is louder here and carries a strange, hollow note. The passage leads on east, and south it descends to the straight tunnel.",
+   "look": "cave"
+  },
+  "24765": {
+   "description": "The hall ends in a small round chamber with a wide stair spiralling down into the earth. A great wheel of black iron stands by the stairhead, wound with chain that disappears into the dark below. Warm air smelling of hot metal rises from beneath. West the hallway runs back to the bend, and the stair leads down to the mining district.",
+   "look": "cave"
+  },
+  "24766": {
+   "description": "The stair ends in a broad gallery cut into the ore-bearing rock, where the walls glitter with flecks of green and gold. Heaps of broken stone lie sorted by size beside a line of rusty carts. Smoke from a hundred lamps has blackened the ceiling, and pick marks score every surface. The gallery leads east into the diggings, and the stair climbs up behind you.",
+   "look": "mine"
+  },
+  "24767": {
+   "description": "The mining district stretches out in a long gallery braced with squared timbers, each one stamped with a clan-mark. Rails run down the middle of the floor, buckled by the weight of loaded carts. Hammers ring out ahead, sharp and quick, from some deeper seam. The gallery runs on east, and west it leads back toward the stair.",
+   "look": "mine"
+  },
+  "24768": {
+   "description": "The gallery bends around a great pillar left standing by the diggers, its surface scarred with notches counting the seams taken. A crate of spent candle-stubs and a tin lantern lie abandoned in a dusty alcove. The air is thick with stone-dust that tickles the throat. North the diggings continue, while west the gallery runs back toward the stair.",
+   "look": "mine"
+  },
+  "24769": {
+   "description": "This stretch of the mine is wide and ragged, the rock torn open by countless blows into a ceiling of jagged teeth. Ore carts stand tilted on a spur of broken rail, their iron beds red with rust. A damp breath rises from some deep opening ahead, north, where a rail of timber hangs across the dark. Behind you, south, the gallery curves back.",
+   "look": "mine"
+  },
+  "24770": {
+   "description": "A broad platform of timber and iron hangs above the mining shaft, ringed by a sturdy rail of oak. A cage-winch with a great drum of rope stands at its edge, and a lamp on a chain sways over the abyss. Below, the shaft plunges into utter blackness, and cold air rises with a faint, stony smell. The gallery lies south, while a ladder leads down into the shaft.",
+   "look": "mine"
+  },
+  "24771": {
+   "description": "Iron rungs bolted into the rock lead down the shaft's wall, slick with seeping water. The walls here are cut straight and true, though lichen blooms in pale patches. Overhead, the platform's lamp is a small yellow star, and below there is only darkness. A steady drip echoes and re-echoes. The rungs climb up to the platform and descend deeper.",
+   "look": "mine"
+  },
+  "24772": {
+   "description": "The shaft is narrower at this depth, and the walls close in until your shoulders brush the cold rock. Chisel marks run in neat rows beside the ladder, interrupted by long, ominous cracks. A foul smell of damp stone and old smoke seeps from below. Up the rungs lies the way back, and down they run into the dark.",
+   "look": "mine"
+  },
+  "24773": {
+   "description": "A rotted timber brace juts from the wall, half-fallen across the shaft and hung with a mat of grey roots. The ladder shudders when weight is put on it, and flakes of rust fall into the gloom below. Faint, stony sounds like slow breathing travel up from the depths. The ladder goes up toward the light and down into the shaft.",
+   "look": "mine"
+  },
+  "24774": {
+   "description": "Here the shaft widens into a crude ledge where the diggers once rested, with a bench of stacked stone and a scatter of old bones from their meals. Scratches on the wall, deep and recent, seem too large to be pick marks. A green glow wells up from below, faint and cold. The rungs lead up, and down to a platform just below.",
+   "look": "mine"
+  },
+  "24775": {
+   "description": "A platform of massive timbers is wedged across the foot of the shaft, bolted to the living stone with great iron pins. The air is colder and heavy, and the green glow is stronger, spilling from a doorway cut in the northern wall. The pit's walls above lose themselves in black, and the rungs climb up toward them. Beyond the heavy door north lies a guarded chamber.",
+   "look": "mine"
+  },
+  "24776": {
+   "description": "The door opens on a bare antechamber hewn from the mountain's deep heart, its roof low and rough and lit by a green radiance that has no lamp. Crystals the size of men's fists stud the walls and hum faintly. Heavy iron rings are set in the floor where gates once stood. The chamber runs north into the cave proper, and south returns to the shaft platform.",
+   "look": "cave"
+  },
+  "24777": {
+   "description": "Four tunnels meet in a wide cavern, and every wall is crusted with emerald crystal that drinks the lamplight and gives it back as a cold green fire. The floor is smooth, ground by feet over many centuries, and dust lies unbroken in the corners. Stalactites hang like spear-points overhead. Passages lead away north, east and west, and south the way returns to the antechamber.",
+   "look": "cave"
+  },
+  "24778": {
+   "description": "The tunnel narrows, its walls flowing with veins of green that pulse faintly, as if the stone had a heartbeat. An iron door is set in the western wall, its handle polished by many hands. Droplets cling to the crystals and fall into small basins worn in the floor. North the tunnel bends away, and south it opens to the crossing.",
+   "look": "cave"
+  },
+  "24779": {
+   "description": "A sharp bend where the tunnel doubles back on itself, the walls glossy with moisture and lined with crystal spikes. The green glow here is cold and shifting, throwing wavering shadows across the roof. A thin crack in the stone whispers with moving air. The tunnel leads on east, and south it returns toward the crossing.",
+   "look": "cave"
+  },
+  "24780": {
+   "description": "The tunnel runs level here, its walls scored by ancient tools and glimmering with green flecks. A heavy door in the northern wall, bound with iron, bears the mark of the old guard in rusted relief. The floor is cracked and pitted, with shallow pools lying in the lowest hollows. The way continues east and west along the tunnel.",
+   "look": "cave"
+  },
+  "24788": {
+   "description": "A guard chamber carved square from the stone, with a sentry bench and a rack for pikes along one wall. Iron lamp-hooks hang empty from the ceiling, and a table of black stone stands bolted in the middle. The floor is dusted with old ash, and the walls drip steadily with green-stained water. The only way out is the door south into the tunnel.",
+   "look": "cave"
+  },
+  "24781": {
+   "description": "The tunnel splits, its walls glowing with crowded emerald crystals that throw back every light a hundred times over. A door of iron-bound oak stands in the southern wall, scratched with warding signs. Loose stones lie scattered across the floor, shaken from the roof. The tunnel ends in a close chamber east, and west it leads back along the passage.",
+   "look": "cave"
+  },
+  "24782": {
+   "description": "The tunnel ends in a ragged cavern where the mountain's emerald heart lies exposed, a vast wall of green crystal rising out of sight. Great scars mar the floor, gouged by something heavy that has dragged itself back and forth. The air is thick, and the crystal hums with a low, resonant note you feel in your teeth. There is no other way out but west along the tunnel.",
+   "look": "cave"
+  },
+  "24789": {
+   "description": "This guard chamber has been wrecked in some long-ago struggle: the bunks are splintered, the shields are dented flat, and a toppled pike rack lies across the doorway. Dark stains mark the stone, and the green glow from the walls makes them look black. A cold draught moves around the edges of the room. The only door leads north back into the tunnel.",
+   "look": "cave"
+  },
+  "24787": {
+   "description": "A narrow chamber hacked from the rock, where a long bench runs under a row of rusted peg-hooks and a single squat brazier. The air is stale, and the crystal in the walls has turned a murky, smoky green. A dwarven helm lies crushed under the bench, old and forgotten. The door east leads out to the tunnel.",
+   "look": "cave"
+  },
+  "24783": {
+   "description": "The tunnel runs on beneath a ceiling studded with crystal, each point catching the glow and spilling it down in thin green threads. The air is still and strangely warm, as if the stone itself were alive. A guard-door of dark iron stands in the southern wall, scratched with notches counting forgotten watches. The tunnel leads on east, and west it returns to the crossing.",
+   "look": "cave"
+  },
+  "24784": {
+   "description": "A short dead-end tunnel where the roof comes down so low that the crystals brush your hair. A fan of green-white veins spreads across the end wall, and the rock beneath them has been chipped away by patient hands. A few shards lie on the floor, glittering and untouched. The only way out is the tunnel west.",
+   "look": "cave"
+  },
+  "24786": {
+   "description": "A guard chamber of heavy, square-hewn blocks, its single window an arrow-slit that looks onto nothing but black rock. Stone benches line the walls, each hollowed by years of sitting, and an iron bar leans in the corner, bent as if with great force. Water has eaten stripes of green into the plaster. The only door leads north to the tunnel.",
+   "look": "cave"
+  },
+  "24785": {
+   "description": "The tunnel narrows and ends in a blind pocket, its roof clustered with long crystals like the teeth of some buried beast. Gnawed bones are heaped in a hollow, and a ragged web hangs in the corner, grey and dusty. A thin draught carries the smell of stagnant water. The only way out is east to the crossing.",
+   "look": "cave"
+  },
+  "24720": {
+   "description": "The main hallway turns here, curving from the junction toward the far side of the village. Along the wall runs a gutter of dressed stone, carrying a trickle of clear water down to some hidden cistern. The floor is cobbled, and a hanging lamp swings slowly in the draught. The passage leads north to the junction and west along the hall.",
+   "look": "cave"
+  },
+  "24721": {
+   "description": "Three passages meet here beneath a vaulted roof held up by a pair of squat pillars carved with twining roots. A bench of pale stone rests between them, and a lantern of green glass spills warm light across the flags. The smell of baking drifts from the passage south, where the hall runs toward the shops. East and west the hall bends away.",
+   "look": "cave"
+  },
+  "24723": {
+   "description": "The southern hallway is lined with small niches, each holding a statuette of some dwarf hero cast in dull bronze. The floor slopes gently and the air carries the scent of spices and hot bread. Lamps burn steadily from hooks high on the wall, and the plaster between them is painted with crossed hammers. The hallway goes on south and returns north to the junction.",
+   "look": "cave"
+  },
+  "24724": {
+   "description": "Wheel-ruts and the prints of many boots mark this stretch of hall, which sees the daily traffic of the village markets. A wooden signboard hangs from a chain, its paint flaked and its letters worn to a blur. The smell of fresh bread is stronger here. The hall carries on south toward the shops and returns north.",
+   "look": "cave"
+  },
+  "24725": {
+   "description": "The hall bends here around a heavy pillar painted with a mural of laden barrows and bargaining dwarves, its colours dulled by years of lamp smoke. A stone basin set into the wall collects drips from a crack above and overflows in a thin silver line to the floor. The passage leads east and returns north along the hall.",
+   "look": "cave"
+  },
+  "24726": {
+   "description": "The hall turns again, narrow and well-swept, as the noise of the market grows louder ahead. Strings of dried peppers and garlic hang from a rack above the wall, rustling softly. A painted arch in the wall frames the way south, its stonework picked out in red and gold. West the hall runs back along the bend, and south it opens into the market.",
+   "look": "cave"
+  },
+  "24727": {
+   "description": "The market-hall's entrance is a wide archway hung with banners of dyed cloth, each stitched with the sign of a trade. Barrow-ruts cross the floor in all directions, and the smells of ale, leather and spice rise together. Lanterns of green and amber glass swing from the beams. North the hall runs back to its bend, and south it spreads into the market proper.",
+   "look": "cave"
+  },
+  "24728": {
+   "description": "The heart of the shopping district is a broad square beneath a high ceiling, where a well of black marble stands in the middle and the flagstones are stained with a hundred years of spilled ale. Streets of stalls and shopfronts spread to the east and the west, while a carved sign marks the tavern's door to the south. Lanterns burn along the cornices, and a shuffle of boots sounds on the floor. North the hall returns toward the entrance arch.",
+   "look": "cave"
+  },
+  "24732": {
+   "description": "A short covered hallway between shopfronts, its lintels hung with painted signs of copper, bread and bellows. Awnings of oiled canvas shade the narrow stalls, and a drift of straw lies on the cobbles. The air smells of leather and warm bread. East the hall opens into a square, and west it returns to the middle of the market.",
+   "look": "cave"
+  },
+  "24733": {
+   "description": "This small square is crowded with stalls, its centre taken up by a stone fountain in the shape of a ram's head with a dry spout. Three shopfronts open off it, one for baking, one for water, one for jewellery, each with a painted board. Cobbles are slick with spilled flour and mud. The way north, east and south leads into the shops, and west it returns to the hall.",
+   "look": "cave"
+  },
+  "24736": "The bakery is warm and floury, its low ceiling blackened with generations of smoke. A great brick oven fills one wall, its iron door ajar and glowing a deep orange, and wooden trays of dough sit on long tables nearby. Loaves of black rye and honeyed buns stand in neat rows behind a counter scarred by knives. The only door opens south onto the square.",
+  "24737": "Rows of stoneware jugs and leather skins line the shelves of this shop, each stamped with the name of a spring deep under the mountain. A barrel with a brass tap stands on the counter, beaded with cold sweat, and a wooden dipper hangs beside it. The floor is damp and the air cool, with a smell of clean stone. West, a doorway returns to the square.",
+  "24735": "A narrow, glittering shop where lamps of green glass are set to catch the facets of the stones in the glass cases. Rings, torcs and brooches lie on black velvet, and a magnifying lens on a tripod stands at the counter. The shelves are crowded with small boxes of polished emeralds, each tagged in dwarven runes. The only way out is the door north.",
+  "24729": "The tavern's front room is dim and smoky, its beams hung with tin mugs and its floor strewn with fresh rushes. Long tables of scarred oak stand in rows, and a roaring hearth throws heat across the benches. Over the mantel hangs a mounted ram's head with polished horns. The street lies north, and the bar opens south.",
+  "24730": "The tavern bar is a long counter of oak, its top polished by countless elbows, and behind it stand kegs of black ale and shelves of clay jugs. Brass taps gleam in the lamplight, and a ring of stools surrounds the hearth. A narrow stair of timber climbs up to the lodge above. The front room lies north.",
+  "24731": "The sleeping lodge is a low, long room under the rafters, lined with plain bunks, each made up with a grey wool blanket and a bolster. Small lanterns hang over every bed, turned low, and the boards creak with a sound like old timbers. A chest at each bed's foot holds a traveller's belongings. The stair leads down to the bar.",
+  "24738": {
+   "description": "The western hallway through the shopping district is lined with narrow doors, each painted a different colour. The ceiling is lower here, and the lamps hang closer, so that the light is warm and golden. A crooked sign over one doorway swings and creaks in the draught. East the hall returns to the middle of the market, and west it widens into a square.",
+   "look": "cave"
+  },
+  "24739": {
+   "description": "This square is ringed by three smithing trades, and the clang of metal on metal never quite stops. The flagstones are scorched with fallen sparks, and a long water trough stands against the pillar. Racks of iron stand beside each door, and the air carries coal-smoke and hot oil. The armoury stands north, the magic shop south, and the weapon shop west, while the hall returns east.",
+   "look": "cave"
+  },
+  "24741": "The armoury is hung from floor to rafters with coats of ring and scale, helms and shields, each polished to a dull shine. A stand of plate stands in the centre, its joints oiled and its visor open. The counter holds a rack of file and hammer, and a mallet for knocking out dents. The only door opens south to the square.",
+  "24740": "The magic shop is a curious, cluttered room, its shelves crammed with stoppered bottles, bundled herbs and runed stones. A brass astrolabe turns slowly on the counter, driven by no hand, and a faint smell of sulphur and sage hangs in the air. Lamps burn with a pale violet flame. A single door opens north to the square.",
+  "24742": "Spears and axes hang in racks across every wall of the weapon shop, their blades gleaming with oil. A grindstone stands in the corner, a bucket beneath it, and a pile of rough ingots waits on the floor. Notched practice targets stand along one wall, riddled with holes. The door east leads back to the square.",
+  "24722": {
+   "description": "The hall bends here beside the junction, its walls finished with smooth plaster and a band of carved leaves. A bench of stone stands in a recess, with a basin of clean water and a rag for travellers' hands. The floor shows deep wear along the inner curve. North the hall returns to the junction, and east it runs on.",
+   "look": "cave"
+  },
+  "24711": "The watchtower rises out of the gate court, a squat drum of dark stone with narrow loops for archers. Its door of iron-bound oak stands ajar over a few worn steps, and a lamp of green glass hangs above. A barrel catches rain from a gutter, and moss creeps up the wall. North the court of the gate opens, and a spiral stair climbs up inside.",
+  "24712": "A round chamber at the tower's crown, with a floor of worn boards and narrow loopholes on every side. A table with a ledger and a sand-glass stands in the middle, and a horn hangs from a hook on the wall. Draughts whistle through the slits, carrying the smell of rain and heather. The stair leads down to the court.",
+  "24790": "A faint trail winds south across the stony plain, marked by cairns of weathered rocks. Coarse grass and thistles struggle between the boulders, and the wind carries a smell of cold earth. To the north the rocky path stands out as a pale line, and ahead the trail slopes toward a low wall.",
+  "24791": "A low wall of grey stone encloses the graveyard, its gate a heavy door of black oak studded with iron nails. An arch above is carved with a hammer and a mourning branch, worn nearly smooth. The ground here is bare and trodden hard, and a stone bench stands beside the gate. The door leads north to the trail, while south the ground opens onto the graves.",
+  "24796": "The graveyard's heart is a trodden crossing of four paths between rows of squat headstones, each carved with a hammer or a pick. A cold grey light falls from the sky, and the wind hisses through the dry grass between the graves. A tall cairn of white stones stands at the middle, hung with rusted chains. The gate lies north, and paths lead east, south and west among the dead.",
+  "24793": "The path ends at a line of old graves set against the wall, their headstones leaning like crooked teeth. Moss has crept over the carved names until only a few runes can be read, and a withered wreath of heather lies at the foot of one. A raven's feather lies in the grass, black and glossy. The only path leads west back to the crossing.",
+  "24798": "A wider space among the graves, where four paths meet beneath a bare thorn tree whose branches claw at the sky. The headstones here are tall and finely cut, carved with the ram's head of an old clan. Fallen leaves drift against them, brown and brittle. Paths lead away north, east, south and west among the stones.",
+  "24797": "The easternmost corner of the graveyard is a small plot walled in by tumbled stones, where the ground is soft and weedy. A single great slab, flat and unmarked, lies in the middle, split down its length by a root. Dead lilies hang from a rusted iron urn, and a chill sits on the air. The path returns west to the crossing.",
+  "24799": "The graves here lie in long, neat rows, as if the dead had been buried in ranks to serve their kings. Iron lamps on tall posts stand at each corner, cold and blackened, and a thin mist clings to the ground. Mounds of fresh earth have been scraped aside by something. Paths lead north to the crossing, east toward a sunken stair, and west among the older graves.",
+  "224800": "At the end of the path a wide stair of weathered stone yawns in the ground, its steps leading down into utter dark. The mouth is framed by a squat arch carved with a skull and a hammer, and the grass around it is bent and bare. A cold breath rises from below, smelling of old stone and dust. The stair leads down to the Lost Crypt, and west the path returns to the graves.",
+  "24794": "A forgotten corner where the earth has sunk, leaving shallow hollows over the oldest graves. A small stone angel, headless, kneels beside a pool of rainwater, and thistles crowd round it. The wind makes a thin keening sound among the broken stones. The only path leads east back to the nearest crossing.",
+  "24795": "Rows of narrow graves, each marked by a flat stone, fill this sheltered corner against the wall. Candle-stubs, burnt black, stand at the foot of a few, and a clay cup of dried flowers has fallen on its side. A cold, damp smell rises from the earth. The path leads east, and no other way goes from here.",
+  "24792": "The westernmost reaches of the burial ground are scattered with small cairns, piled by hand over graves without names. Lichen paints the stones orange and grey, and a stunted rowan leans over the nearest, its berries shrivelled on the branch. The silence is heavy. The path returns east to the crossing."
+ },
+ "extras": {
+  "24717": [
+   {
+    "keywords": "ring hammers pedestal",
+    "description": "The ring of carved hammers on the dome's underside is the old emblem of Aredrel, thirteen hammers for the thirteen founding clans."
+   }
+  ],
+  "24746": [
+   {
+    "keywords": "face wall emerald",
+    "description": "The bearded face is the founder-king, his inlaid eyes two chips of green glass that catch every lamp."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "aredrel-villager",
+   "keywords": "dwarf villager aredrel dwarven",
+   "short_desc": "a stout dwarf villager",
+   "long_desc": "A stout dwarf villager goes about the day's errands with a basket on one arm.",
+   "description": "A broad, bearded dwarf in a leather apron, his hands scarred from the forge and the mine. He eyes strangers with plain, unhurried curiosity.",
+   "kind": "humanoid",
+   "level": 32,
+   "aggressive": false,
+   "alignment": 400,
+   "rooms": [
+    "A Bend In The Village Hallway",
+    "Along The Village Hallway",
+    "An Aredrel Dwarven House",
+    "The Middle Of The Shopping District",
+    "The Eastern Shopping Square",
+    "The Western Shopping Square",
+    "The Tavern Inn Bar of Aredrel"
+   ],
+   "count": 6,
+   "drops": []
+  },
+  {
+   "id": "emerald-cave-spider",
+   "keywords": "emerald cave spider",
+   "short_desc": "an emerald cave spider",
+   "long_desc": "An emerald cave spider clings to the crystal wall, its hairy legs glittering green.",
+   "description": "A spider as big as a hound, its carapace flecked with green crystal. Its eyes shine like wet gems, and its fangs drip a pale, glassy venom.",
+   "kind": "animal",
+   "level": 36,
+   "aggressive": true,
+   "alignment": -100,
+   "rooms": [
+    "A Tunnel Inside The Emerald Cave",
+    "A Bend Inside The Emerald Cave",
+    "A Crossing Inside The Emerald Cave"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "spider-silk-wraps",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "restless-dwarf-skeleton",
+   "keywords": "restless dwarf skeleton",
+   "short_desc": "a restless dwarf skeleton",
+   "long_desc": "A restless dwarf skeleton shambles between the graves, rusted mail hanging from its ribs.",
+   "description": "The bones of a long-dead dwarf, still clad in the remnants of a mail shirt and a cracked helm. Green light burns in its empty sockets, and its jaw clacks silently.",
+   "kind": "undead",
+   "level": 34,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Graveyard Of Aredrel Dwarven"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "grave-warden-mail",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "shaft-ogre",
+   "keywords": "stone ogre shaft",
+   "short_desc": "a stone-skinned shaft ogre",
+   "long_desc": "A stone-skinned shaft ogre lumbers through the dark, dragging a mattock of iron.",
+   "description": "A hulking ogre whose hide has hardened into grey plates of rock. Crystal splinters jut from its shoulders, and it breathes in slow, rasping gusts.",
+   "kind": "monster",
+   "level": 39,
+   "aggressive": true,
+   "alignment": -450,
+   "rooms": [
+    "The Mining Shaft",
+    "The Mining District"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "stonefist-gauntlets",
+     "chance": 25
+    },
+    {
+     "item": "grave-warden-mail",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "grave-bound-ghost",
+   "keywords": "grave bound ghost dwarven",
+   "short_desc": "a grave-bound dwarven ghost",
+   "long_desc": "A grave-bound dwarven ghost drifts between the headstones, its beard stirring in a wind that does not blow.",
+   "description": "The pale, translucent shape of a dwarf in funeral armour, its face fixed in grief. Cold green flame wavers about its hands.",
+   "kind": "undead",
+   "level": 38,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Graveyard Of Aredrel Dwarven"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "grave-warden-mail",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "kharn-ironvein",
+   "keywords": "kharn ironvein captain guard overseer",
+   "short_desc": "Kharn Ironvein, captain of the shaft guard",
+   "long_desc": "Kharn Ironvein, captain of the shaft guard, stands over the platform with a heavy pick in both hands.",
+   "description": "A scarred, grey-bearded dwarf guard in plate blackened by long use. Green crystal has crept up his left arm, and his eyes burn with an unnatural light.",
+   "kind": "humanoid",
+   "level": 40,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "A Platform In The Mining Shaft"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "ironvein-pick",
+     "chance": 35
+    },
+    {
+     "item": "stonefist-gauntlets",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "karrak-stone-horror",
+   "keywords": "karrak stone troll horror",
+   "short_desc": "Karrak, the stone troll of the deep shaft",
+   "long_desc": "Karrak, the stone troll of the deep shaft, squats in the green glow and watches with slow, heavy eyes.",
+   "description": "A towering troll of living rock, its body veined with glowing emerald and its fists like boulders. The crystal in its chest pulses with a slow heartbeat, and the floor trembles at each breath.",
+   "kind": "monster",
+   "level": 42,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "A Dead End In The Emerald Cave"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "emerald-heart-greathelm",
+     "chance": 35
+    },
+    {
+     "item": "ironvein-pick",
+     "chance": 15
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "spider-silk-wraps",
+   "keywords": "spider silk wraps wrist",
+   "short_desc": "a pair of green spider-silk wraps",
+   "room_desc": "A pair of green spider-silk wraps lies here.",
+   "description": "Wristwraps woven from the cave spiders' glassy thread, light and tough. They shimmer faintly green.",
+   "kind": "armor",
+   "level": 36,
+   "wear_slot": "wrist",
+   "bonus": {
+    "dex": 1
+   }
+  },
+  {
+   "id": "grave-warden-mail",
+   "keywords": "grave warden mail dwarven",
+   "short_desc": "a rusted dwarven grave-warden mail",
+   "room_desc": "A rusted dwarven mail shirt lies here.",
+   "description": "A heavy mail shirt of dwarven make, eaten with rust yet still sound. A hammer and mourning branch are stamped on the breast.",
+   "kind": "armor",
+   "level": 35,
+   "wear_slot": "body",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "stonefist-gauntlets",
+   "keywords": "stonefist gauntlets stone hands",
+   "short_desc": "a pair of stonefist gauntlets",
+   "room_desc": "A pair of heavy stonefist gauntlets lies here.",
+   "description": "Gauntlets of grey stone plates bound with iron wire, cold and unyielding. They make a fist like a hammerhead.",
+   "kind": "armor",
+   "level": 39,
+   "wear_slot": "hands",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "ironvein-pick",
+   "keywords": "ironvein pick mattock",
+   "short_desc": "Kharn's ironvein pick",
+   "room_desc": "A heavy ironvein pick lies here.",
+   "description": "A long-hafted pick of dark iron shot through with veins of green crystal. Its point is keen enough to split rock.",
+   "kind": "weapon",
+   "level": 40,
+   "weapon_type": "pierce",
+   "bonus": {
+    "hitroll": 2
+   }
+  },
+  {
+   "id": "emerald-heart-greathelm",
+   "keywords": "emerald heart greathelm helm",
+   "short_desc": "the emerald-heart greathelm",
+   "room_desc": "An emerald-crowned greathelm lies here.",
+   "description": "A great dwarven helm of black steel, crowned with a shard of glowing emerald. It hums softly when worn.",
+   "kind": "armor",
+   "level": 42,
+   "wear_slot": "head",
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}

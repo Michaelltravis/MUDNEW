@@ -1,0 +1,151 @@
+{
+ "zone": 491,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Morvoct, the goblin warlord as the boss.",
+ "creatures": {
+  "649101": {
+   "helpers": {
+    "group": "z491_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a scarred goblin warrior"
+  },
+  "649102": {
+   "helpers": {
+    "group": "z491_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a giant crab"
+  },
+  "649103": {
+   "helpers": {
+    "group": "z491_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a fierce harpy matron",
+   "rank": "elite"
+  },
+  "649104": {
+   "helpers": {
+    "group": "z491_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a merman guard",
+   "rank": "elite"
+  },
+  "649105": {
+   "helpers": {
+    "group": "z491_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "Brogg Oneye, the cyclops",
+   "rank": "sub-boss"
+  },
+  "649106": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Morvoct, the goblin warlord",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Morvoct, the goblin warlord rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Morvoct, the goblin warlord gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Morvoct, the goblin warlord raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Morvoct, the goblin warlord begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 649100,
+   "route": [
+    15110,
+    15111,
+    15112,
+    15120,
+    15121,
+    15130,
+    15138,
+    15137
+   ],
+   "why": "a salt-stained goblin walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 649106,
+   "room": 15183,
+   "why": "Morvoct, the goblin warlord in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      649101
+     ],
+     "shout": "Morvoct, the goblin warlord calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

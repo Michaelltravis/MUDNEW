@@ -1,0 +1,374 @@
+{
+ "job": "z502",
+ "rooms": {
+  "2000": "A palisade of sharpened stakes, lashed with rawhide and braced with thornbrush, stretches away through the trees, and in the middle of it the timber gate now stands open, its bar hauled aside. Beyond the gap the open plains lie pale to the east. Westward the ground is beaten hard and bare, and the smell of smoke and roasting meat hangs over the pines. A skull on a pole beside the gate grins at all who pass.",
+  "2001": "The path is a stripe of packed earth, rutted by heavy feet, running between stunted pines whose lower branches have been hacked off for firewood. Gouges in the bark show where blades are tried on the trunks. The gate lies back east, and the path forks here, one arm turning north and the other running on west into the camp. A rack of broken spears leans against a stump.",
+  "2013": "The path bends round a clump of blackened stumps, the remains of a tree that was burned for sport. A heap of charred bones lies by the wayside, picked clean by something with strong teeth. Smoke drifts low through the branches, bitter and greasy on the tongue. The track returns south toward the gate and goes on west.",
+  "2012": "A tripod of lashed poles stands over a ring of cold ashes, a big black pot hanging from it by a chain. The grass round about is trampled flat and strewn with gnawed ribs. A pile of kindling has been stacked against a pine as high as a man. The path comes in from the east and turns south.",
+  "2002": "Three paths meet at a broad crossing where the earth is trampled to dust by drilling feet. Clawed prints in orderly rows show where warriors have formed ranks and wheeled. Stakes notched at intervals mark the distances for spear-casting. The way north leads to a pot-hung hearth, the track east returns toward the gate, and the path west leads deeper into the camp.",
+  "2003": "A great split boulder stands where the path divides, its two halves leaning apart like a cracked skull. To the west the trees open on a patch of bright bare ground, while at your feet a black hole yawns where the earth has fallen in, its rim worn smooth by hands and claws. A rope runs down into it, tied to an iron peg. The path goes north toward a rock face and east back toward the crossing.",
+  "2006": "On the west side of the path a low black opening has been cut into a bank of rock and shored with rough timbers, and a tunnel leads away into it. Shavings of wood and heaps of spoil lie before the mouth. The air that comes out is cool and smells of wet stone. The path runs north toward the huts and south to the split boulder.",
+  "2016": "A small hut of lashed timber and hide squats on the north side of the path, its door-flap tied back. The ground in front is bare and swept, with a row of lance-heads stuck point-down in the earth. A smell of tallow drifts from the doorway. The path runs east toward a gong and south to the tunnel mouth.",
+  "2017": "The hut is a single low room of lashed poles and stretched hide, hardly high enough to stand in. A pallet of bracken lies against one wall beside a chest with a broken lid. Smoke from a tiny fire-pit finds its way out through a hole in the roof, leaving the air thick and acrid. The doorway leads out south to the path.",
+  "2015": "A signal gong hangs from a gallows of crossed poles at a widening of the path, its bronze dented and green. Bone dice lie scattered in the dust where soldiers have gambled away their pay. The trees thin to the east, where a trampled track runs out toward a clearing. The path goes north among the huts and west back along the hut row.",
+  "2018": "Hides are stretched on frames along this stretch of the path, scraped clean and drying in the smoke, with a sour smell of curing. A hut with a roof of turf and bark sits to the west, its door a lashed hurdle. A bucket by the door holds arrows with black fletching. The path runs north and south.",
+  "2020": "The path turns sharply here between two lean pines hung with strings of knucklebones that rattle dryly in the smoke. The ground is churned by cartwheels, and a broken axle lies half sunk in the mud. Charred timbers show where a shed once stood. The path runs south and west.",
+  "2022": "Two huts face each other across the path, one to the north and one to the south, their roofs of turf and bark black with smoke. Between them stands a post carved with ranks of grinning dragon heads, painted red. A firepit is dug into the trodden earth and ringed with stones. The path runs east and west.",
+  "2023": "A cramped hut with walls of daubed wattle and a floor of beaten earth, dry and warm. Racks of curved blades hang from the rafters on hooks, and a whetstone sits on an upturned bucket. The roof is blackened by years of smoke. A door south opens onto the path, and a low gap in the east wall leads out to a muddy yard.",
+  "2021": "The path ends in a trampled turning-place behind a hut, ringed by kitchen scraps and the fly-buzzing mess of a refuse pit. Pegs hold a line of grey rags to dry. A pair of black wings has been nailed to the hut wall as a charm against ill luck. The only way on is west, through the hut.",
+  "2019": "A hut with two doors, one in the north wall and one in the east, both hung with hides. Bedrolls are laid out in a row, each with a leather helm placed carefully at its head. A smoky lantern gives a red wavering light on the bare poles. The air smells of oil, sweat and old leather.",
+  "2024": "Four ways meet round a rough square of packed earth, with a hut to the south and one to the north whose roof has half collapsed. A well-worn path leads east and west. Weeds push up through the cracked mud where the troops no longer march. A broken spear stands in the ground with a scrap of cloth hanging from it.",
+  "2031": "Rain has come in through a hole in the roof of this long-empty hut, and the floor is a mat of rotting leaves and pale fungus. A pallet lies against one wall, chewed to splinters by mice. The hide door has fallen off its pegs and lies in the corner. Nothing here has been touched in years, and the doorway is south.",
+  "2026": "This hut is cleaner than most, the floor swept and a neat stack of rations in wicker baskets along the wall. A table of planks bears a clay tablet scratched with a rough map, all ridges and notches. A low opening in the west wall leads into the neighbouring hut. The door north gives onto the path.",
+  "2027": "Whatever lived here left in a hurry: a clay pot lies shattered by the cold hearth, and a belt still hangs from a peg. Dust covers everything, and a cobweb stretches from corner to corner of the low roof. A gap in the east wall opens into the inhabited hut beside it, and the doorway north looks out on the path.",
+  "2025": "A rack for drying meat stands in the middle of the path, hung with long dark strips that buzz with flies. A hut sits to the north and a ruined one to the south, the second leaning drunkenly on a prop. The ground beyond is a tangle of thorn and fallen pine, and the only way back is east along the trodden earth.",
+  "2030": "A hut crowded with barrels and sacks, smelling of grain, salt fish and tar. A tally stick hangs from a nail, notched in groups of five. The ceiling is hung with ropes of dried onion. The door is south on the path, and a gap in the west wall leads into a second hut.",
+  "2032": "This hut is a smithy of sorts: a stone anvil sits on a tree stump, and a pair of goat-hide bellows hangs from a post beside a bed of cold coals. Tongs, hammers and half-finished blades lie in untidy rows. Flakes of rust litter the floor like russet leaves. The wall opens east into a store, and a door south leads out to a path.",
+  "2033": "A fine hut of squared logs stands to the south, the only building here with a proper plank door, and over it hangs a banner of black cloth worked with a red dragon's head. Two spears are planted on either side of the threshold. The ground before it is swept clean and edged with white stones. The path leads west, and a hut lies to the north.",
+  "2028": "The chief's hut is the largest in the camp, its beams carved and its walls hung with the scaled hides of old foes. A long table is spread with maps drawn on hide, weighted down with daggers and a cracked skull. A rack holds polished spears and a heavy two-handed sword, and a brazier warms the room to stuffiness. The single door is north, to the path.",
+  "2034": "A crossing in the heart of the camp, where the ground is churned to black mud by the passage of many feet. A hut stands to the west and a derelict one to the south, its door fallen in. A rain barrel overflows beside a sheltered fire. Paths run north and east.",
+  "2037": "A stand of old pines survives here, a few tall trees spared the axe, with ropes slung between them and sacks of sand hanging from the ropes where fists have beaten them smooth. The ground is scuffed into circles by footwork. A hut sits to the west, and the path goes north and south.",
+  "2038": "The path ends at a wall of grey rock rising from the trees, in which a rift gapes, a crooked mouth breathing out a warm stink of smoke and sulphur. Huts crouch to the east and west with their doors turned toward it. Black stains streak the rock above the opening where fumes have licked it. The path runs back south, and the rift leads north.",
+  "2041": {
+   "description": "The rift opens into a cave of dark grey rock, the roof lost in gloom and the floor sloping gently down. Soot has blackened the walls near the entrance, and a few guttering torches burn in iron brackets driven into cracks. Drips ring in the dark ahead. The smell of smoke is stronger, and beneath it lies something sweeter, like incense.",
+   "look": "cave"
+  },
+  "2039": "A hut kept by someone who values order: the sleeping mats are rolled, the cooking pots hang by size, and there is not a speck of dust on the sword rack. Faint daylight comes in at the door and through a slit in the wall that faces the rift. The great curved horn of some beast hangs over the doorway. The only exit is west.",
+  "2040": "The walls of this hut bristle with the pelts of wolves and bears, so that the whole room smells strongly of musk and old blood. A bone-handled knife is stuck in a stump beside a bowl of stale stew. Feathers lie drifted across the trodden floor where a pallet has been torn apart. The only way out is east, through the low door to the path.",
+  "2036": "A barracks for the rank and file: crude bunks are stacked three high against the walls, with gear heaped in untidy mounds beneath them. Charcoal drawings of dragons in flight cover the beams, some of them quite skilful. A rope of knotted cords hangs from the rafters for climbing practice. The door is east, onto the path.",
+  "2029": "Half the roof has fallen in, burying one corner under turf and splintered poles. Scorch marks blacken the floor and one wall, as if fire swept through here long ago and was never mended. A ring of stones in the middle holds only damp ash. The doorway north is the only part that still stands whole.",
+  "2035": "This hut serves as a surgeon's den: rolled bandages fill a basket, jars of foul-smelling salve crowd a shelf, and a table of boards with leather straps stands stained and scrubbed. A kettle of herbs steams over a little fire, thick with bitter vapour. Needles and gut hang from a nail. The door is east, on the path.",
+  "2014": "The trees thin to stumps as the path nears the clearing, the felled trunks dragged aside and left to rot in rows. Deep wagon ruts score the mud, filled with brown rainwater. A tall pole at the verge flies a tattered pennant of black and red. The Large Clearing opens east, and the path leads back west among the huts.",
+  "2054": "A great open parade ground lies here, ringed with stumps and tall pines, the earth stamped flat as a threshing floor. Racks of practice spears and wooden swords stand in rows along the rim. At the centre rises a scarred post for punishments, and beside it a platform of logs from which a commander can address the ranks. The sky overhead is grey with smoke, and the only path out is west.",
+  "2007": {
+   "description": "The daylight fades behind you as the tunnel leads inward, so low that a tall man must stoop, propped every few paces by black timber props. Chisel scars run along the rock in long shallow strokes. The air is cool and still and smells of stone dust. The path lies back east, and the tunnel goes on west.",
+   "look": "cave"
+  },
+  "2008": {
+   "description": "The props give out here and the walls are bare rock, glistening wet in the light of a single torch in a bracket. A thin trickle runs along a gutter in the floor and vanishes into a crack. Your steps echo flatly ahead and behind. The tunnel runs on west and back east.",
+   "look": "cave"
+  },
+  "2009": {
+   "description": "The tunnel widens briefly into a bay where a pile of broken wedges and rusted hammers has been tipped against the wall. A niche in the rock holds a clay lamp, its wick burned to a black crust. Soot has smeared a long dark streak across the roof. The passage continues west and back east.",
+   "look": "cave"
+  },
+  "2010": {
+   "description": "The tunnel squeezes in until your shoulders brush the walls, and long claw-marks gouge the stone at the height of a man's chest. A faint draught stirs from ahead and carries a tang of smoke. The rock is warmer here than it has any right to be. East the way leads back toward the entrance, and west it narrows to its end.",
+   "look": "cave"
+  },
+  "2011": {
+   "description": "The tunnel ends in a wall of chiselled rock, flat and blank, where the diggers must have given up or been called away. Rubble is heaped in a drift across the floor, and a tally of scratches in groups of five covers the wall as high as a hand can reach. Dull knocks from somewhere deep in the stone are felt rather than heard. The only way back is east.",
+   "look": "cave"
+  },
+  "2055": "A bright glade where the pines have been felled so that the sun falls full on the bare earth. After the smoke of the camp the light is startling, and warm stones lie in the sun, flat and smooth as hearthstones. Dry grass crackles at the edges. A path leads back east to the shade and the split boulder.",
+  "2004": {
+   "description": "The dark is total, a heavy blindness smelling of old urine, wet clay and long fear. Iron rings are set into the earth walls at head height, with rusted shackles dangling from them. The floor is hard-packed and sticky underfoot. A rope hangs down the shaft from the world above, the only way out.",
+   "look": "dungeon"
+  },
+  "2042": {
+   "description": "A pool of still black water fills the floor of this cave, so dark and clear that the stalactites above hang twice, once in the roof and once reflected. Drips fall at intervals, and each ring spreads outward in a long, slow circle. The walls are glossy with damp, and the air is thick with the smell of wet stone.",
+   "look": "cave"
+  },
+  "2043": {
+   "description": "Bones are heaped in a low alcove in the wall of this cave, gnawed and cracked for the marrow, some of them far too large for a deer. A tally of long scratches runs across the rock in groups of five. The roof presses low, and the floor is greasy underfoot. The smoke smell is faint here, the animal smell strong.",
+   "look": "cave"
+  },
+  "2044": {
+   "description": "The cave narrows to a crawl where the roof comes down to within a yard of the floor, polished by the shoulders of those who have squeezed through. Soot from passing torches has painted a long black streak along the rock. Every sound is swallowed. The stone is cold and the dark absolute outside the reach of your light.",
+   "look": "cave"
+  },
+  "2045": {
+   "description": "Patches of pale fungus glow on the walls of this cave in sickly greens and whites, giving just enough light to show the shapes of things. The floor is soft with mould and bat droppings, and the smell is rich and sweetish. Threads of rootlets hang from cracks in the roof like grey hair. The air is warm and wet.",
+   "look": "cave"
+  },
+  "2046": {
+   "description": "A broad cave where dry grass has been laid in rows as bedding, dozens of pallets in all, each with a soot-black cooking pot at its head. Skulls of beasts and men sit on ledges round the walls as trophies. A heap of discarded armour rusts in one corner. The fires are low and the smoke clings to the roof.",
+   "look": "cave"
+  },
+  "2047": {
+   "description": "A crack in the floor of this cave breathes out warm air with a thin hiss, and the rock around it is crusted a bright sulphur yellow. Wisps of vapour curl upward and cling to the stalactites. The stink is eye-watering. Streaks of orange run down the walls where the hot water has dried.",
+   "look": "cave"
+  },
+  "2048": {
+   "description": "The walls of this dry cavern are covered with paintings in red ochre: dragons in flight, columns of armoured warriors, and the great flame of a burning city. Handprints dot the rock around the pictures, some small, some clawed. The floor is swept clean of rubble. Dust hangs motionless in the dull torchlight.",
+   "look": "cave"
+  },
+  "2049": {
+   "description": "A ledge runs along a drop here, and a bridge of rope and rotting planks spans a gap in the rock, creaking in a draught from below. Far beneath, water moves with a hollow, murmuring sound. The ledge is slick with damp. Stalagmites rise from the shelf like a row of broken teeth.",
+   "look": "cave"
+  },
+  "2050": {
+   "description": "The cave rises in rough steps worn smooth by countless feet, ending in an arched mouth where two iron braziers burn with a heavy red flame. Incense smoke rolls out thick and sweet, stinging the eyes. Dragon heads are chiselled on the rock about the arch, mouths open. To the north lies the Draconian Shrine.",
+   "look": "cave"
+  },
+  "2051": {
+   "description": "A rusted iron cage hangs on a chain from the roof of this cave, its door torn open and its floor strewn with old bones. The ground slopes steeply and loose gravel slides away underfoot. Black burns smear the rock behind the cage. Somewhere not far off a drum is being beaten, slow and heavy.",
+   "look": "cave"
+  },
+  "2052": {
+   "description": "Crystals as white as bone cover the walls of this cave, glinting in the torchlight in long, angular spears. The floor is smooth and cold, and the roof curves overhead like an upturned bowl. A chain of footprints leads across the dust and stops at the centre of the floor. Your breath hangs before your face in the chill.",
+   "look": "cave"
+  },
+  "2053": {
+   "description": "The shrine is a vaulted cavern of black rock, its walls carved with scales so that the whole chamber seems the belly of some vast sleeping beast. An altar of black stone stands before an idol of a five-headed dragon, its jewelled eyes glittering in the light of iron braziers. Smoke rises from the bowls and gathers beneath the roof in a slow, shifting cloud. The air is thick with incense and the smell of burnt offerings.",
+   "look": "cave"
+  }
+ },
+ "extras": {
+  "2000": [
+   {
+    "keywords": "skull pole",
+    "description": "The skull is that of a man, bleached and cracked, with a rag of red cloth knotted through its eye socket as a warning."
+   }
+  ],
+  "2003": [
+   {
+    "keywords": "hole pit rope peg",
+    "description": "The pit is a squared shaft cut into the earth and about three times a man's height deep. The rope looks sound, and the dark at the bottom gives back no echo."
+   }
+  ],
+  "2053": [
+   {
+    "keywords": "idol dragon five-headed statue",
+    "description": "The idol has five heads, each of a different colour of stone, and the eyes of all of them are red glass. Its claws are worn bright by the touch of the faithful."
+   }
+  ],
+  "2028": [
+   {
+    "keywords": "maps hides table",
+    "description": "The maps show the lands round the camp in rough strokes, with fords, roads and farmsteads marked by small red crosses. Some of the crosses have been struck through."
+   }
+  ],
+  "2048": [
+   {
+    "keywords": "paintings ochre dragons",
+    "description": "The paintings are old, older than the camp, and the burning city in them is not drawn with any hatred, only with a kind of awe."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "baaz-draconian",
+   "keywords": "baaz draconian soldier brass",
+   "short_desc": "a brass-scaled draconian",
+   "long_desc": "A brass-scaled draconian soldier stalks the path, hissing and flexing his clawed hands.",
+   "description": "A stocky, lizard-faced soldier whose body is covered in dull brass scales, with leathery wings folded tight against his back. His yellow eyes follow you with greedy menace, and he wears a ragged tabard of black and red.",
+   "kind": "humanoid",
+   "level": 12,
+   "aggressive": true,
+   "alignment": -300,
+   "sectors": [
+    "forest"
+   ],
+   "rooms": [],
+   "count": 5,
+   "drops": [
+    {
+     "item": "draconian-scimitar",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "kapak-draconian",
+   "keywords": "kapak draconian bronze archer",
+   "short_desc": "a bronze-scaled draconian",
+   "long_desc": "A bronze-scaled draconian archer crouches at the edge of the huts, an arrow already on the string.",
+   "description": "A lean, hunched warrior in bronze scale, with a long snout and narrow gleaming eyes. A short bow is slung across his shoulder and a curved dagger glints at his belt, its edge dark with something sticky.",
+   "kind": "humanoid",
+   "level": 14,
+   "aggressive": true,
+   "alignment": -350,
+   "sectors": [],
+   "rooms": [
+    "A Small Hut",
+    "A Small Abandoned Hut",
+    "The Large Clearing"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "draconian-scimitar",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "cave-spider",
+   "keywords": "cave spider giant pale",
+   "short_desc": "a giant cave spider",
+   "long_desc": "A giant cave spider the colour of old bone clings to the rock, its fangs dripping.",
+   "description": "The spider's body is the size of a sheepdog, pale and swollen, with eight pale eyes that shimmer like wet pebbles. It moves in sudden stabs over the rock and dangles on threads from the roof.",
+   "kind": "animal",
+   "level": 13,
+   "aggressive": true,
+   "alignment": -100,
+   "sectors": [],
+   "rooms": [
+    "The Wandering Caves",
+    "A Narrow Tunnel"
+   ],
+   "count": 3
+  },
+  {
+   "id": "sivak-draconian",
+   "keywords": "sivak draconian warrior silver",
+   "short_desc": "a silver-scaled draconian",
+   "long_desc": "A silver-scaled draconian champion strides across the ground with a cruel, drawn blade.",
+   "description": "Taller than any of the lesser kind, he is armoured in silver scale and bears wings that carry him in great leaping glides. His eyes are cold and keen, and his snout is scarred by many fights.",
+   "kind": "humanoid",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -500,
+   "sectors": [],
+   "rooms": [
+    "The Large Clearing",
+    "A Trodden Path"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "draconian-warhelm",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "bozak-shaman",
+   "keywords": "bozak draconian shaman mage priest",
+   "short_desc": "a bozak draconian shaman",
+   "long_desc": "A bozak draconian shaman mutters at the rock, fire licking about his talons.",
+   "description": "A gaunt draconian in robes of smoke-grey, wings tattered at the edges and a crown of small horns. His claws crackle with a sullen red light, and the air about him is hot and tastes of cinders.",
+   "kind": "humanoid",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -550,
+   "sectors": [],
+   "rooms": [
+    "The Wandering Caves",
+    "A Narrow Tunnel"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "draconian-warhelm",
+     "chance": 15
+    },
+    {
+     "item": "dragonclaw-dagger",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "skarrag",
+   "keywords": "skarrag chief guard draconian captain",
+   "short_desc": "Skarrag, the chief guard",
+   "long_desc": "Skarrag the chief guard stands in the lamplit hut, hand on the haft of a spiked flail.",
+   "description": "A massive draconian with scales of scarred, dull gold and a ragged crest down his spine. A necklace of fangs rattles at his throat, and he fights with a spiked flail and the cruel patience of a veteran who has never been beaten.",
+   "kind": "humanoid",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -500,
+   "sectors": [],
+   "rooms": [
+    "The Chief Guard's Hut"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "chiefs-scale-mail",
+     "chance": 35
+    },
+    {
+     "item": "draconian-scimitar",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "zhaarok",
+   "keywords": "zhaarok high priest draconian",
+   "short_desc": "Zhaarok, the draconian high priest",
+   "long_desc": "Zhaarok, the draconian high priest, stands before the altar in robes of red and black, chanting.",
+   "description": "An ancient draconian in robes the colour of dried blood, his scales gone to a dull black and his wings scarred where they were once burnt. A staff topped with a dragon's skull is in his claws, and when he turns his terrible stare on you the braziers flare as if in answer.",
+   "kind": "humanoid",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -700,
+   "sectors": [],
+   "rooms": [
+    "The Draconian Shrine"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "zhaarok-amulet",
+     "chance": 35
+    },
+    {
+     "item": "dragonclaw-dagger",
+     "chance": 30
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "draconian-scimitar",
+   "keywords": "draconian scimitar curved notched",
+   "short_desc": "a notched draconian scimitar",
+   "room_desc": "A notched, curved scimitar lies here.",
+   "description": "A heavy scimitar with a brass hilt moulded to fit a clawed hand. The edge is notched with use and stained dark.",
+   "kind": "weapon",
+   "level": 12,
+   "weapon_type": "slash"
+  },
+  {
+   "id": "draconian-warhelm",
+   "keywords": "silver war helm draconian horned",
+   "short_desc": "a horned silver war-helm",
+   "room_desc": "A horned silver war-helm lies here.",
+   "description": "A helm of silvered scales, shaped to fit a long snout and fitted with a pair of swept-back horns. Heavy but well made.",
+   "kind": "armor",
+   "level": 19,
+   "wear_slot": "head"
+  },
+  {
+   "id": "chiefs-scale-mail",
+   "keywords": "chief golden scale mail armour",
+   "short_desc": "the chief guard's golden scale mail",
+   "room_desc": "A coat of golden scale mail lies here.",
+   "description": "Overlapping scales of dull gold riveted to a thick leather jerkin, scarred by many blows and well kept. It is heavy but turns a blade well.",
+   "kind": "armor",
+   "level": 18,
+   "wear_slot": "body"
+  },
+  {
+   "id": "zhaarok-amulet",
+   "keywords": "amulet dragon black stone zhaarok",
+   "short_desc": "a black dragon amulet",
+   "room_desc": "A black stone amulet in the shape of a dragon lies here.",
+   "description": "A dragon carved in black stone, cold to the touch, hanging from a chain of blackened links. A faint murmur of prayers seems to cling to it.",
+   "kind": "armor",
+   "level": 21,
+   "wear_slot": "neck",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "dragonclaw-dagger",
+   "keywords": "dragonclaw dagger curved claw",
+   "short_desc": "a dagger made from a dragon's claw",
+   "room_desc": "A curved dagger made from a great claw lies here.",
+   "description": "The curved claw of some great lizard has been ground to a point and mounted in a hilt of blackened iron. It is surprisingly light, and wickedly sharp.",
+   "kind": "weapon",
+   "level": 21,
+   "weapon_type": "pierce",
+   "bonus": {
+    "damroll": 1
+   }
+  }
+ ]
+}

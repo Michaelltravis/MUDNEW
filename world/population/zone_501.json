@@ -1,0 +1,162 @@
+{
+ "zone": 501,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Karrak, the stone troll of the deep shaft as the boss.",
+ "creatures": {
+  "650101": {
+   "helpers": {
+    "group": "z501_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "an emerald cave spider"
+  },
+  "650102": {
+   "helpers": {
+    "group": "z501_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a restless dwarf skeleton"
+  },
+  "650103": {
+   "helpers": {
+    "group": "z501_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a stone-skinned shaft ogre",
+   "rank": "elite"
+  },
+  "650104": {
+   "helpers": {
+    "group": "z501_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a grave-bound dwarven ghost",
+   "rank": "elite"
+  },
+  "650105": {
+   "helpers": {
+    "group": "z501_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Kharn Ironvein, captain of the shaft guard",
+   "rank": "sub-boss"
+  },
+  "650106": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Karrak, the stone troll of the deep shaft",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Karrak, the stone troll of the deep shaft rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Karrak, the stone troll of the deep shaft gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+10",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Karrak, the stone troll of the deep shaft raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+8",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Karrak, the stone troll of the deep shaft begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+14",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 650100,
+   "route": [
+    24730,
+    24729,
+    24728,
+    24727,
+    24726,
+    24725,
+    24724,
+    24723,
+    24721,
+    24720,
+    24719,
+    24718,
+    24717,
+    24743,
+    24744,
+    24745,
+    24746,
+    24747,
+    24760,
+    24758,
+    24759
+   ],
+   "why": "a stout dwarf villager walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 650106,
+   "room": 24782,
+   "why": "Karrak, the stone troll of the deep shaft in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "650101": 2
+     },
+     "shout": "Karrak, the stone troll of the deep shaft calls, and an emerald cave spiders come!",
+     "why": "its brood"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

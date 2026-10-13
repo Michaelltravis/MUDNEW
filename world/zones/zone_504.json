@@ -26,8 +26,8 @@
      "description": "To the down lies At A Great Tree."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stair is a spiral groove worn into the heartwood of a tree so vast\nthat its trunk seems more a tower than a plant. Lanterns of pale glass\nsit in niches along the curve, and the wood glows amber where their\nlight touches it. The woven silver gate that once closed the foot of the\nstair now stands open, and the way down leads back to the roots of the\ngreat tree beside the trade road. Above, the steps climb on into the\ngreen dark.",
+   "extra_descs": {}
   },
   "1403": {
    "vnum": 1403,
@@ -51,8 +51,8 @@
      "description": "To the down lies Stairs On A Humongous Tree."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "Here the stair narrows, and the curve of the trunk presses close on one\nhand, its bark rubbed smooth by countless soft-soled feet. Slits in the\nwood let in thin green light and the hush of leaves, and now and then a\nbreath of wind carries a sweet, resinous smell. Carved vines twine up\nthe inner wall, each leaf cut so finely that it seems to tremble. The\nsteps run down toward the lower flights and up toward a ceiling of pale,\ngleaming timber.",
+   "extra_descs": {}
   },
   "1404": {
    "vnum": 1404,
@@ -76,8 +76,8 @@
      "description": "To the down lies Stairs On A Humongous Tree."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stair ends beneath the underside of a great platform, a ceiling of\ninterwoven boughs grown flat and tight as planking. Light filters down\nthrough the seams in slivers of gold, and the whole structure creaks\nsoftly, like a ship at anchor. A rope-wrapped banister of braided bark\nfollows the steps, which climb to a square opening where the open air\nwaits. Below, the flights wind away down the trunk.",
+   "extra_descs": {}
   },
   "1405": {
    "vnum": 1405,
@@ -101,8 +101,10 @@
      "description": "To the down lies At A Great Tree."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
-   "placeholder": true
+   "description": "The lowest flight of the stair ends at a landing high above the roots,\nand a ladder of silver rope has been let down from it to the ground.\nWhere it once hung drawn up, it now dangles free, its rungs swaying\nlightly. Great loops of root arch beneath, forming a green-lit hall\nbetween earth and trunk. Cool air rises from below, smelling of leaf-\nmould. The steps climb up into the tree, and the ladder leads down.",
+   "extra_descs": {
+    "ladder rope silver rungs": "The ladder is made of braided silver cord, light as a spider's thread\nyet strong, with rungs of pale wood. Its upper end is tied off to a ring\nin the landing."
+   }
   },
   "1406": {
    "vnum": 1406,
@@ -126,8 +128,8 @@
      "description": "To the down lies Stairs On A Humongous Tree."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "A turn of the stair, where the wall of the trunk bulges out into a great\nburl, polished by the touch of many hands to the colour of dark honey. A\nlantern in a bracket gleams on it. Pale lichens speckle the opposite\nwall like scattered coins. A slow tapping echoes somewhere inside the\nwood. The steps go up toward the platform and down toward the roots.",
+   "extra_descs": {}
   },
   "1407": {
    "vnum": 1407,
@@ -151,8 +153,8 @@
      "description": "To the down lies Stairs On A Humongous Tree."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "A short flight of steps runs up to a trapdoor of silver-barked wood set\ninto the platform's underside. The air here is brighter and moves with\nthe wind, and the creak of the boughs is louder than lower down. Strands\nof ivy trail through gaps in the planks overhead. The stair winds down\naround the trunk, its handrail carved with a running pattern of leaves.",
+   "extra_descs": {}
   },
   "1408": {
    "vnum": 1408,
@@ -176,8 +178,8 @@
      "description": "To the down lies At A Great Tree."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
-   "placeholder": true
+   "description": "The lowest flight of the stair curls down to the foot of the tree, where\nthe door of living bark that once barred it now stands wide, its edges\nfolded back like petals. Cool air and the scent of earth and roots rise\nfrom the opening. Rings are carved into the wall to mark the tree's old\nyears, each rimmed with a whisper of silver paint. The steps lead up\ninto the lantern-lit heights and down to the roots.",
+   "extra_descs": {}
   },
   "1409": {
    "vnum": 1409,
@@ -201,8 +203,8 @@
      "description": "To the down lies Stairs On A Humongous Tree."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stair coils tightly round the heart of the tree here, its steps\ncarved from a single spiral ridge of living wood. Knots in the bark have\nbeen polished into little round windows, through which glimpses of\nsunlit leaves show. A thin cord of braided vine serves as a handrail.\nThe smell is of resin and warm sap, and the only sound is the soft creak\nof the great tree settling in the wind.",
+   "extra_descs": {}
   },
   "1410": {
    "vnum": 1410,
@@ -226,8 +228,8 @@
      "description": "To the down lies Stairs On A Humongous Tree."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stair rises into a tight space beneath the platform, its ceiling a\nthick weave of branches that creaks and shifts with the breeze. A\nlantern of green glass hangs from a hook, tinting the wood and the steps\nto the colour of pond water. Each tread has been worn into a shallow\ndish by long use. Above, a square opening shows the bright platform, and\nbelow, the flights wind down the trunk.",
+   "extra_descs": {}
   },
   "1411": {
    "vnum": 1411,
@@ -251,8 +253,8 @@
      "description": "To the down lies At A Great Tree."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead up and down.",
-   "placeholder": true
+   "description": "The lowest steps of this stair were once tangled with ivy and wild rose,\nbut a path has been cut through, and the curtain is now drawn aside.\nThorny stems still cling to the wall, laced with small pink blossoms.\nFallen petals lie thick on the steps, and the smell is sweet and\nslightly wild. Light from below shows the cleft in the trunk where the\nstair meets the world. The flights climb up into the tree and go down to\nthe cleft at its foot.",
+   "extra_descs": {}
   },
   "1412": {
    "vnum": 1412,
@@ -276,8 +278,8 @@
      "description": "To the down lies Stairs On A Humongous Tree."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead up and down.",
-   "placeholder": true
+   "description": "Midway down the trunk the stair broadens into a landing, where an alcove\nin the wall holds a bench shaped from a single root. A small window in\nthe bark looks out over the swaying crowns of lesser trees far below.\nMoss grows in a soft green carpet on the steps. The air is cool and full\nof the scent of green things. The flights lead up to the platform and\ndown toward the trunk's foot.",
+   "extra_descs": {}
   },
   "1413": {
    "vnum": 1413,
@@ -301,8 +303,8 @@
      "description": "To the down lies Stairs On A Humongous Tree."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stair ends beneath a canopy of woven boughs, where bars of light\nfall through the cracks in the ceiling in glowing stripes. A handrail of\ncarved ivy runs beside the steps, worn smooth by many palms. Above, an\nopening leads up to the platform, and below, the stair winds down around\nthe trunk. A cool draught slips up from the depths.",
+   "extra_descs": {}
   },
   "1414": {
    "vnum": 1414,
@@ -322,8 +324,14 @@
      "description": "To the east lies The North End Of Moredhel Branch."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "Shelves spiral up the curve of the walls, crowded with scrolls, glass\nspheres and little bound books whose covers shift colour in the light. A\ntable of grey ash-wood bears a half-finished diagram in silver wire, and\nmotes of pale light drift lazily near the ceiling. The air tingles\nfaintly and smells of cedar and lightning. The one way out is the arched\ndoor east, which opens to the end of the branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650404,
+     "max": 1
+    }
+   ]
   },
   "1415": {
    "vnum": 1415,
@@ -349,8 +357,8 @@
      "description": "To the west lies The Mages Guild."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east, south and\nwest.",
-   "placeholder": true
+   "description": "The branch ends in a small round court, its floor a single great knot of\npolished wood. A doorway wreathed in white blossoms leads east to the\nClerics Guild, and a door carved with stars and crescents opens west\ninto the Mages Guild. Light from a hanging globe pools over the knot,\nand the whole court smells of incense and crushed leaves. The branch you\ncame by runs back south.",
+   "extra_descs": {}
   },
   "1416": {
    "vnum": 1416,
@@ -370,8 +378,14 @@
      "description": "To the west lies The North End Of Moredhel Branch."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
-   "placeholder": true
+   "description": "This chapel was grown rather than built, its walls curving up into a\nvaulted ceiling of living wood hung with strands of glowing moss. At its\nheart a basin of clear water rests on a pedestal of white stone, ringed\nwith offerings of blossoms and folded leaves. Low benches of pale birch\nface it, and soft songs seem to hang in the air even when the room is\nquiet. The only way out is the door west to the end of the branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650403,
+     "max": 1
+    }
+   ]
   },
   "1417": {
    "vnum": 1417,
@@ -391,8 +405,14 @@
      "description": "To the east lies On Moredhel Branch."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "A low, close room where the lamps are shuttered to a single slit and the\ncorners are deep with shadow. A table scattered with lock-picks, coils\nof fine cord and little velvet pouches sits beneath a hanging net of dry\nleaves that rustles at the slightest breath. The floorboards have been\nlaid to creak in a pattern, and a careful foot learns to step around the\nloud ones. The door east is the only way out, onto the branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650403,
+     "max": 1
+    }
+   ]
   },
   "1418": {
    "vnum": 1418,
@@ -422,8 +442,14 @@
      "description": "To the west lies The Thieves Guild."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Here the branch widens into a little crossing, with a door cut into the\nbark on either hand. The door east is heavy and banded with bronze, its\npanels scored by practice blades, while the door west is narrow, dark\nand oddly silent on its hinges. The planking is deep green and soft with\nmoss, and ferns hang from the boughs above. The branch runs on north\ntoward the clerics and mages, and south back to the platform.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650400,
+     "max": 1
+    }
+   ]
   },
   "1419": {
    "vnum": 1419,
@@ -443,8 +469,14 @@
      "description": "To the west lies On Moredhel Branch."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
-   "placeholder": true
+   "description": "A long hall of living wood, its floor sanded smooth for sparring and its\nwalls hung with targets of woven reed. Racks along the sides hold wooden\npractice swords, long bows and quarterstaffs worn pale by use. Beams of\ngreen light fall through high windows, and the boards bear the scuffs of\ncountless footwork drills. The only door lies west, back onto the\nbranch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650405,
+     "max": 1
+    }
+   ]
   },
   "1420": {
    "vnum": 1420,
@@ -466,8 +498,8 @@
      "description": "To the south lies North Side Of The Common Platform."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
-   "placeholder": true
+   "description": "Moredhel Branch begins here as a broad living road, its upper surface\nflattened and strewn with fine moss. Railings of woven twigs rise on\nboth sides, and between them the branch runs north into a hush of denser\nleaves. Back to the south the common platform is a bright open space,\nfull of the soft clink of lanterns. Small blue flowers grow in the\ncrooks where the lesser twigs leave the bough.",
+   "extra_descs": {}
   },
   "1421": {
    "vnum": 1421,
@@ -493,8 +525,8 @@
      "description": "To the down lies Stairs Under A Large Platform."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast, south and down.",
-   "placeholder": true
+   "description": "You step out onto the common platform at its corner, where a rail of\nliving branches curves around the edge and the ground lies unimaginably\nfar below. The planks are pale, smooth and warm underfoot, laid so\ntightly that no leaf-shadow slips between them. Lanterns hang from the\nrail on silver chains, swaying a little in the breeze. The platform\nstretches on east along the rail and south along the edge, while the\nstairs lead down into the trunk.",
+   "extra_descs": {}
   },
   "1422": {
    "vnum": 1422,
@@ -524,8 +556,8 @@
      "description": "To the west lies Northwest Corner Of The Common Platform."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "A broad branch meets the platform's edge here, and the rail breaks to\nlet it through. The planks are inlaid with a pattern of silver leaves\nthat catch the lantern light as you walk. Wind-chimes of thin glass\ntinkle among the boughs overhead, and the leaves hiss like a distant\nsea. The platform spreads out east and west along its edge and south\ntoward its middle, while the branch called Moredhel climbs away north.",
+   "extra_descs": {}
   },
   "1423": {
    "vnum": 1423,
@@ -551,8 +583,10 @@
      "description": "To the down lies Stairs Under A Large Platform."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead south, west and\ndown.",
-   "placeholder": true
+   "description": "The corner of the platform curves to a point here, where the rail swells\ninto a fat living post carved with a ring of dancing figures. Beyond the\nrail the crowns of other great trees stretch away like a green ocean\nunder the sky. The planks run west along the edge and south along the\nrail, and a stair opens in the floor, leading down into the trunk. Gold-\ntinted lanterns hang from the post on twisted cords.",
+   "extra_descs": {
+    "post figures dancing ring": "The living post is carved all round with slender dancers, hand in hand,\neach wearing a crown of leaves. Their faces are worn faint by the touch\nof passing palms."
+   }
   },
   "1424": {
    "vnum": 1424,
@@ -572,8 +606,14 @@
      "description": "To the south lies The West End Of West Glamredhel Branch."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads south.",
-   "placeholder": true
+   "description": "Glass bottles of every hue fill the shelves, each holding a drifting\nmist or a slow, spinning spark. Wands lie in a velvet-lined tray, and a\ncloud of tiny lights shifts about the ceiling like a flock of silent\nbirds. The counter is a slab of polished amber wood engraved with runes\nof silver. The air hums faintly and smells of mint and thunder. A door\nsouth opens to the branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650401,
+     "max": 1
+    }
+   ]
   },
   "1425": {
    "vnum": 1425,
@@ -593,8 +633,8 @@
      "description": "To the south lies West Glamredhel Branch."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads south.",
-   "placeholder": true
+   "description": "Shelves climb to the ceiling, crowded with coils of rope, lanterns,\nwaterskins, wooden bowls and bundles of arrows tied with ribbon. A\nladder of woven cord leans against one wall, and sacks of dried fruit\nslump in a corner. The room smells of tar, wax and cedar, and a brass\nbell hangs on a spring over the counter. The door south leads back to\nthe branch.",
+   "extra_descs": {}
   },
   "1426": {
    "vnum": 1426,
@@ -614,8 +654,14 @@
      "description": "To the south lies East Glamredhel Branch."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "Bows of yew, ash and horn hang from the curved walls in tidy ranks,\ntheir strings coiled beside them like sleeping snakes. Glass cases hold\ndaggers with leaf-shaped blades, and on a bench in the corner lies a\nhalf-strung longbow beside a pot of wax. The wooden floor is bare and\nswept, and the smell is of oil and cut timber. The door south opens onto\nthe branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650401,
+     "max": 1
+    }
+   ]
   },
   "1427": {
    "vnum": 1427,
@@ -635,8 +681,8 @@
      "description": "To the south lies The East End Of East Glamredhel Branch."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "A long bright room where cots of woven willow stand in a line beneath\nwindows hung with white linen. Bunches of drying herbs sway from the\nbeams, and on a low table sit jars of salve, rolled bandages and a bowl\nof steaming water. The air is clean and sweet with yarrow and mint. The\ndoor south leads out to the balcony at the end of the branch.",
+   "extra_descs": {}
   },
   "1428": {
    "vnum": 1428,
@@ -662,8 +708,14 @@
      "description": "To the south lies The Venison Shop."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east\nand south.",
-   "placeholder": true
+   "description": "The branch ends at a round platform of its own, circled by a rail of\nsilvery twigs and shaded by a leaning bough thick with glossy leaves. A\ndoor of blue-tinted wood marked with a spiral of stars opens north, and\na plain brown door hung with a carved antler opens south. Small lights\ndrift in the foliage like fireflies, though no insects hover there. The\nway east leads back along the branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650400,
+     "max": 1
+    }
+   ]
   },
   "1429": {
    "vnum": 1429,
@@ -693,8 +745,8 @@
      "description": "To the west lies The West End Of West Glamredhel Branch."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Two doors face each other across the walkway, one under a sign of a\nbundled sheaf and the other beneath a painted loaf. The branch here is\nwide and flat, its rail festooned with ivy and strings of dried apples.\nWarm bread smells drift out from the south, mixed with the sharper tang\nof rope and tar from the north. The branch runs west toward more doors,\nand east to the platform.",
+   "extra_descs": {}
   },
   "1430": {
    "vnum": 1430,
@@ -716,8 +768,8 @@
      "description": "To the west lies West Glamredhel Branch."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "The western branch springs from the platform here, a long arm of pale\nwood curving away under a trellis of climbing honeysuckle. Wind-bells of\nbone and silver hang along it, and each breath of air sets them\nmurmuring. The planks are scrubbed and sprinkled with seed-husks, the\nleavings of some bird-feeding. Back east the broad platform opens out,\nand westward the branch goes on toward the market doors.",
+   "extra_descs": {}
   },
   "1431": {
    "vnum": 1431,
@@ -747,8 +799,8 @@
      "description": "To the west lies The East End Of West Glamredhel Branch."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Here the platform's planking is stained to a deep honey colour and\nrubbed bright by many hands. Clusters of paper lanterns hang from a cord\nstrung between two posts, and a faint smell of bread drifts in along the\nwalkway heading west. A shallow carved gutter runs along the rail,\ncarrying rainwater out to the edge. The platform continues north and\nsouth, while east it opens toward its middle.",
+   "extra_descs": {}
   },
   "1432": {
    "vnum": 1432,
@@ -778,8 +830,16 @@
      "description": "To the west lies The West Side Of The Common Platform."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "At the heart of the platform the planks are laid in a great spiral of\npale and dark wood, winding in to a small round inlay of silver at the\ncentre. Overhead the boughs part to frame a disc of sky, and the sun\nfalls through in a slow bright circle. Benches shaped from single roots\ncurve around the rim of the spiral. Lantern-lit walkways lead away on\nall four sides, north, east, south and west.",
+   "extra_descs": {
+    "inlay silver spiral centre": "The silver inlay is set flush with the planks, a small tree of fine wire\nwith seven branches. Its roots spread out in the spiral of the floor, as\nif the whole platform grew from it."
+   },
+   "mob_resets": [
+    {
+     "vnum": 650400,
+     "max": 1
+    }
+   ]
   },
   "1433": {
    "vnum": 1433,
@@ -809,8 +869,8 @@
      "description": "To the west lies The Middle Of The Common Platform."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "The platform's rim runs close by here, hung with lanterns shaped like\nseed-pods that shine soft gold. A branch leaves the platform east as a\nwide walkway, its rail woven into a trellis of climbing white roses. The\nplanking is worn into pale hollows where many feet have passed, and a\ngentle breeze brings the smell of baking and woodsmoke. The platform\ncarries on north and south along the rail, and west toward its middle.",
+   "extra_descs": {}
   },
   "1434": {
    "vnum": 1434,
@@ -832,8 +892,8 @@
      "description": "To the west lies The East Side Of The Common Platform."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "Glamredhel Branch begins its long curve here, springing from the\nplatform as a boughway broad enough for a wagon. Small lamps hang from\nhooks along its rail, and the planks give faintly underfoot, with the\nspringy feel of a ship's deck. Names of old craftsmen run along the rail\nin swirling script. The walkway leads on east toward the shops, and back\nwest to the open platform.",
+   "extra_descs": {}
   },
   "1435": {
    "vnum": 1435,
@@ -863,8 +923,8 @@
      "description": "To the west lies The West End Of East Glamredhel Branch."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "The branch is busiest here, where doors open on both sides under signs\nof carved leaf and steel. The sign over the north door shows a bow\ncrossed with a blade, and the sign over the south door a mail shirt hung\non a bough. Overhead the boughs lace together into a canopy that\nscatters green-gold light across the planks, and bright ribbons tied to\nthe rail flutter in the wind. West the walkway heads back to the\nplatform, and east it winds on.",
+   "extra_descs": {}
   },
   "1436": {
    "vnum": 1436,
@@ -890,8 +950,8 @@
      "description": "To the west lies East Glamredhel Branch."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\nsouth and west.",
-   "placeholder": true
+   "description": "The branch ends in a rounded knob, a broad little balcony whose rail\nlooks out over a sea of leaves. A door under a carved sprig of healing\nherbs opens north, and a wide round door with a hanging lantern opens\nsouth. Pots of lavender and mint stand along the rail, scenting the air.\nBack west the walkway returns toward the shops.",
+   "extra_descs": {}
   },
   "1437": {
    "vnum": 1437,
@@ -911,8 +971,14 @@
      "description": "To the north lies The West End Of West Glamredhel Branch."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "Smoked haunches hang from hooks in the rafters, turning slowly in the\nwarm draught, and strings of dried sausage swing beside them. A heavy\nchopping block, scored deep by cleavers, stands at the room's heart, and\njars of salt and juniper line the shelves. The air is thick with\nwoodsmoke and herbs. A door north opens onto the end of the branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650401,
+     "max": 1
+    }
+   ]
   },
   "1438": {
    "vnum": 1438,
@@ -932,8 +998,8 @@
      "description": "To the north lies West Glamredhel Branch."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
-   "placeholder": true
+   "description": "A great clay oven fills one wall, glowing orange through its iron door\nand warming the whole room. Trays of honey cakes, seed loaves and\nbraided rolls cool on racks of pale wood. The floor is dusted with\nflour, and a long table scarred by years of kneading stands in the\nmiddle. The smell is wonderful, sweet with honey and nutty with toasted\ngrain. The door north returns to the branch.",
+   "extra_descs": {}
   },
   "1439": {
    "vnum": 1439,
@@ -953,8 +1019,14 @@
      "description": "To the north lies East Glamredhel Branch."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "Suits of leather and fine scale mail stand on wooden frames shaped like\nslender figures, each polished until it gleams. Helms and bracers lie on\nshelves, laid out on cloth of green velvet, and a bench holds awls,\nrivets and a half-stitched greave. Light from a lantern glints along\nrows of buckles on the wall. The door north leads out to the branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650401,
+     "max": 1
+    }
+   ]
   },
   "1440": {
    "vnum": 1440,
@@ -974,8 +1046,8 @@
      "description": "To the north lies The East End Of East Glamredhel Branch."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "The inn's common room is warm and low, with a hearth of smooth river\nstones where a small fire burns and a kettle sings. Chairs of bent wood\nsit about tables carved with trailing ivy, and lanterns hang from the\nbeams in clusters. Rows of keys hang on pegs behind the counter, each\ntagged with a painted leaf, and the smell of spiced cider fills the air.\nThe door north opens onto the end of the branch.",
+   "extra_descs": {}
   },
   "1441": {
    "vnum": 1441,
@@ -1001,8 +1073,14 @@
      "description": "To the down lies Stairs Under A Large Platform."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east\nand down.",
-   "placeholder": true
+   "description": "In this corner a low wall of woven branches curves around a bed of ferns\nand moonflowers grown in a trough of earth. The rail beyond is carved\nwith wading birds, and under the lanterns the planks are scattered with\ndew-bright petals. A stairway sunk into the floor spirals down inside\nthe trunk. The platform runs north along its rail and east along its\nedge.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650400,
+     "max": 1
+    }
+   ]
   },
   "1442": {
    "vnum": 1442,
@@ -1032,8 +1110,8 @@
      "description": "To the west lies The Southwest Corner Of The Common Platform."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "The platform narrows here where Eledhel Branch leaves it, a thick bough\nof dark, glossy bark that runs away south toward the royal halls. Great\nplanters of fern and white lilies stand at the mouth of the bough, and\nthe rail is carved with leaping hounds. The planks are scrubbed so clean\nthat they seem to hold the light. The platform opens north toward its\nmiddle, and east and west along its edge.",
+   "extra_descs": {}
   },
   "1443": {
    "vnum": 1443,
@@ -1059,8 +1137,8 @@
      "description": "To the down lies Stairs Under A Large Platform."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, west and down.",
-   "placeholder": true
+   "description": "The platform ends in another corner here, its rail curved to meet itself\naround a small carved basin of rainwater. A pair of fruit trees in tubs\nof black earth lean over the planks, scattering petals across the pale\nwood. A stair in the floor leads down into the great trunk, and the\nplatform runs north along the rail and west along the edge. Lanterns\nshaped like seed-pods hang from the corner posts.",
+   "extra_descs": {}
   },
   "1444": {
    "vnum": 1444,
@@ -1082,8 +1160,8 @@
      "description": "To the south lies On Eledhel Branch."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "Eledhel Branch is the royal road, a thick and glossy bough broad enough\nfor six to walk abreast. Its planks are laid in a pattern of dark and\npale wood, and its railings are carved with the leaves of the oak, the\nbeech and the elm. Lanterns of green glass hang at regular intervals,\nswaying gently. The platform lies close behind to the north, and the\nbranch runs on south toward the royal halls.",
+   "extra_descs": {}
   },
   "1445": {
    "vnum": 1445,
@@ -1105,8 +1183,14 @@
      "description": "To the south lies On Eledhel Branch."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The bough stretches long and straight here, its surface sanded smooth\nand sprinkled with the tiny petals of some night-blooming vine. Silken\nbanners the colour of new leaves hang from the rail, each stitched with\na silver tree. Through the gaps beneath the rail, sunlight dapples the\ndistant ground far below. The branch runs north toward the platform and\nsouth onward.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650402,
+     "max": 1
+    }
+   ]
   },
   "1446": {
    "vnum": 1446,
@@ -1126,8 +1210,8 @@
      "description": "To the east lies On Eledhel Branch."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "A watch-room with a view, its single window opening onto the branch and\nthe green leaf-sea beyond. A table bears a game of carved stones, left\nin mid-play, and an hourglass of silver and glass. Spears are racked\nbeside the door, and a cloak hangs on a peg. The floor is polished by\nyears of patient waiting. The door east is the way out to the branch.",
+   "extra_descs": {}
   },
   "1447": {
    "vnum": 1447,
@@ -1157,8 +1241,14 @@
      "description": "To the west lies A Guard Room."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "A crossing of the branch, where doors of thick dark wood face each other\nbeneath lintels carved with crossed spears. Slender lamps burn at each\ndoor, never guttering despite the wind. The planks are scuffed by the\ntread of boots, and a polished horn hangs on a hook beside the east\ndoor. Beyond the rail the leaves rustle like a crowd. The branch runs\nnorth and south, with a guard room on either side.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650400,
+     "max": 1
+    }
+   ]
   },
   "1448": {
    "vnum": 1448,
@@ -1178,8 +1268,14 @@
      "description": "To the west lies On Eledhel Branch."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "A plain, tidy room where spears and long swords stand in racks along the\ncurved wall. A table of grey wood holds a map of the city's branches\ndrawn on stretched bark, weighted at its corners with smooth pebbles.\nNarrow windows let in the green light and the sound of leaves. Bunks of\nwoven cord are tucked against the far wall. The door west opens onto the\nbranch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650402,
+     "max": 1
+    }
+   ]
   },
   "1449": {
    "vnum": 1449,
@@ -1199,8 +1295,8 @@
      "description": "To the east lies On Eledhel Branch."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads east.",
-   "placeholder": true
+   "description": "A cosy, book-cluttered office with deep shelves, a small writing desk\nand a pair of armchairs facing a window of coloured glass. Rolled maps\nlean in a basket, and a lamp throws golden light across a stack of\npetitions bound with ribbon. A warm smell of old paper hangs in the air.\nA faded tapestry shows the founding of the city. The door east returns\nto the branch.",
+   "extra_descs": {}
   },
   "1450": {
    "vnum": 1450,
@@ -1230,8 +1326,8 @@
      "description": "To the west lies An Advisor's Office."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "Doors of finely grained pale wood stand on either side of the branch,\neach marked by a brass plate inscribed in elegant script. The planks are\nbrushed clean and polished until they gleam, and a faint sweet smell of\nbeeswax lingers. Ferns in hanging baskets drip dew from the rail. The\nbranch leads north toward the platform and south on toward the royal\nwaiting hall.",
+   "extra_descs": {}
   },
   "1451": {
    "vnum": 1451,
@@ -1251,8 +1347,8 @@
      "description": "To the west lies On Eledhel Branch."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "A quiet study lit by a lamp with a shade of green glass. Maps and\nscrolls lie across a broad desk of dark burr-wood, and pigeonholes along\none wall are stuffed with sealed letters. The chair is high-backed and\ndeep, cushioned in grey wool. Everything is orderly, from the quills to\nthe ink-stones. The door west leads back to the branch.",
+   "extra_descs": {}
   },
   "1452": {
    "vnum": 1452,
@@ -1272,8 +1368,8 @@
      "description": "To the east lies On Eledhel Branch."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "A room of sturdy practicality: a table of scrubbed oak, a rack of\nhalberds, and a chest bound with a lock of grey iron. A map of the\nbranches hangs on the wall, pricked with pins of coloured thread. Gentle\nlight falls from a round window of leaded glass. The boards bear a faint\npath along the wall where long patrols have turned. A door east opens\nonto the branch.",
+   "extra_descs": {}
   },
   "1453": {
    "vnum": 1453,
@@ -1303,8 +1399,8 @@
      "description": "To the west lies A Guard Room."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The branch widens before a great carved archway, and the planks are\ninlaid with a long band of silver leaves pointing the way. Guard rooms\nstand to either side behind sturdy doors, east and west, and the rail is\nornamented with flowing knots of woven brass. The air is cool and still,\nwith the scent of beeswax and bark. South, the archway opens into the\nwaiting area of the throne room, and the branch runs back north.",
+   "extra_descs": {}
   },
   "1454": {
    "vnum": 1454,
@@ -1324,8 +1420,14 @@
      "description": "To the west lies On Eledhel Branch."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "A narrow room smelling of oil and leather, where the walls are hung with\nquivers, bucklers and scabbards on pegs. A long bench runs beneath the\nwindow, and a rack of whetstones sits beside a lamp. A board scratched\nwith the names of old watches hangs by the door. The floor shows a path\nworn by many pacing boots. The door west returns to the branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650402,
+     "max": 1
+    }
+   ]
   },
   "1455": {
    "vnum": 1455,
@@ -1345,8 +1447,8 @@
      "description": "To the east lies The Waiting Area Into The Throne Room."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
-   "placeholder": true
+   "description": "A quiet alcove off the waiting hall, cooler than its twin and hung with\ncurtains of pale silk. A reading desk bears a thick volume of elven\ngenealogies, and a vase of white lilies scents the air. The window looks\nout on the swaying canopy, where the light flickers between the leaves.\nA faint sound of lute music drifts in from somewhere. The way out is\neast to the main hall.",
+   "extra_descs": {}
   },
   "1456": {
    "vnum": 1456,
@@ -1378,8 +1480,8 @@
      "description": "To the west lies The West Wing Of The Waiting Room."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A grand hall of living wood, its ceiling a vault of woven boughs hung\nwith glowing globes. Tall benches of white ash face a pair of towering\ndoors set with silver leaves, and a carpet of deep moss green runs\nbetween them. The walls curve outward into two quiet wings, one reached\neast and one west. North the archway returns to the branch outside, and\nthe great doors south lead to the throne room.",
+   "extra_descs": {}
   },
   "1457": {
    "vnum": 1457,
@@ -1399,8 +1501,8 @@
      "description": "To the west lies The Waiting Area Into The Throne Room."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A small alcove off the waiting hall, with cushioned window-seats\noverlooking the shimmering sea of leaves. A low table holds a bowl of\nfruit and a pitcher of cool water. Tapestries of green and silver\nthread, showing a hunt beneath a pale moon, cover the wall. It is a\nplace for waiting, and for thinking over what one means to say. The way\nback is west into the main waiting area.",
+   "extra_descs": {}
   },
   "1458": {
    "vnum": 1458,
@@ -1429,8 +1531,10 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The throne room is a vast chamber formed by living boughs grown into\npillars and arches, its ceiling lost in a haze of glimmering leaves. At\nthe far end stands a high seat of silver-grey wood, its back a spray of\ncarved branches twined with stars. A long carpet of deep green runs\nbetween rows of slender columns, each carved with the history of a\nreign. Light of no visible source gilds everything. The doors north lead\nback to the waiting hall, and a small door south is closed behind the\nthrone.",
+   "extra_descs": {
+    "seat throne high": "The seat is grown rather than carved, its arms two boughs that curve\ninward and its back a fan of branches studded with tiny silver stars. It\nis empty, yet it seems to be waiting."
+   }
   },
   "1459": {
    "vnum": 1459,
@@ -1454,8 +1558,8 @@
      "description": "To the down lies The Lower Branch."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and down.",
-   "placeholder": true
+   "description": "A narrow stair, hidden behind the throne room, spirals down inside the\nheart of the tree. The walls are close and warm, and the steps are\ncarved with tiny leaf patterns that grip the foot. A single lantern\nhangs from a hook, its glow steady and pale. The door north leads back\nto the throne room, while the stair continues down toward the lower\nbranch.",
+   "extra_descs": {}
   },
   "1461": {
    "vnum": 1461,
@@ -1479,8 +1583,8 @@
      "description": "To the south lies The Guard's Barracks."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "Long benches of dark wood hold alembics, retorts and racks of glass\nvials, all joined by a tangle of silver tubing. Bundles of strange roots\nand pale mushrooms hang drying from the rafters, and a faint green fume\ncurls from a bubbling flask. Charts of runes and poisons crowd the\nwalls, some scorched at the edges. A heavy passage north leads on toward\nthe adamantium gates of a drow city, while an arch south returns to the\nbarracks.",
+   "extra_descs": {}
   },
   "1462": {
    "vnum": 1462,
@@ -1504,8 +1608,8 @@
      "description": "To the south lies The Lower Branch."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "Rows of narrow bunks are built into the curving walls, each with a\nfolded green blanket and a small shelf for a few treasured things. A\nweapon rack stands at the end of every row, and a long table in the\ncentre is scarred by the marks of dice and blades. The ceiling beams are\nblackened with lamp smoke. A narrow door north leads on to the\nlaboratory, and the arch south opens to the gallery.",
+   "extra_descs": {}
   },
   "1463": {
    "vnum": 1463,
@@ -1525,8 +1629,8 @@
      "description": "To the east lies The Lower Branch."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "Here the barracks are given over to training: grain-filled bags hang\nfrom the beams, and wooden dummies stand scarred by sword strokes. Long\nbenches line the wall, and above them hang rows of dull practice blades.\nA water barrel with a ladle sits in a corner beside a stack of towels.\nThe low hum of the tree itself fills the room. The arch east opens to\nthe lower branch.",
+   "extra_descs": {}
   },
   "1464": {
    "vnum": 1464,
@@ -1558,8 +1662,8 @@
      "description": "To the west lies The Guard's Barracks."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A crossroads of galleries cut in the heartwood, where low arches open on\nevery side. The floor is worn smooth with the tread of countless boots,\nand the walls are hung with the old banners of the watch, faded green\nand silver. A single iron brazier burns at the junction, its smoke drawn\nup into some hidden flue. The archway north leads to barracks, the\narches east and west to more of the same, and the gallery runs back\nsouth.",
+   "extra_descs": {}
   },
   "1465": {
    "vnum": 1465,
@@ -1579,8 +1683,18 @@
      "description": "To the west lies The Lower Branch."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "A smaller barracks chamber, its low ceiling braced with ribs of living\nwood. Hammocks of cord hang in two tiers, and each post has hooks for a\ncloak, a quiver and a lantern. A small shrine of carved leaves stands in\none corner, with a sprig of fresh greenery laid before it. The air\nsmells of leather and boiled tea. The only way out is the arch west into\nthe lower branch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 650402,
+     "max": 1
+    },
+    {
+     "vnum": 650406,
+     "max": 1
+    }
+   ]
   },
   "1466": {
    "vnum": 1466,
@@ -1608,8 +1722,8 @@
      "description": "To the up lies The Private Stairway."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and up.",
-   "placeholder": true
+   "description": "The inner corridor opens here into a wider gallery of living wood, its\nfloor sloping gently with the grain of the tree. Roots as thick as\npillars arch overhead, and lanterns of dim amber hang in the hollows\nbetween them. The air is cool and smells of earth and sap. A stair rises\nbehind you to the private stairway, and the gallery runs on north and\nsouth.",
+   "extra_descs": {}
   },
   "1467": {
    "vnum": 1467,
@@ -1641,8 +1755,8 @@
      "description": "To the west lies The Guard's Barracks."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Another crossing of the lower gallery, its walls carved with a long\nfrieze of marching elves beneath streaming banners. A medallion of green\ntile, showing a tree in full leaf, is set into the floor to mark the\njunction. Arches open east, south and west, and the gallery runs back\nnorth toward the stair. A draught carries the smell of oil and metal.",
+   "extra_descs": {}
   },
   "1468": {
    "vnum": 1468,
@@ -1671,8 +1785,8 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "A sturdy room near the treasury, with thick roots grown into a rack of\nspears along each wall. A heavy table holds a ledger sealed with a brass\nclasp and a ring of keys on a hook. The door in the south wall is bound\nin silver and kept shut, with a spyhole carved in its centre. The air is\ntense and watchful. An opening north leads back to the lower branch.",
+   "extra_descs": {}
   },
   "1469": {
    "vnum": 1469,
@@ -1692,8 +1806,10 @@
      "description": "To the north lies The Guard's Barracks."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "A round vault grown inside the tree's heart, its walls lined with\nshelves and chests of dark wood bound with silver. Trays of cut gems\nglitter beside niches of old crowns resting on cushions of faded velvet.\nA runic ward on the lintel flickers faintly. The air is dry and still,\nand the only sound is the slow settling of the tree. The door north\nleads back to the barracks.",
+   "extra_descs": {
+    "ward rune runic lintel": "The ward is a line of silver runes inlaid in the lintel. They pulse\nfaintly, in the slow rhythm of a sleeping heart."
+   }
   },
   "1470": {
    "vnum": 1470,
@@ -1713,8 +1829,8 @@
      "description": "To the east lies The Lower Branch."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "This barracks smells of sharpened steel and wax. Racks of long bows and\ntall shields stand along the wall, and a worktable bears whetstones,\nbowstring wax and a dish of arrowheads. The beams are carved with a\npattern of hawks. A narrow window of bark-thin glass shows nothing but a\ndeep green dusk. Through the arch east lies the lower branch.",
+   "extra_descs": {}
   },
   "1471": {
    "vnum": 1471,
@@ -1734,11 +1850,404 @@
      "description": "To the west lies The Lower Branch."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "A quiet chamber where off-duty watchers sleep, with rows of cots covered\nin grey wool and a rack for boots by the arch. A shuttered lantern hangs\nfrom the central beam, throwing a dim glow across a chest of spare\ncloaks. Someone has carved a tally of days into one post. The air is\nwarm and stale, and smells faintly of pipe-leaf. The arch west leads to\nthe lower branch.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "650400": {
+   "vnum": 650400,
+   "name": "elf citizen elven",
+   "short_desc": "a slender elf",
+   "long_desc": "A slender elf in a cloak of leaf-green strolls along the boughs, humming softly.",
+   "description": "She is tall and fine-boned, with swept ears and eyes the colour of new\nleaves. Her cloak is clasped with a small silver brooch, and she walks\nwith the unhurried grace of one who has never feared a fall.",
+   "level": 13,
+   "alignment": 400,
+   "hp_dice": "13d8+169",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 156,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750400,
+     "chance": 20
+    },
+    {
+     "vnum": 750401,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "650401": {
+   "vnum": 650401,
+   "name": "elf merchant elven shopkeeper",
+   "short_desc": "an elven merchant",
+   "long_desc": "An elven merchant waits behind a counter, arranging wares with careful fingers.",
+   "description": "He has a quick, courteous smile and ink-stained fingers. A ring of tiny\nkeys hangs at his belt, and his eyes miss nothing that passes his door.",
+   "level": 14,
+   "alignment": 300,
+   "hp_dice": "14d8+182",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 168,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750401,
+     "chance": 25
+    },
+    {
+     "vnum": 750400,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "650402": {
+   "vnum": 650402,
+   "name": "guard elf elven watchman",
+   "short_desc": "an elven guard",
+   "long_desc": "An elven guard in green and silver stands watch, one hand resting on a slim sword.",
+   "description": "The guard wears a shirt of fine linked mail beneath a leaf-green\nsurcoat. His face is calm and watchful, and he carries himself like one\nwho has stood many long watches in the high branches.",
+   "level": 17,
+   "alignment": 500,
+   "hp_dice": "17d8+225",
+   "damage_dice": "5d6+9",
+   "armor_class": 46,
+   "exp": 955,
+   "gold": 204,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750402,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "650403": {
+   "vnum": 650403,
+   "name": "guildmaster master elf elven",
+   "short_desc": "an elven guildmaster",
+   "long_desc": "An elven guildmaster stands here with folded arms, ready to teach those who ask.",
+   "description": "Ageless and unhurried, the guildmaster studies each visitor with a long,\nmeasuring look. Years of training others have given the elf a quiet,\npatient authority.",
+   "level": 19,
+   "alignment": 300,
+   "hp_dice": "19d8+255",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 228,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750401,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "650404": {
+   "vnum": 650404,
+   "name": "archmage mage elf elven",
+   "short_desc": "an elven archmage",
+   "long_desc": "An elven archmage sits among drifting motes of light, turning a glass sphere in her hands.",
+   "description": "Her robes are the grey of morning mist, stitched along the hems with\nsilver runes that shimmer when she moves. Her eyes are deep and old, and\nsmall sparks gather at her fingertips when she is thinking.",
+   "level": 21,
+   "alignment": 400,
+   "hp_dice": "21d8+286",
+   "damage_dice": "6d6+11",
+   "armor_class": 34,
+   "exp": 1175,
+   "gold": 252,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750403,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "650405": {
+   "vnum": 650405,
+   "name": "warmaster warrior elf elven",
+   "short_desc": "an elven warmaster",
+   "long_desc": "An elven warmaster paces the sparring floor, watching every stroke with a critical eye.",
+   "description": "Lean and scarred, the warmaster moves with the economy of a blade being\ndrawn. Her hair is bound in a long braid, and a worn sword hangs at her\nhip as though it were part of her.",
+   "level": 21,
+   "alignment": 400,
+   "hp_dice": "21d8+286",
+   "damage_dice": "6d6+11",
+   "armor_class": 34,
+   "exp": 1175,
+   "gold": 252,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750402,
+     "chance": 20
+    },
+    {
+     "vnum": 750401,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "650406": {
+   "vnum": 650406,
+   "name": "captain guard elf elven",
+   "short_desc": "the captain of the guard",
+   "long_desc": "The captain of the guard stands tall in silver-trimmed mail, surveying her watch.",
+   "description": "Captain Elrienna is tall even for an elf, with grey eyes and a long scar\nalong one cheek. Her silver-trimmed mail is polished bright, and her\nleaf-bladed sword never seems far from her hand.",
+   "level": 22,
+   "alignment": 600,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 750404,
+     "chance": 35
+    },
+    {
+     "vnum": 750402,
+     "chance": 35
+    },
+    {
+     "vnum": 750403,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "750400": {
+   "vnum": 750400,
+   "name": "cloak elven green leaf",
+   "short_desc": "a leaf-green elven cloak",
+   "room_desc": "A leaf-green elven cloak lies here.",
+   "description": "Woven of fine grey-green wool, the cloak shifts colour like leaves in the wind. It is light as a sigh and warm as a hearth.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 15,
+   "wear_slot": "about",
+   "armor": 2,
+   "weight": 3,
+   "value": 330,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  },
+  "750401": {
+   "vnum": 750401,
+   "name": "brooch silver leaf",
+   "short_desc": "a silver leaf brooch",
+   "room_desc": "A silver leaf brooch lies here.",
+   "description": "A tiny leaf of silver, veined with exquisite lines, made to clasp a cloak. Such work fetches a good price from any collector.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 16,
+   "weight": 1,
+   "value": 505
+  },
+  "750402": {
+   "vnum": 750402,
+   "name": "mail elven shirt mithril",
+   "short_desc": "a shirt of elven mail",
+   "room_desc": "A shirt of fine elven mail lies here.",
+   "description": "Thousands of tiny rings, each no bigger than a lentil, make up this supple shirt. It weighs almost nothing yet turns a blade like a plate.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "body",
+   "armor": 5,
+   "weight": 10,
+   "value": 410,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  },
+  "750403": {
+   "vnum": 750403,
+   "name": "circlet silver archmage",
+   "short_desc": "a silver circlet",
+   "room_desc": "A thin silver circlet lies here.",
+   "description": "A narrow band of silver, set at the brow with a single pale stone. It hums faintly and sharpens the thoughts of whoever wears it.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 21,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 450,
+   "affects": [
+    {
+     "type": "int",
+     "value": 1
+    }
+   ]
+  },
+  "750404": {
+   "vnum": 750404,
+   "name": "sword leafblade leaf-bladed captain",
+   "short_desc": "a leaf-bladed sword",
+   "room_desc": "A long leaf-bladed sword lies here.",
+   "description": "The blade is broad at the middle and tapers to a needle point, etched with a pattern of veins. Its grip is wound with green silk, and it feels perfectly balanced.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 22,
+   "damage_dice": "2d6",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 590,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

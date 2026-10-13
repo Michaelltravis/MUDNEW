@@ -20,8 +20,8 @@
      "description": "To the south lies The Sandy Path."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. A way leads\nsouth.",
-   "placeholder": true
+   "description": "Kigrint's hut is a single low room of driftwood planks and tarred\nsailcloth, hung all over with knotted nets and strings of dried sprats.\nThe floor is packed sand scattered with fish bones and shell cups, and a\nclay lamp burns with a smoky, oily flame. Sleeping mats lie rolled\nagainst the curved wall, and the whole place smells of brine and old\nsmoke. The only door opens south onto the Sandy Path, letting in a thin\nstripe of salt air.",
+   "extra_descs": {}
   },
   "15103": {
    "vnum": 15103,
@@ -39,8 +39,8 @@
      "description": "To the south lies The Worn Path."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads south.",
-   "placeholder": true
+   "description": "A squat clay oven fills one end of the bakery, its mouth glowing orange\nand breathing out heat. Flat loaves of seaweed bread and sticky buns of\ncrushed nuts cool on racks along the sooty walls, and flour dusts every\nplank of the counter. The air is thick and sweet, with a bitter edge of\nburnt crust. The only way out is south, back to the Worn Path.",
+   "extra_descs": {}
   },
   "15104": {
    "vnum": 15104,
@@ -62,8 +62,10 @@
      "description": "To the south lies The Worn Path."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "Weeds have crept across this track, and the few footprints in the sand\nare old and half blown away. Thorny sea-buckthorn crowds the edges,\nheavy with orange berries. Ahead to the north the great bronze gate of\nKyor'Glt stands open now, its blue-green leaves swung back on stiff\nhinges so that the dock beyond can be seen. The path leads south to the\nWorn Path and the town.",
+   "extra_descs": {
+    "gate bronze": "The bronze leaves are carved with round-eyed fish faces and stand wide\nopen on their hinges, green with age."
+   }
   },
   "15105": {
    "vnum": 15105,
@@ -83,8 +85,14 @@
      "description": "To the south lies The Brawler's Room."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "Crates and barrels crowd the storage room to the rafters, stacked with\nsalted fish, tallow and coils of tarred rope. Sacks of grey sea-salt\nlean against the wall and spill a crust of white onto the floor. A\nsingle slit high up lets in a blade of light, thick with drifting dust.\nThe only door leads south, back to the Brawler's Room.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649101,
+     "max": 1
+    }
+   ]
   },
   "15106": {
    "vnum": 15106,
@@ -114,8 +122,8 @@
      "description": "To the west lies Deeper In The Seaweed Forest."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The seaweed grows so thick and tall here that it closes over the raft\nlike a green forest, and you pole blindly through twisting aisles of\nkelp. Light falls in soft shafts and the water is warm and heavy. Every\nturn seems to lead back to the same tangled place, whichever way the\ncurrent tugs. The weed thins east, and a cold pull draws toward the\nsouth.",
+   "extra_descs": {}
   },
   "15107": {
    "vnum": 15107,
@@ -141,8 +149,8 @@
      "description": "To the west lies Deeper In The Seaweed Forest."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Your raft drifts among thick brown stems of kelp that rise from the\ndepths and tangle on the surface into floating mats. The swell lifts and\nlowers you in slow rhythm, and the creak of the weed is almost like\nspeech. The beach shows through the stems to the east. The kelp grows\ndeeper west, and old ruined stones show dim beneath you toward the\nsouth.",
+   "extra_descs": {}
   },
   "15108": {
    "vnum": 15108,
@@ -168,8 +176,9 @@
      "description": "To the west lies The Seaweed Forest."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast, south and west.",
-   "placeholder": true
+   "description": "The beach is a long crescent of grey shingle and dark sand, strewn with\nwrack and the bleached ribs of wrecked boats. Gulls scream over a tangle\nof kelp that heaves in the shallows, and the surf pounds with a steady\nroar. A wooden raft is drawn up on the pebbles. The path leads east to\nthe Sandy Path, while the water begins south and west among the thick\nweed.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "15109": {
    "vnum": 15109,
@@ -200,8 +209,8 @@
      "description": "To the west lies The Shore."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east and west.",
-   "placeholder": true
+   "description": "Pale sand lies drifted across the path, soft underfoot and speckled with\nbroken shells. Palms lean overhead, rattling their fronds in the sea\nwind, and a line of gutted fish hangs drying between two trunks. A\ndriftwood hut stands to the north with its door ajar to the weather. The\npath runs east toward the Dirt Path and falls away west to the open\nShore, where the surf can be heard hissing on the beach.",
+   "extra_descs": {}
   },
   "15110": {
    "vnum": 15110,
@@ -223,8 +232,14 @@
      "description": "To the west lies The Sandy Path."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "The sand gives way here to hard-packed brown dirt, rutted by hand carts\nand bare, clawed feet. Squat palms thin out, and a rack of split fish\ncooks in the sun beside the track, buzzing with flies. Someone has\nscratched crude wavy marks into a stump to claim the rack. The path\nleads west back toward the Sandy Path and on east to the Worn Path.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649100,
+     "max": 1
+    }
+   ]
   },
   "15111": {
    "vnum": 15111,
@@ -254,8 +269,8 @@
      "description": "To the west lies Dirt Path."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "The path is trodden into a shallow trench here, polished smooth by years\nof traffic. A warm smell of baking bread drifts from a doorway to the\nnorth, mixing with the oily tang of a whetstone from the low building to\nthe south. Strings of dried fish and bright gull feathers sway from the\neaves. The Worn Path goes on east, and the Dirt Path lies back to the\nwest.",
+   "extra_descs": {}
   },
   "15112": {
    "vnum": 15112,
@@ -290,8 +305,16 @@
      "description": "To the west lies The Worn Path."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast, south and west.",
-   "placeholder": true
+   "description": "The path widens into a rough crossing where several ways meet. Loud\nvoices and the thump of a drum spill from a stout door to the east, and\na row of pegs along a wall is hung with dripping silver fish. A faded\ntrack leads north toward the Untravelled Path, while the way south\nbecomes the Well Worn Path. To the west the trodden road returns to\nanother stretch of the Worn Path.",
+   "extra_descs": {
+    "pegs fish": "The pegs are polished by use, each one hung with a gutted fish, and\ndrips from them have worn a dark patch into the wall planks."
+   },
+   "mob_resets": [
+    {
+     "vnum": 649100,
+     "max": 1
+    }
+   ]
   },
   "15113": {
    "vnum": 15113,
@@ -315,8 +338,8 @@
      "description": "To the west lies The Worn Path."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The tavern is a low, smoky room of sticky tables and upturned barrels\nfor stools, lit by lamps of fish oil that gutter and stink. A long plank\nbar runs along one wall, scarred with a hundred knife-carved marks and\nslopped with pale seaweed ale. Rough songs and louder arguments seem to\nsoak into the beams overhead. A stout door leads west to the Worn Path,\nand an archway opens east into the Brawler's Room.",
+   "extra_descs": {}
   },
   "15114": {
    "vnum": 15114,
@@ -345,8 +368,8 @@
      "description": "To the west lies The Goblin Tavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "Sand has been strewn thick on the floor of this room to soak up spilled\nblood and ale, and it is trodden into a dark crust. A ring of rope hangs\nslack between four posts at the centre, and the benches around it are\ncracked and splintered. Old gouges mark the plank walls at the height of\na goblin's head. The tavern lies back to the west, and a door to the\nnorth leads into a storage room.",
+   "extra_descs": {}
   },
   "15115": {
    "vnum": 15115,
@@ -364,8 +387,8 @@
      "description": "To the south lies A Turn In The Path."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads south.",
-   "placeholder": true
+   "description": "The Eflykt hut is cramped and tidy, its walls lined with shelves of\nwhelk shells, bundles of herbs and little carved fish. A mat of woven\nreeds covers the sand floor, and a battered cooking pot hangs over a\ncold fire pit. The light that finds its way in is dim and brown,\nfiltered through patched sailcloth. The door leads south onto the turn\nin the path.",
+   "extra_descs": {}
   },
   "15116": {
    "vnum": 15116,
@@ -395,8 +418,14 @@
      "description": "To the west lies The Cloudy Deep."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The water has turned cloudy and green, thick with silt and the fine\nwhite dust of drowned things, and you can see no further than the end of\nyour raft. The swell is slow and oily, and the weed hangs in the murk\nlike drowned hair. The current drags to the south toward deeper dark.\nNorth, the kelp grows thicker, and to the east lies a heap of ancient\nstone.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649102,
+     "max": 1
+    }
+   ]
   },
   "15117": {
    "vnum": 15117,
@@ -426,8 +455,8 @@
      "description": "To the west lies The Cloudy Deep."
     }
    },
-   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Ruined arches and half-toppled walls loom out of the green gloom around\nyour raft, crusted with barnacles and drifting with weed. Broken columns\nlie jumbled on the seabed below, and the carved faces on them are worn\nblank by the tide. Currents pull gently toward each point of the\ncompass. Open water lies in every direction: kelp to the north, a\nthicker forest of weed to the east, a dark hulk to the south and a murky\ndeep to the west.",
+   "extra_descs": {}
   },
   "15118": {
    "vnum": 15118,
@@ -458,8 +487,14 @@
      "description": "To the west lies Ancient Ruins."
     }
    },
-   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "You drift on a battered raft in dark green water, with great ribbons of\nkelp rising on every side like the pillars of a drowned hall. Silt hangs\nin the swell and pale fish flicker in and out of the weeds. The beach\nlies close to the north. A round door of corroded bronze stands in a\nwall of black rock to the south, and the weed thins to ruined stonework\nto the west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649102,
+     "max": 1
+    }
+   ]
   },
   "15119": {
    "vnum": 15119,
@@ -477,8 +512,8 @@
      "description": "To the north lies The Worn Path."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nnorth.",
-   "placeholder": true
+   "description": "Cutlasses, boarding axes and spears fill the racks inside this rough\nforge-shop, and the long counter is notched where blades have been\ntested. A whetstone wheel stands in the corner, wet and gleaming, with a\npile of sparks scorched into the floor beneath. Everything smells of hot\niron and fish oil. A wide opening leads north to the Worn Path.",
+   "extra_descs": {}
   },
   "15120": {
    "vnum": 15120,
@@ -504,8 +539,14 @@
      "description": "To the south lies The Armory."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east\nand south.",
-   "placeholder": true
+   "description": "The path here has been worn down into a groove, deeper than a boot, by\ncountless trips from the town to the water. A stone-ringed well stands\nto one side, its rope frayed and its bucket hanging from a bent iron\nhook. North lies the busy crossing of the Worn Path, and the path goes\non east toward the Littered Path. A heavy door to the south leads into\nthe Armory.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649100,
+     "max": 1
+    }
+   ]
   },
   "15121": {
    "vnum": 15121,
@@ -527,8 +568,8 @@
      "description": "To the west lies The Well Worn Path."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nsouth and west.",
-   "placeholder": true
+   "description": "Rubbish piles up along both edges of the path: fish heads, cracked pots,\nrags stiff with grease and gnawed bones. A cloud of flies rises and\nsettles with every step. The trodden dirt bends away south toward the\nRuined Path, while the way back west leads to the Well Worn Path. A\nsingle palm survives, its trunk stained with years of thrown slops.",
+   "extra_descs": {}
   },
   "15122": {
    "vnum": 15122,
@@ -550,8 +591,14 @@
      "description": "To the south lies A Trickle Of Water."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and south.",
-   "placeholder": true
+   "description": "Scraps and shells are ground into the mud here, carried down from the\ntrickle of water nearby. A broken amphora lies half buried, its neck\nsticking up like a gravestone. Beetles scuttle through the litter, and a\ncracked bucket serves as a sign that someone once tried to tidy up. The\nway east leads on to the Muddy Path, and the trickle of water lies to\nthe south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649100,
+     "max": 1
+    }
+   ]
   },
   "15123": {
    "vnum": 15123,
@@ -573,8 +620,8 @@
      "description": "To the west lies The Littered Path."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "The path has dissolved into a sticky brown mire of mud, studded with\nflat stones and rotting planks laid down as stepping places. The air is\nheavy with the sour reek of wet earth and seaweed. A pair of palms bend\nover the track, their fronds dripping. The way leads west to the\nLittered Path and east to a turn in the path.",
+   "extra_descs": {}
   },
   "15124": {
    "vnum": 15124,
@@ -614,8 +661,14 @@
      "description": "To the west lies The Muddy Path."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Four ways meet at a bend in the path, hemmed in by palms and the walls\nof two huts. The doors of the northern hut and of the one to the east\nare both made of lashed driftwood, painted with crude spirals and fish.\nA line of washing, grey with salt, snaps in the breeze. The path narrows\nto the south, and the Muddy Path runs back west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649100,
+     "max": 1
+    }
+   ]
   },
   "15125": {
    "vnum": 15125,
@@ -633,8 +686,8 @@
      "description": "To the west lies A Turn In The Path."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads west.",
-   "placeholder": true
+   "description": "The Gafftl hut smells of tar and wet wool, with a heap of mended nets in\none corner and a half-built boat rib propped against the wall. A single\nstool stands by a table scarred with knife cuts, and an old bronze\ncleaver is nailed above the door as a charm. The roof is thatch black\nwith smoke. The door leads west back onto the turn in the path.",
+   "extra_descs": {}
   },
   "15126": {
    "vnum": 15126,
@@ -652,8 +705,8 @@
      "description": "To the north lies The Cloudy Deep."
     }
    },
-   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. A way leads north.",
-   "placeholder": true
+   "description": "Davy Jones' Locker is the blackest, deepest water in all this sea, where\nthe raft turns in a slow cold whirl. Silver bubbles rise from the depths\nand burst at the surface, and the swell breathes up and down with the\nweight of an unseen current. Drowned masts and scraps of rope drift past\nin the dark. The only way back is north, through cloudy water.",
+   "extra_descs": {}
   },
   "15127": {
    "vnum": 15127,
@@ -671,8 +724,14 @@
      "description": "To the north lies Ancient Ruins."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. A way leads north.",
-   "placeholder": true
+   "description": "The black hulk of a sunken ship lies on its side beneath you, its masts\nsnapped and its rail hung with weed and shells. Your raft rubs the green\ntimbers of the keel, and the swell laps through a ragged hole in the\nhull. A drowned figurehead stares up at the surface with empty eyes. The\nwater leads north to the ruins.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649102,
+     "max": 1
+    }
+   ]
   },
   "15128": {
    "vnum": 15128,
@@ -694,8 +753,8 @@
      "description": "To the south lies The Waiting Room."
     }
    },
-   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north and south.",
-   "placeholder": true
+   "description": "The raft bumps against a towering wall of dark coral and barnacled\nstone, its surface carved with the faces of tritons. A great arched door\nof pearl-inlaid bronze stands in the wall to the south, ajar above the\nwaterline. Lamps of cold blue light glow in niches either side. The\nwater behind you leads north into the weeds.",
+   "extra_descs": {}
   },
   "15129": {
    "vnum": 15129,
@@ -715,8 +774,8 @@
      "description": "To the north lies The Well Worn Path."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "Racks of battered shields, dented helms and boiled-hide jerkins line the\nwalls of the armory, each one tagged with a knotted cord. A bench in the\nmiddle is heaped with straps, buckles and clinking rings of mail. The\nair smells of oil and leather, and the floor is gritty with rust. The\nonly door leads north onto the Well Worn Path.",
+   "extra_descs": {}
   },
   "15130": {
    "vnum": 15130,
@@ -742,8 +801,8 @@
      "description": "To the south lies A Turn In The Path."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east\nand south.",
-   "placeholder": true
+   "description": "Broken walls of old stone stand along the path, the remains of huts\nwhose roofs fell in long ago. Young palms have rooted in the rubble, and\nlizards bask on the tumbled blocks. A path goes north toward the\nLittered Path and another winds south to a turn. To the east the faint\nsound of dripping water draws the eye to a damp patch of green.",
+   "extra_descs": {}
   },
   "15131": {
    "vnum": 15131,
@@ -765,8 +824,8 @@
      "description": "To the west lies The Ruined Path."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and west.",
-   "placeholder": true
+   "description": "A thin rill of fresh water trickles from a crack in a mossy boulder and\nspreads across the path in a bright, shallow fan. Ferns and green slime\ncling to the stones, a welcome softness in this dry place. The mud is\nstamped with the prints of many feet that come here to fill jars. The\npath leads north toward another stretch of the Littered Path, and west\nto the Ruined Path.",
+   "extra_descs": {}
   },
   "15132": {
    "vnum": 15132,
@@ -788,8 +847,8 @@
      "description": "To the south lies The Forest."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "The path squeezes tight here between a wall of rock and a thicket of\npalms. Roots break the ground and tangle the way, and the sea wind that\nhas followed the track so far dies away. North lies the bend in the path\nwith its two huts. Ahead to the south the trees rise taller and darker,\nand the track leads on into the forest.",
+   "extra_descs": {}
   },
   "15133": {
    "vnum": 15133,
@@ -807,8 +866,18 @@
      "description": "To the east lies The Waiting Room."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. A way leads east.",
-   "placeholder": true
+   "description": "You float in the flooded Noble's Court, a ring of drowned colonnades\nwhose pillars are furred with weed and carved with stately sea-folk.\nShafts of dim blue light fall through gaps in the ceiling and shiver on\nthe water. A bell somewhere deep sounds slow and mournful. The only way\non is east, to the dry hall.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649102,
+     "max": 1
+    },
+    {
+     "vnum": 649104,
+     "max": 1
+    }
+   ]
   },
   "15134": {
    "vnum": 15134,
@@ -836,8 +905,8 @@
      "description": "To the west lies The Noble's Court."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The Waiting Room is a dry vaulted hall deep in the fortress, with walls\nof polished coral and a floor of mother-of-pearl that shimmers in the\ndim blue light. Benches of whalebone line the sides, carved with waves\nand shells. The air is cool and tastes of salt. A great door of carved\nshell opens south on the throne room, an archway of water leads west\ninto a flooded court, and the entrance lies north.",
+   "extra_descs": {}
   },
   "15135": {
    "vnum": 15135,
@@ -855,8 +924,10 @@
      "description": "To the east lies The Palm Covered Path."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads east.",
-   "placeholder": true
+   "description": "Chief Gralkt's hut is the largest in the town, a long room of timber and\nthatch hung with trophies from the sea: harpoons, ships' lanterns,\npainted figureheads and a great jawbone over the door. A heap of\ncushions made of sailcloth is laid before a low table crowded with maps.\nSmoke from a whale-oil lamp makes the ceiling shine. The door leads east\nto the Palm Covered Path.",
+   "extra_descs": {
+    "jawbone": "The jawbone belongs to some huge sea beast, bleached white, and the\nteeth in it are the length of a hand."
+   }
   },
   "15136": {
    "vnum": 15136,
@@ -883,8 +954,8 @@
      }
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "The sand is smooth here, swept clean by broom and by wind, and the palms\nstand in a tidy row on each side. Flags of bright cloth snap from poles,\nand a ring of whitewashed stones marks the approach to a large hut. A\nbroad door to the west is carved with a crude sunburst. The path runs\neast back through the palms.",
+   "extra_descs": {}
   },
   "15137": {
    "vnum": 15137,
@@ -906,8 +977,14 @@
      "description": "To the west lies The Palm Covered Path."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "Palms of every height crowd the path here, their fronds knotting into a\nswaying green tunnel. Coconuts lie among the leaves and fibrous husks\nare heaped up in drifts. A string of shells hangs from a branch and\nchimes in the breeze. The trodden sand leads east to the turn in the\npath and west to the next stretch of palms.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649100,
+     "max": 1
+    }
+   ]
   },
   "15138": {
    "vnum": 15138,
@@ -929,8 +1006,8 @@
      "description": "To the west lies The Palm Covered Path."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and west.",
-   "placeholder": true
+   "description": "The path swings round a stand of fat palms, and the sand underfoot turns\npale and fine again. A cool breeze brings the smell of the sea and of\ntar from somewhere ahead. Crabs have left a lacework of tiny tracks\nacross the dune. The path leads north toward the Ruined Path and west\nunder a canopy of palm fronds.",
+   "extra_descs": {}
   },
   "15139": {
    "vnum": 15139,
@@ -952,8 +1029,8 @@
      "description": "To the south lies The Dim Forest."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north and south.",
-   "placeholder": true
+   "description": "Tall trees press close on either side, their trunks furred with moss and\ntheir crowns tangled overhead into a green roof. A thin trail of trodden\nleaf mould winds on between the roots. Birds call somewhere high up, and\nthe air smells of damp bark. North the trail leads back toward the Path\nNarrows, and south it sinks into a dimmer wood.",
+   "extra_descs": {}
   },
   "15140": {
    "vnum": 15140,
@@ -973,8 +1050,14 @@
      "description": "To the north lies The Waiting Room."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "The throne room of the Sea King is a vast domed chamber of pearl and\nblue glass, in which pale light ripples across the walls like water. A\nthrone of twisted coral stands upon a dais of nacre, flanked by tall\ncolumns wound with golden chains. Scattered shells and pearls glitter in\nthe gloom. The only way out is the door north.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649104,
+     "max": 1
+    }
+   ]
   },
   "15141": {
    "vnum": 15141,
@@ -996,8 +1079,8 @@
      "description": "To the south lies The Murky Woods."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Little light reaches the ground in this part of the forest. Thick\ncreepers hang from the boughs like slack ropes, and pale fungus grows in\nrings around the rotting stumps. The trail is hard to follow and often\nvanishes under drifts of dead leaves. It leads north toward the Forest\nand south to the Murky Woods.",
+   "extra_descs": {}
   },
   "15142": {
    "vnum": 15142,
@@ -1026,8 +1109,8 @@
      "description": "To the south lies The Dark Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "This chamber has the cramped look of a student's quarters, with straw\npallets along the wall and a table piled with cracked slates and\ndripping candle stubs. Scraps of coloured chalk lie scattered, and half-\nerased circles are scratched into the floor. A faint scorched smell\nhangs in the air. A narrow door in the east wall leads to a storage\nroom, and the hall lies to the south.",
+   "extra_descs": {}
   },
   "15143": {
    "vnum": 15143,
@@ -1047,8 +1130,8 @@
      "description": "To the west lies The Apprentice Chambers."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "Shelves of dusty jars and bundles of dried roots line the walls of this\ncloset, labelled in a crabbed, childish hand. A cracked mortar sits in\none corner next to a broom with half its bristles gone. The air is stale\nand tastes of old herbs. The only way out is west, back to the\nApprentice Chambers.",
+   "extra_descs": {}
   },
   "15144": {
    "vnum": 15144,
@@ -1072,8 +1155,8 @@
      "description": "To the south lies A Secret Passageway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "A last stretch of narrow passage ends in a low arch, beyond which the\nsmell of incense and old blood is strong. The stone here is smoother and\ncarefully fitted, as if made for someone's pride. A thin line of\ntorchlight glimmers to the east. The tunnel leads back south.",
+   "extra_descs": {}
   },
   "15145": {
    "vnum": 15145,
@@ -1093,8 +1176,8 @@
      "description": "To the west lies A Secret Passageway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads west.",
-   "placeholder": true
+   "description": "Morvoct's Inner Sanctum is a small round chamber with a domed roof, hung\nwith black cloth and lit by a ring of fat red candles. In the centre\nstands a stone chair carved with leering faces, with a pile of stolen\nfurs heaped at its foot. Gold coins and rusted crowns are pushed into\nthe corners as if forgotten. The only way out is the passage west.",
+   "extra_descs": {}
   },
   "15146": {
    "vnum": 15146,
@@ -1116,8 +1199,8 @@
      "description": "To the south lies The Porch."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead east and south.",
-   "placeholder": true
+   "description": "The ground here climbs to a bare plateau of grey rock, scoured by wind\nand dotted with tufts of salt grass. A great view opens over the green\ntops of the forest and out to the far glitter of the sea. The rock is\ncracked and splintered, and gulls wheel high above it. A path leads east\ndown to a clearing, and a rough stair of stone leads south to a porch.",
+   "extra_descs": {}
   },
   "15147": {
    "vnum": 15147,
@@ -1139,8 +1222,8 @@
      "description": "To the west lies A Rock Plateau."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
-   "placeholder": true
+   "description": "A grassy clearing opens in the scrub, bright with sun and humming with\nbees. A ring of white stones, half sunk in the turf, marks where\nsomething once stood. Gnats drift in clouds above the long grass. The\nclearing runs east to a hollow and west to a rocky height.",
+   "extra_descs": {}
   },
   "15148": {
    "vnum": 15148,
@@ -1162,8 +1245,8 @@
      "description": "To the west lies A Clearing."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead south\nand west.",
-   "placeholder": true
+   "description": "The ground here dips into a hollow, a round bowl in the hillside lined\nwith soft moss and ringed by gnarled thorn bushes. The air is still and\nwarm, sheltered from every wind. An old fire pit lies cold near the\nmiddle, its stones black. A path leads south to the rock pile and west\ninto a clearing.",
+   "extra_descs": {}
   },
   "15149": {
    "vnum": 15149,
@@ -1189,8 +1272,8 @@
      "description": "To the south lies The Dank Woods."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north, east and\nsouth.",
-   "placeholder": true
+   "description": "Grey, sour-smelling mud lies between the trunks here, and thin mist\nclings to the knees of the trees. The wood is quiet except for the slow\ndrip of water from the branches. Trails run in three directions: north\nback toward the Dim Forest, east to a few bare trees, and south into the\nDank Woods. A rotted signpost leans at the crossing, its lettering long\nsince washed away.",
+   "extra_descs": {}
   },
   "15150": {
    "vnum": 15150,
@@ -1212,8 +1295,8 @@
      "description": "To the west lies The Murky Woods."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "A handful of dead trees stand in a clearing, bone-white and stripped of\nbark, their bare branches clawing at the sky. Nothing else grows on the\nhard-packed earth. West, the murky woods close in again. To the east a\nsquat fortress of rough black stone fills the way, with a heavy door set\nin its face and a rusted lantern hanging above it.",
+   "extra_descs": {}
   },
   "15151": {
    "vnum": 15151,
@@ -1246,8 +1329,14 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The Guarded Hall is a broad stone chamber with a smoke-blackened ceiling\nand a floor of worn flags. Torches burn in iron brackets and throw\nwavering shadows over racks of spears and a rough table scattered with\ndice. The door to the west leads out to the dead trees. A dark hallway\nruns east, and a doorway to the south opens on the guard room.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649101,
+     "max": 1
+    }
+   ]
   },
   "15152": {
    "vnum": 15152,
@@ -1275,8 +1364,8 @@
      "description": "To the west lies The Guarded Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The hallway is narrow and gloomy, its walls sweating with damp and lit\nonly by a single guttering torch. The flags underfoot are worn into\nshallow dips, and the air smells of cold ash. Back west the light of the\nGuarded Hall can be seen. The hallway goes north to the Apprentice\nChambers and south into a still darker passage.",
+   "extra_descs": {}
   },
   "15153": {
    "vnum": 15153,
@@ -1296,8 +1385,8 @@
      "description": "To the up lies The Great Hall."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads up.",
-   "placeholder": true
+   "description": "A cold white mist fills this round chamber, rising from cracks in the\nfloor and curling around your knees. The stone walls drip, and sound is\nswallowed by the fog so that even breathing seems far away. Faint\npatterns of light drift in the vapour as if something moved just beyond\nsight. The ladder is the only way out, leading up.",
+   "extra_descs": {}
   },
   "15154": {
    "vnum": 15154,
@@ -1321,8 +1410,8 @@
      "description": "To the south lies Room Of Dark Shadows."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "A secret way, scarcely wider than a barrel, twists through the thickness\nof the wall here. Cobwebs and grit cling to the roughly chiselled stone,\nand the smell of dust is strong. The tunnel bends away east along a\nfaintly sloping floor. The way south opens back into a shadowy room.",
+   "extra_descs": {}
   },
   "15155": {
    "vnum": 15155,
@@ -1346,8 +1435,8 @@
      "description": "To the west lies A Secret Passageway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The tunnel zigzags between close walls, scratched with tally marks and\nhalf-faded runes. Water drips with a slow, steady beat from somewhere\noverhead, and the air is cold and tastes of rust. The passage runs north\nto a further stretch and west to the bend behind you. Shallow footprints\nare pressed into the grey dust.",
+   "extra_descs": {}
   },
   "15156": {
    "vnum": 15156,
@@ -1371,8 +1460,8 @@
      "description": "To the down lies The Room Of Mists."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and down.",
-   "placeholder": true
+   "description": "The Great Hall rises high into shadow, its beams black with centuries of\nsmoke. A long table of single-plank oak runs the whole length of the\nfloor, scored by knives and stained with spilled drink. Tall chairs of\nwhalebone stand at the head, facing a hearth big enough to roast an ox.\nThe door lies south, and a ladder of rusted iron climbs down through a\nhole in the floor.",
+   "extra_descs": {}
   },
   "15157": {
    "vnum": 15157,
@@ -1394,8 +1483,8 @@
      "description": "To the south lies The Far Corner."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and south.",
-   "placeholder": true
+   "description": "Rough pens of lashed timber and thorn branches fill this end of the den,\ntheir gates tied shut with knotted hide. Trampled dung and chewed straw\ncover the floor, and the sharp smell of beasts is overpowering. Scratch\nmarks and a few tufts of coarse hair cling to the posts. The big den\nlies east, and a gap in the fence leads south to a dim corner.",
+   "extra_descs": {}
   },
   "15158": {
    "vnum": 15158,
@@ -1421,8 +1510,14 @@
      "description": "To the west lies Animal Pens."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast, south and west.",
-   "placeholder": true
+   "description": "The den is a huge round chamber hacked out of the living rock, with a\nceiling lost in smoke. A bed of heaped hides lies against one wall, big\nenough for three goblins to sleep in, and a gnawed ox-leg is propped\nbeside it. A giant stool and table stand to the south near the glow of a\nfire, and wooden pens occupy the west. The door east leads to the porch.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649105,
+     "max": 1
+    }
+   ]
   },
   "15159": {
    "vnum": 15159,
@@ -1449,8 +1544,8 @@
      }
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and west.",
-   "placeholder": true
+   "description": "A porch of huge rough-cut stones juts from the rock face, roofed by an\noverhanging ledge that keeps off the weather. Bones of large animals are\npiled neatly along its edge, and a pole stands by the entrance hung with\nscraps of pelt. The stone beneath is worn smooth by one heavy tread. A\npath leads north up to the plateau, and a massive door to the west opens\ninto a den.",
+   "extra_descs": {}
   },
   "15160": {
    "vnum": 15160,
@@ -1476,8 +1571,8 @@
      "description": "To the south lies A Steep Cliff."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east\nand south.",
-   "placeholder": true
+   "description": "Great slabs of fallen stone lie heaped in a tumbled pile, as if some\nmountain had shrugged them off. Small ferns grow in the gaps, and the\nrocks are slick underfoot. The roar of the falls lies to the east. A\nnarrow trail climbs north to a hollow, and a steeper way drops south\ntoward a cliff.",
+   "extra_descs": {}
   },
   "15161": {
    "vnum": 15161,
@@ -1499,8 +1594,8 @@
      "description": "To the west lies A Rock Pile."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "A thin white waterfall tumbles down a black rock face into a pool that\nfoams and steams in the cool air. Spray drifts across the path and soaks\neverything with a cold dew. Slick stones form a rough ford at the edge.\nThe trail leads east back into the Dank Woods and climbs west to a heap\nof broken rock.",
+   "extra_descs": {}
   },
   "15162": {
    "vnum": 15162,
@@ -1522,8 +1617,8 @@
      "description": "To the west lies A Waterfall."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nwest.",
-   "placeholder": true
+   "description": "The woods are heavy here, sagging with wet and reeking of rotted leaves.\nFat toadstools crowd the trunks, and the ground gives under each\nfootstep. Somewhere to the west is the steady roar of falling water. A\ntrail leads north to the Murky Woods and west toward the sound of the\nwater.",
+   "extra_descs": {}
   },
   "15163": {
    "vnum": 15163,
@@ -1552,8 +1647,14 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A small stone room, hung with weapons and stinking of damp leather and\nold sweat. A table with a rack of cudgels and a pot of cold broth stands\nin the middle, and sleeping pallets lie along the wall. A ring of keys\ndangles from a nail by the door. The hall lies north, and a heavy door,\nbanded in iron, leads south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649101,
+     "max": 1
+    }
+   ]
   },
   "15164": {
    "vnum": 15164,
@@ -1581,8 +1682,14 @@
      "description": "To the south lies Apprentice Workshop."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Here the hallway grows darker still, and the torches have been left to\nburn down to cold black stubs in their brackets. The floor is gritty\nwith sand and the ceiling is lost in shadow. A draught carries the smell\nof oil and singed hair. The passage goes north to the Dark Hallway,\nturns east along another dark stretch, and drops south into a workshop.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649101,
+     "max": 1
+    }
+   ]
   },
   "15165": {
    "vnum": 15165,
@@ -1606,8 +1713,8 @@
      "description": "To the west lies Darker Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
-   "placeholder": true
+   "description": "The passage bends here, the walls close enough to brush with both\nelbows. Soot streaks the stone above every bracket, though no torch\nburns in them now. Water has seeped through the ceiling and left a pale\ncrust of salt on the floor. A dark hallway runs back west, and the\npassage turns south toward a wider space.",
+   "extra_descs": {}
   },
   "15166": {
    "vnum": 15166,
@@ -1631,8 +1738,8 @@
      "description": "To the east lies Herb Garden."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "Deep shadow pools in every corner of this chamber, as thick as spilled\nink, and the single weak lamp seems to make it darker rather than\nbrighter. The walls are bare and cold, and the floor is scattered with\nold feathers and dust. A whisper of cold air stirs from a gap in the\nstonework to the north. A passage leads east back toward the herb\ngarden.",
+   "extra_descs": {}
   },
   "15167": {
    "vnum": 15167,
@@ -1656,8 +1763,8 @@
      "description": "To the west lies Room Of Dark Shadows."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "Rows of herbs grow in raised troughs of stone, tended under a lattice of\nglowing fungus that lights the room with a pale green gleam. Bitter\nwormwood, sea-kale and pungent garlic mix their scents in the damp air.\nThe soil is black and freshly turned, and a bone-handled trowel is stuck\nupright in it. The hall lies east, and a dark doorway opens west.",
+   "extra_descs": {}
   },
   "15168": {
    "vnum": 15168,
@@ -1690,8 +1797,8 @@
      "description": "To the west lies Herb Garden."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The northern end of the hall is a broad flagged floor, scuffed bright by\nmany marching feet. Pillars stand in pairs, and between them hang rows\nof grey skulls strung on cord that click softly in the draught. A great\noak door in the north wall is studded with bronze nails. To the west an\narch gives onto a green and fragrant room, and the hall runs back south.",
+   "extra_descs": {}
   },
   "15169": {
    "vnum": 15169,
@@ -1713,8 +1820,8 @@
      "description": "To the east lies Fireside."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "In the dimmest corner of the den, shadows pool around heaps of rubbish,\ndiscarded bones and the ragged leftovers of meals. A cracked clay jar\nthe size of a barrel holds rainwater, scummed green on top. The smell is\nrank, a mix of old fat and wet fur. Light from the fire glows to the\neast, and the animal pens lie north.",
+   "extra_descs": {}
   },
   "15170": {
    "vnum": 15170,
@@ -1736,8 +1843,8 @@
      "description": "To the west lies The Far Corner."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and west.",
-   "placeholder": true
+   "description": "A great fire burns in a ring of boulders here, filling the den with a\nruddy glow and a thick smell of roasting meat. Skins are pegged to the\nrock around it to dry, and a huge iron pot hangs from a beam of black\ntimber. The floor is warm and covered in ash. The den lies north, and a\ndim corner lies to the west.",
+   "extra_descs": {}
   },
   "15171": {
    "vnum": 15171,
@@ -1759,8 +1866,8 @@
      "description": "To the south lies Entering The Harpy's Nest."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The trail drops onto a narrow ledge along a steep cliff of crumbling\nyellow stone. Far below, the sea heaves and bursts white against rocks,\nand the wind tugs hard at your clothes. Droppings streak the stone and\nlong grey feathers cling in the cracks. A rough track leads north to a\npile of rock, while the ledge winds south around the face toward a nest.",
+   "extra_descs": {}
   },
   "15172": {
    "vnum": 15172,
@@ -1778,8 +1885,14 @@
      "description": "To the north lies Guard Room."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads north.",
-   "placeholder": true
+   "description": "The prison is a low cellar divided by rusty bars into narrow cells.\nStraw rots in the corners, and iron rings are bolted to the walls at the\nheight of a wrist. A pitiful scratch of tally marks climbs one wall. The\nair is cold and damp, and water drips from a crack in the ceiling. The\nonly way out is north, through the guard room.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649101,
+     "max": 1
+    }
+   ]
   },
   "15173": {
    "vnum": 15173,
@@ -1801,8 +1914,8 @@
      "description": "To the east lies Dark Hallway."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "Benches and workbenches fill this workshop, heaped with blackened tongs,\ncracked crucibles and bits of scrap metal. A forge of rough brick squats\nagainst one wall, ash heaped about its grate and a pair of leather\nbellows dangling beside it. The floor is gritty with filings and half-\nmelted wax. A hallway leads north, and a narrow opening leads east to\nanother passage.",
+   "extra_descs": {}
   },
   "15174": {
    "vnum": 15174,
@@ -1830,8 +1943,14 @@
      "description": "To the west lies Apprentice Workshop."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A draught whines along this stretch of hallway, stirring cobwebs that\nhang in long grey ropes from the roof. The flagstones are cracked and\nscored with the marks of dragged crates. A sharp, hot smell like a forge\ncomes from somewhere ahead. The hall runs north to a bend, west to the\nApprentice Workshop, and south into a larger chamber.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649101,
+     "max": 1
+    }
+   ]
   },
   "15175": {
    "vnum": 15175,
@@ -1851,8 +1970,8 @@
      "description": "To the east lies Caged Animal Room."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "A cold chamber of black stone, stained dark in patterns beneath the rack\nand the wheel. Hooks and iron tongs hang in rows from the walls, and\nmanacles hang from a ring in the ceiling. Old rust-brown splashes cover\nthe floor around a drain. The only way out is east, through the room of\ncages.",
+   "extra_descs": {}
   },
   "15176": {
    "vnum": 15176,
@@ -1876,8 +1995,8 @@
      "description": "To the west lies Torture Room."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "Iron cages line the walls of this room, their bars bent and their floors\nthick with straw and bones. Chains hang from rings in the stone, and a\nheavy musk of animals and rot hangs in the air. Claw marks are cut deep\ninto the doorframe. The hall lies east, and a low door in the opposite\nwall leads on west.",
+   "extra_descs": {}
   },
   "15177": {
    "vnum": 15177,
@@ -1910,8 +2029,10 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Trophies cover the walls of this section of the hall: dented helms,\nnotched swords and shields pierced by spears, each with a scrap of cloth\nnailed beneath as a tally of the beaten. A broad trough of embers glows\ndown the middle, giving the pillars a sullen red cast. Hall continues\nboth north and south of here. A heavy door in the west wall is barred\nwith an iron rod and leads to a place of cages.",
+   "extra_descs": {
+    "trophies helms shields": "Each trophy carries a scrap of cloth in a different colour, the livery\nof some company or town that learned too late what Morvoct's goblins can\ndo."
+   }
   },
   "15178": {
    "vnum": 15178,
@@ -1929,8 +2050,8 @@
      "description": "To the east lies Hallway."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads east.",
-   "placeholder": true
+   "description": "A heavy cage of lashed bone and driftwood stands in this alcove, too\nsmall to stand in, with a floor smeared with filth and fish scales.\nGnawed leg-bones are heaped in a corner, and the bars are scratched with\ntally marks. A cold draught blows through the gaps. The only way out is\neast, back to the hallway.",
+   "extra_descs": {}
   },
   "15179": {
    "vnum": 15179,
@@ -1958,8 +2079,8 @@
      "description": "To the west lies The Man Cage."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "This hallway is hacked into the cliff, its walls rough and streaked with\nsmoke and bird lime. A bundle of reeds burns in a holder, sputtering and\nsending uneven light along the ceiling. Bones and feathers crunch\nunderfoot. The perch lies east in the wind, a smell of cooking comes\nfrom a doorway south, and a barred opening to the west leads to a cage.",
+   "extra_descs": {}
   },
   "15180": {
    "vnum": 15180,
@@ -1981,8 +2102,14 @@
      "description": "To the west lies Hallway."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "A broad shelf of rock juts out over the drop like a landing stage,\nscraped bare and slimed with white droppings. Great curved claw-marks\ngouge the stone near the lip. The wind is fierce and smells of salt and\nrot, and tufts of feather skitter across the floor. The ledge leads east\nback to the nest's entrance, and a dark opening in the cliff leads west\ninto a hallway.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649103,
+     "max": 1
+    }
+   ]
   },
   "15181": {
    "vnum": 15181,
@@ -2004,8 +2131,8 @@
      "description": "To the west lies The Landing Perch."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and west.",
-   "placeholder": true
+   "description": "The cliff ledge widens here into a rough platform littered with sticks,\nbones and shreds of cloth. Shrill cries echo off the rock, and the\nstench of old fish and droppings stings the nose. The sea is a long way\nbelow, and gulls ride the updraughts. A path runs north back along the\nledge, and a gap in the cliff leads west toward a perch.",
+   "extra_descs": {}
   },
   "15182": {
    "vnum": 15182,
@@ -2029,8 +2156,10 @@
      "description": "To the up lies Hall Of The Conquered."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and up.",
-   "placeholder": true
+   "description": "The walls of this chamber are carved with the coils of a great scaled\nbeast, worked in black stone that glints like wet slate. A hoard bowl of\nbeaten bronze, long since emptied, stands in the middle of the floor.\nThe air is warm and carries an old scent of smoke and cinders. A passage\nleads north, and a narrow stair of black steps winds up into the dark.",
+   "extra_descs": {
+    "bowl hoard": "The bronze bowl is wide enough to bathe in, dented and blackened, and\nthe floor around it is scorched in a perfect ring."
+   }
   },
   "15183": {
    "vnum": 15183,
@@ -2054,8 +2183,14 @@
      "description": "To the down lies Dragon's Domain."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and down.",
-   "placeholder": true
+   "description": "The stair ends in a long hall of rough-hewn stone, whose roof is held up\nby pillars carved into the shapes of kneeling prisoners. Banners of\ntattered hide hang between them, painted with the crude red sign of\nMorvoct. Smoke from a trough of burning fat clings under the ceiling and\nstings the eyes. The hall stretches north, and the stair winds down\nbehind you.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649106,
+     "max": 1
+    }
+   ]
   },
   "15184": {
    "vnum": 15184,
@@ -2079,8 +2214,8 @@
      "description": "To the east lies Dining Hall."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "The kitchen is a ragged cave of smoke-blackened stone, with a stone slab\nfor a table and a firepit crowded with iron pots. Hooks hang from the\nceiling, and a few dried scraps of meat dangle from them. The floor is\ngreasy and spattered with old stains. The hallway lies north, and the\ndin of a dining hall comes through an arch to the east.",
+   "extra_descs": {}
   },
   "15185": {
    "vnum": 15185,
@@ -2104,8 +2239,8 @@
      "description": "To the west lies Grub Kitchen."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The dining hall is a long rough chamber crowded with benches knocked\ntogether from driftwood and wrecked ship's timber. Bone-white plates and\ncups lie scattered over a table stained with years of spills. A stale\nreek of fish, wine and old bones fills the air. The kitchen lies to the\nwest, and a floor of piled straw begins to the east.",
+   "extra_descs": {}
   },
   "15186": {
    "vnum": 15186,
@@ -2127,8 +2262,14 @@
      "description": "To the up lies The Harpy Queen's Nest."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead west and up.",
-   "placeholder": true
+   "description": "Mounds of dry straw cover the floor, matted down into dozens of hollows\nwhere sleepers have curled. Feathers, bones and bright stolen trinkets\nare pressed into the straw, and the air is thick with dust that tickles\nthe throat. A crude ladder of lashed branches climbs to a higher ledge.\nThe dining hall lies west and the nest of the queen rises up above.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649103,
+     "max": 1
+    }
+   ]
   },
   "15187": {
    "vnum": 15187,
@@ -2146,11 +2287,392 @@
      "description": "To the down lies Piles Of Straw."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads down.",
-   "placeholder": true
+   "description": "The queen's nest is a huge bowl of woven branches, bones and sailcloth,\nperched on a ledge at the top of the cliff. The wind howls through the\nweave, and a layer of soft grey down covers the floor. Shiny things are\nscattered around the rim: buckles, coins, a cracked mirror, and a\nshattered ship's bell. The only way back is down the ladder.",
+   "extra_descs": {
+    "bell ship's": "The bronze bell is split down one side and green with age. A ship's name\nis still faintly legible around its rim, but the rest has long since\nworn away."
+   }
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "649100": {
+   "vnum": 649100,
+   "name": "goblin townsgoblin townsman",
+   "short_desc": "a salt-stained goblin",
+   "long_desc": "A salt-stained goblin shuffles past, humming a rough song and carrying a basket of fish.",
+   "description": "This goblin has a leathery green hide, long drooping ears and a wide,\ntoothy grin. His clothes are patched sailcloth, and he smells strongly\nof tar and herring.",
+   "level": 15,
+   "alignment": -100,
+   "hp_dice": "15d8+196",
+   "damage_dice": "4d6+9",
+   "armor_class": 52,
+   "exp": 845,
+   "gold": 180,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749100,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649101": {
+   "vnum": 649101,
+   "name": "goblin warrior guard",
+   "short_desc": "a scarred goblin warrior",
+   "long_desc": "A scarred goblin warrior stands here with a cutlass in his fist, eyeing you for trouble.",
+   "description": "A broad-shouldered goblin in boiled-hide armour, his green face crossed\nwith old scars. His eyes are small and sly, and he fingers the hilt of\nhis blade as though itching for a quarrel.",
+   "level": 18,
+   "alignment": -400,
+   "hp_dice": "18d8+240",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 216,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749100,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649102": {
+   "vnum": 649102,
+   "name": "giant crab",
+   "short_desc": "a giant crab",
+   "long_desc": "A giant crab clacks its pincers at you from a mat of floating kelp.",
+   "description": "Its shell is as wide as a shield, mottled green and brown and crusted\nwith barnacles. Two huge pincers snap in the water, and its stalked eyes\nfollow every movement.",
+   "level": 17,
+   "alignment": 0,
+   "hp_dice": "17d8+195",
+   "damage_dice": "5d6+9",
+   "armor_class": 46,
+   "exp": 955,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749101,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649103": {
+   "vnum": 649103,
+   "name": "harpy matron",
+   "short_desc": "a fierce harpy matron",
+   "long_desc": "A fierce harpy matron perches here with her talons flexed and her feathers bristling.",
+   "description": "The harpy has the body of a vulture and the wrinkled, furious face of an\nold woman. Her talons are curved like sickles, and her shriek could\ncrack stone.",
+   "level": 23,
+   "alignment": -500,
+   "hp_dice": "23d8+402",
+   "damage_dice": "6d6+17",
+   "armor_class": 23,
+   "exp": 1285,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749102,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649104": {
+   "vnum": 649104,
+   "name": "merman guard triton",
+   "short_desc": "a merman guard",
+   "long_desc": "A merman guard in a coral breastplate floats here, his trident held steady.",
+   "description": "His upper body is armoured in scales of polished shell, and his lower\nbody is a thick silvery fish tail. He holds a barbed trident as long as\na boat-hook and watches you with cold, round eyes.",
+   "level": 22,
+   "alignment": 0,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749102,
+     "chance": 30
+    },
+    {
+     "vnum": 749101,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649105": {
+   "vnum": 649105,
+   "name": "brogg cyclops giant one-eyed",
+   "short_desc": "Brogg Oneye, the cyclops",
+   "long_desc": "Brogg Oneye, the cyclops, squats here, his single great eye glaring from beneath a ridge of brow.",
+   "description": "A towering giant with a rough grey hide and one huge yellow eye in the\nmiddle of his forehead. He grips a club made from a ship's mast, scarred\nand spiked with nails.",
+   "level": 24,
+   "alignment": -600,
+   "hp_dice": "24d8+423",
+   "damage_dice": "7d6+15",
+   "armor_class": 20,
+   "exp": 1340,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749103,
+     "chance": 35
+    },
+    {
+     "vnum": 749100,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649106": {
+   "vnum": 649106,
+   "name": "morvoct warlord goblin",
+   "short_desc": "Morvoct, the goblin warlord",
+   "long_desc": "Morvoct, the goblin warlord, stands among his trophies, a huge axe resting on his shoulder.",
+   "description": "Morvoct is the biggest goblin you have ever seen, half again as tall as\nthe rest, with a hide the colour of old moss and eyes like polished\namber. He is draped in furs and chains of stolen gold, and the crown on\nhis brow is a dented helm of bronze.",
+   "level": 25,
+   "alignment": -800,
+   "hp_dice": "25d8+351",
+   "damage_dice": "7d6+13",
+   "armor_class": 22,
+   "exp": 1395,
+   "gold": 300,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749104,
+     "chance": 35
+    },
+    {
+     "vnum": 749102,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "749100": {
+   "vnum": 749100,
+   "name": "cutlass chipped goblin",
+   "short_desc": "a chipped goblin cutlass",
+   "room_desc": "A chipped goblin cutlass lies here.",
+   "description": "A short curved blade of cheap iron, nicked along its edge and bound at the hilt with fishing line. It is crude, but it has seen plenty of fights.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 16,
+   "damage_dice": "2d5",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 440
+  },
+  "749101": {
+   "vnum": 749101,
+   "name": "buckler crab shell",
+   "short_desc": "a crab-shell buckler",
+   "room_desc": "A crab-shell buckler has been left here.",
+   "description": "The domed carapace of a giant crab, strapped with leather and polished to a dull gleam. It is light, tough and smells faintly of the sea.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 17,
+   "wear_slot": "shield",
+   "armor": 4,
+   "weight": 6,
+   "value": 370
+  },
+  "749102": {
+   "vnum": 749102,
+   "name": "pearl milk white",
+   "short_desc": "a milk-white pearl",
+   "room_desc": "A milk-white pearl gleams here.",
+   "description": "A perfect pearl the size of a plum, glowing with a soft inner light. Merchants in Port Halyon would pay a fortune for it.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 22,
+   "weight": 1,
+   "value": 685
+  },
+  "749103": {
+   "vnum": 749103,
+   "name": "maul cyclops mast club",
+   "short_desc": "a massive mast-club",
+   "room_desc": "A massive club made from a ship's mast lies here.",
+   "description": "A great maul carved from a broken mast and studded with iron nails. It is heavy enough to stagger anyone not built like a giant.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 23,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 615,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "749104": {
+   "vnum": 749104,
+   "name": "crown helm bronze warlord",
+   "short_desc": "the dented bronze crown of Morvoct",
+   "room_desc": "A dented bronze crown lies here.",
+   "description": "A battered bronze helm worn as a crown, set with chips of blue glass and pearls prised from the wrecks of a hundred ships. A lingering scent of brine clings to it.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 25,
+   "wear_slot": "head",
+   "armor": 4,
+   "weight": 3,
+   "value": 530,
+   "affects": [
+    {
+     "type": "str",
+     "value": 1
+    }
+   ]
+  }
+ }
 }

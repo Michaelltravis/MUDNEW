@@ -1,0 +1,434 @@
+{
+ "job": "z488",
+ "rooms": {
+  "5800": "The tunnel is wrong in a way you cannot name, its walls of sweating black stone bending where they should run straight. A thin mist curls in from the passage north, and a heavy door stands in the east wall, scratched with crooked lines. To the west the floor is scorched and the air carries the smell of burnt flesh from the lair beyond. Somewhere in the dark, soft voices say your name and then fall silent.",
+  "5801": "Grey-black mist fills every pace of space here, so thick that your hand fades at the wrist. The floor underfoot is smooth stone, damp and faintly warm, and you cannot tell which way it slopes. Whispers drift past from all sides, each promising a way out, and every promise leads back to the same cold nothing. There is no wall, no passage, only the mist closing round you.",
+  "5885": "A pentagram is cut into the black floor, but one of its five arms stops short, the last stroke never finished. The lines glow a dull ember-red where they were cut deep, and the gap draws the eye and the feet toward it. Stubs of candles in congealed black wax ring the edge of the room. The way west returns to the strange tunnel, while an arch east opens on a darker hall.",
+  "5887": "A long hall of black pillars, each carved with the face of one of the damned, mouths gaping in endless silent screams. Cold seeps up from the flagstones and the whispering in the gloom is as thick as a crowd. Rusted chains hang from iron rings set high in the walls, swaying slightly though no wind stirs. Nothing you can see offers a way onward.",
+  "5802": "The mist here is tinged faintly green and tastes of old iron and standing water. Pillars of dark stone loom at the edge of sight and vanish when you look straight at them. Footsteps that are not your own pace beside you in the murk, always just out of reach. Whichever way you turn, the fog shows nothing but more fog.",
+  "5803": "Here the mist hangs low and heavy, pooling about your knees like cold milk, while above it the air is clear and black. Any light you carry shrinks to a smear. A faint voice, sweet and sorrowful, calls from somewhere close and then, a heartbeat later, from very far away. The floor is bare rock slick with condensation.",
+  "5804": "Pale threads of mist twist about one another here like rope, and the stone underfoot is cracked and gritty. The passage you came by lies behind you, though in this murk it is hard to believe it was ever real. Whispers pool at your ears, urging you to step forward into nothing. Every sound is muffled flat, as if the fog had swallowed the world.",
+  "5805": "A narrow passage of black granite runs straight and smooth, its roof low enough to brush with a raised hand. The mist thins here and you can see a few paces before the dark takes over. A door of iron-banded black wood bars the way north into a stone maze, while behind you to the south the grey fog rolls thick. The air smells of cold ash.",
+  "5806": "Corridors of fitted stone cross and recross at this junction, and the walls bear scratches left by travellers who tried to count their turns. A long corridor leads north, a dead-end room lies east, the dark passage runs south, and a door west opens on ancient troglodyte workings. The air moves in slow breaths, as though something large were asleep nearby. A whisper from the walls insists that the way you want is the one you just refused.",
+  "5808": "The corridor stretches long and perfectly straight, its black walls close enough to touch on both sides. Water beads on the stone and runs in thin tracks to a gutter along the floor. Your footsteps return a half-beat late, as if someone behind you were stepping in time. The corridor runs north toward a turning and south back toward the junction of the maze.",
+  "5810": "The corridor splits at a worn flagstone where countless boots have turned left and right. A narrow passage that looks deadly runs north, a quick turn bends away east, and the long corridor lies behind you to the south. Chalk marks on the walls have been scrubbed out and rewritten so often that they now say nothing at all. The mist is thin here, but the whispers are loud.",
+  "5811": "This passage ends in a blind wall, and it earns its name from the floor, where pale bones lie drifted against the stone. Narrow slits in the walls hint at dart traps long since spent, and the flags are pitted where something acid has eaten them. The air is dry and tastes of rust. The only way back is south, to the turning of the maze.",
+  "5813": "The corridor bends so sharply here that a running man would crash into the wall. The black stone of the corner is polished by hands that have caught themselves on it. A cold damp breeze flows from the passage north, carrying the smell of stagnant water. To the west the corridor returns to the maze turning.",
+  "5814": "A still pool of black water fills most of the chamber, its surface so flat and lifeless that it reflects nothing. A narrow ledge of wet stone skirts the water, and you edge along it with your back to the wall. No ripple, no insect, no pale fish disturbs the pool. The chamber goes on north along the ledge, and south is the corridor you came by.",
+  "5815": "The dead pool deepens here into a round well of ink-dark water that laps softly at the base of the walls. The air hangs sour and motionless, and a slick grey film clings to the edge. A curving stair of black stone leads west to a spiral that goes down. Something far below the surface seems to look back up at you.",
+  "5816": "A stair of black granite coils downward into the dark, each tread worn to a shallow dish by ages of descending feet. The central pillar is carved with spirals that seem to turn if you stare at them. Mud and damp cling to the lower steps, and the whispers grow muffled as you descend. To the east the dead pool glimmers, and the spiral winds on down toward a mud pit.",
+  "5823": {
+   "description": "The floor falls away into a wide pit of thick grey-brown mud that sucks at every footstep. Water dripping from the roof of black rock keeps it forever soft, and the stench of rot rises from the churned surface. Three ways lead out of the muck: a damp corridor north, a webbed passage through a door east, and a sloping mud tunnel south. Slick handholds in the rock show where others have dragged themselves clear.",
+   "look": "cave"
+  },
+  "5831": "Water seeps down the walls of this corridor in long glistening streaks, and the floor is a skin of slippery clay. Pale, sightless moss clings in clumps to the ceiling. The corridor climbs gently north toward the entrance of a lair, and from there comes a smell of musk and old blood. To the south it falls back to the mud pit.",
+  "5832": "A doorless arch twice the height of a man marks the entrance to the lair, its jambs scored with deep gouges at horn height. Bleached bones of cattle and men are heaped in the corners, picked clean. The passage turns east to a broad stair going down, while to the south the damp corridor retreats. A heavy animal smell rolls up the stair, and far below something huffs and shifts.",
+  "5833": "Broad stairs of rough black stone descend steeply, each step chipped and gouged by hooves. A torch bracket on the wall holds nothing but a clot of old tallow. At the top of the stair the way leads west toward the lair entrance, and below it drops into a thick, warm darkness. The smell down there is strong enough to taste.",
+  "5834": "The stairs end on a trampled floor of packed earth and straw gone black with filth. Great hoofprints are pressed into the dirt, and a rusted chain is anchored to the wall for some unlucky captive. The ground slopes north into the lair proper, while the stair climbs back up behind you. The air is hot, as if from a living furnace.",
+  "5835": {
+   "description": "A broad hall opens here, its roof lost in shadow and its floor strewn with dung-black straw. A crude stone trough runs along one wall, fouled with something long dead. Horn marks scar the pillars of rock at every height. Passages lead north to a smaller chamber and south to the foot of the stair.",
+   "look": "cave"
+  },
+  "5836": "A squat chamber with a low roof, furnished with a heap of hides and a gnawed wooden bench that once served some man. The walls are raw stone daubed with red hand-prints, many of them small. A door of splintered planks leads south to the lair, and an archway north opens on a grander room. The floor is trampled bare.",
+  "5837": "A tall chamber of black granite, its walls hung with ragged banners whose emblems have rotted to colourless smears. A great slab of stone serves as a table, scarred with cleaver blows and stained dark. Doors of iron-bound oak stand to the south and the north, both pitted by horns. The roof is lost to shadow, and a low rumbling echoes down from somewhere.",
+  "5838": "Black granite, polished to the shine of a mirror, forms floor, wall and ceiling here, so that your own pale face stares back from every side. Four ways lead off: a stout door north, an open passage east, the door south to the major chamber, and a turning corridor west. The whispers are loudest in this room, and they seem to come from the stone itself. Your reflected figures move a moment after you do.",
+  "5839": "The sanctum is a vault of black stone lit by a sullen red glow from braziers that have burned for years without fuel. Heaps of rubble, bone and broken blades are piled against the walls, the hoard of a beast that mistook cruelty for kingship. A huge throne of horned skulls dominates the far end. The only way out is the door south to the black granite room.",
+  "5846": "Above you there is no ceiling at all, only a shaft of blackness rising out of sight, with thin mist drifting slowly down it. The walls are smooth black stone running up into the dark. In the middle of the floor an old stone well-head gapes, its rim worn by rope, and rusted iron rungs lead down inside. A passage runs west to the black granite room.",
+  "5886": "You stand at the bottom of the well, in a dark chamber floored with silt and a ring of old stones. Far above, a faint grey glimmer shows the mouth of the shaft, and a rusted ladder leads up to the room with no ceiling. Water once filled this place, for the walls are lined with green slime to the height of a man. The whispers here seem to rise from beneath the silt.",
+  "5840": "The corridor turns and turns again, its walls slightly out of true so that your sense of direction slips away. The black stone is cold and faintly oily to the touch. To the east lies the polished black granite room, and to the south the way slides into a bank of mist. A whisper at your elbow suggests, kindly, that you stop walking.",
+  "5841": "The corridor's stone dissolves into mist and you are among the grey again, with no wall to keep a hand on. The fog beads on your cloak and eyelashes and tastes of cold metal. Faint murmurs promise that you are nearly back to somewhere you know. You begin to suspect there is a floor beneath you and nothing else at all.",
+  "5824": "Grey sheets of web span the passage from floor to ceiling, thick as sailcloth and clotted with the husks of things that tried to pass. Strands tug at your sleeves as you push through. The webbing is thickest toward the east, where the passage opens into a den, while the mud pit lies behind you to the west. A dry chittering runs along the silk threads like a message.",
+  "5825": "A wide den hung with silk, its floor padded with old webbing and littered with crushed shells and the cleaned legs of larger prey. Pale egg sacs hang in clusters from the roof, swaying a little though the air is still. The den narrows to the north, and the webbed passage lies back to the west. Every surface is faintly sticky.",
+  "5826": "The silk thickens into a dense grey tapestry that muffles every sound, and the roof sags under drapes of web. The floor is deep with crumbled husks that crunch and give underfoot. A dank sweetness hangs in the air. The den opens south to the outer den, and west the web-hung way runs on toward a larger lair.",
+  "5827": {
+   "description": "This is the last and greatest den, a high vault wound about with web as thick as ship's cable. Enormous claw-marks gouge the rock where something far bigger than any ordinary spider has dragged its bulk. The bones of men hang in the silk like washing on a line. The only way out is east, back through the inner den.",
+   "look": "cave"
+  },
+  "5828": {
+   "description": "The tunnel is a trough of churned mud that sucks at your boots and soaks you to the knee. The roof drips steadily and the walls glisten with grey slime. Wooden props, rotten and sagging, shore the worst of the ceiling. The tunnel runs north to the mud pit and slopes away south toward a slide.",
+   "look": "cave"
+  },
+  "5829": {
+   "description": "The floor tilts steeply here into a slick chute of black mud, polished smooth by those who slid down it and never climbed back. Scrapes of fingers run along the rock above. Cold air rises from the drop, smelling of wet stone and endless depth. The tunnel climbs back north, and the chute plunges down into the dark.",
+   "look": "cave"
+  },
+  "5830": "Enormous black pillars rise from the floor and vanish in the mist overhead, each wider than a cart and carved with scenes you would rather not read. Beyond them the floor ends, and below is a drop with no bottom that you can see. A cold wind rises from the void, bringing the murmur of voices long dead. The mud of the chute still clings to your boots.",
+  "5807": "A small bare room of black stone with no door but the one you came in by. The floor is scored with the scratches of fingernails where someone tried to dig out. Mist gathers in the corners, like damp that has nowhere to go. The only way out is west, back to the stone maze.",
+  "5817": {
+   "description": "The worked stone gives way to rough-hewn rock, cut long ago by troglodytes with tools of bone and flint. The walls are sooty and marked with crude pictures of hunters and long-necked beasts. A rank, reptilian stink hangs in the passage. East the way leads back through a door to the maze, and west it bends deeper into the old workings.",
+   "look": "cave"
+  },
+  "5818": {
+   "description": "The passage elbows sharply here, the rock floor scored with the dragging marks of heavy tails. Fungus glows a faint sickly yellow in a seam of the wall, giving just enough light to see your hands. A colder draught flows from the north, where the passage opens wider, and the way east returns by the route you came.",
+   "look": "cave"
+  },
+  "5819": {
+   "description": "A long hall hacked from the living rock, its low roof held up by squat stone columns carved with spirals and teeth. Stone benches run along the walls, worn into hollows by generations of scaled backsides. Ashes lie cold in a central fire pit, and the soot above is black as pitch. The hall continues north to a dead end, and south it narrows to the bend in the passage.",
+   "look": "cave"
+  },
+  "5820": {
+   "description": "The passage ends in a blank wall of grey, sweating rock, and a heavy door of slab stone is set in the side wall to the east. Claw-scratches mark the lower edge of the door where something once tried to get out, or in. The air is stale and tastes of lizard and smoke. Southward the passage goes back to the hall.",
+   "look": "cave"
+  },
+  "5821": {
+   "description": "A cramped guard room whose floor is littered with sleeping-pallets of reeds long since rotted to mulch. Racks of knotted bone line the walls, empty now but for dust. A stone door south leads on to the royal chamber, and the passage west returns to the dead end.",
+   "look": "cave"
+  },
+  "5822": {
+   "description": "The royal chamber is the best room the troglodytes ever cut, a rounded vault with a dais of piled stone at the far end. Ochre handprints climb the walls like a ladder of years. Cold braziers of beaten bronze stand at the corners, green with age. The only way out is north, through the stone door to the guard room.",
+   "look": "cave"
+  },
+  "5842": "The mist presses close again, and this time it carries a faint stink of brimstone. Pillars loom and fade at the edge of sight, always at the same distance however far you walk. The ground beneath is smooth black stone slick with dew. The whispers are all behind you now, and none will say where they have gone.",
+  "5843": "You walk on into the mist and find the walls have vanished, replaced by a dim grey emptiness. Your breath comes back to you in a warm cloud, and a cold hand seems to rest briefly on your shoulder. Lost voices argue in low tones just out of hearing. The floor is bare rock, patched with small pools of fog-water.",
+  "5844": "Here the mist is so dense that it seems to have weight, pressing on your chest and ears like deep water. A sweet, rotten smell comes and goes. Corpse-lights drift at the edge of vision, pale and slow, and are gone before you can name them. Beneath your boots the floor is gritty with black sand.",
+  "5845": "You are deep in the mist now, and four ways offer themselves, none of them certain. One slopes toward a gleam of pillars north, another toward a denser fog east, a third toward a tunnel south, and a fourth, west, bends the same way as the first. The fog is the colour of old pewter and moves as though breathing. Whispers beckon from every quarter, each insisting that it alone knows the road.",
+  "5847": "The mist is thinner here and tinted a bruised violet, so that the black stone of the floor shows in patches like islands. There is a smell of crushed herbs, wrong in this place. A voice in the fog hums an old lullaby, off-key, and breaks off each time you listen. You are cut off, with only the fog for company.",
+  "5848": "Grey fog drifts in slow whorls about a doorway of black stone set in the nearby wall. The door leads east into a narrow passage, its iron hinges beaded with damp. The floor beneath is polished granite, treacherous with condensation. The whispers circle you as if curious whether you will go through.",
+  "5849": "A small passage, no wider than your shoulders, runs between smooth black walls polished by ages of fog. The roof is low and the floor slopes almost unnoticed. A little way east a pale light shows where the passage opens into a dark clearing. The door to the mist lies west behind you, hanging open on its hinges.",
+  "5852": "The passage widens into a dark clearing, a broad floor of black granite with no wall within reach and a ceiling lost in gloom. Stunted pale fungus grows in clumps like a garden gone wrong. East lies a round hall beneath a faint glow, and west the narrow passage squeezes back toward the mist.",
+  "5854": "A great circular hall whose floor is inlaid in black and grey granite in rings that spiral to the centre. A ring of carved pillars holds up a domed ceiling lost in murk. The echoes here are false and arrive from the wrong side. A stairwell of black granite opens to the south, and the clearing lies back to the west.",
+  "5855": "A narrow stairwell of black granite winds upward in tight turns, the steps polished and the rail cold. A dim luminescence seeps from the joints between the stones. The air grows drier and the whispers sharper as the stair climbs. A passage leads north back to the circular hall, and the stair rises toward the entrance of the labyrinth.",
+  "5856": "The stair comes out in a hall of black granite where two corridors lead away, each as dark and polished as the last. Scratches in the floor show where earlier travellers tried to leave a trail, and were turned about. One passage runs north, another west, and the stair drops down to the stairwell. The air is dry as a tomb's.",
+  "5857": "The labyrinth's walls are blocks of black granite fitted so tightly that no blade could slide between them. The floor is faintly tilted, and the corridor shows an identical stretch both ahead and behind. A single drop of water falls somewhere with a slow, regular tap. North lies a round room, and south, the entrance.",
+  "5858": "A perfectly circular room of black granite, its floor inlaid with a ring of pale dust that your steps never seem to disturb. The ceiling bows overhead like the inside of an egg. Two passages open, one south and one west, while a square hole in the floor shows a dusty corridor below, reached by worn handholds.",
+  "5859": "A twisting corridor of black granite, scored along the lower walls with gouges as if by giant claws. The air is stuffy and the dark so total that the walls seem to lean in. A pale draught flows from the west, where a square chamber waits, and to the east the corridor returns to the round room.",
+  "5860": "A perfect square of black granite, each wall equal and each corner sharp, with a floor of squares like a chessboard of shadow. In the centre a round opening yawns, rimmed by worn steps that lead down into a great cold space. A corridor runs east and another south. A faint chanting of bone and wind rises from below.",
+  "5861": "The corridor narrows until you must turn your shoulders, black stone pressing on either side. Dust lies thick and undisturbed on the floor, then in places is wiped clean in patterns that suggest dancing. The way runs north to a square room and south to a triangular one. A slow dripping counts out a rhythm just beyond understanding.",
+  "5862": "A triangular room, its three walls of black granite meeting in corners that seem sharper than corners should be. A rough hole has been broken through the floor, its edges chipped, leading down into raw earth. Passages leave to the north and the east. The air smells of damp soil and old stone.",
+  "5863": "The corridor here is half choked with a drift of black grit, as though the walls were crumbling. Where the dust is thin you can see the tool-marks of the long-dead builders. Eastward the way returns to the entrance of the labyrinth, while to the west lies a triangular room. Your breath hangs in the air though no cold can be felt.",
+  "5864": {
+   "description": "The granite gives way to raw dirt here, a low chamber of packed earth with roots hanging from the ceiling like pale fingers. Burrowing marks run in spirals through the walls. A ragged hole above leads back up to the triangular room, and a smaller tunnel slopes down. The air is damp, earthy and close.",
+   "look": "cave"
+  },
+  "5865": {
+   "description": "A cramped burrow, round in section and scarcely tall enough to kneel in. The earth walls are slick and smoothed by the passage of a long body, and a nest of matted hair and old bones fills one end. It is a dead end, and the only exit is the hole leading up to the dirt room.",
+   "look": "cave"
+  },
+  "5866": {
+   "description": "A vast vaulted hall whose columns, arches and ribs are built entirely of bones, stacked and mortared with black clay into soaring shapes. Rows of skulls stare from every niche. The vault hums faintly, as though the bones remembered hymns. A stair of skulls climbs to the square room above, and the nave stretches away north.",
+   "look": "crypt"
+  },
+  "5867": {
+   "description": "The nave ends at an altar-step of fused vertebrae, and behind it a great window of translucent skull-plates glows a dim amber. The chancel loops oddly back on itself, so that walking north seems to leave you exactly where you began. Doors of rib and sinew-cord stand to the east and west, and the nave runs back south. The floor is paved with knuckles that click underfoot like dice.",
+   "look": "crypt"
+  },
+  "5868": {
+   "description": "Every surface of this room is bone: walls of stacked thighbones, a floor of crushed ribs, a ceiling hung with a lattice of spines. Skulls with candle stubs wedged in their eye-sockets give a sour, flickering light. The air is dry and sweet with the smell of old marrow. The only way out is the door east to the cathedral.",
+   "look": "crypt"
+  },
+  "5869": "A low antechamber of scorched black rock, its floor coated in fine soot that rises in clouds at every step. Claw-furrows score the walls, and broken stone lies where a great weight has passed. A hot, dry draught blows down from above, where a ramp climbs to the dragon's lair. A door west leads back to the skeleton cathedral.",
+  "5870": {
+   "description": "A vast cave blackened by dragon fire, its roof lost in smoke and its floor a sea of soot-grey ash. Charred ribs of earlier victims are heaped against the walls. A shelf of scorched rock is worn smooth where a huge body has lain for centuries. The only exit is the door in the floor that opens down into the chamber below.",
+   "look": "cave"
+  },
+  "5871": "A corridor thick with the dust of centuries, so fine that your steps raise a pale fog about your knees. Footprints other than yours trace the floor, some leading nowhere. The dust smells of dry paper and old incense. A hole in the ceiling opens up to the round room, and the corridor runs on east to a turn.",
+  "5872": "The dusty passage turns here and branches. A faint copper gleam shows to the north, while to the south the dust lies deeper and a dry rustling comes from a small chamber. Cobwebs thick as curtains hang across the passage that leads west. Your hands come away grey from the wall.",
+  "5873": "Every surface in this room is sheathed in beaten copper, polished so that your light kindles a hundred small suns. A green verdigris creeps along the seams of the plates. The north side seems to continue but folds back upon itself, so that walking north returns you here. A door to the east is plated with copper too, and the passage south goes back to the dusty turn.",
+  "5874": "A small altar of black stone stands in the middle of this chamber, its top stained by old offerings. Candles of black wax have burned to stumps around it, and the floor is scattered with grains of bitter incense. The air is thick with a feeling of being watched. The only door leads west to the copper room.",
+  "5875": "A small chamber so choked with dust that the air itself is grey. Shelves cut into the walls hold only grey drifts and the outlines of long-gone jars. To the north the passage returns, and the chamber loops oddly on itself to the south, leading back to the same dusty floor. In the west wall a door, nearly hidden by dust, stands in a frame of cracked stone.",
+  "5876": "A tiny hidden room, its plaster walls flaking to show the black stone beneath. The air is still and has the taste of a sealed jar. A narrow cot of rotted rope and rusted frame stands against one wall, a dead hermit's last refuge. The only door leads east to the dust-filled chamber.",
+  "5850": "Mist, patient and thick, shot through with faint motes of light like the sparks of a dying fire. The floor is cold wet rock, and the sound of dripping fills the air from no direction. The whispers offer you things: a name, a home, a road. All of them end in the same grey nothing.",
+  "5851": "The mist thins at one spot to reveal an edge, beyond which a long stair of black stone spirals down toward the pillars. Cold damp air presses up from below. The whispers urge you to step off the edge instead of using the stair. Fog clings to the lip in ragged flags.",
+  "5877": "You stand among the lowest of the great pillars, each as big around as a tower and black as a burnt tree. Ropes of mist trail between them. A stair climbs up into the mist above, and a narrow ledge between the pillars leads north. The sound of unseen water, far below, rings like a bell.",
+  "5878": "A ledge of black stone runs between two pillars, no wider than a cart, with a long drop on one side. Inscriptions too worn to read run up the pillars like columns of ants. The mist swirls up out of the void. The ledge leads north to more pillars, and south to the stair.",
+  "5879": "The ledge bends around a pillar so thick that it blocks all sight beyond it. Its base is carved with tiers of grinning faces, each worn smooth by the wind. The ledge continues west, and south it returns to the pillars you passed. A cold current slips by, tasting of ash.",
+  "5880": "A straight stretch of ledge runs between a ring of pillars, the stone slick and cold. Streamers of black mist wind between the columns, and voices call from the void. To the east the ledge returns the way you came, and westward it goes on toward more pillars.",
+  "5881": "The ledge ends in a small landing at the foot of a pillar split by an ancient crack wide enough to hide in. From within the crack comes a faint scratching. The landing opens east back along the way you came, and southward the ledge starts again.",
+  "5882": "A long causeway of black stone leads between two lines of pillars like a processional way, each pillar carved with a hooded figure. The figures' hands are lifted as though in warning. The mist rolls across the causeway in slow waves. The way continues north and south.",
+  "5883": "The causeway comes to a rounded landing before a monstrous pillar that dwarfs all the rest. The mist is thin enough here to show the base of it, ringed with heavy rusted chains that end in nothing. A short bridge of black stone leads east to the great pillar, and the causeway runs back north. The whispers are very close now.",
+  "5884": "A single colossal pillar rises here, wider than a house, carved from its base to as high as you can see with a spiral of tormented figures. At its foot is a flat plinth of black stone worn by kneeling knees. Beyond the edge the mist is a roiling wall. The only way back is west, across the landing."
+ },
+ "extras": {
+  "5885": [
+   {
+    "keywords": "pentagram lines arm gap",
+    "description": "Four arms of the pentagram are cut deep and clean. The fifth stops a hand's breadth short, and the bare stone in the gap is rubbed smooth, as if many fingers have traced the missing stroke."
+   }
+  ],
+  "5887": [
+   {
+    "keywords": "faces pillars damned",
+    "description": "Each pillar is carved with a single face, no two alike. All of them are mouthing the same word, and the longer you look the more certain you are that you have heard it."
+   }
+  ],
+  "5838": [
+   {
+    "keywords": "granite mirror reflection",
+    "description": "The polished stone shows you black and white and faintly grey. Behind your reflection something else seems to stand, and is gone when you turn."
+   }
+  ],
+  "5846": [
+   {
+    "keywords": "well rungs",
+    "description": "The well is a plain ring of old stone, wide enough for one body. Iron rungs, orange with rust, are set into its wall and vanish down into the dark."
+   }
+  ],
+  "5830": [
+   {
+    "keywords": "pillars carvings scenes",
+    "description": "The carvings wind round each pillar in bands: a procession of figures led down into a pit, a feast of shadows, a door. The last band has been chiselled away."
+   }
+  ],
+  "5858": [
+   {
+    "keywords": "dust ring floor",
+    "description": "The ring of dust lies in a shallow groove. However hard you scuff it, it lies exactly as it did, fine and grey and undisturbed."
+   }
+  ],
+  "5866": [
+   {
+    "keywords": "skulls niches bones",
+    "description": "Hundreds of skulls sit in the niches, each facing the nave. Some of the jaws hang open, and from them comes the faint hum that fills the vault."
+   }
+  ],
+  "5874": [
+   {
+    "keywords": "altar black stone",
+    "description": "The altar is a single block of black stone, its top hollowed into a shallow bowl. The bowl is stained a deep rust and smells of old iron."
+   }
+  ],
+  "5884": [
+   {
+    "keywords": "pillar figures spiral plinth",
+    "description": "The figures on the pillar writhe upward in a spiral, each reaching for the one above. At the top of your sight, the largest of them seems to be reaching down."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "whispering-ghost",
+   "keywords": "ghost whispering pale",
+   "short_desc": "a whispering ghost",
+   "long_desc": "A whispering ghost drifts through the mist, its mouth forever shaping a word you cannot catch.",
+   "description": "The ghost is a pale, ragged shape of a man who was lost here long ago. It leans close with a hollow murmur, promising a road out, and its eyes are black as the stone about you.",
+   "kind": "undead",
+   "level": 9,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "The Mist",
+    "Back Into The Mist",
+    "Deep Into The Mist"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "pale-whisper-ring",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "troglodyte-warrior",
+   "keywords": "troglodyte warrior lizard",
+   "short_desc": "a scaly troglodyte",
+   "long_desc": "A scaly troglodyte crouches in the dark, a stone-tipped club resting on its shoulder.",
+   "description": "The troglodyte is a hunched, grey-green lizard-man with a ridged crest and flat yellow eyes. A rank musk rolls off it, and its claws click on the rock.",
+   "kind": "humanoid",
+   "level": 10,
+   "aggressive": true,
+   "alignment": -250,
+   "rooms": [
+    "The Ancient Troglodyte Passage",
+    "A Turn In The Troglodyte Passage",
+    "The Ancient Troglodyte Hall",
+    "The Troglodyte Guard Room",
+    "A Dead-End In The Troglodyte Passage",
+    "The Royal Troglodyte's Chamber"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "troglodyte-club",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "crab-spider",
+   "keywords": "spider crab pale giant",
+   "short_desc": "a pale crab spider",
+   "long_desc": "A pale crab spider clings to the webbing, its flat body and bristled legs held ready to spring.",
+   "description": "The spider is broad and flat like a crab, its shell mottled grey and bone-white. Eight eyes glitter along its brow, and venom beads at the tips of its fangs.",
+   "kind": "animal",
+   "level": 11,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Webbed Passage",
+    "The Crab Spider's Den",
+    "The Crab Spider's Inner Den",
+    "The King Crab Spider's Den",
+    "The Mud Pit",
+    "The Mud Tunnel"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "crab-spider-carapace",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "bone-knight",
+   "keywords": "skeleton bone knight armoured",
+   "short_desc": "a black-armoured skeleton",
+   "long_desc": "A black-armoured skeleton stands guard in the nave, a rusted blade held in both hands.",
+   "description": "A skeleton knight in blackened plate, bones mortared together with clay. Green fire burns in its empty sockets, and its jaws clatter with the sound of old prayers.",
+   "kind": "undead",
+   "level": 15,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Skeleton Cathedral",
+    "The End Of The Skeleton Cathedral",
+    "A Room Made Of Bones"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "pale-whisper-ring",
+     "chance": 20
+    },
+    {
+     "item": "crab-spider-carapace",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "black-drake",
+   "keywords": "drake black dragon scorched",
+   "short_desc": "a scorched black drake",
+   "long_desc": "A scorched black drake sprawls in the ash, smoke curling from its nostrils.",
+   "description": "The drake is a lesser kin of the dragon whose lair it haunts, smaller but quick, with scales like wet slate and a hide pitted by old fires. Its breath is a slow hot haze.",
+   "kind": "monster",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "Below The Lair Of The Deadly Black Dragon",
+    "The Lair Of The Deadly Black Dragon"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "minotaur-horn-axe",
+     "chance": 10
+    },
+    {
+     "item": "abyssal-brand",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "ghorak-minotaur",
+   "keywords": "ghorak minotaur great",
+   "short_desc": "Ghorak, the Great Minotaur",
+   "long_desc": "Ghorak, the Great Minotaur, stands before his throne of skulls, an axe the size of a door in his fists.",
+   "description": "Ghorak is a bull-headed giant, ten feet of knotted muscle with horns tipped in bronze. Old scars cross his hide, and every breath rumbles like thunder.",
+   "kind": "monster",
+   "level": 14,
+   "aggressive": true,
+   "alignment": -450,
+   "rooms": [
+    "The Great Minotaur's Inner Sanctum"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "minotaur-horn-axe",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "vhazul-demon",
+   "keywords": "vhazul demon abyss abyssal",
+   "short_desc": "Vhaz'ul, demon of the abyss",
+   "long_desc": "Vhaz'ul, demon of the abyss, rises from the black water, wreathed in mist and cold fire.",
+   "description": "Vhaz'ul is tall and winged, with skin the colour of a dead coal and horns that curl like iron. Where it stands the water of the pool boils without sound, and its voice is every whisper in the tunnels at once.",
+   "kind": "monster",
+   "level": 17,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "The Dead Pool"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "abyssal-brand",
+     "chance": 35
+    },
+    {
+     "item": "minotaur-horn-axe",
+     "chance": 10
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "pale-whisper-ring",
+   "keywords": "ring pale whisper",
+   "short_desc": "a pale whisper ring",
+   "room_desc": "A pale ring of bone-white metal lies here.",
+   "description": "A thin band of pale metal, cold to the touch. If you hold it to your ear it seems to murmur a name that is almost yours.",
+   "kind": "armor",
+   "wear_slot": "finger",
+   "level": 9,
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "troglodyte-club",
+   "keywords": "club troglodyte stone",
+   "short_desc": "a stone-tipped troglodyte club",
+   "room_desc": "A heavy stone-tipped club lies here.",
+   "description": "A club of knotted wood with a lump of grey stone lashed to the head by sinew. It stinks of musk, but it is well balanced.",
+   "kind": "weapon",
+   "weapon_type": "pound",
+   "level": 10
+  },
+  {
+   "id": "crab-spider-carapace",
+   "keywords": "carapace crab spider vest",
+   "short_desc": "a crab spider carapace vest",
+   "room_desc": "A pale carapace vest lies here.",
+   "description": "Plates of spider shell, laced together with silk cord into a light vest. The plates are hard as horn and mottled grey.",
+   "kind": "armor",
+   "wear_slot": "body",
+   "level": 11
+  },
+  {
+   "id": "minotaur-horn-axe",
+   "keywords": "axe horn minotaur great",
+   "short_desc": "a horn-handled great axe",
+   "room_desc": "A huge horn-handled axe lies here.",
+   "description": "A broad single-bladed axe with a haft cut from a minotaur's horn. The edge is notched but wicked, and the weight sits well in the hands.",
+   "kind": "weapon",
+   "weapon_type": "slash",
+   "level": 15,
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "abyssal-brand",
+   "keywords": "brand blade abyssal black sword",
+   "short_desc": "an abyssal black blade",
+   "room_desc": "A blade of black glass lies here, trailing a thread of mist.",
+   "description": "A sword of dark volcanic glass that drinks the light. A faint grey mist clings to the edge, and the hilt hums softly under the palm.",
+   "kind": "weapon",
+   "weapon_type": "slash",
+   "level": 17,
+   "bonus": {
+    "hitroll": 2
+   }
+  }
+ ]
+}
