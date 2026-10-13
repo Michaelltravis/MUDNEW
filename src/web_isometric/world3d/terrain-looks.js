@@ -10,7 +10,8 @@
 //  - sewer: (stone hall) a channel of foul water with stone rims, pipes in the walls
 //  - dungeon: (stone hall) broken walls and rubble
 //  - outdoors: desert (cacti, bleached bones), snow (frosted pines, ice), shore (driftwood,
-//           pebbles), volcanic (scorched trees, lava cracks)
+//           pebbles), volcanic (scorched trees, lava cracks), web (a spider's lair: grey webbed trees,
+//           sheets of web, hanging cocoons, egg sacs and old bones)
 // Everything placed on the floor that should stop the hero is written into the room's grid as
 // BLOCK (the server never sees it: it is scenery, like furniture).
 import * as THREE from 'three';
@@ -311,6 +312,7 @@ export function outdoorEdge(theme, kits) {
   const N = kits.nature, G = kits.graveyard;
   if (theme === 'snow') return { trees: ['Pine_1', 'Pine_2'].map(k => tinted(N.get(k), 0xdfe8f0, 'frost')), treeP: 0.35, rock: k => tinted(N.get(k), 0xe8eef4, 'snowrock'), bush: null };
   if (theme === 'volcanic') return { trees: ['DeadTree_1', 'DeadTree_2'].map(k => tinted(N.get(k), 0x2a2420, 'scorch')), treeP: 0.12, rock: k => tinted(N.get(k), 0x3a302c, 'basalt'), bush: null };
+  if (theme === 'web') return { trees: ['DeadTree_1', 'DeadTree_2', 'TwistedTree_1', 'DeadTree_1'].map(k => tinted(N.get(k), 0xa4a496, 'webbed')).filter(Boolean), treeP: 0.7, rock: k => tinted(N.get(k), 0x5a5648, 'lairrock'), bush: null };
   if (theme === 'shore') return { trees: [], treeP: 0, rock: k => N.get(k), bush: null };
   if (theme === 'desert') return { trees: [], treeP: 0, rock: k => tinted(N.get(k), 0xffc890, 'sandstone'), bush: null };
   if (theme === 'water_swim' || theme === 'water_noswim') return { trees: ['CommonTree_1', 'CommonTree_3', 'Pine_1'].map(k => N.get(k)), treeP: 0.18, rock: k => N.get(k), bush: null, banks: true };
@@ -429,6 +431,7 @@ export const LOOK_GROUND = {
   snow: { a: 0xd8e2ec, b: 0xf2f6fa, path: 0xb4c0ca, wet: 0x9cc4dc },
   shore: { a: 0xd4c08a, b: 0xe6d6a6, path: 0xc0a874, wet: 0x5a8a98 },
   volcanic: { a: 0x2a2422, b: 0x40342c, path: 0x56443a, wet: 0x4a1a08 },
+  web: { a: 0x4c4636, b: 0x5e5644, path: 0x6c6250, wet: 0x2a3030 },
   // a water room's banks, and the sandy bed seen through the shallows
   water_swim: { a: 0x6f8a4a, b: 0x8aa060, path: 0x8a7a58, wet: 0x2e5a6a },
   water_noswim: { a: 0x6a8448, b: 0x86985c, path: 0x8a7a58, wet: 0x22485a },
@@ -466,6 +469,117 @@ export function sunkenRuins(c) {
     } else if (rubble) {
       b.add(occ(rubble), trs(px, 0, pz, rng() * 6.28, 0.7 + rng() * 0.3));
       grid[y * W + x] = BLOCK;
+    }
+  }
+}
+
+// ---------------------------------------------------------------- a spider's lair
+// webs: sheets strung across the corners and between the trunks round the edge, a few strands
+// across the room overhead, cocoons hanging from them, clusters of egg sacs at the trees' feet and
+// the bones of what was caught. Walk-through scenery (nothing here blocks).
+let webTex = null, webMat = null;
+function webMaterial() {
+  if (webMat) return webMat;
+  const cv = document.createElement('canvas');
+  cv.width = cv.height = 256;
+  const g = cv.getContext('2d');
+  g.strokeStyle = 'rgba(240,240,232,0.95)';
+  g.lineWidth = 2;
+  const c = 128, spokes = 11;
+  for (let i = 0; i < spokes; i++) {
+    const a = (i / spokes) * Math.PI * 2;
+    g.beginPath(); g.moveTo(c, c); g.lineTo(c + Math.cos(a) * 128, c + Math.sin(a) * 128); g.stroke();
+  }
+  g.lineWidth = 1.4;
+  for (let r = 10; r < 124; r += 9) {
+    g.beginPath();
+    for (let i = 0; i <= spokes; i++) {
+      const a = (i / spokes) * Math.PI * 2, rr = r + Math.sin(i * 2.7) * 2;
+      const x = c + Math.cos(a) * rr, y = c + Math.sin(a) * rr;
+      if (i === 0) g.moveTo(x, y); else g.quadraticCurveTo(c + Math.cos(a - 0.3) * (rr - 4), c + Math.sin(a - 0.3) * (rr - 4), x, y);
+    }
+    g.stroke();
+  }
+  webTex = new THREE.CanvasTexture(cv);
+  webTex.colorSpace = THREE.SRGBColorSpace;
+  webMat = new THREE.MeshBasicMaterial({ map: webTex, transparent: true, opacity: 0.6, side: THREE.DoubleSide, depthWrite: false });
+  return webMat;
+}
+
+export function webDress(c) {
+  const { layout, ox, oz, kits, b, rng } = c;
+  const { W, H, grid } = layout;
+  const G = kits.graveyard;
+  const ln = lane(layout);
+  const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
+  const sheets = [], silk = [];
+  const sheet = (x, y, z, w, h, yaw, tilt = 0) => {
+    const g = new THREE.PlaneGeometry(w, h);
+    g.rotateX(tilt); g.rotateY(yaw); g.translate(x, y, z);
+    sheets.push(g);
+  };
+  // across each corner, high up, and between the trunks along the edges
+  for (const [cx, cy, yaw] of [[2, 2, Math.PI / 4], [W - 3, 2, -Math.PI / 4], [2, H - 3, -Math.PI / 4], [W - 3, H - 3, Math.PI / 4]]) {
+    sheet(ox + cx + 0.5, 1.9 + rng() * 0.6, oz + cy + 0.5, 3.4 + rng(), 2.6 + rng(), yaw, (rng() - 0.5) * 0.4);
+  }
+  for (let x = 4; x < W - 4; x += 5 + Math.floor(rng() * 3)) {
+    for (const y of [1, H - 2]) if (!ln(x, y) && rng() < 0.75) sheet(ox + x + 0.5, 1.4 + rng() * 0.8, oz + y + 0.5, 2.2 + rng() * 1.2, 1.6 + rng(), (rng() - 0.5) * 0.5);
+  }
+  for (let y = 3; y < H - 3; y += 4 + Math.floor(rng() * 3)) {
+    for (const x of [1, W - 2]) if (!ln(x, y) && rng() < 0.75) sheet(ox + x + 0.5, 1.4 + rng() * 0.8, oz + y + 0.5, 2.0 + rng(), 1.6 + rng(), Math.PI / 2 + (rng() - 0.5) * 0.5);
+  }
+  // overhead: a canopy sheet or two, and strands strung corner to corner
+  for (let i = 0; i < 2; i++) sheet(ox + W * (0.3 + 0.4 * rng()), 3.3 + rng() * 0.6, oz + H * (0.3 + 0.4 * rng()), 5 + rng() * 3, 4 + rng() * 2, rng() * Math.PI, -Math.PI / 2 + (rng() - 0.5) * 0.5);
+  const strand = (x1, y1, z1, x2, y2, z2, r = 0.012) => {
+    const a = new THREE.Vector3(x1, y1, z1), bb = new THREE.Vector3(x2, y2, z2), len = a.distanceTo(bb);
+    const g = new THREE.CylinderGeometry(r, r, len, 4);
+    g.translate(0, len / 2, 0);
+    g.applyQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), bb.clone().sub(a).normalize()));
+    g.translate(x1, y1, z1);
+    silk.push(colored(g, 0xe8e8e0));
+  };
+  for (let i = 0; i < 4; i++) {
+    const x1 = ox + 1 + rng() * (W - 2), z1 = oz + (i % 2 ? 1 : H - 1), x2 = ox + 1 + rng() * (W - 2), z2 = oz + (i % 2 ? H - 1 : 1);
+    strand(x1, 3 + rng(), z1, x2, 3 + rng(), z2);
+  }
+  // cocoons: wrapped bodies hanging near the edges on a thread
+  for (let i = 0; i < 5; i++) {
+    const side = Math.floor(rng() * 4);
+    const x = side < 2 ? 2 + Math.floor(rng() * (W - 4)) : side === 2 ? 2 : W - 3;
+    const y = side >= 2 ? 2 + Math.floor(rng() * (H - 4)) : side === 0 ? 2 : H - 3;
+    if (ln(x, y)) continue;
+    const px = ox + x + 0.5, pz = oz + y + 0.5, hy = 1.1 + rng() * 0.6, len = 0.7 + rng() * 0.4;
+    const g = new THREE.CapsuleGeometry(0.2 + rng() * 0.08, len, 3, 8);
+    g.rotateZ((rng() - 0.5) * 0.3); g.translate(px, hy, pz);
+    silk.push(colored(g, 0xdcd8cc));
+    strand(px, hy + len / 2 + 0.2, pz, px, 3.6, pz);
+  }
+  // egg sacs at the trees' feet, and the bones of what was caught
+  for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) {
+    if (at(x, y) !== FLOOR || ln(x, y)) continue;
+    const nearWall = at(x - 1, y) === BLOCK || at(x + 1, y) === BLOCK || at(x, y - 1) === BLOCK || at(x, y + 1) === BLOCK;
+    const r = rng(), px = ox + x + 0.5, pz = oz + y + 0.5;
+    if (nearWall && r < 0.12) {
+      for (let k = 0, n = 3 + Math.floor(rng() * 4); k < n; k++) {
+        const s = 0.1 + rng() * 0.12, g = new THREE.SphereGeometry(s, 7, 5);
+        g.translate(px + (rng() - 0.5) * 0.5, s * 0.8, pz + (rng() - 0.5) * 0.5);
+        silk.push(colored(g, 0xeeeae0));
+      }
+    } else if (G && r < 0.03) {
+      b.add(tinted(G.get(rng() < 0.6 ? 'bone_A' : 'skull'), 0xe8e0cc, 'webbones'), trs(px, 0, pz, rng() * 6.28, 0.6), { shadow: false });
+    } else if (r < 0.06) {
+      sheet(px, 0.03, pz, 1.2 + rng(), 1.2 + rng(), rng() * Math.PI, -Math.PI / 2);         // web on the ground
+    }
+  }
+  addMerged(c, silk, PLANT_MAT, { shadow: false });
+  if (sheets.length) {
+    const g = mergeGeometries(sheets, false);
+    for (const x of sheets) x.dispose();
+    if (g) {
+      c.owned.push(g);
+      const m = new THREE.Mesh(g, webMaterial());
+      m.renderOrder = 2;
+      c.group.add(m);
     }
   }
 }

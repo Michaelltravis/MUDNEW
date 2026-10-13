@@ -130,15 +130,26 @@ export const LOOK_SAMPLES = [
   { look: 'mountain', sector: 'mountain', name: 'A High Mountain Pass', description: 'Cliffs rise on every side of the pass, and scree slides underfoot.' },
   { look: 'water_swim', sector: 'water_swim', name: 'On Mira Retrum', description: 'The river runs wide and slow between grassy banks.' },
   { look: 'water_noswim', sector: 'water_noswim', name: 'On Mira Retrum', description: 'Deep water, too deep to wade.' },
+  { look: 'web', sector: 'field', name: 'Webbed Entrance', description: 'Sticky webs coat the limbs of the trees; webbed remains of crickets, rats and men hang in cocoons.' },
+  { look: 'castle', sector: 'city', name: 'The Castle Yard', description: 'High walls ring the yard; banners hang from the battlements.' },
+  { look: 'castle', sector: 'field', key: 'blackcastle', name: 'Before The Dark Castle', description: 'A grim castle of black stone rises before you.' },
+  // a way into another region (key gate*): a named gateway on the far side
+  { look: 'field', key: 'gate', name: 'The Road North', description: 'The road runs on between the fields.', zoneExit: { side: 'north', zoneName: 'Elvandar' } },
+  { look: 'city', key: 'gatecity', name: 'The North Gate', description: 'The street meets the town gate.', zoneExit: { side: 'north', zoneName: 'The Trade Road' } },
+  { look: 'cave', sector: 'inside', key: 'gatecave', name: 'A Narrow Tunnel', description: 'The tunnel runs on through the rock.', zoneExit: { side: 'north', zoneName: 'Orc Tunnels' } },
+  { look: 'hills', key: 'gatesouth', name: 'The Border Hills', description: 'The hills fall away to the south.', zoneExit: { side: 'south', zoneName: 'The Eastern Highlands' } },
 ];
 export function buildLooksGallery(engine, kits) {
   const world = new World(engine, kits);
+  // &only=web,cave: just those looks
+  const only = typeof location !== 'undefined' && new URLSearchParams(location.search).get('only');
+  const LOOK_SAMPLES = only ? ALL_LOOK_SAMPLES.filter(r => only.split(',').includes(r.key || r.look)) : ALL_LOOK_SAMPLES;
   const COLS = 4;
   const vnumAt = (cx, cy) => 991000 + cy * COLS + cx;
   const rooms = [];
   // every room's cell, known up front, so each fills the empty country beyond its edges; and
   // its neighbours opened onto as the game's open exits are (outdoor neighbours share a side)
-  const cells = new Map(LOOK_SAMPLES.map((r, i) => [`${i % COLS},${Math.floor(i / COLS)}`, r]));
+  const cells = new Map(LOOK_SAMPLES.map((r, i) => [`${i % COLS},${Math.floor(i / COLS)}`, { ...r, data: { sector: r.look, name: r.name } }]));
   const look = (cx, cy) => (cells.get(`${cx},${cy}`) || {}).look;
   LOOK_SAMPLES.forEach((r, i) => {
     const cx = i % COLS, cy = Math.floor(i / COLS);
@@ -148,6 +159,7 @@ export function buildLooksGallery(engine, kits) {
     if (cx < COLS - 1 && i + 1 < LOOK_SAMPLES.length) exits.east = open(cx + 1, cy);
     if (cy > 0) exits.north = open(cx, cy - 1);
     if (i + COLS < LOOK_SAMPLES.length) exits.south = open(cx, cy + 1);
+    if (r.zoneExit) exits[r.zoneExit.side] = { to_room: 0, kind: 'zone', zoneName: r.zoneExit.zoneName, toName: r.zoneExit.zoneName };
     const built = world.addRoom({ ...r, vnum: vnumAt(cx, cy), exits }, cx, cy, cells);
     const c = world.centre(world.byVnum.get(vnumAt(cx, cy)));
     rooms.push({ look: r.look, theme: built.theme, x: c.x, z: c.z, name: r.name });
@@ -155,6 +167,8 @@ export function buildLooksGallery(engine, kits) {
   window.MH3D_gallery = { rooms, world };
   return new THREE.Vector3(rooms[0].x, 0, rooms[0].z);
 }
+
+const ALL_LOOK_SAMPLES = LOOK_SAMPLES;
 
 // /play?demo&gallery=steeds: a knight on each kind of mount (steed.js), walking on the spot
 export const STEED_SAMPLES = ['horse', 'warhorse', 'nightmare', 'griffin', 'clockwork_steed', 'moonstag', 'stoneboar', 'merchant_camel', 'shadowpanther', 'dire_warg'];

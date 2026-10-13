@@ -29,7 +29,9 @@ export class World {
   addRoom(roomData, cx, cy, cells = null) {
     const layout = MH.generateRoomTopDown(roomData);
     const ox = cx * ROOM_W, oz = cy * ROOM_H;
-    const ref = cells ? { cx, cy, zoneRef: { cells }, data: { exits: {} }, doors: {} } : undefined;
+    // (a gallery room: only its ways into other regions are drawn, as gateways)
+    const zoneExits = Object.fromEntries(Object.entries(roomData.exits || {}).filter(([, e]) => e && e.kind === 'zone'));
+    const ref = cells ? { cx, cy, zoneRef: { cells, rooms: new Map() }, data: { exits: zoneExits }, doors: {} } : undefined;
     const built = buildRoom(layout, ox, oz, this.kits, ref);
     const room = { ...built, cx, cy, vnum: layout.vnum, name: roomData.name || '', indoor: isIndoor(layout.theme), theme: layout.theme };
     this.rooms.set(`${cx},${cy}`, room);

@@ -274,7 +274,7 @@
     // Two outdoor rooms side by side that open onto each other (exit kind 'open', no door) share
     // their whole side: no ring and no treeline band between them, so the country runs on
     // (the client passes each exit's kind and the neighbour's look)
-    const OUTDOOR_LOOKS = new Set(['forest', 'darkforest', 'field', 'hills', 'mountain', 'desert', 'snow', 'swamp', 'shore', 'volcanic',
+    const OUTDOOR_LOOKS = new Set(['forest', 'darkforest', 'web', 'field', 'hills', 'mountain', 'desert', 'snow', 'swamp', 'shore', 'volcanic',
       'water_swim', 'water_noswim']);
     const WATERS = new Set(['water_swim', 'water_noswim']);
     const wide = {};
@@ -315,7 +315,7 @@
       organic.push([x, y]);
     };
     const SHAPE = {
-      forest: 3, darkforest: 3, swamp: 3, hills: 2, field: 2, desert: 2, snow: 2, shore: 2, volcanic: 2,
+      forest: 3, darkforest: 3, web: 3, swamp: 3, hills: 2, field: 2, desert: 2, snow: 2, shore: 2, volcanic: 2,
       cave: 'cavern', mine: 'cavern', mountain: 'cavern', underground: 'cavern',
     }[sector];
     if (typeof SHAPE === 'number' && !swim) {

@@ -34,7 +34,7 @@ export const MOODS = {
   // under the sea: green-blue light from above, the far distance lost in deep water
   underwater: { sky: 0x9ae0ec, ground: 0x2a5a60, hemi: 1.5, sun: 0xc0f0ff, sunI: 1.6, fog: 0x2a7890, near: 14, far: 48, exposure: 1.3, bg: 0.75 },
   // a spider's lair: grey-green gloom under a webbed canopy
-  web: { sky: 0x8a9a8a, ground: 0x24261c, hemi: 0.95, sun: 0xc8d8b8, sunI: 0.8, fog: 0x2a3026, near: 16, far: 52, exposure: 1.2, bg: 0.6 },
+  web: { sky: 0xa8b8a4, ground: 0x3a3a2c, hemi: 1.35, sun: 0xd8e4c8, sunI: 1.15, fog: 0x3a4236, near: 18, far: 56, exposure: 1.3, bg: 0.6 },
   volcanic: { sky: 0x8a4a3a, ground: 0x2a0e06, hemi: 0.6, sun: 0xff8a50, sunI: 1.3, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1, bg: 0.75 },
 };
 

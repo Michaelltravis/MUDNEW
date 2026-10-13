@@ -1,12 +1,13 @@
 {
-  "_about": "How rooms look in 3D, by hand, where room_looks.py's reading of their words falls short (src/room_looks.py). 'rooms' pins one room's look; 'zones' gives a zone's look to its rooms that have none of their own (underground looks only to enclosed rooms that don't read as a building's, outdoor looks only to open country). Looks: cave, mine, crypt, sewer, dungeon, desert, snow, shore, volcanic, swamp. Give each entry its reason in '_why'.",
-  "rooms": {},
-  "zones": {
-    "465": "cave",
-    "424": "crypt"
-  },
-  "_why": {
-    "465": "Below Moria: crawlways, chimneys and junctions under the mountain, a third short of the automatic zone rule",
-    "424": "Castle Catacombs: corridors and rooms among the tombs"
-  }
+ "_about": "How rooms look in 3D, by hand, where room_looks.py's reading of their words falls short (src/room_looks.py). 'rooms' pins one room's look; 'zones' gives a zone's look to its rooms that have none of their own (underground looks only to enclosed rooms that don't read as a building's, outdoor looks only to open country). Looks: cave, mine, crypt, sewer, dungeon, desert, snow, shore, volcanic, swamp. Give each entry its reason in '_why'.",
+ "rooms": {},
+ "zones": {
+  "465": "cave",
+  "424": "crypt"
+ },
+ "_why": {
+  "465": "Below Moria: crawlways, chimneys and junctions under the mountain, a third short of the automatic zone rule",
+  "424": "Castle Catacombs: corridors and rooms among the tombs",
+  "20719": "Dashuk's Web: a spider's den inside a cave; a cave, not a webbed wood"
+ }
 }
