@@ -414,5 +414,158 @@
   "tris": 2458,
   "height": 2.136,
   "for": "unicorn; tinted by bestiary.js"
+ },
+ "beetle": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2200,
+  "height": 0.384,
+  "for": "beetles, scarabs, ants, ticks; tinted by bestiary.js",
+  "ref": 0.624
+ },
+ "bird": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2316,
+  "height": 0.622,
+  "for": "songbirds, crows, owls, waterfowl; tinted by bestiary.js"
+ },
+ "crab": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2400,
+  "height": 0.35,
+  "for": "crabs, lobsters, crayfish; tinted by bestiary.js",
+  "ref": 0.71
+ },
+ "eagle": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2400,
+  "height": 0.622,
+  "for": "eagles, hawks, vultures, griffons, harpies; tinted by bestiary.js"
+ },
+ "fish": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 604,
+  "height": 0.306,
+  "for": "fish, piranhas, anglers; tinted by bestiary.js",
+  "ref": 0.861
+ },
+ "roc": {
+  "kind": "boss",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2858,
+  "height": 0.694,
+  "for": "the Roc Matriarch; tinted by bestiary.js"
+ },
+ "scorpion": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2400,
+  "height": 0.69,
+  "for": "scorpions; tinted by bestiary.js",
+  "ref": 0.985
+ },
+ "shark": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 920,
+  "height": 0.438,
+  "for": "sharks, barracudas; tinted by bestiary.js",
+  "ref": 1.614
+ },
+ "stick_mother": {
+  "kind": "boss",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 3000,
+  "height": 1.751,
+  "for": "the Stick Mother; tinted by bestiary.js"
+ },
+ "turtle": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1766,
+  "height": 0.41,
+  "for": "turtles, tortoises, dragon turtles; tinted by bestiary.js",
+  "ref": 0.813
+ },
+ "wasp": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2200,
+  "height": 0.384,
+  "for": "bees, wasps, hornets, flies, moths; tinted by bestiary.js",
+  "ref": 0.649
  }
 }
