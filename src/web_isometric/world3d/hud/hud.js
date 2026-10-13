@@ -22,6 +22,7 @@ import { createStable } from './stable.js';
 import { createServices } from './services.js';
 import { createLegend } from './legend.js';
 import { abilityIcon, uiIcon } from './icons.js';
+import { buffList } from './buffs.js';
 import { lookPortrait, creaturePortrait } from './portrait.js';
 import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable, costLine, rankOf, MAIN, keyOf, slotForKey } from '../abilities.js';
 import { createBars } from './bars.js';
@@ -240,7 +241,7 @@ export function createHud() {
   const BAD = /poison|curse|blind|slow|weak|stun|bleed|burn|fear|snare|root|shatter|mark|expose|sunder|disease|plague|silence|entangle|sleep/;
   let buffSig = '';
   function renderBuffs(aff) {
-    const list = aff.filter(a => a && (a.name || a.spell)).slice(0, 12);
+    const list = buffList(aff);
     const nsig = JSON.stringify(list.map(a => [a.name, a.remaining, a.duration]));
     if (nsig === buffSig) return;
     buffSig = nsig;
@@ -549,6 +550,24 @@ export function createHud() {
     st.target = t;
     els.tf.classList.toggle('hidden', !t);
     if (!t) { targetKey = ''; targetCast(null); return; }
+    // a corpse Tab aimed at after a fight (main.js): F loots it
+    if (t.kind === 'corpse') {
+      els.tf.className = 'hud panel ornate neutral corpse';
+      els.tf.querySelector('.tname').textContent = t.name;
+      els.tf.querySelector('.lvl').textContent = '';
+      els.tf.querySelector('.tsub').textContent = 'Corpse · F to loot';
+      vbar(els.tf.querySelector('.vbar.hp'), 0, 1);
+      els.tf.querySelector('.vbar.hp span').textContent = '';
+      const key = `c:${t.key}`;
+      if (key !== targetKey) {
+        targetKey = key;
+        targetCast(null);
+        const img = els.tf.querySelector('.face');
+        img.classList.remove('on');
+        creaturePortrait({ name: t.victim, short: t.victim }).then(url => { if (url && targetKey === key) { img.src = url; img.classList.add('on'); } });
+      }
+      return;
+    }
     const me = st.player ? st.player.level || 1 : 1;
     const con = t.kind === 'player' ? { key: 'ally', label: 'Player' } : conOf(t.level || 1, me);
     const kind = t.kind === 'player' ? 'ally' : t.hostile ? 'hostile' : (t.shopkeeper || t.trainer) ? 'npc' : 'neutral';
@@ -817,11 +836,12 @@ export function createHud() {
   });
 
   // ---- riding: R (or the menu's horseshoe, or the chip by your portrait) gets you up or down ----
+  // The server decides which (`mount toggle`): this page's copy of whether you ride can be a
+  // payload behind, and asking for the wrong one did nothing.
   function rideToggle() {
     const p = MH.state.player || {};
-    if (p.mount) send('dismount');
-    else if ((p.mounts || []).length) send('mount last');
-    else { toast('You own no mount: visit a stable (U)'); return; }
+    if (!p.mount && !(p.mounts || []).length) { toast('You own no mount: visit a stable (U)'); return; }
+    send('mount toggle');
     setTimeout(() => MH.refreshState && MH.refreshState(), 400);
   }
   $('#riding').addEventListener('click', rideToggle);

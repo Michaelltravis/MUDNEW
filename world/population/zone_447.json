@@ -1,6 +1,6 @@
 {
  "zone": 447,
- "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and the Lord of Mahn-Tor as the boss.",
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and the Lord of Mahn-Tor as the boss. The keep's named folk stand in their own rooms: Darkoth, Tyrgoth, Sumaron, Amyrok, Nasturn, Dorgar and Belrak.",
  "creatures": {
   "644702": {
    "helpers": {
@@ -88,6 +88,137 @@
      }
     ]
    }
+  },
+  "644707": {
+   "name": "darkoth black scribe",
+   "short_desc": "Darkoth the Black Scribe",
+   "long_desc": "Darkoth the Black Scribe looks up from his scrolls, quill dripping black ink.",
+   "description": "A gaunt man in a high-collared black robe, ink to the wrists. He keeps the keep's ledgers and its secrets, and it is said he writes a man's name in the black book before the Lord ever speaks it.",
+   "level": 23,
+   "rank": "elite",
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "race": "human",
+   "alignment": -500,
+   "special": "necromancer",
+   "helpers": {
+    "group": "z447_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Darkoth, in his dark study"
+  },
+  "644708": {
+   "name": "tyrgoth priest mountain blade",
+   "short_desc": "Tyrgoth, Priest of the Mountain Blade",
+   "long_desc": "Tyrgoth, Priest of the Mountain Blade, stands within the ring of sigils, chanting low.",
+   "description": "A broad, shaven-headed priest in iron-grey vestments, a sword hung on chains about his neck in place of a holy symbol. The brazier's glow sits in his eyes. He blesses the Lord's blades, and buries those who fail him.",
+   "level": 24,
+   "rank": "sub-boss",
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "race": "human",
+   "alignment": -400,
+   "helpers": {
+    "group": "z447_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Tyrgoth, in his inner sanctum"
+  },
+  "644709": {
+   "name": "sumaron marshal keep",
+   "short_desc": "Sumaron, Marshal of the Keep",
+   "long_desc": "Sumaron, Marshal of the Keep, bends over a map pinned with daggers.",
+   "description": "A scarred veteran in a mail coat and a fur-trimmed cloak, grey in the beard and hard in the eye. The trophies on his walls are his own, and the maps on his desk are of places he means to burn.",
+   "level": 23,
+   "rank": "elite",
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "race": "human",
+   "alignment": -300,
+   "helpers": {
+    "group": "z447_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Sumaron, in his sanctum"
+  },
+  "644710": {
+   "name": "amyrok court mage wizard",
+   "short_desc": "Amyrok the Court Mage",
+   "long_desc": "Amyrok the Court Mage mutters over a chalk circle, witch-lights circling his head.",
+   "description": "A thin, quick man in a midnight-blue robe singed at the hems, his fingers stained with powders. He serves the Lord for the books the Lord takes from the cities he sacks.",
+   "level": 23,
+   "rank": "elite",
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "race": "human",
+   "alignment": -350,
+   "helpers": {
+    "group": "z447_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Amyrok, in his arcane study"
+  },
+  "644711": {
+   "name": "nasturn steward",
+   "short_desc": "Nasturn the steward",
+   "long_desc": "Nasturn the steward stands stiffly by his pallet, as if awaiting inspection.",
+   "description": "A lean, careful man in a plain grey tunic, his keys on a cord at his belt. He runs the Lord's household and fears the Lord's temper, and he keeps his little room as neat as a soldier's kit.",
+   "level": 16,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 100,
+   "why": "Nasturn, in his humble abode"
+  },
+  "644712": {
+   "name": "dorgar jailer",
+   "short_desc": "Dorgar the jailer",
+   "long_desc": "Dorgar the jailer sprawls on his blankets with a jug, glaring.",
+   "description": "A heavy, unshaven brute with a ring of iron keys and a cudgel never far from his hand. He keeps the keep's cells, and smells of them.",
+   "level": 19,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "race": "human",
+   "alignment": -400,
+   "helpers": {
+    "group": "z447_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Dorgar, in his dismal domicile"
+  },
+  "644713": {
+   "name": "belrak herbalist",
+   "short_desc": "Belrak the herbalist",
+   "long_desc": "Belrak the herbalist sorts dried herbs into bundles by the cold hearth.",
+   "description": "A stooped old man with green-stained fingers and a satchel of roots and leaves. He physics the keep's wounded, and asks no questions about how they came by their wounds.",
+   "level": 17,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 300,
+   "why": "Belrak, in the green room"
   }
  },
  "patrols": [
@@ -130,6 +261,50 @@
      "pct": 0.045,
      "why": "step out"
     }
+   ]
+  }
+ ],
+ "spawns": [
+  {
+   "vnum": 644707,
+   "rooms": [
+    10173
+   ]
+  },
+  {
+   "vnum": 644708,
+   "rooms": [
+    10174
+   ]
+  },
+  {
+   "vnum": 644709,
+   "rooms": [
+    10190
+   ]
+  },
+  {
+   "vnum": 644710,
+   "rooms": [
+    10191
+   ]
+  },
+  {
+   "vnum": 644711,
+   "rooms": [
+    10194
+   ]
+  },
+  {
+   "vnum": 644712,
+   "rooms": [
+    10198
+   ]
+  },
+  {
+   "vnum": 644713,
+   "rooms": [
+    10199
    ]
   }
  ]

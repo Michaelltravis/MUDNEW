@@ -5,6 +5,7 @@
 // Drag and drop: from the pack onto a slot wears it there (what was there comes back to the
 // pack), from a slot onto the pack takes it off, a ring from one finger to the other moves it.
 // The slots an item fits light up as you drag it (a ring: both fingers; equip.py on the server).
+// A search box above the bag shows only what matches every word typed (name, type, slot, rarity).
 import { sound } from '../audio.js';
 
 const $ = s => document.querySelector(s);
@@ -17,6 +18,16 @@ const SLOTS = [
 ];
 const RARITY = { common: '#b8b0a0', uncommon: '#6fd06f', rare: '#5aa8ff', epic: '#c07aff', legendary: '#ffa640', set: '#5fe0c8' };
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// does an item match the search? every word typed must be found in its name, type, slot or
+// rarity ("ring", "rare sword", "potion of heal"); an empty search matches everything
+export function matchesSearch(item, query) {
+  const words = String(query || '').toLowerCase().split(/\s+/).filter(Boolean);
+  if (!words.length) return true;
+  if (!item) return false;
+  const hay = [item.name, item.short, item.type, item.slot, item.rarity, item.set_key].filter(Boolean).join(' ').toLowerCase();
+  return words.every(w => hay.includes(w));
+}
 
 // the word the MUD finds an item by, numbered when several share it ("2.sword")
 export function keywordFor(item, list) {
@@ -104,6 +115,12 @@ export function createInventory() {
   const doll = root.querySelector('.inv-doll'), bag = root.querySelector('.inv-bag');
   const tip = $('#item-tip'), menu = $('#item-menu');
   let player = null, open = false, sig = '';
+  const search = root.querySelector('.inv-search');
+  search.addEventListener('input', () => { sig = ''; render(); });
+  search.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { search.value = ''; sig = ''; render(); search.blur(); }
+    e.stopPropagation();          // typing here is not the game's keys
+  });
 
   const icon = (item, size = 88) => {
     const c = document.createElement('canvas');
@@ -172,7 +189,8 @@ export function createInventory() {
   function render() {
     if (!player || !open) return;
     const eq = player.equipment || {}, inv = player.inventory || [];
-    const nsig = JSON.stringify([eq, inv.map(i => i.name + i.rarity), player.gold]);
+    const query = search.value.trim();
+    const nsig = JSON.stringify([eq, inv.map(i => i.name + i.rarity), player.gold, query]);
     if (nsig === sig) return;
     sig = nsig;
     doll.innerHTML = '';
@@ -204,10 +222,13 @@ export function createInventory() {
         if (drag && drag.from === 'worn') send([removeCommand(drag.slot)], 'cloth');
       });
     }
-    const cells = Math.max(30, Math.ceil(inv.length / 6) * 6);
-    for (let i = 0; i < cells; i++) bag.appendChild(cell(inv[i], false, inv));
+    // what the search lets through (its commands still number the item in the whole pack)
+    const shown = query ? inv.filter(i => matchesSearch(i, query)) : inv;
+    const cells = query ? Math.max(6, Math.ceil(shown.length / 6) * 6) : Math.max(30, Math.ceil(inv.length / 6) * 6);
+    for (let i = 0; i < cells; i++) bag.appendChild(cell(shown[i], false, inv));
     root.querySelector('.inv-gold').textContent = `${(player.gold || 0).toLocaleString()} gold`;
-    root.querySelector('.inv-count').textContent = `${inv.length} item${inv.length === 1 ? '' : 's'}`;
+    root.querySelector('.inv-count').textContent = query ? `${shown.length} of ${inv.length} item${inv.length === 1 ? '' : 's'}`
+      : `${inv.length} item${inv.length === 1 ? '' : 's'}`;
   }
   document.addEventListener('click', () => menu.classList.add('hidden'));
   root.querySelector('.inv-close').addEventListener('click', () => toggle(false));

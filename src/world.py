@@ -1483,10 +1483,14 @@ class World:
                 room.items.append(item)
 
     async def process_npcs(self):
-        """Process NPC AI."""
+        """Process NPC AI. One creature's error is logged and the rest go on: before, one (a
+        creature attacking a rider) took the whole server down."""
         for npc in list(self.npcs):
             if hasattr(npc, 'process_ai'):
-                await npc.process_ai()
+                try:
+                    await npc.process_ai()
+                except Exception:
+                    logger.exception(f"AI of {getattr(npc, 'name', npc)} (vnum {getattr(npc, 'vnum', '?')}) failed")
                 
     async def autosave(self):
         """Autosave all players."""

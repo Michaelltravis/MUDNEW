@@ -2,7 +2,7 @@
 // menu (world3d/hud/verbs.js).   node --test tests/web/*.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { isHostile, shouldRetarget, retargetOnDeath, refFor, abilityCommand } from '../../src/web_isometric/world3d/targeting.js';
+import { isHostile, shouldRetarget, retargetOnDeath, refFor, abilityCommand, tabOrder } from '../../src/web_isometric/world3d/targeting.js';
 import { verbsFor } from '../../src/web_isometric/world3d/hud/verbs.js';
 
 const NOW = 1_000_000;
@@ -72,4 +72,15 @@ test('right-click menus: creature, shopkeeper, player, door, yourself, the groun
   const self = verbsFor({ kind: 'self' }, { posture: 'standing', inCombat: false });
   assert.ok(labels(self).includes('Rest') && !labels(self).includes('Stand up'));
   assert.deepEqual(labels(verbsFor({ kind: 'ground', point: { x: 1, z: 2 } })), ['Walk here']);
+});
+
+test('Tab: whoever fights you, then the hostile; corpses only once nothing fights you, nearest first', () => {
+  const near = (id, dist, data = {}, o = {}) => Object.assign(mob(id, { data, ...o }), { dist });
+  const keys = o => o.map(x => `${x.kind}:${x.key}`);
+  const fighter = near(1, 9, { fighting: true }), brute = near(2, 3, { flags: ['aggressive'] }), deer = near(3, 2), shop = near(4, 1, { shopkeeper: true });
+  const corpses = [{ key: 'c2', dist: 6 }, { key: 'c1', dist: 4 }];
+  assert.deepEqual(keys(tabOrder([deer, brute, fighter, shop], corpses, NOW)), ['mob:m1', 'mob:m2', 'mob:m3'], 'mid-fight: the living only');
+  assert.deepEqual(keys(tabOrder([deer, brute, shop], corpses, NOW)), ['mob:m2', 'corpse:c1', 'corpse:c2', 'mob:m3'], 'after it: the hostile, then the dead, then the rest');
+  assert.deepEqual(keys(tabOrder([shop], corpses, NOW)), ['corpse:c1', 'corpse:c2'], 'a shopkeeper only when nothing else is near');
+  assert.deepEqual(keys(tabOrder([shop], [], NOW)), ['mob:m4'], '...and then it is');
 });

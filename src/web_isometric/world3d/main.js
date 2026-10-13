@@ -13,6 +13,7 @@ import { spawnDressed, dress } from './equip.js';
 import { cutout } from './cutout.js';
 import { FX } from './fx.js';
 import { Adorn } from './adorn.js';
+import { Wards } from './wards.js';
 import { CombatView } from './combat.js';
 import { CombatCues } from './combatcues.js';
 import { createBubbles } from './hud/bubbles.js';
@@ -22,7 +23,7 @@ import { createPrompt } from './hud/prompt.js';
 import { createCastbar } from './hud/castbar.js';
 import { createContextMenu } from './hud/contextmenu.js';
 import { attachWorldInput } from './input.js';
-import { isHostile, shouldRetarget, retargetOnDeath, refFor, abilityCommand } from './targeting.js';
+import { shouldRetarget, retargetOnDeath, refFor, abilityCommand, tabOrder } from './targeting.js';
 import { verbsFor } from './hud/verbs.js';
 import { attachPerf } from './perf.js';
 import { buildDemo } from './demo.js';
@@ -31,7 +32,7 @@ import { ActionClock } from './actionclock.js';
 import { musicFor, bedFor, surfaceFor } from './soundtable.js';
 import { interiorKind } from './terrain-town.js';
 import { GroundLoot } from './loot.js';
-import { nameKey } from './corpse.js';
+import { nameKey, victimOf } from './corpse.js';
 import { mountRider, makeRaft } from './steed.js';
 import { groundItems } from './lootlogic.js';
 import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
@@ -61,6 +62,7 @@ async function runDemo() {
       : g === 'abilities' ? await showAbilityGallery(engine)
       : g === 'gear' ? await showGearGallery(engine)
       : g === 'corpses' ? await (await import('./gallery.js')).showCorpseGallery(engine, kits)
+      : g === 'wards' ? await (await import('./gallery.js')).showWardGallery(engine)
       : g === 'icons' ? (await showIconGallery()) || new THREE.Vector3()
       : g === 'sounds' ? (await showSoundGallery()) || new THREE.Vector3()
       : g === 'rooms' ? (await import('./demo.js')).buildLooksGallery(engine, kits)
@@ -84,7 +86,7 @@ async function runDemo() {
 }
 
 async function runGame() {
-  const [{ createHud }, { createMinimap }, { setupLogin }] = await Promise.all([
+  const [{ createHud }, { createMinimap, mapOfZone, zoneIndex }, { setupLogin }] = await Promise.all([
     import('./hud/hud.js'), import('./hud/minimap.js'), import('./hud/login.js')]);
   const kits = await loaded;
   const hud = createHud();
@@ -122,6 +124,7 @@ async function runGame() {
   } });
   engine.onTick((dt, t) => loot.update(dt, t));
   const fx = new FX(engine, $('#fct'));
+  const wards = new Wards(engine, fx);      // the spells on everyone, shown while they last
   const adorn = new Adorn(engine, fx);       // what lingers round the well-geared and the renowned
   const combat = new CombatView({
     engine, fx, ents,
@@ -232,12 +235,51 @@ async function runGame() {
   const mmSmall = createMinimap($('#minimap'), room => travelTo(room), () => engine.snapNorth());
   // the big map (M): the same drawing, larger — the whole zone at a glance, click to walk there
   const bigEl = $('#bigmap');
-  const mmBig = createMinimap(bigEl, room => { bigEl.classList.add('hidden'); travelTo(room); }, null, { cell: 1.7 });
+  const mmBig = createMinimap(bigEl, room => { bigEl.classList.add('hidden'); travelTo(room); }, null, { cell: 1.7, browse: true });
   bigEl.querySelector('.bm-close').addEventListener('click', () => bigEl.classList.add('hidden'));
+  let atlasP = null, knownRooms = [];
+  const fetchAtlas = () => atlasP || (atlasP = fetch('/atlas').then(r => r.json()).catch(e => { atlasP = null; throw e; }));
+  const fetchExplored = async () => (await fetch(`/explored?player=${encodeURIComponent(MH.state.playerName || '')}`)).json();
   const world = createWorldMap(bigEl.querySelector('.wm-canvas'), {
-    fetchAtlas: async () => (await fetch('/atlas')).json(),
-    fetchExplored: async () => (await fetch(`/explored?player=${encodeURIComponent(MH.state.playerName || '')}`)).json(),
+    fetchAtlas, fetchExplored,
     here: () => heroRoom && heroRoom.vnum,
+    onZone: id => { zoneSel.value = String(id); showZone(id, 'zone'); },
+  });
+  // the zone list: every zone you have set foot in; choosing one shows it (another zone is only looked at)
+  const zoneSel = bigEl.querySelector('.bm-zones');
+  zoneSel.addEventListener('keydown', e => { if (e.key !== 'Escape') e.stopPropagation(); });
+  zoneSel.addEventListener('change', () => showZone(Number(zoneSel.value)));
+  async function fillZones() {
+    try {
+      const [atlas, ex] = await Promise.all([fetchAtlas(), fetchExplored()]);
+      knownRooms = (ex && ex.rooms) || [];
+      const here = zone ? zone.num : null;
+      zoneSel.replaceChildren(...zoneIndex(atlas, knownRooms, here).map(z => {
+        const o = document.createElement('option');
+        o.value = String(z.id);
+        o.textContent = z.id === here ? `${z.name} (you are here)` : z.name;
+        return o;
+      }));
+      zoneSel.value = String(mmBig.browsing() ?? here);
+    } catch (_) { /* the list stays as it was */ }
+  }
+  async function showZone(id, tab = null) {
+    world.focusZone(id);
+    if (tab) setMapTab(tab);
+    if (!zone || id === zone.num) { mmBig.home(); return; }
+    try { mmBig.browse(mapOfZone(await fetchZonemap(`zone=${id}`)), knownRooms); }
+    catch (_) { hud.toast('That map could not be unrolled.'); }
+  }
+  bigEl.querySelector('.bm-zoom').addEventListener('click', e => {
+    const z = e.target.closest('button') && e.target.closest('button').dataset.z;
+    if (!z) return;
+    if (z === 'home') {
+      mmBig.home(); world.home();
+      if (zone) zoneSel.value = String(zone.num);
+      return;
+    }
+    const f = z === 'in' ? 1.25 : 0.8;
+    if (mapTab === 'zone') mmBig.zoomBy(f); else world.zoomBy(f);
   });
   let mapTab = 'zone';
   const setMapTab = t => {
@@ -251,7 +293,7 @@ async function runGame() {
   MH.bus.on('hud.map', on => {
     const show = on === undefined || on === null ? bigEl.classList.contains('hidden') : !!on;
     bigEl.classList.toggle('hidden', !show);
-    if (show) { mmBig.redraw(); setMapTab(mapTab); } else world.show(false);
+    if (show) { mmBig.home(); world.home(); mmBig.redraw(); setMapTab(mapTab); fillZones(); } else world.show(false);
   });
   const mm = {
     setZone: z => { mmSmall.setZone(z); mmBig.setZone(z); },
@@ -352,7 +394,7 @@ async function runGame() {
     ents.sync(payload, MH.state.playerName); loot.sync(payload); followLoot(payload);
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
-    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, loot, fx, combat, hud, cues, THREE, sound, adorn,
+    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, loot, fx, combat, hud, cues, THREE, sound, adorn, wards,
       heroRoom: () => heroRoom, hop: () => hop, gate, lastPayload: () => lastPayload,
       // for probes: walk onto a passage of this room on purpose (what clicking it does)
       walkToPassage: dir => { const sp = zone.passageWorld(heroRoom, dir); ctl.walkTo(sp.x, sp.z, null, { goal: { room: heroRoom.vnum, dir }, avoid: null }); } };
@@ -609,20 +651,32 @@ async function runGame() {
     const hit = ents.pick(e.clientX, e.clientY);
     if (hit && hit.kind === 'mob') { ents.setTarget(hit.key, { byHand: true }); attack(); }
   });
-  MH.bus.on('hud.untarget', () => ents.setTarget(null));
+  // a corpse aimed at with Tab after a fight (targeting.tabOrder): its ring marked, the target
+  // frame shows it, F walks over and loots it; any creature targeted, or the corpse gone, clears it
+  let corpseTarget = null;
+  function setCorpseTarget(key) {
+    corpseTarget = key || null;
+    loot.mark(corpseTarget);
+    const l = corpseTarget && loot.list.get(corpseTarget);
+    if (l) hud.setTarget({ kind: 'corpse', key: l.key, name: l.item.short || l.item.name, victim: victimOf(l.item.name || l.item.short) });
+  }
+  MH.bus.on('target.set', () => { if (corpseTarget) { corpseTarget = null; loot.mark(null); } });
+  engine.onTick(() => { if (corpseTarget && !loot.list.has(corpseTarget)) { setCorpseTarget(null); if (!ents.targeted) hud.setTarget(null); } });
+  MH.bus.on('hud.untarget', () => { ents.setTarget(null); if (corpseTarget) { setCorpseTarget(null); hud.setTarget(null); } });
   MH.bus.on('hud.cycleTarget', () => {
     if (!hero) return;
     const p = hero.root.position;
-    // enemies first: whoever is fighting you, then the hostile, then the rest by distance;
-    // shopkeepers, trainers and quest-givers only when nothing else is around
-    const near = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.root.position.distanceTo(p) < 22);
-    const foes = near.filter(e => !(e.data.shopkeeper || e.data.trainer || e.data.quest));
-    const list = (foes.length ? foes : near)
-      .sort((a, b) => (!!b.data.fighting - !!a.data.fighting) || (isHostile(b) - isHostile(a))
-        || a.root.position.distanceTo(p) - b.root.position.distanceTo(p));
-    if (!list.length) return hud.toast('Nothing nearby to target.');
-    const i = list.findIndex(e => e.key === ents.target);
-    ents.setTarget(list[(i + 1) % list.length].key, { byHand: true });
+    const near = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.root.position.distanceTo(p) < 22)
+      .map(e => Object.assign(e, { dist: e.root.position.distanceTo(p) }));
+    const corpses = [...loot.list.values()].filter(l => l.corpse && l.root && l.root.position.distanceTo(p) < 22)
+      .map(l => ({ key: l.key, dist: l.root.position.distanceTo(p) }));
+    const order = tabOrder(near, corpses);
+    if (!order.length) return hud.toast('Nothing nearby to target.');
+    const cur = corpseTarget ? `corpse:${corpseTarget}` : `mob:${ents.target}`;
+    const i = order.findIndex(o => `${o.kind}:${o.key}` === cur);
+    const next = order[(i + 1) % order.length];
+    if (next.kind === 'corpse') { ents.setTarget(null); setCorpseTarget(next.key); }
+    else ents.setTarget(next.key, { byHand: true });
   });
   // how far from its target an action reaches (combat_range.py via /combatdata);
   // null for actions centred on the hero (rally, fade, crescendo...)
@@ -650,6 +704,8 @@ async function runGame() {
     ctl.walkTo(x, z, () => { if (heroRoom && t.vnum === heroRoom.vnum) then(); });
   }
   function attack() {
+    // a corpse aimed at: F loots it
+    if (corpseTarget && !ents.targeted) { const l = loot.list.get(corpseTarget); if (l) return takeLoot(l); }
     const t = ents.targeted;
     if (!t || !t.root) return hud.toast('No target — click a creature or press Tab.');
     if (t.kind !== 'mob') return hud.toast('You cannot attack that.');
@@ -1152,6 +1208,7 @@ async function runGame() {
     }
     ents.update(dt, t, p);
     adorn.update(dt, t, hero, ents.dressed());
+    wards.update(dt, t, hero, (MH.state.player && MH.state.player.wards) || [], ents.warded());
     fightTick(dt);
     sync.tick();
     reportPositions(dt);

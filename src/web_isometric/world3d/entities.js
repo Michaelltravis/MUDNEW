@@ -123,6 +123,11 @@ export class Entities {
     for (const e of this.list.values()) if (e.actor && e.actor.gear) yield e.actor;
   }
 
+  // everyone with a spell on them that shows (wards.js): [actor, ward keys]
+  *warded() {
+    for (const e of this.list.values()) if (e.actor && e.data && e.data.wards && e.data.wards.length) yield [e.actor, e.data.wards];
+  }
+
   // another player put on or took off gear (the server's 'look' relay): re-dress them
   look({ name, look }) {
     const e = name && this.list.get(`p${name}`);

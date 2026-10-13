@@ -160,7 +160,11 @@ export function mountRider(rider, key, prev = null) {
   }
   if (!key) return null;
   // the rider's height, standing (before anything is lifted)
-  const box = new THREE.Box3().setFromObject(rider.root);
+  // (its spells' shells and rings, wards.js, are not the body)
+  const box = new THREE.Box3();
+  rider.root.updateMatrixWorld(true);
+  for (const c of rider.root.children) if (!/^(steed_|raft$|ward_)/.test(String(c.name))) box.expandByObject(c);
+  if (box.isEmpty()) box.setFromObject(rider.root);
   const riderH = Math.max(0.8, (box.max.y - box.min.y) / Math.max(1e-3, rider.root.scale.y || 1));
   const steed = makeSteed(key, riderH);
   // the hips' height standing: the rider goes up until their hips sit on the saddle
@@ -172,7 +176,10 @@ export function mountRider(rider, key, prev = null) {
     hipsH = (v.y - box.min.y) / Math.max(1e-3, rider.root.scale.y || 1);
   }
   const lift = Math.max(0, steed.saddleY - hipsH + riderH * 0.01);
-  const lifted = rider.root.children.filter(c => !/^(steed_|raft$)/.test(String(c.name))).map(c => [c, c.position.y]);
+  // a flyer's hover (wards.js) comes off: the saddle sets the height
+  const hover = rider.root.userData.wardLift || 0;
+  rider.root.userData.wardLift = 0;
+  const lifted = rider.root.children.filter(c => !/^(steed_|raft$|ward_)/.test(String(c.name))).map(c => [c, c.position.y - hover]);
   for (const [c, y] of lifted) c.position.y = y + lift;
   rider.root.add(steed.root);
   return { key, steed, lifted, bones, scale: riderH, pose: () => ridePose({ bones }, rider.root) };

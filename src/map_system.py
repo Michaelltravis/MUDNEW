@@ -712,6 +712,27 @@ def _owned_mounts(player):
     return out
 
 
+# the spells on someone that the 3D client shows on their body for as long as they last
+# (world3d/wards.js): the flags they set, and a few spells known by name that set only stats
+WARD_FLAGS = frozenset({
+    'sanctuary', 'shielded', 'armour_ward', 'divine_shield', 'invulnerable', 'mana_shield', 'holy_shield',
+    'stoneskin', 'ice_armor', 'fire_shield', 'mirror_image', 'displacement', 'blink', 'fly', 'haste',
+    'invisible', 'prot_evil', 'prot_good', 'regenerating', 'spell_reflect', 'shadowform', 'beacon_of_light',
+    'aegis_ward', 'briskness', 'guardian_spirit', 'spirit_link', 'slow', 'entangled', 'silenced', 'stunned',
+})
+WARD_NAMES = {'barkskin': 'barkskin', 'bless': 'bless'}
+
+
+def _wards(entity):
+    """What a character wears from spells, for the 3D client: a sorted list of ward keys."""
+    out = set(getattr(entity, 'affect_flags', None) or ()) & WARD_FLAGS
+    for a in getattr(entity, 'affects', None) or ():
+        key = WARD_NAMES.get(str(getattr(a, 'name', '') or '').lower().replace(' ', '_'))
+        if key:
+            out.add(key)
+    return sorted(out)
+
+
 def _speed(player):
     """How fast the player travels, a multiple of walking pace (mounts.travel_speed)."""
     try:
@@ -1565,6 +1586,7 @@ def _room_entities(room, vnum, player):
                 'fighting': getattr(entity, 'fighting', None) is player,
                 'fighting_name': getattr(getattr(entity, 'fighting', None), 'name', '') or '',
                 'special': str(getattr(entity, 'special', '') or ''),
+                'wards': _wards(entity),
             }
             # Include HP if available
             hp = getattr(entity, 'hp', None)
@@ -1596,6 +1618,7 @@ def _room_entities(room, vnum, player):
                     # what they ride and how fast they go (others see them on their steed)
                     'mount': (_mount_info(entity) or {}).get('key') or None,
                     'speed': _speed(entity),
+                    'wards': _wards(entity),
                     **_ally_combat(entity, player),
                 })
 
@@ -1940,6 +1963,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'bar': getattr(player, 'web_bar', None),          # the 3D client's action bar, as arranged
             'guild': _guild_block(player),                    # where the class's trainer stands
             'affects': AffectManager.save_affects(player),
+            'wards': _wards(player),                          # the spells shown on the body (wards.js)
             'quest': _marquee_block(player),                  # the marquee quest's tracker (marquee.py)
         },
         'group': build_group_block(player),

@@ -194,6 +194,7 @@ function bird(k) {
       if (k.pattern === 'bars') for (let i = 0; i < 3; i++) sh.add(m(box(W * 0.5, 0.05, 0.03), accent, s * W * 0.25, -G * 0.11, -W * (0.05 + i * 0.16)));
     }
     if (upright) sh.rotation.z = s * 0.15;
+    sh.userData.wing = s;                 // corpse.js folds it over the back when the creature dies
     wings.push({ sh, s });
   }
   // tail
@@ -345,7 +346,7 @@ function biped(k) {
     const w = grp(torso, s * 0.15 * W, 0.5, -0.2 * W);
     const web = new THREE.Mesh(new THREE.ConeGeometry(0.4, 0.7, 3, 1), mat(k.c.accent, { side: THREE.DoubleSide }));
     web.scale.set(1, 1, 0.05); web.rotation.z = s * 1.9; web.position.set(s * 0.35, 0.15, 0); web.castShadow = true;
-    w.add(web); wings.push({ w, s });
+    w.add(web); w.userData.wing = s; wings.push({ w, s });
   }
   const heavy = k.frame === 'brute' || k.frame === 'giant';
   return finish(root, body, (t, st, a) => {
@@ -413,6 +414,7 @@ function crawler(k) {
     const broad = k.wings === 'broad';
     const wm = mat(broad ? k.c.accent : 0xe8f0ff, { transparent: !broad, opacity: broad ? 1 : 0.45, side: THREE.DoubleSide });
     w.add(m(sph(0.5, 6, 4), wm, s * (broad ? 0.35 : 0.25), 0, -0.05, broad ? 0.7 : 0.5, 0.02, broad ? 0.55 : 0.2));
+    w.userData.wing = s;
     wings.push({ w, s });
   }
   // legs
@@ -534,6 +536,7 @@ function dragon(k) {
     const web = new THREE.Mesh(new THREE.ConeGeometry(span * 0.55, span, 3, 1), mat(k.bony ? 0x8a8070 : k.c.accent, { side: THREE.DoubleSide, transparent: k.bony, opacity: k.bony ? 0.5 : 1 }));
     web.scale.set(1, 1, 0.04); web.rotation.z = s * Math.PI / 2; web.rotation.x = 0.3; web.position.set(s * span * 0.5, -span * 0.15, -span * 0.15); web.castShadow = true;
     sh.add(web);
+    sh.userData.wing = s;
     wings.push({ sh, s });
   }
   // legs

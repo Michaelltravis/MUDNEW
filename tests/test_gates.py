@@ -91,6 +91,12 @@ async def main():
     check(npcs(3305)[0].rank == 'boss' and npcs(6210)[0].rank == 'boss', 'Aglandiir and Elstar are bosses')
     ramses = npcs(5317)[0]
     check(ramses.room.vnum == 5332 and [m.spec['type'] for m in ramses.mechanics] == ['hunger', 'gloom'], 'Ramses in his tomb, his curse starving the still')
+    # ---- Mahn-Tor Keep: the folk its rooms are named for stand in them
+    for name, where in (('darkoth', "Darkoth's Dark Study"), ('tyrgoth', "Tyrgoth's Inner Sanctum"), ('sumaron', "Sumaron's Sanctum"),
+                        ('amyrok', "Amyrok's Arcane Study"), ('nasturn', "Nasturn's Humble Abode"),
+                        ('dorgar', "Dorgar's Dismal Domicile"), ('belrak', "Belrak's Green Room")):
+        folk = [m for m in world.npcs if name in (m.name or '').lower() and getattr(m, 'room', None) is not None]
+        check(len(folk) == 1 and folk[0].room.name == where, f'{name.title()} in {where}')
     # ---- the rest of ring 2
     check(npcs(8003)[0].room.vnum == 8003 and npcs(7304)[0].room.vnum == 7352, 'Scorathax in the Treasure Cavern; the Master Mindflayer in its sanctum')
     check(npcs(644103)[0].room.vnum == 8742 and npcs(47150)[0].room.vnum == 8357, 'the barrow wight in the Barrow Mound; the Black Priest before the Dark Castle')

@@ -67,7 +67,7 @@ test("darkened on its own copies: the living keep theirs", () => {
   b.add(new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), shared));
   const made = C.deaden(a);
   assert.equal(made.length, 1);
-  assert.ok(a.children[0].material !== shared && a.children[0].material.color.r < 0.7, 'the dead one is darker');
+  assert.ok(a.children[0].material !== shared && a.children[0].material.color.r < 0.9, 'the dead one is darker');
   assert.equal(b.children[0].material, shared, 'the other keeps the shared material');
   assert.equal(shared.color.r, 1);
 });
@@ -81,4 +81,28 @@ test("a hero's grave: a mound, stones and a marker, all its own", () => {
   assert.ok(meshes.every(m => m.userData.own), 'loot.js may dispose every part of it');
   const b = bounds(g);
   assert.ok(b.min.y > -0.1 && b.max.y > 0.6, 'on the floor (its stones half-sunk), the marker standing');
+});
+
+test('the dead keep their colours: a little greyer and darker, a red still red', () => {
+  const g = new THREE.Group();
+  g.add(new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshStandardMaterial({ color: 0xc03020 })));
+  C.deaden(g);
+  const c = g.children[0].material.color;
+  assert.ok(c.r > c.g * 2 && c.r > 0.35, `still red (${c.r.toFixed(2)}, ${c.g.toFixed(2)}, ${c.b.toFixed(2)})`);
+});
+
+test("a big body built in code goes over whole, its wings folded and kept off the floor's reckoning", () => {
+  const root = box(1.2, 3.2, 3.0);               // a dragon standing 3.2 m
+  const wing = new THREE.Group();
+  wing.userData.wing = 1;
+  const web = new THREE.Mesh(new THREE.BoxGeometry(2, 0.05, 1), new THREE.MeshStandardMaterial());
+  web.position.x = 1; wing.add(web); wing.position.y = 2.5; root.add(wing);
+  let deathPlayed = false;
+  const actor = { root, once: () => { deathPlayed = true; return 1; }, update: () => {} };
+  const fall = C.fallOver(actor, { ground: 0, side: 1 });
+  while (fall.update(0.1)) ;
+  assert.equal(deathPlayed, false, "not its own death (that rolls the torso alone)");
+  assert.ok(Math.abs(root.rotation.z) > 1.4, 'on its side');
+  assert.ok(Math.abs(wing.rotation.z) > 1.2, 'its wing folded');
+  assert.ok(Math.abs(C.bodyBox(root).min.y) < 0.05, 'its body rests on the floor (the wing may pass under it)');
 });

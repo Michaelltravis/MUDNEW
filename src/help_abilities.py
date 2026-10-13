@@ -304,7 +304,9 @@ def _spell_effect_summary(data):
         phrases = ", ".join(_affect_phrase(a) for a in affects)
         dur = data.get('duration_ticks')
         line = f"Applies: {phrases}"
-        if dur:
+        if data.get('ward'):
+            line += " (15 to 30 minutes, longer as you level)"
+        elif dur:
             line += f" ({_ticks(dur)})"
         bits.append(line)
     if data.get('bounces'):

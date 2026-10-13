@@ -1,7 +1,7 @@
 // The whole world (the big map's World tab): every room you have explored, from the atlas
 // (/atlas: all rooms with their world coordinates and zones) and your explored rooms
 // (/explored), each a square in its zone's colour, zone names over their middles, and you.
-// Drag to pan, the wheel zooms, hover for a room's name.
+// Drag to pan, the wheel (or +/-) zooms, hover for a room's name, click a room to open its zone.
 
 // what to draw, from the atlas and the rooms you know: {rooms, zones: [{id, name, x, y}], bounds}
 export function worldView(atlas, explored, level = 0) {
@@ -22,8 +22,11 @@ export function worldView(atlas, explored, level = 0) {
     bounds: rooms.length ? { minX, maxX, minY, maxY } : null };
 }
 
-export function createWorldMap(canvas, { fetchAtlas, fetchExplored, here }) {
+export const WORLD_ZOOM = [2, 30];
+
+export function createWorldMap(canvas, { fetchAtlas, fetchExplored, here, onZone = null }) {
   let atlas = null, explored = [], view = null, zoom = 9, cx = 0, cy = 0, drag = null, hover = null, open = false;
+  let focus = null;           // a zone asked for (the zone list) before the map had loaded
   const ctx = canvas.getContext('2d');
   async function load() {
     try {
@@ -32,9 +35,16 @@ export function createWorldMap(canvas, { fetchAtlas, fetchExplored, here }) {
     } catch (_) { /* drawn empty */ }
     const me = here();
     const meRoom = me && atlas ? atlas.rooms.find(r => r.vnum === me) : null;
+    const first = !view;
     view = worldView(atlas, explored, meRoom ? meRoom.z || 0 : 0);
-    if (meRoom) { cx = meRoom.x; cy = meRoom.y; }
+    if (meRoom && first) { cx = meRoom.x; cy = meRoom.y; }
+    if (focus != null) centreOn(focus);
     draw();
+  }
+  // centre on a zone you know (its rooms' middle on this level)
+  function centreOn(id) {
+    const z = view && view.zones.find(q => q.id === id);
+    if (z) { cx = z.x; cy = z.y; focus = null; } else focus = id;
   }
   function toScreen(x, y) { return [canvas.width / 2 + (x - cx) * zoom, canvas.height / 2 + (y - cy) * zoom]; }
   function draw() {
@@ -79,9 +89,13 @@ export function createWorldMap(canvas, { fetchAtlas, fetchExplored, here }) {
       ctx.fillStyle = '#f3e3b8'; ctx.fillText(label, x + 17, y - 12 * devicePixelRatio);
     }
   }
-  canvas.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, cx, cy }; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, cx, cy, moved: false }; canvas.setPointerCapture(e.pointerId); });
   canvas.addEventListener('pointermove', e => {
-    if (drag) { cx = drag.cx - (e.clientX - drag.x) * devicePixelRatio / zoom; cy = drag.cy - (e.clientY - drag.y) * devicePixelRatio / zoom; draw(); return; }
+    if (drag) {
+      if (!drag.moved && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 5) return;
+      drag.moved = true;
+      cx = drag.cx - (e.clientX - drag.x) * devicePixelRatio / zoom; cy = drag.cy - (e.clientY - drag.y) * devicePixelRatio / zoom; draw(); return;
+    }
     if (!view) return;
     const r = canvas.getBoundingClientRect();
     const wx = cx + ((e.clientX - r.left) * devicePixelRatio - canvas.width / 2) / zoom;
@@ -90,10 +104,25 @@ export function createWorldMap(canvas, { fetchAtlas, fetchExplored, here }) {
     for (const rm of view.rooms) { const d = Math.hypot(rm.x - wx, rm.y - wy); if (d < bd) { bd = d; best = rm; } }
     if (best !== hover) { hover = best; draw(); }
   });
-  canvas.addEventListener('pointerup', () => { drag = null; });
-  canvas.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.min(30, Math.max(2, zoom * Math.exp(-e.deltaY * 0.0015))); draw(); }, { passive: false });
+  canvas.addEventListener('pointerup', () => {
+    const click = drag && !drag.moved;
+    drag = null;
+    if (click && hover && onZone) onZone(hover.zone);
+  });
+  const zoomBy = f => { zoom = Math.min(WORLD_ZOOM[1], Math.max(WORLD_ZOOM[0], zoom * f)); draw(); };
+  canvas.addEventListener('wheel', e => { e.preventDefault(); zoomBy(Math.exp(-e.deltaY * 0.0015)); }, { passive: false });
   return {
     show(on) { open = on; if (on) { load(); } },
     draw,
+    zoomBy,
+    focusZone(id) { centreOn(id); draw(); },
+    // back to you
+    home() {
+      const me = here();
+      const meRoom = me && atlas ? atlas.rooms.find(r => r.vnum === me) : null;
+      if (meRoom) { cx = meRoom.x; cy = meRoom.y; }
+      focus = null;
+      draw();
+    },
   };
 }

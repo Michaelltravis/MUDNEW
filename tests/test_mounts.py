@@ -220,6 +220,34 @@ async def main():
     check(r.mount is None and r.last_mount == 'horse', 'dismount gets you down, and it remembers the horse')
     await CommandHandler.cmd_mount(r, ['last'])
     check(r.mount and r.mount.key == 'horse', 'mount last: back on the horse')
+    # attacked on horseback: down off the mount, and nothing raised (this took the server down)
+    from combat import CombatHandler
+    from bosses import create_mob_from_prototype
+    await CommandHandler.cmd_mount(r, ['griffin'] if r.mount is None else [])
+    if r.mount is None:
+        await CommandHandler.cmd_mount(r, ['horse'])
+    rider_mount = r.mount
+    gob = create_mob_from_prototype(dict(world.mob_prototypes[3501]), world)
+    gob.room = r.room
+    r.room.characters.append(gob)
+    world.npcs.append(gob)
+    try:
+        await CombatHandler.start_combat(gob, r)
+        raised = None
+    except Exception as e:
+        raised = e
+    check(raised is None and rider_mount is not None and (r.mount is None or r.mount.combat_ok),
+          f"attacked on horseback: off the horse, nothing raised ({raised!r})")
+    r.fighting = None; r.position = 'standing'
+    gob.fighting = None
+    r.room.characters.remove(gob)
+    world.npcs.remove(gob)
+    await CommandHandler.cmd_mount(r, ['horse']) if r.mount is None else None
+    # R sends `mount toggle`: the server, not the page's copy of the state, decides up or down
+    await CommandHandler.cmd_mount(r, ['toggle'])
+    check(r.mount is None, 'mount toggle while riding: down')
+    await CommandHandler.cmd_mount(r, ['toggle'])
+    check(r.mount and r.mount.key == 'horse', 'mount toggle on foot: up on the last ridden')
     await r.save()
     check(Player.load('Rlast').last_mount == 'horse', 'the save keeps the mount last ridden')
     r.explored_rooms = {r.room.vnum}

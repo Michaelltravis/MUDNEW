@@ -5,8 +5,9 @@
 // right-click for more. Each sits on one of its room's free spots, the same spot every time.
 import * as THREE from 'three';
 import { groundItems } from './lootlogic.js';
-import { victimOf, fallOver, deaden, footprint, stain, grave } from './corpse.js';
+import { victimOf, fallOver, deaden, footprint, stain, grave, bodyBox } from './corpse.js';
 
+const RING_MAX = 1.4;     // a corpse's ring, however big the body (a dragon's filled the room)
 const RARITY = { common: 0xb8b0a0, uncommon: 0x6fd06f, rare: 0x5aa8ff, epic: 0xc07aff, legendary: 0xffa640, set: 0x5fe0c8 };
 
 function groundRing(color, inner, outer, opacity) {
@@ -66,9 +67,8 @@ export class GroundLoot {
     const lay = (body, fall) => {
       l.body = body; l.fall = fall;
       l.mats = deaden(body);
-      root.position.set(body.position.x, at.y, body.position.z);
-      const r = footprint(body);
-      root.add(stain(r), groundRing(0xffd27a, r + 0.15, r + 0.26, 0.5));
+      root.position.y = at.y;
+      this.marks(l);
       this.engine.scene.add(root);
     };
     const toGrave = () => {
@@ -90,6 +90,24 @@ export class GroundLoot {
       for (let i = 0; i < 40 && fall.update(0.25);) i++;
       lay(body, null);
     }).catch(() => { if (this.list.get(g.key) === l) toGrave(); });
+  }
+
+  // the stain and the ring under a body, sized and centred on it as it lies now (again once it
+  // has finished falling: a dragon standing is not the dragon lying down), the ring last
+  marks(l) {
+    for (const m of [l.stainMesh, l.ringMesh]) if (m) { l.root.remove(m); m.geometry.dispose(); m.material.dispose(); }
+    const box = bodyBox(l.body);
+    if (isFinite(box.min.x)) l.root.position.set((box.min.x + box.max.x) / 2, l.root.position.y, (box.min.z + box.max.z) / 2);
+    const r = Math.min(RING_MAX, footprint(l.body));
+    l.stainMesh = stain(r);
+    l.ringMesh = groundRing(l.key === this.marked ? 0xfff4d6 : 0xffd27a, r + 0.15, r + 0.26, 0.5);
+    l.root.add(l.stainMesh, l.ringMesh);
+  }
+
+  // the corpse Tab aimed at (main.js): its ring brighter and paler, pulsing (null: none)
+  mark(key) {
+    for (const l of this.list.values()) if (l.ringMesh) l.ringMesh.material.color.set(l.key === key ? 0xfff4d6 : 0xffd27a);
+    this.marked = key || null;
   }
 
   remove(l) {
@@ -124,10 +142,11 @@ export class GroundLoot {
 
   update(dt, t) {
     for (const l of this.list.values()) {
-      if (l.fall && !l.fall.update(dt)) l.fall = null;          // a body still falling
+      if (l.fall && !l.fall.update(dt)) { l.fall = null; this.marks(l); }     // a body still falling; then where it lies
       if (l.bob) l.bob.position.y = 0.6 + Math.sin(t * 2.2 + l.phase) * 0.08;
       const ring = l.root.children[l.root.children.length - 1];
-      if (ring && ring.material) ring.material.opacity = (l.corpse ? 0.35 : 0.5) + Math.sin(t * 3 + l.phase) * 0.2;
+      if (ring && ring.material) ring.material.opacity = l.key === this.marked ? 0.85 + Math.sin(t * 6) * 0.15
+        : (l.corpse ? 0.35 : 0.5) + Math.sin(t * 3 + l.phase) * 0.2;
     }
   }
 }
