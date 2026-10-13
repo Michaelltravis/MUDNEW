@@ -22,11 +22,12 @@ def export(arm, body, name, out, kind='creature', clips=(), meta=None):
         raise SystemExit(f'{name}: {tris(body)} triangles, over the {kind} budget of {BUDGET.get(kind, 3000)}')
     pts = [arm.matrix_world @ v.co for v in body.data.vertices]
     lo_z = min(p.z for p in pts)
-    if lo_z < -0.005:
-        # something hangs below the feet (a drooping tail, a claw): lift the whole rig onto the ground
+    if abs(lo_z) > 0.005:
+        # something hangs below the feet (a drooping tail, a claw), or it floats (a fish): set the
+        # whole rig down on the ground
         arm.location.z -= lo_z
         bpy.context.view_layer.update()
-        print(f'{name}: lifted {-lo_z:.3f} so it stands on the ground')
+        print(f'{name}: moved {-lo_z:+.3f} so it rests on the ground')
         pts = [arm.matrix_world @ v.co for v in body.data.vertices]
         lo_z = min(p.z for p in pts)
     cx = (min(p.x for p in pts) + max(p.x for p in pts)) / 2
