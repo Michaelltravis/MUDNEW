@@ -69,7 +69,9 @@ async def main():
     crier = next(m for m in world.npcs if getattr(m, 'vnum', None) == 5433)
     came = allies.nearby_allies(crier, 3, 5)
     check(all(getattr(m, 'vnum', None) in (5461, 5462, 5482, 5463) for m, _ in came), f'in New Thalos only the guard answers ({len(came)})')
-    check(npcs(40050)[0].room.vnum == 4044 and npcs(3503)[0].rank == 'boss', 'Grondar in the Hill Giant Cave; Grukthar a boss')
+    check(npcs(40050)[0].room.vnum == 4044, 'Grondar in the Hill Giant Cave')
+    grukthar = npcs(3503)[0]
+    check(grukthar.rank == 'boss', 'Grukthar the Goblin King a boss')
     check(npcs(120501)[0].room.vnum == 12204 and npcs(120500)[0].room.vnum == 8892, 'the High Priest of Terror in his temple, the Pallid Herald in Lost Carcosa')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)

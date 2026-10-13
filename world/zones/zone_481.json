@@ -36,8 +36,8 @@
      "description": "To the up lies On A Small Island In The Middle Of The Lake."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south, west and up.",
-   "placeholder": true
+   "description": "You stand inside the city limits of Ghenna, once a thriving barter town\nand now a haven for the evil it bred under the proud Lord Suzerain.\nBroken walls and fallen lintels crowd every corner, mixed with age-\nwhitened bones of all manner of beasts. Streets lead away north toward a\nfountain, east and west into the ruined town, and south toward a\ngraveyard stench.",
+   "extra_descs": {}
   },
   "9902": {
    "vnum": 9902,
@@ -63,8 +63,10 @@
      "description": "To the west lies A Culdesac."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, south\nand west.",
-   "placeholder": true
+   "description": "A great fountain stands here against the city wall, brimming with the\ntears of all who died within Ghenna. Strangely, the water is a clear and\nshining blue, and it gives off a holiness that sits oddly in so foul a\nplace. The basin is wide and deep, ringed by cracked paving. A road\nclimbs north, a cul-de-sac opens west, and the square falls away south\ntoward the city limits.",
+   "extra_descs": {
+    "fountain tears basin water": "The basin is filled with clear blue water said to be the tears of those\nslain in Ghenna. It looks deep and wide, and it seems untouched by the\nfilth around it."
+   }
   },
   "9903": {
    "vnum": 9903,
@@ -90,8 +92,8 @@
      "description": "To the west lies The Streets Of Ghenna."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north, south\nand west.",
-   "placeholder": true
+   "description": "This is the town graveyard, if such a name can be given to it. Nobody\ntroubles to bury the dead in Ghenna, so corpses lie strewn about in no\nkind of order, and the stench is overwhelming. Heaped bodies close off\nthe way along the far side. A road leads north to the city limits, a\nhedge maze lies south, and a street opens west.",
+   "extra_descs": {}
   },
   "9904": {
    "vnum": 9904,
@@ -117,8 +119,8 @@
      "description": "To the west lies The Streets Of Ghenna."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north, east and\nwest.",
-   "placeholder": true
+   "description": "A small cul-de-sac circles here on worn cobbles. A large fountain\nglimmers just beyond the street, east of the circle, and a door lies to\nthe north beneath a tavern sign painted with something unspeakable. The\nsign swings and creaks on rusted chains. The street leads back west.",
+   "extra_descs": {}
   },
   "9905": {
    "vnum": 9905,
@@ -136,8 +138,8 @@
      "description": "To the west lies A Dead End."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads west.",
-   "placeholder": true
+   "description": "You are among a row of twisting hedges, seven feet tall, dense and dark\nand cut into winding turns. Thorny shoots lean over the path as if\nlistening. The leaves are glossy with damp and smell like old cellars.\nThe hedge walls close in all round, and the only way through leads west.",
+   "extra_descs": {}
   },
   "9906": {
    "vnum": 9906,
@@ -150,8 +152,8 @@
    "sector_type": "city",
    "flags": [],
    "exits": {},
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street.",
-   "placeholder": true
+   "description": "Twisting hedges stand seven feet tall on every side, cut into narrow,\nwinding turns. Black thorns jut from the branches and the ground is\nspongy with fallen leaves. The air smells of rot and damp earth. Each\nturn looks the same as the last, and the green walls mutter in the wind.",
+   "extra_descs": {}
   },
   "9907": {
    "vnum": 9907,
@@ -164,8 +166,8 @@
    "sector_type": "city",
    "flags": [],
    "exits": {},
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand.",
-   "placeholder": true
+   "description": "You are lost among tall hedges whose dark leaves fold back on\nthemselves. The path forks and doubles around you, and a pale fungus\ngrows in the shade at the roots. A faint sweetness hangs in the air.\nSomewhere a branch cracks, but nothing can be seen through the leaves.",
+   "extra_descs": {}
   },
   "9908": {
    "vnum": 9908,
@@ -178,8 +180,8 @@
    "sector_type": "city",
    "flags": [],
    "exits": {},
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby.",
-   "placeholder": true
+   "description": "The hedges here are old and woody, their trunks as thick as a man's arm\nand knotted with thorn. The path turns sharply and turns again, and a\nscatter of small bones lies in the dust of one bend. A grey mist drifts\nlow along the ground. Overhead only a strip of sullen sky is visible.",
+   "extra_descs": {}
   },
   "9909": {
    "vnum": 9909,
@@ -192,8 +194,8 @@
    "sector_type": "city",
    "flags": [],
    "exits": {},
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand.",
-   "placeholder": true
+   "description": "A maze of hedges encloses you, dense and glossy and tall. Dead leaves\nlie ankle deep, and strands of torn cloth hang from the thorns. The path\nloops round on itself so many times that you cannot say which way is\nwhich. A cold wind combs through the branches with a dry whisper.",
+   "extra_descs": {}
   },
   "9910": {
    "vnum": 9910,
@@ -215,8 +217,8 @@
      "description": "To the up lies City Limits Of Ghenna."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and up.",
-   "placeholder": true
+   "description": "The wailing of souls in torment sends shivers up your spine. The walls,\nfloor and ceiling are a thick red mass that defies description. A rift\nin the ceiling lets down a slight breeze that ruffles your hair. A way\nleads north into a heaving room, and a gap rises overhead toward the\ncity limits.",
+   "extra_descs": {}
   },
   "9911": {
    "vnum": 9911,
@@ -240,8 +242,8 @@
      "description": "To the south lies The Realm Of The Hopeless."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The room undulates with an aura of terrible evil. The floor shifts under\nyour feet so that you stagger, and the ceiling pumps slowly above you\nlike a great muscle. You feel your strength draining from your limbs.\nPassages lead east toward a spinning place and south into a red realm.",
+   "extra_descs": {}
   },
   "9914": {
    "vnum": 9914,
@@ -263,8 +265,8 @@
      "description": "To the west lies A Musty Area Behind The Wall."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "This is a plain and ordinary street, rolling gently over a shallow dale.\nDark windows watch from both sides and a damp wind pushes old rags along\nthe gutter. The road leads east toward a small circle of stones, and\nwest toward a musty gap behind a wall.",
+   "extra_descs": {}
   },
   "9915": {
    "vnum": 9915,
@@ -297,8 +299,8 @@
      "description": "To the west lies The Card Table."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "You stand inside Blood Tavern, a bizarre place at first sight. The\nparquet floor creaks beneath an odd and shifting bar, and next to the\nbar a stairwell vanishes upward into blackness. The ceiling is vaulted,\nwith three candled chandeliers that hang like victims overhead. A card\ntable stands to the north, and the door leads back out south.",
+   "extra_descs": {}
   },
   "9916": {
    "vnum": 9916,
@@ -322,8 +324,8 @@
      "description": "To the up lies The Top Of The Stairs."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and up.",
-   "placeholder": true
+   "description": "A long bar runs along the room, built of God knows what, and it seems to\nbe made of pale hide sewn with the hair of various beasts. Sturdy though\nit is, it is pliant to the touch and seems to move ever so slightly, as\nif alive. A dark stairwell leads upward from here. The card table lies\nback south.",
+   "extra_descs": {}
   },
   "9917": {
    "vnum": 9917,
@@ -347,8 +349,8 @@
      "description": "To the south lies Blood Tavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "A card table made from the skeleton of some odd four-legged thing stands\nhere, with a few unplayed hands left on it. You wonder where the rest of\nthe poor players went. The room is dim and smells of tallow and old\nwine. The tavern floor lies south, and the bar rises to the north.",
+   "extra_descs": {}
   },
   "9918": {
    "vnum": 9918,
@@ -376,8 +378,8 @@
      "description": "To the down lies At The Undead Bar."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "You stand at the top of the stairs in Blood Tavern. A small hallway runs\neast and west in darkness, its boards sagging and warped. Cold air seeps\nthrough the gaps in the plaster. Stairs lead down to the bar below.",
+   "extra_descs": {}
   },
   "9919": {
    "vnum": 9919,
@@ -406,8 +408,8 @@
      "description": "To the west lies The Top Of The Stairs."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "This is a small upstairs hallway, narrow and low, with a sour smell of\nold smoke. Behind the door to the north you hear faint singing, a dusky\nvoice that sounds almost feminine. The planks creak with each step. The\ntop of the stairs lies back west.",
+   "extra_descs": {}
   },
   "9920": {
    "vnum": 9920,
@@ -427,8 +429,8 @@
      "description": "To the south lies An Upstairs Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
-   "placeholder": true
+   "description": "A messy bedroom holds a badly stained bed and a simple roll-top desk\nburied in dusty papers. A small window looks out over darkness. The\nsheets lie in a tangle, and the air is stale with old perfume. The only\ndoor leads south to the hallway.",
+   "extra_descs": {}
   },
   "9921": {
    "vnum": 9921,
@@ -457,8 +459,8 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "This upstairs hallway of Blood Tavern is dim and bare, with a threadbare\nrunner on the boards. A door stands to the south, closed against the\ndark. The plaster has peeled in long strips, showing the laths beneath.\nThe top of the stairs lies east.",
+   "extra_descs": {}
   },
   "9922": {
    "vnum": 9922,
@@ -482,8 +484,8 @@
      "description": "To the west lies The Bathroom."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "This is the master suite of Blood Tavern. A liquor cabinet stands\nagainst one wall, full of dusty old bottles, and a king-sized bed faces\nit across the room. Heavy curtains keep out all light. A half-open door\nleads west into a washroom, and another leads back north to the hall.",
+   "extra_descs": {}
   },
   "9923": {
    "vnum": 9923,
@@ -512,8 +514,8 @@
      "description": "To the east lies The Master Suite."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
-   "placeholder": true
+   "description": "The washroom stinks of damp and old rot. A basin sits on the floor,\nfilled with water that is stained dark red, and a dirty mirror reflects\nyour face back at you in fragments. The tiles are cracked and sticky. A\ndoor leads east to the suite, and another to the north opens on a musty\ngap.",
+   "extra_descs": {}
   },
   "9924": {
    "vnum": 9924,
@@ -545,8 +547,8 @@
      "description": "To the down lies The Streets Of Ghenna."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east, south, west and down.",
-   "placeholder": true
+   "description": "You are caught in a swirling vortex of time that turns your stomach. You\nspin and spin, unsure which way is which, and the colours smear into a\ngrey blur around you. It seems you could end up in any of several\nplaces. Ways lead east, south, and west, and a gap in the floor drops\ndown toward a street.",
+   "extra_descs": {}
   },
   "9925": {
    "vnum": 9925,
@@ -561,8 +563,8 @@
     "indoors"
    ],
    "exits": {},
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use.",
-   "placeholder": true
+   "description": "You stand within a labyrinth made of bodies stacked ten feet high,\nforming crooked corridors of limbs and cloth. Some of them are still\nwarm, and now and then a cry of despair rises from the mass. The air is\nthick with the smell of death. No path out can be seen.",
+   "extra_descs": {}
   },
   "9926": {
    "vnum": 9926,
@@ -577,8 +579,8 @@
     "indoors"
    ],
    "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch.",
-   "placeholder": true
+   "description": "You are standing within a labyrinth made of bodies stacked ten feet\nhigh. Some are still warm, and now and then a moan of despair rises from\nthe mass. The passages bend like the coils of a maze, and the smell is\nthick enough to taste.",
+   "extra_descs": {}
   },
   "9927": {
    "vnum": 9927,
@@ -593,8 +595,8 @@
     "indoors"
    ],
    "exits": {},
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach.",
-   "placeholder": true
+   "description": "A wall of stacked bodies rises ten feet on every hand, packed tight in\ncrooked rows. Some are still warm, and a long moan of despair comes from\ndeep inside. Clammy air presses on your face. The corridor curls away\nand doubles back on itself.",
+   "extra_descs": {}
   },
   "9928": {
    "vnum": 9928,
@@ -609,8 +611,8 @@
     "indoors"
    ],
    "exits": {},
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time.",
-   "placeholder": true
+   "description": "Corpses are piled ten feet high to form this twisting passage. A few of\nthem are still warm, and from somewhere within the mass comes a muffled\nscream. A cold sweat of fear runs down your back. The floor is slick and\nuneven under your feet.",
+   "extra_descs": {}
   },
   "9929": {
    "vnum": 9929,
@@ -625,8 +627,8 @@
     "indoors"
    ],
    "exits": {},
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "description": "The labyrinth of bodies is stacked ten feet high here, and pale limbs\nhang across the path. Some of the bodies are still warm, and a thin plea\nfor aid sounds from the heap. The air is heavy and tastes of copper. The\nturns of the passage seem to shift as you watch.",
+   "extra_descs": {}
   },
   "9930": {
    "vnum": 9930,
@@ -641,8 +643,8 @@
     "indoors"
    ],
    "exits": {},
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time.",
-   "placeholder": true
+   "description": "This stretch of the labyrinth is built of bodies stacked ten feet high,\nleaning together overhead. Some are still warm, and a gurgling cry of\ndespair bubbles from the mass. The floor is wet and the dim light is the\ncolour of old tallow. Every turn leads to another turn.",
+   "extra_descs": {}
   },
   "9931": {
    "vnum": 9931,
@@ -657,8 +659,8 @@
     "indoors"
    ],
    "exits": {},
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use.",
-   "placeholder": true
+   "description": "You stand in a narrow lane between stacks of bodies ten feet tall. Some\nare still warm, and a shriek of horror breaks from the pile and dies\naway. The stack sways a little as if breathing. The path winds on among\nthe dead with no end in sight.",
+   "extra_descs": {}
   },
   "9932": {
    "vnum": 9932,
@@ -678,8 +680,8 @@
      "description": "To the west lies A Messy Bedroom."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "The passage between the stacked bodies narrows here, rising ten feet on\neither side. Some of the dead are still warm, and an occasional cry of\ndespair stirs the silence. A faint draught from a doorway carries the\nsmell of old sheets and stale scent. A way leads west out of the stack.",
+   "extra_descs": {}
   },
   "9933": {
    "vnum": 9933,
@@ -699,8 +701,9 @@
      "description": "To the up lies Inside The Cave Entrance."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads up.",
-   "placeholder": true
+   "description": "Out of the labyrinth at last, you stand at the mouth of a large cave\nabout a hundred feet across. A steady trickle of blood runs down worn\nstone steps that climb into the hill above. The rock is stained dark and\nthe air is hot and sour. Dare you go up?",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9934": {
    "vnum": 9934,
@@ -728,8 +731,9 @@
      "description": "To the down lies The Mouth Of A Large Cave."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, up and down.",
-   "placeholder": true
+   "description": "You are inside the cave entrance, where a strong smell of sulfur makes\nyou gag. Great stone steps lead down to the place of stacked bodies. A\nsteady stream of blood trickles from somewhere to the north, where a\nsound like a giant bellows can be heard. A narrow ledge climbs up into a\ncramped hollow.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9935": {
    "vnum": 9935,
@@ -751,8 +755,9 @@
      "description": "To the south lies Inside The Cave Entrance."
     }
    },
-   "description": "The ground rises and falls in grassy folds. A narrow path winds between\nthe hillocks. Ways lead north and south.",
-   "placeholder": true
+   "description": "The reek of sulfur grows stronger here, and about a hundred horribly\ndisfigured corpses lie across the floor of rock. It looks as though the\nflesh was eaten from their bodies while they still lived. The stream of\nblood from the entrance is much wider here. The cave leads north toward\nthe source and south back toward the entrance.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9936": {
    "vnum": 9936,
@@ -776,8 +781,9 @@
      "description": "To the up lies The Lair Of The Deep Dragon."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and up.",
-   "placeholder": true
+   "description": "This is an arched cavern of great size, high as a cathedral. A ledge of\nrock juts out far overhead and sends down a steady gush of blood and\nentrails. A raucous sound of crunching and a slurp here and there turns\nyour stomach. A rough slope climbs on to a ledge, and a passage leads\nback south.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9937": {
    "vnum": 9937,
@@ -801,8 +807,9 @@
      "description": "To the down lies The Lair Entrance."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead up and down.",
-   "placeholder": true
+   "description": "This ledge is slippery with the blood of hundreds who came here and did\nnot leave. Corpses lie everywhere, and a black steaming substance\nsmeared over the rock gives off the awful sulfur smell. You feel certain\nyour life may end soon. A slope leads down, and a bone-choked hollow\nopens above.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9938": {
    "vnum": 9938,
@@ -826,8 +833,9 @@
      "description": "To the down lies Inside The Cave Entrance."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead west and down.",
-   "placeholder": true
+   "description": "You are in a cramped grotto over the cave entrance. Even if you are not\nafraid of tight places, this one will make you so. The rock presses\nclose on every side and you must keep your head down. A crawlspace leads\nwest, and a ledge drops down to the entrance.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9939": {
    "vnum": 9939,
@@ -851,8 +859,9 @@
      "description": "To the east lies A Cramped Grotto."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "The grotto widens into an adit tall enough to stand in. Stalagmites and\nstalactites jut from floor and ceiling like the teeth of a great jaw.\nWater drips with a slow, steady beat. A passage leads north, and the\nnarrow grotto lies back east.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9940": {
    "vnum": 9940,
@@ -870,8 +879,9 @@
      "description": "To the east lies Abode Of The Efreeti."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. Bare rock climbs\nsteeply on one side and falls away on the other. A way leads east.",
-   "placeholder": true
+   "description": "This crawlspace is barely passable. It bends to the right, and you\ncannot tell where it leads. The rock is close, rough and warm against\nyour shoulders. A glow of lamplight spills in from the east, and there\nis no way back the way you came.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9941": {
    "vnum": 9941,
@@ -895,8 +905,8 @@
      "description": "To the up lies Under the bones.."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead west and up.",
-   "placeholder": true
+   "description": "You have entered the magical abode of a great efreeti, done in a style\nfrom far-off lands. The room glimmers with every comfort a being could\nwant: pillows, rugs and brass candelabra are everywhere, and silk hangs\nfrom the ceiling. A heavy sweet incense hangs in the warm air. A narrow\ncrawl leads out west, and a stair of bones rises upward.",
+   "extra_descs": {}
   },
   "9943": {
    "vnum": 9943,
@@ -920,8 +930,8 @@
      "description": "To the down lies On The Stairs."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and down.",
-   "placeholder": true
+   "description": "You are in a musty hidden space behind the wall of the washroom. Dust\nlies thick and grey on the boards, and spider silk hangs in ropes. A\nvery narrow granite staircase leads down from here into darkness. A door\nlies south.",
+   "extra_descs": {}
   },
   "9944": {
    "vnum": 9944,
@@ -945,8 +955,8 @@
      "description": "To the up lies The Granite Staircase."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and up.",
-   "placeholder": true
+   "description": "You have reached the bottom of the granite staircase, the cellar of\nBlood Tavern. A hole in the ceiling is stained black, above a great heap\nof refuse and rotting sacking. Walls stand close on every other side,\nbut a way passes east around the heap. The stair rises back up.",
+   "extra_descs": {}
   },
   "9945": {
    "vnum": 9945,
@@ -970,8 +980,8 @@
      "description": "To the down lies The Bottom Of The Granite Staircase."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead up and down.",
-   "placeholder": true
+   "description": "The granite staircase winds on, its steps narrow and uneven, worn hollow\nin the middle by long use. Faint scratches mark the stone where\nsomething once dragged itself along. The darkness below smells of old\nwine and wet brick. You may climb back up or descend further.",
+   "extra_descs": {}
   },
   "9946": {
    "vnum": 9946,
@@ -995,8 +1005,8 @@
      "description": "To the down lies The Granite Staircase."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead up and down.",
-   "placeholder": true
+   "description": "You are on a narrow granite staircase that spirals gently downward. The\nstone is worn into hollows by long use and slick with damp. A thin cold\ndraught climbs the shaft from below. You may go up toward the hidden\nspace or down into the dark.",
+   "extra_descs": {}
   },
   "9947": {
    "vnum": 9947,
@@ -1025,8 +1035,8 @@
      "description": "To the west lies The Bottom Of The Granite Staircase."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "This niche behind the back wall is dank, dark and dusty. The brick shows\nthe signs of decay, red and black flakes littering the floor. An old\ncask of port lies broken in one corner, a relic from happier times. A\ndoor leads north, and the way back lies west.",
+   "extra_descs": {}
   },
   "9948": {
    "vnum": 9948,
@@ -1059,8 +1069,8 @@
      "description": "To the south lies A Backwall Niche."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "You land in a heap beside a small hole in the floor, and a smell of\ncooking drifts up out of it. The stone is hot under your hands. A dull\nred glow shows from the passage ahead. Ways lead north into the glow,\neast through a door, and south back to the niche.",
+   "extra_descs": {}
   },
   "9949": {
    "vnum": 9949,
@@ -1084,8 +1094,8 @@
      "description": "To the south lies Pathway To Power."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "You seem to have stepped into a little corner of hell. Flames dance on\nthe walls and make the light play tricks on your eyes. A dark figure can\njust be made out to the north. The way south leads back the way you\ncame.",
+   "extra_descs": {}
   },
   "9950": {
    "vnum": 9950,
@@ -1105,8 +1115,8 @@
      "description": "To the west lies Pathway To Power."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "A cot lies against the far wall of this small alcove, directly beneath\nan inverted pentagram scribed in dark red. A bound footlocker stands\nopposite. The air is stale and tinged with sulfur. The only exit is the\ndoor back west.",
+   "extra_descs": {}
   },
   "9951": {
    "vnum": 9951,
@@ -1128,8 +1138,8 @@
      "description": "To the west lies The Streets Of Ghenna."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "The cobbled road is slick with the blood of many a wayward adventurer,\nand your boots slide on it. Dark stains run in the cracks and into the\ngutters. Ragged house fronts lean in on either side. The street goes on\neast toward the graveyard smell and west into the streets of the town.",
+   "extra_descs": {}
   },
   "9952": {
    "vnum": 9952,
@@ -1153,8 +1163,10 @@
      "description": "To the up lies Under the bones.."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and up.",
-   "placeholder": true
+   "description": "Fire rages on every side. A black marble dais rises among the flames,\nbearing a black marble chair that is conspicuously empty. It is plainly\na throne of some sort. The flames make every way impassable but the one\nyou came by, to the south, and a holy way that climbs upward.",
+   "extra_descs": {
+    "throne chair dais": "A black marble chair stands on a black marble dais. It is cold to look\nat, though fire licks at its feet, and it is conspicuously empty."
+   }
   },
   "9953": {
    "vnum": 9953,
@@ -1174,8 +1186,9 @@
      "description": "To the up lies The Smell of Decay."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads up.",
-   "placeholder": true
+   "description": "You lie beneath a loose heap of stacked bones, a barrow of the unburied.\nThrough the empty eye socket of a human skull above you, a pale night\nsky shows. The bones shift and clatter with every breath. With a small\neffort you could free yourself and climb up out of the pile.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "9954": {
    "vnum": 9954,
@@ -1201,8 +1214,8 @@
      "description": "To the south lies A Dead End."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east and\nsouth.",
-   "placeholder": true
+   "description": "The street runs between stained house fronts, the high city wall\nblocking the way beyond. The paving is cracked and sunken, with pools of\nblack water in the dips. Shutters bang somewhere in the dark. The street\nleads on north and south, and a lane opens east.",
+   "extra_descs": {}
   },
   "9955": {
    "vnum": 9955,
@@ -1228,8 +1241,8 @@
      "description": "To the south lies The Streets Of Ghenna."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east and\nsouth.",
-   "placeholder": true
+   "description": "A street runs north and south here, its cobbles battering your feet with\nevery step. The tall city wall stands close beside it. A burned-out\nbuilding leans nearby, barely upright in the thin wind that whistles\nthrough. Charred beams show against the sky, and you can go north,\nsouth, or east into the ruin.",
+   "extra_descs": {}
   },
   "9956": {
    "vnum": 9956,
@@ -1247,8 +1260,8 @@
      "description": "To the west lies The Streets Of Ghenna."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads west.",
-   "placeholder": true
+   "description": "Charred rubble fills this ruined shell, and a fallen beam lies across a\nskeleton bleached white with age. Soot clings to what remains of the\nwalls, and ash lies in drifts over the floor. The whole place creaks and\ncould crumble at any moment. The cobbled street lies back west through\nthe broken doorway.",
+   "extra_descs": {}
   },
   "9957": {
    "vnum": 9957,
@@ -1270,8 +1283,8 @@
      "description": "To the south lies The Streets Of Ghenna."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "You are on a corner of the street, with the city wall rising close at\nhand. A shuttered doorway stares out from the stones across the way,\nbolted and silent. Dead leaves and ash drift in the corner. From here\nthe street runs east toward the city limits and south along the wall.",
+   "extra_descs": {}
   },
   "9959": {
    "vnum": 9959,
@@ -1293,8 +1306,8 @@
      "description": "To the west lies City Limits Of Ghenna."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "The narrow street is dim, with only a smear of light from far overhead.\nRubble from fallen houses chokes every side alley and spills into the\ngutters. The street runs east into deeper darkness and west toward the\ncity entrance.",
+   "extra_descs": {}
   },
   "9960": {
    "vnum": 9960,
@@ -1324,8 +1337,8 @@
      "description": "To the west lies A Street In Ghenna."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "So much filth litters the street here that you must zigzag around it. A\nbare doorframe is all that remains of the house on the south side,\nstanding alone in a heap of broken stone. The house to the north looks a\nlittle more whole. The street goes on a long way west, and runs east\ntoward a heap of rubble and the city wall.",
+   "extra_descs": {}
   },
   "9961": {
    "vnum": 9961,
@@ -1345,8 +1358,8 @@
      "description": "To the south lies A City Street In Ghenna."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads south.",
-   "placeholder": true
+   "description": "This was once the trading post, a hall as large as an auditorium. A dais\nstands at the far end with a toppled podium upon it, and wooden benches\nlie tipped over in every reach of the floor. Dust and cobwebs mask the\nlong tables where bargains were struck. The cobbled street lies just\nbeyond the doorway to the south.",
+   "extra_descs": {}
   },
   "9962": {
    "vnum": 9962,
@@ -1370,8 +1383,8 @@
      "description": "To the up lies Upstairs In A Trashed Abode."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and up.",
-   "placeholder": true
+   "description": "This place was once a lovely home. The furniture is smashed to\nsplinters, though it still hints at a grand and stately age, and\ncushions lie slit and spilled across the floor. A rickety stair climbs\nto the upper floor but does not look safe. The street lies through the\ndoor to the north.",
+   "extra_descs": {}
   },
   "9963": {
    "vnum": 9963,
@@ -1395,8 +1408,8 @@
      "description": "To the down lies A Trashed Abode."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and down.",
-   "placeholder": true
+   "description": "Things look no better on the upper floor. The ceiling has caved in on\nboth sides and buried the passages under rotting beams, and foul mildew\nhas grown thick over the debris. A door hangs by one hinge at the north\nend of the landing. The stair leads down.",
+   "extra_descs": {}
   },
   "9964": {
    "vnum": 9964,
@@ -1420,8 +1433,8 @@
      "description": "To the west lies A Vandalized Closet."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "This was evidently a child's room. Broken toys lie scattered over the\nboards, and a mattress leans against the far wall, slashed down the\nmiddle with its stuffing heaped on the floor. A small painted horse lies\non its side with its legs snapped. A closet door gapes to the west, and\nthe landing lies back south.",
+   "extra_descs": {}
   },
   "9965": {
    "vnum": 9965,
@@ -1445,8 +1458,8 @@
      "description": "To the down lies An Undulating Room."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and down.",
-   "placeholder": true
+   "description": "This is a small walk-in closet, hung with children's clothes that are\nstiff with mildew. Shoe boxes lie crushed and scattered on the floor,\nand the shelves have been torn from the plaster. A hatch in the floor\nleads down into a heaving place. The only other way is back east.",
+   "extra_descs": {}
   },
   "9966": {
    "vnum": 9966,
@@ -1472,8 +1485,8 @@
      "description": "To the west lies A City Street In Ghenna."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, south\nand west.",
-   "placeholder": true
+   "description": "This is a street of broken cobbles, with the city wall rising close\nbeside it. Corpses lie sprawled along the gutters, so many that you must\npick your steps with care. Flies drone over the stones and a cold wind\nrattles the loose slates above. The street runs north and west, while a\ncovered walkway opens to the south.",
+   "extra_descs": {}
   },
   "9967": {
    "vnum": 9967,
@@ -1495,8 +1508,8 @@
      "description": "To the south lies A Fountain Of Tears."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and south.",
-   "placeholder": true
+   "description": "The road is narrow here, hemmed in by the city wall that blocks the way\nahead. A fallen building slumps beside the road, its timbers bowed and\nblack with damp. Grey weeds push between the cobbles, and the air tastes\nof rot. The road bends on east, while the street opens out and runs back\nsouth to the fountain.",
+   "extra_descs": {}
   },
   "9968": {
    "vnum": 9968,
@@ -1518,8 +1531,8 @@
      "description": "To the south lies A City Street In Ghenna."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow lane runs between the towering city wall and the blind fronts\nof crooked houses. A single door hangs beneath a lamp that glows a dull\nand sullen red, staining the cobbles the colour of old wine. The paving\nis greasy underfoot. The lane goes on north toward a bend and south\ntoward a wider street.",
+   "extra_descs": {}
   },
   "9969": {
    "vnum": 9969,
@@ -1541,8 +1554,8 @@
      "description": "To the west lies A Road In Ghenna."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead south and west.",
-   "placeholder": true
+   "description": "The road makes a tight bend here, squeezed between the tall city wall\nand a row of sagging shutters. Moss has crept over the stones and the\ngutters hold a thin brown ooze. A cold draught slips along the wall,\ncarrying the smell of old smoke. A narrow lane runs south, and the road\nruns back west the way you came.",
+   "extra_descs": {}
   },
   "9978": {
    "vnum": 9978,
@@ -1566,8 +1579,8 @@
      "description": "To the down lies A Slimey Footpath."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and down.",
-   "placeholder": true
+   "description": "A covered walkway leads on into gloom, its timber roof black and beaded\nwith moisture. The air here is so humid it hangs in visible veils\nbetween the posts. Wet planks sag underfoot and the lamps along it have\nlong since died. The street lies open to the north, and a steep slick\npassage drops away downward into darkness.",
+   "extra_descs": {}
   },
   "9979": {
    "vnum": 9979,
@@ -1585,8 +1598,8 @@
      "description": "To the west lies A Slimey Footpath."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. A way leads west.",
-   "placeholder": true
+   "description": "A footpath lies thick with a pale, ectoplasmic slime that shivers\nfaintly as you step. It is so slippery that you cannot climb back toward\nthe walkway above. Drips fall from the dank overhang, and the stench is\nsweet and awful. The only way onward is west along the glistening path.",
+   "extra_descs": {}
   },
   "9980": {
    "vnum": 9980,
@@ -1608,8 +1621,8 @@
      "description": "To the east lies A Slimey Footpath."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and east.",
-   "placeholder": true
+   "description": "The slime grows thicker as the path goes on, a glossy skin over the ruts\nand stones. The bodies of beasts that slipped in and drowned lie half\nsunk in it, their bones showing through. The ooze sucks at your boots at\nevery step. The footpath turns here, running north and back east.",
+   "extra_descs": {}
   },
   "9981": {
    "vnum": 9981,
@@ -1631,8 +1644,8 @@
      "description": "To the west lies A Slimey Footpath."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead south and\nwest.",
-   "placeholder": true
+   "description": "Slime lies everywhere on this stretch of path, and it is a thick and\ndark red where it pools in the hollows. The stones are furred with it,\nand it trails in ropes from the low branches overhead. It feels as\nthough the ground itself bleeds. The footpath leads south and west.",
+   "extra_descs": {}
   },
   "9982": {
    "vnum": 9982,
@@ -1654,8 +1667,8 @@
      "description": "To the south lies A Small Clearing."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "The slime thins out a little here, though the footpath is still as slick\nas wet glass. Patches of bare rock show through, spotted with pale\nmould. Ahead the trees draw back, and a clearing shows beyond the last\nbend. The path runs east the way you came and south toward the open\nground.",
+   "extra_descs": {}
   },
   "9983": {
    "vnum": 9983,
@@ -1677,8 +1690,8 @@
      "description": "To the south lies The Mouth Of A Small Cave."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north and south.",
-   "placeholder": true
+   "description": "Here the slime gives out and the ground turns to hard red clay, dotted\nwith a few lonely boulders. It is a rough, trampled track of some\nprimitive sort, packed down by many feet. The sky is low and sullen over\nit. A dark opening in a rocky bank lies south, and the footpath leads\nback north.",
+   "extra_descs": {}
   },
   "9984": {
    "vnum": 9984,
@@ -1702,8 +1715,9 @@
      "description": "To the down lies An Underground Cavern."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and down.",
-   "placeholder": true
+   "description": "You stand at the mouth of a small cave, cut into the foot of a tall\npromontory of rock. The stone around the opening is stained and slick\nwith seeping water. A rough-hewn stair leads down into the dark, damp\nthroat of the hill. The clearing lies back north in the grey light.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9985": {
    "vnum": 9985,
@@ -1727,8 +1741,9 @@
      "description": "To the up lies The Mouth Of A Small Cave."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and up.",
-   "placeholder": true
+   "description": "This small underground cavern is the dampest place imaginable. Moisture\ntrickles down the smooth rock in rivulets and drips steadily from the\nceiling onto your head. The air is warm and thick, and every sound\nechoes. A rough stair climbs back to the cave mouth, and a passage runs\nsouth into the dark.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9986": {
    "vnum": 9986,
@@ -1752,8 +1767,9 @@
      "description": "To the south lies A Long Sloping Tunnel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A long tunnel slopes gently away in the dark. The smooth rock sweats as\nif alive, and beads of water gather and run in the grooves of the floor.\nThe air is hot and heavy with damp. The tunnel leads north toward the\ncavern and south deeper down.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9987": {
    "vnum": 9987,
@@ -1777,8 +1793,9 @@
      "description": "To the south lies A Long Sloping Tunnel."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The tunnel continues to slope, its rounded walls slick with a cold shine\nof moisture. Small pools have gathered in dips of the floor and drip\nsteadily. Somewhere ahead water trickles into a hollow. The passage runs\nnorth and south through the dark.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9988": {
    "vnum": 9988,
@@ -1802,8 +1819,9 @@
      "description": "To the south lies Tunnel's End."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The slope eases here, and the sweating rock closes in on both sides. A\nthin film of water covers the floor and your steps splash loudly. The\nceiling hangs low and glistens in the faint light. The tunnel goes on\nsouth toward a wider place and back north.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9989": {
    "vnum": 9989,
@@ -1831,8 +1849,9 @@
      "description": "To the west lies An East-West Tunnel."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The tunnel opens into a T shape here, with passages leading east and\nwest and the long slope running back north. The cavern is vaulted high\nabove you, fully twenty-five feet of dark that swallows your light.\nWater ticks from unseen heights into shallow puddles. The air is cool\nand still.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9990": {
    "vnum": 9990,
@@ -1856,8 +1875,9 @@
      "description": "To the west lies An East-West Tunnel."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "This tunnel is barely five feet high, a stoop to walk in. Moss-like\nlichens hang from the ceiling and brush your face from time to time. The\nrock is wet and cold to the touch. The tunnel continues east and west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9991": {
    "vnum": 9991,
@@ -1881,8 +1901,9 @@
      "description": "To the west lies Under the bones.."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The cramped tunnel runs on to a huge boulder that fills it from side to\nside. Gaps beside the stone show a drift of old bones beyond. Cold air\nstirs through the cracks. The tunnel leads back east, and a narrow\nsqueeze past the boulder goes west.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9992": {
    "vnum": 9992,
@@ -1910,8 +1931,9 @@
      "description": "To the west lies Tunnel's End."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "This tunnel is broader and easier to move through, but the turns have\nleft you unsure of your bearings. The rock is rough here and worn into\nodd ridges. A hole in the rock opens to the south, and the tunnel leads\nnorth toward the cavern and west toward a junction.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9993": {
    "vnum": 9993,
@@ -1933,8 +1955,9 @@
      "description": "To the south lies The Swarming Lair."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead north and south.",
-   "placeholder": true
+   "description": "You squeeze into a low crawlspace that is thick with insects, and they\ncrunch beneath your weight with every move. Dark husks and tangled webs\ncoat the rock. The ceiling presses on your back and the air is close and\nsour. The crawl runs south into a hollow, and back north to the wide\ntunnel.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9994": {
    "vnum": 9994,
@@ -1962,8 +1985,9 @@
      "description": "To the west lies A Quivering Jaunt."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The crawlspace opens into a square hollow about ten feet across, thick\nwith the husks and trails of countless insects. Webs hang in grey\ncurtains from the low ceiling and the floor shifts with unseen movement.\nThe smell is dry and bitter. Ways lead north into the crawl, east toward\na pile of bones, and west into a trembling passage.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "9995": {
    "vnum": 9995,
@@ -1983,8 +2007,8 @@
      "description": "To the north lies A Quivering Jaunt."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "You have entered a quivering passage that feels like the inside of some\nvast beast. The walls are a deep red and thrum with a slow, sick energy,\nand a warm wet breath moves along them. The floor gives under each step\nlike a soft cushion. The only way out leads north.",
+   "extra_descs": {}
   },
   "9996": {
    "vnum": 9996,
@@ -2004,8 +2028,8 @@
      "description": "To the west lies The Lair Of The Deepspawn."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "The whole passage heaves so much that you can scarcely keep your feet.\nRed mucus hangs from the ceiling and walls in dark, dripping strings\nthat make your stomach turn. The air is hot and sweetish, and a low\npulse beats in the floor. A darker patch in the wall hints at the only\nway on, leading west.",
+   "extra_descs": {}
   },
   "9997": {
    "vnum": 9997,
@@ -2037,8 +2061,8 @@
      "description": "To the down lies The Temple Of Garathorm."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south, west and\ndown.",
-   "placeholder": true
+   "description": "This is a lair some twenty feet across, its corners drifted with bones,\nmost of them plainly human. A great heap of treasure lies in the middle\nof the floor, slick with the same red mucus that coats the walls. The\nair is close and warm and thick with a deep rot. Ways lead east toward a\nheap of bones, south into a heaving chamber, and west to a damp cavern,\nwhile a dark way drops downward.",
+   "extra_descs": {}
   },
   "9998": {
    "vnum": 9998,
@@ -2060,8 +2084,8 @@
      "description": "To the east lies The Twisting Hedges."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and east.",
-   "placeholder": true
+   "description": "The street comes to a dead end in a twisted mass of black brambles that\nspills over the cobbles. The high city wall looms over you, close and\nmoss-streaked. Rot-sweet air gathers in the thorny corner. The only ways\nout are north along the street and east into the hedges.",
+   "extra_descs": {}
   }
  },
  "mobs": {},
