@@ -70,3 +70,7 @@ tools/audio/.cache/
 # writer's pieces before tools/atlas/buildout.py --merge folds them in
 !world/buildout/parts/
 world/buildout/parts/*.p[0-9]*.json
+
+# Blender (bpy) for the 3D art pipeline, and its scratch output
+tools/art3d/.venv/
+tools/art3d/blender/out/
