@@ -6,7 +6,7 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 export const CONTROLS = [
   ['Move', 'W A S D, or click the ground'],
   ['Turn the camera', 'right-drag; the wheel zooms'],
-  ['Target', 'click a creature, or Tab to cycle'],
+  ['Target', 'click a creature, or Tab to cycle (after a fight, corpses too: F loots one)'],
   ['Attack', 'F or Space'],
   ['Abilities', '1 – 8 and Shift+1 – 8 (your bar); right-click a slot to change it'],
   ['More bars', 'Alt+1 – 8, Alt+Shift+1 – 8; how many in Settings (O); drag a bar by its grip, ⟲ turns it, 🔒 locks it'],

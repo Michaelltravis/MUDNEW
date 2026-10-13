@@ -22,7 +22,7 @@ import { createPrompt } from './hud/prompt.js';
 import { createCastbar } from './hud/castbar.js';
 import { createContextMenu } from './hud/contextmenu.js';
 import { attachWorldInput } from './input.js';
-import { isHostile, shouldRetarget, retargetOnDeath, refFor, abilityCommand } from './targeting.js';
+import { shouldRetarget, retargetOnDeath, refFor, abilityCommand, tabOrder } from './targeting.js';
 import { verbsFor } from './hud/verbs.js';
 import { attachPerf } from './perf.js';
 import { buildDemo } from './demo.js';
@@ -31,7 +31,7 @@ import { ActionClock } from './actionclock.js';
 import { musicFor, bedFor, surfaceFor } from './soundtable.js';
 import { interiorKind } from './terrain-town.js';
 import { GroundLoot } from './loot.js';
-import { nameKey } from './corpse.js';
+import { nameKey, victimOf } from './corpse.js';
 import { mountRider, makeRaft } from './steed.js';
 import { groundItems } from './lootlogic.js';
 import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
@@ -609,20 +609,32 @@ async function runGame() {
     const hit = ents.pick(e.clientX, e.clientY);
     if (hit && hit.kind === 'mob') { ents.setTarget(hit.key, { byHand: true }); attack(); }
   });
-  MH.bus.on('hud.untarget', () => ents.setTarget(null));
+  // a corpse aimed at with Tab after a fight (targeting.tabOrder): its ring marked, the target
+  // frame shows it, F walks over and loots it; any creature targeted, or the corpse gone, clears it
+  let corpseTarget = null;
+  function setCorpseTarget(key) {
+    corpseTarget = key || null;
+    loot.mark(corpseTarget);
+    const l = corpseTarget && loot.list.get(corpseTarget);
+    if (l) hud.setTarget({ kind: 'corpse', key: l.key, name: l.item.short || l.item.name, victim: victimOf(l.item.name || l.item.short) });
+  }
+  MH.bus.on('target.set', () => { if (corpseTarget) { corpseTarget = null; loot.mark(null); } });
+  engine.onTick(() => { if (corpseTarget && !loot.list.has(corpseTarget)) { setCorpseTarget(null); if (!ents.targeted) hud.setTarget(null); } });
+  MH.bus.on('hud.untarget', () => { ents.setTarget(null); if (corpseTarget) { setCorpseTarget(null); hud.setTarget(null); } });
   MH.bus.on('hud.cycleTarget', () => {
     if (!hero) return;
     const p = hero.root.position;
-    // enemies first: whoever is fighting you, then the hostile, then the rest by distance;
-    // shopkeepers, trainers and quest-givers only when nothing else is around
-    const near = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.root.position.distanceTo(p) < 22);
-    const foes = near.filter(e => !(e.data.shopkeeper || e.data.trainer || e.data.quest));
-    const list = (foes.length ? foes : near)
-      .sort((a, b) => (!!b.data.fighting - !!a.data.fighting) || (isHostile(b) - isHostile(a))
-        || a.root.position.distanceTo(p) - b.root.position.distanceTo(p));
-    if (!list.length) return hud.toast('Nothing nearby to target.');
-    const i = list.findIndex(e => e.key === ents.target);
-    ents.setTarget(list[(i + 1) % list.length].key, { byHand: true });
+    const near = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.root.position.distanceTo(p) < 22)
+      .map(e => Object.assign(e, { dist: e.root.position.distanceTo(p) }));
+    const corpses = [...loot.list.values()].filter(l => l.corpse && l.root && l.root.position.distanceTo(p) < 22)
+      .map(l => ({ key: l.key, dist: l.root.position.distanceTo(p) }));
+    const order = tabOrder(near, corpses);
+    if (!order.length) return hud.toast('Nothing nearby to target.');
+    const cur = corpseTarget ? `corpse:${corpseTarget}` : `mob:${ents.target}`;
+    const i = order.findIndex(o => `${o.kind}:${o.key}` === cur);
+    const next = order[(i + 1) % order.length];
+    if (next.kind === 'corpse') { ents.setTarget(null); setCorpseTarget(next.key); }
+    else ents.setTarget(next.key, { byHand: true });
   });
   // how far from its target an action reaches (combat_range.py via /combatdata);
   // null for actions centred on the hero (rally, fade, crescendo...)
@@ -650,6 +662,8 @@ async function runGame() {
     ctl.walkTo(x, z, () => { if (heroRoom && t.vnum === heroRoom.vnum) then(); });
   }
   function attack() {
+    // a corpse aimed at: F loots it
+    if (corpseTarget && !ents.targeted) { const l = loot.list.get(corpseTarget); if (l) return takeLoot(l); }
     const t = ents.targeted;
     if (!t || !t.root) return hud.toast('No target — click a creature or press Tab.');
     if (t.kind !== 'mob') return hud.toast('You cannot attack that.');

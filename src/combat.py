@@ -423,7 +423,15 @@ class CombatHandler:
                     mount_name = combatant.mount.name
                     combatant.mount = None
                     if hasattr(combatant, 'send'):
-                        await combatant.send(f"{c['yellow']}You quickly dismount from {mount_name} as combat begins!{c['reset']}")
+                        # its own colours: `c` is not set yet here (attacked on horseback, this
+                        # raised and took the whole server down)
+                        cc = combatant.config.COLORS
+                        await combatant.send(f"{cc['yellow']}You quickly dismount from {mount_name} as combat begins!{cc['reset']}")
+                        try:
+                            from commands import CommandHandler
+                            await CommandHandler._riding_changed(combatant)     # the 3D clients redraw the rider now
+                        except Exception:
+                            logger.debug('riding notify failed', exc_info=True)
 
         attacker.fighting = defender
         # a defender already fighting someone alive here keeps swinging at them (CircleMUD's

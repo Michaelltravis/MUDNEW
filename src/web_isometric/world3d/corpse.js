@@ -22,6 +22,11 @@ function deathClip(actor) {
 export function fallOver(actor, { ground = 0, side = 1 } = {}) {
   const root = actor.root;
   const clip = deathClip(actor);
+  // only a small body that ends its death still standing goes over: a dragon's or a giant's own
+  // death leaves it as it should lie (tipping one turned it on its back)
+  root.updateMatrixWorld(true);
+  const b0 = new THREE.Box3().setFromObject(root);
+  const tip = !isFinite(b0.min.y) || b0.max.y - b0.min.y < TIP_BELOW;
   if (clip) {
     actor.mixer.stopAllAction();
     clip.reset();
@@ -36,26 +41,29 @@ export function fallOver(actor, { ground = 0, side = 1 } = {}) {
         actor.mixer.update(Math.min(dt, left));
         left -= dt;
         if (root.position.y > ground) root.position.y = Math.max(ground, root.position.y - dt * 3);   // a flyer drops
-        if (left <= 0) settle(root, ground);
+        if (left <= 0) settle(root, ground, tip);
         return left > 0;
       },
     };
   }
-  // a body built in code (proc.js, kin.js, a prop) has a death of its own, which it holds
-  if (!actor.mixer && typeof actor.once === 'function' && typeof actor.update === 'function') {
+  // a small body built in code (proc.js, kin.js, a prop) has a death of its own, which it holds;
+  // a big one (a dragon) goes over whole below, legs and all: its own death rolls only the torso
+  if (!actor.mixer && tip && typeof actor.once === 'function' && typeof actor.update === 'function') {
     let left = (actor.once('Death_A') || 1) + 0.05;
+    foldWings(root);
     return {
       update(dt) {
         if (left <= 0) return false;
         actor.update(Math.min(dt, left));
         left -= dt;
         if (root.position.y > ground) root.position.y = Math.max(ground, root.position.y - dt * 3);
-        if (left <= 0) settle(root, ground);
+        if (left <= 0) settle(root, ground, tip);
         return left > 0;
       },
     };
   }
-  // no death at all: tip over onto one side and drop to the floor
+  // no death at all (or a big code-built body): tip over onto one side and drop to the floor
+  if (!actor.mixer) foldWings(root);
   const from = root.rotation.z, to = side * Math.PI / 2, y0 = root.position.y;
   let t = 0;
   const T = 0.55;
@@ -72,29 +80,52 @@ export function fallOver(actor, { ground = 0, side = 1 } = {}) {
   };
 }
 
+// a creature built in code dies on its side: its wings (kin.js marks them) fold up over its back,
+// so they lie along it instead of one spearing the floor and the other the sky
+export function foldWings(root) {
+  root.traverse(o => { const s = o.userData && o.userData.wing; if (s) o.rotation.z = s * Math.PI * 0.45; });
+}
+
 // rest a fallen body on the floor: nothing below it, nothing floating above it; one still
 // standing after its death (a bat's folded wings, a beetle's crouch) goes over onto its side
-export function settle(root, ground = 0) {
+export const TIP_BELOW = 1.6;     // metres standing: smaller bodies still upright after their death go over
+// a body's own bounds, without its wings (kin.js marks them): a dead dragon rests on its flank, and
+// a wing that would prop it up passes under the floor instead
+export function bodyBox(root) {
   root.updateMatrixWorld(true);
-  let box = new THREE.Box3().setFromObject(root);
+  const box = new THREE.Box3(), part = new THREE.Box3();
+  const walk = o => {
+    if (o.userData && o.userData.wing) return;
+    if (o.isMesh) box.union(part.setFromObject(o));
+    for (const c of o.children) walk(c);
+  };
+  walk(root);
+  return box.isEmpty() ? new THREE.Box3().setFromObject(root) : box;
+}
+
+export function settle(root, ground = 0, tip = true) {
+  let box = bodyBox(root);
   if (!isFinite(box.min.y)) return;
   const h = box.max.y - box.min.y, len = Math.max(box.max.x - box.min.x, box.max.z - box.min.z);
-  if (h > len * 0.9 && Math.abs(root.rotation.z) < 0.5) {
+  if (tip && h > len * 0.9 && Math.abs(root.rotation.z) < 0.5) {
     root.rotation.z += Math.PI / 2;
-    root.updateMatrixWorld(true);
-    box = new THREE.Box3().setFromObject(root);
+    box = bodyBox(root);
   }
   root.position.y += ground - box.min.y + 0.01;
 }
 
 // darken a body (its own copies of the materials: the living keep theirs); returns the copies
-export function deaden(root, k = 0.6) {
+export function deaden(root, k = 0.82, grey = 0.2) {
   const made = [];
   root.traverse(o => {
     if (!o.isMesh || !o.material) return;
     const one = m => {
       const c = m.clone();
-      if (c.color) c.color.multiplyScalar(k);
+      if (c.color) {
+        // a little greyer and a little darker: the dead keep their colours
+        const l = c.color.r * 0.299 + c.color.g * 0.587 + c.color.b * 0.114;
+        c.color.lerp(new THREE.Color(l, l, l), grey).multiplyScalar(k);
+      }
       if (c.emissive) c.emissive.multiplyScalar(0.2);
       made.push(c);
       return c;
@@ -106,7 +137,7 @@ export function deaden(root, k = 0.6) {
 
 // how big a body lies: the radius of its footprint on the floor
 export function footprint(root) {
-  const box = new THREE.Box3().setFromObject(root);
+  const box = bodyBox(root);
   if (!isFinite(box.min.x)) return 0.6;
   return Math.max(0.35, Math.min(2.5, Math.max(box.max.x - box.min.x, box.max.z - box.min.z) / 2));
 }

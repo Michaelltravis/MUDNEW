@@ -54,8 +54,10 @@ test('you get up and down from /play: R, the menu horseshoe, the riding chip, th
   const read = f => fs.readFileSync(path.join(ROOT, 'src/web_isometric/world3d', f), 'utf8');
   const hud = read('hud/hud.js'), html = read('play.html');
   assert.match(hud, /k === 'r' \|\| k === 'R'\) \{ rideToggle\(\)/, 'R toggles riding');
-  assert.match(hud, /if \(p\.mount\) send\('dismount'\)/, 'mounted: R dismounts');
-  assert.match(hud, /send\('mount last'\)/, 'on foot with a mount: R mounts the last one ridden');
+  // the server decides up or down (`mount toggle`, tests/test_mounts.py): the page's copy of
+  // whether you ride can be a payload behind, and asking for the wrong one did nothing
+  assert.match(hud, /send\('mount toggle'\)/, 'R asks the server to toggle');
+  assert.doesNotMatch(hud, /if \(p\.mount\) send\('dismount'\)/, 'not by the page guessing which');
   assert.match(hud, /You own no mount/, 'owning none: it says where to get one');
   assert.match(html, /data-act="ride" data-icon="horseshoe"[^>]*data-key="R"/, 'a menu button for it');
   assert.match(hud, /\[data-act="ride"\]'\)\.addEventListener\('click', \(\) => rideToggle\(\)\)/, 'the button rides or dismounts');

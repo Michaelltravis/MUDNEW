@@ -16389,10 +16389,15 @@ class CommandHandler:
     @classmethod
     async def cmd_mount(cls, player: 'Player', args: List[str]):
         """Mount an owned mount. Usage: mount [name] | mount last (the one you last rode, else
-        your fastest: the R key in /play)"""
+        your fastest) | mount toggle (down if riding, else up on the last: the R key in /play,
+        which needn't know which you are)"""
         from mounts import MountManager
 
         c = player.config.COLORS
+        if args and args[0].lower() == 'toggle':
+            if player.mount:
+                return await cls.cmd_dismount(player, [])
+            args = ['last']
         if args and args[0].lower() == 'last':
             if player.mount:
                 await player.send(f"{c['yellow']}You are already riding {player.mount.name}.{c['reset']}")

@@ -29,6 +29,23 @@ export function shouldRetarget(cur, attacker, roomVnum, now = Date.now()) {
   return true;
 }
 
+// Tab's order: whoever is fighting you, then the hostile, nearest first; when nothing is fighting
+// you, the corpses about (nearest first) to loot; then everyone else; shopkeepers, trainers and
+// quest-givers only when nothing else is near. mobs: entities with `dist`; corpses: [{key, dist}].
+// Returns [{kind: 'mob'|'corpse', key}].
+export function tabOrder(mobs, corpses = [], now = Date.now()) {
+  const byDist = (a, b) => a.dist - b.dist;
+  const quiet = e => !!(e.data && (e.data.shopkeeper || e.data.trainer || e.data.quest));
+  const loud = mobs.filter(e => !quiet(e));
+  const pool = loud.length || corpses.length ? loud : mobs;
+  const fighting = pool.filter(e => fightingYou(e, now)).sort(byDist);
+  const hostile = pool.filter(e => !fightingYou(e, now) && isHostile(e, now)).sort(byDist);
+  const rest = pool.filter(e => !fightingYou(e, now) && !isHostile(e, now)).sort(byDist);
+  const dead = fighting.length ? [] : [...corpses].sort(byDist);
+  return [...fighting.map(e => ({ kind: 'mob', key: e.key })), ...hostile.map(e => ({ kind: 'mob', key: e.key })),
+    ...dead.map(c => ({ kind: 'corpse', key: c.key })), ...rest.map(e => ({ kind: 'mob', key: e.key }))];
+}
+
 // your target died: the creature that hit you most recently (within 8 s, in your room)
 export function retargetOnDeath(list, roomVnum, now = Date.now()) {
   let best = null;

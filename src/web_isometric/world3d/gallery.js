@@ -409,8 +409,8 @@ export async function showGearGallery(engine) {
 // over its stain under the gold ring, and a hero's grave. MH3D.gallery.loot for probes.
 export async function showCorpseGallery(engine, kits) {
   const [{ GroundLoot }, { Entities }] = await Promise.all([import('./loot.js'), import('./entities.js')]);
-  const dead = ['a goblin', 'a large rat', 'the wolf', 'the cityguard', 'the huge, poisonous spider', "a charred adventurer's skeleton",
-    'a red dragon', 'a giant web spider', 'a vampire bat', 'a green slime', 'Elowen'];
+  const dead = ['a red dragon', 'a goblin', 'a large rat', 'the wolf', 'the cityguard', "a charred adventurer's skeleton",
+    'the huge, poisonous spider', 'a giant web spider', 'a vampire bat', 'a green slime', 'Elowen'];
   const cols = 6, step = 3.4;
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, 2 * step + 8), new THREE.MeshStandardMaterial({ color: 0x6d6a60, roughness: 1 }));
   floor.rotation.x = -Math.PI / 2; floor.position.set((cols - 1) * step / 2, 0, step / 2); floor.receiveShadow = true;
