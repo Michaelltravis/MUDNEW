@@ -26,8 +26,8 @@
      "description": "To the east lies Footpath Through Leper's Village."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "The footpath begins here at the village's edge, a ribbon of packed red\nclay worn smooth by bare feet and walking sticks. Thatch roofs crowd\nclose under the broad leaves, and the smell of cookfires and wet earth\nhangs in the heat. A trail breaks off north into the jungle, while the\nfootpath runs on east between the huts.",
+   "extra_descs": {}
   },
   "106201": {
    "vnum": 106201,
@@ -59,8 +59,8 @@
      "description": "To the west lies Footpath Through Leper's Village."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A junction of footpaths in the middle of the village, the clay worn into\nshallow bowls by countless steps. A rack of drying fish stands to one\nside, and an old cooking pot sits cold on three stones. Thatch eaves\noverhang the paths and keep them shaded. A rough timber hut stands\nnorth, and the footpath goes east, south and west.",
+   "extra_descs": {}
   },
   "106202": {
    "vnum": 106202,
@@ -80,8 +80,8 @@
      "description": "To the south lies Footpath Through Leper's Village."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads south.",
-   "placeholder": true
+   "description": "Unlike the clay huts around it, this one is raised of unplaned timber,\nthe planks rough and silvery with age. A table stands in the middle with\na bench along each side, and split firewood is stacked neatly against\nthe wall. The floor is boards, a rarity here, and creaks underfoot. The\ndoor opens south.",
+   "extra_descs": {}
   },
   "106203": {
    "vnum": 106203,
@@ -101,8 +101,8 @@
      "description": "To the east lies Footpath Through Leper's Village."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "A modest hut of mud and thatch, with a floor of beaten earth strewn with\nfresh rushes. A small loom stands unfinished in one corner, the cloth a\nbright zigzag of red and ochre. Light slants in through the doorway and\na smoke hole above the hearth. The door opens east to the footpath.",
+   "extra_descs": {}
   },
   "106204": {
    "vnum": 106204,
@@ -130,8 +130,14 @@
      "description": "To the west lies A Modest Hut Made From Thatch and Mud."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The footpath runs between low clay walls, shaded by a fig tree whose\nroots have heaved the ground into ridges. Its fallen fruit lies split\nand sweet-smelling in the dust. A small shrine of three stones sits in\nthe crook of the roots, with a pinch of rice laid on top. The path goes\nnorth and south, and a modest hut stands west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644900,
+     "max": 1
+    }
+   ]
   },
   "106205": {
    "vnum": 106205,
@@ -159,8 +165,8 @@
      "description": "To the south lies Footpath Through Leper's Village."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A stretch of footpath lined with waist-high fences of woven cane,\nscratched and dusty. The clay underfoot is pocked with tiny three-toed\nprints. A smell of grain and dung drifts out from the east. The footpath\nleads north and south, and a coop stands east.",
+   "extra_descs": {}
   },
   "106206": {
    "vnum": 106206,
@@ -192,8 +198,14 @@
      "description": "To the west lies A Small Clay Hut."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The southern end of the footpath, where it frays into a muddy court\nbetween three buildings. A rain barrel stands under the eaves, brimming\nand green. A cracked clay oven squats in the shade, its mouth black with\nsoot. A hut stands south, a smaller one west, a pig pen east, and the\nfootpath goes back north.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644900,
+     "max": 1
+    }
+   ]
   },
   "106207": {
    "vnum": 106207,
@@ -213,8 +225,8 @@
      "description": "To the east lies Footpath Through Leper's Village."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "A tiny hut, little more than a single round room, its clay walls ringed\nwith a pattern of finger-drawn spirals. A sleeping mat takes up half the\nfloor, and a clay lamp sits in a niche beside it. The place is spotless\nand smells of smoke and lemon grass. The only door opens east to the\nfootpath.",
+   "extra_descs": {}
   },
   "106208": {
    "vnum": 106208,
@@ -234,8 +246,8 @@
      "description": "To the north lies Footpath Through Leper's Village."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "A solid hut with walls two hands thick, built to keep out both heat and\nrain. A pair of hand-woven mats lie on the floor, and a cookpot hangs\nover a cold firepit. Charms of shell and feather are knotted over the\ndoor. The door looks north onto the footpath.",
+   "extra_descs": {}
   },
   "106209": {
    "vnum": 106209,
@@ -255,8 +267,8 @@
      "description": "To the west lies Footpath Through Leper's Village."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
-   "placeholder": true
+   "description": "A trodden yard of black mud, walled by a rail fence and shaded by a\nlean-to roof of palm. A trough carved from a log stands beside a heap of\nrotten fruit and kitchen scraps. The smell is rich and warm, and the mud\nis churned into deep wallows. The pen opens only west, to the footpath.",
+   "extra_descs": {}
   },
   "106210": {
    "vnum": 106210,
@@ -276,8 +288,14 @@
      "description": "To the west lies Footpath Through Leper's Village."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "A low shed of cane and thatch, with perches of split bamboo and rows of\nnesting boxes lined with straw. Feathers drift in the corners, and the\nfloor is thick with dry droppings and spilled grain. Light falls in thin\nstripes through the wall slats. The only way out is west to the\nfootpath.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644900,
+     "max": 1
+    }
+   ]
   },
   "106211": {
    "vnum": 106211,
@@ -297,8 +315,8 @@
      "description": "To the north lies Footpath Through Leper's Village."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "A cramped hut, built low against the sun, with a roof of palm thatch\nthat nearly touches your head. Inside are a bed of reeds, a shelf of\ntiny carved figures, and a water pot with a gourd dipper. The air is\nwarm and smells of straw. A narrow door opens north to the footpath.",
+   "extra_descs": {}
   },
   "106212": {
    "vnum": 106212,
@@ -330,8 +348,8 @@
      "description": "To the west lies Footpath Through Leper's Village."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A bend in the footpath where two lanes join, the clay rutted by years of\ncarrying. A cracked clay bell hangs from a pole beside the way, rung to\ncall the village together. Washing lines sag between the huts, hung with\ngrey linen bandages drying in the heat. The path goes north toward a\ngarden, east and west along the huts, and a small thatch hut stands\nsouth.",
+   "extra_descs": {}
   },
   "106213": {
    "vnum": 106213,
@@ -355,8 +373,8 @@
      "description": "To the south lies Footpath Through Leper's Village."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The footpath narrows to a strip of packed earth between two fences of\nwoven cane. Over the fences hang the heavy vines of gourds and the\nheart-shaped leaves of yams. The earth smells rich and freshly watered.\nA garden opens north, and the path runs back south.",
+   "extra_descs": {}
   },
   "106214": {
    "vnum": 106214,
@@ -376,8 +394,14 @@
      "description": "To the south lies Footpath Through Leper's Village."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads south.",
-   "placeholder": true
+   "description": "A large garden, laid out in neat raised rows and watered by little\nchannels dug by hand. Beans climb poles, squash sprawl across the earth,\nand tall plantains lean over it all with their ragged green banners.\nSomeone has mounded the soil carefully around every plant. A scarecrow\nof sticks and rags stands guard, and the only way out is south to the\nfootpath.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644900,
+     "max": 1
+    }
+   ]
   },
   "106215": {
    "vnum": 106215,
@@ -397,8 +421,8 @@
      "description": "To the south lies Footpath Through Leper's Village."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads south.",
-   "placeholder": true
+   "description": "Everything in this hut has its place: pots hung by size on pegs, a broom\nleaning in its corner, a mat rolled square beside the hearth. The clay\nwalls are patched with fresh mud and pressed with the marks of many\ncareful hands. A single window, hung with a reed screen, lets in a dim\ngold light. The door opens south to the footpath.",
+   "extra_descs": {}
   },
   "106216": {
    "vnum": 106216,
@@ -430,8 +454,8 @@
      "description": "To the west lies Footpath Through Leper's Village."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The footpath meets another track at a crossing, with small gardens of\nbeans and gourds fenced with split cane. A water jar stands on a flat\nstone by the way, its lid weighted with a pebble. Smoke curls from a\ncookfire out of sight. A tidy hut stands north, a quiet memorial lies\nsouth, and the path goes east and west.",
+   "extra_descs": {}
   },
   "106217": {
    "vnum": 106217,
@@ -451,8 +475,14 @@
      "description": "To the north lies Footpath Through Leper's Village."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "A small bare court lies behind the huts, closed in by a low wall of\npiled stones. Rows of flat river stones stand upright in the earth, each\nscratched with a name and a handful of years. Fresh flowers lie before\nseveral, orange and red, wilting in the heat. A hush hangs here, and the\nonly path leads back north.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644900,
+     "max": 1
+    }
+   ]
   },
   "106218": {
    "vnum": 106218,
@@ -472,8 +502,8 @@
      "description": "To the north lies Footpath Through Leper's Village."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "A neat little hut, its clay walls smoothed and limewashed, its dirt\nfloor swept to a polish. A bed of woven reeds lies under a clean\nblanket, and a shelf holds a few carved wooden bowls set in a careful\nrow. Bunches of dried herbs hang from the rafters, scenting the warm\nair. The door opens north onto the footpath.",
+   "extra_descs": {}
   },
   "106219": {
    "vnum": 106219,
@@ -505,8 +535,8 @@
      "description": "To the west lies Footpath Through Leper's Village."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The footpath widens into a small square before the chapel, its clay\nswept clean each morning with palm brooms. Flat stones ring a patch of\nbeaten earth where the villagers gather to talk and mend. The chapel's\nthatched porch stands north, a well-kept clay hut lies south, and the\nfootpath runs on west. A trail leaves east for the jungle.",
+   "extra_descs": {}
   },
   "106220": {
    "vnum": 106220,
@@ -526,8 +556,14 @@
      "description": "To the south lies Footpath Through Leper's Village."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads south.",
-   "placeholder": true
+   "description": "The chapel is a single long room of whitewashed clay, cool after the\nheat outside, with a floor of swept earth. Rows of plain wooden benches\nface a low altar draped in faded blue cloth. Small clay lamps burn on\nthe sills, and a carved holy sign hangs on the far wall, rubbed smooth\nby the touch of many hands. The door is south, onto the footpath.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644900,
+     "max": 1
+    }
+   ]
   },
   "106221": {
    "vnum": 106221,
@@ -551,8 +587,8 @@
      "description": "To the west lies Footpath Through Leper's Village."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "Beyond the last hut the jungle begins, and a trail leaves the village\nhere into the green. Banana plants lean over the track, their ragged\nleaves rattling in a rare breath of wind. The ground is trampled to a\nhard dark crust by many passings. The trail runs north into the jungle,\nand the footpath leads back west into the village.",
+   "extra_descs": {}
   },
   "106222": {
    "vnum": 106222,
@@ -576,8 +612,8 @@
      "description": "To the south lies Trail Into the Jungle."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The trail is broad and well trodden here, striped with sun where the\ntrees stand back. Prints of bare feet and bundled loads mark the packed\nearth, going to and from the village. The scent of woodsmoke is faint on\nthe damp air. The trail goes north, and runs back south toward the huts.",
+   "extra_descs": {}
   },
   "106223": {
    "vnum": 106223,
@@ -605,8 +641,14 @@
      "description": "To the west lies A Leaf Shrouded Section of the Jungle."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The trail runs along a slight rise, the ground firmer here and grey with\ndry leaf-litter. Tall trees stand wide apart, and the air is a little\ncooler under their spreading limbs. Small paths of beaten earth branch\nfrom it into the leaves. The trail goes north and south, and a faint\ntrack leads west into a leafy thicket.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644901,
+     "max": 1
+    }
+   ]
   },
   "106224": {
    "vnum": 106224,
@@ -630,8 +672,8 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
-   "placeholder": true
+   "description": "A bend in the trail, where a spring seeps across the path and turns the\nground to a sucking black mud. Someone has laid half-rotted planks\nacross the worst of it, now slick and green. The leaves hang low and\ntrail wet fingers over your shoulders. The trail turns east beyond the\nmud, and goes back south.",
+   "extra_descs": {}
   },
   "106225": {
    "vnum": 106225,
@@ -655,8 +697,8 @@
      "description": "To the west lies Trail Through the Jungle."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and west.",
-   "placeholder": true
+   "description": "The trail dips here into a hollow thick with giant ferns, their fronds\narching overhead like the ribs of a great roof. The air is still and\nsweltering, and your clothes cling damply to you. A thin steady drip\nfalls from leaf to leaf with a soft ticking. The path leads north, and\nback west around the bend.",
+   "extra_descs": {}
   },
   "106226": {
    "vnum": 106226,
@@ -680,8 +722,8 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Broad, flat stones have been set into the trail here, long ago, now sunk\nand tilted and furred with moss. Whoever laid them meant the path to\nlast, but the jungle has taken it back. Strange pale flowers push up\nbetween the cracks. The old way runs north and south.",
+   "extra_descs": {}
   },
   "106227": {
    "vnum": 106227,
@@ -705,8 +747,8 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The trail ends in a muddy slope that leads down to the water, trampled\nby many tracks. Rushes rise at the margin, and the air above the pond\nshimmers with heat and rising vapour. The smell of the water is warm and\nfaintly of eggs. Water lies north, and the trail goes back south.",
+   "extra_descs": {}
   },
   "106228": {
    "vnum": 106228,
@@ -734,8 +776,8 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "You wade in water to your waist, warm and cloudy, with a bottom of soft\ngrey mud. Steam curls in lazy threads from the surface, and the reeds\nnearby are brown at the tips. A shallow shore curves up to the south,\nwhere the trail comes down. Pond water stretches on north and east.",
+   "extra_descs": {}
   },
   "106229": {
    "vnum": 106229,
@@ -763,8 +805,8 @@
      "description": "To the down lies Narrow Gulley."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and down.",
-   "placeholder": true
+   "description": "The pond narrows here and the water runs deeper and quicker, tugging at\nyour legs with a gentle current. At the bottom of the pool a gap in the\nrocks swallows the flow, and the water slides away downward through it.\nThe stones around are slick and warm, stained rust-red. Pond water lies\neast and south, and the outflow leads down into a gully.",
+   "extra_descs": {}
   },
   "106230": {
    "vnum": 106230,
@@ -788,8 +830,8 @@
      "description": "To the west lies Pond."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and west.",
-   "placeholder": true
+   "description": "A shallow arm of the pond, warm as bathwater and no deeper than your\nknees. The bottom is paved with smooth round pebbles, and sunlight\nflickers across them in nets of gold. On the bank, a wall of cane reeds\nstands thick and rattling. The water goes on north and west.",
+   "extra_descs": {}
   },
   "106231": {
    "vnum": 106231,
@@ -813,8 +855,8 @@
      "description": "To the west lies Pond."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
-   "placeholder": true
+   "description": "The far corner of the pond, where the water lies shallow and still\nbeneath a screen of drooping branches. The mud is thick with rotting\nleaves, and bubbles rise from it now and then to burst with a faint\nstink. Pale lilies float in the gloom, closed against the dimness. The\npond runs south and west from here.",
+   "extra_descs": {}
   },
   "106232": {
    "vnum": 106232,
@@ -842,8 +884,8 @@
      "description": "To the west lies Well-used Trail Through the Jungle."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Here the village ends and the green wall begins. The footpath narrows to\na trail as ferns and glossy leaves close in on both sides, dripping in\nthe heavy air. Behind you to the south the huts show through a haze of\nsmoke. The trail climbs on north into the jungle, and a more trodden\ntrack leads off west.",
+   "extra_descs": {}
   },
   "106233": {
    "vnum": 106233,
@@ -867,8 +909,8 @@
      "description": "To the south lies Well-used Trail Through the Jungle."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
-   "placeholder": true
+   "description": "The trail leaves the main track and bends south, worn hard and wide by\nyears of use. Footprints have cut a shallow trench in the earth, edged\nwith trodden grass. Ferns arch overhead and drip. The trail turns east\ntoward the village, and leads on south.",
+   "extra_descs": {}
   },
   "106234": {
    "vnum": 106234,
@@ -892,8 +934,14 @@
      "description": "To the south lies Well-used Trail Through the Jungle."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The well-used trail runs along a ridge, with the ground falling away\ninto dense jungle on either side. Stones along the edges are polished by\npassing feet, and a snapped branch has been tied back with a vine. The\nleaves are lighter here, and the heat less close. The trail goes north\nand south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644901,
+     "max": 1
+    }
+   ]
   },
   "106235": {
    "vnum": 106235,
@@ -917,8 +965,8 @@
      "description": "To the west lies Well-used Trail Through the Jungle."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "A crooked turn in the trail, where a flat boulder makes a seat for tired\nwalkers, its top rubbed smooth. Bundles of dried grass and old rope are\nheaped beside it. The jungle thins slightly, and a small breath of air\nstirs the leaves. The trail runs north and west.",
+   "extra_descs": {}
   },
   "106236": {
    "vnum": 106236,
@@ -942,8 +990,8 @@
      "description": "To the west lies Lookout Post."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "The trail climbs a short rise toward a platform of lashed poles above\nthe trees. Rungs of cut sapling are tied to its supports with strips of\nhide. Down in the shade below, the ground is packed hard from standing\nfeet. The trail runs east, and leads west to the lookout post.",
+   "extra_descs": {}
   },
   "106237": {
    "vnum": 106237,
@@ -963,8 +1011,14 @@
      "description": "To the east lies Well-used Trail Through the Jungle."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "A platform of lashed timber looks out over the jungle roof, shaded by a\npatchwork of palm leaves. From here the green sea of treetops rolls away\nto a rim of blue water, and beyond it the volcano stands smoking against\nthe sky. A watcher's stool and a signal horn on a peg mark the post. The\nonly way down is east along the trail.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644902,
+     "max": 1
+    }
+   ]
   },
   "106238": {
    "vnum": 106238,
@@ -988,8 +1042,8 @@
      "description": "To the south lies Trail Into the Jungle."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
-   "placeholder": true
+   "description": "Roots like knuckled fingers cross the trail, slick with moisture, and\nyou pick your footing carefully. Overhead the canopy shuts out most of\nthe sky, leaving a green and stifling twilight loud with insects.\nSomewhere a harsh call rises and is answered from far off. The trail\ngoes on north, and runs back south toward the village.",
+   "extra_descs": {}
   },
   "106239": {
    "vnum": 106239,
@@ -1017,8 +1071,8 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A tall stand of bracken has been trampled flat at the trail's edge where\nsomething heavy pushes through on its way to water. The air is thick\nenough to drink, and sweat runs freely down your back. Fallen blossoms\nrot in the mud, sweet and sickly. The trail runs north and south, and a\nrough gap in the ferns opens east into thick bracken.",
+   "extra_descs": {}
   },
   "106240": {
    "vnum": 106240,
@@ -1042,8 +1096,8 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The trail runs straight here for a stretch, a narrow aisle between\ntrunks wrapped in creeper. Yellow beams of light fall through the leaves\nand make the steam rising from the mud look like smoke. A line of ants\ncrosses the path in a glossy red thread, busy and unconcerned. North and\nsouth the trail goes on under the dripping leaves.",
+   "extra_descs": {}
   },
   "106241": {
    "vnum": 106241,
@@ -1067,8 +1121,14 @@
      "description": "To the west lies Trail Through the Jungle."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "The trail bends sharply here, turning back on itself around a mossy\nboulder as big as a hut. Orchids hang from the branches overhead, pale\nand waxy, dripping water in slow beads. The ground is soft underfoot and\nholds the prints of bare feet going both ways. The trail leads south,\nand bends west past the boulder.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644901,
+     "max": 1
+    }
+   ]
   },
   "106242": {
    "vnum": 106242,
@@ -1092,8 +1152,8 @@
      "description": "To the east lies Trail Through the Jungle."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "A rotting log lies half across the trail, furred with green moss and\nriddled with beetle holes. You step over it, and the damp of the wood\nsoaks through your boots. Frogs trill in the undergrowth, falling silent\nas you pass and starting again behind. The trail turns east toward the\nbend and runs on north.",
+   "extra_descs": {}
   },
   "106243": {
    "vnum": 106243,
@@ -1117,8 +1177,8 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The jungle presses closer here, and vines hang across the trail like the\nrigging of a wrecked ship. You push them aside with your arm, and they\nspring back wet and clinging. High above, the canopy shakes and rains\nleaves on something unseen. The trail goes on north and south.",
+   "extra_descs": {}
   },
   "106244": {
    "vnum": 106244,
@@ -1142,8 +1202,8 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "A thin grey haze lies along the ground here, and the first faint smell\nof sulphur reaches you on the hot air. Through a gap in the leaves you\nglimpse a dark slope above the treetops, a plume of smoke leaning over\nit. The mud on the trail is gritty with fine pale dust. The trail runs\nnorth toward the smell and south toward the village.",
+   "extra_descs": {}
   },
   "106245": {
    "vnum": 106245,
@@ -1167,8 +1227,8 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The trail is wider and harder here, trodden by many feet and marked with\nthe ruts of dragged loads. Cut stumps stand at the edges where brush has\nbeen cleared back, their tops weathered silver. The jungle noise dulls,\nand a hint of woodsmoke drifts down from ahead. North the trail leads on\ntoward an encampment, and south it winds back into the green.",
+   "extra_descs": {}
   },
   "106246": {
    "vnum": 106246,
@@ -1196,8 +1256,14 @@
      "description": "To the west lies At a Tepid Pond's Shore."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The trail opens a little at a trampled junction, with the smell of smoke\nand beaten earth strong on the air. A rough path forks west down toward\na pond, its edge glinting through the reeds. North, a clearing shows\nbetween the trunks, bare and ringed with notched stakes that mark a\ncamp's boundary. The trail runs back south into the jungle.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644901,
+     "max": 1
+    }
+   ]
   },
   "106247": {
    "vnum": 106247,
@@ -1221,8 +1287,8 @@
      "description": "To the west lies A Tepid Pond."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A muddy bank slopes down to the edge of a pond, its surface warm and\nstill and dusted with fallen petals. Reeds stand in clumps at the\nmargin, and the mud is pocked with deep prints where beasts come to\ndrink. A faint mineral smell rises off the water, as if the earth\nbeneath it were warm. The pond lies west, and the trail is east.",
+   "extra_descs": {}
   },
   "106248": {
    "vnum": 106248,
@@ -1242,8 +1308,8 @@
      "description": "To the east lies At a Tepid Pond's Shore."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "Warm water laps at your thighs, cloudy with silt and tepid as a bath\ndrawn long ago. Thin curls of vapour drift over the surface, and the\nbottom is soft mud that grips each step. Lily pads and broken reed stems\nturn slowly on the faint current of a hidden spring. The only dry ground\nis back east on the shore.",
+   "extra_descs": {}
   },
   "106249": {
    "vnum": 106249,
@@ -1267,8 +1333,14 @@
      "description": "To the south lies Trail Through the Jungle."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The jungle gives way to a hard-packed clearing at the edge of a camp,\nringed with sharpened stakes and strings of dried gourds that rattle in\nthe heat. Ash-grey handprints are smeared on the nearest posts. Trampled\nearth and old fire pits show where people have lived hard. The camp runs\non north, and the trail leads away south into the jungle.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644902,
+     "max": 1
+    }
+   ]
   },
   "106250": {
    "vnum": 106250,
@@ -1300,8 +1372,8 @@
      "description": "To the west lies Cliff's Edge."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "This is the heart of the encampment, a broad circle of beaten earth\naround a fire pit heaped with grey ash. Lean-to shelters of hide and\npalm crowd the margins, hung with drying strips of meat. A faint tang of\nsalt comes from the west, where the ground ends at a cliff. Paths lead\noff north and east, and the way south goes back toward the trail.",
+   "extra_descs": {}
   },
   "106251": {
    "vnum": 106251,
@@ -1329,8 +1401,14 @@
      "description": "To the south lies Encampment."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A wide stretch of bare dirt, swept and trampled until it shines like old\nleather. To the north the ground begins to rise toward the foot of the\nvolcano, black and brooding under its plume. Carved poles stand in a\nragged row, each topped with a grinning mask of baked clay. A low\ncommunity hut squats to the east, and the camp lies south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644902,
+     "max": 1
+    }
+   ]
   },
   "106252": {
    "vnum": 106252,
@@ -1358,8 +1436,14 @@
      "description": "To the west lies Encampment."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Hard-packed earth stretches between the huts, scattered with bones,\nnutshells and bits of woven cord. A tall drying rack leans in the\nmiddle, hung with pale strips of hide. The stink of the animal pen is\nstrong on the air from the east. The camp's heart lies west, and a wider\nspace opens south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644902,
+     "max": 1
+    }
+   ]
   },
   "106253": {
    "vnum": 106253,
@@ -1379,8 +1463,8 @@
      "description": "To the north lies Dirt Area."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "A round clearing of pounded earth, ringed with split logs set on end as\nseats. In its middle a circle of blackened stones holds the remains of a\ngreat fire, and the ground around it is scuffed by dancing feet. Scraps\nof coloured cloth and feathers hang from the surrounding poles. The only\npath leads north to the dirt area.",
+   "extra_descs": {}
   },
   "106254": {
    "vnum": 106254,
@@ -1400,8 +1484,14 @@
      "description": "To the west lies Dirt Area."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
-   "placeholder": true
+   "description": "A rough fence of lashed poles holds in a patch of churned mud and wet\nstraw. A trough hewn from a hollow log stands half-full of scummy water,\nhumming with flies. The stench is thick and warm, and the ground sucks\nat your feet. The only way out is west, back to the dirt of the camp.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644902,
+     "max": 1
+    }
+   ]
   },
   "106255": {
    "vnum": 106255,
@@ -1421,8 +1511,8 @@
      "description": "To the west lies Open Dirt Area."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
-   "placeholder": true
+   "description": "Inside, the hut is low and smoky, its roof of palm thatch blackened by\nyears of cookfires. Sleeping mats are rolled against the walls, and\nbaskets of dried roots hang from the rafters. A shallow hearth of river\nstones holds a bed of dull coals. The doorway opens west onto the dirt\nof the camp.",
+   "extra_descs": {}
   },
   "106256": {
    "vnum": 106256,
@@ -1442,8 +1532,14 @@
      "description": "To the west lies The Base of the Volcano."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "A low house of black stone and bone-white timber, windowless and thick\nwith the smell of old smoke and bitter herbs. Shelves of shaped clay\njars line the walls, each sealed with wax and marked with a daubed sign.\nMats of woven palm lie in rows on the floor, stained dark by what has\nrested there. The only way out is back west into the daylight.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644905,
+     "max": 1
+    }
+   ]
   },
   "106257": {
    "vnum": 106257,
@@ -1471,8 +1567,15 @@
      "description": "To the up lies Trail to the Volcano's Crest."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east, south and up.",
-   "placeholder": true
+   "description": "The jungle stops as if cut with a knife, and the slope of the volcano\nrises ahead in a ramp of black cinder and broken rock. Thin threads of\nsteam seep from cracks in the ground, smelling of rotten eggs. Heat\nshimmers off the stones, and the air tastes of ash. A rough trail climbs\nthe mountain's flank, a squat dark house stands east, and open ground\nlies south.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644904,
+     "max": 1
+    }
+   ]
   },
   "106258": {
    "vnum": 106258,
@@ -1496,8 +1599,9 @@
      "description": "To the down lies The Base of the Volcano."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "The trail climbs steeply over loose cinders that slide away under your\nboots. Rope handholds, black with grease and soot, have been strung\nalong the steepest turns by someone long ago. Steam hisses from a crack\nbeside the path, and the rock is warm through your soles. Down leads\nback to the foot of the mountain, and the climb goes up toward the\nsmoke.",
+   "look": "volcanic",
+   "extra_descs": {}
   },
   "106259": {
    "vnum": 106259,
@@ -1521,8 +1625,15 @@
      "description": "To the down lies Trail to the Volcano's Crest."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "The slope steepens into a stair of broken black rock, and the heat grows\nuntil the air wavers. A yellow crust of sulphur stains every crevice,\nsharp and stinging in your nose. Ash drifts across the trail in soft\ngrey waves, filling the footprints of those who climbed before. Above\nyou the smoke rolls thicker, and below the path drops back down the\nmountain.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644904,
+     "max": 1
+    }
+   ]
   },
   "106260": {
    "vnum": 106260,
@@ -1542,8 +1653,15 @@
      "description": "To the down lies Trail to the Volcano's Crest."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads down.",
-   "placeholder": true
+   "description": "You stand on the ragged lip of the volcano, where the whole island falls\naway green and hazy beneath you. Ahead the crater yawns, a pit of orange\nglow and drifting smoke, and the roar of it fills your ears. The ground\nis hot and glassy, split by cracks that breathe a flame-coloured light.\nWind tugs at your clothes, heavy with sulphur, and the only way down is\nthe trail behind.",
+   "look": "volcanic",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644906,
+     "max": 1
+    }
+   ]
   },
   "106261": {
    "vnum": 106261,
@@ -1563,8 +1681,8 @@
      "description": "To the south lies Cliff's Edge."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "The cliff top ends here against a wall of thorny scrub that has grown\nover the path, leaving no way further. Out beyond the edge the sea\nshimmers pale green over shallows, and far below it breaks white against\ndark rocks. A weathered post leans at the brink with a frayed rope still\nknotted to it. The only way back is south along the edge.",
+   "extra_descs": {}
   },
   "106262": {
    "vnum": 106262,
@@ -1592,8 +1710,8 @@
      "description": "To the south lies Cliff's Edge."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The ground ends here in a crumbling lip of red rock, and the sea spreads\nout below, bright and endless. A hot wind rises up the face, smelling of\nsalt and weed, tugging at hair and cloak. Far down, surf hisses over\nhidden rocks. The edge runs on north and south, and a way leads east\ninto the camp.",
+   "extra_descs": {}
   },
   "106263": {
    "vnum": 106263,
@@ -1617,8 +1735,8 @@
      "description": "To the down lies Cliff."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and down.",
-   "placeholder": true
+   "description": "Here the cliff edge bends over a sheer drop, and a narrow ledge of rock\nslants down along the face. Old footholds have been chipped into the\nstone, polished by climbing hands and feet. Below, waves slap at the\nbase of the island with a hollow boom. The edge runs back north, and the\nledge leads down the cliff.",
+   "extra_descs": {}
   },
   "106264": {
    "vnum": 106264,
@@ -1642,8 +1760,8 @@
      "description": "To the down lies White Sand Beach."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
-   "placeholder": true
+   "description": "You cling to the face of the cliff on a ledge no wider than a plank, the\nrock hot against your palms. Ropes of creeper hang beside you and offer\na doubtful grip. Spray from the waves wets your face, and far below\nwhite sand shows at the foot of the island. The cliff top is up above,\nand the climb continues down to the sand.",
+   "extra_descs": {}
   },
   "106268": {
    "vnum": 106268,
@@ -1667,8 +1785,8 @@
      "description": "To the up lies Pond."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and up.",
-   "placeholder": true
+   "description": "The pond's outflow trickles down a narrow cleft in the rock, and you\nslide down after it onto wet stone. The walls are close enough to touch\non both sides, hung with ferns and dripping moss. The sky is a thin\nribbon far above. The gulley continues east, and a climb leads up to the\npond.",
+   "extra_descs": {}
   },
   "106269": {
    "vnum": 106269,
@@ -1692,8 +1810,8 @@
      "description": "To the down lies Narrow Gully."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead west and down.",
-   "placeholder": true
+   "description": "The gully tilts steeply here, and the stream falls over a lip of stone\nin a thin bright ribbon. The walls are slick, striped with orange and\ngreen where minerals and algae have stained them. Loose pebbles clatter\naway down the slope at each step. The gully turns back west, and drops\naway down toward the sound of the sea.",
+   "extra_descs": {}
   },
   "106270": {
    "vnum": 106270,
@@ -1717,8 +1835,8 @@
      "description": "To the down lies White Sand Beach."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
-   "placeholder": true
+   "description": "The walls fall away at last, and the gully opens above a slope of sand\nand shell. The smell of the sea is strong, and the sound of surf comes\nup out of the dark below. A fence of lashed stakes, half rotted, leans\nacross the way, with a gap broken through it. The gully climbs back up,\nand the way down reaches the white sand.",
+   "extra_descs": {}
   },
   "106275": {
    "vnum": 106275,
@@ -1742,8 +1860,8 @@
      "description": "To the west lies Trail Through the Jungle."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "Bracken rises over your head, a dense sea of green fronds that closes\nbehind you the moment you pass. The light is dim and underwater-green,\nand the ground springs softly with rotted leaves. Burrs and seeds cling\nto your clothing, and the damp sticks them fast. A way through leads\neast into a tangle of vines, and west back to the trail.",
+   "extra_descs": {}
   },
   "106276": {
    "vnum": 106276,
@@ -1767,8 +1885,8 @@
      "description": "To the west lies In Thick Bracken."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "Vines as thick as your wrist hang in loops and coils from every limb,\nknotted together into a net that you must duck and climb through. Some\nbear spiny pods, others red trumpet flowers heavy with scent. Water\ndrips constantly, and the footing is a mat of slippery stems. You can\nsqueeze on south, or push back west into the bracken.",
+   "extra_descs": {}
   },
   "106277": {
    "vnum": 106277,
@@ -1792,8 +1910,8 @@
      "description": "To the south lies Outside a Hollow Tree."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "The trunk of a giant has come down here and lies across the ground,\nblack with wet and thick with shelf fungus the colour of old cream. Its\nroots, torn up in a great disc of earth, stand taller than a man.\nSunlight reaches the forest floor through the gap it left in the canopy,\nand young saplings crowd toward it. North the vines close in, and a path\nwinds south.",
+   "extra_descs": {}
   },
   "106278": {
    "vnum": 106278,
@@ -1817,8 +1935,8 @@
      "description": "To the west lies Outside a Hollow Tree."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "You force your way through a snarl of brush, thorny and wet, that\nsnatches at your sleeves with every step. Broad leaves slap your face\nand shed their water down your neck. The ground underfoot is a hidden\ntangle of roots, and the light is a dull green. A large tree looms ahead\nto the east, and the hollow tree stands behind you to the west.",
+   "extra_descs": {}
   },
   "106279": {
    "vnum": 106279,
@@ -1846,8 +1964,8 @@
      "description": "To the west lies Through a Tangle of Jungle Brush."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A huge tree stands here, its trunk spread at the base into buttress\nroots that form small walls and alcoves in the shadow. Lianas climb it\nin spirals up into the dark of the canopy. The earth between the roots\nis bare and scratched with old claw marks. Ways lead north through tall\nweeds, south into a cluster of branches, and back west through the\nbrush.",
+   "extra_descs": {}
   },
   "106280": {
    "vnum": 106280,
@@ -1871,8 +1989,8 @@
      "description": "To the south lies Near a Large Tree."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "Razor-edged grass and tall weeds stand taller than your head, nodding\ntogether in the still air. Their seed-heads shed a fine dust that makes\nyou sneeze, and every stem is slick with dew. A path of sorts has been\nbroken through by a heavy body pushing back and forth. The weeds thin to\nthe north toward a hole in the ground, and open south at a large tree.",
+   "extra_descs": {}
   },
   "106281": {
    "vnum": 106281,
@@ -1896,8 +2014,8 @@
      "description": "To the east lies A Leaf Shrouded Section of the Jungle."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "Broken branches lie in heaps on the ground and hang in clusters\noverhead, snapped and left by some storm that tore through the jungle\nlong ago. New shoots sprout everywhere from the fallen wood. The footing\nis bad, with brittle twigs cracking at every step and loose leaf-litter\nhiding holes. A large tree rises north, and the leaves thicken toward\nthe east.",
+   "extra_descs": {}
   },
   "106282": {
    "vnum": 106282,
@@ -1921,8 +2039,8 @@
      "description": "To the south lies Through a Growth of Tall Weeds."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
-   "placeholder": true
+   "description": "The ground drops away here in a wide, ragged hole where the roots of a\nfallen tree once stood, and its lip is trodden smooth. A rank, musky\nsmell comes from the east, heavy and old. Bones, picked clean, lie\nscattered in the dirt around the edge. The weeds lie south, and a low\nden opens east.",
+   "extra_descs": {}
   },
   "106283": {
    "vnum": 106283,
@@ -1950,8 +2068,8 @@
      "description": "To the south lies Inside a Hollow Tree."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A great tree rises here, its trunk split by a tall dark opening at the\nbase where the heartwood has rotted away. Strips of bark hang loose\naround the gap, and the ground before it is worn into a smooth patch of\nbare soil. The air that breathes out of the opening smells of damp wood\nand old leaves. The tree's inner chamber lies south, with paths leading\nnorth and east.",
+   "extra_descs": {}
   },
   "106284": {
    "vnum": 106284,
@@ -1971,8 +2089,8 @@
      "description": "To the north lies Outside a Hollow Tree."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "You stand inside the tree, in a round chamber of living wood whose walls\nare dark, ridged and faintly warm. The roof is lost in a spiral of old\nrot and tiny roots that drip like candle wax. Dry leaves lie deep on the\nfloor, and the air is close and smells of mould. Dim light comes from\nthe opening to the north.",
+   "extra_descs": {}
   },
   "106285": {
    "vnum": 106285,
@@ -1992,8 +2110,14 @@
      "description": "To the west lies Near a Large Hole."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "The den is a scoop of dry earth under a ledge of tangled roots, floored\nwith trampled grass and dust. The smell here is overpowering, musk and\nold blood, and bones lie in drifts against the walls. Raking scratches\nscore the roots where claws have been sharpened. The only way out is\nwest, toward the large hole.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644903,
+     "max": 1
+    }
+   ]
   },
   "106286": {
    "vnum": 106286,
@@ -2017,11 +2141,354 @@
      "description": "To the west lies Branch Clustered Area."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "Great leaves hang in curtains around you, each as broad as a shield and\nveined in dark green and purple. They hide the sky entirely, and the\nlight that filters through is thick and green as pond water. Your\nfootsteps are swallowed by the soft, wet ground. Back west the branches\npile up in clusters, and a trail leads east.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "644900": {
+   "vnum": 644900,
+   "name": "leper villager man woman",
+   "short_desc": "a leper villager",
+   "long_desc": "A leper villager goes about the day's work with slow, patient care.",
+   "description": "A villager in a clean, mended robe, hands wrapped in linen against the\nsores of the sickness. Their eyes are tired but steady, and they greet a\nstranger with quiet courtesy.",
+   "level": 3,
+   "alignment": 300,
+   "hp_dice": "3d8+50",
+   "damage_dice": "1d6+2",
+   "armor_class": 88,
+   "exp": 185,
+   "gold": 36,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": []
+  },
+  "644901": {
+   "vnum": 644901,
+   "name": "boar jungle tusker",
+   "short_desc": "a bristling jungle boar",
+   "long_desc": "A bristling jungle boar roots through the leaf-litter, tusks stained red with clay.",
+   "description": "A heavy, black-bristled boar with a ridge of coarse hair along its\nspine. Its small eyes glint with ill temper, and its tusks are yellow\nand scarred.",
+   "level": 5,
+   "alignment": 0,
+   "hp_dice": "5d8+62",
+   "damage_dice": "2d6+2",
+   "armor_class": 82,
+   "exp": 295,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744900,
+     "chance": 25
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "644902": {
+   "vnum": 644902,
+   "name": "tribesman ashen warrior hunter",
+   "short_desc": "an ashen tribesman",
+   "long_desc": "An ashen tribesman in a grey-smeared hide kilt watches the camp, spear in hand.",
+   "description": "A lean hunter striped from brow to chest with grey volcanic ash. He\nkeeps his obsidian-tipped spear low and ready, and he looks on outsiders\nas trespassers.",
+   "level": 8,
+   "alignment": -300,
+   "hp_dice": "8d8+106",
+   "damage_dice": "3d6+3",
+   "armor_class": 73,
+   "exp": 460,
+   "gold": 96,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744901,
+     "chance": 15
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "644903": {
+   "vnum": 644903,
+   "name": "lion jungle maned great",
+   "short_desc": "a great maned lion",
+   "long_desc": "A great maned lion lies watching from the shadow of the roots, tail twitching.",
+   "description": "A huge tawny lion, scarred across the muzzle, with a dark mane matted\nwith burrs. It is lean and ill-tempered from guarding its den, and it\ndoes not tolerate company.",
+   "level": 11,
+   "alignment": 0,
+   "hp_dice": "11d8+123",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744902,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "644904": {
+   "vnum": 644904,
+   "name": "priest ash cultist ashen",
+   "short_desc": "an ash priest",
+   "long_desc": "An ash priest in a soot-black robe murmurs a low chant toward the smoking peak.",
+   "description": "A gaunt cultist painted white with ash, with a necklace of blackened\nteeth rattling on his chest. He calls the volcano his god, and he will\ndefend its slopes with fire-hardened staff and curses.",
+   "level": 11,
+   "alignment": -400,
+   "hp_dice": "11d8+143",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 132,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744901,
+     "chance": 10
+    },
+    {
+     "vnum": 744903,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "644905": {
+   "vnum": 644905,
+   "name": "gorrak death-speaker cultist shaman",
+   "short_desc": "Gorrak, the cultist Death-Speaker",
+   "long_desc": "Gorrak, the cultist Death-Speaker, crouches among the clay jars, muttering over a yellowed skull.",
+   "description": "A bent, hollow-eyed old man in a robe sewn with knucklebones, his face\ndaubed half white and half black. He keeps the House of Death and\nspeaks, they say, with whatever answers from the mountain.",
+   "level": 12,
+   "alignment": -600,
+   "hp_dice": "12d8+156",
+   "damage_dice": "4d6+5",
+   "armor_class": 61,
+   "exp": 680,
+   "gold": 144,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744903,
+     "chance": 35
+    },
+    {
+     "vnum": 744904,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "644906": {
+   "vnum": 644906,
+   "name": "fire spirit crest flame",
+   "short_desc": "the fire spirit of the crest",
+   "long_desc": "The fire spirit of the crest rises from the crater's glow, a shape of flame and drifting smoke.",
+   "description": "A towering figure woven of orange flame and black smoke, with a face\nthat shifts like heat on stone. The ground cracks and glows where it\npasses, and its voice is the roar of the mountain.",
+   "level": 13,
+   "alignment": -500,
+   "hp_dice": "13d8+214",
+   "damage_dice": "4d6+8",
+   "armor_class": 53,
+   "exp": 735,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744904,
+     "chance": 35
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "744900": {
+   "vnum": 744900,
+   "name": "boar tusk charm",
+   "short_desc": "a boar-tusk charm",
+   "room_desc": "A boar-tusk charm lies here on a frayed cord.",
+   "description": "A curved yellow tusk, drilled at the root and strung on a cord of braided fibre. Hunters on the island wear them for luck.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 5,
+   "weight": 1,
+   "value": 175
+  },
+  "744901": {
+   "vnum": 744901,
+   "name": "obsidian spear tipped",
+   "short_desc": "an obsidian-tipped spear",
+   "room_desc": "An obsidian-tipped spear lies here.",
+   "description": "A straight spear of dark wood, bound at the head with sinew around a leaf of black volcanic glass. The edge is keen, and flaked by a patient hand.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 8,
+   "damage_dice": "1d9",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 240
+  },
+  "744902": {
+   "vnum": 744902,
+   "name": "lion mane cloak",
+   "short_desc": "a lion-mane cloak",
+   "room_desc": "A lion-mane cloak lies in a heap here.",
+   "description": "A heavy cloak of tawny hide edged with a ruff of dark mane. It is hot in the jungle, but it turns a blow well.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 11,
+   "wear_slot": "about",
+   "armor": 1,
+   "weight": 3,
+   "value": 250,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "744903": {
+   "vnum": 744903,
+   "name": "bone staff knucklebone",
+   "short_desc": "a knucklebone staff",
+   "room_desc": "A knucklebone staff lies here, rattling faintly.",
+   "description": "A staff of pale wood strung with knucklebones and topped with a yellowed skull. It rattles when it swings and hits like a hammer.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 12,
+   "damage_dice": "2d5",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 340,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "744904": {
+   "vnum": 744904,
+   "name": "ember ring glowing",
+   "short_desc": "a glowing ember ring",
+   "room_desc": "A ring of glowing ember lies here, warm to the eye.",
+   "description": "A band of black glass with a single coal-red spark trapped in its heart. It is warm against the finger and never cools.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 13,
+   "wear_slot": "finger1",
+   "armor": 1,
+   "weight": 1,
+   "value": 290,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

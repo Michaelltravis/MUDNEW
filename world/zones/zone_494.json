@@ -24,8 +24,8 @@
      "description": "To the south lies The Road To Eden."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead east and south.",
-   "placeholder": true
+   "description": "The road to Eden begins beneath tall trees whose branches arch overhead\nand strain the sunlight to gold. Pale blossom lies in drifts on the\npacked earth, and songbirds call from every bough. A track runs east\ntoward a silvered pier at the water's edge, while the road itself turns\nsouth between the trunks.",
+   "extra_descs": {}
   },
   "201501": {
    "vnum": 201501,
@@ -47,8 +47,8 @@
      "description": "To the south lies The Road To Eden."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north and south.",
-   "placeholder": true
+   "description": "The road runs straight and quiet here, its ruts softened by moss and\nfallen petals. Old fruit trees have seeded themselves along the verges,\nand bees drone lazily in the warm air. The road climbs back north toward\nthe pier track and slopes on south through deepening shade.",
+   "extra_descs": {}
   },
   "201502": {
    "vnum": 201502,
@@ -70,8 +70,14 @@
      "description": "To the south lies Outside The Gate To Eden."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The trees draw back and the road widens, and through the leaves a high\nwall of pale stone gleams. A clear stream chatters through a culvert\nbeneath the road, and the air is sweet and utterly still. A weathered\nmilestone leans at the verge, its carving worn nearly smooth. The road\ngoes on south to the gate, and north the way you came.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649400,
+     "max": 1
+    }
+   ]
   },
   "201503": {
    "vnum": 201503,
@@ -98,8 +104,8 @@
      }
     }
    },
-   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead north and south.",
-   "placeholder": true
+   "description": "A tall gate of ancient wood bound in bronze fills the wall before you,\nits door standing shut against the garden. Wildflowers crowd the grass\non either side, and a warm light seems to rest upon the threshold. A\nfaint heat shimmers in the air, smelling of cedar smoke. The road leads\nback north into the trees, and beyond the door south lies the garden.",
+   "extra_descs": {}
   },
   "201504": {
    "vnum": 201504,
@@ -129,8 +135,14 @@
      "description": "To the west lies In The Garden."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Inside the gate the garden opens into a wide lawn of soft grass, bright\nwith clover and tiny white flowers. The wall rises behind you to the\nnorth, its stones warm as new bread. Paths of pale gravel lead east and\nwest, and south a row of fruit trees marches away. Light falls here gold\nand heavy as honey, and a scorched ring marks the flagstones where fire\nhas often burned.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649406,
+     "max": 1
+    }
+   ]
   },
   "201505": {
    "vnum": 201505,
@@ -156,8 +168,8 @@
      "description": "To the west lies Inside The Gate To Eden."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead east, south and\nwest.",
-   "placeholder": true
+   "description": "A gravel path winds between beds of lavender and sage, where the air\nhums with small wings. Pomegranate shrubs lean over the way, heavy with\nsplit red fruit. West the path returns to the lawn by the gate, while\neast and south it curls on deeper into the garden.",
+   "extra_descs": {}
   },
   "201506": {
    "vnum": 201506,
@@ -187,8 +199,14 @@
      "description": "To the west lies In The Garden."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "Apples, plums and golden oranges grow shoulder to shoulder along this\nlane, their sweetness thick on the air. Windfalls lie in the grass,\nuntouched and unbruised. North the lane reaches the lawn within the\ngate, south it climbs to the great tree on its mound, and other ways\nlead east and west into the garden.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649404,
+     "max": 1
+    }
+   ]
   },
   "201507": {
    "vnum": 201507,
@@ -210,8 +228,14 @@
      "description": "To the south lies In The Garden."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "A small arbor of grapevines roofs this secluded corner, clusters of\npurple fruit hanging within easy reach. Cool shade pools on the\nflagstones, and a spring trickles from a mossy stone lip into a little\nbasin. The way east returns to the lawn by the gate, and the path south\nslopes gently on.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649402,
+     "max": 1
+    }
+   ]
   },
   "201508": {
    "vnum": 201508,
@@ -241,8 +265,8 @@
      "description": "To the west lies The Line Of Fruit Trees."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Four paths meet beneath a trellis of climbing roses, their petals\nscattering at the lightest breath of wind. Moss cushions the flagstones,\nand a runnel of clear water slips under a tiny stone bridge. West lies a\nline of fruit trees, and other paths run north, east and south.",
+   "extra_descs": {}
   },
   "201509": {
    "vnum": 201509,
@@ -272,8 +296,16 @@
      "description": "To the west lies The Beehives."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Upon a gentle rise stands the great tree itself, vast and old, its\nboughs heavy with fruit that gleams like polished jewels. The grass\nabout its roots is unmarked and the whole mound lies under a profound\nhush. Paths lead away north and south through lines of fruit trees, east\ninto the garden, and west toward a distant humming of hives.",
+   "extra_descs": {
+    "tree fruit boughs great tree": "The fruit hangs untouched, bright and perfect, and no bird or bee will\nalight upon the boughs. A quiet gravity lies about the trunk, and even\nthe light seems to bow."
+   },
+   "mob_resets": [
+    {
+     "vnum": 649405,
+     "max": 1
+    }
+   ]
   },
   "201510": {
    "vnum": 201510,
@@ -303,8 +335,14 @@
      "description": "To the west lies The Flower Garden."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Here the garden grows wilder and sweeter, its paths half lost beneath\ntrailing jasmine. Wild thyme perfumes every step, and the ground rises\nin soft hummocks. West the beds blaze with colour, south a low drone\nrises from the hives, and east a line of fruit trees shows through the\nleaves, while the path north returns toward the gate.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649400,
+     "max": 1
+    }
+   ]
   },
   "201511": {
    "vnum": 201511,
@@ -334,8 +372,8 @@
      "description": "To the west lies The Tree Of The Knowledge Of Good And Evil."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "The path here is paved with smooth river pebbles that shine like coins\nin the light. Tall cypresses stand about the way, and from the west a\ndeep hush settles over the garden, as if the very air were listening.\nRipe figs hang low from a spreading tree beside the path, and other\npaths lead north, east and south.",
+   "extra_descs": {}
   },
   "201512": {
    "vnum": 201512,
@@ -365,8 +403,8 @@
      "description": "To the west lies The Line Of Fruit Trees."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "A stand of date palms shades this corner, their fronds rustling like\nsoft whispers. Fallen dates lie sweet and sticky on the ground, and\nbutterflies drift between the trunks. West a line of fruit trees marches\noff in an orderly row, and paths wander away north, east and south.",
+   "extra_descs": {}
   },
   "201513": {
    "vnum": 201513,
@@ -388,8 +426,8 @@
      "description": "To the west lies In The Garden."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and west.",
-   "placeholder": true
+   "description": "The garden narrows here to a quiet nook enclosed by hedges of myrtle. A\nlow bench of weathered stone sits in the shade, mossy along its edges,\nand the grass is thick with violets. The hedge opens only north and\nwest.",
+   "extra_descs": {}
   },
   "201514": {
    "vnum": 201514,
@@ -415,8 +453,14 @@
      "description": "To the west lies In The Garden."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east and west.",
-   "placeholder": true
+   "description": "At the far edge of the garden the wall rises thick with ivy, and the\nground is a carpet of small blue flowers. A fig tree grows out of the\nwall's foot, its broad leaves shading a patch of cool earth. Paths north\nand west circle back toward the lily pool, while east a narrow way\nfollows the wall.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649402,
+     "max": 1
+    }
+   ]
   },
   "201515": {
    "vnum": 201515,
@@ -446,8 +490,14 @@
      "description": "To the west lies In The Garden."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "A broad lawn of clover slopes down to a pool where white lilies float\nupon still, green water. Reeds whisper at the edge, and the sky above is\ndeep and cloudless. Northward a hum of bees drifts from the hives, east\nthe fruit trees begin, and paths run south and west across the grass.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649400,
+     "max": 1
+    }
+   ]
   },
   "201516": {
    "vnum": 201516,
@@ -477,8 +527,8 @@
      "description": "To the west lies In The Garden."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Almond trees shed pale blossom across a lawn where a stream murmurs in a\nchannel of white stones. The sunlight is warm and slow, and a dove's\ncooing rolls down from a high branch. A line of fruit trees stands to\nthe north, and paths lead east, south and west.",
+   "extra_descs": {}
   },
   "201517": {
    "vnum": 201517,
@@ -504,8 +554,14 @@
      "description": "To the west lies The Flower Garden."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east and west.",
-   "placeholder": true
+   "description": "Beds of roses, lilies and anemones spill across this corner in banks of\ncrimson and gold. Petals carpet the paths, and the scent is almost too\nrich to breathe. East the paths lead toward the hum of the hives, while\nnorth and west they wind back among the blossoms.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649401,
+     "max": 1
+    }
+   ]
   },
   "201518": {
    "vnum": 201518,
@@ -531,8 +587,16 @@
      "description": "To the west lies The Flower Garden."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east, south\nand west.",
-   "placeholder": true
+   "description": "Tall delphiniums and foxgloves rise here in spires of blue and violet,\nand tulips burn like lamps among the grass. A sundial of white marble\nstands at the heart of the beds, its shadow slow and sure. East the path\nreturns to the wilder garden, while south and west it curls among the\nblooms.",
+   "extra_descs": {
+    "sundial marble": "The white marble is warm to the touch, and the gnomon is carved like a\nsingle curling leaf. Around the rim runs a line of small worn letters\nthat speak of the unhurried hours."
+   },
+   "mob_resets": [
+    {
+     "vnum": 649401,
+     "max": 1
+    }
+   ]
   },
   "201519": {
    "vnum": 201519,
@@ -562,8 +626,8 @@
      "description": "To the west lies The Flower Garden."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "Rows of woven straw hives stand upon stone plinths in a sunny clearing,\nringed with thyme, clover and borage. The air is thick with warm wax and\nthe steady hum of work, and amber honey beads in the cracks of the\nstraw. Paths lead north into the garden, east toward the mound of the\ngreat tree, south to a quiet lawn, and west among the flowers.",
+   "extra_descs": {}
   },
   "201520": {
    "vnum": 201520,
@@ -593,11 +657,406 @@
      "description": "To the west lies In The Garden."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Apricot, pear and quince trees stand in a straight line here, each hung\nwith fruit of every season at once. The grass between the trunks is soft\nas wool, and sunbeams slant down through the leaves in long bright bars.\nNorth the line ends at a far greater tree whose shadow lies across the\npath, and other ways lead east, south and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649403,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "649400": {
+   "vnum": 649400,
+   "name": "songbird bird finch",
+   "short_desc": "a golden-breasted songbird",
+   "long_desc": "A golden-breasted songbird trills from a branch, utterly unafraid.",
+   "description": "A small bird with a breast the colour of new honey. It tilts its head at\nyou and sings as though no sorrow had ever touched the world.",
+   "level": 15,
+   "alignment": 500,
+   "hp_dice": "15d8+170",
+   "damage_dice": "4d6+9",
+   "armor_class": 52,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749400,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649401": {
+   "vnum": 649401,
+   "name": "bee honeybee swarm",
+   "short_desc": "a drowsy honeybee",
+   "long_desc": "A drowsy honeybee hums from blossom to blossom.",
+   "description": "A fat honeybee dusted with gold pollen. It is busy and gentle, and wants\nnothing of you.",
+   "level": 16,
+   "alignment": 400,
+   "hp_dice": "16d8+182",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749400,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649402": {
+   "vnum": 649402,
+   "name": "deer hind doe",
+   "short_desc": "a dappled deer",
+   "long_desc": "A dappled deer grazes calmly among the fallen blossom.",
+   "description": "A slender deer with large, trusting eyes and a coat spotted like\nsunlight through leaves. It lifts its head to regard you, then goes on\ngrazing.",
+   "level": 18,
+   "alignment": 500,
+   "hp_dice": "18d8+208",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749401,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649403": {
+   "vnum": 649403,
+   "name": "lamb white sheep",
+   "short_desc": "a white lamb",
+   "long_desc": "A white lamb sleeps in the grass, curled against a great lion's flank.",
+   "description": "A small woolly lamb, clean and pale as new milk. It sleeps without a\ncare in the world.",
+   "level": 15,
+   "alignment": 600,
+   "hp_dice": "15d8+170",
+   "damage_dice": "4d6+9",
+   "armor_class": 52,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749400,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649404": {
+   "vnum": 649404,
+   "name": "lion tawny great",
+   "short_desc": "a tawny lion",
+   "long_desc": "A tawny lion lies in the sun, its heavy head resting beside a sleeping lamb.",
+   "description": "A huge lion with a mane like burnished bronze. Its amber eyes follow you\nwith calm, regal patience, and its great paws are folded in peace.",
+   "level": 23,
+   "alignment": 400,
+   "hp_dice": "23d8+276",
+   "damage_dice": "6d6+14",
+   "armor_class": 28,
+   "exp": 1285,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749402,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649405": {
+   "vnum": 649405,
+   "name": "stag white hart",
+   "short_desc": "a white stag",
+   "long_desc": "A white stag stands motionless in the shade, its antlers crowned with blossom.",
+   "description": "A tall stag, white as milk, with antlers branching like a young tree in\nbloom. It carries itself with a quiet nobility that few forest beasts\never show.",
+   "level": 24,
+   "alignment": 500,
+   "hp_dice": "24d8+290",
+   "damage_dice": "7d6+12",
+   "armor_class": 25,
+   "exp": 1340,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749401,
+     "chance": 30
+    },
+    {
+     "vnum": 749402,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649406": {
+   "vnum": 649406,
+   "name": "cherub guardian sword flaming",
+   "short_desc": "the cherub of the gate",
+   "long_desc": "A towering cherub stands guard at the gate, a sword of living flame turning slowly in its grasp.",
+   "description": "Four-faced and wreathed in light, the cherub guards the way into the\ngarden with a flaming sword that turns every way. It does not hunger for\nbattle, but none may pass it who come in malice.",
+   "level": 25,
+   "alignment": 1000,
+   "hp_dice": "25d8+444",
+   "damage_dice": "7d6+17",
+   "armor_class": 17,
+   "exp": 1395,
+   "gold": 0,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749403,
+     "chance": 30
+    },
+    {
+     "vnum": 749404,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "749400": {
+   "vnum": 749400,
+   "name": "honeycomb comb honey",
+   "short_desc": "a piece of golden honeycomb",
+   "room_desc": "A piece of golden honeycomb lies here, dripping amber.",
+   "description": "A wedge of fresh comb, sweet and warm with the garden's sun.",
+   "item_type": "food",
+   "type": "food",
+   "min_level": 16,
+   "food_value": 17,
+   "nutrition": 17,
+   "weight": 1,
+   "value": 21
+  },
+  "749401": {
+   "vnum": 749401,
+   "name": "deerskin gloves soft",
+   "short_desc": "a pair of soft deerskin gloves",
+   "room_desc": "A pair of soft deerskin gloves lies here.",
+   "description": "Gloves of pale, supple deerskin, stitched with fine gold thread.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 18,
+   "wear_slot": "hands",
+   "armor": 3,
+   "weight": 2,
+   "value": 390,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  },
+  "749402": {
+   "vnum": 749402,
+   "name": "amber pendant",
+   "short_desc": "an amber pendant",
+   "room_desc": "An amber pendant glows softly here.",
+   "description": "A drop of clear amber on a fine chain, holding within it a little captured sunlight.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 22,
+   "wear_slot": "neck1",
+   "armor": 2,
+   "weight": 1,
+   "value": 470,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "749403": {
+   "vnum": 749403,
+   "name": "sword flame flaming blade",
+   "short_desc": "a sword of pale flame",
+   "room_desc": "A sword of pale flame burns steadily here.",
+   "description": "A long blade of steady, golden fire that gives off warmth and no smoke. It is bright and terrible in the hand.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 25,
+   "damage_dice": "2d7",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 665,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  },
+  "749404": {
+   "vnum": 749404,
+   "name": "mantle hallowed white cloak",
+   "short_desc": "a hallowed white mantle",
+   "room_desc": "A hallowed white mantle lies folded here.",
+   "description": "A mantle of white wool that never gathers dust, edged with threads of gold light.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 25,
+   "wear_slot": "about",
+   "armor": 3,
+   "weight": 3,
+   "value": 530,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  }
+ }
 }

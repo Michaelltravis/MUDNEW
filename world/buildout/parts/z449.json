@@ -1,0 +1,327 @@
+{
+ "job": "z449",
+ "rooms": {
+  "106200": "The footpath begins here at the village's edge, a ribbon of packed red clay worn smooth by bare feet and walking sticks. Thatch roofs crowd close under the broad leaves, and the smell of cookfires and wet earth hangs in the heat. A trail breaks off north into the jungle, while the footpath runs on east between the huts.",
+  "106232": "Here the village ends and the green wall begins. The footpath narrows to a trail as ferns and glossy leaves close in on both sides, dripping in the heavy air. Behind you to the south the huts show through a haze of smoke. The trail climbs on north into the jungle, and a more trodden track leads off west.",
+  "106238": "Roots like knuckled fingers cross the trail, slick with moisture, and you pick your footing carefully. Overhead the canopy shuts out most of the sky, leaving a green and stifling twilight loud with insects. Somewhere a harsh call rises and is answered from far off. The trail goes on north, and runs back south toward the village.",
+  "106239": "A tall stand of bracken has been trampled flat at the trail's edge where something heavy pushes through on its way to water. The air is thick enough to drink, and sweat runs freely down your back. Fallen blossoms rot in the mud, sweet and sickly. The trail runs north and south, and a rough gap in the ferns opens east into thick bracken.",
+  "106240": "The trail runs straight here for a stretch, a narrow aisle between trunks wrapped in creeper. Yellow beams of light fall through the leaves and make the steam rising from the mud look like smoke. A line of ants crosses the path in a glossy red thread, busy and unconcerned. North and south the trail goes on under the dripping leaves.",
+  "106241": "The trail bends sharply here, turning back on itself around a mossy boulder as big as a hut. Orchids hang from the branches overhead, pale and waxy, dripping water in slow beads. The ground is soft underfoot and holds the prints of bare feet going both ways. The trail leads south, and bends west past the boulder.",
+  "106242": "A rotting log lies half across the trail, furred with green moss and riddled with beetle holes. You step over it, and the damp of the wood soaks through your boots. Frogs trill in the undergrowth, falling silent as you pass and starting again behind. The trail turns east toward the bend and runs on north.",
+  "106243": "The jungle presses closer here, and vines hang across the trail like the rigging of a wrecked ship. You push them aside with your arm, and they spring back wet and clinging. High above, the canopy shakes and rains leaves on something unseen. The trail goes on north and south.",
+  "106244": "A thin grey haze lies along the ground here, and the first faint smell of sulphur reaches you on the hot air. Through a gap in the leaves you glimpse a dark slope above the treetops, a plume of smoke leaning over it. The mud on the trail is gritty with fine pale dust. The trail runs north toward the smell and south toward the village.",
+  "106245": "The trail is wider and harder here, trodden by many feet and marked with the ruts of dragged loads. Cut stumps stand at the edges where brush has been cleared back, their tops weathered silver. The jungle noise dulls, and a hint of woodsmoke drifts down from ahead. North the trail leads on toward an encampment, and south it winds back into the green.",
+  "106246": "The trail opens a little at a trampled junction, with the smell of smoke and beaten earth strong on the air. A rough path forks west down toward a pond, its edge glinting through the reeds. North, a clearing shows between the trunks, bare and ringed with notched stakes that mark a camp's boundary. The trail runs back south into the jungle.",
+  "106249": "The jungle gives way to a hard-packed clearing at the edge of a camp, ringed with sharpened stakes and strings of dried gourds that rattle in the heat. Ash-grey handprints are smeared on the nearest posts. Trampled earth and old fire pits show where people have lived hard. The camp runs on north, and the trail leads away south into the jungle.",
+  "106250": "This is the heart of the encampment, a broad circle of beaten earth around a fire pit heaped with grey ash. Lean-to shelters of hide and palm crowd the margins, hung with drying strips of meat. A faint tang of salt comes from the west, where the ground ends at a cliff. Paths lead off north and east, and the way south goes back toward the trail.",
+  "106251": "A wide stretch of bare dirt, swept and trampled until it shines like old leather. To the north the ground begins to rise toward the foot of the volcano, black and brooding under its plume. Carved poles stand in a ragged row, each topped with a grinning mask of baked clay. A low community hut squats to the east, and the camp lies south.",
+  "106257": {
+   "description": "The jungle stops as if cut with a knife, and the slope of the volcano rises ahead in a ramp of black cinder and broken rock. Thin threads of steam seep from cracks in the ground, smelling of rotten eggs. Heat shimmers off the stones, and the air tastes of ash. A rough trail climbs the mountain's flank, a squat dark house stands east, and open ground lies south.",
+   "look": "volcanic"
+  },
+  "106256": "A low house of black stone and bone-white timber, windowless and thick with the smell of old smoke and bitter herbs. Shelves of shaped clay jars line the walls, each sealed with wax and marked with a daubed sign. Mats of woven palm lie in rows on the floor, stained dark by what has rested there. The only way out is back west into the daylight.",
+  "106258": {
+   "description": "The trail climbs steeply over loose cinders that slide away under your boots. Rope handholds, black with grease and soot, have been strung along the steepest turns by someone long ago. Steam hisses from a crack beside the path, and the rock is warm through your soles. Down leads back to the foot of the mountain, and the climb goes up toward the smoke.",
+   "look": "volcanic"
+  },
+  "106259": {
+   "description": "The slope steepens into a stair of broken black rock, and the heat grows until the air wavers. A yellow crust of sulphur stains every crevice, sharp and stinging in your nose. Ash drifts across the trail in soft grey waves, filling the footprints of those who climbed before. Above you the smoke rolls thicker, and below the path drops back down the mountain.",
+   "look": "volcanic"
+  },
+  "106260": {
+   "description": "You stand on the ragged lip of the volcano, where the whole island falls away green and hazy beneath you. Ahead the crater yawns, a pit of orange glow and drifting smoke, and the roar of it fills your ears. The ground is hot and glassy, split by cracks that breathe a flame-coloured light. Wind tugs at your clothes, heavy with sulphur, and the only way down is the trail behind.",
+   "look": "volcanic"
+  },
+  "106255": "Inside, the hut is low and smoky, its roof of palm thatch blackened by years of cookfires. Sleeping mats are rolled against the walls, and baskets of dried roots hang from the rafters. A shallow hearth of river stones holds a bed of dull coals. The doorway opens west onto the dirt of the camp.",
+  "106252": "Hard-packed earth stretches between the huts, scattered with bones, nutshells and bits of woven cord. A tall drying rack leans in the middle, hung with pale strips of hide. The stink of the animal pen is strong on the air from the east. The camp's heart lies west, and a wider space opens south.",
+  "106254": "A rough fence of lashed poles holds in a patch of churned mud and wet straw. A trough hewn from a hollow log stands half-full of scummy water, humming with flies. The stench is thick and warm, and the ground sucks at your feet. The only way out is west, back to the dirt of the camp.",
+  "106253": "A round clearing of pounded earth, ringed with split logs set on end as seats. In its middle a circle of blackened stones holds the remains of a great fire, and the ground around it is scuffed by dancing feet. Scraps of coloured cloth and feathers hang from the surrounding poles. The only path leads north to the dirt area.",
+  "106262": "The ground ends here in a crumbling lip of red rock, and the sea spreads out below, bright and endless. A hot wind rises up the face, smelling of salt and weed, tugging at hair and cloak. Far down, surf hisses over hidden rocks. The edge runs on north and south, and a way leads east into the camp.",
+  "106261": "The cliff top ends here against a wall of thorny scrub that has grown over the path, leaving no way further. Out beyond the edge the sea shimmers pale green over shallows, and far below it breaks white against dark rocks. A weathered post leans at the brink with a frayed rope still knotted to it. The only way back is south along the edge.",
+  "106263": "Here the cliff edge bends over a sheer drop, and a narrow ledge of rock slants down along the face. Old footholds have been chipped into the stone, polished by climbing hands and feet. Below, waves slap at the base of the island with a hollow boom. The edge runs back north, and the ledge leads down the cliff.",
+  "106264": "You cling to the face of the cliff on a ledge no wider than a plank, the rock hot against your palms. Ropes of creeper hang beside you and offer a doubtful grip. Spray from the waves wets your face, and far below white sand shows at the foot of the island. The cliff top is up above, and the climb continues down to the sand.",
+  "106247": "A muddy bank slopes down to the edge of a pond, its surface warm and still and dusted with fallen petals. Reeds stand in clumps at the margin, and the mud is pocked with deep prints where beasts come to drink. A faint mineral smell rises off the water, as if the earth beneath it were warm. The pond lies west, and the trail is east.",
+  "106248": "Warm water laps at your thighs, cloudy with silt and tepid as a bath drawn long ago. Thin curls of vapour drift over the surface, and the bottom is soft mud that grips each step. Lily pads and broken reed stems turn slowly on the faint current of a hidden spring. The only dry ground is back east on the shore.",
+  "106275": "Bracken rises over your head, a dense sea of green fronds that closes behind you the moment you pass. The light is dim and underwater-green, and the ground springs softly with rotted leaves. Burrs and seeds cling to your clothing, and the damp sticks them fast. A way through leads east into a tangle of vines, and west back to the trail.",
+  "106276": "Vines as thick as your wrist hang in loops and coils from every limb, knotted together into a net that you must duck and climb through. Some bear spiny pods, others red trumpet flowers heavy with scent. Water drips constantly, and the footing is a mat of slippery stems. You can squeeze on south, or push back west into the bracken.",
+  "106277": "The trunk of a giant has come down here and lies across the ground, black with wet and thick with shelf fungus the colour of old cream. Its roots, torn up in a great disc of earth, stand taller than a man. Sunlight reaches the forest floor through the gap it left in the canopy, and young saplings crowd toward it. North the vines close in, and a path winds south.",
+  "106283": "A great tree rises here, its trunk split by a tall dark opening at the base where the heartwood has rotted away. Strips of bark hang loose around the gap, and the ground before it is worn into a smooth patch of bare soil. The air that breathes out of the opening smells of damp wood and old leaves. The tree's inner chamber lies south, with paths leading north and east.",
+  "106278": "You force your way through a snarl of brush, thorny and wet, that snatches at your sleeves with every step. Broad leaves slap your face and shed their water down your neck. The ground underfoot is a hidden tangle of roots, and the light is a dull green. A large tree looms ahead to the east, and the hollow tree stands behind you to the west.",
+  "106279": "A huge tree stands here, its trunk spread at the base into buttress roots that form small walls and alcoves in the shadow. Lianas climb it in spirals up into the dark of the canopy. The earth between the roots is bare and scratched with old claw marks. Ways lead north through tall weeds, south into a cluster of branches, and back west through the brush.",
+  "106280": "Razor-edged grass and tall weeds stand taller than your head, nodding together in the still air. Their seed-heads shed a fine dust that makes you sneeze, and every stem is slick with dew. A path of sorts has been broken through by a heavy body pushing back and forth. The weeds thin to the north toward a hole in the ground, and open south at a large tree.",
+  "106282": "The ground drops away here in a wide, ragged hole where the roots of a fallen tree once stood, and its lip is trodden smooth. A rank, musky smell comes from the east, heavy and old. Bones, picked clean, lie scattered in the dirt around the edge. The weeds lie south, and a low den opens east.",
+  "106285": "The den is a scoop of dry earth under a ledge of tangled roots, floored with trampled grass and dust. The smell here is overpowering, musk and old blood, and bones lie in drifts against the walls. Raking scratches score the roots where claws have been sharpened. The only way out is west, toward the large hole.",
+  "106281": "Broken branches lie in heaps on the ground and hang in clusters overhead, snapped and left by some storm that tore through the jungle long ago. New shoots sprout everywhere from the fallen wood. The footing is bad, with brittle twigs cracking at every step and loose leaf-litter hiding holes. A large tree rises north, and the leaves thicken toward the east.",
+  "106286": "Great leaves hang in curtains around you, each as broad as a shield and veined in dark green and purple. They hide the sky entirely, and the light that filters through is thick and green as pond water. Your footsteps are swallowed by the soft, wet ground. Back west the branches pile up in clusters, and a trail leads east.",
+  "106223": "The trail runs along a slight rise, the ground firmer here and grey with dry leaf-litter. Tall trees stand wide apart, and the air is a little cooler under their spreading limbs. Small paths of beaten earth branch from it into the leaves. The trail goes north and south, and a faint track leads west into a leafy thicket.",
+  "106224": "A bend in the trail, where a spring seeps across the path and turns the ground to a sucking black mud. Someone has laid half-rotted planks across the worst of it, now slick and green. The leaves hang low and trail wet fingers over your shoulders. The trail turns east beyond the mud, and goes back south.",
+  "106225": "The trail dips here into a hollow thick with giant ferns, their fronds arching overhead like the ribs of a great roof. The air is still and sweltering, and your clothes cling damply to you. A thin steady drip falls from leaf to leaf with a soft ticking. The path leads north, and back west around the bend.",
+  "106226": "Broad, flat stones have been set into the trail here, long ago, now sunk and tilted and furred with moss. Whoever laid them meant the path to last, but the jungle has taken it back. Strange pale flowers push up between the cracks. The old way runs north and south.",
+  "106227": "The trail ends in a muddy slope that leads down to the water, trampled by many tracks. Rushes rise at the margin, and the air above the pond shimmers with heat and rising vapour. The smell of the water is warm and faintly of eggs. Water lies north, and the trail goes back south.",
+  "106228": "You wade in water to your waist, warm and cloudy, with a bottom of soft grey mud. Steam curls in lazy threads from the surface, and the reeds nearby are brown at the tips. A shallow shore curves up to the south, where the trail comes down. Pond water stretches on north and east.",
+  "106229": "The pond narrows here and the water runs deeper and quicker, tugging at your legs with a gentle current. At the bottom of the pool a gap in the rocks swallows the flow, and the water slides away downward through it. The stones around are slick and warm, stained rust-red. Pond water lies east and south, and the outflow leads down into a gully.",
+  "106231": "The far corner of the pond, where the water lies shallow and still beneath a screen of drooping branches. The mud is thick with rotting leaves, and bubbles rise from it now and then to burst with a faint stink. Pale lilies float in the gloom, closed against the dimness. The pond runs south and west from here.",
+  "106230": "A shallow arm of the pond, warm as bathwater and no deeper than your knees. The bottom is paved with smooth round pebbles, and sunlight flickers across them in nets of gold. On the bank, a wall of cane reeds stands thick and rattling. The water goes on north and west.",
+  "106268": "The pond's outflow trickles down a narrow cleft in the rock, and you slide down after it onto wet stone. The walls are close enough to touch on both sides, hung with ferns and dripping moss. The sky is a thin ribbon far above. The gulley continues east, and a climb leads up to the pond.",
+  "106269": "The gully tilts steeply here, and the stream falls over a lip of stone in a thin bright ribbon. The walls are slick, striped with orange and green where minerals and algae have stained them. Loose pebbles clatter away down the slope at each step. The gully turns back west, and drops away down toward the sound of the sea.",
+  "106270": "The walls fall away at last, and the gully opens above a slope of sand and shell. The smell of the sea is strong, and the sound of surf comes up out of the dark below. A fence of lashed stakes, half rotted, leans across the way, with a gap broken through it. The gully climbs back up, and the way down reaches the white sand.",
+  "106222": "The trail is broad and well trodden here, striped with sun where the trees stand back. Prints of bare feet and bundled loads mark the packed earth, going to and from the village. The scent of woodsmoke is faint on the damp air. The trail goes north, and runs back south toward the huts.",
+  "106221": "Beyond the last hut the jungle begins, and a trail leaves the village here into the green. Banana plants lean over the track, their ragged leaves rattling in a rare breath of wind. The ground is trampled to a hard dark crust by many passings. The trail runs north into the jungle, and the footpath leads back west into the village.",
+  "106219": "The footpath widens into a small square before the chapel, its clay swept clean each morning with palm brooms. Flat stones ring a patch of beaten earth where the villagers gather to talk and mend. The chapel's thatched porch stands north, a well-kept clay hut lies south, and the footpath runs on west. A trail leaves east for the jungle.",
+  "106220": "The chapel is a single long room of whitewashed clay, cool after the heat outside, with a floor of swept earth. Rows of plain wooden benches face a low altar draped in faded blue cloth. Small clay lamps burn on the sills, and a carved holy sign hangs on the far wall, rubbed smooth by the touch of many hands. The door is south, onto the footpath.",
+  "106218": "A neat little hut, its clay walls smoothed and limewashed, its dirt floor swept to a polish. A bed of woven reeds lies under a clean blanket, and a shelf holds a few carved wooden bowls set in a careful row. Bunches of dried herbs hang from the rafters, scenting the warm air. The door opens north onto the footpath.",
+  "106216": "The footpath meets another track at a crossing, with small gardens of beans and gourds fenced with split cane. A water jar stands on a flat stone by the way, its lid weighted with a pebble. Smoke curls from a cookfire out of sight. A tidy hut stands north, a quiet memorial lies south, and the path goes east and west.",
+  "106215": "Everything in this hut has its place: pots hung by size on pegs, a broom leaning in its corner, a mat rolled square beside the hearth. The clay walls are patched with fresh mud and pressed with the marks of many careful hands. A single window, hung with a reed screen, lets in a dim gold light. The door opens south to the footpath.",
+  "106217": "A small bare court lies behind the huts, closed in by a low wall of piled stones. Rows of flat river stones stand upright in the earth, each scratched with a name and a handful of years. Fresh flowers lie before several, orange and red, wilting in the heat. A hush hangs here, and the only path leads back north.",
+  "106212": "A bend in the footpath where two lanes join, the clay rutted by years of carrying. A cracked clay bell hangs from a pole beside the way, rung to call the village together. Washing lines sag between the huts, hung with grey linen bandages drying in the heat. The path goes north toward a garden, east and west along the huts, and a small thatch hut stands south.",
+  "106213": "The footpath narrows to a strip of packed earth between two fences of woven cane. Over the fences hang the heavy vines of gourds and the heart-shaped leaves of yams. The earth smells rich and freshly watered. A garden opens north, and the path runs back south.",
+  "106214": "A large garden, laid out in neat raised rows and watered by little channels dug by hand. Beans climb poles, squash sprawl across the earth, and tall plantains lean over it all with their ragged green banners. Someone has mounded the soil carefully around every plant. A scarecrow of sticks and rags stands guard, and the only way out is south to the footpath.",
+  "106211": "A cramped hut, built low against the sun, with a roof of palm thatch that nearly touches your head. Inside are a bed of reeds, a shelf of tiny carved figures, and a water pot with a gourd dipper. The air is warm and smells of straw. A narrow door opens north to the footpath.",
+  "106201": "A junction of footpaths in the middle of the village, the clay worn into shallow bowls by countless steps. A rack of drying fish stands to one side, and an old cooking pot sits cold on three stones. Thatch eaves overhang the paths and keep them shaded. A rough timber hut stands north, and the footpath goes east, south and west.",
+  "106202": "Unlike the clay huts around it, this one is raised of unplaned timber, the planks rough and silvery with age. A table stands in the middle with a bench along each side, and split firewood is stacked neatly against the wall. The floor is boards, a rarity here, and creaks underfoot. The door opens south.",
+  "106204": "The footpath runs between low clay walls, shaded by a fig tree whose roots have heaved the ground into ridges. Its fallen fruit lies split and sweet-smelling in the dust. A small shrine of three stones sits in the crook of the roots, with a pinch of rice laid on top. The path goes north and south, and a modest hut stands west.",
+  "106205": "A stretch of footpath lined with waist-high fences of woven cane, scratched and dusty. The clay underfoot is pocked with tiny three-toed prints. A smell of grain and dung drifts out from the east. The footpath leads north and south, and a coop stands east.",
+  "106210": "A low shed of cane and thatch, with perches of split bamboo and rows of nesting boxes lined with straw. Feathers drift in the corners, and the floor is thick with dry droppings and spilled grain. Light falls in thin stripes through the wall slats. The only way out is west to the footpath.",
+  "106206": "The southern end of the footpath, where it frays into a muddy court between three buildings. A rain barrel stands under the eaves, brimming and green. A cracked clay oven squats in the shade, its mouth black with soot. A hut stands south, a smaller one west, a pig pen east, and the footpath goes back north.",
+  "106209": "A trodden yard of black mud, walled by a rail fence and shaded by a lean-to roof of palm. A trough carved from a log stands beside a heap of rotten fruit and kitchen scraps. The smell is rich and warm, and the mud is churned into deep wallows. The pen opens only west, to the footpath.",
+  "106208": "A solid hut with walls two hands thick, built to keep out both heat and rain. A pair of hand-woven mats lie on the floor, and a cookpot hangs over a cold firepit. Charms of shell and feather are knotted over the door. The door looks north onto the footpath.",
+  "106207": "A tiny hut, little more than a single round room, its clay walls ringed with a pattern of finger-drawn spirals. A sleeping mat takes up half the floor, and a clay lamp sits in a niche beside it. The place is spotless and smells of smoke and lemon grass. The only door opens east to the footpath.",
+  "106203": "A modest hut of mud and thatch, with a floor of beaten earth strewn with fresh rushes. A small loom stands unfinished in one corner, the cloth a bright zigzag of red and ochre. Light slants in through the doorway and a smoke hole above the hearth. The door opens east to the footpath.",
+  "106284": "You stand inside the tree, in a round chamber of living wood whose walls are dark, ridged and faintly warm. The roof is lost in a spiral of old rot and tiny roots that drip like candle wax. Dry leaves lie deep on the floor, and the air is close and smells of mould. Dim light comes from the opening to the north.",
+  "106233": "The trail leaves the main track and bends south, worn hard and wide by years of use. Footprints have cut a shallow trench in the earth, edged with trodden grass. Ferns arch overhead and drip. The trail turns east toward the village, and leads on south.",
+  "106234": "The well-used trail runs along a ridge, with the ground falling away into dense jungle on either side. Stones along the edges are polished by passing feet, and a snapped branch has been tied back with a vine. The leaves are lighter here, and the heat less close. The trail goes north and south.",
+  "106235": "A crooked turn in the trail, where a flat boulder makes a seat for tired walkers, its top rubbed smooth. Bundles of dried grass and old rope are heaped beside it. The jungle thins slightly, and a small breath of air stirs the leaves. The trail runs north and west.",
+  "106236": "The trail climbs a short rise toward a platform of lashed poles above the trees. Rungs of cut sapling are tied to its supports with strips of hide. Down in the shade below, the ground is packed hard from standing feet. The trail runs east, and leads west to the lookout post.",
+  "106237": "A platform of lashed timber looks out over the jungle roof, shaded by a patchwork of palm leaves. From here the green sea of treetops rolls away to a rim of blue water, and beyond it the volcano stands smoking against the sky. A watcher's stool and a signal horn on a peg mark the post. The only way down is east along the trail."
+ },
+ "extras": {},
+ "creatures": [
+  {
+   "id": "leper-villager",
+   "keywords": "leper villager man woman",
+   "short_desc": "a leper villager",
+   "long_desc": "A leper villager goes about the day's work with slow, patient care.",
+   "description": "A villager in a clean, mended robe, hands wrapped in linen against the sores of the sickness. Their eyes are tired but steady, and they greet a stranger with quiet courtesy.",
+   "kind": "humanoid",
+   "level": 3,
+   "aggressive": false,
+   "alignment": 300,
+   "rooms": [
+    "Footpath Through Leper's Village",
+    "Garden",
+    "Chapel",
+    "Leper Memorial",
+    "Pig Pen",
+    "Chicken Coop"
+   ],
+   "count": 6,
+   "drops": []
+  },
+  {
+   "id": "jungle-boar",
+   "keywords": "boar jungle tusker",
+   "short_desc": "a bristling jungle boar",
+   "long_desc": "A bristling jungle boar roots through the leaf-litter, tusks stained red with clay.",
+   "description": "A heavy, black-bristled boar with a ridge of coarse hair along its spine. Its small eyes glint with ill temper, and its tusks are yellow and scarred.",
+   "kind": "animal",
+   "level": 5,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "Trail Through the Jungle",
+    "Well-used Trail Through the Jungle",
+    "In Thick Bracken",
+    "Through a Tangle of Jungle Brush",
+    "Branch Clustered Area",
+    "Through a Growth of Tall Weeds"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "boar-tusk-charm",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "ashen-tribesman",
+   "keywords": "tribesman ashen warrior hunter",
+   "short_desc": "an ashen tribesman",
+   "long_desc": "An ashen tribesman in a grey-smeared hide kilt watches the camp, spear in hand.",
+   "description": "A lean hunter striped from brow to chest with grey volcanic ash. He keeps his obsidian-tipped spear low and ready, and he looks on outsiders as trespassers.",
+   "kind": "humanoid",
+   "level": 8,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Encampment",
+    "Open Dirt Area",
+    "Dirt Area",
+    "Community Gathering Area",
+    "Lookout Post",
+    "Grubby Animal Pen"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "obsidian-spear",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "jungle-lion",
+   "keywords": "lion jungle maned great",
+   "short_desc": "a great maned lion",
+   "long_desc": "A great maned lion lies watching from the shadow of the roots, tail twitching.",
+   "description": "A huge tawny lion, scarred across the muzzle, with a dark mane matted with burrs. It is lean and ill-tempered from guarding its den, and it does not tolerate company.",
+   "kind": "animal",
+   "level": 11,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "In a Lion's Den"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "lion-mane-cloak",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "ash-priest",
+   "keywords": "priest ash cultist ashen",
+   "short_desc": "an ash priest",
+   "long_desc": "An ash priest in a soot-black robe murmurs a low chant toward the smoking peak.",
+   "description": "A gaunt cultist painted white with ash, with a necklace of blackened teeth rattling on his chest. He calls the volcano his god, and he will defend its slopes with fire-hardened staff and curses.",
+   "kind": "humanoid",
+   "level": 11,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "The Base of the Volcano",
+    "Trail to the Volcano's Crest",
+    "Community Hut"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "obsidian-spear",
+     "chance": 10
+    },
+    {
+     "item": "bone-staff",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "gorrak-death-speaker",
+   "keywords": "gorrak death-speaker cultist shaman",
+   "short_desc": "Gorrak, the cultist Death-Speaker",
+   "long_desc": "Gorrak, the cultist Death-Speaker, crouches among the clay jars, muttering over a yellowed skull.",
+   "description": "A bent, hollow-eyed old man in a robe sewn with knucklebones, his face daubed half white and half black. He keeps the House of Death and speaks, they say, with whatever answers from the mountain.",
+   "kind": "humanoid",
+   "level": 12,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The House of Death"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "bone-staff",
+     "chance": 35
+    },
+    {
+     "item": "ember-ring",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "crest-fire-spirit",
+   "keywords": "fire spirit crest flame",
+   "short_desc": "the fire spirit of the crest",
+   "long_desc": "The fire spirit of the crest rises from the crater's glow, a shape of flame and drifting smoke.",
+   "description": "A towering figure woven of orange flame and black smoke, with a face that shifts like heat on stone. The ground cracks and glows where it passes, and its voice is the roar of the mountain.",
+   "kind": "monster",
+   "level": 13,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Smoking Crest of the Volcano"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "ember-ring",
+     "chance": 35
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "boar-tusk-charm",
+   "keywords": "boar tusk charm",
+   "short_desc": "a boar-tusk charm",
+   "room_desc": "A boar-tusk charm lies here on a frayed cord.",
+   "description": "A curved yellow tusk, drilled at the root and strung on a cord of braided fibre. Hunters on the island wear them for luck.",
+   "kind": "treasure",
+   "level": 5
+  },
+  {
+   "id": "obsidian-spear",
+   "keywords": "obsidian spear tipped",
+   "short_desc": "an obsidian-tipped spear",
+   "room_desc": "An obsidian-tipped spear lies here.",
+   "description": "A straight spear of dark wood, bound at the head with sinew around a leaf of black volcanic glass. The edge is keen, and flaked by a patient hand.",
+   "kind": "weapon",
+   "level": 8,
+   "weapon_type": "pierce"
+  },
+  {
+   "id": "lion-mane-cloak",
+   "keywords": "lion mane cloak",
+   "short_desc": "a lion-mane cloak",
+   "room_desc": "A lion-mane cloak lies in a heap here.",
+   "description": "A heavy cloak of tawny hide edged with a ruff of dark mane. It is hot in the jungle, but it turns a blow well.",
+   "kind": "armor",
+   "level": 11,
+   "wear_slot": "about",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "bone-staff",
+   "keywords": "bone staff knucklebone",
+   "short_desc": "a knucklebone staff",
+   "room_desc": "A knucklebone staff lies here, rattling faintly.",
+   "description": "A staff of pale wood strung with knucklebones and topped with a yellowed skull. It rattles when it swings and hits like a hammer.",
+   "kind": "weapon",
+   "level": 12,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "ember-ring",
+   "keywords": "ember ring glowing",
+   "short_desc": "a glowing ember ring",
+   "room_desc": "A ring of glowing ember lies here, warm to the eye.",
+   "description": "A band of black glass with a single coal-red spark trapped in its heart. It is warm against the finger and never cools.",
+   "kind": "armor",
+   "level": 13,
+   "wear_slot": "finger",
+   "bonus": {
+    "hitroll": 2
+   }
+  }
+ ]
+}

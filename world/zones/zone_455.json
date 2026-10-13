@@ -18,10 +18,14 @@
     "east": {
      "to_room": 10901,
      "description": "To the east lies The Ocean Stream near the Rim of the World."
+    },
+    "south": {
+     "to_room": 10517,
+     "description": "To the south lies Heading East On Quickstream."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. A way leads east.",
-   "placeholder": true
+   "description": "You drift on the dark swell of the Ocean Stream, a broad current that\npours steadily toward the edge of the world. Black water slides past in\nlong, smooth ridges, and the far horizon bends downward like the lip of\na bowl. Cold spray beads on the gunwale under your hand. The stream\ncarries you on east, and there is no turning back against it.",
+   "extra_descs": {}
   },
   "10901": {
    "vnum": 10901,
@@ -45,8 +49,8 @@
      "description": "To the west lies The Ocean Stream near the Rim of the World."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "The stream bends here and the current quickens, hissing along the hull\nin pale seams of foam. Gulls wheel high overhead, crying thinly, and the\nair tastes of salt and distance. Far across the water a grey haze hangs\nwhere sea and sky should meet. The water runs north around the bend,\nwhile a calmer reach lies back west.",
+   "extra_descs": {}
   },
   "10902": {
    "vnum": 10902,
@@ -70,8 +74,8 @@
      "description": "To the west lies The Ocean Stream near the Rim of the World."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead south and west.",
-   "placeholder": true
+   "description": "A long, oily swell lifts you and sets you down again, slow as breathing.\nDrifting weed streams past in tangled green ropes, torn from some\ndrowned shelf far below. The wind has dropped to a mutter, and the only\nsound is the lapping of water against wood. The current runs west from\nhere, and the quieter water behind you lies south.",
+   "extra_descs": {}
   },
   "10903": {
    "vnum": 10903,
@@ -95,8 +99,14 @@
      "description": "To the east lies The Ocean Stream near the Rim of the World."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
-   "placeholder": true
+   "description": "Spindrift blows across the stream in sheets, stinging your eyes and\nrimming every rope with white crystals of salt. The sea here is a hard\nslate colour, pocked by sudden gusts. Something pale, perhaps a bleached\nspar, turns slowly in the wash and slips astern. The stream bears on\nnorth, and east lies the way you came.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645502,
+     "max": 1
+    }
+   ]
   },
   "10904": {
    "vnum": 10904,
@@ -120,8 +130,14 @@
      "description": "To the south lies The Ocean Stream near the Rim of the World."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The water grows strangely clear, and you can see long shafts of light\nsinking into green depths where nothing moves. A cold breath rises off\nthe surface, smelling of stone and old rain. The sky has paled to the\ncolour of tin, with no sun to be found. The stream runs straight on\nnorth, with the bend lying back south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645500,
+     "max": 1
+    }
+   ]
   },
   "10905": {
    "vnum": 10905,
@@ -145,8 +161,8 @@
      "description": "To the south lies The Ocean Stream near the Rim of the World."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "Here the current swings hard and the boat heels, shipping a cold slap of\ngreen water over the side. Ahead the swell steepens into rolling hills\nof grey, each crest torn by the wind. A low line of cloud lies across\nthe sky like a lid. The stream turns east toward wider water, and the\nlong straight reach lies back south.",
+   "extra_descs": {}
   },
   "10906": {
    "vnum": 10906,
@@ -170,8 +186,8 @@
      "description": "To the west lies The Ocean Stream near the Rim of the World."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "The stream widens and slows, its hurrying current easing into a sullen,\nheaving calm. Broken timbers drift in the wash, grey with age and furred\nwith weed, the remains of ships that never came home. A faint brine-\nheavy fog clings to the surface. East the water opens into a gulf, and\nthe stream you have followed lies west.",
+   "extra_descs": {}
   },
   "10907": {
    "vnum": 10907,
@@ -199,8 +215,8 @@
      "description": "To the west lies The Ocean Stream near the Rim of the World."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "You float on the wide, restless water of the gulf, ringed by a pale and\nhazy sky. To the east the water laps against broken stones, the tumbled\nedge of a city older than any chart. Cold wind pushes at you from the\nopen sea, bringing a distant rumble from beyond the world's rim. Open\nwater lies west back to the stream, and a darker stretch of sea leads\nnorth toward the edge.",
+   "extra_descs": {}
   },
   "10908": {
    "vnum": 10908,
@@ -222,8 +238,8 @@
      "description": "To the west lies Gulf on Gondor Island."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north and\nwest.",
-   "placeholder": true
+   "description": "Fallen walls and shattered columns rise out of a tangle of gnarled\ntrees, where roots have split the old paving and heaved it into ridges.\nA salt wind hums through empty window arches, and lichen paints the\nstones in rust and yellow. Under the thorn and bramble a faint track\nthreads the rubble. The ground slopes down west toward the gulf, while\nthe track runs on north to a great mound among the ruins.",
+   "extra_descs": {}
   },
   "10909": {
    "vnum": 10909,
@@ -255,8 +271,20 @@
      "description": "To the up lies The Mound of Concealed Demise."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, south, west and up.",
-   "placeholder": true
+   "description": "A grassy barrow-hill swells up here out of the rubble, ringed by broken\npillars that lean away from it like mourners. The wind is quieter in\nthis hollow, and the grass lies flat and silvered. A narrow stair of\nworn stones climbs up the slope toward a dark opening in the top of the\nmound. Paths run through the ruins north, south and west.",
+   "extra_descs": {
+    "stair stones steps stair-stones": "The steps are cut from black stone and polished by wind. Faint spirals,\nalmost erased, climb the risers like the coils of a sleeping serpent."
+   },
+   "mob_resets": [
+    {
+     "vnum": 645503,
+     "max": 1
+    },
+    {
+     "vnum": 645505,
+     "max": 1
+    }
+   ]
   },
   "10910": {
    "vnum": 10910,
@@ -276,8 +304,15 @@
      "description": "To the down lies At the Mound among the Ruins."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads down.",
-   "placeholder": true
+   "description": "The air within the mound is still, cold and heavy with the smell of\nearth and old bronze. Rough stone slabs wall a low chamber, and thick\nroots hang from the roof like grey hair. A great flat bier stands at the\nheart of the room, crusted with the green of corroded grave goods. The\nonly way out is the passage down the slope, back to the foot of the\nmound.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645506,
+     "max": 1
+    }
+   ]
   },
   "10911": {
    "vnum": 10911,
@@ -295,8 +330,8 @@
      "description": "To the south lies At the Mound among the Ruins."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. A way leads south.",
-   "placeholder": true
+   "description": "The ruins end in a broken terrace here, strewn with slabs that were once\nthe floor of some great hall. A single arch still stands, and wind howls\nsoftly through it. Thorn trees crowd the fallen stones, bending all one\nway from long years of gales. The path runs back south to the mound\namong the ruins.",
+   "extra_descs": {}
   },
   "10912": {
    "vnum": 10912,
@@ -314,8 +349,18 @@
      "description": "To the east lies At the Mound among the Ruins."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. A way leads east.",
-   "placeholder": true
+   "description": "A row of headless statues stands in the brush, their robes worn smooth\nand their pedestals buried in leaf mould. Ivy crawls over the toppled\nlintel of a gate that opens on nothing at all. The air smells of wet\nstone, and somewhere a loose shingle ticks in the breeze. A path winds\nback east through the weeds to the mound among the ruins.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645501,
+     "max": 1
+    },
+    {
+     "vnum": 645503,
+     "max": 1
+    }
+   ]
   },
   "10913": {
    "vnum": 10913,
@@ -339,8 +384,14 @@
      "description": "To the south lies Gulf on Gondor Island."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The water here has a strange tilt to it, running faster with each fathom\nas though the whole sea were leaning on a slope. Foam streaks the\nsurface in long white lines, all pointing the same way. The sky ahead is\na hard and cloudless blue, curiously close. The current sweeps on east,\nand the gulf lies south behind you.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645502,
+     "max": 1
+    }
+   ]
   },
   "10914": {
    "vnum": 10914,
@@ -364,8 +415,14 @@
      "description": "To the west lies Nearing the Rim of the World."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The roar of the world's edge has grown to a steady thunder that shakes\nthe boat in your hands. Mist boils up from somewhere ahead, drenching\nyou in cold droplets and hiding the horizon in white. The stream sets\nfirmly north toward the brink, but if you must flee the sound, the way\nback runs west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 645504,
+     "max": 1
+    }
+   ]
   },
   "10915": {
    "vnum": 10915,
@@ -383,13 +440,384 @@
     "south": {
      "to_room": 10915,
      "description": "To the south lies The Rim of the World."
+    },
+    "up": {
+     "to_room": 10914,
+     "description": "To the up lies Nearing the Rim of the World."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "You are at the Rim of the World itself, where the sea slides over the\nlip of the sky and falls into endless white mist. A pale rainbow arches\nsilently over the abyss and is gone, then glimmers again. Nothing lies\nbeyond but air, cloud and a long, soft thunder. The only way from here\nis south, back along the failing stream.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "645500": {
+   "vnum": 645500,
+   "name": "shark grey rim",
+   "short_desc": "a lean grey shark",
+   "long_desc": "A lean grey shark circles in the water, its fin cutting the swell.",
+   "description": "A long, scarred shark with eyes like wet slate. It rides the current at\nthe edge of the world, hungry and unafraid of anything that floats.",
+   "level": 14,
+   "alignment": 0,
+   "hp_dice": "14d8+158",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745500,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645501": {
+   "vnum": 645501,
+   "name": "hound wolf gaunt ruin",
+   "short_desc": "a gaunt ruin hound",
+   "long_desc": "A gaunt ruin hound prowls between the fallen walls, nose low to the stones.",
+   "description": "A starved grey wolf-hound, ribs showing under a coat matted with salt\nand burrs. It haunts the ruins, snapping at the wind and anything that\nwalks there.",
+   "level": 13,
+   "alignment": 0,
+   "hp_dice": "13d8+146",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "645502": {
+   "vnum": 645502,
+   "name": "sailor drowned skeleton",
+   "short_desc": "a drowned sailor",
+   "long_desc": "A drowned sailor clambers over the rail, streaming water and weed.",
+   "description": "Bone and rotted cloth hang together around a sailor's frame, trailing\nweed and brine. Empty eye sockets turn toward you, and a rusted knife\nglints in its grip.",
+   "level": 16,
+   "alignment": -500,
+   "hp_dice": "16d8+239",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745500,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645503": {
+   "vnum": 645503,
+   "name": "guard barrow skeleton warrior",
+   "short_desc": "a barrow guard",
+   "long_desc": "A barrow guard stands among the broken pillars, a green-crusted shield on its arm.",
+   "description": "An armoured skeleton in the bronze harness of a lost kingdom, still\nstanding sentinel over the mound it was buried to guard. Cold blue light\nflickers behind its helm.",
+   "level": 19,
+   "alignment": -700,
+   "hp_dice": "19d8+289",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745501,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645504": {
+   "vnum": 645504,
+   "name": "wraith rim spirit",
+   "short_desc": "a wailing rim wraith",
+   "long_desc": "A wailing rim wraith hangs in the mist, a pale shape trailing sea-spray.",
+   "description": "A tall, grey spirit with a face of drawn and sorrowful mist, wrapped in\ncloud and spray. It haunts the brink of the world, drawn to those who\ncome near the edge.",
+   "level": 19,
+   "alignment": -600,
+   "hp_dice": "19d8+289",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745500,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "645505": {
+   "vnum": 645505,
+   "name": "captain harrowmere drowned skeleton",
+   "short_desc": "Captain Harrowmere the Drowned",
+   "long_desc": "Captain Harrowmere the Drowned stands guard at the foot of the mound, a tattered cloak snapping about him.",
+   "description": "The bones of a sea captain who sailed to the world's end and never\nreturned. A cloak of sea-green sailcloth hangs from his shoulders, and a\nsalt-white cutlass never leaves his hand.",
+   "level": 20,
+   "alignment": -700,
+   "hp_dice": "20d8+306",
+   "damage_dice": "6d6+10",
+   "armor_class": 37,
+   "exp": 1120,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745502,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "645506": {
+   "vnum": 645506,
+   "name": "barrow king aldric crowned skeleton",
+   "short_desc": "Aldric, the Barrow-King",
+   "long_desc": "Aldric, the Barrow-King, sits upright on his bier, a cold crown on his skull.",
+   "description": "The king of the ancient city, dead since before the sea turned back from\nhis walls, yet unwilling to lie down. He rises in rotting mail with a\nlong black blade across his knees, and the cold of the grave rolls from\nhim.",
+   "level": 21,
+   "alignment": -900,
+   "hp_dice": "21d8+324",
+   "damage_dice": "6d6+11",
+   "armor_class": 34,
+   "exp": 1175,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 745503,
+     "chance": 35
+    },
+    {
+     "vnum": 745504,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "745500": {
+   "vnum": 745500,
+   "name": "shark tooth charm",
+   "short_desc": "a shark-tooth charm",
+   "room_desc": "A shark-tooth charm lies here, strung on a cord.",
+   "description": "A hand-long tooth, yellow and serrated, drilled and strung on a salt-stiff cord. Sailors swear it keeps the sea from claiming them.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 14,
+   "weight": 1,
+   "value": 445
+  },
+  "745501": {
+   "vnum": 745501,
+   "name": "bronze shield barrow",
+   "short_desc": "a green bronze shield",
+   "room_desc": "A green bronze shield lies in the dust here.",
+   "description": "A round shield of old bronze, crusted with verdigris. A faded sun-and-wave device still shows on its boss.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "shield",
+   "armor": 4,
+   "weight": 6,
+   "value": 410,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "745502": {
+   "vnum": 745502,
+   "name": "cloak sailcloth sea-green",
+   "short_desc": "a sea-green sailcloth cloak",
+   "room_desc": "A sea-green sailcloth cloak lies here, still damp.",
+   "description": "A heavy cloak of tarred sailcloth, stiff with salt and never quite dry. It turns wind and spray alike.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 20,
+   "wear_slot": "about",
+   "armor": 2,
+   "weight": 3,
+   "value": 430,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  },
+  "745503": {
+   "vnum": 745503,
+   "name": "black blade barrow-king sword",
+   "short_desc": "the Barrow-King's black blade",
+   "room_desc": "A long black blade lies here, cold to look upon.",
+   "description": "A broad blade of dark, pitted iron, longer than a man's arm. Frost beads along its edge even in summer.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 21,
+   "damage_dice": "2d6",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 565,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  },
+  "745504": {
+   "vnum": 745504,
+   "name": "crown barrow-king iron circlet",
+   "short_desc": "a tarnished iron crown",
+   "room_desc": "A tarnished iron crown lies here.",
+   "description": "A heavy circlet of blackened iron set with dull blue stones, cold as a winter well.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 21,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 450,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  }
+ }
 }

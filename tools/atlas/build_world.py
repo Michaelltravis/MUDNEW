@@ -420,7 +420,18 @@ def build(write=False):
     open_vnums = {v for v, r in new_rooms.items() if r['_zone'] not in sealed_zones and r['_zone'] not in (0, 97)}
     old = {x: {'exits': {d: {'to_room': t} for d, t in list(r['_exits'].items()) + list(r['_named_exits'].items())}}
            for x, r in R.items()}
+    # ways an earlier build's pass added stay (descriptions speak of them; opening a zone must not
+    # take a road away): kept when both rooms are still here and the way is free
+    kept = []
+    prev = os.path.join(OUT_DIR, 'connections.json')
+    if os.path.exists(prev):
+        with open(prev, encoding='utf-8') as f:
+            for c in json.load(f).get('added') or []:
+                a, d, b = c.get('from'), c.get('dir'), c.get('to')
+                if a in new_rooms and b in new_rooms and d not in (new_rooms[a].get('exits') or {}):
+                    connect.add_exit(new_rooms, a, d, b, c.get('why') or 'kept from an earlier build', kept)
     added, cut = connect.connect(new_rooms, open_vnums, old, renumber)
+    added = kept + added
     mortal = {v for v in open_vnums if 'imm_only' not in (new_rooms[v].get('flags') or [])}
     added_m, cut_m = connect.connect(new_rooms, mortal, old, renumber)
     added, cut = added + added_m, set(cut) | set(cut_m)

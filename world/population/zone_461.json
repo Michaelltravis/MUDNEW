@@ -1,0 +1,173 @@
+{
+ "zone": 461,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Acrasia, the ghost queen of the tombs as the boss.",
+ "creatures": {
+  "646100": {
+   "helpers": {
+    "group": "z461_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale crypt spider"
+  },
+  "646101": {
+   "helpers": {
+    "group": "z461_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a tomb skeleton"
+  },
+  "646102": {
+   "helpers": {
+    "group": "z461_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a hooded acolyte of the Nameless"
+  },
+  "646103": {
+   "helpers": {
+    "group": "z461_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a weeping stone gargoyle"
+  },
+  "646104": {
+   "helpers": {
+    "group": "z461_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a stone guardian",
+   "rank": "elite"
+  },
+  "646105": {
+   "helpers": {
+    "group": "z461_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a grey priest of the Nameless",
+   "rank": "elite"
+  },
+  "646106": {
+   "helpers": {
+    "group": "z461_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Kossil, high priestess of the Nameless",
+   "rank": "sub-boss"
+  },
+  "646107": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "Acrasia, the ghost queen of the tombs",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Acrasia, the ghost queen of the tombs rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Acrasia, the ghost queen of the tombs gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Acrasia, the ghost queen of the tombs raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Acrasia, the ghost queen of the tombs begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 646101,
+   "route": [
+    10803,
+    10804,
+    10805,
+    10806,
+    10807,
+    10808,
+    10809,
+    10810,
+    10813,
+    10814,
+    10815,
+    10816,
+    10817,
+    10820,
+    10821,
+    10822,
+    10823,
+    10824
+   ],
+   "why": "a tomb skeleton walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 646107,
+   "room": 10831,
+   "why": "Acrasia, the ghost queen of the tombs in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "646101": 2
+     },
+     "shout": "Acrasia, the ghost queen of the tombs calls, and a tomb skeletons come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

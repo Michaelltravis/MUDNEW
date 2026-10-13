@@ -1,0 +1,164 @@
+{
+ "zone": 416,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Lord Khal, the necromancer as the boss.",
+ "creatures": {
+  "641600": {
+   "helpers": {
+    "group": "z416_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a robed cultist"
+  },
+  "641601": {
+   "helpers": {
+    "group": "z416_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a rattling skeleton"
+  },
+  "641602": {
+   "helpers": {
+    "group": "z416_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a wailing ghost"
+  },
+  "641603": {
+   "helpers": {
+    "group": "z416_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "an armoured tomb guard",
+   "rank": "elite"
+  },
+  "641604": {
+   "helpers": {
+    "group": "z416_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a blood cultist",
+   "rank": "elite"
+  },
+  "641605": {
+   "helpers": {
+    "group": "z416_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Mania, the Pale Lady",
+   "rank": "sub-boss"
+  },
+  "641606": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Lord Khal, the necromancer",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Lord Khal, the necromancer rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Lord Khal, the necromancer gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+3",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Lord Khal, the necromancer raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+2",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Lord Khal, the necromancer begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+4",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 641601,
+   "route": [
+    2737,
+    2738,
+    2740,
+    2743,
+    2745,
+    2753,
+    2754,
+    2756,
+    2758,
+    2760,
+    2761,
+    2763
+   ],
+   "why": "a rattling skeleton walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 641606,
+   "room": 2722,
+   "why": "Lord Khal, the necromancer in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      641600
+     ],
+     "shout": "Lord Khal, the necromancer calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

@@ -148,7 +148,12 @@ async def main():
               and ex['room'].zone.number in sealed and r.zone is not None and r.zone.number not in sealed
               and not doors.is_seal(ex.get('door'))]
     check(not barred, f'every way into a sealed zone is barred ({barred[:3]})')
-    check(len(sealed) >= 40, f'the new cities and dungeons are sealed until built ({len(sealed)} zones)')
+    def unbuilt(z):         # a zone file still carrying placeholder rooms
+        with open(os.path.join(ROOT, 'world', 'zones', f'zone_{z:03d}.json'), encoding='utf-8') as f:
+            rooms = json.load(f).get('rooms') or {}
+        return any(r.get('placeholder') for r in (rooms.values() if isinstance(rooms, dict) else rooms))
+    built_sealed = sorted(z for z in sealed if not unbuilt(z))
+    check(not built_sealed, f'a zone stays sealed only while it is unbuilt ({len(sealed)} sealed; built yet sealed: {built_sealed})')
 
     # ---- what matters can be reached (on foot, or with a boat found on foot first)
     important = set()

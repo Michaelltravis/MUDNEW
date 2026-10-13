@@ -1,0 +1,33 @@
+{
+ "zone": 494,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and no boss (a peaceful place).",
+ "creatures": {
+  "649406": {
+   "rank": "sub-boss",
+   "why": "the cherub of the gate"
+  },
+  "649405": {
+   "rank": "elite",
+   "why": "a white stag"
+  },
+  "649404": {
+   "rank": "elite",
+   "why": "a tawny lion"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 649400,
+   "route": [
+    201502,
+    201503,
+    201504,
+    201506,
+    201509,
+    201520,
+    201515
+   ],
+   "why": "a golden-breasted songbird walks its ground"
+  }
+ ]
+}

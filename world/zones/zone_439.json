@@ -26,8 +26,8 @@
      "description": "To the up lies Climbing The White Marble Stairs."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead west and up.",
-   "placeholder": true
+   "description": "The valley road ends at a broad marble landing where the White Marble\nStairs begin their long climb. Pale steps rise overhead into a shaft of\ncold light, each one worn hollow in the middle by ages of divine feet.\nTall columns frame the opening onto the valley, and the way back runs\nwest to the valley floor. Thunder rolls somewhere high above, and the\nair smells faintly of honey.",
+   "extra_descs": {}
   },
   "1001": {
    "vnum": 1001,
@@ -51,8 +51,8 @@
      "description": "To the down lies At The Base of The White Marble Stairs."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
-   "placeholder": true
+   "description": "The White Marble Stairs climb steeply inside a vaulted shaft, each step\nas wide as a wagon and polished smooth by countless feet. Pale light\nseeps from somewhere overhead, and the walls sweat with a cool mist.\nLooking back down the flight you can still see the landing, small and\nbright.",
+   "extra_descs": {}
   },
   "1002": {
    "vnum": 1002,
@@ -76,8 +76,8 @@
      "description": "To the down lies Climbing The White Marble Stairs."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
-   "placeholder": true
+   "description": "Halfway into the climb the steps grow cold and the air thins. Carved\nlaurel wreaths run along the walls, each leaf cut so finely that it\nseems to stir in the draught. The marble underfoot is veined with grey,\nlike clouds trapped in stone.",
+   "extra_descs": {}
   },
   "1003": {
    "vnum": 1003,
@@ -101,8 +101,8 @@
      "description": "To the down lies Climbing The White Marble Stairs."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stair narrows here, and slits in the wall let in the roar of wind\nfrom outside. Each step is chipped at the edge, as if some huge weight\nonce climbed it in haste. A smell of rain and hot metal drifts down from\nabove. The steps seem endless, yet the light ahead grows steadily\nbrighter.",
+   "extra_descs": {}
   },
   "1004": {
    "vnum": 1004,
@@ -126,8 +126,8 @@
      "description": "To the down lies Climbing The White Marble Stairs."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stairs end at a wide landing beneath a doorway of gold-veined stone,\nits heavy lintel carved with a spiral of winding paths. Beyond the arch\nthe air feels dry and charged, as before a storm. The last steps are\nworn nearly flat. Muffled thunder comes from within, as steady as a\nheartbeat.",
+   "extra_descs": {}
   },
   "1005": {
    "vnum": 1005,
@@ -141,9 +141,18 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use.",
-   "placeholder": true
+   "exits": {
+    "down": {
+     "to_room": 1004,
+     "description": "To the down lies Climbing The White Marble Stairs."
+    },
+    "south": {
+     "to_room": 1006,
+     "description": "To the south lies The Gods' Labyrinth."
+    }
+   },
+   "description": "The Labyrinth begins as a low hall of white marble, cut by narrow\nturnings that seem to double back on themselves. A mosaic spiral covers\nthe floor, its tesserae gold and bone. Cold lamplight burns without\nflame in niches along the walls. The air is dry and still, and your\nfootsteps return from places they should not reach.",
+   "extra_descs": {}
   },
   "1006": {
    "vnum": 1006,
@@ -157,9 +166,28 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 1005,
+     "description": "To the north lies The Gods' Labyrinth."
+    },
+    "south": {
+     "to_room": 1007,
+     "description": "To the south lies The Gods' Labyrinth."
+    }
+   },
+   "description": "Walls of marble streaked with black rise to a ceiling lost in gloom, and\nevery passage ends in another identical archway. Bronze rings hang from\nthe stonework at head height, rusted shut. Scratches at the foot of one\nwall form a tally of days kept by someone long gone. A faint draught\nsmells of oil and old blood.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643903,
+     "max": 1
+    },
+    {
+     "vnum": 643905,
+     "max": 1
+    }
+   ]
   },
   "1007": {
    "vnum": 1007,
@@ -173,9 +201,18 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 1006,
+     "description": "To the north lies The Gods' Labyrinth."
+    },
+    "east": {
+     "to_room": 1008,
+     "description": "To the east lies The Gods' Labyrinth."
+    }
+   },
+   "description": "A round chamber opens off the winding ways, its domed ceiling painted\nwith stars that have mostly flaked away. In the centre stands a dry\nbasin of green marble, cracked and empty. Six archways ring the room,\nand each looks exactly like the others. The silence is thick enough to\npress on the ears.",
+   "extra_descs": {}
   },
   "1008": {
    "vnum": 1008,
@@ -189,9 +226,18 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 1007,
+     "description": "To the west lies The Gods' Labyrinth."
+    },
+    "east": {
+     "to_room": 1009,
+     "description": "To the east lies The Gods' Labyrinth."
+    }
+   },
+   "description": "The passage is so narrow here that your shoulders brush the cold walls.\nCarved friezes run along both sides, showing a bull-headed figure hunted\nthrough a maze by heroes with bronze spears. The carvings are chipped at\nthe faces, as though someone hated what they showed. Water drips\nsomewhere ahead with a slow, patient rhythm.",
+   "extra_descs": {}
   },
   "1009": {
    "vnum": 1009,
@@ -205,9 +251,24 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 1008,
+     "description": "To the west lies The Gods' Labyrinth."
+    },
+    "east": {
+     "to_room": 1010,
+     "description": "To the east lies The Gods' Labyrinth."
+    }
+   },
+   "description": "Broken columns lie across the floor of this hall like felled trees,\nforcing a crooked path through the rubble. The ceiling has fallen in\nplaces, and heaps of white dust glitter on the tiles. Great cloven\nhoofprints are pressed into the dust, then scuffed half away. A smell of\nmusk and wet straw lingers in the stale air.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643903,
+     "max": 1
+    }
+   ]
   },
   "1010": {
    "vnum": 1010,
@@ -221,9 +282,18 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 1009,
+     "description": "To the west lies The Gods' Labyrinth."
+    },
+    "north": {
+     "to_room": 1011,
+     "description": "To the north lies The Gods' Labyrinth."
+    }
+   },
+   "description": "A long gallery lined with mirrors of polished silver stretches ahead,\neach sheet warped and clouded with tarnish. Your reflection stretches\nand bends as you pass, sometimes with one arm too many. The floor is\nlaid in black and white squares like a game board. A sweet, heavy scent\nof incense hangs in the air.",
+   "extra_descs": {}
   },
   "1011": {
    "vnum": 1011,
@@ -237,9 +307,18 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 1010,
+     "description": "To the south lies The Gods' Labyrinth."
+    },
+    "north": {
+     "to_room": 1012,
+     "description": "To the north lies The Gods' Labyrinth."
+    }
+   },
+   "description": "This hall is a dead row of sealed doors, dozens of them set into the\nmarble, each with a bronze handle shaped like a lion's head. None opens\nwhen tried, and the corridor between them twists on. Torches in iron\nbrackets have burned down to black stubs. Cold air creeps from the\ncracks around the doors.",
+   "extra_descs": {}
   },
   "1012": {
    "vnum": 1012,
@@ -253,9 +332,18 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 1011,
+     "description": "To the south lies The Gods' Labyrinth."
+    },
+    "north": {
+     "to_room": 1013,
+     "description": "To the north lies The Gods' Labyrinth."
+    }
+   },
+   "description": "The floor tilts gently here, and the walls curve with it, giving the odd\nsense of walking round the inside of a giant shell. Seashells set into\nthe marble in neat spirals glitter in the dim light. A green stain of\nsea-damp runs down the stone, though no sea lies within a hundred\nleagues. Distant thunder shakes loose a thin rain of dust.",
+   "extra_descs": {}
   },
   "1013": {
    "vnum": 1013,
@@ -269,9 +357,28 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 1012,
+     "description": "To the south lies The Gods' Labyrinth."
+    },
+    "north": {
+     "to_room": 1014,
+     "description": "To the north lies The Gods' Labyrinth."
+    },
+    "west": {
+     "to_room": 1099,
+     "description": "To the west lies The Gods' Labyrinth."
+    }
+   },
+   "description": "Statues of tired heroes line this hall, each carved with an expression\nof despair, as if they too had lost their way. Their stone hands are\nheld out palms upward, and some have been snapped off at the wrist. A\nthread of gold wire, long tangled and dull, still trails across the\nfloor. A sound like slow breathing seems to come from the walls.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643903,
+     "max": 1
+    }
+   ]
   },
   "1014": {
    "vnum": 1014,
@@ -289,10 +396,14 @@
     "north": {
      "to_room": 1015,
      "description": "To the north lies Walking the White Marble Streets."
+    },
+    "south": {
+     "to_room": 1013,
+     "description": "To the south lies The Gods' Labyrinth."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
-   "placeholder": true
+   "description": "This last coil of the Labyrinth ends at a tall arch of white marble\nframing a bright street beyond. The walls are smoother here, their\ncarving fresh and sharp, and the air smells of open sky. A path of pale\nflagstones leads north out of the maze. Behind you the passages turn\ndark and secretive again.",
+   "extra_descs": {}
   },
   "1015": {
    "vnum": 1015,
@@ -314,8 +425,14 @@
      "description": "To the south lies The Gods' Labyrinth."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
-   "placeholder": true
+   "description": "A broad avenue of polished white marble leaves the mouth of the\nLabyrinth, shining like a frozen river under the storm light. To the\nsouth the arched maze entrance opens in a wall of stone, and to the\nnorth the street runs on toward a plaza. Slender pillars topped with\ncarved garlands flank the avenue. Thunder rolls over the rooftops, and\nthe scent of ambrosia hangs in the wind.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643902,
+     "max": 1
+    }
+   ]
   },
   "1016": {
    "vnum": 1016,
@@ -341,8 +458,10 @@
      "description": "To the west lies Inside a Demigod's Abode."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The street meets a quiet plaza where a dry fountain stands, its marble\ndolphins worn to blank stumps. To the west a low doorway of green stone\nleads into a demigod's abode, while the avenue runs east between empty\ncolonnades and south back toward the maze. Gilded weather vanes creak on\nthe rooftops. Olive leaves drift across the paving.",
+   "extra_descs": {
+    "fountain dolphins": "The fountain basin is bone dry, and the four marble dolphins at its\ncentre have been worn by wind and rain until they look like sleeping\nfists."
+   }
   },
   "1018": {
    "vnum": 1018,
@@ -362,8 +481,8 @@
      "description": "To the east lies Walking The White Marble Streets."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
-   "placeholder": true
+   "description": "This demigod's lodging is a low, dim hall of green-black stone, its\nwalls hung with the rotted remnants of tapestries. A great round shield\nof bronze, dented and green, is fixed above the fireplace. A broad bed\nof stone stands along one wall with a pillow carved of marble. The only\nway out leads east to the plaza. The air is stale and chilly.",
+   "extra_descs": {}
   },
   "1019": {
    "vnum": 1019,
@@ -385,8 +504,14 @@
      "description": "To the west lies Walking The White Marble Streets."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand west.",
-   "placeholder": true
+   "description": "The street bends between tall white walls inlaid with bands of lapis\nblue. Statues of stern heroes stand in wall niches, most of them missing\nhands or heads. The street runs north toward a wider square and west\nback toward the plaza. A warm wind carries the smell of laurel smoke.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643904,
+     "max": 1
+    }
+   ]
   },
   "1020": {
    "vnum": 1020,
@@ -416,8 +541,14 @@
      "description": "To the west lies Inside an Angel's House."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "A wide square lies before the great cathedral, ringed with cypresses in\nmarble planters. A white house carved with feathers stands to the west,\na demigod's abode opens to the east, and the street runs south, while\nthe cathedral's golden doors rise to the north. The paving is inlaid\nwith a pattern of rays, like a sun carved into the stone. Lightning\nglints off the high gilded roofs.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643902,
+     "max": 1
+    }
+   ]
   },
   "1021": {
    "vnum": 1021,
@@ -435,8 +566,8 @@
      "description": "To the west lies Walking the White Marble Streets."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads west.",
-   "placeholder": true
+   "description": "This demigod's abode is a spacious hall of cream-coloured stone with a\ncracked marble hearth, a curved couch carved from a single block and\nwall niches empty of trophies. Faded frescoes of hunts and games cover\nthe walls. The doorway opens west onto the square. A fine layer of dust\nlies on everything, and the room smells of cold ash.",
+   "extra_descs": {}
   },
   "1022": {
    "vnum": 1022,
@@ -454,8 +585,8 @@
      "description": "To the east lies Walking the White Marble Streets."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads east.",
-   "placeholder": true
+   "description": "The angel's house is a small round chamber of luminous white stone, its\ndomed ceiling carved with slender feathers that overlap like a wing. A\nbare perch is set into the wall beside a basin of clear stone. The door\nopens east to the square. Everything is hushed, and the light seems to\ncome from the stone itself.",
+   "extra_descs": {}
   },
   "1023": {
    "vnum": 1023,
@@ -479,8 +610,8 @@
      "description": "To the south lies Walking the White Marble Streets."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The doorway of the Gods' Cathedral is a deep arch lined with rows of\ncarved winged figures, their faces turned toward the street. Inside the\nentrance a vestibule of cool marble lies hushed beneath a high vaulted\nroof. Bronze lamps hang from chains, all long unlit. The way south leads\nback to the square, and the nave opens to the north.",
+   "extra_descs": {}
   },
   "1024": {
    "vnum": 1024,
@@ -504,8 +635,8 @@
      "description": "To the up lies On Top of The Gods Table."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead south and up.",
-   "placeholder": true
+   "description": "The nave of the Gods' Cathedral is vast, a hall of pillars so tall that\ntheir capitals vanish in a haze of cloud-coloured light. Rows of empty\nbenches face a great flight of white steps. At the top of the steps the\nGods' Table spreads like a stone plateau, bare and silent. The vestibule\nlies south of here, and the echoes of your own steps return like distant\napplause.",
+   "extra_descs": {}
   },
   "1025": {
    "vnum": 1025,
@@ -527,8 +658,10 @@
      "description": "To the down lies Inside The Gods Cathedral."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and down.",
-   "placeholder": true
+   "description": "You stand atop the Gods' Table itself, a slab of white marble as broad\nas a meadow and open to a thunder-filled sky. Here the Olympians once\nfeasted, and the places along its rim are still marked by carved cups\nthe size of cauldrons. Steps lead down into the cathedral below, and a\nwinged throne stands to the east. The wind smells of ambrosia and\nscorched air.",
+   "extra_descs": {
+    "cups table rim": "The carved cups along the rim of the Table are each large enough to\nbathe in. Deep inside every one lies a faint gold stain, the last of the\nnectar."
+   }
   },
   "1026": {
    "vnum": 1026,
@@ -550,8 +683,14 @@
      "description": "To the west lies On Top of The Gods Table."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nwest.",
-   "placeholder": true
+   "description": "The throne of Hermes is a light seat of white marble, its arms carved\nlike wings swept back for flight. Stone sandals are set into the plinth\nat its foot. The Table stretches west toward the great stairs, and a\npath runs north along its rim toward another throne. Wind tugs at your\nclothes, and lightning flashes along the horizon.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643902,
+     "max": 1
+    }
+   ]
   },
   "1027": {
    "vnum": 1027,
@@ -573,8 +712,8 @@
      "description": "To the west lies Crossing the Gods' Table."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nsouth and west.",
-   "placeholder": true
+   "description": "Apollo's throne is a high seat of white marble fronted by a great\nsunburst of beaten gold, dulled now by weather. The strings of a lyre\nare carved along the armrests, one of them cracked clean through. The\npath leads back south to the throne of Hermes and west along the Table\ninto a roofed stretch. The light has a warm, honeyed quality here, even\nbeneath the storm.",
+   "extra_descs": {}
   },
   "1028": {
    "vnum": 1028,
@@ -592,10 +731,14 @@
     "west": {
      "to_room": 1029,
      "description": "To the west lies Upon Aphrodite's Throne."
+    },
+    "east": {
+     "to_room": 1027,
+     "description": "To the east lies Upon Apollo's Throne."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
-   "placeholder": true
+   "description": "A roofed stretch of the Gods' Table passes through a gallery of rose-\ncoloured columns, its ceiling painted with pale doves. The table runs on\nwest toward a throne of pink stone. Carved bowls line its surface, each\nrimmed with dried gold. The air is warm, perfumed and strangely close.",
+   "extra_descs": {}
   },
   "1029": {
    "vnum": 1029,
@@ -611,10 +754,20 @@
     "north": {
      "to_room": 1030,
      "description": "To the north lies Upon Artemis's Throne."
+    },
+    "east": {
+     "to_room": 1028,
+     "description": "To the east lies Crossing the Gods' Table."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. A way leads north.",
-   "placeholder": true
+   "description": "Aphrodite's throne is a shell of pink-veined marble, its curved back\ncarved with roses and doves. Stone petals lie scattered in drifts around\nthe seat. The table turns north toward another throne. A heady fragrance\nof rose and myrrh clings to the stone, sweet beneath the sharper tang of\nozone.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643904,
+     "max": 1
+    }
+   ]
   },
   "1030": {
    "vnum": 1030,
@@ -630,10 +783,20 @@
     "east": {
      "to_room": 1031,
      "description": "To the east lies Crossing The Gods' Table."
+    },
+    "south": {
+     "to_room": 1029,
+     "description": "To the south lies Upon Aphrodite's Throne."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. A way leads east.",
-   "placeholder": true
+   "description": "Artemis's throne is a seat of pale silver-white stone, its back shaped\nlike a crescent moon. A frieze of running hounds and arrows wraps the\nplinth. The table runs east from here along a line of low pillars. A\ncold, clean wind sighs among the pillars, smelling of pine and rain.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643902,
+     "max": 1
+    }
+   ]
   },
   "1031": {
    "vnum": 1031,
@@ -649,10 +812,14 @@
     "east": {
      "to_room": 1032,
      "description": "To the east lies Upon Dionysus's Throne."
+    },
+    "west": {
+     "to_room": 1030,
+     "description": "To the west lies Upon Artemis's Throne."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads east.",
-   "placeholder": true
+   "description": "The Gods' Table narrows here to a stately ribbon of marble, wide enough\nfor six to walk abreast. Its surface is scored with the long-dried\nstains of spilled wine. The way runs east toward a throne draped in\ncarved ivy. Thunder cracks overhead, and a few fat drops of rain strike\nthe stone.",
+   "extra_descs": {}
   },
   "1032": {
    "vnum": 1032,
@@ -668,10 +835,14 @@
     "north": {
      "to_room": 1033,
      "description": "To the north lies Upon Hephaestus's Throne."
+    },
+    "west": {
+     "to_room": 1031,
+     "description": "To the west lies Crossing The Gods' Table."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. A way leads north.",
-   "placeholder": true
+   "description": "Dionysus's throne is a tangle of carved vines in dark green marble, with\ngrapes the size of fists hanging from its arms. Wine-dark stains seep\ninto the plinth and never quite dry. The table turns north from this\nseat. The air smells of crushed grapes and the sweet sourness of ancient\nfeasts.",
+   "extra_descs": {}
   },
   "1033": {
    "vnum": 1033,
@@ -687,10 +858,14 @@
     "west": {
      "to_room": 1034,
      "description": "To the west lies Crossing the Gods' Table."
+    },
+    "south": {
+     "to_room": 1032,
+     "description": "To the south lies Upon Dionysus's Throne."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads west.",
-   "placeholder": true
+   "description": "Hephaestus's throne is forged rather than carved, a seat of black iron\nand bronze set into the marble with a great anvil for its back. Soot\nstains the stone around it, and a rack of stone tongs and hammers is\nfixed to the plinth. The table runs west into a roofed gallery. A faint\nwarmth rises from the metal, as if a forge still burned somewhere\nbeneath.",
+   "extra_descs": {}
   },
   "1034": {
    "vnum": 1034,
@@ -708,10 +883,14 @@
     "west": {
      "to_room": 1035,
      "description": "To the west lies Before Athena's Throne."
+    },
+    "east": {
+     "to_room": 1033,
+     "description": "To the east lies Upon Hephaestus's Throne."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads west.",
-   "placeholder": true
+   "description": "Here the Gods' Table passes inside a pillared hall of grey-veined stone,\nits ceiling hung with carved owls and olive branches. Marble cups the\nsize of buckets line the board. The table leads west toward a throne of\npale stone. The hall is cool and quiet, and the thunder is only a\nmurmur.",
+   "extra_descs": {}
   },
   "1035": {
    "vnum": 1035,
@@ -729,10 +908,14 @@
     "north": {
      "to_room": 1036,
      "description": "To the north lies Upon Demeter's Throne."
+    },
+    "east": {
+     "to_room": 1034,
+     "description": "To the east lies Crossing the Gods' Table."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "Before Athena's throne stands a tall, helm-crowned seat of white marble,\nits back wrought in the shape of a great shield. A carved owl perches on\nthe headrest, its eyes of dull glass staring. Spears and scrolls are cut\ninto the plinth in careful order. The table turns north from here, and\nthe room smells of wax, ink and old bronze.",
+   "extra_descs": {}
   },
   "1036": {
    "vnum": 1036,
@@ -750,10 +933,14 @@
     "east": {
      "to_room": 1037,
      "description": "To the east lies Crossing the Gods' Table."
+    },
+    "south": {
+     "to_room": 1035,
+     "description": "To the south lies Before Athena's Throne."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "Demeter's throne is woven from carved wheat in golden stone, with\nsheaves bending along the backrest. Dry husks and petals lie in drifts\nacross the floor, though nothing grows here. The table runs east from\nthe seat. The air is thick with the ghost of warm bread and dry earth.",
+   "extra_descs": {}
   },
   "1037": {
    "vnum": 1037,
@@ -771,10 +958,14 @@
     "east": {
      "to_room": 1038,
      "description": "To the east lies Upon Ares' Throne."
+    },
+    "west": {
+     "to_room": 1036,
+     "description": "To the west lies Upon Demeter's Throne."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "A low arcade lined with iron torch-brackets crosses this stretch of the\ntable, its floor scuffed by heavy boots. Spear racks of marble stand\nagainst the wall, empty. The table runs east toward a seat of dark red\nstone. A metallic smell hangs in the air, and the stone feels oddly\nwarm.",
+   "extra_descs": {}
   },
   "1038": {
    "vnum": 1038,
@@ -792,10 +983,14 @@
     "north": {
      "to_room": 1039,
      "description": "To the north lies Upon Poseidon's Throne."
+    },
+    "west": {
+     "to_room": 1037,
+     "description": "To the west lies Crossing the Gods' Table."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
-   "placeholder": true
+   "description": "Ares' throne is a brutal seat of red-black stone, its arms carved as\nclenched fists and its back set with a hundred stone spearheads. Great\ngouges mark the floor, as if blades had been dragged across it in anger.\nThe table turns north from here. A smell of iron and sweat lingers, and\nthe silence seems to wait for a fight.",
+   "extra_descs": {}
   },
   "1039": {
    "vnum": 1039,
@@ -813,10 +1008,14 @@
     "west": {
      "to_room": 1040,
      "description": "To the west lies At the Head of The Gods' Table."
+    },
+    "south": {
+     "to_room": 1038,
+     "description": "To the south lies Upon Ares' Throne."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "Poseidon's throne rises like a wave frozen at its crest, carved from\nblue-green marble with a trident-shaped crack through its back. The\nfloor around it is damp, though no water seeps in. The table runs west\ntoward the head of the feast. Briny air, sea-cold and sharp, hangs in\nthe hall.",
+   "extra_descs": {}
   },
   "1040": {
    "vnum": 1040,
@@ -838,10 +1037,20 @@
     "west": {
      "to_room": 1041,
      "description": "To the west lies Upon Hera's Throne."
+    },
+    "east": {
+     "to_room": 1039,
+     "description": "To the east lies Upon Poseidon's Throne."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The Gods' Table ends in a wide hall at its head, where the greatest\nseats face the length of the feast. A broad arch leads north to the\nthrone of the king of the gods, and a smaller one opens west to his\nqueen's seat. The ceiling is lost in shadow, and the floor is inlaid\nwith a pattern of lightning in gold. Every footstep rings.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643906,
+     "max": 1
+    }
+   ]
   },
   "1041": {
    "vnum": 1041,
@@ -861,8 +1070,8 @@
      "description": "To the east lies At the Head of The Gods' Table."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "Hera's throne is a seat of ivory-white marble crowned with a carved\ndiadem of peacock feathers. Fine drapes of stone fall from its canopy,\ncut with such skill that they seem to move. The only way out is back\neast to the head of the Table. The room is cold and formal, and the\nfaint scent of lilies lingers.",
+   "extra_descs": {}
   },
   "1042": {
    "vnum": 1042,
@@ -880,10 +1089,16 @@
     "north": {
      "to_room": 1043,
      "description": "To the north lies The Tomb of Kronos, Lord of the Titans."
+    },
+    "south": {
+     "to_room": 1040,
+     "description": "To the south lies At the Head of The Gods' Table."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "Zeus's mighty throne towers over the hall, a seat of white marble twice\nthe height of a man, its arms carved as eagles' wings. Blackened scars\nrun across the steps where lightning once struck and gathered. A narrow\ndoorway of dark stone opens north behind the seat into a place of old\nsilence. The air tingles, and the hairs on your neck rise.",
+   "extra_descs": {
+    "scars steps lightning": "The scars on the steps are fused glass, black and glossy, shaped like\nbranching rivers. They are still faintly warm."
+   }
   },
   "1043": {
    "vnum": 1043,
@@ -897,9 +1112,23 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 1042,
+     "description": "To the south lies Upon Zeus's Mighty Throne."
+    }
+   },
+   "description": "The tomb is a low vault of black stone, cold as a winter well, where the\ntitan lord was bound after the war. Great chains as thick as a man's\nbody run from the walls to a ring set in the floor. The air smells of\ndamp earth and iron, and a slow pulse seems to beat in the rock. Faded\nrunes cover the walls in rings, each one cut deeper than the last.",
+   "look": "crypt",
+   "extra_descs": {
+    "chains ring runes": "The chains are forged from a dull grey metal that sheds frost when\ntouched. The runes spiral inward toward the ring, repeating a single\nword of binding."
+   },
+   "mob_resets": [
+    {
+     "vnum": 643907,
+     "max": 1
+    }
+   ]
   },
   "1044": {
    "vnum": 1044,
@@ -921,8 +1150,10 @@
      "description": "To the south lies Traversing The Great Valley."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead north and south.",
-   "placeholder": true
+   "description": "The old road climbs out of the foothills here and passes between two\nweathered marble pillars into the Great Valley. Back to the north the\nroad runs open and clear down toward the Great Forest of MiNar, whose\ndark canopy shows faintly through the haze. South of the pillars the\nvalley lies spread out, pale and enormous beneath a bruised sky. A\ncarved lintel across the pillars is cracked by frost.",
+   "extra_descs": {
+    "pillars pillar lintel": "Two marble pillars stand at the valley mouth, joined by a lintel carved\nwith a procession of robed figures. Frost has split the lintel, and the\nfigures have lost their faces."
+   }
   },
   "1045": {
    "vnum": 1045,
@@ -944,8 +1175,14 @@
      "description": "To the south lies Traversing The Great Valley."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "The valley opens wide here, ringed by cliffs of gleaming white rock that\ncatch every flicker of the storm. The road runs north toward the\nvalley's mouth and south deeper into the high basin. Broken paving\nstones show where a grander avenue once ran, and a lone cypress leans\nover the verge.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643901,
+     "max": 1
+    }
+   ]
   },
   "1046": {
    "vnum": 1046,
@@ -971,8 +1208,14 @@
      "description": "To the west lies Traversing The Great Valley."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Pale dust lies deep on the valley road, rutted by the wheels of chariots\nfrom some forgotten procession. The road runs north toward the valley's\nmouth and south to a junction of paths, while a narrow track bends west\ninto a small side hollow. Poppies grow thick in the ditches, startlingly\nred against the white stone.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643900,
+     "max": 1
+    }
+   ]
   },
   "1047": {
    "vnum": 1047,
@@ -990,8 +1233,8 @@
      "description": "To the east lies Traversing The Great Valley."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. A way leads east.",
-   "placeholder": true
+   "description": "A small hollow opens off the valley road, floored with cracked mosaic\ntiles whose pictures have faded to ghosts of blue and gold. A dry\nfountain basin sits in the middle with a stone spout worn smooth. The\nonly way out is back east to the road. The wind makes a low humming\namong the broken tiles.",
+   "extra_descs": {}
   },
   "1048": {
    "vnum": 1048,
@@ -1017,8 +1260,8 @@
      "description": "To the south lies Traversing The Great Valley."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Three paths meet where a stream once ran, its bed now a ribbon of white\npebbles. To the north the way climbs gently toward the valley mouth, to\nthe east it follows a rocky shelf, and to the south it drops toward a\nroofed crossing of tall pillars. A thin keening cry echoes off the\ncliffs and dies away.",
+   "extra_descs": {}
   },
   "1049": {
    "vnum": 1049,
@@ -1050,8 +1293,8 @@
      "description": "To the west lies Traversing The Great Valley."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four marble porticoes meet beneath a single great domed roof held up by\na ring of fluted columns. Daylight falls through a round opening in the\ndome onto a star inlaid in gold and black stone. Archways lead north\ntoward the pebbly stream bed, east into a small court, south along a\ncolonnade and west to a steep track. Faint thunder shakes dust from the\ncornice.",
+   "extra_descs": {}
   },
   "1050": {
    "vnum": 1050,
@@ -1073,8 +1316,10 @@
      "description": "To the west lies Traversing The Great Valley."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead north and west.",
-   "placeholder": true
+   "description": "A long shelf of bare rock carries the path, with a fall of loose scree\non one hand and the mountain wall on the other. Lightning-scarred pines\ncling to cracks in the stone. The path runs north to a patch of thyme\nand west toward a larger meeting of ways. A line of weathered marble\nmilestones, carved with letters no one reads now, marks the edge of the\ndrop.",
+   "extra_descs": {
+    "milestones milestone letters": "Each milestone carries a column of letters in an ancient script, rubbed\nnearly smooth by wind. A few still show a single repeated sign, a bolt\nof lightning."
+   }
   },
   "1051": {
    "vnum": 1051,
@@ -1096,8 +1341,14 @@
      "description": "To the south lies Traversing The Great Valley."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead east and south.",
-   "placeholder": true
+   "description": "Banks of wild thyme grow between toppled columns here, and the heat hums\nwith bees. The path leads east toward a crossing and turns south down a\ngentle slope of loose stone. High above, the peak is hidden in a crown\nof storm cloud lit from within by pale flashes.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643900,
+     "max": 1
+    }
+   ]
   },
   "1052": {
    "vnum": 1052,
@@ -1123,8 +1374,10 @@
      "description": "To the west lies Traversing The Great Valley."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead north,\nsouth and west.",
-   "placeholder": true
+   "description": "Three ways cross in the long shadow of the mountain, where scree and\npale grass crowd the broken paving. The path runs north toward the foot\nof the great stairs, south into a hollow of the valley, and west along\nthe slope. A shattered plinth stands in the middle of the crossing, its\nfigure long gone.",
+   "extra_descs": {
+    "plinth pedestal": "The plinth is a block of white marble taller than a man. Only a pair of\ncarved stone feet remains on top, as if the god it held simply stepped\naway."
+   }
   },
   "1053": {
    "vnum": 1053,
@@ -1146,8 +1399,14 @@
      "description": "To the south lies Traversing The Great Valley."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead east and south.",
-   "placeholder": true
+   "description": "The valley floor is paved here with cracked white flags, and the great\nstairs stand close by to the east, pale against the mountain. Wind\ncarries a hint of ambrosia down from the heights. The path bends south\nalong a dry watercourse filled with fallen marble blocks. Thunder\nmutters from clouds that never quite leave the peaks.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643901,
+     "max": 1
+    }
+   ]
   },
   "1054": {
    "vnum": 1054,
@@ -1165,8 +1424,8 @@
      "description": "To the north lies Traversing The Great Valley."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. A way leads north.",
-   "placeholder": true
+   "description": "The valley narrows into a blind hollow walled by sheer grey rock\nstreaked with white veins of marble. Nothing grows here but wiry\nthistles, and the only way out is the path back north. An old altar\nslab, split down the middle by lightning, lies half buried in the\ngravel. The air is still and warm and tastes of dust and honey.",
+   "extra_descs": {}
   },
   "1055": {
    "vnum": 1055,
@@ -1184,8 +1443,14 @@
      "description": "To the west lies Traversing The Great Valley."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. A way leads west.",
-   "placeholder": true
+   "description": "A small walled court lies off the pillared crossing, paved in squares of\nrose and white marble and overgrown with creeping vines. A stone bench\nfaces a mural of cloud-borne chariots, flaking away in great patches.\nThe only way out is back west under the domed roof. The scent of old\nambrosia hangs in the still air, thick and sweet.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643900,
+     "max": 1
+    }
+   ]
   },
   "1056": {
    "vnum": 1056,
@@ -1211,8 +1476,8 @@
      "description": "To the south lies Traversing The Great Valley."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead north,\neast and south.",
-   "placeholder": true
+   "description": "A colonnade runs along the foot of the cliff, its columns leaning at odd\nangles from the tremors of ages. To the north it ends at the domed\ncrossing, to the east a stony path winds off along the valley floor, and\nto the south the colonnade falls away into a narrow gully. Grey cloud\nslides across the peaks. A fallen capital carved with acanthus leaves\nlies in the way.",
+   "extra_descs": {}
   },
   "1057": {
    "vnum": 1057,
@@ -1234,8 +1499,8 @@
      "description": "To the east lies Traversing The Great Valley."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead north and east.",
-   "placeholder": true
+   "description": "A steep track begins at the edge of the domed crossing, with rough steps\ncut into the living rock. It climbs north up the slope, while the\npillared roof lies back to the east. Wild rosemary spills over the edges\nof the steps. Scorch marks on the rock tell of lightning strikes that\nfell here long ago.",
+   "extra_descs": {}
   },
   "1058": {
    "vnum": 1058,
@@ -1253,8 +1518,8 @@
      "description": "To the north lies Traversing The Great Valley."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. A way leads north.",
-   "placeholder": true
+   "description": "The gully is choked with fallen marble, huge white blocks wedged between\nthe cliff walls like the pieces of a dropped toy. Ferns grow in the damp\nshade between them. The only path leads back north to the colonnade.\nSomewhere inside the heap a draught whistles through a hollow.",
+   "extra_descs": {}
   },
   "1059": {
    "vnum": 1059,
@@ -1276,8 +1541,8 @@
      "description": "To the west lies Traversing The Great Valley."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead east and west.",
-   "placeholder": true
+   "description": "The path squeezes between two shoulders of pale rock that gleam like wet\nbone. Water seeps down the cliff and gathers in a clear pool beside the\ntrack. West lies the leaning colonnade, and east the path continues past\na spill of boulders. Thunder echoes in the narrow place like a drum.",
+   "extra_descs": {}
   },
   "1060": {
    "vnum": 1060,
@@ -1299,8 +1564,18 @@
      "description": "To the west lies Traversing The Great Valley."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. Ways lead north and west.",
-   "placeholder": true
+   "description": "A bend in the valley wall opens a wider view of the high basin, with\nsilver threads of waterfall far off on the cliffs. The path turns north\nup a stony rise and west back toward the pool. Brittle grass hisses in\nthe wind, and small blue flowers grow where the stones stay damp.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643900,
+     "max": 1
+    },
+    {
+     "vnum": 643901,
+     "max": 1
+    }
+   ]
   },
   "1061": {
    "vnum": 1061,
@@ -1318,8 +1593,8 @@
      "description": "To the south lies Traversing The Great Valley."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. A way leads south.",
-   "placeholder": true
+   "description": "The path ends on a small windy terrace overlooking the whole sweep of\nthe valley. A ring of low marble posts, once linked by chains, marks\nwhere pilgrims used to rest and pray. Heat shimmers on the stones, and\nthe place feels watched from above. The only way back is south down the\nstony rise.",
+   "extra_descs": {}
   },
   "1062": {
    "vnum": 1062,
@@ -1341,8 +1616,8 @@
      "description": "To the west lies Traversing The Great Valley."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead south\nand west.",
-   "placeholder": true
+   "description": "The ridge track levels onto a broad bench of rock with a clear view over\nthe pale valley floor. South the track drops back to the pillared\ncrossing, and west it goes on through a notch in the stone. Gnarled\njunipers grow from the cracks, twisted by the winds. A cairn of white\nstones stands at the edge, built by some forgotten traveller.",
+   "extra_descs": {}
   },
   "1063": {
    "vnum": 1063,
@@ -1368,8 +1643,8 @@
      "description": "To the south lies Traversing The Great Valley."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The track forks in a bowl of tumbled rock, with a flat boulder carved\nwith a fading spiral in the middle of the junction. A gentler path runs\non north, a rough way winds down to the south, and the bench above the\nvalley lies back east. The air here is cooler and smells of wet stone\nand sage.",
+   "extra_descs": {}
   },
   "1064": {
    "vnum": 1064,
@@ -1387,8 +1662,14 @@
      "description": "To the south lies Traversing The Great Valley."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. A way leads\nsouth.",
-   "placeholder": true
+   "description": "A narrow shelf of rock hangs over a long drop, ending at a ledge where\nthe wind is fierce enough to push at your cloak. Far below, the valley\nfloor is a pattern of paler and darker stone, split by the old stream\nbed. The only way out is the path back south. Lightning flickers in the\ncloud at eye level, and the hair on your arms rises.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 643900,
+     "max": 1
+    }
+   ]
   },
   "1065": {
    "vnum": 1065,
@@ -1406,8 +1687,10 @@
      "description": "To the north lies Traversing The Great Valley."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. A way leads north.",
-   "placeholder": true
+   "description": "A cleft in the rock holds a shrine no bigger than a cupboard, its marble\ngod long since carried off or broken. Dry laurel leaves lie heaped in\nthe alcove. The only way back leads north to the fork in the track. Wind\nwhispers in the cleft with something very like a voice.",
+   "extra_descs": {
+    "shrine alcove laurel": "The alcove is empty but for a worn footprint in the stone where the\ngod's statue once stood. Someone has left fresh-looking laurel leaves in\na ring around it."
+   }
   },
   "1099": {
    "vnum": 1099,
@@ -1421,12 +1704,430 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "east": {
+     "to_room": 1013,
+     "description": "To the east lies The Gods' Labyrinth."
+    }
+   },
+   "description": "A hidden chamber stands apart from the winding ways, its walls thick\nwith soot and its floor strewn with shards of broken pottery. A great\naltar of black stone fills one end, grooved with channels for offerings.\nFaded paintings on the wall show a king feeding youths into the maze.\nThe air is heavy with the cold of a place where hope was lost.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "643900": {
+   "vnum": 643900,
+   "name": "harpy winged hag",
+   "short_desc": "a bronze-clawed harpy",
+   "long_desc": "A bronze-clawed harpy circles overhead, shrieking and eyeing you hungrily.",
+   "description": "She has the body of a vulture and the withered face of an old woman,\nwith talons that glint like new bronze. Her feathers are stained with\nsoot and the gold dust of the empty high places.",
+   "level": 8,
+   "alignment": -300,
+   "hp_dice": "8d8+134",
+   "damage_dice": "3d6+4",
+   "armor_class": 68,
+   "exp": 460,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 743900,
+     "chance": 20
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "643901": {
+   "vnum": 643901,
+   "name": "lion golden maned",
+   "short_desc": "a golden-maned lion",
+   "long_desc": "A golden-maned lion paces the stones, its hide shimmering like beaten metal.",
+   "description": "A lion of the old mountain kind, huge and tawny, its mane shining as\nthough dusted with gold. Its claws leave grooves in the white stone as\nit walks.",
+   "level": 9,
+   "alignment": 0,
+   "hp_dice": "9d8+102",
+   "damage_dice": "3d6+4",
+   "armor_class": 70,
+   "exp": 515,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "643902": {
+   "vnum": 643902,
+   "name": "marble guard sentinel statue",
+   "short_desc": "a living marble guard",
+   "long_desc": "A living marble guard stands rigid at its post, spear leveled at the unwary.",
+   "description": "A towering warrior carved of white stone, with blank eyes and a\nhoplite's crest. It moves with a grinding slowness, but each swing of\nits spear lands like a falling column.",
+   "level": 11,
+   "alignment": 0,
+   "hp_dice": "11d8+181",
+   "damage_dice": "3d6+9",
+   "armor_class": 59,
+   "exp": 625,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 743901,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "643903": {
+   "vnum": 643903,
+   "name": "minotaur bull beast",
+   "short_desc": "a snorting minotaur",
+   "long_desc": "A snorting minotaur stalks the passages, its horns scraping the marble walls.",
+   "description": "A hulking man with the head of a bull, slick with sweat and wild with\nrage. Its horns are chipped from a thousand blows against stone, and its\nbreath steams in the cold.",
+   "level": 12,
+   "alignment": -400,
+   "hp_dice": "12d8+198",
+   "damage_dice": "4d6+7",
+   "armor_class": 56,
+   "exp": 680,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 743901,
+     "chance": 12
+    },
+    {
+     "vnum": 743902,
+     "chance": 18
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "643904": {
+   "vnum": 643904,
+   "name": "chimera lion goat serpent",
+   "short_desc": "a storm chimera",
+   "long_desc": "A storm chimera prowls the white streets, a snake-tail lashing behind it.",
+   "description": "A beast of three bodies, with a lion's head, a goat's head along its\nspine and a serpent for a tail. Sparks crackle along its mane, and it\nsmells of burnt hair.",
+   "level": 15,
+   "alignment": -500,
+   "hp_dice": "15d8+249",
+   "damage_dice": "4d6+12",
+   "armor_class": 47,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 743902,
+     "chance": 25
+    },
+    {
+     "vnum": 743900,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "643905": {
+   "vnum": 643905,
+   "name": "gorgon snake-haired stone",
+   "short_desc": "a snake-haired gorgon",
+   "long_desc": "A snake-haired gorgon lurks in the dim passages, her hissing locks writhing.",
+   "description": "A lean, scaled woman whose hair is a mass of living snakes. Fragments of\nstatues lie in the dust around her feet, still frozen in the shape of\nfear.",
+   "level": 15,
+   "alignment": -500,
+   "hp_dice": "15d8+249",
+   "damage_dice": "4d6+12",
+   "armor_class": 47,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 743902,
+     "chance": 30
+    },
+    {
+     "vnum": 743901,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "643906": {
+   "vnum": 643906,
+   "name": "talos bronze guardian giant",
+   "short_desc": "Talos, Bronze Guardian of the Thrones",
+   "long_desc": "Talos, Bronze Guardian of the Thrones, stands in the arch, his bronze limbs glowing with inner heat.",
+   "description": "A giant of living bronze, his single vein running with molten gold\nbehind a nail at his ankle. He turns his helmed head slowly toward you,\nand the whole hall rings with each step he takes.",
+   "level": 16,
+   "alignment": 0,
+   "hp_dice": "16d8+267",
+   "damage_dice": "5d6+10",
+   "armor_class": 44,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 743903,
+     "chance": 35
+    },
+    {
+     "vnum": 743902,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "643907": {
+   "vnum": 643907,
+   "name": "hyperion titan chained",
+   "short_desc": "Hyperion, the Chained Titan",
+   "long_desc": "Hyperion, the Chained Titan, strains against his bonds, his eyes blazing like twin suns.",
+   "description": "A titan of the elder race, so tall that his head brushes the vault of\nthe tomb. Great chains bind his limbs, yet he drags against them, and\nthe stone trembles with every pull.",
+   "level": 17,
+   "alignment": -200,
+   "hp_dice": "17d8+285",
+   "damage_dice": "5d6+11",
+   "armor_class": 41,
+   "exp": 955,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 743904,
+     "chance": 35
+    },
+    {
+     "vnum": 743903,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "743900": {
+   "vnum": 743900,
+   "name": "cloak feather harpy",
+   "short_desc": "a cloak of harpy feathers",
+   "room_desc": "A cloak of dark harpy feathers lies here.",
+   "description": "Dark, glossy feathers are sewn in overlapping rows onto a light grey cloth. It rustles in even a faint breeze.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 8,
+   "wear_slot": "about",
+   "armor": 1,
+   "weight": 3,
+   "value": 190
+  },
+  "743901": {
+   "vnum": 743901,
+   "name": "aegis shield marble round",
+   "short_desc": "a marble-faced aegis",
+   "room_desc": "A round shield faced with white marble lies here.",
+   "description": "A round bronze shield faced with a thin slab of white marble. A snarling face is carved at its centre.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 11,
+   "wear_slot": "shield",
+   "armor": 3,
+   "weight": 6,
+   "value": 250,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "743902": {
+   "vnum": 743902,
+   "name": "labrys axe double bronze",
+   "short_desc": "a double-bladed labrys",
+   "room_desc": "A double-bladed bronze labrys lies here.",
+   "description": "A heavy axe with a crescent blade on either side of its haft. Maze patterns are etched along the bronze.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 14,
+   "damage_dice": "2d5",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 390,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "743903": {
+   "vnum": 743903,
+   "name": "greaves bronze talos",
+   "short_desc": "greaves of living bronze",
+   "room_desc": "A pair of bronze greaves lies here, warm to the touch.",
+   "description": "Greaves of golden bronze that stay faintly warm. Fine channels run through the metal like veins.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 16,
+   "wear_slot": "legs",
+   "armor": 3,
+   "weight": 3,
+   "value": 350,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  },
+  "743904": {
+   "vnum": 743904,
+   "name": "maul titan sundering hammer",
+   "short_desc": "the Sundering Maul of the titans",
+   "room_desc": "An enormous stone maul lies here, rimmed with frost.",
+   "description": "A maul with a head of black stone, cold enough to numb the hand, and a haft bound in links of broken chain. It was made for a hand far larger than yours.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 17,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 465,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

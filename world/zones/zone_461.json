@@ -16,9 +16,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "up": {
+     "to_room": 10811,
+     "description": "To the up lies Entrance to the Undertombs."
+    },
+    "south": {
+     "to_room": 10801,
+     "description": "To the south lies The Tombs of Atuan."
+    }
+   },
+   "description": "Cold air breathes against your face in a low vault of black stone, and\nyour footsteps come back to you a heartbeat late. Rows of burial niches\nline the walls, each sealed with a slab carved with the same watching\neye. Dust lies undisturbed on the floor, except for one long groove\nwhere something once dragged itself. The silence here is attentive, as\nthough the dead were listening.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10801": {
    "vnum": 10801,
@@ -32,9 +42,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10800,
+     "description": "To the north lies The Tombs of Atuan."
+    },
+    "south": {
+     "to_room": 10802,
+     "description": "To the south lies The Tombs of Atuan."
+    }
+   },
+   "description": "A tall vault of fitted stone block rises into shadow here, its pillars\ncarved with hooded figures who press both hands over their eyes. A\nsingle lamp-niche still holds a crust of black tallow. The walls sweat a\nslow, cold damp that gathers in dark beads and runs down in thin lines.\nSomewhere deeper in the tombs, water drips with the patience of\ncenturies.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10802": {
    "vnum": 10802,
@@ -48,9 +68,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10801,
+     "description": "To the north lies The Tombs of Atuan."
+    },
+    "south": {
+     "to_room": 10803,
+     "description": "To the south lies The Tombs of Atuan."
+    }
+   },
+   "description": "Broken sarcophagi sprawl across the floor of this chamber, their lids\ncracked and slid aside to show empty hollows lined with rotted velvet.\nScraps of bronze and bone crunch underfoot. Faded sigils crawl across\nthe ceiling in spirals, and the air tastes of cold ash. You feel unseen\neyes settle on the back of your neck.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10803": {
    "vnum": 10803,
@@ -64,9 +94,25 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10802,
+     "description": "To the north lies The Tombs of Atuan."
+    },
+    "south": {
+     "to_room": 10804,
+     "description": "To the south lies The Tombs of Atuan."
+    }
+   },
+   "description": "Spider silk drapes this crypt in grey curtains, thick as cloth and\nsagging under the weight of dust. Between the strands you glimpse a long\nstone table scored with channels, and shallow bowls stained dark. The\nfloor is gritty with the husks of dead insects. Every sound you make is\nswallowed by the webs.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646101,
+     "max": 1
+    }
+   ]
   },
   "10804": {
    "vnum": 10804,
@@ -80,9 +126,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10803,
+     "description": "To the north lies The Tombs of Atuan."
+    },
+    "south": {
+     "to_room": 10805,
+     "description": "To the south lies The Tombs of Atuan."
+    }
+   },
+   "description": "A pool of black water fills the middle of the vault, perfectly still and\nperfectly clear, reflecting the roof so exactly that it seems a second\nchamber lies beneath. Narrow ledges of wet stone run around its edge,\nworn by the feet of long-dead mourners. A chill rises from the surface\nand clings to your skin. Smudged handprints mark the walls at shoulder\nheight.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10805": {
    "vnum": 10805,
@@ -96,9 +152,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10804,
+     "description": "To the north lies The Tombs of Atuan."
+    },
+    "south": {
+     "to_room": 10806,
+     "description": "To the south lies The Tombs of Atuan."
+    }
+   },
+   "description": "Pillars like fat stone trunks crowd this hall, each carved with the name\nof a long-dead priestess in letters older than any tongue of the realm.\nThe floor is a mosaic of black and bone-white tiles, many cracked, laid\nin the spiral of a great eye. A thin draught carries a whisper that\nmight be words or only wind in the stone.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10806": {
    "vnum": 10806,
@@ -112,9 +178,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10805,
+     "description": "To the north lies The Tombs of Atuan."
+    },
+    "south": {
+     "to_room": 10807,
+     "description": "To the south lies The Tombs of Atuan."
+    }
+   },
+   "description": "Part of the roof has fallen here, and a heap of tumbled slabs and earth\nfills one end of the vault, spilling bones across the floor. Shards of\npainted pottery lie among them, still bright with ochre and indigo. Dust\nhangs in the air, motionless. The walls lean, and you step softly,\nafraid to wake the stone.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10807": {
    "vnum": 10807,
@@ -128,9 +204,25 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10806,
+     "description": "To the north lies The Tombs of Atuan."
+    },
+    "south": {
+     "to_room": 10808,
+     "description": "To the south lies The Tombs of Atuan."
+    }
+   },
+   "description": "A low gallery of niches runs around this chamber, each holding a skull\non a little shelf, jaws gaping. Dried flowers, brown and brittle as\npaper, lie at their bases as if placed by hand a thousand years ago. A\nbrazier of rusted iron stands cold in the middle of the floor. The air\nis still and tastes of old incense.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646100,
+     "max": 1
+    }
+   ]
   },
   "10808": {
    "vnum": 10808,
@@ -144,9 +236,19 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10807,
+     "description": "To the north lies The Tombs of Atuan."
+    },
+    "south": {
+     "to_room": 10809,
+     "description": "To the south lies The Tombs of Atuan."
+    }
+   },
+   "description": "Four stone statues of hooded women ring this crypt, their faces worn\nsmooth, their arms outstretched toward the centre with the palms turned\nup. A shallow bowl of stone between them is crusted with something\nblack. The chill is deeper here than elsewhere in the tombs, and your\nbreath turns to pale smoke that hangs before you.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10809": {
    "vnum": 10809,
@@ -160,9 +262,25 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10808,
+     "description": "To the north lies The Tombs of Atuan."
+    },
+    "west": {
+     "to_room": 10810,
+     "description": "To the west lies The Painted Room."
+    }
+   },
+   "description": "Heavy iron bands bind a great stone door set in the far wall of this\nvault, its surface carved with rows of weeping masks. Soot stains the\nroof where lamps once burned. Splintered coffin wood is stacked against\nthe walls like firewood for a funeral. The stone seems to hum faintly\nunder your feet.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646101,
+     "max": 1
+    }
+   ]
   },
   "10810": {
    "vnum": 10810,
@@ -185,10 +303,17 @@
       "state": "closed",
       "locked": false
      }
+    },
+    "east": {
+     "to_room": 10809,
+     "description": "To the east lies The Tombs of Atuan."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "Every inch of wall and ceiling in this square chamber is painted:\nprocessions of pale figures with black eyes, serpents swallowing stars,\na veiled woman in a high crown seated among the dead. The colours are\nastonishingly fresh, as if the artist had only just stepped away. A\nheavy door in the west wall leads out to the Curving Road to Distrust.",
+   "look": "crypt",
+   "extra_descs": {
+    "painted figures procession paintings wall": "The pale figures walk in single file toward the woman in the crown, each\nholding something out to her: a key, a mirror, a severed braid. Every\nblack eye in the procession seems to be turned toward whoever stands in\nthe doorway."
+   }
   },
   "10811": {
    "vnum": 10811,
@@ -212,8 +337,9 @@
      "description": "To the down lies The Tombs of Atuan."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead up and down.",
-   "placeholder": true
+   "description": "A broad stair of black stone comes down from the ruined city and ends in\na small, square vestibule whose walls are carved with ranks of closed\neyes. Cold, still air flows from the dark below, and daylight from the\nruins reaches only this far. Steps climb up to the centre of the ruins,\nand a low archway opens down into the Tombs of Atuan.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10812": {
    "vnum": 10812,
@@ -227,9 +353,25 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch.",
-   "placeholder": true
+   "exits": {
+    "west": {
+     "to_room": 10834
+    },
+    "east": {
+     "to_room": 10850
+    }
+   },
+   "description": "Hundreds of figures of grey stone stand in tiers around this circular\nhall, each frozen in a gesture of terror, mouths open and hands raised.\nTheir faces are those of living people, down to the lines about the\neyes. The whole assembly is turned inward toward the empty centre, as if\nwaiting. A thin, chorus-like moaning seems to come from the stone\nitself.",
+   "look": "crypt",
+   "extra_descs": {
+    "figures statues souls": "Up close the stone has a faint warmth. Each figure wears the clothes of\nits own age: a farmer's smock, a soldier's mail, a child's shift. Not\none of them has been carved, only caught."
+   },
+   "mob_resets": [
+    {
+     "vnum": 646103,
+     "max": 1
+    }
+   ]
   },
   "10813": {
    "vnum": 10813,
@@ -247,10 +389,21 @@
     "north": {
      "to_room": 10814,
      "description": "To the north lies The Curving Road to Distrust."
+    },
+    "east": {
+     "to_room": 10810,
+     "description": "To the east lies The Painted Room."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "The road of the tombs begins its slow curve here, a wide paved way\nbetween walls that lean inward overhead. Narrow slits are cut into the\nstone at the height of a man's eyes, empty and dark, so that you feel\nwatched from within the walls. Each flagstone is engraved with a crude\npadlock. The road bends away north into dimness.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646102,
+     "max": 1
+    }
+   ]
   },
   "10814": {
    "vnum": 10814,
@@ -274,8 +427,9 @@
      "description": "To the south lies The Curving Road to Distrust."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "The road bends hard here, hugging a wall of grey stone. Little niches in\nthe wall hold clay masks, each one turned to face the road with a sly,\nsidelong smile. The floor is gritty with cold ash. The way runs east\nalong the bend, and south back to the road's beginning.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10815": {
    "vnum": 10815,
@@ -299,8 +453,9 @@
      "description": "To the west lies The Curving Road to Distrust."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The curve tightens and the roof comes down low, forcing you to stoop.\nWords are scratched into the wall in a hundred different hands, all of\nthem variations of the same warning: trust none who walk behind you.\nEchoes follow a step too quickly. The road runs on north along the\ncurve, and west back toward the bend.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10816": {
    "vnum": 10816,
@@ -324,8 +479,15 @@
      "description": "To the south lies The Curving Road to Distrust."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Here the road straightens into a long colonnade of squat, round pillars,\neach bearing a stone eye set in its face. Lamps hang unlit from chains\nbetween them. The darkness ahead looks too deep and still to be the\nordinary dark. The way runs north toward the end of the road and south\nback to the curve.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646102,
+     "max": 1
+    }
+   ]
   },
   "10817": {
    "vnum": 10817,
@@ -343,10 +505,14 @@
     "south": {
      "to_room": 10816,
      "description": "To the south lies The Curving Road to Distrust."
+    },
+    "west": {
+     "to_room": 10820
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads south.",
-   "placeholder": true
+   "description": "The road ends against a blank wall of seamless black stone, polished\nuntil it throws your own face back at you. A doorway has been filled in\nwith masonry, its carved frame still trailing cobwebs, as if the\nbuilders changed their minds. A heap of old bones lies in one corner.\nThe only way out is south, back along the road.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10820": {
    "vnum": 10820,
@@ -360,9 +526,17 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
-   "placeholder": true
+   "exits": {
+    "north": {
+     "to_room": 10821
+    },
+    "east": {
+     "to_room": 10817
+    }
+   },
+   "description": "The ridge is a spine of dark rock, narrow as a plank, running through an\nechoing cavern whose roof you cannot see. On either hand the dark falls\naway into a hush that swallows pebbles without a sound. The stone is\nrubbed smooth by centuries of cautious feet. A cold breeze tugs at your\nclothes.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "10821": {
    "vnum": 10821,
@@ -376,9 +550,17 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 10820
+    },
+    "north": {
+     "to_room": 10822
+    }
+   },
+   "description": "Old bones lie scattered along the ridge, some wedged into cracks and\nsome half over the edge, picked clean and bleached. The rock is slick\nwith a skin of damp. Far below, something glows faintly, a dull red that\nnever flickers. You keep your eyes on your feet.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "10822": {
    "vnum": 10822,
@@ -392,9 +574,17 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 10821
+    },
+    "north": {
+     "to_room": 10823
+    }
+   },
+   "description": "The ridge bends around a pillar of stone, forcing you to inch round its\ngirth with your back to the open cavern. Tally marks and prayers are\nscratched into the pillar, hundreds of them, in many hands. A dull echo\nanswers each step. The darkness around feels vast and attentive.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "10823": {
    "vnum": 10823,
@@ -408,9 +598,17 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 10822
+    },
+    "north": {
+     "to_room": 10824
+    }
+   },
+   "description": "Part of the ridge has sheared away, leaving a gap you must stride across\nwith the dark yawning beneath. Loose grit rattles from your boots and\nfalls for a long time. A rusted chain is anchored in the rock, its far\nend vanishing into the gloom. The wind moans in the hollows of the\ncavern.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "10824": {
    "vnum": 10824,
@@ -424,9 +622,23 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 10823
+    },
+    "north": {
+     "to_room": 10825
+    }
+   },
+   "description": "Here the ridge broadens to a stone shelf strewn with offerings: cracked\nbowls, tarnished coins, small clay figures with their faces rubbed away.\nEach lies where it was placed, untouched by dust. A low, regular sound\nlike breathing rises from the depths. The feeling of being watched is\nstrongest on this shelf.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646101,
+     "max": 1
+    }
+   ]
   },
   "10825": {
    "vnum": 10825,
@@ -440,9 +652,23 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 10824
+    },
+    "north": {
+     "to_room": 10826
+    }
+   },
+   "description": "Veins of pale crystal glitter in the rock, giving the dark just enough\nglimmer to show the sheer fall on both sides. Your footfalls jump from\nwall to wall and return changed, as if answered. A cluster of black\nstalactites hangs low overhead. The ridge tilts slightly under you.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646100,
+     "max": 1
+    }
+   ]
   },
   "10826": {
    "vnum": 10826,
@@ -456,9 +682,17 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch.",
-   "placeholder": true
+   "exits": {
+    "south": {
+     "to_room": 10825
+    },
+    "north": {
+     "to_room": 10827
+    }
+   },
+   "description": "The ridge ends in a wide, flat platform of worn rock, ringed by crude\npillars topped with spear-shaped stones. Scorch marks and old wax blotch\nthe floor where rites were once held. A great silence lies on the place,\nthick as felt. In the hush you can hear your own pulse.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "10827": {
    "vnum": 10827,
@@ -476,10 +710,14 @@
     "up": {
      "to_room": 10828,
      "description": "To the up lies Ascension to Pride."
+    },
+    "south": {
+     "to_room": 10826
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads up.",
-   "placeholder": true
+   "description": "The landing is a ledge of cut stone facing the lip of a vast chasm,\nwhose far side is lost in darkness. A rail of iron has half rotted from\nthe edge and hangs by a single bolt. Echoes ring back from the opposite\nwall, strangely delayed. A stair of worn steps climbs up from the\nlanding to the Ascension to Pride.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "10828": {
    "vnum": 10828,
@@ -503,8 +741,9 @@
      "description": "To the down lies The Landing opposite the Chasm."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stair climbs steeply between walls carved in tall relief: crowned\nfigures treading on bowed backs, one rank above the next. Each step is\nworn into a shallow dish by long use. Torch brackets hold nothing but\nchar. The stair rises to a higher landing, and falls back to the ledge\nabove the chasm.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10829": {
    "vnum": 10829,
@@ -526,10 +765,20 @@
     "down": {
      "to_room": 10828,
      "description": "To the down lies Ascension to Pride."
+    },
+    "west": {
+     "to_room": 10835
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and down.",
-   "placeholder": true
+   "description": "At the head of the climb the stair levels into a short hall of polished\nblack marble, its walls lined with tall mirrors dulled by age. Your\nreflection, pale and wavering, seems to arrive a moment late. A cold\nlight spills from the north end of the hall, where wide doors stand open\non the throne room. The stair falls away down behind you.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646104,
+     "max": 1
+    }
+   ]
   },
   "10831": {
    "vnum": 10831,
@@ -549,8 +798,16 @@
      "description": "To the south lies Ascension to Pride."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "A high round hall opens here, domed in black stone and ringed with tall\npillars carved with the figure of a crowned and veiled woman. At its\ncentre a throne of dark glass stands on a dais of seven steps, so\npolished that the room seems to hang inside it. The air is thick with\nold incense and stranger things. The only way out is south, through the\nhall of the Ascension to Pride.",
+   "extra_descs": {
+    "throne glass dais": "The throne is a single block of black glass, its arms carved as clasped\nhands. Looking into it, you see the hall behind you, with a seated shape\nthat is not in the room."
+   },
+   "mob_resets": [
+    {
+     "vnum": 646107,
+     "max": 1
+    }
+   ]
   },
   "10832": {
    "vnum": 10832,
@@ -572,10 +829,15 @@
     "down": {
      "to_room": 10833,
      "description": "To the down lies Descent to Despair."
+    },
+    "south": {
+     "to_room": 10835,
+     "description": "To the south lies the Altar of Pride."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead west and down.",
-   "placeholder": true
+   "description": "A steep stair spirals downward here into colder stone, its walls sooted\nand bare. An archway to the west opens on a small chamber where an altar\ncan be glimpsed. The steps are cut shorter than a stride, so that every\nfootfall must be careful. Somewhere below, a slow dripping marks the\ntime, and the stair continues down.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10833": {
    "vnum": 10833,
@@ -599,8 +861,9 @@
      "description": "To the up lies Descent to Despair."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and up.",
-   "placeholder": true
+   "description": "The descent narrows to a gullet of stone where your shoulders almost\nbrush both walls. Faint scratches, as of fingernails, mark the rock at\nhead height. A damp wind breathes up from below and smells of the grave.\nThe stair runs on south into the dark, and climbs back up toward the\naltar chamber.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "10834": {
    "vnum": 10834,
@@ -618,10 +881,20 @@
     "west": {
      "to_room": 10837,
      "description": "To the west lies Descent to Despair."
+    },
+    "east": {
+     "to_room": 10812
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "The floor of this round room is a lattice of iron bars laid over a pit\nof darkness. Rusted jaws and wire loops hang from the ceiling on slack\nchains, waiting. Bleached bones lie where the unwary stopped. The only\nway out is west, back to the foot of the stair.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646105,
+     "max": 1
+    }
+   ]
   },
   "10835": {
    "vnum": 10835,
@@ -639,10 +912,22 @@
     "north": {
      "to_room": 10832,
      "description": "To the north lies Descent to Despair."
+    },
+    "east": {
+     "to_room": 10829
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "A small round chamber holds a single altar of white marble, stained dark\nin a ring around its rim. Over it hangs a hammered gold sun, long\ntarnished, gazing blindly at the floor. Offering plates lie scattered,\ntheir gifts rotted to dust. The way out is north, back to the stair.",
+   "look": "crypt",
+   "extra_descs": {
+    "altar marble sun": "The altar's rim is worn into a groove by a thousand years of hands. A\nline of letters on its face reads that pride is the last sacrifice, and\nthe first."
+   },
+   "mob_resets": [
+    {
+     "vnum": 646106,
+     "max": 1
+    }
+   ]
   },
   "10836": {
    "vnum": 10836,
@@ -666,8 +951,15 @@
      "description": "To the down lies Descent to Despair."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and down.",
-   "placeholder": true
+   "description": "The stair turns sharply here beside a pit of blackness where a landing\nshould be. Chains hang from the roof, ending in empty iron collars that\nsway when you pass. Every step is slick with condensation. The way back\nlies north, while the stair drops on down.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646104,
+     "max": 1
+    }
+   ]
   },
   "10837": {
    "vnum": 10837,
@@ -691,8 +983,9 @@
      "description": "To the up lies Descent to Despair."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and up.",
-   "placeholder": true
+   "description": "At the bottom of the stair the walls close around a low vault of\ndripping rock. A heavy smell of rust and wet stone hangs in the air. A\npassage opens east into a chamber ringed with iron rings, and behind you\nthe stair rises up the way you came.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "10850": {
    "vnum": 10850,
@@ -710,13 +1003,436 @@
     "east": {
      "to_room": 10909,
      "description": "To the east lies At the Mound among the Ruins."
+    },
+    "west": {
+     "to_room": 10812
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "Heaps of tarnished treasure lie in this vault: chests burst open, gold\ngone green, jewelled cups, tapestries rotted to threads. Tall pillars\ncarved with coiling serpents hold up a ceiling blackened by old smoke. A\npassage opens in the east wall, and from it comes the faint, salt-\nsmelling light of the ruins by the sea, where it climbs toward the Mound\namong the Ruins.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646105,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "646100": {
+   "vnum": 646100,
+   "name": "spider crypt pale",
+   "short_desc": "a pale crypt spider",
+   "long_desc": "A pale crypt spider clings to the stone, its bloated body twitching.",
+   "description": "A spider as large as a dog, its body white as a grub and its legs banded\nin grey. It has lived on the dead so long that it knows nothing else.",
+   "level": 14,
+   "alignment": 0,
+   "hp_dice": "14d8+158",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "646101": {
+   "vnum": 646101,
+   "name": "skeleton tomb bones warrior",
+   "short_desc": "a tomb skeleton",
+   "long_desc": "A tomb skeleton shambles forward, bits of burial bronze clinking on its ribs.",
+   "description": "Yellowed bones wired together by old magic, still wearing the scraps of\na burial mask and chain. Its jaw clacks silently as it comes.",
+   "level": 16,
+   "alignment": -500,
+   "hp_dice": "16d8+239",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746100,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "646102": {
+   "vnum": 646102,
+   "name": "acolyte cultist nameless robed",
+   "short_desc": "a hooded acolyte of the Nameless",
+   "long_desc": "A hooded cultist of the Nameless stands very still, hands tucked into long sleeves.",
+   "description": "A pale cultist in a black robe, eyes hidden by a deep hood. The robe is\nstitched with a single open eye in red thread.",
+   "level": 17,
+   "alignment": -600,
+   "hp_dice": "17d8+225",
+   "damage_dice": "5d6+9",
+   "armor_class": 46,
+   "exp": 955,
+   "gold": 204,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746101,
+     "chance": 25
+    },
+    {
+     "vnum": 746100,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "646103": {
+   "vnum": 646103,
+   "name": "gargoyle stone weeping",
+   "short_desc": "a weeping stone gargoyle",
+   "long_desc": "A weeping stone gargoyle crouches among the pale figures, its grey cheeks streaked with damp.",
+   "description": "A hunched monster of grey stone with folded wings and a human face,\nalways weeping a thin trickle of water. It moves only when no one is\nlooking, or so it seems.",
+   "level": 18,
+   "alignment": -300,
+   "hp_dice": "18d8+304",
+   "damage_dice": "5d6+13",
+   "armor_class": 38,
+   "exp": 1010,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746100,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "646104": {
+   "vnum": 646104,
+   "name": "guardian stone guard golem",
+   "short_desc": "a stone guardian",
+   "long_desc": "A stone guardian stands against the wall, one great hand resting on a spiked mace.",
+   "description": "A towering guard hewn from black stone, with a blank face and hollow\neyes that follow you. It was set here to keep the way and never learned\nthat the war was over.",
+   "level": 21,
+   "alignment": -400,
+   "hp_dice": "21d8+362",
+   "damage_dice": "6d6+14",
+   "armor_class": 29,
+   "exp": 1175,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746102,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "646105": {
+   "vnum": 646105,
+   "name": "priest cultist nameless grey",
+   "short_desc": "a grey priest of the Nameless",
+   "long_desc": "A grey priest of the Nameless chants low beside the dark, ash smeared on his brow.",
+   "description": "A gaunt cultist with ash-grey skin and a shaved skull marked by three\nblue lines. He tends the old rites with grim patience, and his eyes are\nquite empty of mercy.",
+   "level": 21,
+   "alignment": -800,
+   "hp_dice": "21d8+286",
+   "damage_dice": "6d6+11",
+   "armor_class": 34,
+   "exp": 1175,
+   "gold": 252,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746101,
+     "chance": 20
+    },
+    {
+     "vnum": 746102,
+     "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "646106": {
+   "vnum": 646106,
+   "name": "kossil priestess cultist high",
+   "short_desc": "Kossil, high priestess of the Nameless",
+   "long_desc": "Kossil, high priestess of the Nameless, kneels at the altar with a knife in her hand.",
+   "description": "A thin, severe woman in a black robe stiff with silver thread, her face\nas hard as the altar before her. A curved knife of black glass never\nleaves her hand.",
+   "level": 22,
+   "alignment": -900,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746103,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "646107": {
+   "vnum": 646107,
+   "name": "acrasia ghost queen veiled",
+   "short_desc": "Acrasia, the ghost queen of the tombs",
+   "long_desc": "Acrasia, the ghost queen of the tombs, sits veiled upon her throne and watches you come.",
+   "description": "The ancient queen of the tombs, a tall figure veiled in shadow whose\nglass-clear form lets the throne show through. Her voice is a cold, soft\nwhisper that seems to speak from inside your own head.",
+   "level": 23,
+   "alignment": -1000,
+   "hp_dice": "23d8+360",
+   "damage_dice": "6d6+14",
+   "armor_class": 28,
+   "exp": 1285,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746104,
+     "chance": 35
+    },
+    {
+     "vnum": 746103,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "746100": {
+   "vnum": 746100,
+   "name": "burial mask gilded gold",
+   "short_desc": "a gilded burial mask",
+   "room_desc": "A gilded burial mask stares up from the floor here.",
+   "description": "A thin sheet of gold beaten into a calm human face, with closed eyes and a faint, secret smile. It was made to cover the dead.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 16,
+   "weight": 1,
+   "value": 505
+  },
+  "746101": {
+   "vnum": 746101,
+   "name": "robe black hooded acolyte",
+   "short_desc": "a black hooded robe",
+   "room_desc": "A black hooded robe lies crumpled here.",
+   "description": "A heavy black robe, its hem stiff with grave-dust and an open red eye stitched across the breast.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 17,
+   "wear_slot": "body",
+   "armor": 5,
+   "weight": 10,
+   "value": 370,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  },
+  "746102": {
+   "vnum": 746102,
+   "name": "gauntlets stone guardian hands",
+   "short_desc": "a pair of stone gauntlets",
+   "room_desc": "A pair of stone gauntlets lies here, heavy as anvils.",
+   "description": "Gauntlets carved from dark, fine-grained stone and fitted with iron hinges. They are astonishingly heavy, and astonishingly sure.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 21,
+   "wear_slot": "hands",
+   "armor": 3,
+   "weight": 2,
+   "value": 450,
+   "affects": [
+    {
+     "type": "str",
+     "value": 1
+    }
+   ]
+  },
+  "746103": {
+   "vnum": 746103,
+   "name": "knife obsidian black glass curved",
+   "short_desc": "a curved obsidian knife",
+   "room_desc": "A curved obsidian knife lies here, edge gleaming.",
+   "description": "A sacrificial knife with a blade of black volcanic glass, so sharp that the edge cannot be seen from the side. The bone grip is bound in red thread.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 22,
+   "damage_dice": "2d6",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 590,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ]
+  },
+  "746104": {
+   "vnum": 746104,
+   "name": "diadem acrasia black silver crown",
+   "short_desc": "the black diadem of Acrasia",
+   "room_desc": "A black diadem rests here, cold as a well.",
+   "description": "A slender band of black metal woven with silver threads and set with one clouded white stone, like a blind eye. It is cold to the touch, and when worn it seems to hear.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 23,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 490,
+   "affects": [
+    {
+     "type": "int",
+     "value": 1
+    }
+   ]
+  }
+ }
 }

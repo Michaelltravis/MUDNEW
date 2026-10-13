@@ -24,8 +24,8 @@
      "description": "To the west lies Outside the Gate of Kashmir."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "Within the western gate the road passes through a vaulted passage, its\nwalls rough with soot and its floor rutted by countless cart wheels. A\nbarred wicket stands set in the great door, and a portcullis hangs\nraised in its slot above. The gate stands open to the west, leading out\nto the trade road beyond, and the wall road lies east. A gatekeeper's\nbrazier smoulders in a niche.",
+   "extra_descs": {}
   },
   "208001": {
    "vnum": 208001,
@@ -47,8 +47,8 @@
      "description": "To the east lies The Southern Wall Road Meets Barracks Avenue."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and east.",
-   "placeholder": true
+   "description": "Two stretches of the wall road meet at this rounded corner, and a flight\nof worn steps climbs the wall to a narrow walkway above. Rain has pooled\nin the angle where the stones meet, and an old brazier stands rusted\nbeside it. The road goes north along the town wall and east into the\ncovered passage toward Barracks Avenue. Chimneys smoke raggedly beyond\nthe wall-backed houses.",
+   "extra_descs": {}
   },
   "208002": {
    "vnum": 208002,
@@ -74,8 +74,14 @@
      "description": "To the down lies The Hole."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, south and down.",
-   "placeholder": true
+   "description": "A hole has opened in the middle of the wall road, a ragged gap in the\ncobbles where something below has given way, ringed by stakes and a\nsingle length of tattered rope. The edges crumble when the wind blows\nand a smell of old earth rises out of it. The road continues north and\nsouth, and a rough ledge leads down into the pit. Windows overlook the\nspot and every shutter is closed.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641900,
+     "max": 1
+    }
+   ]
   },
   "208003": {
    "vnum": 208003,
@@ -97,8 +103,8 @@
      "description": "To the south lies The Western Wall Road."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "The wall road runs straight and quiet here beneath the curtain wall,\nwhose stones are streaked with ochre stains where iron ties have rusted.\nDoors in the house fronts are barred and each lintel carries a nailed\nbunch of dried herbs against the dark. A bell from the chapel tolls\nsomewhere ahead. The road leads north to a junction under a gallery and\nsouth toward the corner.",
+   "extra_descs": {}
   },
   "8004": {
    "vnum": 8004,
@@ -130,8 +136,8 @@
      "description": "To the west lies Inside The Western Gate Of Mishrak."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The street runs beneath the jutting upper floor of a chandler's house,\nso the junction lies in permanent dusk and smells of old rope and wet\nstone. Ways open on every side: the wall road goes north toward Keep\nStreet and south along the town wall, Chapel Street heads east, and west\nstands the western gate itself. A rusted lantern hook hangs from a beam,\nlong without a lantern. Behind bolted shutters someone coughs, and the\nchapel bell tolls the quarter hour.",
+   "extra_descs": {}
   },
   "8005": {
    "vnum": 8005,
@@ -157,8 +163,8 @@
      "description": "To the south lies The Western Wall Road Meets Chapel Street."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east\nand south.",
-   "placeholder": true
+   "description": "Keep Street ends here against the wall road, a crooked meeting of\ncobbles worn into shallow troughs by cartwheels. The grey curtain wall\nclimbs on one side, its parapet lost in drifting mist, while the road\ncontinues north and south and Keep Street leads east between tall narrow\nhouses. A drain grate gurgles beside the kerb. Every window along the\nlane has its shutter pulled to, and a few have been nailed.",
+   "extra_descs": {}
   },
   "8006": {
    "vnum": 8006,
@@ -180,8 +186,8 @@
      "description": "To the south lies The Western Wall Road Meets Keep Street."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The wall road follows the foot of the town wall, which rises here in\nrough courses of dark stone patched with newer, paler blocks. Puddles\nstand between the setts and reflect nothing but cloud. Small houses\npress close on the inner side, their doors painted with chalk signs that\nsomeone has tried to scrub away. The road goes north and south from\nhere.",
+   "extra_descs": {}
   },
   "8007": {
    "vnum": 8007,
@@ -203,8 +209,8 @@
      "description": "To the south lies The Western Wall Road."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A leaning buttress braces the town wall at this point, and the road\nbends around it, narrow enough that two carts would have to quarrel.\nMoss furs the lower stones and a trickle of rainwater runs down a crack\nin the masonry. Smoke from a hidden chimney lies flat over the roofs.\nThe road runs on north to a corner and back south the way you came.",
+   "extra_descs": {}
   },
   "8008": {
    "vnum": 8008,
@@ -226,8 +232,8 @@
      "description": "To the south lies The Western Wall Road."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "Two stretches of wall road meet at a sharp corner, where the old wall\nturns and a squat watch-post stands with its door hanging open on empty\ngloom. Wind gathers in the angle and carries the damp smell of the moat\nor whatever lies beyond the stones. Your way follows the Northern Wall\nRoad east, or back south along the road you came by. A bell sounds\nslowly from the chapel, the only voice in the street.",
+   "extra_descs": {}
   },
   "8009": {
    "vnum": 8009,
@@ -255,8 +261,8 @@
      "description": "To the west lies The Western Wall Road Meets The Southern Wall Road."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A vaulted passage carries the wall road under the barracks' overhanging\nwing, and the ceiling bricks are black with generations of torch smoke.\nRacks of staves and spear shafts stand against the stone, bound with\nleather thongs. Barracks Avenue runs north from here into the garrison's\nquarter, the road continues east, and a short way west lies a corner of\nthe wall road. Boots ring somewhere above on bare boards.",
+   "extra_descs": {}
   },
   "8010": {
    "vnum": 8010,
@@ -285,8 +291,8 @@
      "description": "To the south lies The Southern Wall Road Meets Barracks Avenue."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "Barracks Avenue is a covered lane, roofed over by the upper floors of\nthe garrison buildings, and lamps hang from iron brackets at every few\npaces. The flagstones are scrubbed grey and the walls whitewashed to\nshoulder height, scuffed by passing shields. A heavy door stands to the\nnorth, studded with nails and marked with the crest of the town watch.\nSouth the passage opens back into the wall road.",
+   "extra_descs": {}
   },
   "8011": {
    "vnum": 8011,
@@ -315,8 +321,8 @@
      "description": "To the south lies Barracks Avenue."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "The barracks hall is long and low, with bare timber rafters, rows of\nnarrow cots made up with grey blankets, and a rack of dented helms by\nthe wall. A stove sits cold in the middle of the floor, ringed with\nboot-black. Stale air smells of oil, sweat and old wool. An iron-bound\ndoor in the end of the hall leads east to the headquarters, and the door\nout to Barracks Avenue lies south.",
+   "extra_descs": {}
   },
   "8012": {
    "vnum": 8012,
@@ -340,8 +346,8 @@
      "description": "To the west lies The Western Wall Road Meets Chapel Street."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The covered street is quiet here, hung with strings of dried herbs and\nbunches of withered holly nailed over each door. Cobbles run smooth and\ngrey underfoot, and the roof beams are black from years of lamp smoke.\nSomewhere a latch clicks softly and a shutter shuts. Chapel Street runs\neast toward the chapel and west toward the wall road.",
+   "extra_descs": {}
   },
   "8013": {
    "vnum": 8013,
@@ -363,8 +369,14 @@
      "description": "To the west lies The Western Wall Road Meets Keep Street."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand west.",
-   "placeholder": true
+   "description": "Keep Street heads toward the wall here, its houses lower and meaner,\nwith cracked plaster and slates missing from their roofs. A line of\nwashing hangs stiff and grey between two windows, dripping slowly. The\ncobbles shine with the damp. The street goes north and west from this\nbend.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641900,
+     "max": 1
+    }
+   ]
   },
   "8014": {
    "vnum": 8014,
@@ -390,8 +402,8 @@
      "description": "To the south lies Keep Street."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east and\nsouth.",
-   "placeholder": true
+   "description": "Keep Street meets a short doorway to the north, with a plank door\npainted dark green and a brass plate gone black. A well-worn step shows\nwhere many visitors have waited in the damp. The street continues east\nand south from here. Fine rain beads on the iron lamp bracket overhead.",
+   "extra_descs": {}
   },
   "8015": {
    "vnum": 8015,
@@ -411,8 +423,8 @@
      "description": "To the north lies The Northern Wall Road."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "A small bare chamber serves as the watch's guard room, with a bench\nalong the wall and a table scarred with knife marks. A cracked lamp\nswings from a chain and a pegboard holds keys and rusted manacles. A\nnarrow slit of window shows the wall road outside. The door north leads\nback out to the road.",
+   "extra_descs": {}
   },
   "8016": {
    "vnum": 8016,
@@ -443,8 +455,8 @@
      "description": "To the west lies The Western Wall Road Meets The Northern Wall Road."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east, south\nand west.",
-   "placeholder": true
+   "description": "The Northern Wall Road runs straight beneath the parapet, its cobbles\nslick with last night's fog. A heavy door in the house fronts opens on\nthe Guard Room to the south, iron-banded and scarred by old knife work.\nThe road continues east into grey distance and west to the corner. Spent\ntorch stubs lie in a gutter, and a rattle of shutters announces that\nsomeone has seen you pass.",
+   "extra_descs": {}
   },
   "8017": {
    "vnum": 8017,
@@ -466,8 +478,8 @@
      "description": "To the west lies The Southern Wall Road Meets Barracks Avenue."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "Barracks Avenue lies close by, and the wall road shows its mark in boot-\nscuffed cobbles and the faint smell of wet leather and lamp oil. A water\ntrough stands by the wall, its iron ring rusted but sturdy. High above,\na sentry's lantern swings in the wind. The road goes east along the wall\nand west to where Barracks Avenue meets it.",
+   "extra_descs": {}
   },
   "8018": {
    "vnum": 8018,
@@ -487,8 +499,8 @@
      "description": "To the east lies The Chapel Of Mishrak."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "The western altar is a plain stone table beneath a small round window of\nsmoked glass, its surface scrubbed bare and faintly stained. Iron rings\nare set in the wall behind it, and the flagstones before it are dished\nby kneelers. A thin smell of incense and copper lingers. The only way\nback is east into the aisle.",
+   "extra_descs": {}
   },
   "8019": {
    "vnum": 8019,
@@ -508,8 +520,8 @@
      "description": "To the west lies Mishrak Civil Barracks."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
-   "placeholder": true
+   "description": "The headquarters is a bare, cramped chamber, dominated by a scarred oak\ntable covered in maps and duty rolls weighted with spent arrowheads.\nPegs along the walls hold cloaks and chains, and a lantern burns with a\ntired, smoky flame. A crossed pair of pikes hangs above the cold hearth.\nThe only way out is the door west into the barracks hall.",
+   "extra_descs": {}
   },
   "8020": {
    "vnum": 8020,
@@ -533,8 +545,8 @@
      "description": "To the west lies Chapel Street."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "Chapel Street runs beneath a long roof of dark timbers, with shuttered\nstalls and boarded doorways pressed against its sides. A single lamp\nburns on an iron hook, throwing wavering shadows on the damp walls. The\npavement is polished by processions that no longer come. The street\nleads east toward the chapel forecourt and west toward the wall road.",
+   "extra_descs": {}
   },
   "8021": {
    "vnum": 8021,
@@ -552,8 +564,8 @@
      "description": "To the east lies Market Street."
     }
    },
-   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. A way leads east.",
-   "placeholder": true
+   "description": "The marketplace is an open square of wet cobbles, with rows of empty\nstalls under sagging awnings, their trestles bare and their canvas\nspotted with mould. A stone fountain in the middle runs dry, its basin\nfilled with leaves. Cold wind pulls at the awnings and rattles the\nhooks. Market Street leads back east.",
+   "extra_descs": {}
   },
   "8022": {
    "vnum": 8022,
@@ -575,8 +587,8 @@
      "description": "To the west lies Keep Street."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
-   "placeholder": true
+   "description": "Keep Street runs level here between narrow houses of timber and plaster,\nwhose upper floors lean over the cobbles until they almost touch. A\ncracked lamp hangs unlit over the doorway of a closed cooper's shop.\nDripping gutters beat a slow rhythm on stone. The street goes east\ntoward the crossroads and west toward the wall road.",
+   "extra_descs": {}
   },
   "8023": {
    "vnum": 8023,
@@ -598,8 +610,8 @@
      "description": "To the down lies The Cellar."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north and\ndown.",
-   "placeholder": true
+   "description": "The house has lost most of its roof, and rafters stand against the sky\nlike blackened ribs. Doors hang from their hinges, and the floor is a\nheap of charred beams, tiles and scorched plaster. Nettles grow through\nthe hearth and the smell of old smoke still lingers. A hatch in the\nfloor leads down into the cellar, and a doorway opens north onto the\nwall road.",
+   "extra_descs": {}
   },
   "8024": {
    "vnum": 8024,
@@ -630,8 +642,14 @@
      "description": "To the west lies The Northern Wall Road."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Weeds push up between the setts of the Northern Wall Road, and the\nhouses along it grow shabbier as the road goes east. To the south a door\nhangs crooked in the frame of a ruined house, its roof half fallen in\nand its windows black. A cold draught breathes from it, smelling of soot\nand rot. The road goes on east and back west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641900,
+     "max": 1
+    }
+   ]
   },
   "8025": {
    "vnum": 8025,
@@ -653,8 +671,8 @@
      "description": "To the west lies The Southern Wall Road."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "The Southern Wall Road lies deserted, its paving broken by frost, and\nthe town wall leans slightly inward as if listening. Torn bills nailed\nto a doorpost flap in the wind, their ink run to grey blots. Smoke and\ndamp mingle in the air. The road continues east and west.",
+   "extra_descs": {}
   },
   "8026": {
    "vnum": 8026,
@@ -686,8 +704,8 @@
      "description": "To the down lies The Secret Room."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, west and\ndown.",
-   "placeholder": true
+   "description": "The chapel's western aisle is lined with narrow arched alcoves holding\nworn stone saints whose faces have been chiselled smooth. One flagstone\nin the floor has been scraped at the edges and set slightly askew, as\nthough lifted and replaced many times. Cold air seeps from the crack.\nAisles lead north and east, and an arch leads west to an altar.",
+   "extra_descs": {}
   },
   "8027": {
    "vnum": 8027,
@@ -715,8 +733,8 @@
      "description": "To the south lies The Chapel Of Mishrak."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The nave of the chapel is hushed and cold, with a long aisle of worn\nflagstones and rows of plain oak benches facing a distant altar. Grey\nlight seeps through narrow windows of dull glass. Candle stubs gutter in\niron stands, and the smell of tallow and damp stone is strong. The doors\nnorth lead out to the street, while the nave continues east and south.",
+   "extra_descs": {}
   },
   "8028": {
    "vnum": 8028,
@@ -753,8 +771,8 @@
      "description": "To the west lies Chapel Street."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Chapel Street and Market Street meet in a roofed forecourt before the\nchapel, where lamps hang from chains and the pillars wear a coat of\nsoot. A pair of tall doors stands to the south, bound in iron and carved\nwith an ancient pattern of thorns. Market Street leads north and Chapel\nStreet west. The bell above tolls with a deep, slow note that shakes the\ndust.",
+   "extra_descs": {}
   },
   "8029": {
    "vnum": 8029,
@@ -780,8 +798,8 @@
      "description": "To the west lies Mishrak Marketplace."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, south and west.",
-   "placeholder": true
+   "description": "Market Street slopes toward the square, its cobbles scattered with\ncabbage leaves and straw and the faint tang of fish brine. Tall narrow\nshops with painted signs line either side, each shuttered and hung with\na bell. A gutter running down the middle carries a thread of grey water.\nThe street goes north to a crossroads, south toward the chapel, and west\nopens into the marketplace.",
+   "extra_descs": {}
   },
   "8030": {
    "vnum": 8030,
@@ -816,8 +834,8 @@
      "description": "To the west lies Keep Street."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "A crossroads of Keep Street and Market Street, where wheel ruts have\nworn the cobbles into deep grooves and a signpost stands with arms\npointing in four directions. A stable door stands in the wall to the\nnorth, the keep's gate arch is near east, and Market Street runs south.\nAnother reach of Keep Street goes west. The smell of hay and horse hangs\nin the damp air.",
+   "extra_descs": {}
   },
   "8031": {
    "vnum": 8031,
@@ -835,8 +853,8 @@
      "description": "To the south lies Keep Street Meets Market Street."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. A way leads south.",
-   "placeholder": true
+   "description": "The stables are an open yard surrounded by low sheds, the straw\nunderfoot trodden into a brown mat and the beams above black with old\nsmoke. Wooden stalls stand empty, their halters dangling from pegs. A\npump drips into a mossy trough. The only way out is the door south to\nKeep Street.",
+   "extra_descs": {}
   },
   "8032": {
    "vnum": 8032,
@@ -858,8 +876,8 @@
      "description": "To the west lies The Northern Wall Road."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "Here the Northern Wall Road runs between the battlemented wall and a row\nof blind brick backs, with not a single door in them. Rain has streaked\nthe stonework with long dark tracks, and a broken pitchfork rests\nagainst a wall where somebody left it. The only sounds are the wind over\nthe parapet and distant hammering. East and west the road continues.",
+   "extra_descs": {}
   },
   "8033": {
    "vnum": 8033,
@@ -881,8 +899,8 @@
      "description": "To the west lies The Southern Wall Road."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "Behind the wall road the houses rise in tiers of dark slate roofs, and\nthe cobbles here are patched with flat river stones. A rain barrel\noverflows into the gutter and nobody comes to mend it. A small shrine\nniche in the wall holds a stub of candle, still burning. The Southern\nWall Road runs east and west.",
+   "extra_descs": {}
   },
   "8034": {
    "vnum": 8034,
@@ -910,8 +928,8 @@
      "description": "To the west lies The Chapel Of Mishrak."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "This side of the chapel is a bare alcove of stone and old wood, with a\nbench along the wall and a worn grating in the floor that breathes cold\nair. Candle wax has dripped in rivulets down the nearest pillar. The\nsound of the bell fills the vault above. Aisles lead north and west, and\na low arch opens east to an altar.",
+   "extra_descs": {}
   },
   "8035": {
    "vnum": 8035,
@@ -944,8 +962,8 @@
      "description": "To the west lies The Chapel Of Mishrak."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Here the nave bends toward the chancel, where a simple altar rail of\nblack wood divides the pews from a worn step. Heavy drapes hang\nmotionless, and a lamp burns red in a hanging cup. The stone floor is\ndished by centuries of kneeling. A door north leads to the head priest's\nrooms, the nave continues south, and an aisle goes west.",
+   "extra_descs": {}
   },
   "8036": {
    "vnum": 8036,
@@ -965,8 +983,14 @@
      "description": "To the south lies The Chapel Of Mishrak."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "The head priest's quarters are a plain, cold chamber with a narrow bed,\na writing desk heaped with sealed letters and a prie-dieu worn smooth at\nthe knee. A tall cupboard stands closed beside a hearth that holds only\ngrey ash. The window shows a slice of slate roofs and drifting cloud.\nThe only door leads south to the chapel.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641905,
+     "max": 1
+    }
+   ]
   },
   "8037": {
    "vnum": 8037,
@@ -990,8 +1014,8 @@
      "description": "To the up lies A Long Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and up.",
-   "placeholder": true
+   "description": "A narrow stair begins here in a cramped lobby of cold flagstones, its\nsteps worn in the middle by countless feet. A single rushlight burns in\na niche, trailing a thin black thread of smoke. The air is stale, and\nechoes of your steps return from above. The door north leads back to the\ncourt, and the stairs go up into the keep.",
+   "extra_descs": {}
   },
   "8038": {
    "vnum": 8038,
@@ -1018,8 +1042,10 @@
      }
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The keep's inner court is a paved square pent in by high grey walls, its\nsky a strip of cloud above. A dry well stands in the middle, its\nwindlass rotted away, and weeds grow along the base of the walls. Arrow\nslits stare down from every side. The gate arch lies north, and a heavy\ndoor south opens to a narrow stair.",
+   "extra_descs": {
+    "well windlass": "The well is dry, its shaft a black circle edged with green slime, and\nthe windlass above it has rotted off its pins. A faint chill rises from\nthe depths."
+   }
   },
   "8039": {
    "vnum": 8039,
@@ -1049,8 +1075,14 @@
      "description": "To the west lies Keep Street Meets Market Street."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Before you rise the keep's inner gate, an arched entrance flanked by two\nstout buttresses, with an iron grille raised on its chains above. Cold\nair breathes from the dark archway, and the paving has been worn bright\nby the boots of soldiers. A guard room door stands north, the keep's\ninner court lies south, Keep Street runs east, and another street leads\nwest. Torch sconces hold only charred stubs.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641900,
+     "max": 1
+    }
+   ]
   },
   "8040": {
    "vnum": 8040,
@@ -1070,8 +1102,8 @@
      "description": "To the south lies The Entrance To Mishrak Keep."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "The guard room is a stone cell with a low vaulted ceiling, a rack of\nspears along one wall and a battered table scattered with dice and\nscraps of tallow. A narrow window looks out on the gate arch. The hearth\nis cold and the benches smell of cheap ale and old leather. The only\ndoor leads south to the gate.",
+   "extra_descs": {}
   },
   "8041": {
    "vnum": 8041,
@@ -1093,8 +1125,10 @@
      "description": "To the west lies The Northern Wall Road."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "A single gnarled tree grows from a gap in the paving by the wall, bare\nof leaves and strung with rags of faded cloth that townsfolk have tied\nto its twigs. Beneath the tree the stones are stained with old candle\nwax. Plain shuttered houses face the wall on the other side of the road.\nThe Northern Wall Road carries on east and west.",
+   "extra_descs": {
+    "tree rags cloth": "The rags are strips torn from shirts, shrouds and bed linen, each tied\nby someone with a wish or a grief. The oldest have rotted to threads."
+   }
   },
   "8042": {
    "vnum": 8042,
@@ -1120,8 +1154,8 @@
      "description": "To the down lies The Hole."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "The Southern Wall Road passes a black hole sunk into the cobbles by the\nwall, rimmed with broken paving and fenced with a crooked rail. A chill,\nearthy breath comes up from it along with a faint, sweet rot. The road\ngoes on east to the corner and west along the town wall. Steps of rough\nstone lead down into the dark.",
+   "extra_descs": {}
   },
   "8043": {
    "vnum": 8043,
@@ -1139,10 +1173,16 @@
     "west": {
      "to_room": 8034,
      "description": "To the west lies The Chapel Of Mishrak."
+    },
+    "north": {
+     "to_room": 8096,
+     "description": "To the north lies The Abode Of Donnchadh."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads west.",
-   "placeholder": true
+   "description": "A small side altar stands against the wall, draped in a grey cloth\nembroidered with a faded sign of thorns. Two candlesticks of tarnished\nbrass flank it, and a bowl of dry salt rests beside them. The stone slab\nis stained with old rings where cups once stood. The only way back is\nwest into the transept.",
+   "extra_descs": {
+    "altar cloth thorns sign": "The grey cloth is embroidered in black thread with a ring of thorns, the\nold sign of Mishrak's chapel. Beneath the thorns, so faint you could\ntake it for a stain, a second mark has been stitched: a closed eye."
+   }
   },
   "8044": {
    "vnum": 8044,
@@ -1166,8 +1206,8 @@
      "description": "To the east lies The Eastern Wall Road."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "The shop is cramped and ill lit, hung with coils of rope, tin lanterns,\nbundles of tallow candles and sacks of coarse salt. A counter of black\noak runs across the room, scarred by countless coins and knives. Dust\nlies thick on the shelves, and the grey day filters through a single\ngrimy window. The door opens east to the wall road, and a curtained\ndoorway leads north into the back room.",
+   "extra_descs": {}
   },
   "8045": {
    "vnum": 8045,
@@ -1187,8 +1227,8 @@
      "description": "To the south lies The Shop."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads south.",
-   "placeholder": true
+   "description": "The back room is a windowless storeroom, stacked to the rafters with\ncrates, kegs and barrels bound in hoops of rusting iron. A table holds a\nledger gone mouldy at the edges and a candle drowned in its own wax.\nEverything smells of damp sacking, tar and spilled brine. The only way\nout is the doorway south to the shop.",
+   "extra_descs": {}
   },
   "8046": {
    "vnum": 8046,
@@ -1210,8 +1250,8 @@
      "description": "To the east lies The Eastern Wall Road Meets Keep Street."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand east.",
-   "placeholder": true
+   "description": "Keep Street climbs gently here toward the high ground, its cobbles\nsharply worn into ridges by centuries of hooves. Tall houses with leaded\nwindows lean over the road, each with a bolt on the door and a pot of\nwithered herbs on the sill. The air is cold and tastes of coal smoke.\nThe street runs north toward the keep, and the wall road lies east.",
+   "extra_descs": {}
   },
   "8047": {
    "vnum": 8047,
@@ -1233,8 +1273,8 @@
      "description": "To the west lies The Entrance To Mishrak Keep."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead south and west.",
-   "placeholder": true
+   "description": "The street bends sharply here as it nears the keep, whose dark curtain\nwall rises over the rooftops in heavy courses of grey stone. A rusted\nlamp bracket juts from a corner, bent as if someone had tried to wrench\nit off. Fallen slates lie in the gutters. Keep Street runs south back\ntoward the wall road, and west leads to the keep's entrance.",
+   "extra_descs": {}
   },
   "8048": {
    "vnum": 8048,
@@ -1252,8 +1292,8 @@
      "description": "To the east lies The Eastern Wall Road."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. A way leads east.",
-   "placeholder": true
+   "description": "The forge is an open-fronted shed with a hearth of blackened brick and a\nhooded flue, its bellows hung on a beam and its anvil bolted to a stump.\nRacks of tongs, hammers and half-forged blades line the posts. Coals\nglow orange in the fire pit, and the air smells of scorch and quenching\nwater. The way out is east to the wall road.",
+   "extra_descs": {}
   },
   "8049": {
    "vnum": 8049,
@@ -1275,8 +1315,8 @@
      "description": "To the west lies The Northern Wall Road."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east and west.",
-   "placeholder": true
+   "description": "The road bends slightly here as the wall curves toward its corner, and\nthe cobbles are cracked and heaved by roots from some forgotten garden.\nA watchman's chalk tally covers a stretch of wall in neat rows of\nstrokes. The air is cold and tastes of smoke. Ahead east lies the corner\nof the Eastern Wall Road, and west the road runs on along the Northern\nWall Road.",
+   "extra_descs": {}
   },
   "8050": {
    "vnum": 8050,
@@ -1298,8 +1338,14 @@
      "description": "To the west lies The Southern Wall Road."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and west.",
-   "placeholder": true
+   "description": "Here the Eastern Wall Road meets the Southern Wall Road at a rounded\ncorner, where the wall curves tight and a squat corner tower leans over\nthe cobbles. The tower's door is padlocked and its slit windows look\ndown on the junction. Bleak light falls on puddles. One way leads north\nalong the wall and the other runs west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641900,
+     "max": 1
+    }
+   ]
   },
   "8051": {
    "vnum": 8051,
@@ -1321,8 +1367,8 @@
      "description": "To the south lies The Eastern Wall Road Meets The Southern Wall Road."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "The Eastern Wall Road narrows between a sagging tannery and the grey\nwall, and the sour smell of hides hangs thick. A line of rope across the\nstreet still holds a few strips of leather that never dry in this damp.\nDark stains patch the setts. The road runs north and south from here.",
+   "extra_descs": {}
   },
   "8052": {
    "vnum": 8052,
@@ -1353,8 +1399,8 @@
      }
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, south and west.",
-   "placeholder": true
+   "description": "A shop door with a faded sign of crossed scales opens in the house\nfronts here, its lintel carved with a pattern of vines. Handprints of\nsoot mark the doorpost, and a worn step has been polished by years of\nboots. The Eastern Wall Road continues north and south from the doorway,\nwhile the shop lies west.",
+   "extra_descs": {}
   },
   "8053": {
    "vnum": 8053,
@@ -1376,8 +1422,8 @@
      "description": "To the south lies The Eastern Wall Road."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "The wall road runs quiet here, with cobbles clean-swept and doorsteps\nscrubbed, as if the residents wished to be left unnoticed. A water\nbarrel stands beneath a downpipe, its surface skinned with scum. Chimney\nsmoke is the only sign of life. The road goes north and south along the\nwall.",
+   "extra_descs": {}
   },
   "8054": {
    "vnum": 8054,
@@ -1407,8 +1453,8 @@
      "description": "To the west lies Keep Street."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Keep Street meets the Eastern Wall Road at a wide, windy corner, with\nthe dark mass of the keep rising beyond the roofs. A watch-post stands\non the corner with a lamp burning in the window even in day. The road\ngoes north and south along the wall, the gate stands east, and Keep\nStreet runs west toward the keep. Faces vanish from shutters as you\nlook.",
+   "extra_descs": {}
   },
   "8055": {
    "vnum": 8055,
@@ -1430,8 +1476,8 @@
      "description": "To the south lies The Eastern Wall Road Meets Keep Street."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The Eastern Wall Road runs here between the blank flank of the wall and\ntall shuttered houses, with a gutter down its centre choked with fallen\nleaves. A baker's sign hangs rusted and creaking, though the shop\nbeneath it has been shut for years. The smell of cold ashes lingers. The\nroad leads north toward the forge and gate and south to the junction\nwith Keep Street.",
+   "extra_descs": {}
   },
   "8056": {
    "vnum": 8056,
@@ -1461,8 +1507,14 @@
      "description": "To the west lies The Forge."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "The Eastern Wall Road widens before the gate, its setts churned to mud\nby hooves and wheels. Across the way a low shed stands open to the road,\nthe red glow of a forge showing from inside, and the smell of hot iron\nmixes with horse dung and wet wool. The road goes north to the corner,\nsouth along the wall, and east to the gate. Grey light picks out the\niron studs of the gate doors.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641900,
+     "max": 1
+    }
+   ]
   },
   "8057": {
    "vnum": 8057,
@@ -1488,8 +1540,8 @@
      "description": "To the down lies The Hole."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth, west and down.",
-   "placeholder": true
+   "description": "At this corner of the town wall two wall roads meet, and in the middle\nof the cobbles a ragged hole has opened, its edge crumbling and ringed\nwith a rope hung on rusty stakes. Raw earth and old stone show in its\nsides, and a faint chill rises out of it. The Eastern Wall Road leads\nsouth from here and the Northern Wall Road west. Something below\nbreathes a stale, mouldy air.",
+   "extra_descs": {}
   },
   "8058": {
    "vnum": 8058,
@@ -1513,8 +1565,8 @@
      "description": "To the up lies Third Floor Landing."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and up.",
-   "placeholder": true
+   "description": "Narrow and steep, this grand stair winds up in a tight curve, its stone\ntreads dished in the middle and slick with damp. An iron rail follows\nthe wall, flaking rust onto the palm. Weak light drops from a window\nhigh above. Back north the landing waits, and the stair climbs on.",
+   "extra_descs": {}
   },
   "8059": {
    "vnum": 8059,
@@ -1538,8 +1590,8 @@
      "description": "To the south lies Western Grand Stairway."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
-   "placeholder": true
+   "description": "This end of the landing is dim and draughty, the balustrade broken in\none spot and mended with a length of rope. A faded tapestry of a stag\nhunt hangs on the wall, its colours eaten to browns and greys. Dust\ndrifts across the tiles. The landing runs east toward the hallway, and\nthe stairs descend south.",
+   "extra_descs": {}
   },
   "8060": {
    "vnum": 8060,
@@ -1559,8 +1611,8 @@
      "description": "To the east lies Guest Quarters."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "The closet is hardly bigger than a cupboard, its walls lined with pegs\nand shelves smelling of cedar and mildew. A few empty hangers hang from\na rail, clicking together in a draught from nowhere. A single shelf\nholds a cracked chamber pot and a bundle of mouse-chewed linen. The only\nway out is east to the guest quarters.",
+   "extra_descs": {}
   },
   "8061": {
    "vnum": 8061,
@@ -1589,8 +1641,8 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "The guest quarters are a dim chamber with a high carved bed hung with\nmoth-eaten curtains, a washstand and a dressing table with a clouded\nmirror. Dust lies undisturbed on the coverlet. The window is shuttered,\nand the room smells of lavender gone sour. The hallway lies east, and a\nnarrow door west leads to a closet.",
+   "extra_descs": {}
   },
   "8062": {
    "vnum": 8062,
@@ -1619,8 +1671,8 @@
      }
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and west.",
-   "placeholder": true
+   "description": "At the end of the hallway the boards give way to flagstones, cold and\nslightly damp, with a lone window set in a deep embrasure. A candle\nsconce hangs bare on the wall and the plaster has flaked in long strips.\nA door west stands in carved oak, leading to the guest quarters. The\nhallway returns south.",
+   "extra_descs": {}
   },
   "8063": {
    "vnum": 8063,
@@ -1648,8 +1700,8 @@
      "description": "To the south lies A Long Hallway."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The hallway has a worn runner of red carpet gone brown with age, running\nbetween panelled walls hung with empty portrait frames. A draught moves\nthe dust in slow curls. Doors lead off the hallway, one open east into a\nsmall servants' room. The hallway goes on north and returns south.",
+   "extra_descs": {}
   },
   "8064": {
    "vnum": 8064,
@@ -1677,8 +1729,8 @@
      "description": "To the down lies Bottom Of The Narrow Stairs."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and down.",
-   "placeholder": true
+   "description": "A long hallway runs through the keep's upper floor, floored with dark\nboards that creak at every step and lit by narrow windows of thick\ngreenish glass. Faded tapestries sag along the walls, their pictures\nlost in dust. The stairs lead down to the lobby, the hallway runs north\ninto shadow, and south it opens to a landing.",
+   "extra_descs": {}
   },
   "8065": {
    "vnum": 8065,
@@ -1704,8 +1756,8 @@
      "description": "To the west lies Western Edge Of The Landing."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A broad landing opens off the hallway, its balustrade of black carved\nwood overlooking a hall below and its floor tiled in a faded pattern of\nred and cream. High windows admit a pale and sullen light, and the dust\nof years lies on the rail. Grand stairways descend on either hand. The\nhallway lies north, and the landing's edges stretch east and west.",
+   "extra_descs": {}
   },
   "8066": {
    "vnum": 8066,
@@ -1729,8 +1781,8 @@
      "description": "To the up lies Third Floor Landing."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and up.",
-   "placeholder": true
+   "description": "A grand stairway curves from the landing, its wide oak steps carpeted in\na runner worn bare at the centre. Carved newel posts end in snarling\nbeasts whose paint has long flaked off. A chill drifts up the stairwell,\nsmelling of old stone. The landing is north, and the stair rises further\nto the next floor.",
+   "extra_descs": {}
   },
   "8067": {
    "vnum": 8067,
@@ -1754,8 +1806,8 @@
      "description": "To the west lies The Second Floor Landing."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
-   "placeholder": true
+   "description": "This end of the landing is a quiet alcove, its tiles cracked and its\nbalustrade leaning slightly outward. A tall window of leaded glass\noverlooks the court, the panes smeared with grime. A rack of dead\ncandles stands in the corner. The landing continues west, and the\nstairway descends south.",
+   "extra_descs": {}
   },
   "8069": {
    "vnum": 8069,
@@ -1779,8 +1831,8 @@
      "description": "To the west lies A Long Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The servants' room has a row of rough pallets along one wall, each with\na folded blanket and a small tin box beneath. A chipped basin stands\nbeside a door, and the plaster is smudged with soot where candles stood.\nIt smells of cold porridge and wool. The hallway lies west, and an open\ndoorway east leads to a balcony.",
+   "extra_descs": {}
   },
   "8070": {
    "vnum": 8070,
@@ -1798,8 +1850,8 @@
      "description": "To the west lies The Servants' Room."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads west.",
-   "placeholder": true
+   "description": "A narrow stone balcony juts from the keep wall, railed with a crumbling\nbalustrade and wet with drizzle. Far below, the roofs of Mishrak huddle\nunder chimney smoke, and beyond them the wall and the dark line of the\nforest. The wind is strong and carries the slow toll of the chapel bell.\nThe only way back is west into the servants' room.",
+   "extra_descs": {}
   },
   "8071": {
    "vnum": 8071,
@@ -1819,8 +1871,8 @@
      "description": "To the west lies Third Floor Landing."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "The bedroom is small and neat, though the dust is thick on every\nsurface. A narrow bed stands against the wall beneath a cracked mirror,\nand a wardrobe's door hangs by one hinge. A faint smell of tallow and\ncold ashes clings to the air. The door opens west onto the landing.",
+   "extra_descs": {}
   },
   "8072": {
    "vnum": 8072,
@@ -1840,8 +1892,8 @@
      "description": "To the north lies Third Floor Landing."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "This bedroom has a single window facing the court, its shutters nailed\nand its glass cobwebbed. A bed with a bare mattress sits beside a heavy\ntable scarred by ink and knife-points. Torn papers rustle in the hearth.\nThe door north leads out to the landing.",
+   "extra_descs": {}
   },
   "8073": {
    "vnum": 8073,
@@ -1887,8 +1939,8 @@
      "description": "To the down lies The Balcony."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south, west and\ndown.",
-   "placeholder": true
+   "description": "The third-floor landing is a small square hall, ringed with doors of\ndark wood, one on each side. Threadbare carpets lie on boards that groan\nunderfoot, and a single high window lets in grey light. A dusty lamp\nhangs from a ceiling hook on a chain. Doors lead north, east, south and\nwest to the bedrooms.",
+   "extra_descs": {}
   },
   "8074": {
    "vnum": 8074,
@@ -1908,8 +1960,8 @@
      "description": "To the south lies Third Floor Landing."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "The bedroom is large and chilly, with a canopied bed sagging beneath a\nmildewed spread and heavy drapes drawn across the window. A cold hearth\nholds a nest of old ash, and a chest at the foot of the bed lies open\nand empty. The air tastes of damp and abandoned things. The door leads\nback south to the landing.",
+   "extra_descs": {}
   },
   "8075": {
    "vnum": 8075,
@@ -1929,8 +1981,8 @@
      "description": "To the east lies Third Floor Landing."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "The western bedroom is the smallest of the four, and its single window\nis blocked with a tapestry gone black with damp. A narrow bed stands\nunder the slope of the ceiling, and a washstand holds a basin cracked\nclean through. The floorboards have shrunk and gaped, and the cold comes\nup through them. The only door opens east onto the landing.",
+   "extra_descs": {}
   },
   "8076": {
    "vnum": 8076,
@@ -1948,8 +2000,8 @@
      "description": "To the up lies The Western Wall Road."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. A way leads up.",
-   "placeholder": true
+   "description": "You are in a ragged pit dug into the ground, the sides a mixture of\nblack soil, knotted roots and fallen stones. Brown daylight falls from\nthe opening above, where the wall road lies, and a few tree roots dangle\ndown like dead fingers. The floor is damp and trampled, with a chill\nthat seeps into the bones. The only way out is up.",
+   "extra_descs": {}
   },
   "8077": {
    "vnum": 8077,
@@ -1978,8 +2030,8 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south and west.",
-   "placeholder": true
+   "description": "The office is a narrow, plain room, with a heavy desk, a stool and a\nshelf of ledgers bound in grey cloth. A high window lets in dim light,\nand a smoky lamp stands on the desk with a half-written page beneath it.\nInk has dried in a black pool in the well. The street door lies south,\nand a narrow door west leads to another room.",
+   "extra_descs": {}
   },
   "8078": {
    "vnum": 8078,
@@ -1999,8 +2051,8 @@
      "description": "To the up lies A Ruined House."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads up.",
-   "placeholder": true
+   "description": "The cellar is a low, damp room of rough brick, its roof beams sagging\nand its floor wet with seep. Empty barrels lie on their sides and\nshelves slump under rotten sacks. A smell of mould and old wine hangs\nthick. The only way out is up the steps into the ruined house.",
+   "extra_descs": {}
   },
   "8079": {
    "vnum": 8079,
@@ -2020,8 +2072,21 @@
      "description": "To the east lies The Catacombs."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "A cramped stone chamber lies beneath the chapel, its roof so low you\nmust stoop and its walls scratched with sigils in rusty red. A table of\nblack wood holds stubs of candles and a stained bowl. The air is cold\nand heavy, and it smells of old blood and wax. A passage leads east into\ndark.",
+   "look": "crypt",
+   "extra_descs": {
+    "sigils scratches walls": "The sigils are scratched deep and daubed with something rust-brown. They\ncircle a single shape, a closed eye above a bowl, repeated over and over\nuntil the pattern swallows the wall."
+   },
+   "mob_resets": [
+    {
+     "vnum": 641902,
+     "max": 1
+    },
+    {
+     "vnum": 641903,
+     "max": 1
+    }
+   ]
   },
   "8080": {
    "vnum": 8080,
@@ -2057,8 +2122,19 @@
      "description": "To the up lies The Chapel Of Mishrak."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south, west and up.",
-   "placeholder": true
+   "description": "A low vaulted passage runs between rows of burial niches, each one\nstacked with yellowed bones and dust. The mortar is cracked and wet, and\na faint draught moves along the floor. Every opening here seems to lead\nto the same dark stretch of vault in the north, east, south or west. A\nnarrow stair climbs up toward the chapel.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641902,
+     "max": 1
+    },
+    {
+     "vnum": 641904,
+     "max": 1
+    }
+   ]
   },
   "8081": {
    "vnum": 8081,
@@ -2076,8 +2152,8 @@
      "description": "To the up lies The Southern Wall Road."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. A way leads up.",
-   "placeholder": true
+   "description": "A shaft of raw earth and broken masonry drops from the road above,\nforming a rough pit whose floor is littered with rubble and fallen\ncobbles. The sides are shored in places with warped timbers, and cold\nair creeps along the bottom, smelling of lime and wet ash. A pale square\nof sky shows high overhead, and a climb up is the only way out.",
+   "extra_descs": {}
   },
   "8082": {
    "vnum": 8082,
@@ -2095,8 +2171,8 @@
      "description": "To the up lies The Eastern Wall Road Meets The Northern Wall Road."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. A way leads up.",
-   "placeholder": true
+   "description": "You are at the bottom of a shaft of loose earth and broken stone, which\nhas been dug or has fallen from the road overhead. Tree roots and rusty\nnails stick from the clay walls, and the floor is a clutter of rubble.\nGrey light sifts down through the opening above. Only a scramble up the\ncrumbling side gets you out.",
+   "extra_descs": {}
   },
   "8083": {
    "vnum": 8083,
@@ -2123,8 +2199,8 @@
      "description": "To the west lies The Eastern Wall Road."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "You stand in the shadow of the eastern gate, where a vaulted passage\ncuts through the thickness of the wall. Its great oak doors are hung\nwith iron and pitted with the marks of ages of weather, and a portcullis\nsits raised in its slot above. Wet cobbles lead east through the doors\nto the road outside, and the town lies back west. Bootmarks and ruts\ncover the floor of the gatehouse.",
+   "extra_descs": {}
   },
   "8084": {
    "vnum": 8084,
@@ -2146,8 +2222,8 @@
      "description": "To the west lies Inside The Eastern Gate Of Mishrak."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "Beyond the gate doors the ground opens to a trampled apron of mud and\ngravel before the town wall, scattered with straw and broken crate\nboards. The wall looms overhead, black with damp, and arrow slits stare\ndown from it like closed eyes. The forested road begins east, narrow\nbetween dark trunks, and the gate lies back west. A signpost leans, its\narms weathered blank.",
+   "extra_descs": {}
   },
   "8085": {
    "vnum": 8085,
@@ -2169,8 +2245,14 @@
      "description": "To the west lies Outside The Eastern Gate of Mishrak."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east and west.",
-   "placeholder": true
+   "description": "The road enters the trees here, a rutted track of brown earth between\noaks and tall dark firs. Mist hangs in the branches and the light is\nthin, the colour of old pewter. Fallen cones and wet leaves cover the\nverges. The road runs on east into the wood and back west toward the\ntown gate.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641901,
+     "max": 1
+    }
+   ]
   },
   "8086": {
    "vnum": 8086,
@@ -2192,8 +2274,8 @@
      "description": "To the west lies The Forested Road."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east and west.",
-   "placeholder": true
+   "description": "The forest closes in tighter here, roots crossing the road like\nknuckles, and the trunks stand so close that the track seems a tunnel.\nWater drips steadily from the boughs. A wheel rut has filled with black\nwater, and the leaf-mould smells sweet and old. The Forested Road\ncontinues east to a crossing and west toward Mishrak.",
+   "extra_descs": {}
   },
   "8087": {
    "vnum": 8087,
@@ -2219,8 +2301,8 @@
      "description": "To the west lies The Forested Road."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A crossing of tracks lies in a small clearing where a toppled oak has\nlet some grey daylight through. The main road goes on east and west,\nwhile a lesser way leads north toward the end of the road. Wagon wheels\nhave cut deep, and someone has hacked a crude mark into a trunk. Ferns\ngrow thick at the verge, dripping.",
+   "extra_descs": {}
   },
   "8088": {
    "vnum": 8088,
@@ -2242,8 +2324,14 @@
      "description": "To the west lies The Intersection In The Forested Road."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "East of the crossing the road runs between ancient beeches whose smooth\ngrey trunks rise like pillars, and the canopy makes a ceiling of\nrattling leaves. Boot prints in the mud wander from the road into the\nundergrowth and stop. A chill wind pushes through the trunks. The\nForested Road leads west to the crossing and east deeper into the wood.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641901,
+     "max": 1
+    }
+   ]
   },
   "8094": {
    "vnum": 8094,
@@ -2261,8 +2349,10 @@
      "description": "To the south lies The Intersection In The Forested Road."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. A way leads south.",
-   "placeholder": true
+   "description": "The road gives out in a dead end among the pines, ending in a ring of\ntrodden earth where wagons once turned. A cairn of mossy stones stands\nin the middle, topped with a rusted horseshoe nailed to a post. Needles\nblanket the ground and silence presses in. The only way back is the\ntrack south to the crossing.",
+   "extra_descs": {
+    "cairn horseshoe stones post": "The cairn is a waist-high heap of mossy fieldstones, each placed by a\npassing traveller. The horseshoe on the post above it is worn thin with\nrust."
+   }
   },
   "8095": {
    "vnum": 8095,
@@ -2280,8 +2370,14 @@
      "description": "To the west lies The Forested Road."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. A way leads west.",
-   "placeholder": true
+   "description": "The road fades here into a track of bare roots and bracken, and just\nahead the trees draw together in a wall of thorn and bramble. A rotten\ngatepost sags beside the path, its crossbar long gone, and ivy has\nswallowed half of it. Everything is damp and the light is poor. The only\nway out is back west along the Forested Road.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641901,
+     "max": 1
+    }
+   ]
   },
   "8096": {
    "vnum": 8096,
@@ -2299,10 +2395,14 @@
     "east": {
      "to_room": 8028,
      "description": "To the east lies Chapel Street Meets Market Street."
+    },
+    "south": {
+     "to_room": 8043,
+     "description": "To the south lies Eastern Altar."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "The abode is a cramped, cluttered room with a narrow cot, a shelf of\ntattered scrolls and a round table piled with candle ends and half-eaten\ncrusts. A shuttered window lets in a thread of light, and the whole\nplace smells of ink, old wool and tallow. A string of dried herbs hangs\nabove the hearth. The door opens east onto the chapel forecourt.",
+   "extra_descs": {}
   },
   "8097": {
    "vnum": 8097,
@@ -2342,8 +2442,21 @@
      "description": "To the down lies The Catacombs."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south, west, up and down.",
-   "placeholder": true
+   "description": "Here the tunnels of the dead run deeper than any mason intended, and the\nwalls are patched with bone and brick in a crazed mosaic. A line of old\ncandle-black runs along the vault as though someone had followed it with\na flame. Water drips on stone with slow patience. You can go north,\nsouth, east or west, up or down, though all look the same.",
+   "look": "crypt",
+   "extra_descs": {
+    "niches bones mosaic": "The bones in the niches have been sorted and arranged, skulls with\nskulls and long bones in neat criss-crossed stacks. Here and there a\nskull has been set facing the wall."
+   },
+   "mob_resets": [
+    {
+     "vnum": 641902,
+     "max": 1
+    },
+    {
+     "vnum": 641903,
+     "max": 1
+    }
+   ]
   },
   "8098": {
    "vnum": 8098,
@@ -2383,8 +2496,19 @@
      "description": "To the down lies The Catacombs."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south, west, up and\ndown.",
-   "placeholder": true
+   "description": "The catacomb passages branch and rejoin here like a root system, vault\nafter vault of stone bones. Fallen plaster lies in white drifts, and\nribs and skulls peer from the niches. The air is thick and still, and\ndistant footsteps echo with no clear source. Passages lead north, south,\neast and west, and others slope up and down.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641902,
+     "max": 1
+    },
+    {
+     "vnum": 641904,
+     "max": 1
+    }
+   ]
   },
   "208099": {
    "vnum": 208099,
@@ -2404,11 +2528,351 @@
      "description": "To the east lies The Office."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
-   "placeholder": true
+   "description": "A cold stone table dominates this small room, with a drain in the floor\nbeneath it and a rack of curved blades and saws on the wall. A lamp on a\nbracket gives a harsh, yellow light that shows dark stains on the flags.\nThe room smells of vinegar and old iron. The only way out is the door\neast to the office.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "641900": {
+   "vnum": 641900,
+   "name": "townsman man wary mishrak",
+   "short_desc": "a wary townsman",
+   "long_desc": "A wary townsman keeps close to the wall, glancing at every shuttered window.",
+   "description": "He is thin and grey-faced, with a patched coat pulled tight and a\nwalking stick he holds like a weapon. His eyes slide away from yours,\nand he looks like a man who has learned to hear nothing and see less.",
+   "level": 12,
+   "alignment": 100,
+   "hp_dice": "12d8+156",
+   "damage_dice": "4d6+5",
+   "armor_class": 61,
+   "exp": 680,
+   "gold": 144,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": []
+  },
+  "641901": {
+   "vnum": 641901,
+   "name": "wolf grey forest",
+   "short_desc": "a gaunt grey wolf",
+   "long_desc": "A gaunt grey wolf pads between the trunks beside the road, watching with pale eyes.",
+   "description": "The wolf's ribs show beneath a matted coat, and its lip is drawn back\nfrom yellow teeth. It moves with the slow patience of a beast that has\nbeen hunting travellers on the Forested Road all winter.",
+   "level": 13,
+   "alignment": 0,
+   "hp_dice": "13d8+146",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "641902": {
+   "vnum": 641902,
+   "name": "cultist hooded cult acolyte",
+   "short_desc": "a hooded cultist",
+   "long_desc": "A hooded cultist stands in the gloom, murmuring under his breath.",
+   "description": "He wears a robe of undyed grey wool with the hood pulled low, and a\nclosed eye daubed in red on his brow. A black-bladed dagger hangs at his\nbelt, and his lips never stop moving over some unwholesome prayer.",
+   "level": 17,
+   "alignment": -500,
+   "hp_dice": "17d8+225",
+   "damage_dice": "5d6+9",
+   "armor_class": 46,
+   "exp": 955,
+   "gold": 204,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741900,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "641903": {
+   "vnum": 641903,
+   "name": "enforcer cultist cult mail blackened",
+   "short_desc": "a blackened cult enforcer",
+   "long_desc": "A blackened cult enforcer stands guard in the dark, his hand on a heavy blade.",
+   "description": "A broad man in soot-black chain, his face hidden by a visor of beaten\niron. The closed eye of the cult is cut into his breastplate. He moves\nlike a soldier, and he does not seem to need to breathe.",
+   "level": 20,
+   "alignment": -600,
+   "hp_dice": "20d8+270",
+   "damage_dice": "6d6+10",
+   "armor_class": 37,
+   "exp": 1120,
+   "gold": 240,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741901,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "641904": {
+   "vnum": 641904,
+   "name": "skeleton warden bone",
+   "short_desc": "a bone warden skeleton",
+   "long_desc": "A bone warden skeleton stands motionless between the niches, its empty sockets turned on you.",
+   "description": "A tall skeleton clad in the rotted remains of a sexton's cloak, with\nbone plates wired across its chest. It holds a rusted halberd and a\nshield of yellowed bone, and it clatters faintly as it turns.",
+   "level": 21,
+   "alignment": -700,
+   "hp_dice": "21d8+324",
+   "damage_dice": "6d6+11",
+   "armor_class": 34,
+   "exp": 1175,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741902,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "641905": {
+   "vnum": 641905,
+   "name": "deacon orrin vash cultist priest",
+   "short_desc": "Deacon Orrin Vash",
+   "long_desc": "Deacon Orrin Vash sits at the desk in the head priest's chair, smiling thinly.",
+   "description": "The deacon wears the grey vestments of the chapel, but a heavy cult ring\nglints on his hand and a red thread is knotted at his wrist. His smile\nis polite and his eyes are cold, and a curved knife lies by his hand.",
+   "level": 19,
+   "alignment": -650,
+   "hp_dice": "19d8+255",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 228,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741903,
+     "chance": 35
+    },
+    {
+     "vnum": 741900,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "641906": {
+   "vnum": 641906,
+   "name": "maelgrim high priest pale cultist",
+   "short_desc": "Maelgrim the Pale, high priest of the cult",
+   "long_desc": "Maelgrim the Pale, high priest of the cult, stands among the dead with a smoking censer in his hand.",
+   "description": "A gaunt man in robes the colour of old bone, with skin that has never\nseen the sun and a closed eye tattooed in red across his brow. He swings\na heavy censer on a chain, and the smoke that pours from it smells of\ngrave earth. The bones in the niches seem to lean toward him as he\nspeaks.",
+   "level": 22,
+   "alignment": -900,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741904,
+     "chance": 35
+    },
+    {
+     "vnum": 741901,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "741900": {
+   "vnum": 741900,
+   "name": "dagger black bladed cult",
+   "short_desc": "a black-bladed cult dagger",
+   "room_desc": "A black-bladed dagger lies here, its hilt wound with red cord.",
+   "description": "The blade is blackened iron, wicked and thin. A closed eye is etched into the pommel.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 17,
+   "damage_dice": "2d6",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 465
+  },
+  "741901": {
+   "vnum": 741901,
+   "name": "hauberk chain mail blackened",
+   "short_desc": "a blackened chain hauberk",
+   "room_desc": "A blackened chain hauberk lies in a heap here.",
+   "description": "Soot-dark links, heavy and well made, with an eye cut into the breast ring. It smells faintly of grave earth.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 20,
+   "wear_slot": "body",
+   "armor": 5,
+   "weight": 10,
+   "value": 430
+  },
+  "741902": {
+   "vnum": 741902,
+   "name": "shield bone plate yellowed",
+   "short_desc": "a yellowed bone-plate shield",
+   "room_desc": "A yellowed shield of wired bone plates lies here.",
+   "description": "Plates of old bone are wired to a wooden frame, sturdier than they look. It rattles faintly when moved.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 21,
+   "wear_slot": "shield",
+   "armor": 4,
+   "weight": 6,
+   "value": 450,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  },
+  "741903": {
+   "vnum": 741903,
+   "name": "ring silver chapel tarnished",
+   "short_desc": "a tarnished silver chapel ring",
+   "room_desc": "A tarnished silver ring lies here.",
+   "description": "A heavy silver ring bearing the thorn sign of the chapel of Mishrak, with a tiny closed eye cut on the inside of the band.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "finger1",
+   "armor": 2,
+   "weight": 1,
+   "value": 410,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "741904": {
+   "vnum": 741904,
+   "name": "censer mace chain priest high",
+   "short_desc": "the high priest's censer-mace",
+   "room_desc": "A heavy censer on a chain lies here, still faintly smoking.",
+   "description": "A brass censer shaped like a skull, hung on a short chain from an iron haft. It hits like a hammer and leaves a smell of grave earth.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 22,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 590,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  }
+ }
 }

@@ -30,8 +30,14 @@
      "description": "To the west lies The West End Of The Painted Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Painted saints crowd both walls of this long hallway, haloed in flaking\ngold, and every one of them has had its eyes scratched out to bare grey\nplaster. The air is cold and tastes of old candle wax. To the south the\nentrance hall breathes a thin draught along the floor, while the hallway\nruns on east toward more painted walls and west toward a darker,\nnarrower end.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641600,
+     "max": 1
+    }
+   ]
   },
   "2704": {
    "vnum": 2704,
@@ -60,8 +66,8 @@
      }
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
-   "placeholder": true
+   "description": "Here the painted hallway comes to a dead end of crumbling saints, their\nhalos green with damp and their faces scratched blank. A faint smell of\npaper and mildew drifts from a door of dark wood set in the south wall.\nCobwebs cling to the high corners. The hallway lies east.",
+   "extra_descs": {}
   },
   "2706": {
    "vnum": 2706,
@@ -89,8 +95,8 @@
      "description": "To the west lies The Painted Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A painted procession winds along the walls here: robed figures bearing\nlamps and bones, each face gouged blank by some patient blade. Grave-\ndirt has been tracked across the tiles in dull brown smears that wander\nthe length of the floor. A low door in the north wall opens on the guard\npost, and the hallway goes on east and west beneath a ceiling stained\nblack with smoke.",
+   "extra_descs": {}
   },
   "2707": {
    "vnum": 2707,
@@ -110,8 +116,8 @@
      "description": "To the south lies The Painted Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "Bare and cheerless, this guard post holds a long table gouged with old\ndice marks and a pair of benches, one of them broken clean in half. A\nrack of rusted pike-heads is bolted to the wall, and a cold brazier sits\nchoked with grey ash. Whoever kept watch here left in a hurry, or never\nleft at all. The only way out is the door back south to the painted\nhallway.",
+   "extra_descs": {}
   },
   "2708": {
    "vnum": 2708,
@@ -139,8 +145,16 @@
      "description": "To the west lies The Painted Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Here the painted hallway ends in a martyred saint, a huge figure pierced\nwith arrows, whose scratched-out eyes seem to weep long streaks of\nflaked paint. The floor is gritty with grave-dirt, and a smell of wet\nearth rolls in from an iron-banded door to the east. To the north an\narchway of black stone glows faintly, and the hallway runs west back\nalong the painted walls.",
+   "extra_descs": {
+    "saint martyr arrows": "The martyred saint is shown bound to a post, ringed with black-fletched\narrows. Someone has scratched out both eyes and then, as an\nafterthought, the mouth."
+   },
+   "mob_resets": [
+    {
+     "vnum": 641600,
+     "max": 1
+    }
+   ]
   },
   "2709": {
    "vnum": 2709,
@@ -164,8 +178,10 @@
      "description": "To the south lies The Painted Hallway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "A ring of runes has been cut deep into the floor of this round chamber,\neach sign filled with a black crust that might once have been wax or\nblood. Above it a stone arch stands free of any wall, and the air\nbeneath it shivers like heat over a summer road. The chamber is bitterly\ncold, and your breath hangs before you. A narrow passage leads north\ninto a smaller room, and the hallway lies south.",
+   "extra_descs": {
+    "runes ring arch": "The runes are cut in an angular script that hurts to follow with the\neye. The arch above them is blank and black, but the air under it keeps\nmoving as though a door stood open on something far away."
+   }
   },
   "2715": {
    "vnum": 2715,
@@ -194,8 +210,8 @@
      "description": "To the south lies The Portal Chamber."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "This small square cell is bare except for a scorched circle on the\nfloor, its edges cracked and glassy where some great working burned\nitself out. The walls are close and sweating, and the stale air smells\nof lightning and hot metal. A heavy door of black iron stands in the\nnorth wall, and an opening south returns to the portal chamber.",
+   "extra_descs": {}
   },
   "2716": {
    "vnum": 2716,
@@ -227,8 +243,8 @@
      "description": "To the west lies The Circular Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four ways meet at this bend of the circular corridor, where the curved\nwall of dark masonry sweeps away on either hand. Old torch brackets hold\nonly stubs of black tallow, and the floor is scuffed with the tracks of\nmany boots. To the north a low arch opens on the chamber of sacrifice, a\nrust-brown stain spreading across its threshold. The corridor curves\neast and west, and a door south leads back to the teleport room.",
+   "extra_descs": {}
   },
   "2717": {
    "vnum": 2717,
@@ -252,8 +268,8 @@
      "description": "To the west lies The Circular Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The circular corridor bends here, its inner wall curving close beside\nyou and its outer wall swallowed by shadow. Sconces shaped like\nclutching hands jut from the masonry, each holding a candle burned down\nto a lump. A line of grave-dirt follows the curve, as if something heavy\nhad dragged itself along. The passage runs north around the bend, and\nwest toward the junction.",
+   "extra_descs": {}
   },
   "2718": {
    "vnum": 2718,
@@ -282,8 +298,8 @@
      "description": "To the south lies The Circular Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "At this corner of the corridor the walls are slick with damp, and a\nfaded mosaic of a weeping woman is set into the floor, worn nearly\nsmooth by passing feet. A door of dark polished wood stands to the east,\ncarved with ivy and small closed eyes. Cold seeps from its edges. The\ncorridor falls away south toward the bend.",
+   "extra_descs": {}
   },
   "2719": {
    "vnum": 2719,
@@ -303,8 +319,14 @@
      "description": "To the west lies The Circular Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "Faded rose silk hangs in strips from the walls of this lady's chamber,\nand a great canopied bed sags in the middle of the floor, its coverlet\ngone to grey mould. A dressing table stands against one wall, its mirror\ncracked across and veiled with fine dust. Dried flowers lie scattered on\nthe boards, brown and brittle. The sweetish smell of old perfume does\nlittle to hide the rot. The only door is west, back to the corridor.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641605,
+     "max": 1
+    }
+   ]
   },
   "2721": {
    "vnum": 2721,
@@ -333,8 +355,14 @@
      "description": "To the west lies The Circular Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "A black door of iron-studded oak stands in the north wall of this dim\ncorridor, its surface cut with a spiral of tiny sigils. A thick smell of\nincense and burnt hair leaks from the gap beneath it. The floor before\nthe door is swept clean, which is more disquieting than the dirt\nelsewhere. The corridor curves away west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641600,
+     "max": 1
+    }
+   ]
   },
   "2722": {
    "vnum": 2722,
@@ -354,8 +382,16 @@
      "description": "To the south lies The Circular Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
-   "placeholder": true
+   "description": "A tall altar of polished black stone dominates this vaulted sanctum, its\ntop carved with a spiral and crusted with candle-drippings. Bone-white\ntapers burn in iron stands around it, giving a light that has no warmth.\nThe walls are hung with tattered black cloth, and the air hums faintly,\nas if something were breathing in time with your pulse. Behind the altar\na niche holds a robed statue whose face has been chiselled away. The\ndoor lies south.",
+   "extra_descs": {
+    "altar black stone spiral": "The altar is a single block of black stone, polished by years of hands\nand sleeves. Its spiral is cut so deep that the candle wax has run into\nit like a river into a maze. Dark stains have soaked the grooves and\nnever washed out."
+   },
+   "mob_resets": [
+    {
+     "vnum": 641606,
+     "max": 1
+    }
+   ]
   },
   "2723": {
    "vnum": 2723,
@@ -379,8 +415,14 @@
      "description": "To the south lies The Circular Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "The circular corridor turns sharply here, and the floor dips in a\nshallow, worn hollow where many feet have rounded the same corner.\nNarrow slits high in the wall admit only a cold, thin draught that sets\nthe torch flame leaning. East the passage straightens toward a darker\nstretch, and south it curves back around the circle.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641604,
+     "max": 1
+    }
+   ]
   },
   "2724": {
    "vnum": 2724,
@@ -404,8 +446,8 @@
      "description": "To the south lies The Circular Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "Here the corridor is narrow and the ceiling sinks low, so that the air\nfeels pressed down upon your shoulders. Damp has raised blisters on the\nplaster, and in places the wall is bare brick, crumbling at the joints.\nFine grave-dirt crunches underfoot. The way runs north along the curve\nand south toward the junction.",
+   "extra_descs": {}
   },
   "2725": {
    "vnum": 2725,
@@ -425,8 +467,8 @@
      "description": "To the north lies The West End Of The Painted Hallway."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
-   "placeholder": true
+   "description": "Tall shelves of blackened oak crowd this library, bowed under rows of\nrotting books whose spines have crumbled to powder. A reading lectern\nstands in the middle of the room, its slanted top scarred with ink and\nknife cuts. A ladder on iron wheels leans against the highest shelf, and\na thick mat of dust lies over everything. Pale scraps of torn pages\ndrift in the draught. The door is north, back to the end of the hallway.",
+   "extra_descs": {}
   },
   "2726": {
    "vnum": 2726,
@@ -450,8 +492,8 @@
      "description": "To the east lies The Circular Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
-   "placeholder": true
+   "description": "The corridor curves on here, hugging a wall of close-set black blocks\nthat sweat in the cold. Someone has chalked tally marks in neat rows\nalong the masonry, hundreds of them, ending in a ragged scrawl. A single\nguttering torch in an iron ring throws long shadows ahead. The passage\nbends north along the circle, and east toward the junction.",
+   "extra_descs": {}
   },
   "2727": {
    "vnum": 2727,
@@ -471,8 +513,10 @@
      "description": "To the south lies The Circular Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads south.",
-   "placeholder": true
+   "description": "A broad slab of dark stone fills the middle of this vaulted chamber,\ngrooved with narrow channels that run to its edges and drain into a\npitted iron bowl. Chains hang from the ceiling above it, their last\nlinks worn bright. Soot and old blood have blackened the walls to head\nheight, and the cold here is the cold of a cellar. The only way out is\nthe arch south into the circular corridor.",
+   "extra_descs": {
+    "slab channels bowl": "The slab is cold as a river-stone and worn hollow along its centre. Each\nchannel in its flank ends in the iron bowl, which is crusted brown and\nrimmed with nicks."
+   }
   },
   "2733": {
    "vnum": 2733,
@@ -499,8 +543,8 @@
      "description": "To the west lies The Painted Hallway."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead south and west.",
-   "placeholder": true
+   "description": "A low wall of black stone marks the edge of the graveyard, and a\nwrought-iron gate hangs half open in it, its bars twisted into thorny\nvines. The sky overhead is a flat, bruised grey, and a sour wind carries\nthe smell of turned earth. West, a heavy door leads back into the\ncastle's painted hallway. South through the gate a path of cracked\nflagstones runs toward the headstones.",
+   "extra_descs": {}
   },
   "2734": {
    "vnum": 2734,
@@ -522,8 +566,16 @@
      "description": "To the east lies The Burial Grounds."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and east.",
-   "placeholder": true
+   "description": "Crooked headstones lean in rows across the sodden ground, their names\nweathered smooth and their cross-pieces broken. Dead brambles snag at\nyour legs, and here and there a grave has sunk, leaving a dark trough in\nthe grass. A black yew twists above the path, dropping its needles over\nthe stones. The gate lies north, and the ground runs east toward a wider\nfield of mounds.",
+   "extra_descs": {
+    "headstones stones names": "The names on the headstones have been chiselled away or smoothed over,\nand in their place the same sign is cut again and again: a small spiral.\nSome of the stones look newly scraped."
+   },
+   "mob_resets": [
+    {
+     "vnum": 641602,
+     "max": 1
+    }
+   ]
   },
   "2735": {
    "vnum": 2735,
@@ -545,8 +597,8 @@
      "description": "To the down lies Under The Burial Grounds."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead west and down.",
-   "placeholder": true
+   "description": "Long low mounds of raw earth cover the burial grounds, many of them\nsplit open from beneath, with clay heaped around the holes. No grass\ngrows on the soil, and the dull sky presses close above. A collapsed\ngravediggers' hut leans against a leafless elm. West the path runs back\namong the headstones, and at the foot of the largest mound a rough stair\ndescends into the dark.",
+   "extra_descs": {}
   },
   "2736": {
    "vnum": 2736,
@@ -568,8 +620,9 @@
      "description": "To the up lies The Burial Grounds."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead north and up.",
-   "placeholder": true
+   "description": "A narrow stair has emptied into a low, damp passage below the burial\nground, where roots hang through the ceiling like pale fingers. The\nwalls are lined with burial niches, most of them empty and furred with\nmould. Wet earth drips from above and gathers in black puddles along the\nfloor. A passage leads north into deeper dark, and the stair climbs up\nto the surface.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "2737": {
    "vnum": 2737,
@@ -591,8 +644,15 @@
      "description": "To the west lies The Arcade Of The Undead Lords."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead south and\nwest.",
-   "placeholder": true
+   "description": "The passage widens into an irregular vault where the weight of the earth\npresses on a ceiling of old beams. Bones have been stacked in neat,\ngrinning heaps along the walls, skulls set on top like offerings. The\nlight is faint and seems to come from nowhere. The passage runs south\ntoward the stair, and west it opens into a grander, pillared hall.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641601,
+     "max": 1
+    }
+   ]
   },
   "2738": {
    "vnum": 2738,
@@ -616,8 +676,14 @@
      "description": "To the east lies Under The Burial Grounds."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
-   "placeholder": true
+   "description": "A grand arcade of black pillars stretches away here, each pillar carved\ninto the likeness of a crowned lord with a skull for a face. Between the\npillars deep alcoves hold stone benches draped in cobwebs. The floor is\npaved with worn flagstones, many cracked by roots from above. The arcade\nruns north to a wider space, and east a rough opening returns to the\ndark beneath the burial ground.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641602,
+     "max": 1
+    }
+   ]
   },
   "2739": {
    "vnum": 2739,
@@ -641,8 +707,8 @@
      "description": "To the up lies The Arcade Of The Undead Lords."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and up.",
-   "placeholder": true
+   "description": "This hidden tomb was cut secretly beneath the arcade, and its low vault\nis crowded with burial slabs, each bearing a single carved name. A\nladder of iron rungs climbs up through a hole in the ceiling, rubbed\nshiny by hands. The air is still and dry, as though no draught had\nstirred it in an age. An opening in the east wall leads on into a narrow\npassage.",
+   "extra_descs": {}
   },
   "2740": {
    "vnum": 2740,
@@ -688,8 +754,10 @@
      "description": "To the down lies The Hidden Tomb."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south, west and down.",
-   "placeholder": true
+   "description": "This is the heart of the arcade, where the carved pillars stand tallest\nand the ceiling vanishes into dark. Stone doors face each other across\nthe aisle, the east one bearing the name Drindar and the west one\nMernag, both in letters picked out in tarnished gold. A hole in the\nfloor, rimmed with a rusted iron ring, opens on a ladder leading down\ninto the earth. The arcade continues north and south.",
+   "extra_descs": {
+    "pillars lords carved": "Every pillar wears a crown and a death's head, and no two crowns are\nalike. At the foot of each is a name plate, but the brass has been\nhammered flat on all but a few."
+   }
   },
   "2741": {
    "vnum": 2741,
@@ -709,8 +777,14 @@
      "description": "To the west lies The Arcade Of The Undead Lords."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "Drindar lies in a tomb hung with moth-eaten crimson, and the great stone\nchest that holds him has its lid split lengthwise as if from within. Dry\npetals and splinters of bone litter the floor around it. A rusted crown\nof iron, much too large for any living head, is carved into the wall\nabove. The cold here has a heavy, listening quality. A door in the west\nwall leads back to the arcade.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641603,
+     "max": 1
+    }
+   ]
   },
   "2742": {
    "vnum": 2742,
@@ -730,8 +804,8 @@
      "description": "To the east lies The Arcade Of The Undead Lords."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "Mernag's tomb is a squat chamber with a ceiling of low arches, each one\ncrusted with white salt left by seeping water. His coffin is of lead,\nsealed with twisted bands, and the floor around it is scored with a ring\nof deep scratches. A bowl of long-dried incense sits on a niche shelf.\nThe air is sharp as brine. A door leads back east to the arcade.",
+   "extra_descs": {}
   },
   "2743": {
    "vnum": 2743,
@@ -769,8 +843,14 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The arcade ends here in a blank wall painted with a huge, faded scene of\nlords kneeling before a throne of bones. Two tomb doors face one\nanother, the east one marked with a stylised hawk and the west one with\na broken crown. Ash lies in drifts along the foot of the wall. The aisle\nruns back south toward the heart of the arcade.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641602,
+     "max": 1
+    }
+   ]
   },
   "2744": {
    "vnum": 2744,
@@ -790,8 +870,8 @@
      "description": "To the west lies The Arcade Of The Undead Lords."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "Telgar's resting place is a cramped square room dominated by a\nsarcophagus of grey marble, its lid carved with a knight in full mail,\nhands folded on a sword. Faded battle banners droop from the ceiling,\nand the floor is strewn with the husks of long-dead flowers. The air is\ndry and bitter on the tongue. The only way out is the door west to the\narcade.",
+   "extra_descs": {}
   },
   "2745": {
    "vnum": 2745,
@@ -820,8 +900,14 @@
      "description": "To the east lies The Arcade Of The Undead Lords."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "Audor's tomb is a bare vault with a plain slab of black basalt pushed\naskew, as though the occupant had risen and walked away. Scratches score\nthe inside of the lid. A low door in the north wall leads to a dark\npassage that smells of damp and old death. The tomb's other door, east,\nreturns to the arcade.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641603,
+     "max": 1
+    }
+   ]
   },
   "2746": {
    "vnum": 2746,
@@ -845,8 +931,8 @@
      "description": "To the west lies The Hidden Tomb."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "A narrow passage of mortared brick turns here, so tight that two people\ncould not walk abreast. Lamp niches have been cut into the wall at\nintervals, each blackened by soot. A cobweb heavy with dust drapes from\none wall to the other. The passage runs north into the dark, and west it\nopens into the hidden tomb.",
+   "extra_descs": {}
   },
   "2747": {
    "vnum": 2747,
@@ -870,8 +956,8 @@
      "description": "To the south lies The Passage."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "Small, many footprints have worn a path down the middle of the dust\nhere, as of some patient keeper walking his rounds night after night.\nThe brick walls are sweating, and a cold trickle runs down one corner\ninto a crack. A single hook in the ceiling holds nothing at all. The\npassage goes north and south.",
+   "extra_descs": {}
   },
   "2748": {
    "vnum": 2748,
@@ -895,8 +981,8 @@
      "description": "To the south lies The Passage."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
-   "placeholder": true
+   "description": "A thin line of damp runs down the middle of the wall, leaving a green\ntrack like the path of a snail. Mortar crumbles from between the bricks,\nand several have fallen out to leave dark gaps that breathe a stale air.\nFar off, something taps against a pipe in a slow, uneven rhythm. The\npassage continues north and south.",
+   "extra_descs": {}
   },
   "2749": {
    "vnum": 2749,
@@ -920,8 +1006,14 @@
      "description": "To the south lies The Passage."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A cracked clay lamp hangs from an iron hook here, long out of oil, its\nwick a curl of black ash. The walls bear faded daubs of white paint,\ncrude marks in tallies of five, as if someone had once counted the days.\nThe floor is covered with a fine pale grit. The passage runs north and\nsouth.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641601,
+     "max": 1
+    }
+   ]
   },
   "2750": {
    "vnum": 2750,
@@ -945,8 +1037,8 @@
      "description": "To the south lies The Passage."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The passage grows warmer here, and a smell of tallow and old smoke comes\ndown it, as of a hearth recently lit. The brickwork is stained brown\nwith soot to head height. Beneath the soot, someone has scratched tiny\nfaces into the mortar, dozens of them, all with the mouth open. The\npassage goes north toward the warmth and south the way you came.",
+   "extra_descs": {}
   },
   "2751": {
    "vnum": 2751,
@@ -975,8 +1067,8 @@
      "description": "To the south lies The Passage."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
-   "placeholder": true
+   "description": "The passage ends in a small landing with a worn doorsill to the east,\nwhere the plank door is propped with a wedge of old bone. A horseshoe\nhas been nailed above the lintel, rusted solid, and a keyring hook hangs\nempty beside it. The air carries the sour smell of cold broth. The\npassage lies south.",
+   "extra_descs": {}
   },
   "2752": {
    "vnum": 2752,
@@ -996,8 +1088,14 @@
      "description": "To the west lies The Passage."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
-   "placeholder": true
+   "description": "A keeper's cot, a table and a cold iron stove make up this cramped room,\nwith everything thick under soot and grave-dust. A great ledger lies\nopen on the table, its entries running in a cramped hand until the ink\nsimply ends in a long brown smear. Pegs on the wall hold rows of empty\nkey rings, and a bucket by the stove holds only dried mud. The only way\nout is the door west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641604,
+     "max": 1
+    }
+   ]
   },
   "2753": {
    "vnum": 2753,
@@ -1021,8 +1119,8 @@
      "description": "To the south lies Audor's Tomb."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Beyond the tomb door a narrow tunnel of black rock begins, so low that\nanyone tall must stoop. Names have been scratched into the walls with\nfingernails or knives, thousands of them, overlapping into a grey\nscribble. The floor is slick and cold underfoot. The tunnel runs north\ninto the dark, and south back to the tomb.",
+   "extra_descs": {}
   },
   "2754": {
    "vnum": 2754,
@@ -1046,8 +1144,8 @@
      "description": "To the south lies The Tunnel Of Death."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "The tunnel turns here, and the wall at the corner has been worn smooth\nand dark by hands feeling their way through the black. Bone fragments\ncrunch in the grit, and a draught of cold air smells of wet iron.\nChipped letters over the corner urge you, in an old shaky script, to\nturn back. East the tunnel continues, and south it goes back toward the\ntomb.",
+   "extra_descs": {}
   },
   "2756": {
    "vnum": 2756,
@@ -1071,8 +1169,14 @@
      "description": "To the west lies The Tunnel Of Death."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and west.",
-   "placeholder": true
+   "description": "Here the tunnel narrows until your shoulders brush both walls, and the\nceiling hangs so low that you must stoop. A bleached hand of bone juts\nfrom a crack in the wall, fingers curled around nothing, a grim relic of\nthe poor souls sealed in alive. Water drips somewhere ahead in slow,\npatient beats. The way goes north into the narrower dark, and west back\nto the bend.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641601,
+     "max": 1
+    }
+   ]
   },
   "2758": {
    "vnum": 2758,
@@ -1096,8 +1200,8 @@
      "description": "To the south lies The Tunnel Of Death."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "A pool of black water has gathered across the floor of the tunnel, ankle\ndeep and perfectly still, so that the dim light of a distant sconce lies\non it like oil. The walls here are stained green with seepage, and the\nsmell is of a cellar long flooded. Scraps of rotted cloth drift at the\nedges. The tunnel runs east beyond the pool and south the way you came.",
+   "extra_descs": {}
   },
   "2760": {
    "vnum": 2760,
@@ -1121,8 +1225,8 @@
      "description": "To the west lies The Tunnel Of Death."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "Heavy chains hang in loops from iron rings set in the walls of this\nstretch, rusted to the colour of dried blood, and some still end in\nempty manacles. The floor is churned with old scrapings, and the roof is\nsooty with generations of smoky torches. A low moaning of wind comes and\ngoes. You can go east deeper in, or west back toward the pool.",
+   "extra_descs": {}
   },
   "2761": {
    "vnum": 2761,
@@ -1146,8 +1250,8 @@
      "description": "To the west lies The Tunnel Of Death."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "The tunnel bends sharply here around a great buttress of black rock that\nseems to have been left uncut, glistening with damp. Candle stubs have\nbeen jammed into every crevice of it, burned down by long-dead mourners.\nFaint scratch marks cover the floor in long parallel lines. North the\npassage goes on, and west lies the way back.",
+   "extra_descs": {}
   },
   "2763": {
    "vnum": 2763,
@@ -1171,8 +1275,14 @@
      "description": "To the south lies The Tunnel Of Death."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and south.",
-   "placeholder": true
+   "description": "A pair of crude pillars, hacked from the living rock, hold up the roof\nof this stretch, each carved with a leering death's head. The air grows\ncolder and thicker with every step, and the dark between the pillars\nseems to lean toward you. A trail of grave-dirt marks the floor. The way\ncontinues east, and back south the tunnel bends away.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641601,
+     "max": 1
+    }
+   ]
   },
   "2765": {
    "vnum": 2765,
@@ -1196,8 +1306,8 @@
      "description": "To the west lies The Tunnel Of Death."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "Ribs of old timber brace the ceiling here, bowed and greyed with rot,\nand dust sifts from them whenever the air stirs. Someone has painted a\nfaded red hand on the wall, palm out, as a warning or a blessing. The\nfloor is littered with heaps of bone chips and dried candle drippings.\nThe passage runs north, and west toward the cold pillars.",
+   "extra_descs": {}
   },
   "2767": {
    "vnum": 2767,
@@ -1221,8 +1331,8 @@
      "description": "To the south lies The Tunnel Of Death."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "Black mould blooms across the walls like a second, softer skin, and the\nair is thick with spores and rot. A single skull has been set into the\nwall at head height, and its empty sockets seem to follow you. Somewhere\nahead a sickly green glow stains the dark. East the passage continues\ntoward the glow, and south it returns to the red hand.",
+   "extra_descs": {}
   },
   "2769": {
    "vnum": 2769,
@@ -1251,8 +1361,8 @@
      "description": "To the west lies The Tunnel Of Death."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "The tunnel ends in a stout door of black iron to the east, riveted and\nstreaked with rust, its ring-handle shaped like a gaping mouth. A cold\ngreen glow seeps from the crack beneath it, and the smell of old incense\nis stronger here. The walls on either side are scored with deep, clawing\ngouges. Back west the tunnel winds away into darkness.",
+   "extra_descs": {}
   },
   "2770": {
    "vnum": 2770,
@@ -1272,11 +1382,377 @@
      "description": "To the west lies The Tunnel Of Death."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
-   "placeholder": true
+   "description": "The tunnel ends in a small round room whose domed ceiling is stained\nwith soot and whose walls are lined with narrow ledges. Rows of ancient\noil lamps sit on them, all dry and cold. In the middle of the floor a\ncircular grate covers a well of utter darkness, from which rises a sour\nwind. The only exit is the iron door west.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "641600": {
+   "vnum": 641600,
+   "name": "robed cultist acolyte",
+   "short_desc": "a robed cultist",
+   "long_desc": "A robed cultist mutters over a string of knucklebones, his eyes fixed on nothing.",
+   "description": "A gaunt man in a grave-grey robe, his sleeves stained to the elbow. His\nlips move in a ceaseless whisper, and a tarnished spiral hangs at his\nneck.",
+   "level": 5,
+   "alignment": -500,
+   "hp_dice": "5d8+71",
+   "damage_dice": "2d6+2",
+   "armor_class": 82,
+   "exp": 295,
+   "gold": 60,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741600,
+     "chance": 25
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "641601": {
+   "vnum": 641601,
+   "name": "skeleton bones rattling",
+   "short_desc": "a rattling skeleton",
+   "long_desc": "A rattling skeleton shambles along the tunnel with a rusted blade in its fingers.",
+   "description": "Yellowed bones held together by nothing you can see, with scraps of\nburial cloth clinging to the ribs. Its jaw clicks open and shut, though\nno sound comes.",
+   "level": 7,
+   "alignment": -600,
+   "hp_dice": "7d8+106",
+   "damage_dice": "2d6+5",
+   "armor_class": 76,
+   "exp": 405,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741601,
+     "chance": 15
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "641602": {
+   "vnum": 641602,
+   "name": "ghost pale wailing",
+   "short_desc": "a wailing ghost",
+   "long_desc": "A wailing ghost drifts among the headstones, its pale face turned toward the sky.",
+   "description": "A thin shape of fog and grave-cloth, drifting a hand's breadth above the\nground. Where its eyes should be there are only two dark smudges, and\nthe cold rolls off it in waves.",
+   "level": 8,
+   "alignment": -500,
+   "hp_dice": "8d8+120",
+   "damage_dice": "3d6+3",
+   "armor_class": 73,
+   "exp": 460,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741601,
+     "chance": 15
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "641603": {
+   "vnum": 641603,
+   "name": "tomb guard armoured undead",
+   "short_desc": "an armoured tomb guard",
+   "long_desc": "An armoured tomb guard stands motionless between the pillars, a notched sword in both hands.",
+   "description": "A tall dead warrior in black plate, the metal pitted and split. Beneath\nits helm there is only a dry grin and a pinprick of cold light, and it\nstands as if it has stood a thousand years.",
+   "level": 11,
+   "alignment": -700,
+   "hp_dice": "11d8+162",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741602,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "641604": {
+   "vnum": 641604,
+   "name": "blood cultist priest",
+   "short_desc": "a blood cultist",
+   "long_desc": "A blood cultist in a crimson-banded robe trails his fingers along the corridor wall, humming softly.",
+   "description": "A lean priest of Lord Khal with a red spiral painted across his brow and\na curved bone knife at his belt. His hands are stained dark to the\nwrist, and his smile is almost kind.",
+   "level": 11,
+   "alignment": -800,
+   "hp_dice": "11d8+143",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 132,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741600,
+     "chance": 30
+    },
+    {
+     "vnum": 741601,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "641605": {
+   "vnum": 641605,
+   "name": "mania pale lady ghost",
+   "short_desc": "Mania, the Pale Lady",
+   "long_desc": "Mania, the Pale Lady, sits at her dressing table combing hair that is no longer there.",
+   "description": "A ghost in a faded rose gown, once a lady of the castle, now a thing of\ncold light and cracked porcelain. She turns toward you slowly and smiles\nthe way a mirror smiles when no one is looking.",
+   "level": 12,
+   "alignment": -700,
+   "hp_dice": "12d8+177",
+   "damage_dice": "4d6+5",
+   "armor_class": 61,
+   "exp": 680,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741603,
+     "chance": 35
+    },
+    {
+     "vnum": 741601,
+     "chance": 35
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "641606": {
+   "vnum": 641606,
+   "name": "lord khal necromancer",
+   "short_desc": "Lord Khal, the necromancer",
+   "long_desc": "Lord Khal, the necromancer, stands behind his black altar with a pale hand raised over a burning taper.",
+   "description": "A tall, spare man in black robes edged with silver thread, with a skull-\nwhite face and eyes that never blink. The air around him is thick with\nthe smell of old candles and grave-earth, and the light bends away from\nhis hands.",
+   "level": 13,
+   "alignment": -1000,
+   "hp_dice": "13d8+169",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 156,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741604,
+     "chance": 35
+    },
+    {
+     "vnum": 741603,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "741600": {
+   "vnum": 741600,
+   "name": "grave-grey robe cultist",
+   "short_desc": "a grave-grey cultist's robe",
+   "room_desc": "A grave-grey robe lies in a heap here.",
+   "description": "A heavy wool robe the colour of old ash, its hem stiff with dried mud. A small spiral is stitched inside the collar.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 6,
+   "wear_slot": "body",
+   "armor": 3,
+   "weight": 10,
+   "value": 150
+  },
+  "741601": {
+   "vnum": 741601,
+   "name": "grave silver ring tarnished",
+   "short_desc": "a tarnished grave-silver ring",
+   "room_desc": "A tarnished silver ring lies here.",
+   "description": "A thin ring of dull silver, taken from a burial. It is worth something to those who do not mind where it came from.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 7,
+   "weight": 1,
+   "value": 235
+  },
+  "741602": {
+   "vnum": 741602,
+   "name": "notched black sword tomb",
+   "short_desc": "a notched black sword",
+   "room_desc": "A notched black sword lies here.",
+   "description": "A broad, heavy blade of dark iron, worn from age and nicked along its edge. The cold of the grave never quite leaves the grip.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 11,
+   "damage_dice": "2d5",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 315,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "741603": {
+   "vnum": 741603,
+   "name": "pale lace veil mania",
+   "short_desc": "a pale lace veil",
+   "room_desc": "A pale lace veil lies here.",
+   "description": "A veil of ivory lace, yellowed at the edges and perfumed faintly with rose and rot. It hangs lighter than it should.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 12,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 270,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "741604": {
+   "vnum": 741604,
+   "name": "black yew staff khal",
+   "short_desc": "Khal's staff of black yew",
+   "room_desc": "A staff of black yew lies here.",
+   "description": "A tall staff of blackened yew topped with a spiral of silver wire. It is cold to the touch and hums softly when held.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 13,
+   "damage_dice": "2d5",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 365,
+   "affects": [
+    {
+     "type": "int",
+     "value": 1
+    }
+   ]
+  }
+ }
 }

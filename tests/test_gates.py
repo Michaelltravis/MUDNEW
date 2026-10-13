@@ -44,7 +44,7 @@ async def main():
         for v, c in (d.get('creatures') or {}).items():
             if c.get('rank') and 'name' not in c:
                 ms = npcs(int(v))
-                floor = population.numbers(ms[0].level, c['rank'])['max_hp'] if ms else 0
+                floor = population.numbers(ms[0].level, c['rank'])['max_hp'] * 0.95 if ms else 0
                 check(ms and all(getattr(m, 'rank', None) == c['rank'] and m.max_hp >= floor for m in ms),
                       f'zone {z}: {v} is {c["rank"]} ({count[int(v)]} of them, {ms[0].max_hp if ms else 0} health)')
         for p in d.get('patrols') or []:

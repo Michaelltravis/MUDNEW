@@ -24,8 +24,8 @@
      "description": "To the south lies The Gate Of Fameland."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
-   "placeholder": true
+   "description": "The Path of Heroes begins at a broad arch of weathered stone, its\nflagstones worn into shallow troughs by the feet of ages. The way south\nleads back through the white pillars of the gate of Fameland. A cold\nwind carries a faint hum from somewhere deep in the ruin. The path runs\non north between rows of toppled columns, each one carved with a faded\nlaurel.",
+   "extra_descs": {}
   },
   "1601": {
    "vnum": 1601,
@@ -47,8 +47,8 @@
      "description": "To the south lies The Path of Heroes."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "Broken columns line both sides of the path here, their fluting chipped\nand their bases sunk in drifted dust. A cracked basin of black stone\nstands by the verge, long dry and ringed with old green stain. Grey\nlight falls aslant from a sky the colour of pewter. The path continues\nnorth and south through the ruin.",
+   "extra_descs": {}
   },
   "1602": {
    "vnum": 1602,
@@ -70,8 +70,16 @@
      "description": "To the south lies The Path of Heroes."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "A great statue of a robed hero stands on a plinth beside the path, its\nface worn smooth by wind and one stone hand held out with the palm open.\nLichen has crept across the carved cloak in orange patches. Faint\nscratches mark the flagstones where pilgrims once knelt. The path runs\nnorth deeper into the ruin and south back the way you came.",
+   "extra_descs": {
+    "statue hero plinth": "The statue shows a hero in a long robe, one hand open as if to welcome\nthe traveller. The name on the plinth has been chiselled away."
+   },
+   "mob_resets": [
+    {
+     "vnum": 642900,
+     "max": 1
+    }
+   ]
   },
   "1603": {
    "vnum": 1603,
@@ -93,8 +101,8 @@
      "description": "To the south lies The Path of Heroes."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "Here the flagstones are cracked and heaved by the roots of thorn bushes\nthat have taken hold in the gaps. Fallen blocks of grey marble lie in\nheaps beside the path, some still bearing a fragment of carved\ninscription. A low hum rises and falls, as if the ground itself were\nbreathing. The path goes on north and south.",
+   "extra_descs": {}
   },
   "1604": {
    "vnum": 1604,
@@ -116,8 +124,8 @@
      "description": "To the south lies The Path of Heroes."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
-   "placeholder": true
+   "description": "The path widens into a paved court that narrows again toward the\ncrossing ahead. Rows of stone plinths stand empty on either side, their\nstatues long since stolen or shattered. Pale pebbles crunch underfoot,\nand the hum of the rift is plainer here. The Junction of Ancients lies\njust north, where several ways meet, and the path runs back south.",
+   "extra_descs": {}
   },
   "1605": {
    "vnum": 1605,
@@ -147,8 +155,14 @@
      "description": "To the west lies The Way of Heroes."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Four ways meet at a great round plaza paved in black and white stone,\nits centre marked by a cracked ring of bronze set flush with the ground.\nThe Way of Ancients leaves north between tall columns, while the Walkway\nof Bones runs east, pale and strange in the gloom. West the Way of\nHeroes passes under a line of lofty statues, and the path you came by\nruns south. The air is heavy with age and the hum of the rift.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 642902,
+     "max": 1
+    }
+   ]
   },
   "1606": {
    "vnum": 1606,
@@ -170,8 +184,8 @@
      "description": "To the west lies The Way of Heroes."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "The Way of Heroes ends in a broad approach paved with mosaic, tiny tiles\nlaid in the shape of a wreath and half lost to weather. A tall column\nwith a cracked capital marks the edge, and beyond it the Junction of\nAncients waits to the east. The road runs west along the avenue of\nheroes. Thin grass pushes through the mosaic.",
+   "extra_descs": {}
   },
   "1607": {
    "vnum": 1607,
@@ -193,8 +207,10 @@
      "description": "To the west lies The Junction of Ancients."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
-   "placeholder": true
+   "description": "The walkway begins here as a raised causeway of pale stone, its surface\ninlaid with row upon row of ancient bones set into the paving in strange\npatterns. Leg-bones and ribs form spirals, and skulls are set into the\nlow walls like cobbles. The air is dry and sharp with the scent of old\ndust. The causeway runs east into the gloom and west to the plaza.",
+   "extra_descs": {
+    "bones skulls patterns": "The bones are set with strange care into spirals and rings. Whoever laid\nthem meant the pattern to be walked."
+   }
   },
   "1608": {
    "vnum": 1608,
@@ -216,8 +232,8 @@
      "description": "To the south lies The Junction of Ancients."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The Way of Ancients is a broad avenue of dark paving, flanked by tall\npillars carved with the names of long-dead champions, most of them worn\npast reading. Wind sighs through gaps in the colonnade. A thin drift of\ndead leaves has gathered against the plinths. The avenue runs north into\nthe ruin and south back to the plaza of the junction.",
+   "extra_descs": {}
   },
   "1609": {
    "vnum": 1609,
@@ -247,8 +263,8 @@
      "description": "To the west lies The Way of Heroes."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "This wide crossroads on the Way of Heroes holds a great circle of pale\nflags laid out like a shield. Doors to the north and south open into two\nmore rooms of Slaying, their lintels graven with spears. The avenue goes\non east toward the junction and west along the line of columns. Wind\nwhirls dust and dried leaves around the shield-circle.",
+   "extra_descs": {}
   },
   "1610": {
    "vnum": 1610,
@@ -274,8 +290,8 @@
      "description": "To the west lies The Way of Heroes."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Slender pillars flank the avenue, each topped with a stone eagle with a\nbroken beak. A doorway to the south leads into a Room of Slaying. Loose\ngravel and shards of pottery crunch underfoot. The avenue runs east and\nwest along its line of columns.",
+   "extra_descs": {}
   },
   "1611": {
    "vnum": 1611,
@@ -295,8 +311,14 @@
      "description": "To the south lies The Way of Heroes."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
-   "placeholder": true
+   "description": "A cold small chamber of dark stone, its walls scored with rows of\nnotches, each a tally of battles won. A stone table stands in the\ncentre, stained and chipped. The air is stale and heavy. The only way\nout is the doorway south, which returns to the Way of Heroes.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 642904,
+     "max": 1
+    }
+   ]
   },
   "1612": {
    "vnum": 1612,
@@ -316,8 +338,8 @@
      "description": "To the north lies The Way of Heroes."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "A narrow chamber where a long stone bench runs beneath a row of iron\nhooks, each hook once holding a trophy of some great kill. A thin shaft\nof light falls through a crack in the vault. The floor is gritty with\nash. The only way out is the arch north, back to the Way of Heroes.",
+   "extra_descs": {}
   },
   "1613": {
    "vnum": 1613,
@@ -343,8 +365,18 @@
      "description": "To the west lies The Way of Heroes."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast and west.",
-   "placeholder": true
+   "description": "Four stone braziers stand at the corners of a small crossing, each\nblackened inside by fires lit for forgotten feasts. A low doorway to the\nnorth opens into a Room of Slaying, its lintel carved with a ring of\nbroken spears. The avenue runs on east and west, its paving scattered\nwith rusted nails and splinters of old shafts.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 642900,
+     "max": 1
+    },
+    {
+     "vnum": 642901,
+     "max": 1
+    }
+   ]
   },
   "1614": {
    "vnum": 1614,
@@ -364,8 +396,14 @@
      "description": "To the north lies The Way of Heroes."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "Rough pillars stand in the corners of this small chamber of slaying,\neach wrapped in rusty chain. Pale scorch marks climb the walls in\ntongues. A heavy stone block, hollowed like a trough, stands in the\nmiddle, its rim chipped deeply. A doorway north returns to the Way of\nHeroes.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 642904,
+     "max": 1
+    }
+   ]
   },
   "1615": {
    "vnum": 1615,
@@ -385,8 +423,8 @@
      "description": "To the south lies The Way of Heroes."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
-   "placeholder": true
+   "description": "This low square chamber is a dead end, its walls hung with ancient\ntrophy-racks that hold only splinters and rust. Great stains darken the\nfloor in a ring. Carved beasts, all pierced by spears, run around the\nfrieze. The only way out is the doorway south, back to the Way of\nHeroes.",
+   "extra_descs": {}
   },
   "1616": {
    "vnum": 1616,
@@ -408,8 +446,8 @@
      "description": "To the south lies The Room of Might."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "The Way of Heroes starts here as a wide avenue paved in blue-grey slabs,\nlined by statues of warriors in crested helms. A fountain basin, dry and\ncracked, stands against a ruined wall. Low arches at the south end of\nthe street lead into the Room of Might. The avenue runs east into the\nruin beneath a hard grey sky.",
+   "extra_descs": {}
   },
   "1617": {
    "vnum": 1617,
@@ -433,8 +471,14 @@
      "description": "To the down lies The Room of Perseverance."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and down.",
-   "placeholder": true
+   "description": "Great stone weights, anvils and iron-bound bars lie scattered across the\nfloor of this high chamber, tests of strength left by champions long\ngone. The walls are thick with scratches counting lifts and throws. A\nwide arch to the north opens on the Way of Heroes, and a stair leads\ndown to the Room of Perseverance. The air smells of cold iron.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 642903,
+     "max": 1
+    }
+   ]
   },
   "1618": {
    "vnum": 1618,
@@ -456,8 +500,8 @@
      "description": "To the west lies The Walkway of Bones."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead south\nand west.",
-   "placeholder": true
+   "description": "The causeway turns here from the west toward the south, and the bones in\nthe paving gather into the wide curve of a giant ribcage. Whitened tusks\nand horns are set upright along the wall like the teeth of some vast\nbeast. A cold hum shivers through the stones. The walkway goes on south,\nand west runs back toward the plaza.",
+   "extra_descs": {}
   },
   "1619": {
    "vnum": 1619,
@@ -479,8 +523,8 @@
      "description": "To the south lies A Junction in The Walkway of Bones."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "The walkway runs straight between two walls built entirely of stacked\nskulls, row on row, grinning in the dim. Their hollows are stuffed with\nthe pale dust of ages. The hum of the rift grows louder, almost a low\nchant. The causeway leads north toward the bend and south to a junction.",
+   "extra_descs": {}
   },
   "1620": {
    "vnum": 1620,
@@ -510,8 +554,8 @@
      "description": "To the west lies The Room of Courage."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Three doorways open from a small court where the walkway meets, each\nbeneath a lintel of carved bone. They lead east to the Room of Elders,\nsouth to the Room of Bravery and west to the Room of Courage, while the\nwalkway runs back north. A circle of old bronze is set into the ground,\ngraven with a pattern of crossed swords. A hush hangs here, thick as\nfelt.",
+   "extra_descs": {}
   },
   "1621": {
    "vnum": 1621,
@@ -531,8 +575,8 @@
      "description": "To the north lies A Junction in The Walkway of Bones."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "A dim round chamber whose floor is laid with a mosaic of a lone figure\nfacing a great dark mass, much of it lost under dust. Torch sconces hang\nempty. The ceiling is low and domed, black with the soot of vanished\nfires. The only way out is the doorway north, to the junction of the\nwalkway.",
+   "extra_descs": {}
   },
   "1622": {
    "vnum": 1622,
@@ -552,8 +596,16 @@
      "description": "To the east lies A Junction in The Walkway of Bones."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
-   "placeholder": true
+   "description": "A bare, narrow chamber lit by a single slit that casts a blade of light\nacross the floor. Along the walls are carved the names of those who\nfaced death here, and some of the letters are still sharp. A cracked\nstone shield hangs on the far wall. The doorway east opens on the\nwalkway junction.",
+   "extra_descs": {
+    "names carved letters": "The names are cut in a dozen different hands. Beneath the last is a\nblank space, as if the wall were waiting."
+   },
+   "mob_resets": [
+    {
+     "vnum": 642903,
+     "max": 1
+    }
+   ]
   },
   "1623": {
    "vnum": 1623,
@@ -577,8 +629,8 @@
      "description": "To the west lies A Junction in The Walkway of Bones."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long hall of cold stone, its walls lined with niches in which stone\nfigures of bearded elders sit, hands folded on their knees. A single\noil-black lamp hangs from the vaulted ceiling by a chain. Dust lies\nthick on the floor except along a line of footprints worn into the\nflags. A doorway east leads deeper, and the arch west returns to the\nwalkway.",
+   "extra_descs": {}
   },
   "1624": {
    "vnum": 1624,
@@ -602,8 +654,14 @@
      "description": "To the up lies The Room of Might."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead west and up.",
-   "placeholder": true
+   "description": "This is a round chamber where a spiral stair of worn steps climbs the\nwall to an opening in the ceiling. Every step is hollowed in the middle\nby centuries of patient feet. Carved on the walls in ring after ring are\ntallies of trials endured, each stroke scratched by a different hand.\nTorch brackets stand empty. The only other way out is the arch to the\nwest, and the stair leads up to the Room of Might.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 642905,
+     "max": 1
+    }
+   ]
   },
   "1625": {
    "vnum": 1625,
@@ -625,8 +683,8 @@
      "description": "To the south lies The Way of Ancients."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "Great urns of weathered bronze stand along the avenue, green with\nverdigris and dented by some ancient violence. Between them the paving\nis scored with long gouges, as though something heavy was dragged across\nit. Pale moss grows in the cracks. The way continues north and south.",
+   "extra_descs": {}
   },
   "1626": {
    "vnum": 1626,
@@ -648,8 +706,8 @@
      "description": "To the south lies The Way of Ancients."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The avenue runs between two rows of columns here, and the roofless sky\nabove is streaked with slow cloud. A broken arch spans the road, one\nhalf still standing, the other lying in tumbled blocks. Dust hangs in\nthe slanting light. The Way of Ancients goes on north to a junction and\nsouth the way you came.",
+   "extra_descs": {}
   },
   "1627": {
    "vnum": 1627,
@@ -675,8 +733,10 @@
      "description": "To the west lies The Way of Ancients."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "At this junction the avenue splits, one arm running east and the other\nwest, while the road you followed ends at a squat stone pedestal. The\npedestal is bare, though a ring of chiselled laurel still circles its\nedge. Cold air slides along the paving from both ways. Dust and fallen\npebbles dance in small whirls on the stones, and the way back lies\nsouth.",
+   "extra_descs": {
+    "pedestal laurel": "The pedestal once held a statue, for four bronze bolts still stand in\nits top. Around its rim runs a laurel wreath, cut with great care."
+   }
   },
   "1628": {
    "vnum": 1628,
@@ -698,8 +758,8 @@
      "description": "To the west lies The Way of Ancients."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
-   "placeholder": true
+   "description": "Flat paving stones, worn into a gentle dip, mark the line of the avenue\nbetween two broken walls. Scrubby grass grows in thin tufts along the\nmargins, and a wind-twisted sapling clings to a crack. Scraps of blue\nglass glint in the dust where some window once stood. The junction lies\na few paces east, and the road runs on west.",
+   "extra_descs": {}
   },
   "1629": {
    "vnum": 1629,
@@ -721,8 +781,14 @@
      "description": "To the west lies A Bend in The Way of Ancients."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "A shallow channel runs along the middle of the road, once a watercourse\nfor some forgotten rite and now filled with black mud and reeds. Stone\nlions crouch at intervals along the verge, though weather has taken\ntheir manes and mouths. The air is damp, and the hum of the rift is only\na murmur here. East the road meets a junction; west it bends.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 642900,
+     "max": 1
+    }
+   ]
   },
   "1630": {
    "vnum": 1630,
@@ -744,8 +810,8 @@
      "description": "To the east lies The Way of Ancients."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand east.",
-   "placeholder": true
+   "description": "Here the avenue turns, swinging from the north toward the east beneath a\nvast broken arch whose keystone hangs by a thread. Fragments of carved\ngarlands litter the paving. A strong draught moves through the arch with\na low moan. The road runs east along its length, and the way back lies\nnorth.",
+   "extra_descs": {}
   },
   "1631": {
    "vnum": 1631,
@@ -767,8 +833,8 @@
      "description": "To the south lies A Bend in The Way of Ancients."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
-   "placeholder": true
+   "description": "The road is bordered on one side by a low parapet of white stone, beyond\nwhich a sheer drop falls into mist, the edge of some older terrace of\nthe city. Cold fog beads on the stone. Cracks run through the paving\nlike frozen lightning. The avenue goes north and south from here.",
+   "extra_descs": {}
   },
   "1632": {
    "vnum": 1632,
@@ -790,8 +856,18 @@
      "description": "To the south lies The Way of Ancients."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "Long shadows lie across the road, cast by a row of leaning obelisks\ninscribed with columns of tiny script. A few have fallen and split. The\nstone underfoot is cold and slick with dew, and a sour smell of wet\nearth rises from the gaps. The way goes north to a bend and south along\nthe avenue.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 642901,
+     "max": 1
+    },
+    {
+     "vnum": 642902,
+     "max": 1
+    }
+   ]
   },
   "1633": {
    "vnum": 1633,
@@ -813,8 +889,8 @@
      "description": "To the south lies The Way of Ancients."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and south.",
-   "placeholder": true
+   "description": "The avenue swings from the east toward the south here, curving around a\nlow mound of rubble that was once a tower. Blocks the size of oxen lie\nhalf buried in thistles. A line of faint carved stars is still visible\non the nearest wall. East lies the straight road toward the temple, and\nthe way south runs on along the avenue.",
+   "extra_descs": {}
   },
   "1634": {
    "vnum": 1634,
@@ -836,8 +912,8 @@
      "description": "To the west lies A Bend in The Way of Ancients."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "Tall thin pillars stand in pairs along the road, each pair once holding\na banner now rotted to nothing but rings of corroded iron. Nests of dry\ntwigs crowd the capitals. The paving is pitted by centuries of rain, and\npuddles shine in the hollows. The road runs east toward the temple vault\nand west to a bend.",
+   "extra_descs": {}
   },
   "1635": {
    "vnum": 1635,
@@ -859,8 +935,8 @@
      "description": "To the west lies The Way of Ancients."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "The avenue runs on beside a long wall hung with the rust-brown remains\nof iron shields, their devices eaten away. Underfoot, the paving is\ncracked and strewn with pale gravel that crunches loudly. A cold draught\nbreathes from the vaulted road to the east. West, the way stretches\ntoward a bend.",
+   "extra_descs": {}
   },
   "1636": {
    "vnum": 1636,
@@ -888,8 +964,8 @@
      "description": "To the west lies The Way of Ancients."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "This is a vaulted hall of grey stone, a long echoing passage where the\nWay of Ancients runs under a roof. Thick pillars march along both walls,\nand iron braziers stand cold in the corners. The hum of the rift is\nstrongest here, shivering through the floor. Ways lead east toward the\ngateposts and west along the avenue, while a broad opening in the south\nwall leads to the Rift.",
+   "extra_descs": {}
   },
   "1637": {
    "vnum": 1637,
@@ -911,8 +987,8 @@
      "description": "To the west lies The Road to The Temple."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "A pair of massive gateposts stands at the road's end, carved with\nspiralling runes and linked by a lintel cracked clean through. Beyond\nthem lies the dim, shadowed mouth of the Road to the Temple. The air is\ncooler and smells of stone and distant storms. The avenue returns the\nway you came, toward the east.",
+   "extra_descs": {}
   },
   "1638": {
    "vnum": 1638,
@@ -934,8 +1010,8 @@
      "description": "To the west lies The Way of Ancients."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
-   "placeholder": true
+   "description": "The avenue runs between rows of cracked statues, some headless, some\narmless, all grey with the soot of old fires. A shallow gutter crosses\nthe road, choked with fine silt and the brittle bones of small beasts.\nThe hum of the rift is loud now, a deep and steady note felt in the\nchest. East the road bends; west it runs toward a gloomy gateway.",
+   "extra_descs": {}
   },
   "1639": {
    "vnum": 1639,
@@ -957,8 +1033,16 @@
      "description": "To the west lies The Way of Ancients."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nsouth and west.",
-   "placeholder": true
+   "description": "The road bends here around a huge fallen head of weathered stone, a\nheroic face half sunk in the paving. Its blank eyes stare at the sky,\nand ivy trails across its brow like a wreath of green. The hum of the\nrift is felt in the soles of your feet. The way leads south along the\navenue and west along a straighter stretch.",
+   "extra_descs": {
+    "head face fallen": "The stone head is taller than a man, with a strong jaw and a worn crown.\nIt seems to have fallen from some great statue long ago."
+   },
+   "mob_resets": [
+    {
+     "vnum": 642900,
+     "max": 1
+    }
+   ]
   },
   "1640": {
    "vnum": 1640,
@@ -980,8 +1064,8 @@
      "description": "To the south lies The Way of Ancients."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "A line of stone benches borders the avenue, polished smooth by those who\nonce rested here to watch processions pass. Most are cracked, and one\nhas fallen into two halves with a rusted iron spike between them. The\nwind carries the dry smell of old dust and ash. The road bends ahead to\nthe north and runs south toward the earlier bend.",
+   "extra_descs": {}
   },
   "1641": {
    "vnum": 1641,
@@ -1003,8 +1087,8 @@
      "description": "To the south lies A Bend in The Way of Ancients."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "Narrow and cold, the avenue here runs between two high walls of fitted\nblocks, so that only a strip of sky shows overhead. Faded paint clings\nto the stonework in flecks of red and ochre, the last trace of a victory\nfrieze. Water drips somewhere unseen. The road runs on north and south.",
+   "extra_descs": {}
   },
   "1642": {
    "vnum": 1642,
@@ -1026,8 +1110,8 @@
      "description": "To the west lies The Way of Ancients."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north and west.",
-   "placeholder": true
+   "description": "The avenue turns sharply here, curving from the west toward the north\naround a round platform of cracked tiles. At its centre a stone basin\nholds a skin of dark rainwater. Carved reliefs of marching warriors run\nalong the low wall, their faces scoured by weather. The way continues\nnorth, and west lies the long straight road you walked.",
+   "extra_descs": {}
   },
   "1643": {
    "vnum": 1643,
@@ -1049,8 +1133,8 @@
      "description": "To the west lies The Way of Ancients."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "Tall grass and thistles grow thick in the cracks of the paving, bending\nin the wind that moves along the avenue. A toppled column lies across\nhalf the road, its drums rolled apart like coins. The stone beneath is\nscorched in a long dark stripe. The avenue bends ahead to the east and\nruns back west toward the junction.",
+   "extra_descs": {}
   },
   "1644": {
    "vnum": 1644,
@@ -1072,8 +1156,8 @@
      "description": "To the west lies A Junction in The Way of Ancients."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east and west.",
-   "placeholder": true
+   "description": "The avenue runs straight and level between low walls of dark stone half\nburied in creeping ivy. The paving here is unusually smooth, polished by\ncountless processions. A line of cracked bronze lamps hangs from iron\narms, empty of oil for centuries. The junction lies west, and the road\ngoes on east.",
+   "extra_descs": {}
   },
   "1645": {
    "vnum": 1645,
@@ -1095,11 +1179,390 @@
      "description": "To the south lies The Temple Of Garathorm."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
-   "placeholder": true
+   "description": "The ground ends in a vast ragged chasm that splits the city, its far lip\nlost in shadow and a pale light pulsing in its depths. A narrow bridge\nof fitted stone crosses it to the broad marble stair of the Temple of\nGarathorm, which rises to the south. The air shakes with the great hum,\nand a cold wind tugs at your clothes. To the north is the vaulted Road\nto the Temple.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 642901,
+     "max": 1
+    },
+    {
+     "vnum": 642906,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "642900": {
+   "vnum": 642900,
+   "name": "skeleton bone sentry",
+   "short_desc": "a bone sentry",
+   "long_desc": "A bone sentry in rusted mail stands rigid on the paving, a notched spear in its hands.",
+   "description": "A skeleton still bound in the corroded mail of some old guard. Pale fire\ngutters in its empty sockets as it turns to follow you.",
+   "level": 16,
+   "alignment": -300,
+   "hp_dice": "16d8+239",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 742900,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "642901": {
+   "vnum": 642901,
+   "name": "ghost shade hero",
+   "short_desc": "a hero's shade",
+   "long_desc": "A hero's shade drifts above the stones, its pale hand tightening on a sword that is not there.",
+   "description": "The faint outline of a warrior in an antique crested helm, thin as mist.\nIt keeps the old trials and does not suffer the living to pass them\nunchallenged.",
+   "level": 19,
+   "alignment": -200,
+   "hp_dice": "19d8+289",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 742901,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "642902": {
+   "vnum": 642902,
+   "name": "raven crow black",
+   "short_desc": "a black raven",
+   "long_desc": "A black raven perches on a broken column, watching you with a bright unblinking eye.",
+   "description": "A big raven with feathers dusted white by the ruin. It pecks at the old\nbones in the paving and croaks at anything that comes near.",
+   "level": 15,
+   "alignment": 0,
+   "hp_dice": "15d8+170",
+   "damage_dice": "4d6+9",
+   "armor_class": 52,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "642903": {
+   "vnum": 642903,
+   "name": "guardian statue granite golem",
+   "short_desc": "a granite guardian",
+   "long_desc": "A granite guardian stands in the doorway, its stone sword resting across its chest.",
+   "description": "A statue of a heavy-browed warrior given terrible life by the rift. Dust\ntrickles from its joints with every slow step.",
+   "level": 22,
+   "alignment": 0,
+   "hp_dice": "22d8+382",
+   "damage_dice": "6d6+16",
+   "armor_class": 26,
+   "exp": 1230,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 742902,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "642904": {
+   "vnum": 642904,
+   "name": "wraith slayer spectre",
+   "short_desc": "a slayer wraith",
+   "long_desc": "A slayer wraith circles the chamber, a spear of grey light in its fist.",
+   "description": "The ghost of a hunter bound to the Rooms of Slaying, its body ragged\nsmoke and its eyes hard as flint. It forever repeats the throw that\nkilled it.",
+   "level": 23,
+   "alignment": -500,
+   "hp_dice": "23d8+360",
+   "damage_dice": "6d6+14",
+   "armor_class": 28,
+   "exp": 1285,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 742900,
+     "chance": 20
+    },
+    {
+     "vnum": 742902,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "642905": {
+   "vnum": 642905,
+   "name": "elder verun keeper trials ghost",
+   "short_desc": "Elder Verun, Keeper of Trials",
+   "long_desc": "Elder Verun, Keeper of Trials, stands beside the worn stair with a staff of pale bone.",
+   "description": "The ghost of the eldest of the first heroes, bent and bearded, with eyes\nlike cold lamps. He judges every traveller who comes to the stair, and\nfinds most wanting.",
+   "level": 24,
+   "alignment": -100,
+   "hp_dice": "24d8+379",
+   "damage_dice": "7d6+12",
+   "armor_class": 25,
+   "exp": 1340,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 742903,
+     "chance": 35
+    },
+    {
+     "vnum": 742901,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "642906": {
+   "vnum": 642906,
+   "name": "ancient champion warrior spirit",
+   "short_desc": "the Ancient Champion",
+   "long_desc": "The Ancient Champion stands at the lip of the Rift, a vast blade of grey light held low at his side.",
+   "description": "The greatest of the first heroes, a towering figure in antique plate,\nstill keeping watch over the chasm. His voice is the hum of the rift\nitself, and his sword has not been lowered in a thousand years.",
+   "level": 25,
+   "alignment": -100,
+   "hp_dice": "25d8+398",
+   "damage_dice": "7d6+13",
+   "armor_class": 22,
+   "exp": 1395,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 742904,
+     "chance": 35
+    },
+    {
+     "vnum": 742903,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "742900": {
+   "vnum": 742900,
+   "name": "spear notched sentry",
+   "short_desc": "a notched sentry spear",
+   "room_desc": "A notched sentry spear lies here.",
+   "description": "A long spear with a pitted iron head and a shaft gone dark with age. It is still well balanced.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 16,
+   "damage_dice": "2d5",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 440
+  },
+  "742901": {
+   "vnum": 742901,
+   "name": "circlet laurel bronze",
+   "short_desc": "a bronze laurel circlet",
+   "room_desc": "A bronze laurel circlet lies here.",
+   "description": "A circlet of cast bronze leaves, green at the edges. It is cold even in the hand.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 410,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  },
+  "742902": {
+   "vnum": 742902,
+   "name": "shard granite carved",
+   "short_desc": "a carved granite shard",
+   "room_desc": "A carved granite shard lies here.",
+   "description": "A palm-sized piece of old statuary, with part of a stern stone face still cut into it. Collectors pay well for such relics.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 22,
+   "weight": 1,
+   "value": 685
+  },
+  "742903": {
+   "vnum": 742903,
+   "name": "signet ring elder silver",
+   "short_desc": "a worn silver signet ring",
+   "room_desc": "A worn silver signet ring lies here.",
+   "description": "A heavy silver ring stamped with the seal of the first elders. It hums faintly with the rift.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 24,
+   "wear_slot": "finger1",
+   "armor": 2,
+   "weight": 1,
+   "value": 510,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "742904": {
+   "vnum": 742904,
+   "name": "blade champion greatsword grey",
+   "short_desc": "the Champion's grey greatsword",
+   "room_desc": "The Champion's grey greatsword lies here, humming softly.",
+   "description": "A great blade of dull grey steel, etched with the names of the first heroes. It hums with the rift whenever it is drawn.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 25,
+   "damage_dice": "2d7",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 665,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

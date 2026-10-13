@@ -1,0 +1,151 @@
+{
+ "zone": 452,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and the Scaled Beast of Zaebos as the boss.",
+ "creatures": {
+  "645200": {
+   "helpers": {
+    "group": "z452_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a scaled lizardman guard"
+  },
+  "645201": {
+   "helpers": {
+    "group": "z452_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a lizardfolk cultist"
+  },
+  "645202": {
+   "helpers": {
+    "group": "z452_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale water snake"
+  },
+  "645203": {
+   "helpers": {
+    "group": "z452_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a blind cave crocodile"
+  },
+  "645204": {
+   "helpers": {
+    "group": "z452_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a lizardfolk champion",
+   "rank": "elite"
+  },
+  "645205": {
+   "helpers": {
+    "group": "z452_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a temple basilisk",
+   "rank": "elite"
+  },
+  "645206": {
+   "helpers": {
+    "group": "z452_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Khessa, the Vraal Mother",
+   "rank": "sub-boss"
+  },
+  "645207": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "the Scaled Beast of Zaebos",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Scaled Beast of Zaebos rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "The Scaled Beast of Zaebos gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+4",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "The Scaled Beast of Zaebos raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "The Scaled Beast of Zaebos begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 645207,
+   "room": 1100,
+   "why": "the Scaled Beast of Zaebos in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "645200": 2
+     },
+     "shout": "The Scaled Beast of Zaebos calls, and a scaled lizardman guards come!",
+     "why": "its brood"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,147 @@
+{
+ "zone": 449,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and the fire spirit of the crest as the boss.",
+ "creatures": {
+  "644901": {
+   "helpers": {
+    "group": "z449_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a bristling jungle boar"
+  },
+  "644902": {
+   "helpers": {
+    "group": "z449_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "an ashen tribesman"
+  },
+  "644903": {
+   "helpers": {
+    "group": "z449_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a great maned lion",
+   "rank": "elite"
+  },
+  "644904": {
+   "helpers": {
+    "group": "z449_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "an ash priest",
+   "rank": "elite"
+  },
+  "644905": {
+   "helpers": {
+    "group": "z449_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Gorrak, the cultist Death-Speaker",
+   "rank": "sub-boss"
+  },
+  "644906": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "the fire spirit of the crest",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The fire spirit of the crest rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "The fire spirit of the crest gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+3",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "The fire spirit of the crest raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+2",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "The fire spirit of the crest begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+4",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 644900,
+   "route": [
+    106204,
+    106201,
+    106212,
+    106216,
+    106219,
+    106220
+   ],
+   "why": "a leper villager walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 644906,
+   "room": 106260,
+   "why": "the fire spirit of the crest in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "644901": 2
+     },
+     "shout": "The fire spirit of the crest calls, and a bristling jungle boars come!",
+     "why": "its brood"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}
