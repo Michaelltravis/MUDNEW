@@ -116,6 +116,10 @@ async def main():
     check(mistress.room.vnum == 2677 and len(npcs(24006)) == 1, 'the Grand Mistress in the Audience Chamber; one Kraken')
     minos = npcs(907)[0]
     check(minos.room.vnum == 934 and len(npcs(904)) == 1, 'King Minos on his throne; Woundwort only once')
+    # ---- the end-game zones: every boss fights with abilities and mechanics
+    for v in (24505, 24805, 28020, 28520, 29020, 29520, 30020):
+        b = npcs(v)[0]
+        check(getattr(b, 'is_boss', False) and b.abilities and b.mechanics, f'{b.name}: a boss with abilities and mechanics')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

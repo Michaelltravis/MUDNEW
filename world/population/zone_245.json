@@ -1,0 +1,134 @@
+{
+ "zone": 245,
+ "_about": "Shadowspire Citadel (levels 47-55): stalkers, mirror wraiths, void walkers and nightmare beasts answer each other in the dark, the nightmare beasts are elites, and Shadow Lord Malachar on the Throne of Shadows drowns the hall in darkness and splits off shadow stalkers.",
+ "creatures": {
+  "24501": {
+   "helpers": {
+    "group": "shadowspire",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The shadows shriek, and the citadel's servants pour out of the dark!"
+   },
+   "why": "the citadel's servants"
+  },
+  "24502": {
+   "helpers": {
+    "group": "shadowspire",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The shadows shriek, and the citadel's servants pour out of the dark!"
+   },
+   "why": "the citadel's servants"
+  },
+  "24503": {
+   "helpers": {
+    "group": "shadowspire",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The shadows shriek, and the citadel's servants pour out of the dark!"
+   },
+   "why": "the citadel's servants"
+  },
+  "24504": {
+   "rank": "elite",
+   "why": "a nightmare beast",
+   "helpers": {
+    "group": "shadowspire",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The shadows shriek, and the citadel's servants pour out of the dark!"
+   }
+  },
+  "24505": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind",
+    "sentinel",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Malachar rises from the Throne of Shadows: \"Kneel in the dark!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Shadow Nova",
+      "telegraph": "Malachar gathers the darkness into his hands!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+13",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Umbral Blade",
+      "telegraph": "Malachar draws a blade of pure shadow!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+11",
+      "dodge": true
+     },
+     {
+      "name": "Eclipse",
+      "telegraph": "Malachar begins to swallow the last of the light!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+18",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "Shadow Lord Malachar"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 24501,
+   "route": [
+    24501,
+    24503,
+    24506
+   ],
+   "why": "a shadow stalker walks the vestibule to the armory"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 24505,
+   "room": 24527,
+   "why": "Malachar on the Throne of Shadows",
+   "mechanics": [
+    {
+     "type": "gloom",
+     "max": 0.9,
+     "shout": "The Throne of Shadows drinks the light...",
+     "why": "darkness"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "24501": 2
+     },
+     "shout": "Malachar's shadow tears free and becomes stalkers!",
+     "why": "his shadow"
+    }
+   ]
+  }
+ ]
+}

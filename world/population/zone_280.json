@@ -1,0 +1,161 @@
+{
+ "zone": 280,
+ "_about": "The Ashen Expanse (levels 58-62): marauders, wraiths, warlocks and hounds answer each other across the ash, the furnace sentinels and magma reavers are elites, Cinder Warden Kael and the Scoria Matron are sub-bosses, and the Ember Sovereign on her pyre floods the ground with fire and raises the pyre's dead.",
+ "creatures": {
+  "28001": {
+   "helpers": {
+    "group": "ashen",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A horn of burning bone sounds across the Expanse!"
+   },
+   "why": "the ash host"
+  },
+  "28002": {
+   "helpers": {
+    "group": "ashen",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A horn of burning bone sounds across the Expanse!"
+   },
+   "why": "the ash host"
+  },
+  "28004": {
+   "helpers": {
+    "group": "ashen",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A horn of burning bone sounds across the Expanse!"
+   },
+   "why": "the ash host"
+  },
+  "28005": {
+   "helpers": {
+    "group": "ashen",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A horn of burning bone sounds across the Expanse!"
+   },
+   "why": "the ash host"
+  },
+  "28006": {
+   "helpers": {
+    "group": "ashen",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A horn of burning bone sounds across the Expanse!"
+   },
+   "why": "the ash host"
+  },
+  "28007": {
+   "helpers": {
+    "group": "ashen",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A horn of burning bone sounds across the Expanse!"
+   },
+   "why": "the ash host"
+  },
+  "28008": {
+   "rank": "elite",
+   "why": "an elite of the Expanse"
+  },
+  "28009": {
+   "rank": "elite",
+   "why": "an elite of the Expanse"
+  },
+  "28003": {
+   "rank": "elite",
+   "why": "an elite of the Expanse"
+  },
+  "28010": {
+   "rank": "sub-boss",
+   "why": "a lieutenant of the Sovereign"
+  },
+  "28011": {
+   "rank": "sub-boss",
+   "why": "a lieutenant of the Sovereign"
+  },
+  "28020": {
+   "rank": "boss",
+   "flags": [
+    "boss",
+    "aggressive",
+    "sentinel",
+    "no_charm",
+    "no_sleep"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Ember Sovereign blazes: \"Ash to ash!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Pyre Surge",
+      "telegraph": "The Ember Sovereign raises her arms, and the pyre roars!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+15",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Cinder Lance",
+      "telegraph": "The Ember Sovereign hurls a lance of white fire!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+12",
+      "dodge": true
+     },
+     {
+      "name": "Immolation",
+      "telegraph": "The Ember Sovereign begins to burn from within!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+20",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "Ember Sovereign"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 28020,
+   "room": 28035,
+   "why": "the Ember Sovereign on her pyre",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Pyre Fire",
+     "school": "fire",
+     "every": 8,
+     "radius": 3.0,
+     "last": 12,
+     "pct": 0.055,
+     "why": "fire: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "28001": 2
+     },
+     "shout": "Ash wraiths rise from the pyre!",
+     "why": "the pyre's dead"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+{
+ "zone": 248,
+ "_about": "The Clockwork Foundry (levels 50-60): soldiers, steam golems and drones answer the foundry's alarm, the Tesla coil sentries are elites, and Archon Prime in the Furnace Core vents scalding steam and calls clockwork soldiers off the line.",
+ "creatures": {
+  "24801": {
+   "helpers": {
+    "group": "foundry",
+    "rooms": 2,
+    "count": 2,
+    "shout": "An alarm clangs through the foundry, and the machines march!"
+   },
+   "why": "the machines"
+  },
+  "24802": {
+   "helpers": {
+    "group": "foundry",
+    "rooms": 2,
+    "count": 2,
+    "shout": "An alarm clangs through the foundry, and the machines march!"
+   },
+   "why": "the machines"
+  },
+  "24803": {
+   "helpers": {
+    "group": "foundry",
+    "rooms": 2,
+    "count": 2,
+    "shout": "An alarm clangs through the foundry, and the machines march!"
+   },
+   "why": "the machines"
+  },
+  "24804": {
+   "rank": "elite",
+   "why": "a Tesla coil sentry"
+  },
+  "24805": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Archon Prime's gears scream: \"CEASE. FUNCTION.\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Steam Vent",
+      "telegraph": "Archon Prime opens its vents with a deafening hiss!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+15",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Piston Fist",
+      "telegraph": "Archon Prime draws back a piston arm!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+12",
+      "dodge": true
+     },
+     {
+      "name": "Overload",
+      "telegraph": "Archon Prime's core glows white-hot!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+20",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "Archon Prime"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 24801,
+   "route": [
+    24801,
+    24802,
+    24805
+   ],
+   "why": "a clockwork soldier walks the intake corridor"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 24805,
+   "room": 24823,
+   "why": "Archon Prime in the Furnace Core",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Scalding Steam",
+     "school": "fire",
+     "every": 8,
+     "radius": 2.8,
+     "last": 8,
+     "pct": 0.05,
+     "why": "steam vents: step out"
+    },
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      24801
+     ],
+     "shout": "Archon Prime sounds the line-alarm!",
+     "why": "soldiers off the line"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,159 @@
+{
+ "zone": 295,
+ "_about": "The Crown of Bone (levels 64-68): thralls, archers, priests, reavers and wraiths answer the rattle of bone, the juggernauts and ribcage sentinels are elites, the Charnel Choir Vicar and the Ossuary Harvester sub-bosses, and the Bone-Crowned Sovereign on the Throne of Bones raising legion after legion while starving those who stand still.",
+ "creatures": {
+  "29501": {
+   "helpers": {
+    "group": "crown_of_bone",
+    "rooms": 2,
+    "count": 2,
+    "shout": "Bone rattles on bone, and the Crown's legions answer!"
+   },
+   "why": "the legions"
+  },
+  "29502": {
+   "helpers": {
+    "group": "crown_of_bone",
+    "rooms": 2,
+    "count": 2,
+    "shout": "Bone rattles on bone, and the Crown's legions answer!"
+   },
+   "why": "the legions"
+  },
+  "29503": {
+   "helpers": {
+    "group": "crown_of_bone",
+    "rooms": 2,
+    "count": 2,
+    "shout": "Bone rattles on bone, and the Crown's legions answer!"
+   },
+   "why": "the legions"
+  },
+  "29505": {
+   "helpers": {
+    "group": "crown_of_bone",
+    "rooms": 2,
+    "count": 2,
+    "shout": "Bone rattles on bone, and the Crown's legions answer!"
+   },
+   "why": "the legions"
+  },
+  "29506": {
+   "helpers": {
+    "group": "crown_of_bone",
+    "rooms": 2,
+    "count": 2,
+    "shout": "Bone rattles on bone, and the Crown's legions answer!"
+   },
+   "why": "the legions"
+  },
+  "29504": {
+   "rank": "elite",
+   "why": "an elite of the Crown",
+   "helpers": {
+    "group": "crown_of_bone",
+    "rooms": 2,
+    "count": 2,
+    "shout": "Bone rattles on bone, and the Crown's legions answer!"
+   }
+  },
+  "29507": {
+   "rank": "elite",
+   "why": "an elite of the Crown",
+   "helpers": {
+    "group": "crown_of_bone",
+    "rooms": 2,
+    "count": 2,
+    "shout": "Bone rattles on bone, and the Crown's legions answer!"
+   }
+  },
+  "29510": {
+   "rank": "sub-boss",
+   "why": "a lieutenant of the Sovereign"
+  },
+  "29511": {
+   "rank": "sub-boss",
+   "why": "a lieutenant of the Sovereign"
+  },
+  "29520": {
+   "rank": "boss",
+   "flags": [
+    "boss",
+    "aggressive",
+    "sentinel",
+    "no_charm",
+    "no_sleep"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Bone-Crowned Sovereign rises: \"Every bone in this place is mine. Soon, yours.\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Bone Storm",
+      "telegraph": "The Bone-Crowned Sovereign spreads his arms, and bones whirl into a storm!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+17",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Marrow Blade",
+      "telegraph": "The Bone-Crowned Sovereign lifts a blade of fused bone!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+13",
+      "dodge": true
+     },
+     {
+      "name": "Death Knell",
+      "telegraph": "The Bone-Crowned Sovereign begins to toll your death!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+22",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "Bone-Crowned Sovereign"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 29520,
+   "room": 29535,
+   "why": "the Bone-Crowned Sovereign on the Throne of Bones",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      75,
+      50,
+      25
+     ],
+     "adds": {
+      "29501": 3
+     },
+     "shout": "Bone thralls claw up through the floor!",
+     "why": "his legions"
+    },
+    {
+     "type": "hunger",
+     "every": 3,
+     "pct": 0.02,
+     "stamina": 10,
+     "warn": "The Sovereign's will drains all who stand still. Keep moving!",
+     "why": "his will saps the still"
+    }
+   ]
+  }
+ ]
+}

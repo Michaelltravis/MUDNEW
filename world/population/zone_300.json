@@ -1,0 +1,182 @@
+{
+ "zone": 300,
+ "_about": "The Shattered Throne (levels 68-70), the last fight: bulwarks, arcanists, confessors, stalkers, maulers and cantors answer the howl of the rift, the null-ward sentinels and the riftwarden juggernaut are elites, Marshal Kyrell, Choir-Matron Serathis and Shatterblade Veyl are sub-bosses, and the Shattered Emperor tears rifts in the floor, calls his court, and darkens the world as he breaks.",
+ "creatures": {
+  "30001": {
+   "helpers": {
+    "group": "shattered_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rift howls, and the Shattered court answers!"
+   },
+   "why": "the Shattered court"
+  },
+  "30002": {
+   "helpers": {
+    "group": "shattered_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rift howls, and the Shattered court answers!"
+   },
+   "why": "the Shattered court"
+  },
+  "30003": {
+   "helpers": {
+    "group": "shattered_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rift howls, and the Shattered court answers!"
+   },
+   "why": "the Shattered court"
+  },
+  "30004": {
+   "helpers": {
+    "group": "shattered_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rift howls, and the Shattered court answers!"
+   },
+   "why": "the Shattered court"
+  },
+  "30005": {
+   "helpers": {
+    "group": "shattered_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rift howls, and the Shattered court answers!"
+   },
+   "why": "the Shattered court"
+  },
+  "30007": {
+   "helpers": {
+    "group": "shattered_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rift howls, and the Shattered court answers!"
+   },
+   "why": "the Shattered court"
+  },
+  "30006": {
+   "rank": "elite",
+   "why": "an elite of the Throne",
+   "helpers": {
+    "group": "shattered_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rift howls, and the Shattered court answers!"
+   }
+  },
+  "30008": {
+   "rank": "elite",
+   "why": "an elite of the Throne",
+   "helpers": {
+    "group": "shattered_court",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The rift howls, and the Shattered court answers!"
+   }
+  },
+  "30015": {
+   "rank": "sub-boss",
+   "why": "a champion of the Emperor"
+  },
+  "30016": {
+   "rank": "sub-boss",
+   "why": "a champion of the Emperor"
+  },
+  "30017": {
+   "rank": "sub-boss",
+   "why": "a champion of the Emperor"
+  },
+  "30020": {
+   "rank": "boss",
+   "flags": [
+    "boss",
+    "aggressive",
+    "sentinel",
+    "no_charm",
+    "no_sleep"
+   ],
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Shattered Emperor rises from the broken throne: \"I broke the world once. I will break it again.\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Rift Cascade",
+      "telegraph": "The Shattered Emperor splits the air, and the rift pours out!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+17",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Sundering Blade",
+      "telegraph": "The Shattered Emperor raises the broken imperial sword!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+14",
+      "dodge": true
+     },
+     {
+      "name": "World Breaker",
+      "telegraph": "The Shattered Emperor begins to break the world!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+23",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "Shattered Emperor"
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 30020,
+   "room": 30039,
+   "why": "the Shattered Emperor on his throne",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Rift",
+     "school": "arcane",
+     "every": 7,
+     "radius": 2.8,
+     "last": 12,
+     "pct": 0.055,
+     "why": "rifts: step out"
+    },
+    {
+     "type": "call_guards",
+     "at": [
+      75,
+      50,
+      25
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      30001,
+      30004
+     ],
+     "shout": "The Shattered Emperor calls his court to the throne!",
+     "why": "his court"
+    },
+    {
+     "type": "gloom",
+     "max": 0.85,
+     "why": "the world darkens as he breaks"
+    }
+   ]
+  }
+ ]
+}
