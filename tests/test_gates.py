@@ -97,6 +97,10 @@ async def main():
     grizz = npcs(23513)[0]
     check(grizz.room.name == 'The Goblin Throne Room' and grizz.rank == 'boss', 'Grizznak on his throne')
     check(world.rooms[8742].look == 'crypt', 'the Barrow Mound looks like a barrow')
+    # ---- ring 3, the wilds
+    check(npcs(18009)[0].room.vnum == 18024 and npcs(27016)[0].room.vnum == 27022, 'the alpha wolf in its den; the Blightlord at the Heart of Corruption')
+    check(npcs(16025)[0].room.vnum == 16025 and npcs(47250)[0].room.name == 'On The Mountain Top', 'Kaleidos in its lair; the Wyvern Matriarch on Ravenmist')
+    check(npcs(52150)[0].room.name == 'The End of The Winterwood', 'the Winter Witch at the end of the Winterwood')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

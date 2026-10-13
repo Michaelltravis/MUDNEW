@@ -1,0 +1,177 @@
+{
+ "zone": 270,
+ "_about": "The Whispering Woods (levels 12-40): the wood's wardens (the forest guardian, the druid, Theron the hunter) answer each other; the corrupted creatures answer the blight; the shadow beast, corrupted treant and dire wolf are elites; Grimclaw the Great Bear a sub-boss; and the Blightlord at the Heart of Corruption spreads blight across the ground and grows treants out of it.",
+ "creatures": {
+  "27001": {
+   "helpers": {
+    "group": "woods_wardens",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The guardian calls, and the wardens of the wood come!"
+   },
+   "why": "a warden of the wood"
+  },
+  "27003": {
+   "helpers": {
+    "group": "woods_wardens",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The guardian calls, and the wardens of the wood come!"
+   },
+   "why": "a warden of the wood"
+  },
+  "27014": {
+   "helpers": {
+    "group": "woods_wardens",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The guardian calls, and the wardens of the wood come!"
+   },
+   "why": "a warden of the wood"
+  },
+  "27005": {
+   "helpers": {
+    "group": "blight",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The corruption stirs, and twisted things answer its call!"
+   },
+   "why": "corrupted"
+  },
+  "27013": {
+   "helpers": {
+    "group": "blight",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The corruption stirs, and twisted things answer its call!"
+   },
+   "why": "corrupted"
+  },
+  "27011": {
+   "rank": "elite",
+   "why": "a terror of the woods",
+   "helpers": {
+    "group": "blight",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The corruption stirs, and twisted things answer its call!"
+   }
+  },
+  "27012": {
+   "rank": "elite",
+   "why": "a terror of the woods",
+   "helpers": {
+    "group": "blight",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The corruption stirs, and twisted things answer its call!"
+   }
+  },
+  "27009": {
+   "rank": "elite",
+   "why": "a terror of the woods",
+   "helpers": {
+    "group": "blight",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The corruption stirs, and twisted things answer its call!"
+   }
+  },
+  "27015": {
+   "rank": "sub-boss",
+   "why": "Grimclaw the Great Bear"
+  },
+  "27016": {
+   "rank": "boss",
+   "helpers": {
+    "group": "blight",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The corruption stirs, and twisted things answer its call!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Blightlord roars, and the corrupted trees groan with him!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Blight Wave",
+      "telegraph": "The Blightlord spreads his arms, and rot spreads across the ground!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+10",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Thorn Lash",
+      "telegraph": "The Blightlord lashes out with a whip of thorns!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+8",
+      "dodge": true
+     },
+     {
+      "name": "Wither",
+      "telegraph": "The Blightlord begins to wither the life from you!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+13",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Blightlord"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 27002,
+   "route": [
+    27000,
+    27001,
+    27002,
+    27011
+   ],
+   "why": "a deer wanders the forest trail"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 27016,
+   "room": 27022,
+   "why": "the Blightlord at the Heart of Corruption",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Blight",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.6,
+     "last": 12,
+     "pct": 0.045,
+     "why": "blighted ground: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "27011": 1
+     },
+     "shout": "A corrupted treant tears itself out of the blighted earth!",
+     "why": "his treants"
+    }
+   ]
+  }
+ ]
+}

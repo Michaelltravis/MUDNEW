@@ -1,0 +1,137 @@
+{
+ "zone": 180,
+ "_about": "The Great Northern Forest (levels 3-15): timber and frost wolves hunt in packs, forest bandits whistle each other in under Scarface (a sub-boss), the black bears are elites, and the alpha wolf in its den calls the whole pack.",
+ "creatures": {
+  "18000": {
+   "helpers": {
+    "group": "gnf_wolves",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A howl rises through the pines, and the pack answers!"
+   },
+   "why": "wolves"
+  },
+  "18003": {
+   "helpers": {
+    "group": "gnf_wolves",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A howl rises through the pines, and the pack answers!"
+   },
+   "why": "wolves"
+  },
+  "18005": {
+   "helpers": {
+    "group": "gnf_bandits",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The bandit whistles, and his fellows step out of the trees!"
+   },
+   "why": "bandits"
+  },
+  "18008": {
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "gnf_bandits",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The bandit whistles, and his fellows step out of the trees!"
+   },
+   "why": "Scarface"
+  },
+  "18002": {
+   "rank": "elite",
+   "why": "a massive black bear"
+  },
+  "18009": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "helpers": {
+    "group": "gnf_wolves",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A howl rises through the pines, and the pack answers!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The alpha wolf's hackles rise: it fights for the pack now!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Savage Howl",
+      "telegraph": "The alpha wolf throws back its head and howls!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+3",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Throat Bite",
+      "telegraph": "The alpha wolf crouches low, eyes on your throat!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Pack Fury",
+      "telegraph": "The alpha wolf snarls and gathers itself!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+5",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the alpha wolf"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 18000,
+   "route": [
+    18001,
+    18002,
+    18003,
+    18004,
+    18005
+   ],
+   "why": "a timber wolf ranges the forest path"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 18009,
+   "room": 18024,
+   "why": "the alpha wolf in the Wolf Den",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      35
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      18000
+     ],
+     "shout": "The alpha wolf howls, and the pack comes running through the snow!",
+     "why": "the pack"
+    }
+   ]
+  }
+ ]
+}
