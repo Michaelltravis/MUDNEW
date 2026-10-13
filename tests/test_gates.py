@@ -73,6 +73,12 @@ async def main():
     grukthar = npcs(3503)[0]
     check(grukthar.rank == 'boss', 'Grukthar the Goblin King a boss')
     check(npcs(120501)[0].room.vnum == 12204 and npcs(120500)[0].room.vnum == 8892, 'the High Priest of Terror in his temple, the Pallid Herald in Lost Carcosa')
+    # ---- the World of Chaos and Ghenna, built and opened together (world/atlas/overrides.json)
+    chaos, ghenna = world.zones[475], world.zones[481]
+    check(not getattr(chaos, 'sealed', False) and not getattr(ghenna, 'sealed', False), 'the World of Chaos and Ghenna are open')
+    down = world.rooms[16258].exits.get('down') or {}
+    check(down.get('room') is world.rooms[9901] and not down.get('door'), 'from the island in the Lake of Blood a way leads down to Ghenna, unbarred')
+    check(npcs(47530)[0].room.vnum == 16252 and npcs(9910)[0].room.vnum == 9937, 'the Lord of Chaos in the Hall of Pillars; the Deep Dragon in its lair')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

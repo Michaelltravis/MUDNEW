@@ -17,8 +17,8 @@
  "_connectors": "Roads, plains, wilderness, forests, rivers and seas that join the other zones: open now, with placeholder descriptions where the room is new.",
  "connectors": [8, 10, 35, 40, 72, 73, 71, 121, 41, 15, 90, 48, 51, 25, 13],
 
- "_open_too": "Atlas-only areas that open with the connectors although they are not connectors (part of the city).",
- "open_too": [3],
+ "_open_too": "Atlas-only areas that open with the connectors although they are not connectors: the city wall (3); the World of Chaos (75) and Ghenna (81), built from the original Ghenna area and opened together, the way to Ghenna running through the World of Chaos.",
+ "open_too": [3, 75, 81],
 
  "_city_annex": "Our zones that stay beside the city when the atlas leaves them a free side there (otherwise they too take a connector).",
  "city_annex": [186, 260, 250, 200, 79, 36],
