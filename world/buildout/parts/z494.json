@@ -1,0 +1,264 @@
+{
+ "job": "z494",
+ "rooms": {
+  "201500": "The road to Eden begins beneath tall trees whose branches arch overhead and strain the sunlight to gold. Pale blossom lies in drifts on the packed earth, and songbirds call from every bough. A track runs east toward a silvered pier at the water's edge, while the road itself turns south between the trunks.",
+  "201501": "The road runs straight and quiet here, its ruts softened by moss and fallen petals. Old fruit trees have seeded themselves along the verges, and bees drone lazily in the warm air. The road climbs back north toward the pier track and slopes on south through deepening shade.",
+  "201502": "The trees draw back and the road widens, and through the leaves a high wall of pale stone gleams. A clear stream chatters through a culvert beneath the road, and the air is sweet and utterly still. A weathered milestone leans at the verge, its carving worn nearly smooth. The road goes on south to the gate, and north the way you came.",
+  "201503": "A tall gate of ancient wood bound in bronze fills the wall before you, its door standing shut against the garden. Wildflowers crowd the grass on either side, and a warm light seems to rest upon the threshold. A faint heat shimmers in the air, smelling of cedar smoke. The road leads back north into the trees, and beyond the door south lies the garden.",
+  "201504": "Inside the gate the garden opens into a wide lawn of soft grass, bright with clover and tiny white flowers. The wall rises behind you to the north, its stones warm as new bread. Paths of pale gravel lead east and west, and south a row of fruit trees marches away. Light falls here gold and heavy as honey, and a scorched ring marks the flagstones where fire has often burned.",
+  "201505": "A gravel path winds between beds of lavender and sage, where the air hums with small wings. Pomegranate shrubs lean over the way, heavy with split red fruit. West the path returns to the lawn by the gate, while east and south it curls on deeper into the garden.",
+  "201508": "Four paths meet beneath a trellis of climbing roses, their petals scattering at the lightest breath of wind. Moss cushions the flagstones, and a runnel of clear water slips under a tiny stone bridge. West lies a line of fruit trees, and other paths run north, east and south.",
+  "201511": "The path here is paved with smooth river pebbles that shine like coins in the light. Tall cypresses stand about the way, and from the west a deep hush settles over the garden, as if the very air were listening. Ripe figs hang low from a spreading tree beside the path, and other paths lead north, east and south.",
+  "201512": "A stand of date palms shades this corner, their fronds rustling like soft whispers. Fallen dates lie sweet and sticky on the ground, and butterflies drift between the trunks. West a line of fruit trees marches off in an orderly row, and paths wander away north, east and south.",
+  "201513": "The garden narrows here to a quiet nook enclosed by hedges of myrtle. A low bench of weathered stone sits in the shade, mossy along its edges, and the grass is thick with violets. The hedge opens only north and west.",
+  "201516": "Almond trees shed pale blossom across a lawn where a stream murmurs in a channel of white stones. The sunlight is warm and slow, and a dove's cooing rolls down from a high branch. A line of fruit trees stands to the north, and paths lead east, south and west.",
+  "201520": "Apricot, pear and quince trees stand in a straight line here, each hung with fruit of every season at once. The grass between the trunks is soft as wool, and sunbeams slant down through the leaves in long bright bars. North the line ends at a far greater tree whose shadow lies across the path, and other ways lead east, south and west.",
+  "201509": "Upon a gentle rise stands the great tree itself, vast and old, its boughs heavy with fruit that gleams like polished jewels. The grass about its roots is unmarked and the whole mound lies under a profound hush. Paths lead away north and south through lines of fruit trees, east into the garden, and west toward a distant humming of hives.",
+  "201506": "Apples, plums and golden oranges grow shoulder to shoulder along this lane, their sweetness thick on the air. Windfalls lie in the grass, untouched and unbruised. North the lane reaches the lawn within the gate, south it climbs to the great tree on its mound, and other ways lead east and west into the garden.",
+  "201510": "Here the garden grows wilder and sweeter, its paths half lost beneath trailing jasmine. Wild thyme perfumes every step, and the ground rises in soft hummocks. West the beds blaze with colour, south a low drone rises from the hives, and east a line of fruit trees shows through the leaves, while the path north returns toward the gate.",
+  "201507": "A small arbor of grapevines roofs this secluded corner, clusters of purple fruit hanging within easy reach. Cool shade pools on the flagstones, and a spring trickles from a mossy stone lip into a little basin. The way east returns to the lawn by the gate, and the path south slopes gently on.",
+  "201519": "Rows of woven straw hives stand upon stone plinths in a sunny clearing, ringed with thyme, clover and borage. The air is thick with warm wax and the steady hum of work, and amber honey beads in the cracks of the straw. Paths lead north into the garden, east toward the mound of the great tree, south to a quiet lawn, and west among the flowers.",
+  "201515": "A broad lawn of clover slopes down to a pool where white lilies float upon still, green water. Reeds whisper at the edge, and the sky above is deep and cloudless. Northward a hum of bees drifts from the hives, east the fruit trees begin, and paths run south and west across the grass.",
+  "201514": "At the far edge of the garden the wall rises thick with ivy, and the ground is a carpet of small blue flowers. A fig tree grows out of the wall's foot, its broad leaves shading a patch of cool earth. Paths north and west circle back toward the lily pool, while east a narrow way follows the wall.",
+  "201517": "Beds of roses, lilies and anemones spill across this corner in banks of crimson and gold. Petals carpet the paths, and the scent is almost too rich to breathe. East the paths lead toward the hum of the hives, while north and west they wind back among the blossoms.",
+  "201518": "Tall delphiniums and foxgloves rise here in spires of blue and violet, and tulips burn like lamps among the grass. A sundial of white marble stands at the heart of the beds, its shadow slow and sure. East the path returns to the wilder garden, while south and west it curls among the blooms."
+ },
+ "extras": {
+  "201509": [
+   {
+    "keywords": "tree fruit boughs great tree",
+    "description": "The fruit hangs untouched, bright and perfect, and no bird or bee will alight upon the boughs. A quiet gravity lies about the trunk, and even the light seems to bow."
+   }
+  ],
+  "201518": [
+   {
+    "keywords": "sundial marble",
+    "description": "The white marble is warm to the touch, and the gnomon is carved like a single curling leaf. Around the rim runs a line of small worn letters that speak of the unhurried hours."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "eden-songbird",
+   "keywords": "songbird bird finch",
+   "short_desc": "a golden-breasted songbird",
+   "long_desc": "A golden-breasted songbird trills from a branch, utterly unafraid.",
+   "description": "A small bird with a breast the colour of new honey. It tilts its head at you and sings as though no sorrow had ever touched the world.",
+   "kind": "animal",
+   "level": 15,
+   "aggressive": false,
+   "alignment": 500,
+   "rooms": [
+    "In The Garden",
+    "The Road To Eden",
+    "The Line Of Fruit Trees"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "eden-honeycomb",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "eden-bee",
+   "keywords": "bee honeybee swarm",
+   "short_desc": "a drowsy honeybee",
+   "long_desc": "A drowsy honeybee hums from blossom to blossom.",
+   "description": "A fat honeybee dusted with gold pollen. It is busy and gentle, and wants nothing of you.",
+   "kind": "animal",
+   "level": 16,
+   "aggressive": false,
+   "alignment": 400,
+   "rooms": [
+    "The Beehives",
+    "The Flower Garden"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "eden-honeycomb",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "eden-deer",
+   "keywords": "deer hind doe",
+   "short_desc": "a dappled deer",
+   "long_desc": "A dappled deer grazes calmly among the fallen blossom.",
+   "description": "A slender deer with large, trusting eyes and a coat spotted like sunlight through leaves. It lifts its head to regard you, then goes on grazing.",
+   "kind": "animal",
+   "level": 18,
+   "aggressive": false,
+   "alignment": 500,
+   "rooms": [
+    "In The Garden",
+    "The Line Of Fruit Trees"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "eden-deerskin-gloves",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "eden-lamb",
+   "keywords": "lamb white sheep",
+   "short_desc": "a white lamb",
+   "long_desc": "A white lamb sleeps in the grass, curled against a great lion's flank.",
+   "description": "A small woolly lamb, clean and pale as new milk. It sleeps without a care in the world.",
+   "kind": "animal",
+   "level": 15,
+   "aggressive": false,
+   "alignment": 600,
+   "rooms": [
+    "The Line Of Fruit Trees"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "eden-honeycomb",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "eden-lion",
+   "keywords": "lion tawny great",
+   "short_desc": "a tawny lion",
+   "long_desc": "A tawny lion lies in the sun, its heavy head resting beside a sleeping lamb.",
+   "description": "A huge lion with a mane like burnished bronze. Its amber eyes follow you with calm, regal patience, and its great paws are folded in peace.",
+   "kind": "animal",
+   "level": 23,
+   "aggressive": false,
+   "alignment": 400,
+   "rooms": [
+    "The Line Of Fruit Trees"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "eden-amber-pendant",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "eden-stag",
+   "keywords": "stag white hart",
+   "short_desc": "a white stag",
+   "long_desc": "A white stag stands motionless in the shade, its antlers crowned with blossom.",
+   "description": "A tall stag, white as milk, with antlers branching like a young tree in bloom. It carries itself with a quiet nobility that few forest beasts ever show.",
+   "kind": "animal",
+   "level": 24,
+   "aggressive": false,
+   "alignment": 500,
+   "rooms": [
+    "The Tree Of The Knowledge Of Good And Evil"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "eden-deerskin-gloves",
+     "chance": 30
+    },
+    {
+     "item": "eden-amber-pendant",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "eden-cherub",
+   "keywords": "cherub guardian sword flaming",
+   "short_desc": "the cherub of the gate",
+   "long_desc": "A towering cherub stands guard at the gate, a sword of living flame turning slowly in its grasp.",
+   "description": "Four-faced and wreathed in light, the cherub guards the way into the garden with a flaming sword that turns every way. It does not hunger for battle, but none may pass it who come in malice.",
+   "kind": "monster",
+   "level": 25,
+   "aggressive": false,
+   "alignment": 1000,
+   "rooms": [
+    "Inside The Gate To Eden"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "eden-flame-sword",
+     "chance": 30
+    },
+    {
+     "item": "eden-hallowed-mantle",
+     "chance": 25
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "eden-honeycomb",
+   "keywords": "honeycomb comb honey",
+   "short_desc": "a piece of golden honeycomb",
+   "room_desc": "A piece of golden honeycomb lies here, dripping amber.",
+   "description": "A wedge of fresh comb, sweet and warm with the garden's sun.",
+   "kind": "food",
+   "level": 16
+  },
+  {
+   "id": "eden-deerskin-gloves",
+   "keywords": "deerskin gloves soft",
+   "short_desc": "a pair of soft deerskin gloves",
+   "room_desc": "A pair of soft deerskin gloves lies here.",
+   "description": "Gloves of pale, supple deerskin, stitched with fine gold thread.",
+   "kind": "armor",
+   "level": 18,
+   "wear_slot": "hands",
+   "bonus": {
+    "dex": 1
+   }
+  },
+  {
+   "id": "eden-amber-pendant",
+   "keywords": "amber pendant",
+   "short_desc": "an amber pendant",
+   "room_desc": "An amber pendant glows softly here.",
+   "description": "A drop of clear amber on a fine chain, holding within it a little captured sunlight.",
+   "kind": "armor",
+   "level": 22,
+   "wear_slot": "neck",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "eden-flame-sword",
+   "keywords": "sword flame flaming blade",
+   "short_desc": "a sword of pale flame",
+   "room_desc": "A sword of pale flame burns steadily here.",
+   "description": "A long blade of steady, golden fire that gives off warmth and no smoke. It is bright and terrible in the hand.",
+   "kind": "weapon",
+   "level": 25,
+   "weapon_type": "slash",
+   "bonus": {
+    "damroll": 2
+   }
+  },
+  {
+   "id": "eden-hallowed-mantle",
+   "keywords": "mantle hallowed white cloak",
+   "short_desc": "a hallowed white mantle",
+   "room_desc": "A hallowed white mantle lies folded here.",
+   "description": "A mantle of white wool that never gathers dust, edged with threads of gold light.",
+   "kind": "armor",
+   "level": 25,
+   "wear_slot": "about",
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}
