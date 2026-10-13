@@ -1,0 +1,777 @@
+{
+ "zone": 481,
+ "_about": "Ghenna, the city of evil (levels 26-33), peopled from its original area files (circle-contrib-areas/ghenna, by Drip/Nosferatu): its creatures and where they stood, with ranks: the Gorgimera, the Ghenna Swordmaster and the Efreeti as sub-bosses, six elites, the city's evil answering each other's cry, and the Deep Dragon in its lair, spitting acid and darkening the cave. Left out: four crude joke characters.",
+ "creatures": {
+  "9900": {
+   "name": "shamus wanderer",
+   "short_desc": "Shamus",
+   "long_desc": "Shamus, the wandering liege, wants to protect you from the evil here.",
+   "description": "You see a human male, bald of head and thick of frame, wearing a white\nrobe. He has heard tales of this city of evil, and has come here as a\nmissionary.",
+   "level": 30,
+   "flags": [
+    "stay_zone",
+    "memory"
+   ],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9902": {
+   "name": "banshee",
+   "short_desc": "the Banshee",
+   "long_desc": "The groaning spirit of a long-dead woman floats here.",
+   "description": "This is the spirit of an evil female elf, a very rare thing indeed. Her\nhair is wild and unkempt, and she is dressed in tattered rags.",
+   "level": 30,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9903": {
+   "name": "argos",
+   "short_desc": "the Argos",
+   "long_desc": "A multi-mouthed pseudopod of great girth is standing here.",
+   "description": "This is a large, amoeba-like being with one central eye which has a\ntripartite pupil, and a hundred lashless inhuman eyes set above many\nsharp-toothed mouths..",
+   "level": 30,
+   "flags": [
+    "stay_zone",
+    "memory"
+   ],
+   "alignment": -666,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9904": {
+   "name": "bugbear",
+   "short_desc": "the Bugbear",
+   "long_desc": "A tall Bugbear stands here, poised for action.",
+   "description": "Large and very muscular, this guy is covered in brick red fur. Though\nvaguely humanoid in appearance, he seems to contain the blood of some\nlarge carnivore.",
+   "level": 30,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9905": {
+   "name": "broken",
+   "short_desc": "a Broken One",
+   "long_desc": "A Broken One stands here looking gruesome.",
+   "description": "This guy sure is ugly! He has the head of an ogre, one webbed foot, one\nhuman foot, and various other body parts that don't match.",
+   "level": 30,
+   "flags": [
+    "stay_zone"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9906": {
+   "name": "bullywug",
+   "short_desc": "the Bullywug",
+   "long_desc": "A Bullywug is standing here, ready to defend his master's lair.",
+   "description": "This guy looks kinda like a ninja turtle, except he's a frog.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": -699,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9907": {
+   "name": "plant",
+   "short_desc": "a Man-Eating plant",
+   "long_desc": "A large plant that reeks of carrion stands here stinking up the place.",
+   "description": "You see a giant, venus fly trap with 6 inch fangs.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "rank": "elite",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9908": {
+   "name": "gorgimera",
+   "short_desc": "the Gorgimera",
+   "long_desc": "A Gorgimera roars at your entrance, and ATTACKS!!!",
+   "description": "This monster has three heads, those of a gorgon, a lion, and a fierce\ndragon. It has the hindquarters of a large, black gorgon and the\nforequarters of a huge, tawny lion, with brownish-black wings like those\nof a dragon.",
+   "level": 31,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": 100,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "rank": "sub-boss"
+  },
+  "9909": {
+   "name": "death knight",
+   "short_desc": "the Death Knight",
+   "long_desc": "A Death Knight stands here, lowering at you.",
+   "description": "A hulking skeleton, its face a blackened skull covered with shards of\nshriveled rotting flesh, chillingly returns your gaze.",
+   "level": 31,
+   "flags": [
+    "stay_zone"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "rank": "elite"
+  },
+  "9910": {
+   "name": "deep dragon",
+   "short_desc": "the Deep Dragon",
+   "long_desc": "A large snake sits here, munching on a human body.",
+   "description": "The Deep dragon is an iridescent maroon colored beast about 25 feet\nlong. Known for assuming various shapes, this animal is highly dangerous\nand you would do best to exit its lair immediately.",
+   "level": 33,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "memory",
+    "boss"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "rank": "boss",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Deep Dragon sheds its snake-shape and roars in its true form!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Shape of Terror",
+      "telegraph": "The Deep Dragon swells to its full size and rears over you!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+8",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Coils",
+      "telegraph": "The Deep Dragon coils to strike!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+6",
+      "dodge": true
+     },
+     {
+      "name": "Acid Gout",
+      "telegraph": "The Deep Dragon draws back its head, acid hissing between its fangs!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+11",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  },
+  "9911": {
+   "name": "derro",
+   "short_desc": "the Derro",
+   "long_desc": "The Derro is standing here, barking orders.",
+   "description": "You see a dwarf with glowing white eyes which have no pupils. His skin\nis pasty white, but he looks stout enough.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": -250,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9912": {
+   "name": "elf",
+   "short_desc": "the errant Elf",
+   "long_desc": "An errant Elf is here, looking for denizens of evil.",
+   "description": "You see an attractive young man, about 5 feet tall, with gleaming eyes\nand a pale complexion. Though small, he appears to be very lithe and\nagile.",
+   "level": 30,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9913": {
+   "name": "efreeti genie",
+   "short_desc": "the Efreeti",
+   "long_desc": "A Genie is levitating here with an evil grin on his face.",
+   "description": "You see a powerful mage naked to the waist, wearing only a pair of\nslippers, some baggy purple pants, and a bracelet which sparkles with a\nmulti-hued color.",
+   "level": 31,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": 0,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "rank": "sub-boss"
+  },
+  "9914": {
+   "name": "medusa",
+   "short_desc": "the Medusa",
+   "long_desc": "A woman sits here on the bed, with her back to you.",
+   "description": "Well, you probably shouldn't have looked at this chick, cause she sure\nis ugly. But I guess you are about to see HOW ugly.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "rank": "elite",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9915": {
+   "name": "stupid orc",
+   "short_desc": "the Orc",
+   "long_desc": "A big, stupid Orc is lumbering through here.",
+   "description": "He's just ugly as sin... lets leave it at that.",
+   "level": 30,
+   "flags": [
+    "aggressive"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9916": {
+   "name": "barkeep",
+   "short_desc": "the barkeep",
+   "long_desc": "There is a barkeep standing here, waiting to take your order.",
+   "description": "The barkeep is a waifish little guy, with safety pins piercing the flesh\nall over his face... he even has safety pins through his eyelids.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "stay_zone"
+   ],
+   "alignment": -100,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9917": {
+   "name": "citizen",
+   "short_desc": "a citizen of Ghenna",
+   "long_desc": "A citizen of Ghenna stands here.",
+   "description": "You see a grungy human, long since gone insane at the fall of his once\nproud city.",
+   "level": 30,
+   "flags": [
+    "stay_zone"
+   ],
+   "alignment": 666,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9918": {
+   "name": "cosmetics seller old lady",
+   "short_desc": "a lost cosmetics seller",
+   "long_desc": "A lost old lady in pink chiffon tries to sell you some makeup.",
+   "description": "You see a little old lady, dressed all in pink chiffon. On her arm she\ncarries a heart shaped box made of crepe paper.",
+   "level": 30,
+   "flags": [
+    "stay_zone"
+   ],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9923": {
+   "name": "swordmaster",
+   "short_desc": "the Ghenna Swordmaster",
+   "long_desc": "A broad shouldered man lies prostrate here, apparently praying.",
+   "description": "A huge man with a long black beard, the Ghenna Swordmaster is tatooed\nwith rune-like scars from head to toe. Shrouded in vermillion, he wields\na sword of stunning beauty, which sings through the air as he attacks\nyou.",
+   "level": 31,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9931": {
+   "name": "wall foot",
+   "short_desc": "a claw toed foot protruding from the wall",
+   "long_desc": "A clawed foot juts out of the wall here, toes twitching.",
+   "description": "It looks just like a foot sticking out of the wall.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": 0,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9932": {
+   "name": "wall arm",
+   "short_desc": "a claw fingered arm protruding from the wall",
+   "long_desc": "A clawed arm reaches out of the wall here, fingers grasping.",
+   "description": "It looks just like an arm sticking out of the wall.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": 0,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9933": {
+   "name": "statue stone golem",
+   "short_desc": "the stone golem",
+   "long_desc": "A large statue of a humanoid male has been cut out of the granite here.",
+   "description": "It looks like a stone sculpture of Frankenstein's monster. It stands\ntwelve feet tall, casting a long shadow over you.",
+   "level": 31,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": 0,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "rank": "elite",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9964": {
+   "name": "doll golem",
+   "short_desc": "the Doll Golem",
+   "long_desc": "A doll sits here leaning against the wall, forgotten by the child who owns it.",
+   "description": "This looks like your typical child's doll. Its about one foot tall, and\nlooks like it is made of plastic.",
+   "level": 30,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9985": {
+   "name": "maedar",
+   "short_desc": "the Maedar",
+   "long_desc": "A Maedar stands here in the darkness smacking his lips.",
+   "description": "You see a muscular, hairless humanoid male dressed in a tunic.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9986": {
+   "name": "maedar master",
+   "short_desc": "the Maedar master",
+   "long_desc": "A Maedar stands here in the darkness smacking his lips.",
+   "description": "You see a muscular, hairless humanoid male dressed in a tunic.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9987": {
+   "name": "roger dodger",
+   "short_desc": "Roger the dodger",
+   "long_desc": "Roger, the elven apostle is looking for evil guys to kill here.",
+   "description": "You see a young elf, only about 130 years old, who acts as though he is\non a crusade. Dressed in light armor, he seeks out evil doers in order\nto eradicate them from the face of the planet.",
+   "level": 30,
+   "flags": [
+    "stay_zone",
+    "memory"
+   ],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9989": {
+   "name": "deep dragon dragonet",
+   "short_desc": "the Dragonet",
+   "long_desc": "A wimpy little dragon is standing here, looking at you with deep blue eyes.",
+   "description": "You see what appears to be a tiny dragon, about the size of a chihuahua.\nWhat a pansy he is too!",
+   "level": 30,
+   "flags": [
+    "stay_zone"
+   ],
+   "alignment": 1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna"
+  },
+  "9994": {
+   "name": "cockroach",
+   "short_desc": "the cockroach",
+   "long_desc": "The biggest cockroach you have ever seen is standing here, looking down at you.",
+   "description": "You see a cockroach about 8 feet tall - apparently a mutant breed.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "alignment": -351,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  },
+  "9997": {
+   "name": "deepspawn",
+   "short_desc": "the Deepspawn",
+   "long_desc": "The Deepspawn is standing here, ready to kill you.",
+   "description": "It looks like a large, rubbery shpere of mottled grey and brown. Six\narms project from its body; three are tentacle-arms, and three are jaw-\narms, ending in mouths of many teeth. It also has about 40 long,\nretractable, flexible eye stalks that wave at you menacingly.",
+   "level": 30,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "stay_zone"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/ghenna",
+   "rank": "elite",
+   "helpers": {
+    "group": "ghenna",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cry goes up, and the evil of Ghenna gathers!"
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 9900,
+   "rooms": [
+    9901
+   ]
+  },
+  {
+   "vnum": 9902,
+   "rooms": [
+    9910,
+    9903
+   ]
+  },
+  {
+   "vnum": 9903,
+   "rooms": [
+    9959,
+    9988
+   ]
+  },
+  {
+   "vnum": 9904,
+   "rooms": [
+    9903,
+    9902,
+    9906
+   ]
+  },
+  {
+   "vnum": 9905,
+   "rooms": [
+    9908,
+    9910
+   ]
+  },
+  {
+   "vnum": 9906,
+   "rooms": [
+    9935,
+    9935,
+    9935,
+    9935
+   ]
+  },
+  {
+   "vnum": 9907,
+   "rooms": [
+    9907
+   ]
+  },
+  {
+   "vnum": 9908,
+   "rooms": [
+    9936
+   ]
+  },
+  {
+   "vnum": 9909,
+   "rooms": [
+    9956
+   ]
+  },
+  {
+   "vnum": 9911,
+   "rooms": [
+    9935,
+    9935
+   ]
+  },
+  {
+   "vnum": 9912,
+   "rooms": [
+    9957,
+    9987
+   ]
+  },
+  {
+   "vnum": 9913,
+   "rooms": [
+    9941
+   ]
+  },
+  {
+   "vnum": 9914,
+   "rooms": [
+    9920
+   ]
+  },
+  {
+   "vnum": 9915,
+   "rooms": [
+    9957,
+    9959,
+    9901,
+    9927,
+    9987
+   ]
+  },
+  {
+   "vnum": 9916,
+   "rooms": [
+    9916
+   ]
+  },
+  {
+   "vnum": 9917,
+   "rooms": [
+    9957,
+    9901,
+    9998,
+    9902,
+    9954,
+    9955,
+    9955
+   ]
+  },
+  {
+   "vnum": 9918,
+   "rooms": [
+    9902
+   ]
+  },
+  {
+   "vnum": 9923,
+   "rooms": [
+    9952
+   ]
+  },
+  {
+   "vnum": 9931,
+   "rooms": [
+    9926,
+    9931,
+    9927,
+    9929
+   ]
+  },
+  {
+   "vnum": 9932,
+   "rooms": [
+    9932,
+    9926,
+    9926,
+    9927,
+    9929
+   ]
+  },
+  {
+   "vnum": 9933,
+   "rooms": [
+    9933
+   ]
+  },
+  {
+   "vnum": 9964,
+   "rooms": [
+    9964
+   ]
+  },
+  {
+   "vnum": 9985,
+   "rooms": [
+    9985
+   ]
+  },
+  {
+   "vnum": 9986,
+   "rooms": [
+    9985,
+    9986
+   ]
+  },
+  {
+   "vnum": 9987,
+   "rooms": [
+    9987
+   ]
+  },
+  {
+   "vnum": 9989,
+   "rooms": [
+    9989,
+    9903,
+    9909
+   ]
+  },
+  {
+   "vnum": 9994,
+   "rooms": [
+    9994
+   ]
+  },
+  {
+   "vnum": 9997,
+   "rooms": [
+    9997
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 9910,
+   "room": 9937,
+   "why": "the Deep Dragon in its lair",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Acid Pool",
+     "school": "acid",
+     "every": 9,
+     "radius": 2.8,
+     "last": 12,
+     "pct": 0.05,
+     "why": "acid where it spits: step out"
+    },
+    {
+     "type": "gloom",
+     "max": 0.7,
+     "shout": "The Deep Dragon coils around the light, and the lair goes dark...",
+     "why": "the lair darkens"
+    }
+   ]
+  }
+ ]
+}
