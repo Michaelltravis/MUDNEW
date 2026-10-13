@@ -14315,6 +14315,24 @@ class CommandHandler:
         await player.send(f"{c['green']}Title set to: {player.name} {new_title}{c['reset']}")
 
     @classmethod
+    async def cmd_gender(cls, player: 'Player', args: List[str]):
+        """Say whether your character is male or female (chosen when they were made; a character
+        made before that was asked chooses once). Usage: gender [male|female]"""
+        c = player.config.COLORS
+        now = getattr(player, 'sex', 'neutral')
+        want = {'m': 'male', 'male': 'male', 'f': 'female', 'female': 'female'}.get(args[0].lower()) if args else None
+        if now in ('male', 'female'):
+            await player.send(f"{c['cyan']}{player.name} is {now}.{c['reset']}" + ('' if not args else
+                              f" {c['yellow']}That was chosen when you were made.{c['reset']}"))
+            return
+        if not want:
+            await player.send(f"{c['yellow']}{player.name} has not said yet. Usage: gender male | gender female (once){c['reset']}")
+            return
+        player.sex = want
+        await player.send(f"{c['green']}{player.name} is {want}.{c['reset']}")
+        await player.save()
+
+    @classmethod
     async def cmd_donate(cls, player: 'Player', args: List[str]):
         """Donate an item to help newbies. Usage: donate <item>"""
         c = player.config.COLORS

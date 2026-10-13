@@ -10,24 +10,40 @@ import { creatureLook, describe } from '../src/web_isometric/world3d/looks.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-// the mob entries the map payload sends (map_system.py), from the zone prototypes
-export function loadMobs(dir = path.join(ROOT, 'world/zones')) {
-  const out = [];
+// the mob entries the map payload sends (map_system.py), from the zone prototypes and the
+// population files' creatures (world/population: new ones, and words or flags given to old ones)
+export function loadMobs(dir = path.join(ROOT, 'world/zones'), popDir = path.join(ROOT, 'world/population')) {
+  const protos = new Map();
   for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort()) {
     const z = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
-    for (const p of Object.values(z.mobs || {})) {
-      const flags = p.flags || [];
-      out.push({
-        name: p.name || '', short: p.short_desc || '', long: String(p.long_desc || '').slice(0, 80), pv: p.vnum, flags, level: p.level,
-        hostile: flags.includes('aggressive') || !!p.hostile,
-        boss: flags.includes('boss') || !!p.boss || !!p.is_boss,
-        shopkeeper: p.special === 'shopkeeper',
-        trainer: p.special === 'trainer' || p.special === 'guildmaster',
-        zone: z.number,
-      });
+    for (const p of Object.values(z.mobs || {})) protos.set(+p.vnum, { ...p, zone: z.number });
+  }
+  if (popDir && fs.existsSync(popDir)) {
+    for (const f of fs.readdirSync(popDir).filter(f => f.endsWith('.json')).sort()) {
+      const pop = JSON.parse(fs.readFileSync(path.join(popDir, f), 'utf8'));
+      for (const [k, c] of Object.entries(pop.creatures || {})) {
+        const p = { ...(protos.get(+k) || { vnum: +k, zone: pop.zone }), ...c };
+        if (c.short_description && !c.short_desc) p.short_desc = c.short_description;
+        if (c.long_description && !c.long_desc) p.long_desc = c.long_description;
+        if (c.rank === 'boss') p.boss = true;
+        protos.set(+k, p);
+      }
+      for (const b of pop.bosses || []) if (protos.has(+b.vnum)) protos.get(+b.vnum).boss = true;
     }
   }
-  return out;
+  const out = [];
+  for (const p of protos.values()) {
+    const flags = p.flags || [];
+    out.push({
+      name: p.name || '', short: p.short_desc || '', long: String(p.long_desc || '').slice(0, 80), pv: p.vnum, flags, level: p.level,
+      hostile: flags.includes('aggressive') || !!p.hostile,
+      boss: flags.includes('boss') || !!p.boss || !!p.is_boss,
+      shopkeeper: p.special === 'shopkeeper',
+      trainer: p.special === 'trainer' || p.special === 'guildmaster',
+      zone: p.zone,
+    });
+  }
+  return out.sort((a, b) => a.pv - b.pv);
 }
 
 export function lookLabel(look) {
@@ -43,7 +59,7 @@ export function lookLabel(look) {
 // words that name a creature, never a person: if one is the head noun, or stands right before a
 // ruler's title ("the spider queen"), a person body is a mistake. Bodies the bestiary itself
 // gives a person's shape (golems, statues, hags) are meant.
-const CREATURE = /^(blob|ooze|slime|jelly|pudding|spider|beetle|worm|maggot|centipede|rat|wolf|bear|snake|serpent|dragon|drake|wyvern|bat|bird|crow|raven|eagle|hawk|owl|fox|deer|stag|boar|pig|cow|bull|horse|pony|sheep|goat|dog|hound|cat|lion|tiger|panther|crab|scorpion|fish|eel|shark|frog|toad|lizard|crocodile|basilisk|golem|statue|elemental|treant|tree|mushroom|myconid|myconoid|fungus|mimic|ghost|wraith|spectre|specter|demon|devil|imp|troll|ogre|giant|cyclops|minotaur|yeti|beholder|harpy|griffon|hydra|naga|sphinx|chimera|unicorn|pegasus|bee|wasp|hornet|ant|mosquito|fly|moth|squirrel|rabbit|hare|badger|weasel|vulture|swan|duck|goose|chicken|hen|rooster|whale|octopus|squid|kraken|goblin|kobold)s?$/;
+const CREATURE = /^(blob|ooze|slime|jelly|pudding|spider|beetle|worm|maggot|centipede|rat|wolf|bear|snake|serpent|dragon|drake|wyvern|bat|bird|crow|raven|eagle|hawk|owl|fox|deer|stag|boar|pig|cow|bull|horse|pony|sheep|goat|dog|hound|cat|lion|tiger|panther|crab|scorpion|fish|eel|shark|frog|toad|lizard|crocodile|basilisk|golem|statue|elemental|treant|tree|mushroom|myconid|myconoid|fungus|mimic|ghost|wraith|spectre|specter|demon|devil|imp|troll|ogre|giant|cyclops|minotaur|yeti|beholder|harpy|griffon|hydra|naga|sphinx|chimera|unicorn|pegasus|bee|wasp|hornet|ant|mosquito|fly|moth|squirrel|rabbit|hare|badger|weasel|vulture|swan|duck|goose|chicken|hen|rooster|whale|octopus|squid|kraken|goblin|kobold|gargoyle|abomination|jello|hulk|plant|draugr|deepspawn|lurker|draconian)s?$/;
 const RULER = /^(king|queen|lord|lady|chief|chieftain|leader|master|mistress|matron|mother|elder|shaman|priest|priestess|warrior|guard|guardian|champion|captain|soldier|mage|wizard|witch|knight|druid|sage|warden|sentry)$/;
 
 export function suspects(mobs) {

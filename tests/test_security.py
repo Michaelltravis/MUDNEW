@@ -253,6 +253,7 @@ async def make_sectest():
         await s.cmd(PW, 1.0)
         await s.cmd(PW, 1.0)
         await s.cmd('human', 0.8)
+        await s.cmd('female', 0.8)
         await s.cmd('warrior', 0.8)
         await s.cmd('y', 2.5)
         await s.cmd('quit', 1.0)

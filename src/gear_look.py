@@ -460,10 +460,16 @@ def _standing(ch):
     return renown(ch) if hasattr(ch, 'account_name') else 0
 
 
+def _sex(ch):
+    """A hero's sex, when they chose one (male or female: the 3D face and build, gearlook.js)."""
+    sex = str(getattr(ch, 'sex', '') or '').lower()
+    return sex if sex in ('male', 'female') else ''
+
+
 def _signature(ch):
     """What the look depends on, cheaply: rebuilt only when this changes."""
     eq = getattr(ch, 'equipment', {}) or {}
-    parts = [_standing(ch), str(getattr(ch, 'race', '') or '')]
+    parts = [_standing(ch), str(getattr(ch, 'race', '') or ''), _sex(ch)]
     for slot in sorted(eq):
         it = eq[slot]
         if it is not None:
@@ -483,6 +489,8 @@ def look_of(ch):
     race = str(getattr(ch, 'race', '') or '').lower()
     if race:
         look['race'] = race
+    if _sex(ch):
+        look['sex'] = _sex(ch)
     if eq.get('wield'):
         look['main'] = weapon_piece(eq['wield'])
     if eq.get('shield'):

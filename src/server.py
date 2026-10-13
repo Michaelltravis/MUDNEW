@@ -95,6 +95,7 @@ class Connection:
     STATE_CHANGE_PASSWORD = 14
     STATE_CONFIRM_NEW_PASSWORD = 15
     STATE_CONFIRM_DELETE = 16
+    STATE_GET_SEX = 17
     
     def __init__(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter, server):
         self.reader = reader
@@ -115,6 +116,7 @@ class Connection:
         self.temp_name = None
         self.temp_password = None
         self.temp_race = None
+        self.temp_sex = None
         self.temp_class = None
         
         # Account system temps
@@ -227,6 +229,8 @@ class Connection:
             await self.handle_confirm_new_char_password(line)
         elif self.state == self.STATE_GET_RACE:
             await self.handle_race(line)
+        elif self.state == self.STATE_GET_SEX:
+            await self.handle_sex(line)
         elif self.state == self.STATE_GET_CLASS:
             await self.handle_class(line)
         elif self.state == self.STATE_ROLLING_STATS:
@@ -413,6 +417,25 @@ class Connection:
             return
             
         self.temp_race = race
+        await self.show_sex_menu()
+        self.state = self.STATE_GET_SEX
+
+    async def show_sex_menu(self):
+        """Ask whether the character is male or female (words, and the 3D hero's face and build)."""
+        c = self.config.COLORS
+        await self.send(f"\r\n {c['bright_yellow']}1){c['reset']} {c['bright_green']}male{c['reset']}")
+        await self.send(f" {c['bright_yellow']}2){c['reset']} {c['bright_green']}female{c['reset']}")
+        await self.send(f"\r\n{c['white']}Is your character male or female? {c['reset']}")
+
+    async def handle_sex(self, answer: str):
+        """Handle the male/female choice."""
+        a = answer.strip().lower()
+        sex = {'1': 'male', 'm': 'male', 'male': 'male', '2': 'female', 'f': 'female', 'female': 'female'}.get(a)
+        if not sex:
+            await self.send("Please choose male or female (1 or 2).")
+            await self.send("Is your character male or female? ")
+            return
+        self.temp_sex = sex
         await self.show_class_menu()
         self.state = self.STATE_GET_CLASS
         
@@ -498,7 +521,8 @@ class Connection:
             race=self.temp_race,
             char_class=self.temp_class,
             stats=self.temp_stats,
-            world=self.world
+            world=self.world,
+            sex=self.temp_sex or 'neutral',
         )
         if self.temp_password and not self.account:
             import security

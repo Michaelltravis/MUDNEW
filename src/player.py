@@ -1038,13 +1038,14 @@ class Player(Character):
 
     @classmethod
     def create_new(cls, name: str, password: str, race: str, char_class: str, 
-                   stats: Dict[str, int], world: 'World') -> 'Player':
+                   stats: Dict[str, int], world: 'World', sex: str = 'neutral') -> 'Player':
         """Create a new player character."""
         player = cls(world)
         player.name = name
         player.set_password(password)
         player.race = race
         player.char_class = char_class
+        player.sex = sex if sex in ('male', 'female') else 'neutral'
         
         # Set stats (their own: gear comes later and adds while worn)
         for stat in ('str', 'int', 'wis', 'dex', 'con', 'cha'):
@@ -1228,6 +1229,7 @@ class Player(Character):
             'account_name': self.account_name,
             'race': self.race,
             'char_class': self.char_class,
+            'sex': self.sex,
             'title': self.title,
             'level': self.level,
             'exp': self.exp,
@@ -1448,6 +1450,7 @@ class Player(Character):
             player.account_name = data.get('account_name')
             player.race = data['race']
             player.char_class = data['char_class']
+            player.sex = data.get('sex', 'neutral') if data.get('sex') in ('male', 'female') else 'neutral'
             player.title = data.get('title', 'the Adventurer')
             player.level = data['level']
             player.exp = data['exp']

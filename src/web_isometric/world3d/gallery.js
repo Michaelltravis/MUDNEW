@@ -269,13 +269,13 @@ export async function showSoundGallery() {
   return null;
 }
 
-// /play?demo&gallery=gear[&only=tiers|kinds|heads|shields|capes|mixes][&cls=mage][&tier=3] —
+// /play?demo&gallery=gear[&only=tiers|kinds|heads|shields|capes|mixes][&cls=mage][&tier=3][&sex=female] —
 // heroes dressed by equip.js: every class at tiers 0-5, each weapon kind, hat and helm on each
 // head, every shield and cape, and bodies mixed by armour weight. For checking fit, seams,
 // colours and the cost of a dressed hero (?perf). MH3D.gallery.actors for probes.
 export async function showGearGallery(engine) {
   const q = new URLSearchParams(location.search);
-  const only = q.get('only'), onlyCls = q.get('cls'), onlyTier = q.get('tier');
+  const only = q.get('only'), onlyCls = q.get('cls'), onlyTier = q.get('tier'), sex = q.get('sex');
   const [{ spawnDressed }, { starterLook, CLASS_BASE }, { FX }, { Adorn }] = await Promise.all([import('./equip.js'), import('./gearlook.js'), import('./fx.js'), import('./adorn.js')]);
   const CLASSES = Object.keys(CLASS_BASE).filter(c => !onlyCls || onlyCls.split(',').includes(c));
   const METAL = ['iron', 'steel', 'steel', 'gold', 'mithril', 'gold'];
@@ -296,7 +296,8 @@ export async function showGearGallery(engine) {
     if (t >= 3 && !look.head) look.head = HEAD[cls] === 'hood' || HEAD[cls] === 'hat' ? { k: HEAD[cls], t } : { k: HEAD[cls], m: METAL[t], t };
     if (t >= 4 && look.main) look.main.e = t === 5 ? 'holy' : 'frost';
     if (t === 5) { for (const k of ['body', 'back']) if (look[k]) look[k].s = 'frostlords_mantle'; if (look.main) look.main.lg = 99001; look.aura = 'legendary'; }
-    look.sig = `gallery:${cls}:${t}`;
+    if (sex) look.sex = sex;
+    look.sig = `gallery:${cls}:${t}:${sex || ''}`;
     return look;
   };
   const rows = [];

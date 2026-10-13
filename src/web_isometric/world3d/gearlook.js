@@ -29,6 +29,10 @@ export const RACE = {
   gnome: { skin: 'skin_gnome', h: 0.66, w: 1 },
 };
 const TONES = ['skin_light', 'skin_tan', 'skin_brown', 'skin_dark'];
+// a hero's sex: the face (the pack's one woman is the rogue, so a man of a rogue's trade wears
+// the mage's) and a lighter build; an older character who never said keeps the class's own
+export const SEX_BUILD = { female: { h: 0.97, w: 0.92 }, male: { h: 1, w: 1 } };
+export const sexOf = look => { const s = String((look && look.sex) || '').toLowerCase(); return SEX_BUILD[s] ? s : null; };
 export const raceOf = look => RACE[String((look && look.race) || 'human').toLowerCase().replace(/[\s-]+/g, '_')] || RACE.human;
 const MODEL_W = { mage: 0, rogue: 1, barbarian: 2, knight: 3 };
 const BY_WEIGHT = ['mage', 'rogue', 'barbarian', 'knight'];
@@ -202,7 +206,8 @@ export function planLook(look, cls, kit) {
   const limb = a => (a && Math.abs(a.w - refW) >= 2 ? BY_WEIGHT[a.w] : torso);
   const arms = limb(look.arms), legs = limb(look.legs);
   const hooded = look.head ? look.head.k === 'hood' : base.hood;
-  const headModel = base.model;
+  const sex = look.base ? null : sexOf(look);       // a creature their zone dressed keeps its trade's body
+  const headModel = sex === 'female' ? 'rogue' : sex === 'male' && base.model === 'rogue' ? 'mage' : base.model;
   const props = [], procs = [], addons = [];
   const add = (name, roles, fit) => {
     if (!kit.pieces[name]) return null;
@@ -301,7 +306,7 @@ export function planLook(look, cls, kit) {
     hand: m && m.k === 'bow' ? 'handslotl' : 'handslotr',     // where the weapon's sparks come from
     set: look.set || null,
   };
-  return { key, parts: parts.map(p => p[0]), props, procs, addons, glow, adorn, build: { h: race.h, w: race.w },
+  return { key, parts: parts.map(p => p[0]), props, procs, addons, glow, adorn, build: { h: race.h * (sex ? SEX_BUILD[sex].h : 1), w: race.w * (sex ? SEX_BUILD[sex].w : 1) },
     idle: twoHanded ? '2H_Melee_Idle' : 'Idle' };
 }
 
