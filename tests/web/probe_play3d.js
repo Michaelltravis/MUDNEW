@@ -199,6 +199,18 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.evaluate(me => MH.sendCommand(`restore ${me}`, false), me);
   }
 
+  if (MODE === 'sunken') {
+    // the Sunken Ruins of Atal'narath: drowned streets and temples under the sea, and who lives there
+    for (const [v, name] of [[13010, 'plaza'], [13011, 'temple'], [13005, 'kelp'], [13015, 'throne']]) {
+      check(await goto(v), `in ${name} (${v})`);
+      await sleep(3500);
+      const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look, sector: r.data.sector,
+        mobs: [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === r.vnum).map(e => e.data.name) }; });
+      console.log(v, JSON.stringify(info));
+      await page.screenshot({ path: path.join(OUT, `sunken-${name}.png`) });
+    }
+  }
+
   if (MODE === 'castlelife') {
     // the castle is alive: the Bone Marshal (a sub-boss) at the junction, sentries in the halls
     check(await goto(14139), 'at the Junction of the Inner Halls (14139)');

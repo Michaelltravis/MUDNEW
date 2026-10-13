@@ -49,12 +49,17 @@ def apply(world, data=None) -> list:
             if vnum not in world.mob_prototypes:
                 problems.append(f"zone {z}: no creature {vnum}")
                 continue
-            for rv in sp.get('rooms') or []:
+            # a reset's max counts the creature across the whole zone (world.reset_zone): one in
+            # each room named means that many in all, plus any patrols of the same kind
+            rooms_named = sp.get('rooms') or []
+            total = sum(len(x.get('rooms') or []) for x in d.get('spawns') or [] if int(x['vnum']) == vnum) \
+                + sum(1 for pt in d.get('patrols') or [] if int(pt['vnum']) == vnum)
+            for rv in rooms_named:
                 room = world.rooms.get(int(rv))
                 if room is None:
                     problems.append(f"zone {z}: no room {rv} for {vnum}")
                     continue
-                room.mob_resets.append({'vnum': vnum, 'max': int(sp.get('max', 1))})
+                room.mob_resets.append({'vnum': vnum, 'max': max(int(sp.get('max', 1)), total)})
         # patrols: start at the route's first room and walk it (mobs.patrol_ai)
         for pt in d.get('patrols') or []:
             vnum, route = int(pt['vnum']), [int(r) for r in pt.get('route') or []]
@@ -63,7 +68,9 @@ def apply(world, data=None) -> list:
                 problems.append(f"zone {z}: patrol {vnum} route {bad or route}")
                 continue
             world.mob_prototypes[vnum] = dict(world.mob_prototypes[vnum], patrol_route=route)
-            world.rooms[route[0]].mob_resets.append({'vnum': vnum, 'max': 1})
+            total = sum(len(x.get('rooms') or []) for x in d.get('spawns') or [] if int(x['vnum']) == vnum) \
+                + sum(1 for p2 in d.get('patrols') or [] if int(p2['vnum']) == vnum)
+            world.rooms[route[0]].mob_resets.append({'vnum': vnum, 'max': max(1, total)})
         for b in d.get('bosses') or []:
             vnum, room = int(b['vnum']), world.rooms.get(int(b['room']))
             if room is None or vnum not in world.mob_prototypes:

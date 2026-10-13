@@ -315,9 +315,14 @@ export function outdoorEdge(theme, kits) {
   if (theme === 'desert') return { trees: [], treeP: 0, rock: k => tinted(N.get(k), 0xffc890, 'sandstone'), bush: null };
   if (theme === 'water_swim' || theme === 'water_noswim') return { trees: ['CommonTree_1', 'CommonTree_3', 'Pine_1'].map(k => N.get(k)), treeP: 0.18, rock: k => N.get(k), bush: null, banks: true };
   if (theme === 'mountain') return { trees: ['Pine_1', 'Pine_2'].map(k => tinted(N.get(k), 0x8aa08a, 'alpine')), treeP: 0.12, rock: k => tinted(N.get(k), MOUNTAIN_ROCK, 'mtnrock'), bush: null, cliffs: true };
+  // under the sea (Atal'narath): tall dark kelp for trees, blue-grey rock, no grass
+  if (theme === 'underwater') return { trees: ['Pine_2', 'Pine_1'].map(k => tinted(N.get(k), new THREE.Color(0.75, 1.05, 0.8), 'kelp')), treeP: 0.3, rock: k => tinted(N.get(k), SEA_ROCK, 'searock'), bush: null };
   return null;
 }
 
+// under the sea: the kit's dark rock lifted to a pale blue-grey; coral bright, faintly glowing
+const SEA_ROCK = new THREE.Color(1.15, 1.35, 1.5);
+const CORAL = [[new THREE.Color(2.6, 1.0, 0.75), 0x401008], [new THREE.Color(1.9, 1.0, 2.6), 0x240a30], [new THREE.Color(2.6, 1.8, 0.6), 0x302008]];
 // a mountain's rock: the kit's dark mossy rock lifted to a weathered grey-brown
 const MOUNTAIN_ROCK = new THREE.Color(1.35, 1.28, 1.22);
 
@@ -367,6 +372,12 @@ export function outdoorDress(c, theme) {
       // scree and the odd boulder
       if (r < 0.07) b.add(tinted(N.get(rng() < 0.5 ? 'Pebble_Round_1' : 'Pebble_Round_3'), MOUNTAIN_ROCK, 'mtnpeb'), trs(px, 0, pz, yaw, 1.2 + rng()), { shadow: false });
       else if (!ln(x, y) && r < 0.085) b.add(tinted(N.get('Rock_Medium_' + (1 + Math.floor(rng() * 3))), MOUNTAIN_ROCK, 'mtnrock'), trs(px, 0, pz, yaw, 0.3 + rng() * 0.2));
+    } else if (theme === 'underwater') {
+      // the seabed: coral in three colours, sea fans, shells; nothing stands on the ways through
+      const k = Math.floor(rng() * 3), [cc, ce] = CORAL[k];
+      if (!ln(x, y) && r < 0.05) b.add(tinted(N.get('Bush_Common'), cc, `coral${k}`, { emissive: ce, glow: 1 }), trs(px, 0, pz, yaw, 0.55 + rng() * 0.5), { shadow: false });
+      else if (!ln(x, y) && r < 0.08) b.add(tinted(N.get('Fern_1'), new THREE.Color(0.9, 2.2, 2.0), 'seafan'), trs(px, 0, pz, yaw, 0.9 + rng() * 0.5), { shadow: false });
+      else if (r < 0.105) b.add(tinted(N.get('Pebble_Round_3'), new THREE.Color(2.2, 1.9, 1.7), 'shell'), trs(px, 0, pz, yaw, 1.1), { shadow: false });
     } else if (theme === 'snow') {
       if (r < 0.03) b.add(tinted(N.get('Rock_Medium_1'), 0xe8eef4, 'snowrock'), trs(px, 0, pz, yaw, 0.25), { shadow: false });
     } else if (theme === 'volcanic') {
@@ -421,4 +432,40 @@ export const LOOK_GROUND = {
   // a water room's banks, and the sandy bed seen through the shallows
   water_swim: { a: 0x6f8a4a, b: 0x8aa060, path: 0x8a7a58, wet: 0x2e5a6a },
   water_noswim: { a: 0x6a8448, b: 0x86985c, path: 0x8a7a58, wet: 0x22485a },
+  // the seabed: pale sand, lighter where currents sweep the ways through
+  underwater: { a: 0x8e8a6e, b: 0xa69c78, path: 0xbcae86, wet: 0x2a5a66 },
 };
+
+// a drowned city (the room's name says temple, plaza, palace, throne, vault, gate, quarter, ruin,
+// city): broken pale columns standing and fallen, and rubble, among the coral
+export const RUIN_RE = /\b(temple|plaza|palace|throne|vault|gate(way)?|quarter|ruin|city|hall|shrine|street|court)s?\b/i;
+export function sunkenRuins(c) {
+  const { layout, ox, oz, kits, b, rng, occ } = c;
+  const D = kits.dungeon;
+  if (!D) return;
+  const { W, H, grid } = layout;
+  const ln = lane(layout);
+  const STONE = new THREE.Color(1.6, 1.62, 1.5);
+  const pillar = tinted(D.get('pillar'), STONE, 'seastone'), column = tinted(D.get('column'), STONE, 'seastone');
+  const rubble = tinted(D.get('rubble_large') || D.get('rubble_half'), STONE, 'searubble');
+  const spots = [];
+  for (let y = 2; y < H - 2; y++) for (let x = 2; x < W - 2; x++) {
+    if (grid[y * W + x] === FLOOR && !ln(x, y) && (x % 4 === 2) && (y % 4 === 2)) spots.push([x, y]);
+  }
+  for (const [x, y] of spots) {
+    const r = rng();
+    if (r > 0.55) continue;
+    const px = ox + x + 0.5, pz = oz + y + 0.5;
+    if (r < 0.25 && pillar) {                        // a column still standing
+      b.add(occ(pillar), trs(px, 0, pz, rng() * 6.28, 0.9, 0.6 + rng() * 0.5, 0.9));
+      grid[y * W + x] = BLOCK;
+    } else if (r < 0.4 && column) {                  // one fallen, lying in the sand
+      const g = trs(px, 0.35, pz, rng() * 6.28, 1.1);
+      g.multiply(new THREE.Matrix4().makeRotationZ(Math.PI / 2));
+      b.add(column, g);
+    } else if (rubble) {
+      b.add(occ(rubble), trs(px, 0, pz, rng() * 6.28, 0.7 + rng() * 0.3));
+      grid[y * W + x] = BLOCK;
+    }
+  }
+}

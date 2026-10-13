@@ -787,6 +787,7 @@ class World:
         try:
             import room_looks
             room_looks.classify(self)
+            room_looks.strip_filler(self)     # no "stale air" under open sky or the sea
         except Exception as e:
             logger.warning(f"Failed to work out room looks: {e}")
 

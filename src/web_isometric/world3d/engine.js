@@ -30,6 +30,8 @@ export const MOODS = {
   cave: { sky: 0xa8b4cc, ground: 0x5a4a3c, hemi: 1.45, sun: 0xb8c4e0, sunI: 0.85, fog: 0x161a22, near: 20, far: 60, exposure: 1.35, bg: 0.35 },
   desert: { sky: 0xfff0d0, ground: 0x8a6a40, hemi: 1.2, sun: 0xffe8b8, sunI: 2.9, fog: 0xe8d4b0, near: 30, far: 85, exposure: 1.0, bg: 1.0 },
   snow: { sky: 0xe4eeff, ground: 0x8a96a8, hemi: 1.15, sun: 0xf4f8ff, sunI: 2.2, fog: 0xd8e4f0, near: 26, far: 75, exposure: 0.95, bg: 1.0 },
+  // under the sea: green-blue light from above, the far distance lost in deep water
+  underwater: { sky: 0x9ae0ec, ground: 0x2a5a60, hemi: 1.5, sun: 0xc0f0ff, sunI: 1.6, fog: 0x2a7890, near: 14, far: 48, exposure: 1.3, bg: 0.75 },
   volcanic: { sky: 0x8a4a3a, ground: 0x2a0e06, hemi: 0.6, sun: 0xff8a50, sunI: 1.3, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1, bg: 0.75 },
 };
 

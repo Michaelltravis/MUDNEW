@@ -280,3 +280,34 @@ def summary(world):
     """Counts per look and per reason, for the world check and the docs."""
     rooms = (getattr(world, 'rooms', {}) or {}).values()
     return {'looks': Counter(r.look for r in rooms), 'why': Counter(r.look_why for r in rooms)}
+
+
+# Filler the old description padder added everywhere: an indoor scene's lines (walls, a ceiling,
+# stale air, dust). Under open sky or the sea they contradict the room, so they come out of every
+# room that is not enclosed (the owner: rooms should match their descriptions).
+INDOOR_FILLER = [
+    "Dust motes drift in the stale air.", "The walls are rough-hewn and cold to the touch.",
+    "The ceiling hangs low overhead.", "The air is still and musty.", "Shadows gather in the corners.",
+]
+_FILLER_RE = [re.compile(r'\s*' + r'\s+'.join(re.escape(w) for w in f.split())) for f in INDOOR_FILLER]
+OPEN_LOOKS = {'field', 'forest', 'hills', 'mountain', 'desert', 'snow', 'shore', 'swamp', 'volcanic',
+              'water_swim', 'water_noswim', 'underwater', 'city', 'darkforest'}
+
+
+def strip_filler(world) -> int:
+    """Take the indoor filler out of the descriptions of rooms not enclosed; returns how many."""
+    n = 0
+    for room in (getattr(world, 'rooms', {}) or {}).values():
+        look = getattr(room, 'look', None) or getattr(room, 'sector_type', '')
+        flags = set(getattr(room, 'flags', None) or ())
+        if look not in OPEN_LOOKS or ('indoors' in flags and look not in ('underwater', 'water_swim', 'water_noswim')):
+            continue
+        d = getattr(room, 'description', '') or ''
+        new = d
+        for rx in _FILLER_RE:
+            new = rx.sub('', new)
+        if new != d:
+            room.description = new.strip()
+            n += 1
+    return n
+
