@@ -1554,12 +1554,12 @@
    "steps_from_temple": 26,
    "terrain": [
     [
-     "water_swim",
-     3
+     "forest",
+     4
     ],
     [
-     "forest",
-     2
+     "inside",
+     1
     ]
    ],
    "creatures": 6,
@@ -1584,11 +1584,7 @@
    "one_way": [],
    "no_exits": [],
    "locked_doors_left_unlocked": [],
-   "water_rooms": [
-    6132,
-    6133,
-    6134
-   ],
+   "water_rooms": [],
    "connections_added": []
   },
   "62": {

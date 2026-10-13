@@ -1,0 +1,203 @@
+{
+ "zone": 235,
+ "_about": "The Goblin Warrens (levels 12-25): goblins who swarm to each other's screech, the merchant calling for help, the cave trolls and spiders as elites, the goblin shaman a sub-boss, and Goblin King Grizznak on his throne calling berserkers to his side.",
+ "creatures": {
+  "23500": {
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "why": "goblins"
+  },
+  "23501": {
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "why": "goblins"
+  },
+  "23502": {
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "why": "goblins"
+  },
+  "23503": {
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "why": "goblins"
+  },
+  "23506": {
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "why": "goblins"
+  },
+  "23507": {
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "why": "goblins"
+  },
+  "23509": {
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "why": "goblins"
+  },
+  "23510": {
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "why": "goblins"
+  },
+  "23514": {
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "Help! Thieves! Help!",
+    "answer": false
+   },
+   "why": "the merchant calls"
+  },
+  "23511": {
+   "rank": "elite",
+   "why": "a terror of the warrens"
+  },
+  "23512": {
+   "rank": "elite",
+   "why": "a terror of the warrens"
+  },
+  "23504": {
+   "rank": "elite",
+   "why": "a terror of the warrens"
+  },
+  "23508": {
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "why": "the goblin shaman"
+  },
+  "23513": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "boss",
+    "helper"
+   ],
+   "helpers": {
+    "group": "warren_goblins",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The goblin screeches, and the warrens boil with goblins!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Grizznak shrieks: \"Kill them! KILL THEM!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Royal Tantrum",
+      "telegraph": "Grizznak stamps and screams!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crown Smash",
+      "telegraph": "Grizznak swings his spiked sceptre!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Bribe the Mob",
+      "telegraph": "Grizznak tosses a fistful of gold into the air!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Goblin King"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 23500,
+   "route": [
+    23500,
+    23501,
+    23502,
+    23503,
+    23507,
+    23508,
+    23509,
+    23514
+   ],
+   "why": "a goblin scout runs the tunnels"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 23513,
+   "room": 23518,
+   "why": "Grizznak on his throne",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      75,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      23509
+     ],
+     "shout": "Grizznak screams for his berserkers!",
+     "why": "his berserkers"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,117 @@
+{
+ "zone": 52,
+ "_about": "Ruined old Thalos (levels 9-45): lamiae haunt the temple grounds and help each other, their Matriarch a sub-boss; the stone golems of the watchtowers and the mimics in the ruins are elites; and the mighty beholder in the Temple of Thalos rakes the floor with disintegrating rays while its eye darkens the temple.",
+ "creatures": {
+  "5201": {
+   "helpers": {
+    "group": "lamiae",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The lamia hisses, and her sisters slither out of the ruins!"
+   },
+   "why": "lamiae"
+  },
+  "5209": {
+   "helpers": {
+    "group": "lamiae",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The lamia hisses, and her sisters slither out of the ruins!"
+   },
+   "why": "lamiae"
+  },
+  "5208": {
+   "rank": "elite",
+   "why": "a guardian or a mimic of the ruins"
+  },
+  "5202": {
+   "rank": "elite",
+   "why": "a guardian or a mimic of the ruins"
+  },
+  "5203": {
+   "rank": "elite",
+   "why": "a guardian or a mimic of the ruins"
+  },
+  "5204": {
+   "rank": "elite",
+   "why": "a guardian or a mimic of the ruins"
+  },
+  "5205": {
+   "rank": "elite",
+   "why": "a guardian or a mimic of the ruins"
+  },
+  "5206": {
+   "rank": "elite",
+   "why": "a guardian or a mimic of the ruins"
+  },
+  "5200": {
+   "rank": "boss",
+   "why": "the beholder"
+  },
+  "52500": {
+   "name": "lamia matriarch",
+   "short_desc": "the Lamia Matriarch",
+   "long_desc": "The Lamia Matriarch coils on a fallen pillar, watching you with golden eyes.",
+   "description": "Woman above and great tawny lioness below, older and larger than her sisters, with a crown of temple gold and claws stained dark. The ruins of Thalos are her hunting ground.",
+   "level": 18,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "lamia",
+   "rank": "sub-boss",
+   "alignment": -600,
+   "helpers": {
+    "group": "lamiae",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The lamia hisses, and her sisters slither out of the ruins!"
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 52500,
+   "rooms": [
+    5203
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 5201,
+   "route": [
+    5200,
+    5201,
+    5202,
+    5203
+   ],
+   "why": "a lamia prowls from the Grand Gate to the temple"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 5200,
+   "room": 5250,
+   "why": "the beholder in the Temple of Thalos",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Disintegration Ray",
+     "school": "arcane",
+     "every": 8,
+     "radius": 2.2,
+     "last": 7,
+     "pct": 0.05,
+     "why": "its eye-rays scour the floor: step out"
+    },
+    {
+     "type": "gloom",
+     "max": 0.7,
+     "shout": "The beholder's central eye opens wide, and the light dies...",
+     "why": "its anti-magic eye"
+    }
+   ]
+  }
+ ]
+}

@@ -224,6 +224,19 @@ async function waitFor(page, fn, arg, secs = 60) {
     }
   }
 
+  if (MODE === 'rooms') {
+    // any rooms, from PROBE_ROOMS=vnum,vnum,...: its look, the creatures there and their plates
+    for (const v of (process.env.PROBE_ROOMS || '').split(',').filter(Boolean).map(Number)) {
+      check(await goto(v), `in ${v}`);
+      await sleep(3500);
+      const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look,
+        mobs: [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === r.vnum).map(e => e.data.name),
+        plates: [...document.querySelectorAll('.plate')].map(p => p.className).filter(c => /boss|elite/.test(c)) }; });
+      console.log(v, JSON.stringify(info));
+      await page.screenshot({ path: path.join(OUT, `room-${v}.png`) });
+    }
+  }
+
   if (MODE === 'gates') {
     // just outside the gates: the Rat King, Black Jory, the Barrow King, the dracolich, the Alpha Wolf, Redferne
     for (const [v, name] of [[7320, 'ratking'], [19742, 'jory'], [8690, 'barrowking'], [5011, 'dracolich'], [20009, 'alphawolf'], [7911, 'redferne'],

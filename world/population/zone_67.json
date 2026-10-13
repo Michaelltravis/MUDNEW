@@ -1,0 +1,112 @@
+{
+ "zone": 67,
+ "_about": "The Eastern Highlands (levels 15-35): highland raiders who answer each other's horn and range the trail, the harpy of the ruined watchtower and the mountain lion as elites, and the raider chieftain at the crossroads calling his warband.",
+ "creatures": {
+  "6700": {
+   "helpers": {
+    "group": "highland_raiders",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A raider's horn sounds across the highlands!"
+   },
+   "why": "raiders"
+  },
+  "6702": {
+   "rank": "elite",
+   "why": "a beast of the highlands"
+  },
+  "6701": {
+   "rank": "elite",
+   "why": "a beast of the highlands"
+  },
+  "6704": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "boss"
+   ],
+   "helpers": {
+    "group": "highland_raiders",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A raider's horn sounds across the highlands!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The raider chieftain roars: \"To me, my wolves!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Warcry",
+      "telegraph": "The raider chieftain bellows a warcry!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+8",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Cleave",
+      "telegraph": "The raider chieftain swings his great axe!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+7",
+      "dodge": true
+     },
+     {
+      "name": "Berserk",
+      "telegraph": "The raider chieftain froths into a berserk fury!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+11",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the raider chieftain"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 6700,
+   "route": [
+    6700,
+    6701,
+    6702,
+    6703,
+    6704
+   ],
+   "why": "a raider walks the trail to the crossroads"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 6704,
+   "room": 6704,
+   "why": "the raider chieftain at the crossroads",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      35
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      6700
+     ],
+     "shout": "The raider chieftain sounds his horn, and his warband answers!",
+     "why": "his warband"
+    }
+   ]
+  }
+ ]
+}

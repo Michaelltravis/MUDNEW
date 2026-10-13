@@ -91,6 +91,12 @@ async def main():
     check(npcs(644103)[0].room.vnum == 8742 and npcs(47150)[0].room.vnum == 8357, 'the barrow wight in the Barrow Mound; the Black Priest before the Dark Castle')
     newbie = [m for m in world.npcs if getattr(m, 'room', None) is not None and m.room.zone.number == 186]
     check(not any(getattr(m, 'is_boss', False) for m in newbie), 'the Newbie Zone has no boss')
+    # ---- ring 3
+    check(npcs(5200)[0].room.vnum == 5250 and npcs(90500)[0].room.vnum == 9018, 'the beholder in the Temple of Thalos; the Bog Witch in her hut')
+    check(npcs(6114)[0].room.vnum == 6134 and npcs(6704)[0].rank == 'boss', 'the Queen spider in her den; the raider chieftain a boss')
+    grizz = npcs(23513)[0]
+    check(grizz.room.name == 'The Goblin Throne Room' and grizz.rank == 'boss', 'Grizznak on his throne')
+    check(world.rooms[8742].look == 'crypt', 'the Barrow Mound looks like a barrow')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

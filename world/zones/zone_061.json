@@ -12,7 +12,7 @@
     "y": -23,
     "z": 1
    },
-   "sector_type": "water_swim",
+   "sector_type": "forest",
    "flags": [
     "dark",
     "indoors",
@@ -41,7 +41,7 @@
     "y": -23,
     "z": 1
    },
-   "sector_type": "water_swim",
+   "sector_type": "forest",
    "flags": [
     "dark",
     "indoors"
@@ -83,7 +83,7 @@
     "y": -23,
     "z": 1
    },
-   "sector_type": "water_swim",
+   "sector_type": "inside",
    "flags": [
     "dark",
     "indoors"

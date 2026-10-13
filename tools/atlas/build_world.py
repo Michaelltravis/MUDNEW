@@ -350,6 +350,11 @@ def build(write=False):
                 if not any(isinstance(e, dict) and e.get('to_room') == v for e in back.values()):
                     r['exits'].pop(d)
                     notes['one-way leftovers into the atlas dropped'] += 1
+    # terrain set by hand where both the atlas and our old world had it wrong (overrides.json "sectors")
+    for v, sector in (ov.get('sectors') or {}).items():
+        if int(v) in new_rooms:
+            new_rooms[int(v)]['sector_type'] = sector
+            notes['sectors set by hand'] += 1
     # ways the atlas lost that the area's original files have (overrides.json "exits": {room: {dir: room}})
     for v, ways in (ov.get('exits') or {}).items():
         r = new_rooms.get(int(v))
