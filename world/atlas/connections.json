@@ -1902,6 +1902,60 @@
    "dir": "south",
    "to": 24857,
    "why": "the way back"
+  },
+  {
+   "from": 12302,
+   "dir": "up",
+   "to": 3497,
+   "why": "the way back"
+  },
+  {
+   "from": 12307,
+   "dir": "east",
+   "to": 12305,
+   "why": "the way back"
+  },
+  {
+   "from": 12308,
+   "dir": "west",
+   "to": 12305,
+   "why": "the way back"
+  },
+  {
+   "from": 12382,
+   "dir": "north",
+   "to": 12381,
+   "why": "the way back"
+  },
+  {
+   "from": 12383,
+   "dir": "south",
+   "to": 12381,
+   "why": "the way back"
+  },
+  {
+   "from": 12384,
+   "dir": "west",
+   "to": 12381,
+   "why": "the way back"
+  },
+  {
+   "from": 12385,
+   "dir": "east",
+   "to": 12382,
+   "why": "the way back"
+  },
+  {
+   "from": 12386,
+   "dir": "south",
+   "to": 12385,
+   "why": "the way back"
+  },
+  {
+   "from": 12387,
+   "dir": "south",
+   "to": 12386,
+   "why": "the way back"
   }
  ],
  "still_cut_off": []
