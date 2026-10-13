@@ -26,8 +26,9 @@
      "description": "To the up lies In The Cave."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead west and up.",
-   "placeholder": true
+   "description": "This is the highest and rawest corner of the cavern, where a spiral of\nworn stone steps climbs into darkness toward a chamber far above. Cold\nair drifts down the stair carrying the smell of dead leaves and moss.\nThe floor is bare grit, and the rock overhead glitters with damp. The\ncavern opens on to the west, where a faint glow of lantern light seems\nto lie.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4665": {
    "vnum": 4665,
@@ -55,8 +56,15 @@
      "description": "To the west lies In A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A broad junction of the cavern, where three passages meet beneath a roof\nhung with pale stalactites. Flowstone has run down the rock in frozen\ncurtains, and drip water rings in a shallow stone basin. The way east\nleads back toward the stair, the cavern goes on west into the dark, and\na damper passage slopes south toward the sound of lapping water.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647400,
+     "max": 1
+    }
+   ]
   },
   "4666": {
    "vnum": 4666,
@@ -84,8 +92,9 @@
      "description": "To the west lies In A Large Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A junction in the great cavern, where tunnels of grey stone fan out\nbeneath a low shelf of rock. Shadows pool along the base of every wall,\nand a gentle draught moves between the ways like a sigh. A passage turns\nnorth into a sandy hollow, another goes east toward the lake side, and\nthe third runs west toward a distant dim glow.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4667": {
    "vnum": 4667,
@@ -113,8 +122,9 @@
      "description": "To the west lies In A Large Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The cavern floor tilts here toward an arch of dressed stone that someone\nhas carved into the living rock to the west. Beyond it a pale orange\nlight flickers on the ceiling, and you can smell oil and woodsmoke. Back\nto the east the cavern stays wild, and a way leads north into a high-\nroofed chamber. The rock around the arch is carved with a ring of\nknotted lines.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4668": {
    "vnum": 4668,
@@ -138,8 +148,15 @@
      "description": "To the west lies In A Large Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "A low cavern of dark brown rock, its roof sagging in a heavy curve above\na floor of damp sand. Strange ripples in the sand show where some thin\nstream once ran across it. The passage leads south toward a larger\njunction and west into a vaster cave. The air is close and warm, like\nbreath.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647400,
+     "max": 1
+    }
+   ]
   },
   "4669": {
    "vnum": 4669,
@@ -167,8 +184,9 @@
      "description": "To the south lies In A Large Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A great vaulted cavern, its dark ceiling hung with long fangs of stone,\nspreads around you in all directions that matter. The floor drops in a\nwide ledge toward a bowl of shadow in the middle. Ways lead north to a\nrock-strewn chamber, east to another cavern, and south toward a wider\nhall. Your footsteps return from far-off ranks of rock.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4672": {
    "vnum": 4672,
@@ -196,8 +214,9 @@
      "description": "To the south lies In A Large Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The cavern floor is cluttered here with fallen rock, and you pick your\nway between the boulders by feel and by lantern gleam. A narrow gap\nopens north into a small chamber, and the main passage turns east and\nsouth. Cool air stirs, bringing a smell of wet clay and distant smoke.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4673": {
    "vnum": 4673,
@@ -217,8 +236,9 @@
      "description": "To the south lies In A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads south.",
-   "placeholder": true
+   "description": "A small cavern with a ceiling of pitted rock, where the echo is odd and\nflat as if the stone itself were swallowing sound. Hundreds of tiny\ncracks run through the floor, and a few thin white roots have forced\ntheir way down from far above. Only one passage leads out, running south\ninto the main cavern.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4674": {
    "vnum": 4674,
@@ -246,8 +266,15 @@
      "description": "To the west lies In A Large Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Three passages meet at this crossing of the cave, and the roof above is\ndomed like an old chapel. Pale crusts of mineral cling to the stone in\nthe shape of petals. A narrow side-cave opens east, the main cavern runs\nwest, and the way north climbs gently toward a pillared chamber.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647400,
+     "max": 1
+    }
+   ]
   },
   "4675": {
    "vnum": 4675,
@@ -267,8 +294,9 @@
      "description": "To the west lies In A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A tiny side-cave, little more than a pocket in the rock, with a ceiling\nyou can touch. Someone has swept the floor and laid a ring of stones as\na hearth, long cold now, its ashes grey and old. Soot still stains the\nrock above it. The only exit is back west into the main cavern.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4676": {
    "vnum": 4676,
@@ -292,8 +320,9 @@
      "description": "To the south lies In A Large Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and south.",
-   "placeholder": true
+   "description": "A hushed cavern where the floor has been worn into shallow grooves by\npassing feet. Stalagmites stand in a crooked row like the teeth of some\nburied beast, and water seeps down the rock in glistening threads. A\npassage opens east into a chamber with a thick pillar, while the cavern\nruns south toward a darker junction.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4677": {
    "vnum": 4677,
@@ -317,8 +346,15 @@
      "description": "To the south lies On The Underground Lake."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "The floor of the cavern slopes down to a shore of black wet shingle,\nwhere the underground lake begins. Water laps in the dark and the air\ntastes of cold iron and minerals. A rotted landing of planks juts out\nover the water to the south, and the cavern narrows back toward a drier\npassage to the north.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647400,
+     "max": 1
+    }
+   ]
   },
   "4678": {
    "vnum": 4678,
@@ -340,8 +376,8 @@
      "description": "To the east lies On The Underground Lake."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north and east.",
-   "placeholder": true
+   "description": "You drift on the black water of the underground lake, the shingle shore\nof the cavern fading into the gloom to the north. Ripples spread from\nyour craft and vanish into the dark. Far overhead the roof of the cave\nis lost in shadow, hung with pale stalactites that drip into the lake\nwith a slow, steady plink. The open water stretches on east, cold and\nsilent.",
+   "extra_descs": {}
   },
   "4679": {
    "vnum": 4679,
@@ -363,8 +399,8 @@
      "description": "To the west lies On The Underground Lake."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead east and west.",
-   "placeholder": true
+   "description": "Out in the middle of the lake the dark is nearly complete, and the only\nlight is a pale shimmer on the swell. The water here is deep and\nunnaturally still, and it smells of stone and old rain. You can hear\nyour own breath come back from the far walls of the great cave. The lake\nruns on both east and west of you.",
+   "extra_descs": {}
   },
   "4680": {
    "vnum": 4680,
@@ -386,8 +422,8 @@
      "description": "To the west lies On The Underground Lake."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north and west.",
-   "placeholder": true
+   "description": "The swell is shorter here, slapping at the rock where the lake narrows\ntoward a ragged shore. Glints of mica in the stone catch what little\nlight there is and wink like drowned stars. A damp cavern mouth opens on\nthe shore to the north, and the dark water behind you leads back west.",
+   "extra_descs": {}
   },
   "4681": {
    "vnum": 4681,
@@ -411,8 +447,9 @@
      "description": "To the south lies On The Underground Lake."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow beach of gravel and broken shell lies at the water's edge,\nwhere the lake gives way to a cavern floor stained green with algae. The\nrock rises steeply on every side and drips constantly. Water slops\nsoftly against the shingle to the south, and a dry passage climbs away\nnorth into the cavern.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4682": {
    "vnum": 4682,
@@ -436,8 +473,9 @@
      "description": "To the south lies In A Large Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The cavern here is long and narrow, a natural gallery shaped by water\nover ages, its roof studded with pale knobs of rock. Scuffed footprints\nin the silt show that this passage is used, and not by friends of\nstrangers. The air is damp and still, and the cavern runs on north,\nwhile a faint smell of the lake comes up from the south.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4683": {
    "vnum": 4683,
@@ -465,8 +503,9 @@
      "description": "To the west lies In A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A wide chamber of grey stone where the passage splits around a great\nfallen slab of rock. A low opening leads north into a smaller hollow,\nand the cavern stretches west toward a brighter, drier darkness. Tiny\ncrystals sparkle in the roof like scattered frost. The way south goes\nback down toward the lake.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4684": {
    "vnum": 4684,
@@ -486,8 +525,15 @@
      "description": "To the south lies In A Large Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads south.",
-   "placeholder": true
+   "description": "A small, round hollow, hardly bigger than a cell, where the roof sweeps\ndown so low that you must stoop. The floor is dry sand and the rock\naround you has been rubbed smooth by many shoulders. A few black scorch\nmarks on the ceiling show where someone once kept a fire. The only way\nout is back south into the larger cavern.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647400,
+     "max": 1
+    }
+   ]
   },
   "4685": {
    "vnum": 4685,
@@ -511,8 +557,9 @@
      "description": "To the west lies In A Large Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long, level cavern with a floor of packed earth, trodden into a faint\npath between its two ends. Thin veins of quartz thread the rock overhead\nand glimmer faintly when the air stirs. Somewhere a trickle of water\nechoes. The path runs east toward a split in the rock and west deeper\ninto the cave.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4686": {
    "vnum": 4686,
@@ -540,8 +587,9 @@
      "description": "To the west lies In A Large Cavern."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Three ways meet in a rough chamber whose roof is propped by a thick\npillar of natural stone. The pillar is scratched with old tally marks\nand the crude sign of an open eye. A passage heads north through the\nrock, another runs east, and a third winds on west toward a wilder,\ndarker cavern.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4687": {
    "vnum": 4687,
@@ -565,8 +613,15 @@
      "description": "To the south lies In A Large Cavern."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "The cavern narrows to a crooked throat, its sides pinched in like folds\nof cloth. Droplets fall from the ceiling in a thin rain and the floor is\nslick with mud. Torch scars blacken the rock at shoulder height, as if\nguards once stood watch here. The passage leads north toward a heavier\ndarkness and south toward the pillared chamber.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647400,
+     "max": 1
+    }
+   ]
   },
   "4688": {
    "vnum": 4688,
@@ -595,8 +650,9 @@
      "description": "To the south lies In A Large Cavern."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "A last stretch of rough cavern ends at an iron-banded door set into a\nframe of cut stone, the first sign of true masonry among the raw rock.\nThe door is old, black with age, and its hinges are well greased. The\ncavern behind you slopes back to the south, and the door leads on north\ninto a hewn tunnel.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "4689": {
    "vnum": 4689,
@@ -616,8 +672,9 @@
      "description": "To the south lies In A Large Cavern."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads south.",
-   "placeholder": true
+   "description": "Beyond the iron door the cavern gives way to a tunnel hacked out by\npicks, its rough walls still showing the bite of every blow. The floor\nis level and swept clean, and iron rings are set in the stone for\nlanterns. The passage is narrow enough that two armed folk could hardly\npass. It runs back south to the door and the caverns beyond.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "21700": {
    "vnum": 21700,
@@ -645,8 +702,16 @@
      "description": "To the west lies Sentry Post."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "You stand in a stone gatehall at the threshold of the Cave Elf Kingdom,\na vaulted room cut from the living rock and lit by a lantern hung from\nevery pillar. Tall doors lie to the north, a broad hallway of pale\npolished stone leads south toward the heart of the realm, and a low\narchway opens west into a guardroom. The floor is inlaid with a silver\npattern of leaves and knives.",
+   "extra_descs": {
+    "pattern inlay leaves knives": "The silver inlay shows a ring of leaves, each leaf shaped like a knife-\nblade, around a closed eye."
+   },
+   "mob_resets": [
+    {
+     "vnum": 647401,
+     "max": 1
+    }
+   ]
   },
   "21701": {
    "vnum": 21701,
@@ -666,8 +731,14 @@
      "description": "To the east lies The Entrance to the Cave Elf Kingdom."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "The Sentry Post is a bare guardroom with a rack of crossbows, a table of\ndice and a brazier burning low. A narrow slit in the stone looks over\nthe gatehall, and a horn of black ivory hangs on the wall to sound the\nalarm. The floor is covered in boot-scuffs and spilled ale. The only way\nout is east, to the gatehall.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647401,
+     "max": 1
+    }
+   ]
   },
   "21702": {
    "vnum": 21702,
@@ -699,8 +770,14 @@
      "description": "To the west lies Stairwell to the Upper Floor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A long, grand hallway runs south toward the throne, its high ceiling\nlost in glimmering dark and its floor laid with slabs of black stone\nveined in silver. Tall lanterns of coloured glass throw jewelled light\non carved pillars. Back north lies the gatehall, a stair rises into the\ndark to the west, and a heavy grate opens east onto steps that lead\ndown. The hall's far end glows with the light of the king's court.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647401,
+     "max": 1
+    }
+   ]
   },
   "21703": {
    "vnum": 21703,
@@ -724,8 +801,8 @@
      "description": "To the up lies Entrance to the Upper Level of the Cave Elf Kingdom."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and up.",
-   "placeholder": true
+   "description": "A narrow stair rises through a shaft of fitted stone, its steps polished\nto a shine by countless feet. Lanterns hang from hooks at each turn,\nthrowing long shadows up the shaft. The guarded hallway lies to the\neast, and the stair continues up to the realm's upper level.",
+   "extra_descs": {}
   },
   "21704": {
    "vnum": 21704,
@@ -749,8 +826,9 @@
      "description": "To the down lies At the Bottom of the Dungeon Staircase."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead west and down.",
-   "placeholder": true
+   "description": "A narrow chamber of iron and chipped stone, where the hallway's grandeur\nends in the grim business of the dungeons. A stair winds down through a\nbarred archway in the floor, and cold rises from it, smelling of old\nstraw and wet iron. Chains hang from hooks along the stone. The way west\nleads back out to the guarded hallway.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21705": {
    "vnum": 21705,
@@ -770,8 +848,14 @@
      "description": "To the east lies Before the King's Court."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "The Guards Barracks is a long room lined with double bunks of dark wood,\neach with its small chest and a hook for a cloak. Racks of spears stand\nalong one wall, and a trestle table is scarred with knife marks and\ndice. The room smells of leather, oil and boiled barley. The only way\nout is the door to the east, which leads to the king's antechamber.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647401,
+     "max": 1
+    }
+   ]
   },
   "21706": {
    "vnum": 21706,
@@ -803,8 +887,14 @@
      "description": "To the west lies Guards Barracks."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A tall antechamber with a floor of green marble stands before the great\ndoors of the king's court. Banners of black and silver hang from the\nvaulted roof, and tall lamps of crystal throw dancing sparks across the\npolished stone. A passage goes north to the guarded hallway, an arched\ndoor opens east, another west, and the grand doorway leads on south into\nthe court.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647406,
+     "max": 1
+    }
+   ]
   },
   "21707": {
    "vnum": 21707,
@@ -824,8 +914,8 @@
      "description": "To the west lies Before the King's Court."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "The War Advisor's office is a plain, orderly room lined with maps of\ntunnels drawn on cured hide and pinned to the stone. A long table holds\ncarved markers of every rank, set out in some half-finished battle plan.\nA lamp with a green shade burns beside a heap of dispatches. The door\nopens west onto the antechamber.",
+   "extra_descs": {}
   },
   "21708": {
    "vnum": 21708,
@@ -849,8 +939,8 @@
      "description": "To the south lies West Side of the King's Court."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "In this far corner of the court there is a tall cabinet of dark wood,\nbehind its glass door a row of ceremonial daggers on red velvet. A tall\nlamp on a wrought tripod gives off a steady golden light. The entrance\nof the court lies east, and the side of the court continues south.",
+   "extra_descs": {}
   },
   "21709": {
    "vnum": 21709,
@@ -882,8 +972,14 @@
      "description": "To the west lies North West Corner of the King's Court."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The entrance to the King's Court is a lofty hall of white stone and\nsilver, its roof carried on slender pillars carved like trees. A carpet\nof deep blue runs the length of it toward the throne, and lantern light\nshimmers in the polished floor. The doors north lead back to the\nantechamber, and the court spreads east, west and south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647406,
+     "max": 1
+    }
+   ]
   },
   "21710": {
    "vnum": 21710,
@@ -907,8 +1003,8 @@
      "description": "To the west lies The Entrance to the King's Court."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "In this corner of the court a tall window-shaped niche is inlaid with\ncoloured crystal that glows from a lamp set behind it. A bench of dark\nwood waits beneath it for petitioners. The floor is a pattern of silver\nand green tiles. The court's entrance lies west, and the side of the\ncourt runs on south.",
+   "extra_descs": {}
   },
   "21711": {
    "vnum": 21711,
@@ -932,8 +1028,8 @@
      "description": "To the south lies The Royal Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and south.",
-   "placeholder": true
+   "description": "At the corner of the Royal Corridor the stone gives a deep echo, as\nthough a hollow lies beneath. A wall of rough black basalt is carved\nwith a long poem in elf script, picked out in gold. The corridor goes\neast toward the court's side and turns south from here. Draughts creep\nthrough the pillars and make the lamp flames lean.",
+   "extra_descs": {}
   },
   "21712": {
    "vnum": 21712,
@@ -957,8 +1053,8 @@
      "description": "To the west lies The Royal Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long corridor lined with gilt-framed portraits of cave elf nobility,\neach face turned a little aside as though listening. A lamp stands\nbeneath every painting, trimmed low and burning blue. The corridor opens\neast onto the court's west side and runs on west toward a bend. The\nscent of old paint hangs in the air.",
+   "extra_descs": {}
   },
   "21713": {
    "vnum": 21713,
@@ -990,8 +1086,8 @@
      "description": "To the west lies The Royal Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The west side of the court has a long bench of carved black wood beneath\na row of tall thin windows set with coloured glass, behind which lamps\nare lit. The glass paints green and violet bars across the floor. The\ncentre of the court lies east, the corner north, and more of the side\nruns south, while a corridor leads on west.",
+   "extra_descs": {}
   },
   "21714": {
    "vnum": 21714,
@@ -1023,8 +1119,8 @@
      "description": "To the west lies West Side of the King's Court."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "In the centre of the King's Court a ring of pale pillars rises to a roof\nthat shines with embedded crystal like a sky of stars. The floor is a\nvast mosaic of black and silver, and a fountain of carved stone spills\nclear water into a basin in the middle. The entrance lies north, the\nthrone south, and the sides of the court east and west.",
+   "extra_descs": {}
   },
   "21715": {
    "vnum": 21715,
@@ -1056,8 +1152,8 @@
      "description": "To the west lies In the Centre of the King's Court."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Along the east side of the court, tall pillars carved with climbing\nvines support a gallery of smoky shadow. Between them hang tapestries of\ncave elf hunts and long marches beneath the earth. The court's centre\nlies west, the corner north, and more of the side runs south. A wide\ncorridor opens east, lit by a row of lamps.",
+   "extra_descs": {}
   },
   "21716": {
    "vnum": 21716,
@@ -1081,8 +1177,8 @@
      "description": "To the west lies East Side of the King's Court."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The Royal Corridor begins here as a wide gallery of pale stone, its\nwalls hung with long banners of silver thread. Lamps in glass globes\nburn at even spaces and make the floor shine like water. The court lies\nopen to the west, and the corridor continues east toward a turn. The air\nsmells of beeswax and polish.",
+   "extra_descs": {}
   },
   "21717": {
    "vnum": 21717,
@@ -1106,8 +1202,8 @@
      "description": "To the west lies The Royal Corridor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south and west.",
-   "placeholder": true
+   "description": "At a bend in the Royal Corridor the stone is carved with a frieze of\ncave elf hunters pursuing pale stags through a forest of crystal. A tall\nlantern of wrought silver hangs from the roof, and its light shifts as\nthe draught moves. The corridor comes in from the west and turns to run\nsouth. The floor is soft with a thick runner of blue wool.",
+   "extra_descs": {}
   },
   "21718": {
    "vnum": 21718,
@@ -1131,8 +1227,8 @@
      "description": "To the south lies The Royal Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
-   "placeholder": true
+   "description": "Here the Royal Corridor passes between a pair of round windows glazed\nwith thick green crystal, through which the lamplight of hidden rooms\nglimmers. The floor is of narrow black and white boards, laid like a\nchessboard. Cold drifts up from the stone, and the corridor runs north\nto a corner and south toward the arena side.",
+   "extra_descs": {}
   },
   "21719": {
    "vnum": 21719,
@@ -1156,8 +1252,8 @@
      "description": "To the east lies Before the Throne."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "In this back corner of the court a narrow table holds a silver bowl of\ndried petals, whose sweet smell fills the air. Lamps hang from the roof\nin a low arc, and the stone floor is warm underfoot, as though heated\nfrom beneath. The side of the court runs north, and the area before the\nthrone lies east.",
+   "extra_descs": {}
   },
   "21720": {
    "vnum": 21720,
@@ -1189,8 +1285,14 @@
      "description": "To the west lies South West Side of the King's Court."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Before the Throne the court's floor is laid with a great mosaic of\nsilver and jet, a spreading tree whose roots reach down toward the dais.\nTall lamps stand at every pillar, and a thin haze of incense hangs in\nthe air. The throne rises just south, the centre of the court lies\nnorth, and the court's sides spread east and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647405,
+     "max": 1
+    }
+   ]
   },
   "21721": {
    "vnum": 21721,
@@ -1214,8 +1316,8 @@
      "description": "To the west lies Before the Throne."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "In this angle of the court a statue of a cave elf huntress stands on a\nplinth, her stone bow strung and aimed at the gloom. Tall lamps burn on\neither side of it and shine on the floor of silver and jet. The side of\nthe court runs north, and the area before the throne lies west.",
+   "extra_descs": {}
   },
   "21722": {
    "vnum": 21722,
@@ -1239,8 +1341,8 @@
      "description": "To the south lies The Royal Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "A straight reach of the Royal Corridor with a vaulted roof painted deep\nblue and dotted with gilt stars. Narrow doors of dark wood, locked and\nshuttered, stand in the walls like unspoken secrets. Each of your steps\nis muffled by the long carpet. The corridor runs north back to the bend\nand south toward the arena.",
+   "extra_descs": {}
   },
   "21723": {
    "vnum": 21723,
@@ -1264,8 +1366,8 @@
      "description": "To the south lies The Royal Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A quiet stretch of the Royal Corridor with a ceiling of fluted ribs,\neach carved with a leaf and a blade. Tall urns of glazed blue clay stand\nin the corners, filled with dried reeds. Sound is muffled to nothing.\nThe corridor goes north back toward the corner and south toward a bend.",
+   "extra_descs": {}
   },
   "21724": {
    "vnum": 21724,
@@ -1289,8 +1391,8 @@
      "description": "To the south lies The Royal Entrance to the Balcony."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "On the stage beside the throne the carpet is thick and dark, and a high-\nbacked chair of carved ebony stands vacant against the curtained wall.\nSilver candelabra stand on every side, and the wax drips in long ropes.\nThe throne lies east, and a stair leads south to the royal entrance of\nthe balcony.",
+   "extra_descs": {}
   },
   "21725": {
    "vnum": 21725,
@@ -1327,8 +1429,16 @@
      "description": "To the west lies On the Stage Next to the King's Throne."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The Throne of the Cave Elf King stands on a high dais of white stone, a\ngreat seat of black iron inlaid with silver and set with a ring of\nsapphires that glow in the lamplight. Wall-hangings of crimson and\nviolet frame it, and a stair of nine steps descends to the court. Stage\nplatforms lie to the east and west, while a small iron-banded door\nbehind the throne leads south.",
+   "extra_descs": {
+    "throne sapphires dais": "The sapphires are set in a ring around the throne's back, one for each\nking of the line. The newest is smaller than the rest and stained at the\nedge."
+   },
+   "mob_resets": [
+    {
+     "vnum": 647408,
+     "max": 1
+    }
+   ]
   },
   "21726": {
    "vnum": 21726,
@@ -1352,8 +1462,8 @@
      "description": "To the west lies At the Throne of the Cave Elf King."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "A raised stage of black marble, spread with a rich carpet, curves around\none flank of the throne. Brass candlesticks taller than a man burn at\nits edge, and a low rail of silver chain keeps off petitioners. Behind\nyou the steps lead south to the balcony, and the throne itself rises\njust west.",
+   "extra_descs": {}
   },
   "21727": {
    "vnum": 21727,
@@ -1377,8 +1487,8 @@
      "description": "To the south lies The Royal Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
-   "placeholder": true
+   "description": "Here the corridor is lined with plinths holding busts of past kings,\neach with a circlet of beaten silver and a face cold with pride. The\nlamps burn lower in this stretch, and the shadows between the plinths\nseem to stir. A cold breath comes up the corridor from the arena, which\nlies south, while the way north returns toward the court.",
+   "extra_descs": {}
   },
   "21728": {
    "vnum": 21728,
@@ -1402,8 +1512,8 @@
      "description": "To the east lies The Royal Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "The corridor turns a corner here, and the lamps on the turn are\nbrighter, shining on a tall mirror of polished silver. In it you see\nyourself small and dim against the vault. A faint roar from the arena\ncomes down the passage that heads east, and the way north leads back\nalong the corridor.",
+   "extra_descs": {}
   },
   "21729": {
    "vnum": 21729,
@@ -1427,8 +1537,8 @@
      "description": "To the west lies The Royal Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The corridor ends in a short run of steps worn by the feet of nobles on\ntheir way to the games. Torches in rings of black iron light the stone,\nand a coloured pennant hangs at the head of the passage. The corridor\nruns west, and the balcony opens to the east in a wash of noise.",
+   "extra_descs": {}
   },
   "21730": {
    "vnum": 21730,
@@ -1452,8 +1562,8 @@
      "description": "To the up lies Atop of a Secret Stairwell."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and up.",
-   "placeholder": true
+   "description": "Behind the throne a narrow stairwell of black stone curls upward in the\ndark, its steps worn and shallow. The walls are close and smell of lamp\noil and age. A door of iron-banded oak stands open at the north end,\nleading back to the throne room, and the steps rise steeply above you.",
+   "extra_descs": {}
   },
   "21731": {
    "vnum": 21731,
@@ -1477,8 +1587,8 @@
      "description": "To the west lies On the Balcony Overlooking the Arena."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A short passage ends at a heavy arched doorway where the corridor opens\nonto the noise and light of the balcony. Rich curtains of black velvet\nare tied back with silver cord, and the floor changes from tile to\nboards of dark polished wood. The corridor runs east, and the balcony\nstretches before you to the west. Voices drift up from below.",
+   "extra_descs": {}
   },
   "21732": {
    "vnum": 21732,
@@ -1502,8 +1612,8 @@
      "description": "To the west lies The Royal Corridor."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and west.",
-   "placeholder": true
+   "description": "The Royal Corridor bends again, and a faint roar rolls down it from the\narena like thunder in a distant sky. A great mural of a duel on white\nsand covers the wall, its colours dim with soot. A rack of unlit torches\nstands beside it. The corridor comes in from the north and runs west\ntoward the sound.",
+   "extra_descs": {}
   },
   "21733": {
    "vnum": 21733,
@@ -1527,8 +1637,8 @@
      "description": "To the down lies The Secret Stairwell behind the Throne."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and down.",
-   "placeholder": true
+   "description": "At the head of the secret stair a tiny landing of black stone is lit by\na single hooded lamp. The air here is warmer and smells of musk and\nclean linen, a world away from the stairwell's chill. The steps lead\ndown behind you, and a short passage opens ahead to the north, where the\nking's household keeps its watch. Faint footsteps patrol beyond the\nstone.",
+   "extra_descs": {}
   },
   "21734": {
    "vnum": 21734,
@@ -1557,8 +1667,14 @@
      "description": "To the south lies Atop of a Secret Stairwell."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "A Heavily Guarded Landing, floored with thick carpet and walled in\npanels of dark wood carved with watching eyes. Two tall stands hold\nracks of long polearms, and the lamps above are shuttered against any\nwho might hide in their glare. A heavy door of black oak and silver\nleads north to the royal chamber, while the secret stair lies south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647405,
+     "max": 1
+    }
+   ]
   },
   "21735": {
    "vnum": 21735,
@@ -1578,8 +1694,8 @@
      "description": "To the east lies The Royal Bed Chamber."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "The Royal Nursery is a hushed room with a ceiling painted as a night sky\nand a cradle of carved white wood hanging from silver chains. Small\nwooden toys, painted with scarlet and gold, lie on a rug of thick wool.\nA night lamp burns low in a glass dish, and the only door opens east to\nthe royal bed chamber.",
+   "extra_descs": {}
   },
   "21736": {
    "vnum": 21736,
@@ -1617,8 +1733,8 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The Royal Bed Chamber is a lofty room hung with drapes of deep violet\nand silver, its vast bed set on a platform of pale wood. Soft rugs cover\nthe floor and a hearth of carved stone holds the red ashes of last\nnight's fire. Doors lead east to the queen's rooms and west to the\nnursery, while the landing lies south.",
+   "extra_descs": {}
   },
   "21737": {
    "vnum": 21737,
@@ -1638,8 +1754,8 @@
      "description": "To the west lies The Royal Bed Chamber."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "The Queen's Private Chamber is a delicate room of pearl-grey stone,\nsoftened by silks the colour of dusk and cushions embroidered with\nmoths. A mirror in a silver frame shows the room's lamps as pale stars,\nand a table is spread with little glass bottles of scent. The door west\nleads back to the royal bed chamber.",
+   "extra_descs": {}
   },
   "21738": {
    "vnum": 21738,
@@ -1663,8 +1779,8 @@
      "description": "To the down lies Stairwell to the Upper Floor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and down.",
-   "placeholder": true
+   "description": "At the top of the stair a broad landing opens onto the upper level of\nthe Cave Elf Kingdom, where the roof soars higher and the lamps are\nmany. A statue of an elven huntress stands in an alcove, her cloak\ncarved in rippling stone. Polished steps lead down behind you, and a\nlamplit street opens east.",
+   "extra_descs": {}
   },
   "21739": {
    "vnum": 21739,
@@ -1686,8 +1802,8 @@
      "description": "To the west lies Entrance to the Upper Level of the Cave Elf Kingdom."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead south and west.",
-   "placeholder": true
+   "description": "The Streets of Leisure begin here, a wide lane of pale flagstones lit by\nhanging lamps of coloured glass in the cavern's high ceiling. Fronts of\ncarved stone line the street, their windows glowing, and the sound of a\ndistant lute drifts by. A stair lies west, and the street runs on south\ntoward a busier crossing. The air is cool and sweet with spiced smoke.",
+   "extra_descs": {}
   },
   "21740": {
    "vnum": 21740,
@@ -1707,8 +1823,8 @@
      "description": "To the east lies The Streets of Leisure."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads east.",
-   "placeholder": true
+   "description": "The Swimming Baths are a great pool of clear green water in a hall of\nwhite tile, steaming faintly from some hot spring below. Benches of\nsmooth stone line the edge and towels of grey linen hang on pegs. The\nwater laps softly and the echo is warm and humid. The only way out is\neast, back to the street.",
+   "extra_descs": {}
   },
   "21741": {
    "vnum": 21741,
@@ -1738,8 +1854,8 @@
      "description": "To the west lies The Swimming Baths."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "A crossing in the heart of the Streets of Leisure, where a fountain in\nthe shape of a stone fish spills water into a wide basin. Strings of\npaper lanterns criss-cross the cavern air, and the cobbles are worn\nsmooth. A tavern lies east, the baths west, the trading halls south, and\nthe street goes back north.",
+   "extra_descs": {}
   },
   "21742": {
    "vnum": 21742,
@@ -1759,8 +1875,8 @@
      "description": "To the west lies The Streets of Leisure."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "Glork's Taverna is a low, warm room full of round tables and mismatched\nstools, its beams hung with copper pots and dried mushrooms. A bar of\ndark rock runs along one side, shining with spilled drink, and a fire of\nglowing coals burns in a pit at the room's heart. The smell of roast\nmeat, fungus ale and woodsmoke is heavy. The only door opens west onto\nthe street.",
+   "extra_descs": {}
   },
   "21743": {
    "vnum": 21743,
@@ -1784,8 +1900,14 @@
      "description": "To the south lies Mythor's Specialities."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "At the far end of the market the stalls thin out, and a ragged curtain\nof leather hangs from a rail over an alcove of half-seen goods. The\ncavern wall curves round here, damp and glinting. The chambers lead\neast, and a plain door south opens on a dealer in oddities.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647404,
+     "max": 1
+    }
+   ]
   },
   "21744": {
    "vnum": 21744,
@@ -1813,8 +1935,8 @@
      "description": "To the west lies The Trading Chambers."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A trading hall with an arched ceiling where the stalls sell dyes, spices\nand little boxes of carved bone. Dust shines in the lamp beams, and the\ncobbles are worn into gentle hollows. The chambers continue east and\nwest, while a door south opens on a seller of arms.",
+   "extra_descs": {}
   },
   "21745": {
    "vnum": 21745,
@@ -1846,8 +1968,14 @@
      "description": "To the west lies The Trading Chambers."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The Trading Chambers open here into a high hall divided by pillars of\npale stone and lit by hanging lanterns. Stalls and counters line the\nfloor, laden with cloth, tools and glassware. Voices haggle in the elven\ntongue and coins ring on stone. A shop opens south, the street lies\nnorth, and the chambers run on east and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647404,
+     "max": 1
+    }
+   ]
   },
   "21746": {
    "vnum": 21746,
@@ -1875,8 +2003,8 @@
      "description": "To the west lies The Trading Chambers."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A busy chamber in the market, where the floor is strewn with straw from\nunpacked crates and the roof is hung with brass scales. Banners over the\nstalls mark the guilds of the cave elves in black, green and silver. The\nchambers continue east and west, and a doorway south leads to a seller\nof magic.",
+   "extra_descs": {}
   },
   "21747": {
    "vnum": 21747,
@@ -1900,8 +2028,14 @@
      "description": "To the west lies The Trading Chambers."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and west.",
-   "placeholder": true
+   "description": "At the market's far end the hall narrows, and the stalls give way to a\nrow of sacks and barrels stacked to the roof. A porter's trolley rests\nagainst a pillar, its wheels thick with mud. The chambers lead west, and\na low door to the south opens on an inn with a sign of a crescent moon.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647404,
+     "max": 1
+    }
+   ]
   },
   "21748": {
    "vnum": 21748,
@@ -1921,8 +2055,8 @@
      "description": "To the north lies The Trading Chambers."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "Mythor's Specialities is a jumble of odd wares: stuffed cave fish, glass\neyes, lacquered bones and maps of tunnels no one has walked. Shelves\nclimb to the ceiling and a rolling ladder rests against them. Dust motes\ndrift in a single beam of lamplight. The door north returns to the\ntrading chambers.",
+   "extra_descs": {}
   },
   "21749": {
    "vnum": 21749,
@@ -1942,8 +2076,8 @@
      "description": "To the north lies The Trading Chambers."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "Questor's Weapons is a cramped shop crowded with blades, spears and\nbows, hung upon every inch of the stone. A grindstone stands by the\ncounter with a puddle of dark water beneath it, and a rack of arrows\nbristles from a barrel. The smell of steel and oil is sharp. The door\nnorth leads out to the trading chambers.",
+   "extra_descs": {}
   },
   "21750": {
    "vnum": 21750,
@@ -1963,8 +2097,8 @@
      "description": "To the north lies The Trading Chambers."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads north.",
-   "placeholder": true
+   "description": "Valorin's Armours is a smithy-shop where mail shirts hang from a beam\nlike gleaming fish and shields of beaten bronze line the stone. A\nbellows stands cold in one corner next to an anvil scarred with hammer-\nmarks. The smell of oil and hot metal lingers. The door leads north to\nthe trading chambers.",
+   "extra_descs": {}
   },
   "21751": {
    "vnum": 21751,
@@ -1984,8 +2118,8 @@
      "description": "To the north lies The Trading Chambers."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
-   "placeholder": true
+   "description": "Lanthar's Magics is a shop crowded with shelves of bottles, stoppered\njars and bundles of dried herbs. Lamps of green crystal give a sickly\nglow, and a heavy volume lies open on a stand by the counter. The air\ntingles, smelling of sulphur and cold iron. The way out is north into\nthe trading chambers.",
+   "extra_descs": {}
   },
   "21752": {
    "vnum": 21752,
@@ -2005,8 +2139,8 @@
      "description": "To the north lies The Trading Chambers."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "Mythelarin's Resthouse is a quiet chamber of beds with curtains of grey\nwool, each in its own recess in the stone. The floor is covered in rush\nmats, and a lamp of horn and brass burns on a high shelf. A sleeper's\ncough or a snore sounds now and then through the curtains. The door\nnorth leads out into the trading chambers.",
+   "extra_descs": {}
   },
   "21753": {
    "vnum": 21753,
@@ -2030,8 +2164,9 @@
      "description": "To the up lies Entrance to the Dungeons."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead west and up.",
-   "placeholder": true
+   "description": "At the foot of the dungeon staircase the stone is worn into hollows by\ngenerations of prisoners dragged down it. A single lantern burns in an\niron cage, guttering in the damp. The air is thick and cold, and the\nsteps climb up behind you toward the hallway above, while a dim passage\nleads west into the cells.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21754": {
    "vnum": 21754,
@@ -2059,8 +2194,15 @@
      "description": "To the west lies The Office of the Dungeon Keeper."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A guard passage in the dungeon, its low roof shored by black beams and\nits floor lined with rushes gone foul and brown. Keys and manacles hang\nfrom a rack on the stone, rusted but well oiled at their hinges. The\nstair back up lies east, a door opens west into the keeper's office, and\nthe passage continues south between cells.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647402,
+     "max": 1
+    }
+   ]
   },
   "21755": {
    "vnum": 21755,
@@ -2080,8 +2222,9 @@
      "description": "To the east lies In the Dungeon."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "The dungeon keeper's office is a cluttered cell with a heavy desk of\nblack wood and a ledger bound in cracked leather. Keys hang by the\nhundred on pegs along the stone, and a squat iron stove warms the room.\nA worn chair with a split cushion sits behind the desk. The door opens\neast onto the dungeon passage.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21756": {
    "vnum": 21756,
@@ -2101,8 +2244,9 @@
      "description": "To the east lies In the Dungeon."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "A bleak cell with an iron grille set high in the wall and a floor of\nbroken flags. The floor carries a bitter smell of old smoke, and burn\nmarks scar the stone in one corner. There is a rack of iron hooks by the\ndoor, which opens east onto the passage.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21757": {
    "vnum": 21757,
@@ -2144,8 +2288,9 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A crossing of dungeon passages where the stone is stained dark with\ncenturies of damp. Heavy doors of iron-studded timber face each other\neast and west, each pierced by a narrow grille at the height of a face.\nA lantern on a hook sways in the draught and sets the shadows crawling.\nThe passage runs on north toward the stair and south between more cells.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21758": {
    "vnum": 21758,
@@ -2165,8 +2310,9 @@
      "description": "To the west lies In the Dungeon."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A cramped cell of black stone, hardly three paces across, with a shelf\nof rock for a bed and a drain in the floor. Scratches cover the wall,\ntallies of days and names of those who despaired. The air is stale and\ncold, and the thick door swings shut on the passage to the west.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21759": {
    "vnum": 21759,
@@ -2186,8 +2332,9 @@
      "description": "To the east lies In the Dungeon."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "A cell that seems newer than its neighbours, its stone still sharp and\nits straw still fairly clean. A bucket and a tin cup rest by the door,\nand a thin blanket lies folded on a bench. Someone has tried to scratch\na window into the rock above the bed, without success. The door leads\neast.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21760": {
    "vnum": 21760,
@@ -2229,8 +2376,15 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Here the dungeon passage is lined with a long iron rail where prisoners\nwere once chained for questioning. The floor slopes slightly toward a\ncentral gutter that runs with a thin trickle of foul water. Doors stand\neast and west, their locks heavy and clean of rust. More passage runs\nnorth and south along the cells.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647402,
+     "max": 1
+    }
+   ]
   },
   "21761": {
    "vnum": 21761,
@@ -2250,8 +2404,9 @@
      "description": "To the west lies In the Dungeon."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "A tiny stone cell, its single window a slit that looks only onto the\nbare rock of the passage. Straw lies in a rotted heap in the corner and\na rusted ring is set into the wall at knee height. The door on the west\nside gives the only way out.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21762": {
    "vnum": 21762,
@@ -2271,8 +2426,9 @@
      "description": "To the east lies In the Dungeon."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads east.",
-   "placeholder": true
+   "description": "The smallest of the dungeon cells, hardly big enough to lie down in.\nWater collects in a corner where the stone has cracked, and a thin green\nmoss grows in the damp. A rough bench has been hacked from the rock, and\nthe walls are scored with prayers in an elf script. The door opens east.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21763": {
    "vnum": 21763,
@@ -2314,8 +2470,9 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A broad stretch of the dungeon where the ceiling rises to a rough vault,\nand chains dangle from rings above a stained flagstone. Grilled doors\nface one another east and west. A smell of tallow and old sweat lingers,\nand a draught moves along the passage that goes north and south from\nhere.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21764": {
    "vnum": 21764,
@@ -2335,8 +2492,9 @@
      "description": "To the west lies In the Dungeon."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "A narrow cell with a ceiling so low that even a short elf must bow. The\nwalls sweat, and a broken wooden bowl lies by a rough pallet of stone.\nSomeone has carved a crooked picture of the sun above the bed, and then,\nin a different hand, scratched it out. The door leads out to the west.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21765": {
    "vnum": 21765,
@@ -2356,8 +2514,9 @@
      "description": "To the east lies In the Dungeon."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "A dismal cell whose walls are pocked where something sharp was driven in\nagain and again. A heap of mouldering straw fills one corner and a pair\nof rusting shackles dangles from the wall. Dim light from the passage\ncreeps in through the grille. The door lies to the east.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21766": {
    "vnum": 21766,
@@ -2399,8 +2558,9 @@
      }
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The passage widens into a small guard post, with a plank table bolted to\nthe floor and a bench worn smooth by waiting. A board on the wall bears\na column of chalked numbers, one for each cell. Doors face each other\neast and west, and the dungeon runs north toward the stair and south\ntoward larger rooms.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21767": {
    "vnum": 21767,
@@ -2420,8 +2580,9 @@
      "description": "To the west lies In the Dungeon."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
-   "placeholder": true
+   "description": "An airless cell with walls of grey stone, damp beneath your fingers and\nfurred with pale mould. A rusting bucket stands in one corner and a\nfringe of old chain lies on the floor like a dead snake. The cell door\nopens west onto the passage.",
+   "look": "dungeon",
+   "extra_descs": {}
   },
   "21768": {
    "vnum": 21768,
@@ -2445,8 +2606,14 @@
      "description": "To the south lies Champion's Tunnel to the Arena."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and south.",
-   "placeholder": true
+   "description": "A second holding chamber, smaller than the other, with a ring of iron\nstools and a long table scattered with whetstones and rags. Oil lamps\nburn low in niches, and the floor is hard-packed earth. A passage opens\neast toward the dungeon hall, and another heads south down to the\nchampion's tunnel.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647403,
+     "max": 1
+    }
+   ]
   },
   "21769": {
    "vnum": 21769,
@@ -2474,8 +2641,15 @@
      "description": "To the west lies Arena Holding Chamber."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The dungeon passage ends in a broader hall lit by torches in iron\ncressets, whose heat is a welcome change from the cold cells. The floor\nis trampled flat and sprinkled with sand, as if to soak up blood. A\nchamber opens east and another west, both leading toward the roar of the\narena, and the cells lie back north.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647402,
+     "max": 1
+    }
+   ]
   },
   "21770": {
    "vnum": 21770,
@@ -2499,8 +2673,14 @@
      "description": "To the west lies In the Dungeon."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
-   "placeholder": true
+   "description": "A bare holding chamber where those bound for the arena wait, with stone\nbenches ringed by iron staples and a rack of blunt practice weapons\nalong the rock. The sand underfoot is stained rust brown, and the noise\nof the crowd comes down the tunnel to the south like the beat of a great\ndrum. The dungeon lies back west. Nothing here is meant to be\ncomfortable.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647403,
+     "max": 1
+    }
+   ]
   },
   "21771": {
    "vnum": 21771,
@@ -2524,8 +2704,14 @@
      "description": "To the east lies The Arena of Champions."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "This sloping tunnel is the champions' way to the sand, its walls\npolished by the shoulders of heroes. Banners of the king's household\nhang from iron poles, stiff with dust. The tunnel opens east onto the\narena floor, while a passage leads north back to the holding chambers.\nEven here you hear the crowd's roar like surf.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647403,
+     "max": 1
+    }
+   ]
   },
   "21772": {
    "vnum": 21772,
@@ -2549,8 +2735,14 @@
      "description": "To the west lies The Arena of Champions."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "A long, sloping tunnel of rough stone leads toward the sand of the\narena, its roof low and its floor scattered with sawdust. Torches smoke\nin their brackets and every footstep rings. The hall of the holding\nchamber lies north, and the tunnel opens west onto a blaze of lantern\nlight and a rumble of voices. The air smells of sweat, oil and sand.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647403,
+     "max": 1
+    }
+   ]
   },
   "21773": {
    "vnum": 21773,
@@ -2574,8 +2766,8 @@
      "description": "To the east lies On the Balcony Overlooking the Arena."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "At this corner of the balcony the rail curves in a quarter-circle above\nthe arena, and the carvings on it are worn smooth by the leaning arms of\nonlookers. A single lantern hangs from the roof. The sand glimmers far\nbelow, and the noise of the games is lessened by the corner's curve. The\nbalcony continues north and east.",
+   "extra_descs": {}
   },
   "21774": {
    "vnum": 21774,
@@ -2603,8 +2795,8 @@
      "description": "To the west lies The Royal Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "On this stretch of the balcony the carved rail looks down on the arena,\nand the pale sand glints far below in the lantern light. Plush benches,\nworn at the edges, face the sands in tiers. The noise of the crowd rolls\nup the stone, loud enough to numb the ear. The balcony runs north toward\nthe royal entrance and south toward a corner, and the corridor lies\nwest.",
+   "extra_descs": {}
   },
   "21775": {
    "vnum": 21775,
@@ -2632,8 +2824,8 @@
      "description": "To the south lies On the Balcony Overlooking the Arena."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The Royal Entrance to the Balcony is a gilded archway with a pair of\ngreat doors thrown open and fixed with chains. A thick carpet of crimson\nleads toward the stage near the throne in the north, while a row of\nseats opens east. The balcony lies to the south. The smell of oil and\nsweat from the arena drifts up.",
+   "extra_descs": {}
   },
   "21776": {
    "vnum": 21776,
@@ -2657,8 +2849,8 @@
      "description": "To the west lies The Corner of the Balcony."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long, straight reach of the balcony, with benches of cold stone set\nback from the rail. Faded pennants hang from the ceiling, black and\nsilver, stirring in the drafts. The sand of the arena glimmers far\nbelow. The balcony runs east to its corner and west to the opposite\ncorner.",
+   "extra_descs": {}
   },
   "21777": {
    "vnum": 21777,
@@ -2682,8 +2874,8 @@
      "description": "To the west lies The Royal Entrance to the Balcony."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The Royal Seats are a row of cushioned chairs of dark leather set along\nthe balcony rail, each with its own small table of black glass. A canopy\nof dark silk hangs overhead, tasselled with silver. The arena glitters\nbelow, and a rumble of the crowd reaches the high seats. The entrance to\nthe balcony lies on either side, east and west.",
+   "extra_descs": {}
   },
   "21778": {
    "vnum": 21778,
@@ -2707,8 +2899,8 @@
      "description": "To the west lies On the Balcony Overlooking the Arena."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "At the farthest corner of the balcony the rail turns back on itself, and\na shabby bench is wedged into the angle. A lantern in a cage of iron\ngives the only light, and the roar of the arena sounds hollow. Cobwebs\nhang from the rail. The balcony runs north and west.",
+   "extra_descs": {}
   },
   "21779": {
    "vnum": 21779,
@@ -2736,8 +2928,8 @@
      "description": "To the south lies The Corner of the Balcony."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "This is the heart of the balcony overlooking the arena, a gallery of\ncarved stone rail and deep cushioned benches. Far below, the pale sand\nof the arena shines in the light of great hanging lanterns, and the roar\nof the crowd breaks over you in waves. A passage runs north toward the\nroyal entrance, another south to the balcony's corner, and the corridor\nlies east.",
+   "extra_descs": {}
   },
   "21780": {
    "vnum": 21780,
@@ -2765,8 +2957,8 @@
      "description": "To the west lies The Royal Seats on the Balcony."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The Royal Entrance to the Balcony is a small arch of gilded stone,\nguarded by a pair of pillars wrapped in carved vines. A rail of polished\nwood looks down on the arena in the cavern's gloom. The stage by the\nthrone lies north, the balcony runs south, and a row of royal seats\nstretches west.",
+   "extra_descs": {}
   },
   "21782": {
    "vnum": 21782,
@@ -2795,8 +2987,9 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The last wild cavern before the cave elves' threshold is swept clean,\nits roof blackened by torch smoke. A heavy door of iron-bound black\ntimber stands in the stone to the south, with a spyhole in it at the\nheight of an elf's eye. Fresh lantern oil stains the floor beneath a\nbracket. The cavern opens back east, rough and unlit.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "21793": {
    "vnum": 21793,
@@ -2824,8 +3017,18 @@
      "description": "To the down lies The Hall of Champions."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "The Arena of Champions is a vast oval pit of pale sand ringed by rising\ntiers of carved seats, all lit by great lanterns hung from chains in the\ncavern roof. The floor is scarred with old sword cuts and dark stains,\nand the voices of a thousand watchers seem to hang in the stone. Tunnels\nopen to the east and west, and a heavy trapdoor leads down into the Hall\nof Champions beneath the sand.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647403,
+     "max": 1
+    },
+    {
+     "vnum": 647407,
+     "max": 1
+    }
+   ]
   },
   "21794": {
    "vnum": 21794,
@@ -2849,8 +3052,8 @@
      "description": "To the up lies The Arena of Champions."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and up.",
-   "placeholder": true
+   "description": "Below the arena lies the Hall of Champions, a long hall of black marble\nwhere the names of victors are cut into the walls in silver. Lamps burn\non tall stands, throwing a warm shine over the polished floor. Behind\nyou a stair climbs up to the sand, and the hall stretches on east\nbetween rows of carved pillars.",
+   "extra_descs": {}
   },
   "21795": {
    "vnum": 21795,
@@ -2874,8 +3077,8 @@
      "description": "To the west lies The Hall of Champions."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "A stretch of the hall where life-size statues of cave elf champions\nstand in niches, each holding the weapon that won him fame. Their stone\neyes are inlaid with chips of jet that catch the lamplight. The silver\nnames beneath each figure are worn from the touch of hopeful hands. The\nhall continues east and west.",
+   "extra_descs": {}
   },
   "21796": {
    "vnum": 21796,
@@ -2899,8 +3102,8 @@
      "description": "To the west lies The Hall of Champions."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
-   "placeholder": true
+   "description": "The hall's middle length is hung with trophies: shields cloven in two,\nbroken swords, and the horned helms of beaten giants. A long mosaic in\nthe floor shows the first duel in the arena in tiny coloured stones.\nSoft lamplight shimmers on the pillars. You may walk on east or turn\nback west.",
+   "extra_descs": {}
   },
   "21797": {
    "vnum": 21797,
@@ -2924,8 +3127,8 @@
      "description": "To the west lies The Hall of Champions."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "Here the hall's floor rises in a shallow step and the air grows quieter,\nas if the stone were listening. Alcoves on either side hold small stone\nbenches where old fighters once sat to rest. Incense has soaked into the\nwalls, faint and sweet. The hall leads on east toward a brighter light,\nand back west to the arena stair.",
+   "extra_descs": {}
   },
   "21798": {
    "vnum": 21798,
@@ -2949,8 +3152,8 @@
      "description": "To the west lies The Hall of Champions."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "The end of the hall is a great arch carved with a design of crossed\nswords and a rising sun. Two braziers burn on either side of it, their\nflames tinted blue with salts. The floor is clean and the air smells of\nresin. East lies the shrine itself, and the long hall runs back west.",
+   "extra_descs": {}
   },
   "21799": {
    "vnum": 21799,
@@ -2970,11 +3173,445 @@
      "description": "To the west lies The Hall of Champions."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "The Shrine to Devram is a small round chamber domed like an inverted\nbowl, with a polished slab of black stone at its centre. Candle stubs by\nthe hundred crowd its edges, left by champions seeking a god's favour. A\ncarving of a bearded warrior with a drawn blade looks down from the\ndome. The only way out is back west along the hall.",
+   "extra_descs": {
+    "carving warrior dome devram": "The carved warrior wears no helm and has a rising sun on his breast.\nBeneath his feet is cut a single word in elf script: Devram."
+   }
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "647400": {
+   "vnum": 647400,
+   "name": "giant cave spider",
+   "short_desc": "a pale cave spider",
+   "long_desc": "A pale cave spider the size of a dog creeps along the rock, its eyes glinting in the dark.",
+   "description": "Its bloated body is the colour of old bone and its long legs are tipped\nwith hooked claws. Strands of fine silk trail from its spinnerets across\nthe stone.",
+   "level": 11,
+   "alignment": 0,
+   "hp_dice": "11d8+123",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "647401": {
+   "vnum": 647401,
+   "name": "cave elf sentry guard",
+   "short_desc": "a cave elf sentry",
+   "long_desc": "A cave elf sentry stands at watch, his dark eyes fixed on every shadow.",
+   "description": "He is lean and grey-skinned, in dark leather studded with silver. A\ncrossbow hangs at his hip and a spear is in his hands. His look says\nthat outsiders are not welcome here.",
+   "level": 13,
+   "alignment": -300,
+   "hp_dice": "13d8+169",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 156,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747400,
+     "chance": 20
+    },
+    {
+     "vnum": 747401,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647402": {
+   "vnum": 647402,
+   "name": "dungeon jailer keeper",
+   "short_desc": "a surly jailer",
+   "long_desc": "A surly jailer prowls the passage, a ring of keys jangling at his belt.",
+   "description": "He is broad for a cave elf, heavy-browed and pale as a cellar mushroom.\nA short club swings at his waist and a lantern on a hook lights his\nsullen face.",
+   "level": 14,
+   "alignment": -400,
+   "hp_dice": "14d8+182",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 168,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747401,
+     "chance": 20
+    },
+    {
+     "vnum": 747400,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647403": {
+   "vnum": 647403,
+   "name": "arena gladiator fighter",
+   "short_desc": "an arena gladiator",
+   "long_desc": "An arena gladiator limbers up, swinging a heavy blade with easy strength.",
+   "description": "Scars cross his arms and chest, and he wears a half-cuirass of studded\nblack leather. He grins as you look him over, eager for any fight.",
+   "level": 16,
+   "alignment": -300,
+   "hp_dice": "16d8+210",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 192,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747402,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647404": {
+   "vnum": 647404,
+   "name": "cave elf citizen merchant",
+   "short_desc": "a cave elf citizen",
+   "long_desc": "A cave elf citizen strolls past, eyeing you with cool disdain.",
+   "description": "He is slim and grey-skinned, in a coat of fine dark wool buttoned with\nsilver. He keeps his hands well away from his purse and gives you a wide\nberth.",
+   "level": 10,
+   "alignment": -100,
+   "hp_dice": "10d8+130",
+   "damage_dice": "3d6+6",
+   "armor_class": 67,
+   "exp": 570,
+   "gold": 120,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": []
+  },
+  "647405": {
+   "vnum": 647405,
+   "name": "royal guard cave elf elite",
+   "short_desc": "a cave elf royal guard",
+   "long_desc": "A cave elf royal guard stands rigid, a long halberd gleaming in his hands.",
+   "description": "He wears silver-chased black plate and a helm with a visor like a closed\neye. He does not blink, and he does not seem to breathe.",
+   "level": 18,
+   "alignment": -500,
+   "hp_dice": "18d8+240",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 216,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747400,
+     "chance": 30
+    },
+    {
+     "vnum": 747402,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647406": {
+   "vnum": 647406,
+   "name": "royal war mage cave elf elite",
+   "short_desc": "a royal war mage",
+   "long_desc": "A royal war mage waits in a swirl of dusk-coloured robes, sparks gathering on his fingers.",
+   "description": "His robes are the colour of the deep cave and his eyes shine pale\nviolet. A staff of blackened wood crackles with threads of light in his\ngrip.",
+   "level": 17,
+   "alignment": -500,
+   "hp_dice": "17d8+225",
+   "damage_dice": "5d6+9",
+   "armor_class": 46,
+   "exp": 955,
+   "gold": 204,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747401,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647407": {
+   "vnum": 647407,
+   "name": "champion vharel unbroken arena",
+   "short_desc": "Vharel the Unbroken",
+   "long_desc": "Vharel the Unbroken, champion of the arena, stands in the sand with a bloodied blade resting on his shoulder.",
+   "description": "He is tall and lean, his grey skin a map of old scars and his hair bound\nin a silver cord. Dozens of chains hang about his neck, each one for a\nrival who fell. His smile is calm and cold.",
+   "level": 18,
+   "alignment": -300,
+   "hp_dice": "18d8+240",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 216,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747403,
+     "chance": 35
+    },
+    {
+     "vnum": 747402,
+     "chance": 35
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647408": {
+   "vnum": 647408,
+   "name": "cave elf king ilvareth",
+   "short_desc": "Ilvareth, the Cave Elf King",
+   "long_desc": "Ilvareth, the Cave Elf King, sits upon his black iron throne, watching you with cold, patient eyes.",
+   "description": "The king is tall and gaunt, in robes of violet and silver and a mantle\nof black spider silk. A thin circlet of silver crowns his white hair,\nand his gaze is old and merciless. A slender sword rests across his\nknees.",
+   "level": 20,
+   "alignment": -600,
+   "hp_dice": "20d8+270",
+   "damage_dice": "6d6+10",
+   "armor_class": 37,
+   "exp": 1120,
+   "gold": 240,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747404,
+     "chance": 35
+    },
+    {
+     "vnum": 747403,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "747400": {
+   "vnum": 747400,
+   "name": "spear steel cave elf",
+   "short_desc": "a cave elf spear",
+   "room_desc": "A slender cave elf spear lies here.",
+   "description": "A long spear with a head of dark steel and a shaft bound in grey leather. A leaf is etched near the point.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 13,
+   "damage_dice": "2d5",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 365
+  },
+  "747401": {
+   "vnum": 747401,
+   "name": "lantern glow glass",
+   "short_desc": "a glowstone lantern",
+   "room_desc": "A glowstone lantern burns softly here.",
+   "description": "A small lantern of silver and green glass holding a pale stone that gives a steady light.",
+   "item_type": "light",
+   "type": "light",
+   "min_level": 12,
+   "light_hours": 48,
+   "weight": 2,
+   "value": 39
+  },
+  "747402": {
+   "vnum": 747402,
+   "name": "mail cuirass studded black",
+   "short_desc": "a studded black cuirass",
+   "room_desc": "A studded black cuirass lies here.",
+   "description": "A tough cuirass of black leather studded with silver, its edges worn by many blows.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 16,
+   "wear_slot": "body",
+   "armor": 5,
+   "weight": 10,
+   "value": 350,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "747403": {
+   "vnum": 747403,
+   "name": "mace spiked champion silver",
+   "short_desc": "a spiked silver mace",
+   "room_desc": "A spiked silver mace lies here.",
+   "description": "A heavy mace with a head of hammered silver bristling with short black spikes. Notches mark the haft, one for each victory.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 18,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 490,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  },
+  "747404": {
+   "vnum": 747404,
+   "name": "circlet silver crown sapphire",
+   "short_desc": "a sapphire circlet",
+   "room_desc": "A silver circlet set with sapphires lies here.",
+   "description": "A thin circlet of old silver set with one deep blue sapphire above the brow. It is cold to the touch.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 20,
+   "wear_slot": "head",
+   "armor": 3,
+   "weight": 3,
+   "value": 430,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  }
+ }
 }

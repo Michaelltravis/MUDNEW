@@ -1,0 +1,329 @@
+{
+ "job": "z447",
+ "rooms": {
+  "2261": "A narrow shelf of grey rock clings to the cliffside, scoured by a wind that never quite stops howling. Loose scree skitters off the lip into a long, giddy drop to the valley floor. A wind-bitten trail winds down toward the Edge Of The Frigid Wastes, its stones swept bare and open to any who dare it. Above, a steep, much-trodden path climbs up toward the gates of Mahn-Tor.",
+  "10162": "Two squat towers of black stone flank the great iron-banded gates of Mahn-Tor, their crenels bristling with spears and snapping pennants. The mountain wind slams against the walls and sets the banners cracking like whips. Beyond the heavy doors, which stand to the south, the sounds of the town drift out: hammer-ring and barked orders. A rough track drops down the cliffside from here.",
+  "10164": "Inside the gates a broad cobbled court opens, hemmed by sentry walks where armoured men pace in pairs. Banners of the keep hang from iron brackets, stiff and darkened by weather. Passages lead off in every direction: the gate doors lie north, a street runs east, another runs west, and an open square lies south. The cobbles are worn into shallow troughs by a thousand marching boots.",
+  "10165": "A cramped street of grey stone houses bends here beneath the shadow of the keep's high walls. Shutters are barred against the wind, and a bell somewhere above counts the watch in slow, flat strokes. The gate court lies to the west, while the street runs on south between leaning gables. Soot from many chimneys streaks the lintels.",
+  "10168": "Streets meet at a crooked junction where a stone trough, rimmed with rime, stands beside a post hung with notices of the Lord's decrees. A road climbs east toward the keep and the dark mouth of its cave, while the entrance square lies west. To the south a shop door swings on iron hinges beneath a painted sign for the general store, and north the street leads back toward the gate court. The wind carries the smell of coal smoke and horses.",
+  "10175": "The road to the keep climbs steeply along the mountain's flank, paved with chipped flagstones and lined by black iron torch-posts. The cliff drops away on one hand, and the wind tugs hard at cloaks and hems. Far overhead the towers of the keep stand grey against the sky. The road runs east toward a dark cavern mouth in the rock, while the town streets lie west.",
+  "10177": "A stone-flagged guard chamber stands before the great cave mouth, its walls hung with shields and rusted chain. Torches gutter in iron cressets, throwing long shadows across a rack of spears. Small guard houses open to the north and south, and a heavy door set in the rock leads east into the entryway. The road outside lies west, and the sound of wind comes in with every opening of the door.",
+  "10176": "A cramped guardroom with a low timbered ceiling, warmed by a small iron stove that ticks and glows. A rough table is scarred with dice and knife-marks, and a bench runs along the wall beneath a rack of pikes. A slit window shows only a stripe of grey sky. The only way out is back south into the chamber before the cave.",
+  "10179": {
+   "description": "The passage here is rough-hewn rock, a natural cavern squared off and shored by generations of masons. Iron-bound beams hold up the roof, and water seeps down the cave walls to pool in cracks of the floor. Torchlight shows banners of the keep hanging limp in the still air. A heavy door stands open to the west, and the passage runs on east into the halls of the keep.",
+   "look": "cave"
+  },
+  "10180": "A great junction of the keep's lower halls, where torch-lit passages meet beneath a vaulted ceiling blackened by smoke. Flagstones ring under every step, and carved lintels bear the keep's emblem, a mountain split by a blade. The entryway lies west, while halls lead north, south and east into the heart of the keep. A chill that smells of old stone seeps from the walls.",
+  "10143": "The hall ends in a corner here, lit by a single smoking brazier on a tripod. Old war-trophies hang on the walls: dented helms, a tattered pennant, a cracked shield painted with a lion. The hall continues east, and south it returns to the great junction. Dust gathers in the angles of the vault, undisturbed by the watch.",
+  "10144": "A wider stretch of the Grand Hall, with pillars of dark granite marching in pairs toward the roof. Long banners fall between them, each stitched with the keep's mountain sigil. A narrow corridor leads north, the hall carries on east and south, and west it returns to the plainer hall. The air is cold and tastes faintly of iron.",
+  "10146": "A narrow, low corridor with walls of close-fitted blocks, so tight two men cannot pass without turning sideways. A single lantern hangs from a hook, swaying slightly in a draught from somewhere. South the corridor opens into the Grand Hall; north it ends at the doors of the guard quarters. Bootprints have scuffed the floor to a dull shine.",
+  "10147": "A barracks room lined with double bunks, each topped by a rolled blanket and a hung belt. Boots stand in neat pairs, and the stone floor is swept clean to the standard the Lord demands. The quarters continue north and west, and the corridor lies south. A shaving mirror and a basin sit on a shelf by the door.",
+  "10150": "The far corner of the barracks, where a long table and benches serve for meals. Tin plates, stained mugs and a tally-board of duty rosters crowd the wall. The smell of cold porridge lingers in the air. A way leads south and another west through the quarters.",
+  "10149": "A narrow dormitory room, its bunks stacked three high and fitted with canvas straps. A weapon rack holds practice swords of battered wood, and a signal drum stands in the corner. Quarters lie east and south from here. A cold draught whistles through a crack in the stone.",
+  "10148": "The quarters end in a small armoury alcove where spare shields and helms hang in rows on pegs. A grindstone sits beside a bucket of dark water, its rim bright with filings. Quarters continue north and east. Oil and steel mingle sharply in the air.",
+  "10145": "The Grand Hall bends toward the throne here, its floor inlaid with a great black-and-white compass star worn by countless boots. Tall arched windows, narrow as arrow-slits, let in thin blades of grey daylight. The hall returns west, and south lies the approach to the throne. Heavy chains and banners hang from the rafters.",
+  "10183": "The hall ends before a dais of black marble, where an iron throne rises beneath a canopy of tattered war-banners. Braziers burn to either side, and the flagstones are polished by the nervous feet of petitioners. A hall runs north, the Grand Hall opens west, another great hall opens south, and a plain door east is set into the wall behind the dais. The silence here is heavy and watchful.",
+  "10185": "A narrow hidden passage behind the throne, lit by a single guttering sconce. The stone walls are bare and damp, with scrapes where hands have steadied themselves in the dark. West the passage returns to the throne room through a concealed door; east it runs on toward the royal chambers. Dust lies thick in the corners, and the air is close and still.",
+  "10186": "A modest antechamber hung with dark red drapes, its floor covered by a thick rug of mountain bearskin. Silver lamps cast a soft light over a carved chest and a pair of high-backed chairs. The secret hallway lies west, a living room opens east, and a curtained doorway leads south. The air smells of wax and old perfume.",
+  "10195": "A comfortable room in sharp contrast to the cold halls, furnished with deep leather chairs and a hearth of carved stone. A fire crackles low, and a map of the mountain holds is pinned above the mantel. The antechamber lies west, and a bedchamber lies south. Silver goblets and a half-played game of tiles sit on a low table.",
+  "10196": "A great bed hung with heavy curtains dominates the room, its posts carved with climbing wolves. A wardrobe, a washstand and a rack of ceremonial swords crowd the walls, and the shutters are bolted tight against the wind. The living room lies north and a perfumed room west. A faint odour of tallow and pine-smoke clings to the bedding.",
+  "10193": "A languid room of silk cushions, low couches and brass lamps shaped like lotus blossoms, so out of place in this stern keep. Heavy curtains of green and gold muffle the sounds of the halls. The antechamber lies north, and a bedchamber lies east. Incense smoulders in a small bowl, and the rugs underfoot are thick and soft.",
+  "10184": "A long hall of rough stone pillars, with a high roof lost in smoke. Rows of oak benches stand empty along the walls, and a long board table bears the scars of many feasts. The way north leads to the throne room, and the hall continues west. Wind moans faintly through a flue in the vault.",
+  "10182": "A crossing in the Great Hall, where torchlight from four directions meets on the polished floor. A mighty iron chandelier hangs from a chain overhead, its candles unlit. The Grand Hall opens north, the hall runs east and west, and the guard post lies south. Statues of armoured warriors line the walls.",
+  "10181": "A broad stretch of the Grand Hall, its pillars thick as old oaks and capped with carved eagles. Tall banners of crimson and black droop between them, and a long carpet runs down the centre. North the hall climbs on, east lies the throne, south lies the Great Hall, and west the plainer hall.",
+  "10187": "A fortified checkpoint across the hall, with an iron portcullis set into the ceiling and a heavy bar-table to one side. Spears and halberds stand in racks, and a brass-bound ledger lists those allowed beyond. The Great Hall lies north, and the guarded hall lies south. The place smells of leather and lamp oil.",
+  "10188": "A long hall of grim, unadorned stone, patrolled day and night, with iron-studded doors in its walls. Torches burn in sconces at regular intervals, each flame leaning in the draught. The guard post lies north, the hall goes on south, and doors stand east and west. A faint scent of burnt herbs drifts from the east door.",
+  "10190": "A cramped private chamber, with a narrow cot, a locked chest and a desk laid with maps. Weapons and trophies crowd the walls, and a single narrow window admits a stripe of daylight. The only way out is the door west to the guarded hall. A scent of oiled leather and stale pipe lingers.",
+  "10189": "A stretch of the guarded hall where the torches burn lower and the stone is scored with old sword-nicks. Doors of dark oak stand in the east and west walls, each bound in black iron. The hall runs on north and south from here. A draught sighs along the floor, carrying a smell of candle-wax and ink.",
+  "10191": "A round study crowded with shelves of cracked leather books, glass vials and brass instruments of unknown use. Pale witch-lights drift beneath the ceiling and cast restless shadows over a table scrawled with chalk sigils. The door west leads back to the guarded hall. The air hums faintly and smells of ozone and burnt sage.",
+  "10192": "Here the guarded hall narrows, its ceiling lowered and its torches set closer together. A doorway of heavy planks stands in each side wall, east and west. The hall runs north toward the guard post and south toward its end. The flagstones are damp and carry the cold smell of deep rock.",
+  "10194": "A small, spartan room that lives up to its name, with a straw pallet, a clay jug and a single three-legged stool. A tin cup hangs from a nail beside a crude carving of a mountain goat. The door west opens onto the guarded hall. Everything is tidy, as if the occupant expects inspection at any moment.",
+  "10197": "The guarded hall comes to a blunt end at a wall of bare grey blocks. An iron lantern hangs on a chain, and old shields are mounted beneath it as if to say nothing passes. The hall returns north, while doors stand east and west. Gouges in the floor show where heavy things were dragged.",
+  "10198": "A gloomy cell of a room, with damp-stained walls and a low ceiling that presses on the head. A pile of dirty blankets lies in one corner, and a rusted lantern gives scant light. The door west leads out to the end of the guarded hall. The floor is sticky, and the air smells of mildew and sour ale.",
+  "10199": "A room painted in a once-bright shade of green, now flaking in great curls from the plaster. Moss-coloured curtains frame a shuttered window, and a threadbare rug lies before a cold hearth. The only way out is the door east, back to the end of the guarded hall. Dried herbs hang from the rafters in rustling bunches.",
+  "10174": "A dim, windowless sanctum hung with black cloth, where a single bronze brazier glows like a coal eye. Sigils of the mountain and the blade are scratched into the stone floor in a wide ring. The way east leads back to the guarded hall. Silence presses on the ears, and the air smells of cold ash and iron.",
+  "10173": "A dim study where every shutter is closed and the only light is a pair of black candles on a heavy writing desk. Shelves of bound scrolls climb the walls into shadow, and a stuffed raven stares from a perch. The door east opens upon the guarded hall. A dry rustling, as of paper turning, seems to follow the unwary.",
+  "10172": "A bare hall of packed earth and scarred wood, built for drill and sparring. Straw dummies hang from chains, pierced and slashed, and racks of blunted blades line the walls. The door east leads back to the guarded hall. The floor is dark with old sweat, and the clash of steel seems to hang in the air.",
+  "10142": "The outer reach of the Great Hall, its pillars scorched by an old fire and never fully cleaned. Tattered tapestries show a battle on a mountain pass in faded thread. The hall runs north to the great junction and east into the heart of the Great Hall. Cold seeps from the stone, and the torches flicker in a draught.",
+  "10178": "Another guard house, narrower than its twin, with a bunk, a stack of firewood and a ledger nailed to the wall listing the watches. The air is thick with pipe-smoke, wet wool and lamp oil. A shuttered arrow-slit looks out over the road. The doorway north opens back onto the chamber before the cave.",
+  "10171": "Shelves crowd this narrow shop from floor to rafters with rope, tallow, lamp oil, tinned goods and bundles of dried meat. A counter of scarred oak holds a brass scale and a heap of ledgers. Sacks of grain lean in the corner, and a stove ticks in the back. The street lies north through the door, where the cold wind waits.",
+  "10167": "A paved square just inside the town, ringed by sturdy buildings and watched from a high wall-walk. A dry stone fountain stands at its centre, its basin filled with wind-blown leaves. The gate court lies north, a busy street runs east, another runs west, and the equipment shop stands south. Boots and hooves have worn dark paths across the flags.",
+  "10170": "A cluttered shop where mail shirts hang from beams and swords stand upright in barrels. A workbench at the back is spread with files, rivets and strips of leather, and a forge ticks as it cools. The doorway north opens onto the entrance square. The heavy smells of oil, rust and leather fill the room.",
+  "10166": "A crossing of cobbled streets lined with tall stone houses whose upper floors lean out to touch overhead. Washing hangs stiff from a line, and a worn doorstep sits beside a rain barrel. Streets run north, east and west, and a painted inn sign swings to the south. The wind funnels along the lane with a thin, steady whistle.",
+  "10163": "The street turns a corner here, hemmed in by the high wall of the town on one side. A shuttered house leans against the stones, and a rusted lantern bracket juts from its angle. The gate court lies east, while the street runs south. Meltwater drips from the eaves, and the cobbles are slick.",
+  "10169": "A low, smoky taproom, with a great antler horn snapped in half and nailed above the hearth. Rough tables are ringed with mug-stains, and a fire of pine logs pops in the grate. A stair climbs into the dark of the upper floor, and the street lies north through the door. The smells of stew, spilt ale and wet wool warm the place.",
+  "10100": "A narrow lane runs between stone-walled gardens and the backs of houses, the cobbles patched with beaten earth. A broken cart wheel leans against a wall, silvered with age. The lane carries on east and west. Wind-twisted pines grow from clefts above the rooftops, and somewhere a shutter bangs.",
+  "10101": "The lane turns a corner beside a low retaining wall, below which the mountain falls away in terraces of grey rock. A stand of withered bean-poles sticks up from a small kitchen plot. The street runs east and south from here. A thin line of chimney smoke curls from a nearby roof and is torn away by the wind.",
+  "10102": "A quiet street, straight and steep, flanked by narrow stone cottages with slate roofs weighted by rocks against the wind. Doorways are low and the doors painted a faded blue. The street climbs north and descends south. A child's wooden hoop lies abandoned against a step.",
+  "10103": "The street widens a little, and a stone well with a rope-worn lip stands in a recess of the wall. Cart ruts cut deep grooves in the cobbles, brimming with pooled water. The way north leads up the lane, and south lies a crossing of ways. A carved lintel above the nearest door bears a hammer and anvil.",
+  "10104": "Four ways meet at a worn stone crossing marked by a weathered mile-post carved with the keep's sigil. Traders' carts have left deep ruts in the cobbles, and the wind rattles the shutters of the nearest houses. The street runs north and south, and a wide road leads west into Mahn-Tor West. A lamp-post of black iron stands at the corner.",
+  "10105": "A busy street of tall narrow houses, their ground floors given over to workshops with signs of boot and barrel. Smoke from forges and bakeries hangs in the cold air. The crossing lies north, and the street goes on south. Grey puddles stand in the hollows between the paving stones.",
+  "10106": "The street bends sharply, curling around a squat stone tower whose windows are stuffed with straw. Iron rings for tethering horses are bolted to the wall, and a trough of frozen water sits beneath. The street runs north toward the crossing and turns east. A faded decree, torn at the corners, flaps from a nail.",
+  "10107": "A straight, level stretch of street between rows of timber-framed shops, their shutters painted in dull red and green. Barrels of nails and bundles of rope stand beneath the eaves. The street runs east toward the market and west back to the bend. The cobbles shine with a slick of damp from the morning mist.",
+  "10108": "The street broadens as it approaches the market, and stalls of canvas and rough boards crowd its edges. The sound of haggling drifts along on the wind, and a smell of roasting chestnuts and hot iron fills the air. The market square lies east, and the street runs back west. A lamp on a post sways and creaks.",
+  "10109": "The market opens here into a wide paved square ringed with merchants' booths under patched awnings. Barrels of salted fish and crates of onions are piled beside stalls selling pots and knives. The square continues north and east, a small house stands south, and a street leads west. A banner of the Lord hangs from a pole in the centre, snapping in the wind.",
+  "10110": "The middle of the market square, where a worn stone block serves as a stand for criers and auctioneers. Smoke rises from a brazier where hot pies are sold. The square runs east and south, a small house stands west, and the doors of the gathering hall rise north. Straw and cabbage leaves are trampled into the cobbles.",
+  "10114": "A broad timbered hall with long tables, heavy benches and a stone hearth big enough to roast an ox. Banners of the town's guilds hang from the rafters beside rusted trophies of past campaigns. The market square lies south through the double doors. The floor is scrubbed pale, and the smell of woodsmoke and spilled mead lingers.",
+  "10111": "Canvas booths give way here to sturdy stone fronts at the busiest corner of the market. A trading post stands to the north, a residence to the east, and the square runs south and west. Crates of furs and sacks of salt are stacked against the walls. A dented scale hangs from a post, chiming in the wind.",
+  "10119": "Pelts, snowshoes, coils of rope and bundles of iron nails fill the cramped trading post. A counter of rough planks is piled with tallies, and a map of the mountain trails is pinned behind it. The market lies south through the door. The air smells of wet fur, tar and pipe tobacco.",
+  "10118": "A tidy home with a plastered ceiling and a good table set with pewter plates. A tall clock ticks beside a dresser of blue crockery, and a rag rug warms the floor. The market lies west through the narrow front door. The scent of baked bread and beeswax is homely.",
+  "10112": "The market's quiet corner, where stalls of woven baskets and clay jars crowd against a wall. A cobbler's bench stands under a canvas awning, its tools laid out in rows. The square runs north and west, with small houses east and south. Wind pushes at the awnings until they bulge like sails.",
+  "10117": "A small one-room house with a low roof of black beams and a floor of beaten clay. A bed with a patchwork quilt, a spinning wheel and a cooking pot on the hearth fill nearly every inch. The market square lies west through the door. A peat fire smoulders, filling the room with sweet smoke.",
+  "10116": "A cramped house with whitewashed walls, a ladder to a sleeping loft, and strings of dried peppers over the hearth. A shelf holds a few carved wooden saints and a candle in a clay cup. The square lies north through the door. Everything smells of garlic and woodsmoke.",
+  "10113": "A snug home that smells of tanned leather, with hides stretched on frames along one wall. A workbench holds awls, needles and a bowl of waxed thread, and a stool sits beside it. The market square lies east through the door. A small window rattles in the wind.",
+  "10115": "A narrow house with a sooty chimney, where a kettle sings above a banked fire. Two rocking chairs face the hearth, and a crooked shelf of chipped cups hangs above. The market square lies north through the door. Rain-stains map the ceiling in brown rings.",
+  "10120": "The road leaves the crossing and runs on into a quieter quarter, where houses stand shoulder to shoulder with tight little yards. A stone slab bearing an old dedication leans in a wall niche. The crossing lies east, and the road continues west. The wind carries the sound of a distant bell.",
+  "10121": "A junction of the western quarter, where two small houses face each other across the street. Window boxes hold hardy herbs, bent flat by the wind. The road runs east and west, one door opens north and another south. Ropes of drying onions hang from a beam over a stoop.",
+  "10138": "A cheery little home with a scrubbed table, a pot of stew steaming on the hob and a basket of eggs under a cloth. The door opens south onto the street. Brass candlesticks gleam on the mantel, and a braided rug lies before the fire.",
+  "10141": "A one-room home dominated by a loom, its threads strung taut in grey and blue. Bundles of raw wool sit in baskets, and a stool is pulled up to a half-finished blanket. The door opens north onto the street. A smell of lanolin and lamp oil hangs about.",
+  "10122": "The street is wider here, paved in broken slabs and bordered by a low drainage channel. Two houses with slate roofs flank it, one to the north and one to the south. The road runs east and west. A knot of rope and a wooden bucket mark a communal well beside the wall.",
+  "10137": "A modest house with a fireplace of rough stones and walls hung with worn picks and hammers. A pair of heavy boots dries on a rack. Out the door to the south lies the street. The air is warm and smells of tobacco.",
+  "10140": "A neat home with a flagged floor, a table with a checked cloth and a pot of dried flowers. A narrow bed stands against the wall, made up tight and square. A door set in the north wall gives back onto the street. A sampler stitched with a mountain scene hangs above the hearth.",
+  "10123": "The road dips slightly, its stones slick with moss in the shadow of high-walled houses. A small shrine niche with a clay lamp is set in a wall. Doors open north and south, and the road runs east and west. The wind brings a smell of incense from the temple quarter.",
+  "10136": "A crowded house where a long bench is spread with half-mended harness and tools. Bunches of sage and thyme hang from the beams, and a kettle hums on a trivet. The street lies south through the door. Boot-prints of mud and straw cross the floor.",
+  "10139": "A tiny house with a floor of swept earth and a bed built into the wall like a ship's berth. A chipped crock, a pewter mug and a rolled-up map sit on a shelf. The street lies north through the door. A thin draught plays at the shutters.",
+  "10124": "The street ends at the edge of the temple quarter, where the houses give way to a long colonnade of weathered pillars. Fallen leaves chase each other across the cobbles. The road runs back east, and west it opens into the temple square. Incense and cold stone scent the air.",
+  "10125": "A vast hall of grey columns forms the temple square, roofed in shadow and echoing with whispered prayers. Candles in iron stands flicker on the flagstones. Ways lead north and south through the colonnade, and east a doorway opens to the street. A lamp burns before a blank stone altar.",
+  "10126": "A corner of the temple square where the pillars curve toward a stained-glass window of the mountain at dawn. Pews of black wood stand in neat rows, worn smooth by many hands. The square runs south and west from here. Dust drifts in the coloured light.",
+  "10127": "A broad stretch of the temple square beneath a high vaulted roof. The doors of the steam temple stand north, wreathed in warm vapour that curls along the floor. Colonnades lead east and west. Brass pipes run along the walls and knock softly with heat.",
+  "10133": "A hot, humid sanctum where veils of steam drift between carved pillars of pale stone. Water trickles down the walls and hisses on iron grates in the floor. The temple square lies south through an arched doorway. Sweat beads on the skin, and the air smells of minerals and wet stone.",
+  "10128": "A quiet corner of the temple square, where the colonnade is hung with offerings of ribbons and small iron charms. The flagstones are cold underfoot, and a chilly draught slides between the pillars. Ways lead east and south. The air tastes faintly of wax.",
+  "10129": "The temple square grows colder here, the pillars rimmed with a pale glittering rime. The doors of the ice temple stand west, while the colonnade runs north and south. Breath hangs in white plumes. The floor is gritty with frost.",
+  "10130": "A shadowed alcove of the temple square, with niches holding statues of long-dead lords of the mountain. A row of unlit candles waits on a stone shelf. The colonnade runs north and east. A faint echo of chanting drifts from deeper in the temple.",
+  "10131": "The temple square slopes gently here, and the stones beneath your feet are damp. A carved basin on a plinth overflows quietly and trickles into a drain. The doors of the water temple stand south, with the colonnade running east and west. The scent of wet earth fills the air.",
+  "10132": "A last corner of the temple square, its pillars scarred by a long-ago fire. A heavy offering box of iron is chained to the wall. The colonnade runs north and west. Charred beams overhead have been braced with new timber.",
+  "10135": "A cool chamber where a still pool of clear water fills a basin the size of a cart, ringed by smooth white tiles. Reflected light ripples on the vaulted ceiling. The temple square lies north through a low arch. The air is moist and carries a mineral tang.",
+  "10134": {
+   "description": "A bitterly cold sanctum whose walls and altar are sheathed in thick clear ice, glinting blue in the lamplight. Frost flowers bloom over the carved pillars, and the floor is a sheet of slick glaze. The temple square lies east through the doorway. Every breath stings, and the silence is absolute.",
+   "look": "snow"
+  }
+ },
+ "extras": {},
+ "creatures": [
+  {
+   "id": "mahn-tor-guard",
+   "keywords": "town guard watchman soldier",
+   "short_desc": "a Mahn-Tor town guard",
+   "long_desc": "A Mahn-Tor town guard stands at his post, one hand on the haft of a spear.",
+   "description": "A hard-faced man in a grey surcoat marked with the mountain-and-blade sigil. He watches every stranger with narrowed, wind-reddened eyes, and does not move unless he must.",
+   "kind": "humanoid",
+   "level": 15,
+   "aggressive": false,
+   "alignment": 200,
+   "sectors": [
+    "city"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "grey-hooded-cloak",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "mahn-tor-merchant",
+   "keywords": "market merchant trader townsman",
+   "short_desc": "a weathered merchant",
+   "long_desc": "A weathered merchant haggles quietly over a crate of goods.",
+   "description": "A stocky trader wrapped against the cold in layers of wool and fur. His fingers are stained with tar and his eyes miss nothing about a customer's purse.",
+   "kind": "humanoid",
+   "level": 15,
+   "aggressive": false,
+   "alignment": 100,
+   "rooms": [
+    "Mahn-Tor Market Square",
+    "A Mahn-Tor Trading Post",
+    "The Inn Of The Broken Horn",
+    "Mahn-Tor Gathering Hall"
+   ],
+   "count": 5
+  },
+  {
+   "id": "keep-soldier",
+   "keywords": "keep soldier guard garrison",
+   "short_desc": "a keep soldier",
+   "long_desc": "A keep soldier in black mail paces the hall, halberd on his shoulder.",
+   "description": "A broad-shouldered man in blackened mail, a crimson sash cinched at his waist. His halberd is notched from long use, and he looks eager for an excuse to swing it.",
+   "kind": "humanoid",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -200,
+   "rooms": [
+    "The Hall",
+    "The Grand Hall",
+    "The Great Hall",
+    "A Small Corridor",
+    "Mahn-Tor Keep Guard Quarters",
+    "The Guard Post",
+    "A Small Guard House"
+   ],
+   "count": 7,
+   "drops": [
+    {
+     "item": "keep-halberd",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "keep-warden",
+   "keywords": "keep warden guard captain",
+   "short_desc": "a keep warden",
+   "long_desc": "A keep warden in heavy plate stands watch, his gaze fixed on all who pass.",
+   "description": "A towering guard in plate etched with the keep's sigil, his visor raised to show a scarred, unsmiling face. He carries himself like a man who has never been bested in the yard.",
+   "kind": "humanoid",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "The Guarded Hall",
+    "The End Of The Guarded Hall"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "warden-cuirass",
+     "chance": 30
+    },
+    {
+     "item": "keep-halberd",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "keep-battlemage",
+   "keywords": "battle mage battlemage wizard",
+   "short_desc": "a keep battle-mage",
+   "long_desc": "A keep battle-mage murmurs over a glowing sigil, sparks dancing at his fingertips.",
+   "description": "A gaunt mage in a charcoal robe, his hands stained with ink and scorch-marks. Tiny blue sparks crawl along the iron rings he wears on every finger.",
+   "kind": "humanoid",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Amyrok's Arcane Study",
+    "Darkoth's Dark Study"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "grey-hooded-cloak",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "gorak-drillmaster",
+   "keywords": "gorak drillmaster sergeant master",
+   "short_desc": "Gorak the Drillmaster",
+   "long_desc": "Gorak the Drillmaster glares from the middle of the yard, a great maul swinging from one fist.",
+   "description": "A giant of a man with a shaven head and a neck like a stump, his arms mottled with old scars. He has broken the bones of a hundred recruits and looks ready to add another.",
+   "kind": "humanoid",
+   "level": 24,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "Gorak's Training Room"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "gorak-maul",
+     "chance": 35
+    },
+    {
+     "item": "warden-cuirass",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "lord-of-mahn-tor",
+   "keywords": "lord mahn-tor tyrant warlord",
+   "short_desc": "the Lord of Mahn-Tor",
+   "long_desc": "The Lord of Mahn-Tor sits upon his iron throne, one gauntleted fist closed around a black sword.",
+   "description": "A lean, grey-bearded lord in black plate beneath a mantle of crimson wolfskin. His eyes are the colour of mountain ice, and he rules the keep with a hand that has never once unclenched.",
+   "kind": "humanoid",
+   "level": 25,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "Standing Before The Throne"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "iron-crown-of-mahn-tor",
+     "chance": 35
+    },
+    {
+     "item": "gorak-maul",
+     "chance": 15
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "keep-halberd",
+   "keywords": "halberd keep notched",
+   "short_desc": "a keep halberd",
+   "room_desc": "A notched keep halberd lies here.",
+   "description": "A long-hafted halberd with a black iron head, stamped with the mountain-and-blade sigil. The edge has been honed so many times that it is thin as a razor.",
+   "kind": "weapon",
+   "level": 18,
+   "weapon_type": "slash"
+  },
+  {
+   "id": "grey-hooded-cloak",
+   "keywords": "cloak grey hooded wolfskin",
+   "short_desc": "a grey hooded cloak",
+   "room_desc": "A grey hooded cloak lies crumpled here.",
+   "description": "A heavy woollen cloak lined with scruffy wolfskin, made to turn aside the wind of the high passes. It smells faintly of woodsmoke.",
+   "kind": "armor",
+   "level": 16,
+   "wear_slot": "about"
+  },
+  {
+   "id": "warden-cuirass",
+   "keywords": "cuirass plate warden breastplate",
+   "short_desc": "a warden's black cuirass",
+   "room_desc": "A black steel cuirass has been left here.",
+   "description": "A thick breastplate of blackened steel, etched with the sigil of the keep across its chest. The inner straps are worn soft with use.",
+   "kind": "armor",
+   "level": 22,
+   "wear_slot": "body",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "gorak-maul",
+   "keywords": "maul gorak iron great",
+   "short_desc": "Gorak's iron maul",
+   "room_desc": "A great iron maul lies here, dented from long use.",
+   "description": "A brutish maul with a head of dull iron and a haft wrapped in greasy leather. Years of broken training dummies have beaten the metal into a battered lump.",
+   "kind": "weapon",
+   "level": 24,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  },
+  {
+   "id": "iron-crown-of-mahn-tor",
+   "keywords": "crown iron lord mahn-tor circlet",
+   "short_desc": "the Iron Crown of Mahn-Tor",
+   "room_desc": "A cold iron crown lies here, set with a single black stone.",
+   "description": "A heavy circlet of dark iron set with a single smoky stone. It is cold to the touch even beside a fire, and it weighs on the brow like a command.",
+   "kind": "armor",
+   "level": 25,
+   "wear_slot": "head",
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}

@@ -24,8 +24,8 @@
      "description": "To the down lies The Edge Of The Frigid Wastes."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead up and down.",
-   "placeholder": true
+   "description": "A narrow shelf of grey rock clings to the cliffside, scoured by a wind\nthat never quite stops howling. Loose scree skitters off the lip into a\nlong, giddy drop to the valley floor. A wind-bitten trail winds down\ntoward the Edge Of The Frigid Wastes, its stones swept bare and open to\nany who dare it. Above, a steep, much-trodden path climbs up toward the\ngates of Mahn-Tor.",
+   "extra_descs": {}
   },
   "10100": {
    "vnum": 10100,
@@ -47,8 +47,8 @@
      "description": "To the west lies The City Streets Of Mahn-Tor."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "A narrow lane runs between stone-walled gardens and the backs of houses,\nthe cobbles patched with beaten earth. A broken cart wheel leans against\na wall, silvered with age. The lane carries on east and west. Wind-\ntwisted pines grow from clefts above the rooftops, and somewhere a\nshutter bangs.",
+   "extra_descs": {}
   },
   "10101": {
    "vnum": 10101,
@@ -70,8 +70,8 @@
      "description": "To the south lies The City Streets Of Mahn-Tor."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "The lane turns a corner beside a low retaining wall, below which the\nmountain falls away in terraces of grey rock. A stand of withered bean-\npoles sticks up from a small kitchen plot. The street runs east and\nsouth from here. A thin line of chimney smoke curls from a nearby roof\nand is torn away by the wind.",
+   "extra_descs": {}
   },
   "10102": {
    "vnum": 10102,
@@ -93,8 +93,14 @@
      "description": "To the south lies The City Streets Of Mahn-Tor."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "A quiet street, straight and steep, flanked by narrow stone cottages\nwith slate roofs weighted by rocks against the wind. Doorways are low\nand the doors painted a faded blue. The street climbs north and descends\nsouth. A child's wooden hoop lies abandoned against a step.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644700,
+     "max": 1
+    }
+   ]
   },
   "10103": {
    "vnum": 10103,
@@ -116,8 +122,8 @@
      "description": "To the south lies A Crossing in Mahn-Tor."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The street widens a little, and a stone well with a rope-worn lip stands\nin a recess of the wall. Cart ruts cut deep grooves in the cobbles,\nbrimming with pooled water. The way north leads up the lane, and south\nlies a crossing of ways. A carved lintel above the nearest door bears a\nhammer and anvil.",
+   "extra_descs": {}
   },
   "10104": {
    "vnum": 10104,
@@ -143,8 +149,8 @@
      "description": "To the west lies Mahn-Tor West."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, south and\nwest.",
-   "placeholder": true
+   "description": "Four ways meet at a worn stone crossing marked by a weathered mile-post\ncarved with the keep's sigil. Traders' carts have left deep ruts in the\ncobbles, and the wind rattles the shutters of the nearest houses. The\nstreet runs north and south, and a wide road leads west into Mahn-Tor\nWest. A lamp-post of black iron stands at the corner.",
+   "extra_descs": {}
   },
   "10105": {
    "vnum": 10105,
@@ -166,8 +172,8 @@
      "description": "To the south lies A Street in Mahn-Tor Proper."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
-   "placeholder": true
+   "description": "A busy street of tall narrow houses, their ground floors given over to\nworkshops with signs of boot and barrel. Smoke from forges and bakeries\nhangs in the cold air. The crossing lies north, and the street goes on\nsouth. Grey puddles stand in the hollows between the paving stones.",
+   "extra_descs": {}
   },
   "10106": {
    "vnum": 10106,
@@ -189,8 +195,14 @@
      "description": "To the east lies A Street in Mahn-Tor Proper."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "The street bends sharply, curling around a squat stone tower whose\nwindows are stuffed with straw. Iron rings for tethering horses are\nbolted to the wall, and a trough of frozen water sits beneath. The\nstreet runs north toward the crossing and turns east. A faded decree,\ntorn at the corners, flaps from a nail.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644700,
+     "max": 1
+    }
+   ]
   },
   "10107": {
    "vnum": 10107,
@@ -212,8 +224,8 @@
      "description": "To the west lies A Street in Mahn-Tor Proper."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
-   "placeholder": true
+   "description": "A straight, level stretch of street between rows of timber-framed shops,\ntheir shutters painted in dull red and green. Barrels of nails and\nbundles of rope stand beneath the eaves. The street runs east toward the\nmarket and west back to the bend. The cobbles shine with a slick of damp\nfrom the morning mist.",
+   "extra_descs": {}
   },
   "10108": {
    "vnum": 10108,
@@ -235,8 +247,8 @@
      "description": "To the west lies A Street in Mahn-Tor Proper."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "The street broadens as it approaches the market, and stalls of canvas\nand rough boards crowd its edges. The sound of haggling drifts along on\nthe wind, and a smell of roasting chestnuts and hot iron fills the air.\nThe market square lies east, and the street runs back west. A lamp on a\npost sways and creaks.",
+   "extra_descs": {}
   },
   "10109": {
    "vnum": 10109,
@@ -266,8 +278,8 @@
      "description": "To the west lies A Street in Mahn-Tor Proper."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "The market opens here into a wide paved square ringed with merchants'\nbooths under patched awnings. Barrels of salted fish and crates of\nonions are piled beside stalls selling pots and knives. The square\ncontinues north and east, a small house stands south, and a street leads\nwest. A banner of the Lord hangs from a pole in the centre, snapping in\nthe wind.",
+   "extra_descs": {}
   },
   "10110": {
    "vnum": 10110,
@@ -297,8 +309,18 @@
      "description": "To the west lies A Small House in Mahn-Tor Proper."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "The middle of the market square, where a worn stone block serves as a\nstand for criers and auctioneers. Smoke rises from a brazier where hot\npies are sold. The square runs east and south, a small house stands\nwest, and the doors of the gathering hall rise north. Straw and cabbage\nleaves are trampled into the cobbles.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644700,
+     "max": 1
+    },
+    {
+     "vnum": 644701,
+     "max": 1
+    }
+   ]
   },
   "10111": {
    "vnum": 10111,
@@ -328,8 +350,14 @@
      "description": "To the west lies Mahn-Tor Market Square."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Canvas booths give way here to sturdy stone fronts at the busiest corner\nof the market. A trading post stands to the north, a residence to the\neast, and the square runs south and west. Crates of furs and sacks of\nsalt are stacked against the walls. A dented scale hangs from a post,\nchiming in the wind.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644701,
+     "max": 1
+    }
+   ]
   },
   "10112": {
    "vnum": 10112,
@@ -359,8 +387,8 @@
      "description": "To the west lies Mahn-Tor Market Square."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "The market's quiet corner, where stalls of woven baskets and clay jars\ncrowd against a wall. A cobbler's bench stands under a canvas awning,\nits tools laid out in rows. The square runs north and west, with small\nhouses east and south. Wind pushes at the awnings until they bulge like\nsails.",
+   "extra_descs": {}
   },
   "10113": {
    "vnum": 10113,
@@ -380,8 +408,8 @@
      "description": "To the east lies Mahn-Tor Market Square."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "A snug home that smells of tanned leather, with hides stretched on\nframes along one wall. A workbench holds awls, needles and a bowl of\nwaxed thread, and a stool sits beside it. The market square lies east\nthrough the door. A small window rattles in the wind.",
+   "extra_descs": {}
   },
   "10114": {
    "vnum": 10114,
@@ -401,8 +429,14 @@
      "description": "To the south lies Mahn-Tor Market Square."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "A broad timbered hall with long tables, heavy benches and a stone hearth\nbig enough to roast an ox. Banners of the town's guilds hang from the\nrafters beside rusted trophies of past campaigns. The market square lies\nsouth through the double doors. The floor is scrubbed pale, and the\nsmell of woodsmoke and spilled mead lingers.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644701,
+     "max": 1
+    }
+   ]
   },
   "10115": {
    "vnum": 10115,
@@ -422,8 +456,8 @@
      "description": "To the north lies Mahn-Tor Market Square."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "A narrow house with a sooty chimney, where a kettle sings above a banked\nfire. Two rocking chairs face the hearth, and a crooked shelf of chipped\ncups hangs above. The market square lies north through the door. Rain-\nstains map the ceiling in brown rings.",
+   "extra_descs": {}
   },
   "10116": {
    "vnum": 10116,
@@ -443,8 +477,8 @@
      "description": "To the north lies Mahn-Tor Market Square."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "A cramped house with whitewashed walls, a ladder to a sleeping loft, and\nstrings of dried peppers over the hearth. A shelf holds a few carved\nwooden saints and a candle in a clay cup. The square lies north through\nthe door. Everything smells of garlic and woodsmoke.",
+   "extra_descs": {}
   },
   "10117": {
    "vnum": 10117,
@@ -464,8 +498,8 @@
      "description": "To the west lies Mahn-Tor Market Square."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "A small one-room house with a low roof of black beams and a floor of\nbeaten clay. A bed with a patchwork quilt, a spinning wheel and a\ncooking pot on the hearth fill nearly every inch. The market square lies\nwest through the door. A peat fire smoulders, filling the room with\nsweet smoke.",
+   "extra_descs": {}
   },
   "10118": {
    "vnum": 10118,
@@ -485,8 +519,8 @@
      "description": "To the west lies Mahn-Tor Market Square."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "A tidy home with a plastered ceiling and a good table set with pewter\nplates. A tall clock ticks beside a dresser of blue crockery, and a rag\nrug warms the floor. The market lies west through the narrow front door.\nThe scent of baked bread and beeswax is homely.",
+   "extra_descs": {}
   },
   "10119": {
    "vnum": 10119,
@@ -506,8 +540,14 @@
      "description": "To the south lies Mahn-Tor Market Square."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
-   "placeholder": true
+   "description": "Pelts, snowshoes, coils of rope and bundles of iron nails fill the\ncramped trading post. A counter of rough planks is piled with tallies,\nand a map of the mountain trails is pinned behind it. The market lies\nsouth through the door. The air smells of wet fur, tar and pipe tobacco.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644701,
+     "max": 1
+    }
+   ]
   },
   "10120": {
    "vnum": 10120,
@@ -529,8 +569,8 @@
      "description": "To the west lies Mahn-Tor West."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
-   "placeholder": true
+   "description": "The road leaves the crossing and runs on into a quieter quarter, where\nhouses stand shoulder to shoulder with tight little yards. A stone slab\nbearing an old dedication leans in a wall niche. The crossing lies east,\nand the road continues west. The wind carries the sound of a distant\nbell.",
+   "extra_descs": {}
   },
   "10121": {
    "vnum": 10121,
@@ -560,8 +600,14 @@
      "description": "To the west lies Mahn-Tor West."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "A junction of the western quarter, where two small houses face each\nother across the street. Window boxes hold hardy herbs, bent flat by the\nwind. The road runs east and west, one door opens north and another\nsouth. Ropes of drying onions hang from a beam over a stoop.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644700,
+     "max": 1
+    }
+   ]
   },
   "10122": {
    "vnum": 10122,
@@ -591,8 +637,8 @@
      "description": "To the west lies Mahn-Tor West."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
-   "placeholder": true
+   "description": "The street is wider here, paved in broken slabs and bordered by a low\ndrainage channel. Two houses with slate roofs flank it, one to the north\nand one to the south. The road runs east and west. A knot of rope and a\nwooden bucket mark a communal well beside the wall.",
+   "extra_descs": {}
   },
   "10123": {
    "vnum": 10123,
@@ -622,8 +668,8 @@
      "description": "To the west lies Mahn-Tor West."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast, south and west.",
-   "placeholder": true
+   "description": "The road dips slightly, its stones slick with moss in the shadow of\nhigh-walled houses. A small shrine niche with a clay lamp is set in a\nwall. Doors open north and south, and the road runs east and west. The\nwind brings a smell of incense from the temple quarter.",
+   "extra_descs": {}
   },
   "10124": {
    "vnum": 10124,
@@ -645,8 +691,8 @@
      "description": "To the west lies Mahn-Tor Temple Square."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
-   "placeholder": true
+   "description": "The street ends at the edge of the temple quarter, where the houses give\nway to a long colonnade of weathered pillars. Fallen leaves chase each\nother across the cobbles. The road runs back east, and west it opens\ninto the temple square. Incense and cold stone scent the air.",
+   "extra_descs": {}
   },
   "10125": {
    "vnum": 10125,
@@ -674,8 +720,8 @@
      "description": "To the south lies Mahn-Tor Temple Square."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A vast hall of grey columns forms the temple square, roofed in shadow\nand echoing with whispered prayers. Candles in iron stands flicker on\nthe flagstones. Ways lead north and south through the colonnade, and\neast a doorway opens to the street. A lamp burns before a blank stone\naltar.",
+   "extra_descs": {}
   },
   "10126": {
    "vnum": 10126,
@@ -699,8 +745,8 @@
      "description": "To the west lies Mahn-Tor Temple Square."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and west.",
-   "placeholder": true
+   "description": "A corner of the temple square where the pillars curve toward a stained-\nglass window of the mountain at dawn. Pews of black wood stand in neat\nrows, worn smooth by many hands. The square runs south and west from\nhere. Dust drifts in the coloured light.",
+   "extra_descs": {}
   },
   "10127": {
    "vnum": 10127,
@@ -728,8 +774,8 @@
      "description": "To the west lies Mahn-Tor Temple Square."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A broad stretch of the temple square beneath a high vaulted roof. The\ndoors of the steam temple stand north, wreathed in warm vapour that\ncurls along the floor. Colonnades lead east and west. Brass pipes run\nalong the walls and knock softly with heat.",
+   "extra_descs": {}
   },
   "10128": {
    "vnum": 10128,
@@ -753,8 +799,8 @@
      "description": "To the south lies Mahn-Tor Temple Square."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "A quiet corner of the temple square, where the colonnade is hung with\nofferings of ribbons and small iron charms. The flagstones are cold\nunderfoot, and a chilly draught slides between the pillars. Ways lead\neast and south. The air tastes faintly of wax.",
+   "extra_descs": {}
   },
   "10129": {
    "vnum": 10129,
@@ -782,8 +828,8 @@
      "description": "To the west lies Mahn-Tor Ice Temple."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The temple square grows colder here, the pillars rimmed with a pale\nglittering rime. The doors of the ice temple stand west, while the\ncolonnade runs north and south. Breath hangs in white plumes. The floor\nis gritty with frost.",
+   "extra_descs": {}
   },
   "10130": {
    "vnum": 10130,
@@ -807,8 +853,8 @@
      "description": "To the east lies Mahn-Tor Temple Square."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "A shadowed alcove of the temple square, with niches holding statues of\nlong-dead lords of the mountain. A row of unlit candles waits on a stone\nshelf. The colonnade runs north and east. A faint echo of chanting\ndrifts from deeper in the temple.",
+   "extra_descs": {}
   },
   "10131": {
    "vnum": 10131,
@@ -836,8 +882,8 @@
      "description": "To the west lies Mahn-Tor Temple Square."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The temple square slopes gently here, and the stones beneath your feet\nare damp. A carved basin on a plinth overflows quietly and trickles into\na drain. The doors of the water temple stand south, with the colonnade\nrunning east and west. The scent of wet earth fills the air.",
+   "extra_descs": {}
   },
   "10132": {
    "vnum": 10132,
@@ -861,8 +907,8 @@
      "description": "To the west lies Mahn-Tor Temple Square."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and west.",
-   "placeholder": true
+   "description": "A last corner of the temple square, its pillars scarred by a long-ago\nfire. A heavy offering box of iron is chained to the wall. The colonnade\nruns north and west. Charred beams overhead have been braced with new\ntimber.",
+   "extra_descs": {}
   },
   "10133": {
    "vnum": 10133,
@@ -882,8 +928,8 @@
      "description": "To the south lies Mahn-Tor Temple Square."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads south.",
-   "placeholder": true
+   "description": "A hot, humid sanctum where veils of steam drift between carved pillars\nof pale stone. Water trickles down the walls and hisses on iron grates\nin the floor. The temple square lies south through an arched doorway.\nSweat beads on the skin, and the air smells of minerals and wet stone.",
+   "extra_descs": {}
   },
   "10134": {
    "vnum": 10134,
@@ -903,8 +949,9 @@
      "description": "To the east lies Mahn-Tor Temple Square."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
-   "placeholder": true
+   "description": "A bitterly cold sanctum whose walls and altar are sheathed in thick\nclear ice, glinting blue in the lamplight. Frost flowers bloom over the\ncarved pillars, and the floor is a sheet of slick glaze. The temple\nsquare lies east through the doorway. Every breath stings, and the\nsilence is absolute.",
+   "look": "snow",
+   "extra_descs": {}
   },
   "10135": {
    "vnum": 10135,
@@ -924,8 +971,8 @@
      "description": "To the north lies Mahn-Tor Temple Square."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "A cool chamber where a still pool of clear water fills a basin the size\nof a cart, ringed by smooth white tiles. Reflected light ripples on the\nvaulted ceiling. The temple square lies north through a low arch. The\nair is moist and carries a mineral tang.",
+   "extra_descs": {}
   },
   "10136": {
    "vnum": 10136,
@@ -945,8 +992,8 @@
      "description": "To the south lies Mahn-Tor West."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
-   "placeholder": true
+   "description": "A crowded house where a long bench is spread with half-mended harness\nand tools. Bunches of sage and thyme hang from the beams, and a kettle\nhums on a trivet. The street lies south through the door. Boot-prints of\nmud and straw cross the floor.",
+   "extra_descs": {}
   },
   "10137": {
    "vnum": 10137,
@@ -966,8 +1013,8 @@
      "description": "To the south lies Mahn-Tor West."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
-   "placeholder": true
+   "description": "A modest house with a fireplace of rough stones and walls hung with worn\npicks and hammers. A pair of heavy boots dries on a rack. Out the door\nto the south lies the street. The air is warm and smells of tobacco.",
+   "extra_descs": {}
   },
   "10138": {
    "vnum": 10138,
@@ -987,8 +1034,8 @@
      "description": "To the south lies Mahn-Tor West."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
-   "placeholder": true
+   "description": "A cheery little home with a scrubbed table, a pot of stew steaming on\nthe hob and a basket of eggs under a cloth. The door opens south onto\nthe street. Brass candlesticks gleam on the mantel, and a braided rug\nlies before the fire.",
+   "extra_descs": {}
   },
   "10139": {
    "vnum": 10139,
@@ -1008,8 +1055,8 @@
      "description": "To the north lies Mahn-Tor West."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
-   "placeholder": true
+   "description": "A tiny house with a floor of swept earth and a bed built into the wall\nlike a ship's berth. A chipped crock, a pewter mug and a rolled-up map\nsit on a shelf. The street lies north through the door. A thin draught\nplays at the shutters.",
+   "extra_descs": {}
   },
   "10140": {
    "vnum": 10140,
@@ -1029,8 +1076,8 @@
      "description": "To the north lies Mahn-Tor West."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads north.",
-   "placeholder": true
+   "description": "A neat home with a flagged floor, a table with a checked cloth and a pot\nof dried flowers. A narrow bed stands against the wall, made up tight\nand square. A door set in the north wall gives back onto the street. A\nsampler stitched with a mountain scene hangs above the hearth.",
+   "extra_descs": {}
   },
   "10141": {
    "vnum": 10141,
@@ -1050,8 +1097,8 @@
      "description": "To the north lies Mahn-Tor West."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "A one-room home dominated by a loom, its threads strung taut in grey and\nblue. Bundles of raw wool sit in baskets, and a stool is pulled up to a\nhalf-finished blanket. The door opens north onto the street. A smell of\nlanolin and lamp oil hangs about.",
+   "extra_descs": {}
   },
   "10142": {
    "vnum": 10142,
@@ -1075,8 +1122,14 @@
      "description": "To the east lies The Great Hall."
     }
    },
-   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
-   "placeholder": true
+   "description": "The outer reach of the Great Hall, its pillars scorched by an old fire\nand never fully cleaned. Tattered tapestries show a battle on a mountain\npass in faded thread. The hall runs north to the great junction and east\ninto the heart of the Great Hall. Cold seeps from the stone, and the\ntorches flicker in a draught.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644702,
+     "max": 1
+    }
+   ]
   },
   "10143": {
    "vnum": 10143,
@@ -1100,8 +1153,8 @@
      "description": "To the south lies The Hall."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "The hall ends in a corner here, lit by a single smoking brazier on a\ntripod. Old war-trophies hang on the walls: dented helms, a tattered\npennant, a cracked shield painted with a lion. The hall continues east,\nand south it returns to the great junction. Dust gathers in the angles\nof the vault, undisturbed by the watch.",
+   "extra_descs": {}
   },
   "10144": {
    "vnum": 10144,
@@ -1133,8 +1186,14 @@
      "description": "To the west lies The Hall."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A wider stretch of the Grand Hall, with pillars of dark granite marching\nin pairs toward the roof. Long banners fall between them, each stitched\nwith the keep's mountain sigil. A narrow corridor leads north, the hall\ncarries on east and south, and west it returns to the plainer hall. The\nair is cold and tastes faintly of iron.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644702,
+     "max": 1
+    }
+   ]
   },
   "10145": {
    "vnum": 10145,
@@ -1158,8 +1217,8 @@
      "description": "To the west lies The Grand Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and west.",
-   "placeholder": true
+   "description": "The Grand Hall bends toward the throne here, its floor inlaid with a\ngreat black-and-white compass star worn by countless boots. Tall arched\nwindows, narrow as arrow-slits, let in thin blades of grey daylight. The\nhall returns west, and south lies the approach to the throne. Heavy\nchains and banners hang from the rafters.",
+   "extra_descs": {}
   },
   "10146": {
    "vnum": 10146,
@@ -1183,8 +1242,14 @@
      "description": "To the south lies The Grand Hall."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow, low corridor with walls of close-fitted blocks, so tight two\nmen cannot pass without turning sideways. A single lantern hangs from a\nhook, swaying slightly in a draught from somewhere. South the corridor\nopens into the Grand Hall; north it ends at the doors of the guard\nquarters. Bootprints have scuffed the floor to a dull shine.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644702,
+     "max": 1
+    }
+   ]
   },
   "10147": {
    "vnum": 10147,
@@ -1212,8 +1277,8 @@
      "description": "To the west lies Mahn-Tor Keep Guard Quarters."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A barracks room lined with double bunks, each topped by a rolled blanket\nand a hung belt. Boots stand in neat pairs, and the stone floor is swept\nclean to the standard the Lord demands. The quarters continue north and\nwest, and the corridor lies south. A shaving mirror and a basin sit on a\nshelf by the door.",
+   "extra_descs": {}
   },
   "10148": {
    "vnum": 10148,
@@ -1237,8 +1302,8 @@
      "description": "To the east lies Mahn-Tor Keep Guard Quarters."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
-   "placeholder": true
+   "description": "The quarters end in a small armoury alcove where spare shields and helms\nhang in rows on pegs. A grindstone sits beside a bucket of dark water,\nits rim bright with filings. Quarters continue north and east. Oil and\nsteel mingle sharply in the air.",
+   "extra_descs": {}
   },
   "10149": {
    "vnum": 10149,
@@ -1262,8 +1327,14 @@
      "description": "To the south lies Mahn-Tor Keep Guard Quarters."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
-   "placeholder": true
+   "description": "A narrow dormitory room, its bunks stacked three high and fitted with\ncanvas straps. A weapon rack holds practice swords of battered wood, and\na signal drum stands in the corner. Quarters lie east and south from\nhere. A cold draught whistles through a crack in the stone.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644702,
+     "max": 1
+    }
+   ]
   },
   "10150": {
    "vnum": 10150,
@@ -1287,8 +1358,8 @@
      "description": "To the west lies Mahn-Tor Keep Guard Quarters."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
-   "placeholder": true
+   "description": "The far corner of the barracks, where a long table and benches serve for\nmeals. Tin plates, stained mugs and a tally-board of duty rosters crowd\nthe wall. The smell of cold porridge lingers in the air. A way leads\nsouth and another west through the quarters.",
+   "extra_descs": {}
   },
   "10162": {
    "vnum": 10162,
@@ -1315,8 +1386,8 @@
      "description": "To the down lies On The Cliffside."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead south and down.",
-   "placeholder": true
+   "description": "Two squat towers of black stone flank the great iron-banded gates of\nMahn-Tor, their crenels bristling with spears and snapping pennants. The\nmountain wind slams against the walls and sets the banners cracking like\nwhips. Beyond the heavy doors, which stand to the south, the sounds of\nthe town drift out: hammer-ring and barked orders. A rough track drops\ndown the cliffside from here.",
+   "extra_descs": {}
   },
   "10163": {
    "vnum": 10163,
@@ -1338,8 +1409,14 @@
      "description": "To the south lies The City Streets Of Mahn-Tor."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and south.",
-   "placeholder": true
+   "description": "The street turns a corner here, hemmed in by the high wall of the town\non one side. A shuttered house leans against the stones, and a rusted\nlantern bracket juts from its angle. The gate court lies east, while the\nstreet runs south. Meltwater drips from the eaves, and the cobbles are\nslick.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644700,
+     "max": 1
+    }
+   ]
   },
   "10164": {
    "vnum": 10164,
@@ -1369,8 +1446,8 @@
      "description": "To the west lies The City Streets Of Mahn-Tor."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "Inside the gates a broad cobbled court opens, hemmed by sentry walks\nwhere armoured men pace in pairs. Banners of the keep hang from iron\nbrackets, stiff and darkened by weather. Passages lead off in every\ndirection: the gate doors lie north, a street runs east, another runs\nwest, and an open square lies south. The cobbles are worn into shallow\ntroughs by a thousand marching boots.",
+   "extra_descs": {}
   },
   "10165": {
    "vnum": 10165,
@@ -1392,8 +1469,8 @@
      "description": "To the west lies Inside The Gates Of Mahn-Tor."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead south and\nwest.",
-   "placeholder": true
+   "description": "A cramped street of grey stone houses bends here beneath the shadow of\nthe keep's high walls. Shutters are barred against the wind, and a bell\nsomewhere above counts the watch in slow, flat strokes. The gate court\nlies to the west, while the street runs on south between leaning gables.\nSoot from many chimneys streaks the lintels.",
+   "extra_descs": {}
   },
   "10166": {
    "vnum": 10166,
@@ -1423,8 +1500,8 @@
      "description": "To the west lies The City Streets Of Mahn-Tor."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "A crossing of cobbled streets lined with tall stone houses whose upper\nfloors lean out to touch overhead. Washing hangs stiff from a line, and\na worn doorstep sits beside a rain barrel. Streets run north, east and\nwest, and a painted inn sign swings to the south. The wind funnels along\nthe lane with a thin, steady whistle.",
+   "extra_descs": {}
   },
   "10167": {
    "vnum": 10167,
@@ -1454,8 +1531,14 @@
      "description": "To the west lies The City Streets Of Mahn-Tor."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
-   "placeholder": true
+   "description": "A paved square just inside the town, ringed by sturdy buildings and\nwatched from a high wall-walk. A dry stone fountain stands at its\ncentre, its basin filled with wind-blown leaves. The gate court lies\nnorth, a busy street runs east, another runs west, and the equipment\nshop stands south. Boots and hooves have worn dark paths across the\nflags.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644700,
+     "max": 1
+    }
+   ]
   },
   "10168": {
    "vnum": 10168,
@@ -1485,8 +1568,8 @@
      "description": "To the west lies The Entrance Square Of Mahn-Tor."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth and west.",
-   "placeholder": true
+   "description": "Streets meet at a crooked junction where a stone trough, rimmed with\nrime, stands beside a post hung with notices of the Lord's decrees. A\nroad climbs east toward the keep and the dark mouth of its cave, while\nthe entrance square lies west. To the south a shop door swings on iron\nhinges beneath a painted sign for the general store, and north the\nstreet leads back toward the gate court. The wind carries the smell of\ncoal smoke and horses.",
+   "extra_descs": {}
   },
   "10169": {
    "vnum": 10169,
@@ -1506,8 +1589,14 @@
      "description": "To the north lies The City Streets Of Mahn-Tor."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
-   "placeholder": true
+   "description": "A low, smoky taproom, with a great antler horn snapped in half and\nnailed above the hearth. Rough tables are ringed with mug-stains, and a\nfire of pine logs pops in the grate. A stair climbs into the dark of the\nupper floor, and the street lies north through the door. The smells of\nstew, spilt ale and wet wool warm the place.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644701,
+     "max": 1
+    }
+   ]
   },
   "10170": {
    "vnum": 10170,
@@ -1527,8 +1616,8 @@
      "description": "To the north lies The Entrance Square Of Mahn-Tor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
-   "placeholder": true
+   "description": "A cluttered shop where mail shirts hang from beams and swords stand\nupright in barrels. A workbench at the back is spread with files, rivets\nand strips of leather, and a forge ticks as it cools. The doorway north\nopens onto the entrance square. The heavy smells of oil, rust and\nleather fill the room.",
+   "extra_descs": {}
   },
   "10171": {
    "vnum": 10171,
@@ -1548,8 +1637,8 @@
      "description": "To the north lies The Streets Of Mahn-Tor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
-   "placeholder": true
+   "description": "Shelves crowd this narrow shop from floor to rafters with rope, tallow,\nlamp oil, tinned goods and bundles of dried meat. A counter of scarred\noak holds a brass scale and a heap of ledgers. Sacks of grain lean in\nthe corner, and a stove ticks in the back. The street lies north through\nthe door, where the cold wind waits.",
+   "extra_descs": {}
   },
   "10172": {
    "vnum": 10172,
@@ -1569,8 +1658,14 @@
      "description": "To the east lies The Guarded Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "A bare hall of packed earth and scarred wood, built for drill and\nsparring. Straw dummies hang from chains, pierced and slashed, and racks\nof blunted blades line the walls. The door east leads back to the\nguarded hall. The floor is dark with old sweat, and the clash of steel\nseems to hang in the air.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644705,
+     "max": 1
+    }
+   ]
   },
   "10173": {
    "vnum": 10173,
@@ -1590,8 +1685,14 @@
      "description": "To the east lies The Guarded Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
-   "placeholder": true
+   "description": "A dim study where every shutter is closed and the only light is a pair\nof black candles on a heavy writing desk. Shelves of bound scrolls climb\nthe walls into shadow, and a stuffed raven stares from a perch. The door\neast opens upon the guarded hall. A dry rustling, as of paper turning,\nseems to follow the unwary.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644704,
+     "max": 1
+    }
+   ]
   },
   "10174": {
    "vnum": 10174,
@@ -1611,8 +1712,8 @@
      "description": "To the east lies The Guarded Hall."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "A dim, windowless sanctum hung with black cloth, where a single bronze\nbrazier glows like a coal eye. Sigils of the mountain and the blade are\nscratched into the stone floor in a wide ring. The way east leads back\nto the guarded hall. Silence presses on the ears, and the air smells of\ncold ash and iron.",
+   "extra_descs": {}
   },
   "10175": {
    "vnum": 10175,
@@ -1634,8 +1735,8 @@
      "description": "To the west lies The Streets Of Mahn-Tor."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. Ways lead east and west.",
-   "placeholder": true
+   "description": "The road to the keep climbs steeply along the mountain's flank, paved\nwith chipped flagstones and lined by black iron torch-posts. The cliff\ndrops away on one hand, and the wind tugs hard at cloaks and hems. Far\noverhead the towers of the keep stand grey against the sky. The road\nruns east toward a dark cavern mouth in the rock, while the town streets\nlie west.",
+   "extra_descs": {}
   },
   "10176": {
    "vnum": 10176,
@@ -1655,8 +1756,14 @@
      "description": "To the south lies Before The Cave Of Mahn-Tor."
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads south.",
-   "placeholder": true
+   "description": "A cramped guardroom with a low timbered ceiling, warmed by a small iron\nstove that ticks and glows. A rough table is scarred with dice and\nknife-marks, and a bench runs along the wall beneath a rack of pikes. A\nslit window shows only a stripe of grey sky. The only way out is back\nsouth into the chamber before the cave.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644702,
+     "max": 1
+    }
+   ]
   },
   "10177": {
    "vnum": 10177,
@@ -1693,8 +1800,8 @@
      "description": "To the west lies The Road To The Keep Of Mahn-Tor."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A stone-flagged guard chamber stands before the great cave mouth, its\nwalls hung with shields and rusted chain. Torches gutter in iron\ncressets, throwing long shadows across a rack of spears. Small guard\nhouses open to the north and south, and a heavy door set in the rock\nleads east into the entryway. The road outside lies west, and the sound\nof wind comes in with every opening of the door.",
+   "extra_descs": {}
   },
   "10178": {
    "vnum": 10178,
@@ -1714,8 +1821,8 @@
      "description": "To the north lies Before The Cave Of Mahn-Tor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "Another guard house, narrower than its twin, with a bunk, a stack of\nfirewood and a ledger nailed to the wall listing the watches. The air is\nthick with pipe-smoke, wet wool and lamp oil. A shuttered arrow-slit\nlooks out over the road. The doorway north opens back onto the chamber\nbefore the cave.",
+   "extra_descs": {}
   },
   "10179": {
    "vnum": 10179,
@@ -1739,8 +1846,9 @@
      "description": "To the west lies Before The Cave Of Mahn-Tor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
-   "placeholder": true
+   "description": "The passage here is rough-hewn rock, a natural cavern squared off and\nshored by generations of masons. Iron-bound beams hold up the roof, and\nwater seeps down the cave walls to pool in cracks of the floor.\nTorchlight shows banners of the keep hanging limp in the still air. A\nheavy door stands open to the west, and the passage runs on east into\nthe halls of the keep.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "10180": {
    "vnum": 10180,
@@ -1772,8 +1880,14 @@
      "description": "To the west lies The Entryway To The Cave Of Mahn-Tor."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A great junction of the keep's lower halls, where torch-lit passages\nmeet beneath a vaulted ceiling blackened by smoke. Flagstones ring under\nevery step, and carved lintels bear the keep's emblem, a mountain split\nby a blade. The entryway lies west, while halls lead north, south and\neast into the heart of the keep. A chill that smells of old stone seeps\nfrom the walls.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644702,
+     "max": 1
+    }
+   ]
   },
   "10181": {
    "vnum": 10181,
@@ -1805,8 +1919,8 @@
      "description": "To the west lies The Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A broad stretch of the Grand Hall, its pillars thick as old oaks and\ncapped with carved eagles. Tall banners of crimson and black droop\nbetween them, and a long carpet runs down the centre. North the hall\nclimbs on, east lies the throne, south lies the Great Hall, and west the\nplainer hall.",
+   "extra_descs": {}
   },
   "10182": {
    "vnum": 10182,
@@ -1838,8 +1952,14 @@
      "description": "To the west lies The Great Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A crossing in the Great Hall, where torchlight from four directions\nmeets on the polished floor. A mighty iron chandelier hangs from a chain\noverhead, its candles unlit. The Grand Hall opens north, the hall runs\neast and west, and the guard post lies south. Statues of armoured\nwarriors line the walls.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644702,
+     "max": 1
+    }
+   ]
   },
   "10183": {
    "vnum": 10183,
@@ -1876,8 +1996,14 @@
      "description": "To the west lies The Grand Hall."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The hall ends before a dais of black marble, where an iron throne rises\nbeneath a canopy of tattered war-banners. Braziers burn to either side,\nand the flagstones are polished by the nervous feet of petitioners. A\nhall runs north, the Grand Hall opens west, another great hall opens\nsouth, and a plain door east is set into the wall behind the dais. The\nsilence here is heavy and watchful.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644706,
+     "max": 1
+    }
+   ]
   },
   "10184": {
    "vnum": 10184,
@@ -1901,8 +2027,8 @@
      "description": "To the west lies The Great Hall."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "A long hall of rough stone pillars, with a high roof lost in smoke. Rows\nof oak benches stand empty along the walls, and a long board table bears\nthe scars of many feasts. The way north leads to the throne room, and\nthe hall continues west. Wind moans faintly through a flue in the vault.",
+   "extra_descs": {}
   },
   "10185": {
    "vnum": 10185,
@@ -1926,8 +2052,8 @@
      "description": "To the west lies Standing Before The Throne."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
-   "placeholder": true
+   "description": "A narrow hidden passage behind the throne, lit by a single guttering\nsconce. The stone walls are bare and damp, with scrapes where hands have\nsteadied themselves in the dark. West the passage returns to the throne\nroom through a concealed door; east it runs on toward the royal\nchambers. Dust lies thick in the corners, and the air is close and\nstill.",
+   "extra_descs": {}
   },
   "10186": {
    "vnum": 10186,
@@ -1955,8 +2081,8 @@
      "description": "To the west lies The Secret Hallway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A modest antechamber hung with dark red drapes, its floor covered by a\nthick rug of mountain bearskin. Silver lamps cast a soft light over a\ncarved chest and a pair of high-backed chairs. The secret hallway lies\nwest, a living room opens east, and a curtained doorway leads south. The\nair smells of wax and old perfume.",
+   "extra_descs": {}
   },
   "10187": {
    "vnum": 10187,
@@ -1980,8 +2106,8 @@
      "description": "To the south lies The Guarded Hall."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "A fortified checkpoint across the hall, with an iron portcullis set into\nthe ceiling and a heavy bar-table to one side. Spears and halberds stand\nin racks, and a brass-bound ledger lists those allowed beyond. The Great\nHall lies north, and the guarded hall lies south. The place smells of\nleather and lamp oil.",
+   "extra_descs": {}
   },
   "10188": {
    "vnum": 10188,
@@ -2023,8 +2149,14 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A long hall of grim, unadorned stone, patrolled day and night, with\niron-studded doors in its walls. Torches burn in sconces at regular\nintervals, each flame leaning in the draught. The guard post lies north,\nthe hall goes on south, and doors stand east and west. A faint scent of\nburnt herbs drifts from the east door.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644703,
+     "max": 1
+    }
+   ]
   },
   "10189": {
    "vnum": 10189,
@@ -2066,8 +2198,8 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A stretch of the guarded hall where the torches burn lower and the stone\nis scored with old sword-nicks. Doors of dark oak stand in the east and\nwest walls, each bound in black iron. The hall runs on north and south\nfrom here. A draught sighs along the floor, carrying a smell of candle-\nwax and ink.",
+   "extra_descs": {}
   },
   "10190": {
    "vnum": 10190,
@@ -2087,8 +2219,8 @@
      "description": "To the west lies The Guarded Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "A cramped private chamber, with a narrow cot, a locked chest and a desk\nlaid with maps. Weapons and trophies crowd the walls, and a single\nnarrow window admits a stripe of daylight. The only way out is the door\nwest to the guarded hall. A scent of oiled leather and stale pipe\nlingers.",
+   "extra_descs": {}
   },
   "10191": {
    "vnum": 10191,
@@ -2108,8 +2240,14 @@
      "description": "To the west lies The Guarded Hall."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads west.",
-   "placeholder": true
+   "description": "A round study crowded with shelves of cracked leather books, glass vials\nand brass instruments of unknown use. Pale witch-lights drift beneath\nthe ceiling and cast restless shadows over a table scrawled with chalk\nsigils. The door west leads back to the guarded hall. The air hums\nfaintly and smells of ozone and burnt sage.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644704,
+     "max": 1
+    }
+   ]
   },
   "10192": {
    "vnum": 10192,
@@ -2151,8 +2289,14 @@
      }
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Here the guarded hall narrows, its ceiling lowered and its torches set\ncloser together. A doorway of heavy planks stands in each side wall,\neast and west. The hall runs north toward the guard post and south\ntoward its end. The flagstones are damp and carry the cold smell of deep\nrock.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644703,
+     "max": 1
+    }
+   ]
   },
   "10193": {
    "vnum": 10193,
@@ -2176,8 +2320,8 @@
      "description": "To the east lies The Master Bedroom."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and east.",
-   "placeholder": true
+   "description": "A languid room of silk cushions, low couches and brass lamps shaped like\nlotus blossoms, so out of place in this stern keep. Heavy curtains of\ngreen and gold muffle the sounds of the halls. The antechamber lies\nnorth, and a bedchamber lies east. Incense smoulders in a small bowl,\nand the rugs underfoot are thick and soft.",
+   "extra_descs": {}
   },
   "10194": {
    "vnum": 10194,
@@ -2197,8 +2341,8 @@
      "description": "To the west lies The Guarded Hall."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "A small, spartan room that lives up to its name, with a straw pallet, a\nclay jug and a single three-legged stool. A tin cup hangs from a nail\nbeside a crude carving of a mountain goat. The door west opens onto the\nguarded hall. Everything is tidy, as if the occupant expects inspection\nat any moment.",
+   "extra_descs": {}
   },
   "10195": {
    "vnum": 10195,
@@ -2222,8 +2366,8 @@
      "description": "To the west lies Entry To The Royal Chambers."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and west.",
-   "placeholder": true
+   "description": "A comfortable room in sharp contrast to the cold halls, furnished with\ndeep leather chairs and a hearth of carved stone. A fire crackles low,\nand a map of the mountain holds is pinned above the mantel. The\nantechamber lies west, and a bedchamber lies south. Silver goblets and a\nhalf-played game of tiles sit on a low table.",
+   "extra_descs": {}
   },
   "10196": {
    "vnum": 10196,
@@ -2247,8 +2391,8 @@
      "description": "To the west lies The Harem Room."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "A great bed hung with heavy curtains dominates the room, its posts\ncarved with climbing wolves. A wardrobe, a washstand and a rack of\nceremonial swords crowd the walls, and the shutters are bolted tight\nagainst the wind. The living room lies north and a perfumed room west. A\nfaint odour of tallow and pine-smoke clings to the bedding.",
+   "extra_descs": {}
   },
   "10197": {
    "vnum": 10197,
@@ -2286,8 +2430,8 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The guarded hall comes to a blunt end at a wall of bare grey blocks. An\niron lantern hangs on a chain, and old shields are mounted beneath it as\nif to say nothing passes. The hall returns north, while doors stand east\nand west. Gouges in the floor show where heavy things were dragged.",
+   "extra_descs": {}
   },
   "10198": {
    "vnum": 10198,
@@ -2307,8 +2451,8 @@
      "description": "To the west lies The End Of The Guarded Hall."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
-   "placeholder": true
+   "description": "A gloomy cell of a room, with damp-stained walls and a low ceiling that\npresses on the head. A pile of dirty blankets lies in one corner, and a\nrusted lantern gives scant light. The door west leads out to the end of\nthe guarded hall. The floor is sticky, and the air smells of mildew and\nsour ale.",
+   "extra_descs": {}
   },
   "10199": {
    "vnum": 10199,
@@ -2328,11 +2472,375 @@
      "description": "To the east lies The End Of The Guarded Hall."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
-   "placeholder": true
+   "description": "A room painted in a once-bright shade of green, now flaking in great\ncurls from the plaster. Moss-coloured curtains frame a shuttered window,\nand a threadbare rug lies before a cold hearth. The only way out is the\ndoor east, back to the end of the guarded hall. Dried herbs hang from\nthe rafters in rustling bunches.",
+   "extra_descs": {}
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "644700": {
+   "vnum": 644700,
+   "name": "town guard watchman soldier",
+   "short_desc": "a Mahn-Tor town guard",
+   "long_desc": "A Mahn-Tor town guard stands at his post, one hand on the haft of a spear.",
+   "description": "A hard-faced man in a grey surcoat marked with the mountain-and-blade\nsigil. He watches every stranger with narrowed, wind-reddened eyes, and\ndoes not move unless he must.",
+   "level": 15,
+   "alignment": 200,
+   "hp_dice": "15d8+196",
+   "damage_dice": "4d6+9",
+   "armor_class": 52,
+   "exp": 845,
+   "gold": 180,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744701,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "644701": {
+   "vnum": 644701,
+   "name": "market merchant trader townsman",
+   "short_desc": "a weathered merchant",
+   "long_desc": "A weathered merchant haggles quietly over a crate of goods.",
+   "description": "A stocky trader wrapped against the cold in layers of wool and fur. His\nfingers are stained with tar and his eyes miss nothing about a\ncustomer's purse.",
+   "level": 15,
+   "alignment": 100,
+   "hp_dice": "15d8+196",
+   "damage_dice": "4d6+9",
+   "armor_class": 52,
+   "exp": 845,
+   "gold": 180,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": []
+  },
+  "644702": {
+   "vnum": 644702,
+   "name": "keep soldier guard garrison",
+   "short_desc": "a keep soldier",
+   "long_desc": "A keep soldier in black mail paces the hall, halberd on his shoulder.",
+   "description": "A broad-shouldered man in blackened mail, a crimson sash cinched at his\nwaist. His halberd is notched from long use, and he looks eager for an\nexcuse to swing it.",
+   "level": 18,
+   "alignment": -200,
+   "hp_dice": "18d8+240",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 216,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744700,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "644703": {
+   "vnum": 644703,
+   "name": "keep warden guard captain",
+   "short_desc": "a keep warden",
+   "long_desc": "A keep warden in heavy plate stands watch, his gaze fixed on all who pass.",
+   "description": "A towering guard in plate etched with the keep's sigil, his visor raised\nto show a scarred, unsmiling face. He carries himself like a man who has\nnever been bested in the yard.",
+   "level": 22,
+   "alignment": -300,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744702,
+     "chance": 30
+    },
+    {
+     "vnum": 744700,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "644704": {
+   "vnum": 644704,
+   "name": "battle mage battlemage wizard",
+   "short_desc": "a keep battle-mage",
+   "long_desc": "A keep battle-mage murmurs over a glowing sigil, sparks dancing at his fingertips.",
+   "description": "A gaunt mage in a charcoal robe, his hands stained with ink and scorch-\nmarks. Tiny blue sparks crawl along the iron rings he wears on every\nfinger.",
+   "level": 22,
+   "alignment": -300,
+   "hp_dice": "22d8+302",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 264,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744701,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "644705": {
+   "vnum": 644705,
+   "name": "gorak drillmaster sergeant master",
+   "short_desc": "Gorak the Drillmaster",
+   "long_desc": "Gorak the Drillmaster glares from the middle of the yard, a great maul swinging from one fist.",
+   "description": "A giant of a man with a shaven head and a neck like a stump, his arms\nmottled with old scars. He has broken the bones of a hundred recruits\nand looks ready to add another.",
+   "level": 24,
+   "alignment": -400,
+   "hp_dice": "24d8+334",
+   "damage_dice": "7d6+12",
+   "armor_class": 25,
+   "exp": 1340,
+   "gold": 288,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744703,
+     "chance": 35
+    },
+    {
+     "vnum": 744702,
+     "chance": 20
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "644706": {
+   "vnum": 644706,
+   "name": "lord mahn-tor tyrant warlord",
+   "short_desc": "the Lord of Mahn-Tor",
+   "long_desc": "The Lord of Mahn-Tor sits upon his iron throne, one gauntleted fist closed around a black sword.",
+   "description": "A lean, grey-bearded lord in black plate beneath a mantle of crimson\nwolfskin. His eyes are the colour of mountain ice, and he rules the keep\nwith a hand that has never once unclenched.",
+   "level": 25,
+   "alignment": -600,
+   "hp_dice": "25d8+351",
+   "damage_dice": "7d6+13",
+   "armor_class": 22,
+   "exp": 1395,
+   "gold": 300,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744704,
+     "chance": 35
+    },
+    {
+     "vnum": 744703,
+     "chance": 15
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "744700": {
+   "vnum": 744700,
+   "name": "halberd keep notched",
+   "short_desc": "a keep halberd",
+   "room_desc": "A notched keep halberd lies here.",
+   "description": "A long-hafted halberd with a black iron head, stamped with the mountain-and-blade sigil. The edge has been honed so many times that it is thin as a razor.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 18,
+   "damage_dice": "2d6",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 490
+  },
+  "744701": {
+   "vnum": 744701,
+   "name": "cloak grey hooded wolfskin",
+   "short_desc": "a grey hooded cloak",
+   "room_desc": "A grey hooded cloak lies crumpled here.",
+   "description": "A heavy woollen cloak lined with scruffy wolfskin, made to turn aside the wind of the high passes. It smells faintly of woodsmoke.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 16,
+   "wear_slot": "about",
+   "armor": 2,
+   "weight": 3,
+   "value": 350
+  },
+  "744702": {
+   "vnum": 744702,
+   "name": "cuirass plate warden breastplate",
+   "short_desc": "a warden's black cuirass",
+   "room_desc": "A black steel cuirass has been left here.",
+   "description": "A thick breastplate of blackened steel, etched with the sigil of the keep across its chest. The inner straps are worn soft with use.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 22,
+   "wear_slot": "body",
+   "armor": 5,
+   "weight": 10,
+   "value": 470,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "744703": {
+   "vnum": 744703,
+   "name": "maul gorak iron great",
+   "short_desc": "Gorak's iron maul",
+   "room_desc": "A great iron maul lies here, dented from long use.",
+   "description": "A brutish maul with a head of dull iron and a haft wrapped in greasy leather. Years of broken training dummies have beaten the metal into a battered lump.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 24,
+   "damage_dice": "2d7",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 640,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  },
+  "744704": {
+   "vnum": 744704,
+   "name": "crown iron lord mahn-tor circlet",
+   "short_desc": "the Iron Crown of Mahn-Tor",
+   "room_desc": "A cold iron crown lies here, set with a single black stone.",
+   "description": "A heavy circlet of dark iron set with a single smoky stone. It is cold to the touch even beside a fire, and it weighs on the brow like a command.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 25,
+   "wear_slot": "head",
+   "armor": 4,
+   "weight": 3,
+   "value": 530,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
+    }
+   ]
+  }
+ }
 }

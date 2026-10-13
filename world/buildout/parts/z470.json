@@ -1,0 +1,544 @@
+{
+ "job": "z470",
+ "rooms": {
+  "8358": "Black flagstones, cracked and puddled, spread across the lower yard where the wind off the hills scours the curtain wall. The wall rises beyond the stones, grim and windowless, streaked with soot. Straw and dung are ground into the paving, and the smell of horses hangs heavy in the cold air. The yard opens north toward the Castle Square, while worn tracks lead east and west along the foot of the wall.",
+  "8359": "The square is a wide court of black cobbles, hemmed in by the dark bulk of the castle and a row of low outbuildings. A well with an iron cover squats at its middle, ringed with hoof-scars and rust. Sentries have worn a path across the stones, and the smell of horses and old fear never quite leaves the air. North the great entrance of Castle N'Kai looms, east lies the stable front, and the yard spreads south and west.",
+  "8366": "A pointed arch of black stone frames the iron-bound doors of Castle N'Kai, the lintel carved with a ring of leering faces. A door leads north into the keep, and cold breath from the hall beyond drifts across the threshold. Torch brackets hang empty and sooty on either side, and the steps are worn hollow by many boots. The yard curves away east and west, and the square lies back to the south.",
+  "8370": "You stand in a vaulted vestibule where the daylight dies a few paces from the door. The walls are slick black stone hung with moth-eaten banners whose devices have faded past knowing. A single guttering torch throws long shadows over a floor scored by iron-shod feet. The door south returns to the castle entrance, and a narrow passage runs north into the gloom of the hallway.",
+  "8371": "The hallway earns its name: the walls sweat, the ceiling drips, and carved gargoyle faces grin from every corbel. A damp, sour smell rises from the flagstones, and the torchlight seems afraid to reach the corners. A door to the east opens on the grand staircase, and another to the west gives onto a small corridor. The hall runs on north, and the vestibule lies back south.",
+  "8372": "Here the hallway bends and dies against a blank wall of black blocks stained dark by years of seepage. Chains hang from rusted rings set high in the stone, swaying though no draught can be felt. The floor is gritty with old plaster fallen from the vault. The hall returns south, and an open archway leads west into a small corridor.",
+  "8375": "A cramped passage of bare stone, the ceiling low enough to make a tall man stoop. Smoke and grease have blackened the walls, and a worn runner of sacking muffles every footstep. The corridor continues north and south along the servants' wing, with the hallway open to the east. A plank door in the west wall leads into the servants' quarters.",
+  "8376": "The passage ends in a smoky doorway, and the stink of boiled cabbage and tallow drifts out of it. A broom, a bucket and a rack of rags stand against the wall as though they had never been moved. North the kitchen waits beyond its arch, south the corridor runs back, and a door in the west wall bears a scrubbed brass plate. The flags underfoot are worn smooth by endless scouring.",
+  "8377": "A vast black hearth fills one wall of the kitchen, its spit and chains thick with old grease. Dented copper pots hang dull from the beams, and a scarred table bears the marks of a thousand cleavers. The flagstones are slick, the air is hot and sour, and the smell of boiled bones lingers over everything. The only way out is the corridor south.",
+  "8380": "The mistress of the household keeps a narrow room, spotless in a way that feels more threatening than welcoming. A cot with a grey blanket stretched drum-tight stands beneath a window slit, and a ring of iron keys hangs from a peg. Every shelf is lined with folded linen, scrubbing brushes and cakes of lye soap. The door east leads back to the corridor.",
+  "8374": "The corridor narrows to a sliver of dark stone, lit by one rushlight in a cracked sconce. Scratches are gouged along the wall at the height of a hand, as though someone was dragged this way. The passage runs north deeper into the servants' wing and opens east onto the hallway. A heavy door to the west leads into more servants' quarters.",
+  "8378": "Straw pallets crowd the floor of this windowless dormitory, each with a rolled blanket and a battered wooden bowl. The air is thick with sweat, tallow and a thin sour note of fear. Names are scratched into the beams, some crossed out with a hard, deliberate hand. The only door lies east, back to the corridor.",
+  "8379": "A second dormitory, colder than the first, lies behind the door. Narrow bunks are stacked three high against the walls, and moth-eaten livery hangs from nails. A cracked mirror leans against a trunk, showing only a smear of grey. The distant clatter of the household and a muffled sob seep through the stone. The way out is east, back into the corridor.",
+  "8373": "A great stair of black marble sweeps upward from the middle of the hall, its balustrade carved with twisting serpents. The treads are worn pale at their centres, and the air above is wreathed in shadow. Beyond the stair the hall continues east toward the Hall Of Guests, and a door west leads back to the Horrid Hallway. You may climb up to the landing above.",
+  "8381": "Long tables of dark oak line this hall, set with tarnished plate for guests who never come. High windows of smoked glass let in a bruised grey light that never reaches the floor. Tapestries of hunts and executions cover the walls, their threads rotted at the edges. A cunningly panelled door in the east wall hides a study, a small stairway leads away south, and the grand staircase lies west.",
+  "8382": "Books crowd every wall of this low room, bound in cracked leather and chained to their shelves. The dust lies thick except along one well-trodden path to a reading desk. A lamp with a smoky glass hangs over open pages written in a crabbed and unfamiliar hand. West is the Hall Of Guests, and a trapdoor in the floor opens on a stair going down.",
+  "8383": "This tiny chamber was never meant to be found. Its walls are bare stone, scrawled with diagrams of circles and stars in dried brown pigment. An iron brazier stands cold at the centre, with a stool, a knife and a bowl beside it as if the work were only paused. A ladder climbs up to the library above.",
+  "8481": "A narrow stairway of worn black steps winds up from a low door that opens on the yard. Cold daylight spills through the archway, thinning to nothing a few steps higher. The treads are crusted with dried mud and straw carried in on stable boots. North the doorway gives onto the castle yard, and the steps climb up into the dark.",
+  "8365": "Hard-packed earth and black cobbles meet along the foot of the keep wall, trampled to mud where the stable carts turn. A rusted ring is set in the stone, and a wooden trough stands dry and cracked beside it. The yard runs south toward the stable front, while the castle entrance lies west. Above, the parapet cuts a jagged line against the sky.",
+  "8361": "The reek of horses is strongest here, rich and sharp, rolling out of the stable's broad doorway. Manure and trampled straw cake the cobbles, and a tethering post bristles with gnawed splinters. The stable door stands east, the castle yard runs north and south, and the square opens west. Iron rings in the wall show where mounts were once tied and where chains have since been fitted.",
+  "8368": "Rows of stalls run the length of the stable, their timbers scarred by hooves and teeth. Hay lies heaped in the lofts, damp and mouldering, and the whole building trembles faintly with the stamping of unseen weight. Lanterns hang on hooks, shuttered and black with soot. The yard lies west through the doors, and a trapdoor in the floor opens on steps leading down.",
+  "8369": "A low undercroft of packed earth and rough timbers lies beneath the stalls, where feed and harness were once stored. Damp trickles between the stones, and the ceiling drips onto a floor of black mud. Old bridles and broken tack rot in the corners, and claw marks mar the beams at the height of a kneeling man. The steps up lead back to the stable.",
+  "8360": "The yard here is rutted by cart wheels and pocked with puddles skinned in grey scum. A leaning woodpile and a broken cart sit against the wall, spokes rotted and axle snapped. Smoke from some hidden chimney smears the sky. The stable front lies north, and the yard runs on west.",
+  "8482": "The stair is no wider than a man's shoulders, spiralling tightly between walls of sweating black stone. Each step is hollowed by feet, and a rope rail, greasy with use, is the only help. Cold seeps from above, and the smell of stable straw drifts up from below. You may climb on, or descend toward the yard.",
+  "8483": "No torch burns in this hallway, and the dark seems to have weight, pressing on the eyes. The floor is bare boards, and the walls are panelled in wood gone black with age and damp. A dry ticking sounds somewhere inside the panelling and then stops. The hallway continues east, and the stair descends behind you.",
+  "8484": "The hall widens into a dark crossing where three doorless openings meet. Cobwebs hang from the beams in heavy grey curtains, and the boards groan with each step. A sweet, cloying smell, like old flowers and cold wax, drifts from the north. A narrow closet lies east, the hallway runs back west, and a grander room waits north.",
+  "8486": "Velvet couches the colour of dried blood crowd a lounge hung in black drapes, and the air is heavy with the scent of old perfume. Dust lies on everything but the cushions, which are crushed and hollowed as if lately left. Cold ashes fill a marble hearth, and not a single window admits any light. A hall lies south, and a ladder-stair climbs up to the attic.",
+  "8487": "Beneath the sloping beams, the attic is a jumble of broken furniture, trunks and shrouded shapes. Dust-sheets cover things that seem too tall and too narrow for chairs. Tiny slits in the roof let in threads of cold light, and the floor creaks like an old ship. The only way out is the hatch down to the lounge.",
+  "8485": "Shelves of yellowed linen rise to the ceiling in this closet, folded into squares as stiff as boards. A strange rust-brown stain spreads over the lowest sheets. The cedar that once scented the cupboard is long gone, replaced by a faint tang of iron. The only exit is west, back to the lounge.",
+  "8384": "You stand at the head of the grand staircase, where the black balustrade curls round and ends in a snarling stone head. A worn carpet, once crimson, runs along the landing in rags. Portraits of grim men and women in antique dress hang above, their painted eyes oddly bright. Steps lead down to the hall below, and the landing opens south into the upper hallway.",
+  "8385": "The upper hallway is a long gallery of black timber and stone, lit by narrow slits that admit a sullen grey. A threadbare carpet runs the length of the floor, worn through to bare boards at the centre. Shut doors set into the walls turn out to be false panels of painted wood. The grand staircase lies north, a short stub of hall ends east, and the gallery stretches on west.",
+  "8386": "The hallway ends in a blind wall hung with a cracked mirror whose glass shows the corridor in a darker light. A tall candle stub sits in a sconce, scabbed with old wax. The hall runs back west, and a door on the east side leads into a guest room.",
+  "8387": "A bed with black curtains stands in the middle of the guest room, the sheets still turned down for a visitor long gone. A washstand with a chipped basin sits by a slit window, and the water in it is stale and brown. The wardrobe door hangs open on bare hooks. The only way out is west into the hall.",
+  "8388": "The hallway turns here, and the old carpet gives way to bare flagstones polished by generations of feet. Shields blackened beyond recognition hang on the walls, each with a spearhead-shaped hole punched through the boss. North the hall carries on, and east it returns toward the stair.",
+  "8389": "Narrow windows of cloudy glass line one wall, each smeared with soot on the outside. Between them hang portraits so darkened that only the pale shapes of faces remain. A draught moans along the corridor like someone breathing through broken teeth. North the hall carries on, and south it turns back.",
+  "8390": "Doors face each other across the hall here, heavy things of black oak with iron studs. The one to the east is scored with deep scratches around the latch, and the one to the west is warm to the touch, though no fire burns near. The hallway continues north and south.",
+  "8391": "A tall candelabrum of black iron stands in the middle of the hall, its cups full of cold tallow. An open archway on the west side gives onto a dark chamber, while a closed door faces it on the east. The hallway runs north and south from here, the carpet thin and rucked.",
+  "8392": "Cold air pours down the hall from the north, where a pair of glass doors stand open onto a balcony. The sconces along the walls are gutted and black, and the carpet is stiff with damp. A broader passage leads east toward the court, and the hallway runs back south.",
+  "8393": "A narrow stone balcony juts from the castle wall, its parapet crumbling and furred with lichen. Far below, a pale frozen lake lies in a hollow of the hills, ringed by black rock and bare trees. A weathered iron stair drops down toward the ice, and the wind tugs at your cloak. The hallway lies back south.",
+  "8413": {
+   "description": "A broad sheet of grey ice lies beneath the castle's cliff, scoured clean by the wind and veined with white cracks. Snow lies in drifts along the margins, and black rock rises on every hand. A stair of rusted iron climbs the cliff up to the balcony. A dark cleft opens in the rock face to the north, where the ice runs to its edge.",
+   "look": "snow"
+  },
+  "8414": {
+   "description": "The rock face splits here into a ragged mouth, and the cold of the lake gives way to a deeper chill. Icicles hang in rows from the lip of the opening, and the floor is a slick of frost and grit. A faint odour of rot drifts out of the dark. The way north leads into a tunnel, and the lake lies south.",
+   "look": "cave"
+  },
+  "8415": {
+   "description": "The tunnel is rough-hewn rock, barely wider than outstretched arms, its walls glistening with wet. Old pick marks show where hands cut it, long before the castle was finished. The floor slopes gently, and the sound of dripping fills the dark. It runs north into deeper blackness and south toward the pale light of the lake.",
+   "look": "cave"
+  },
+  "8416": {
+   "description": "The tunnel bends sharply here, the rock rising into a low, rippled vault stained red-brown. Something has been smeared on the walls in long hand-wide streaks, and the dried marks flake like old rust. The reek of blood is stronger in this place. A broader opening leads east, and the tunnel runs back south.",
+   "look": "cave"
+  },
+  "8417": {
+   "description": "A stone altar slick with old gore fills the middle of this cavern, ringed by crude pillars of piled rock. Hooks of bronze hang from the roof on chains, and stained knives lie in niches cut in the wall. A worn stair spirals into the floor at the far side. The tunnel lies west, and the stair leads down.",
+   "look": "cave"
+  },
+  "8418": {
+   "description": "The stair begins as a chute cut straight into the rock, each step steep and slick. The air grows colder with every pace, and the glow from the altar room above dims quickly. Small handprints, many and many, mark the wall where others steadied themselves. The stair climbs up to the altar room and plunges down into the dark.",
+   "look": "cave"
+  },
+  "8419": {
+   "description": "Steps hewn from raw rock curve slowly downward, their edges worn to rounded lips. Water runs down the wall in thin threads and pools in the hollows of the treads. Somewhere below, a slow rhythmic scraping can be heard, and then silence. The stairs lead up and down.",
+   "look": "cave"
+  },
+  "8420": {
+   "description": "Hundreds of steps lie behind you and no end can be seen ahead. A rope of knotted hair, stiff with age, has been fixed along the rock as a handrail. The stone sweats, and the air smells of wet earth and rust. You can go up or down.",
+   "look": "cave"
+  },
+  "8421": {
+   "description": "The staircase widens briefly into a landing hacked out of the rock, with a tilted slab at one side where weary climbers might rest. Scratched tallies cover the slab in groups of five, hundreds upon hundreds. The cold here pricks like needles. The stair continues up and down from the landing.",
+   "look": "cave"
+  },
+  "8422": {
+   "description": "A faint wailing climbs the stair from below, thin and unending, rising and falling like wind in a flute. The steps here are cracked and slanted, and some have fallen away to leave gaps over blackness. The rock is slick with a bitter, greasy damp. The stairs run up, and down toward the source of the sound.",
+   "look": "cave"
+  },
+  "8423": {
+   "description": "A wide cavern opens at the foot of the stairs, its roof lost in dark and its floor strewn with bones. Wind gusting through unseen cracks makes a wailing that never ceases. A heavy door of black iron stands in the far wall. The stair climbs up behind you, and the door leads north to the House Of Death.",
+   "look": "cave"
+  },
+  "8424": {
+   "description": "Niches line this long, low chamber, each cut for a body and most of them filled with shapes wrapped in grey shrouds. The air is dry, stale and utterly still. Dust has settled on everything but a ring of bare floor at the centre. A single door leads back south.",
+   "look": "crypt"
+  },
+  "8394": "The hallway broadens into a processional way of tall pillars and black marble flags. Banners hang from iron arms, so heavy with dust that they no longer stir. At the east end a pair of tall doors leads into the court room, and the passage returns west toward the main gallery.",
+  "8395": "A long table covered in a black cloth stands at the head of the room, with a high chair behind it and a low stool before. The benches for onlookers are heaped with dust in grey drifts. Scorch marks and old stains mark the flags in front of the table. Doors lead west to the hallway and east before the royal chambers.",
+  "8396": "A small antechamber of fine, cold stone lies between the royal rooms, floored in black and white marble chequers. A statue of a hooded figure stands in an alcove, hands cupped around nothing. The King's Chamber lies north, the Queen's Chamber south, and the court room west, while a narrow door set into the east wall is cut flush with the stone.",
+  "8403": "A vast bed of black wood stands under a canopy of rotted velvet, its posts carved with twisting runes. A tall mirror in a silver frame has been turned to face the wall, and a great chest, locked and banded, stands beside it. The air tastes of ash and cold iron. Heavy curtains hide the windows, and the only door lies south.",
+  "8404": "A cramped landing behind a hidden door, little more than a ledge of stone with a hole of steps beyond. Cobwebs clog the corner, and the walls bear faint marks where hands have pressed through the dark. Cold air pulses upward from below as if the castle were breathing. The royal antechamber is west, and the staircase goes down.",
+  "8406": "The secret stairs descend in a tight spiral, each step a wedge of black stone barely wide enough for a foot. The ceiling presses low, and the wall rubs the shoulder on one side. No torch has ever burned here, and the dust underfoot lies undisturbed. The stairs lead up toward the landing and down into deeper dark.",
+  "8407": "A seam of white mineral veins the wall of the stair, glinting faintly where it catches the light. The steps are worn from long use, though the dust says no one has come lately. The air is dry and tastes of metal. You can climb up or descend.",
+  "8408": "Here the stair straightens into a long flight with a low arch overhead, every block carved with a small sign of a closed eye. The lowest step of the flight vanishes in shadow. A smell of old stone and cold ash settles in the throat. The flight runs up and down.",
+  "8409": "The stairs end at a heavy landing of black slabs, where the air is colder than a winter well. Rusted hinges show where a gate once stood, now torn aside and left bent. The sound of your own breathing is the only noise. The stair rises behind you, and steps descend into the Nether Vault.",
+  "8410": {
+   "description": "The vault is a broad chamber of black stone ribs rising to a dome lost in the dark, its floor etched with a great circle of grey runes. The cold is bitter, the silence absolute, and the runes seem to flicker when you look away. Rows of urns stand along the walls, sealed with lead. The stair leads up, and an arched opening leads east.",
+   "look": "crypt"
+  },
+  "8411": {
+   "description": "Long rows of stone biers fill the hall, each bearing a robed figure laid out as if for burial, hands crossed on rusted swords. Dust lies thick over cloth and bone, yet the tracks in it are fresh. A damp smell of old graves hangs in the air. The Nether Vault lies west, and a sloping ramp descends into the crypt below.",
+   "look": "crypt"
+  },
+  "8412": {
+   "description": "A coffin of black wood stands on a dais at the centre of the crypt, its lid carved with a bat-winged crest and its edges worn smooth by touch. The walls are lined with bare shelves, as though the occupant had no use for the dead of others. Candles burn in iron stands, though no hand lights them. A ramp leads up to the hall above, and a ragged hole in the floor gives on a way down.",
+   "look": "crypt"
+  },
+  "8426": {
+   "description": "The floor of the crypt gave way long ago, and this is what lay beneath: a low space of broken masonry and raw rock, where tomb-slabs lie tilted in the rubble. Bones of earlier burials poke from the walls. A cold wind slides in from a passage south, and a steep rise leads up to the crypt.",
+   "look": "crypt"
+  },
+  "8427": {
+   "description": "The passage opens into a small cavern, its roof dripping and its floor a litter of gravel and old droppings. Thin light creeps in from far off, where the mountain lets a little daylight through a crack. The way south squeezes into the crevice and out toward open country, while north a rough passage leads back toward the crypts.",
+   "look": "cave"
+  },
+  "8402": "A tall, narrow room hangs in ivory silk gone yellow, with a dressing table crowded with cracked bottles and pots of dried paint. The bed is made up in lace, though the pillow has long since stained brown. An ebony casket stands open and empty at its foot. The only door lies north.",
+  "8401": "The guest room is spartan, with a hard cot, a chair and a rack of pegs on bare plaster. A small barred window gives on a court fenced by black walls. A rug of worn wool lies curled at the edges, and the bedclothes smell of lamp-oil. The door west leads to the hallway.",
+  "8399": "No window lights this guest room, and the lamp on the table is cold and empty. Heavy curtains smother one wall, and under them the furniture is no more than lumps of shadow. A faint smell of damp wool and candle smoke clings to the air. The door east leads back to the hallway.",
+  "8398": "The bed in this room is a ruin of splintered posts and torn hangings, and dark stains have soaked into the boards underneath. Words are gouged in the plaster in a frantic hand, all crossed out and rewritten. The air hangs close and bitter. The way out is west.",
+  "8397": "Heat pours from the walls of this room as if a furnace burned in the masonry. The plaster is blistered, the curtains scorched to black rags, and the bed linen has crisped to brown flakes. A tarnished brazier at the centre glows with no fuel in it. You can only retreat through the door east.",
+  "8364": "Here the yard bends toward the keep, and the wall rises sheer on the other side, hung with the stubs of old chains. A water butt stands green and stagnant against the stone, and a ring of blackened cobbles shows where a fire once burned. The castle entrance lies east, and the yard continues south.",
+  "8363": "A heavy door in the west wall opens on the guards' quarters, studded with iron and hung with a drum-tight leather curtain. Before it the cobbles are chipped by drill-marks and sharp little scrapes of swordplay. The yard runs north and south, and the square lies east.",
+  "8362": "This corner of the yard is a dump of broken barrels, cracked shields and rotted crates piled against the wall. Weeds push through the paving in grey clumps. The air stinks of old urine and mould. The yard continues north, and east it widens toward the middle.",
+  "8367": "Long tables and benches fill a smoky hall that serves the garrison, the boards carved with dice-games and obscene verses. Weapon racks stand along the wall, half empty, and the cold hearth is heaped with scorched bones. A thick haze of pipe-smoke and stale ale clings to the beams. The door east leads to the yard, and a barren room lies west.",
+  "9149": "The room has been stripped to the walls: no bed, no table, only a bare floor and a rusted ring in the ceiling. A trapdoor stands open in one corner above a steep ladder of worn steps. The walls bear patches of whitewash scored with thin lines. The way east returns to the guards' quarters, and the stair goes down.",
+  "9150": {
+   "description": "The stair is so cramped that you must turn sideways to pass, and the stone steps are scored by chain links. Mould coats the wall in black velvet, and the air tastes of rust and old suffering. The steps climb up into the barren room, and a low passage runs north from the bottom.",
+   "look": "dungeon"
+  },
+  "9151": {
+   "description": "The corridor is bare and echoing, lined with iron-banded doors set in the stone. A gutter runs down the middle of the flags, rimmed with brown. A row of empty hooks stands on the wall at head height. Doors lead east to a storage room and west to the prison, and the stair lies south.",
+   "look": "dungeon"
+  },
+  "9152": "Barrels, crates and sacks are heaped to the roof in this storeroom, most of them rotted open and spilling black meal. Coils of rope and rusted fetters hang from nails by the door. A heap of mouldy blankets sits in a corner, ruffled as if lately slept in. The door west leads back to the corridor.",
+  "9153": {
+   "description": "A row of narrow cells lines the room, each with a stone shelf for a bed and a ring set in the floor. The iron bars are thick with rust, and the straw in every cell is old and black. Writing in blood and charcoal covers the walls, and the scent of fear is ground into the very stone. The door east leads out to the corridor.",
+   "look": "dungeon"
+  },
+  "8450": {
+   "description": "Rough steps cut in the rock climb to a square opening overhead, where a ladder of iron rungs leads up toward fresh air and the smell of leaf mould. The hatch above has been forced open, its chain hanging slack. The tunnel here tangles back on itself, three of its ways bending round to the same junction. The only clear way onward leads south.",
+   "look": "cave"
+  },
+  "8467": {
+   "description": "Four passages meet in a ragged crossing, the rock between them honeycombed with old niches. Chalk marks have been scrawled on the walls, arrows and crosses overlapping until none can be trusted. Water gathers in a shallow puddle at the centre. The ways lead north, east, south and west, and each looks much the same as the others.",
+   "look": "cave"
+  },
+  "8451": {
+   "description": "The tunnel narrows into a crack where the walls squeeze the shoulders, and the roof sags with fallen slabs. Pale roots hang through the rock like grey fingers. A trickle of water slides down one wall. It leads north toward the ladder and east deeper into the dark.",
+   "look": "cave"
+  },
+  "8452": {
+   "description": "The passage is smoother here, as if a river once scoured it, and the floor is a bed of fine grey silt. Bare footprints are pressed into the silt, all of them pointing the same way. The air is damp and tastes of copper. The tunnel runs north, and returns west.",
+   "look": "cave"
+  },
+  "8453": {
+   "description": "A faint blue glow comes from patches of fungus on the roof, enough to show the shapes of the rock but not to read by. The stone is warm and furred with damp, and spores drift down like pale dust. The tunnel leads east, and south it falls back.",
+   "look": "cave"
+  },
+  "8454": {
+   "description": "The tunnel bends hard around a pillar of unworked stone, as though the diggers dared not remove it. Scratches circle the pillar at head height, a spiral cut again and again. A cold wind breathes from the passage on the far side of the bend. The way returns west, and runs on south.",
+   "look": "cave"
+  },
+  "8455": {
+   "description": "The floor is laid with flat slabs for a stretch, the only dressed stone yet seen, and cart wheels have worn two deep grooves along it. Rusted iron staples are driven into the wall at intervals to carry lanterns. It runs straight north and south.",
+   "look": "cave"
+  },
+  "8456": {
+   "description": "A rockfall has half-choked the passage, leaving a rough slope of boulders to scramble over. Between the stones, tufts of white bone dust show where something was crushed long ago. The air is stale and silent, and each step rattles loose pebbles. The way leads north back along the straight, and west beyond the slope.",
+   "look": "cave"
+  },
+  "8457": {
+   "description": "Water has gathered across the floor in a shallow black pool, and the roof drips into it with a slow plink. Stalactites hang overhead like rows of teeth, some joined to the floor by thin pillars. The reek of damp stone is thick. The tunnel runs east and west beyond the pool.",
+   "look": "cave"
+  },
+  "8458": {
+   "description": "The walls here are scorched dark, as if flame once roared through the passage. Streaks of soot climb the roof, and a crust of fused rock lines the floor. The air is dry and bitter on the tongue. The tunnel goes east back along the passage and turns south.",
+   "look": "cave"
+  },
+  "8459": {
+   "description": "A low stretch breaks the tunnel, its roof so near the floor that you must crawl in places. Names and dates are scratched at knee height on the walls, the oldest worn almost smooth. A chill draught tugs from further on. The way north leads back, and west the passage winds on.",
+   "look": "cave"
+  },
+  "8460": {
+   "description": "The tunnel drops through a rough stair of three steps and runs on between walls hung with long ribbons of flowstone. A small shrine has been scratched into one wall, a stick figure with a ring of dots about its head. The floor is gritty with broken limestone, and the sound of dripping comes from ahead. East lies the low crawl, and the way continues south.",
+   "look": "cave"
+  },
+  "8461": {
+   "description": "A long straight run of tunnel, the walls regular enough to have been dressed with tools. Lantern hooks of bronze stand every few paces, green with verdigris. The dust underfoot has been scuffed into a clear lane by passing feet. The tunnel leads north and south.",
+   "look": "cave"
+  },
+  "8462": {
+   "description": "The passage dips to a low, dark corner where the walls turn, and a pool of stagnant water lies across the path. A pale film of fungus covers the stones just above the waterline. The stink of rot is thick. The way leads north, back up the straight run, and east round the bend.",
+   "look": "cave"
+  },
+  "8463": {
+   "description": "Carved on the walls in shallow relief are lines of warriors marching in profile, shields overlapped, spears raised. The carving is crude but powerful, and each warrior has a hollow where an eye should be. The tunnel follows the procession west and east.",
+   "look": "cave"
+  },
+  "8464": {
+   "description": "The warriors give way to ships: long, snake-prowed hulls carved in rows across the rock, oars raised like the legs of an insect. The cold has a salt edge here, as if some sea stood just out of sight. A bend sends the tunnel west and south.",
+   "look": "cave"
+  },
+  "8465": {
+   "description": "A pile of broken ox-bones and shattered cups lies heaped in a corner of the passage, the remains of some feast set down in the dark. Old drips of tallow cling to a ledge. The air is thick with a smell of cold smoke and mead gone sour. The tunnel climbs north and goes on west.",
+   "look": "cave"
+  },
+  "8466": {
+   "description": "The tunnel opens into a bay of rock where three ways meet. On the wall a rune has been cut as tall as a man, a jagged character of forked lines packed with black pitch. Iron nails, long since headless, jut from the stone in lines below it. The way west leads toward the tangled crossing, east back along the ship carvings, and south toward a wider hall.",
+   "look": "cave"
+  },
+  "8468": {
+   "description": "The tunnel ends in a broad doorless arch, flanked by two great stone pillars carved as bearded men, their eyes hollowed and their hands clasped on sword hilts. A heavy cold stands in the air like a held breath. The tunnel runs back north, and an arch south opens on the Guardians Hall.",
+   "look": "cave"
+  },
+  "8469": "Rows of tall stone figures line this hall, armoured and bearded, each guarding the empty air. Their faces are worn nearly smooth, their swords chipped, and a skin of dust covers their shoulders. A pair of great oak doors bound with bronze stands closed at the far end to the south, and the tunnel lies north.",
+  "8470": "A long table of black oak runs down the middle of the hall, set with horn cups and wooden platters laid out for a feast that never began. The benches are cobwebbed, and a firepit of white ashes sits cold in the floor. Smoke-stained shields cover the walls. Doors lead north to the guardians, east into a passage, and storerooms stand south and west.",
+  "8473": "A short stretch of passage links the feast hall and the burial chamber, its walls hung with rotted skins and iron torch-rings. Carved horses and wolves run along the stone, their eyes picked out with chips of amber. The air tastes of dry earth and old death. West lies the hall, and a bronze-bound door leads east.",
+  "8474": {
+   "description": "A great barrow-chamber opens here, its roof held by timber pillars as thick as oaks and carved with coiling beasts. The floor is hard-trodden earth strewn with weapons, cups and rotted offerings, and fine dust hangs in the air like smoke. The chamber stretches away north and south. The door west leads back to the tunnel.",
+   "look": "crypt"
+  },
+  "8475": {
+   "description": "In this corner of the chamber lie heaped shields, round and painted, rotted so that only the iron bosses still gleam. A broken harp leans in the angle of the timber wall. The earthen floor is spongy with age. The chamber continues east along the wall and south toward the middle.",
+   "look": "crypt"
+  },
+  "8476": {
+   "description": "Here stand rows of clay jars sealed with wax and sunk to their necks in the earth, each one marked with a rune. Some have cracked and weep a thick black residue. The timber wall is gnawed and splintered at its foot. The wall runs west, and south the chamber slopes toward the longboat.",
+   "look": "crypt"
+  },
+  "8477": {
+   "description": "A ship's prow of blackened oak rears out of the earth, carved as a snarling wolf head with fangs of whale-bone. The long boat itself is sunk into the floor, its hull stretching away in darkness. A plank gangway leads west into the hull, where the chieftain's resting place lies. The chamber runs north and south along the ship's side.",
+   "look": "crypt"
+  },
+  "8478": {
+   "description": "A heap of rusted spears and axe-heads lies against the timbers, bundled with leather straps that crumble at a touch. The ship's stern post rises beside them, carved with twisting knotwork. The soil has been churned where something has been digging. The chamber leads north toward the boat's prow and west along the wall.",
+   "look": "crypt"
+  },
+  "8479": {
+   "description": "A line of pitted human skulls sits on a shelf of earth in this corner, each wearing a ring of tarnished silver about the brow. Cold air sighs from a crack in the timber wall. The dust is deep and hard-packed, as though nobody has stirred it in an age. The chamber returns north to the entrance and runs east beside the ship.",
+   "look": "crypt"
+  },
+  "8480": {
+   "description": "The hull's inner chamber is a low timber cabin hung with sailcloth rotted into black lace. In the middle lies a raised bier of oak, bearing a great sword, a horned helm and a heap of bone long since gone to grey. The air is bitter and the dark presses close. The gangway east returns to the chamber.",
+   "look": "crypt"
+  },
+  "8472": "Barrels of salted meat, split open and long rotted, fill this storeroom to the roof. Bundles of straw and bone clog the corners. A trestle with a few blackened knives stands near the door. The only way out is north to the feast hall.",
+  "8471": "This storeroom holds stacked sacks of grain long turned to black powder, and a rack of drinking horns with their rims chewed away. Amphorae lie broken and spilled, with dried wine staining the floor like old blood. The air is dry and sour. The only way out is east to the feast hall.",
+  "9154": "A hall of polished ebon stone stretches away, its pillars rising into a ceiling of unbroken shadow. Black glass lamps burn with a cold white flame, and the floor shows your reflection, long and wavering. At the far end a high seat stands on a dais of nine steps. The only way out is a stair leading south toward the vampire's resting place."
+ },
+ "extras": {
+  "8359": [
+   {
+    "keywords": "well cover iron",
+    "description": "The well is capped with a heavy iron lid, bolted down and scored with pale scratches from the inside. Nobody in the castle will say what it was sealed against."
+   }
+  ],
+  "8372": [
+   {
+    "keywords": "chains rings",
+    "description": "The chains end in open shackles worn bright on the inside. They are far too short to have held anything standing."
+   }
+  ],
+  "8383": [
+   {
+    "keywords": "diagrams circles stars pigment",
+    "description": "The diagrams are drawn in layer upon layer of brown pigment, each ring crossing the last. At the centre of every one is the same small mark, shaped like a closed eye."
+   }
+  ],
+  "8396": [
+   {
+    "keywords": "statue hooded figure alcove",
+    "description": "The statue is cut from a single block of black stone, its face hidden in a deep hood. Its cupped hands are stained dark, as if something was once poured into them."
+   }
+  ],
+  "8423": [
+   {
+    "keywords": "bones floor",
+    "description": "The bones lie in drifts and heaps, human and otherwise, all gnawed clean and snapped for the marrow. Nothing here has been buried."
+   }
+  ],
+  "8412": [
+   {
+    "keywords": "coffin lid crest",
+    "description": "The lid bears a crest of spread bat wings above a drinking cup. The wood is cold as stone, and no dust has settled on it in all the years of the castle."
+   }
+  ],
+  "8454": [
+   {
+    "keywords": "pillar spiral scratches",
+    "description": "The scratches spiral upward in a hundred loops, each loop a little tighter than the last. Whoever made them was counting something, and ran out of wall."
+   }
+  ],
+  "8466": [
+   {
+    "keywords": "rune pitch character",
+    "description": "The rune is a fork of three lines splitting from one stem, packed with pitch that still smells sharp. It looks like a warning, or a wolf's paw."
+   }
+  ],
+  "8477": [
+   {
+    "keywords": "prow wolf head figurehead",
+    "description": "The wolf's head is carved with astonishing skill, mouth open and brow furrowed. Its eyes are set with black stones that seem to follow whoever passes."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "ostragoth-guard",
+   "keywords": "castle guard soldier",
+   "short_desc": "a black-cloaked castle guard",
+   "long_desc": "A black-cloaked castle guard stands watch here, one gauntlet resting on his sword.",
+   "description": "A hard-faced soldier in a coat of dark mail, the badge of Castle N'Kai stitched on his cloak. His eyes are bloodshot from long watches, and he looks at strangers as one looks at a rat in the larder.",
+   "kind": "humanoid",
+   "level": 13,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "The Castle Yard",
+    "The Castle Square",
+    "The Entrance To Castle N'Kai",
+    "Inside The Castle",
+    "The Guards' Quarters",
+    "The Horrid Hallway",
+    "In Front Of The Stable",
+    "The Stable"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "dented-castle-helm",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "tunnel-spider",
+   "keywords": "pale tunnel spider",
+   "short_desc": "a pale tunnel spider",
+   "long_desc": "A pale tunnel spider clings to the rock, its fat body twitching as it senses you.",
+   "description": "A spider the size of a hound, bone-white from a life without light. Its legs end in hooked claws that click on the stone, and its eight blind eyes are milky and wet.",
+   "kind": "animal",
+   "level": 14,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Tunnel",
+    "A Cave Tunnel",
+    "The Cave Of Wailing"
+   ],
+   "count": 4,
+   "drops": []
+  },
+  {
+   "id": "barrow-skeleton",
+   "keywords": "barrow skeleton warrior bones",
+   "short_desc": "a barrow skeleton",
+   "long_desc": "A barrow skeleton rattles here, hung with scraps of mail and clutching a notched blade.",
+   "description": "A tall skeleton held together by dark sinew and bad magic. Rags of rotted mail dangle from its ribs, and a cold green spark burns deep in each eye socket.",
+   "kind": "undead",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Guardians Hall",
+    "A Hall Of Feast",
+    "The Tunnel",
+    "The Six Thousand Stairs",
+    "Storage Room",
+    "The Secret Stairs",
+    "The Nether Vault",
+    "The Hall Of The Unliving"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "dented-castle-helm",
+     "chance": 10
+    },
+    {
+     "item": "fenrir-bearded-axe",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "skinless-cultist",
+   "keywords": "skinless cultist flayer",
+   "short_desc": "a skinless cultist",
+   "long_desc": "A skinless cultist crouches here, red muscle glistening in the dark as he murmurs a prayer.",
+   "description": "A gaunt figure whose skin has been peeled away in ritual, leaving raw red flesh bound in wet linen. He chants in a low whisper, and his hands are never far from the curved blade at his belt.",
+   "kind": "humanoid",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "The Altar Room Of The Skinless Ones",
+    "The Cave Of Wailing",
+    "At The Cave Entrance",
+    "A Cave Tunnel"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "flayers-curved-knife",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "draugr-house-carl",
+   "keywords": "draugr house carl warrior",
+   "short_desc": "a draugr house-carl",
+   "long_desc": "A draugr house-carl stalks the barrow, its grey hide stretched tight over bulging bones.",
+   "description": "A hulking corpse in the rotted mail of the old north, its skin grey and swollen like drowned leather. It guards its chieftain's rest with a hatred that death has not dulled.",
+   "kind": "undead",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "The Burial Room Of Fenrir",
+    "The Entrance To The Longboat",
+    "The Tunnel"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "fenrir-bearded-axe",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "fenrir-wolf-jarl",
+   "keywords": "fenrir wolf jarl draugr chieftain",
+   "short_desc": "Fenrir, the Wolf-Jarl",
+   "long_desc": "Fenrir the Wolf-Jarl sits upright on his bier, a dead king with burning eyes and a great axe across his knees.",
+   "description": "The long-dead chieftain of a northern host, huge even in death, with a braided beard stiff as wire and a horned helm sunk over his brow. Frost clings to his mail, and his eyes burn with a pale, hungry fire.",
+   "kind": "undead",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "The Restingplace Of Fenrir"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "fenrir-bearded-axe",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "ostragoth-sorcerer-lord",
+   "keywords": "ostragoth sorcerer lord mage",
+   "short_desc": "Ostragoth, the sorcerer-lord",
+   "long_desc": "Ostragoth the sorcerer-lord stands in his chamber, tall and gaunt, black fire coiling about his fingers.",
+   "description": "A tall, hollow-cheeked man in robes the colour of a starless night, his eyes two points of cold light in a face like old parchment. Power gathers around him like a storm, and the air tastes of ash and iron whenever he moves.",
+   "kind": "humanoid",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -1000,
+   "rooms": [
+    "The King's Chamber"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "ostragoth-black-glass-staff",
+     "chance": 35
+    },
+    {
+     "item": "ostragoth-night-mantle",
+     "chance": 35
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "dented-castle-helm",
+   "keywords": "dented castle helm iron",
+   "short_desc": "a dented castle helm",
+   "room_desc": "A dented iron helm lies here, stamped with a black tower.",
+   "description": "A plain iron helm stamped with the badge of Castle N'Kai. The brow is dented where a blow once rang it, and the padding smells of old sweat.",
+   "kind": "armor",
+   "level": 13,
+   "wear_slot": "head"
+  },
+  {
+   "id": "flayers-curved-knife",
+   "keywords": "flayer curved knife blade",
+   "short_desc": "a flayer's curved knife",
+   "room_desc": "A curved knife with a stained bone handle lies here.",
+   "description": "A narrow, hooked blade used for the rites of the Skinless Ones. The edge is whetted fine, and the handle of yellow bone is dark with old stains.",
+   "kind": "weapon",
+   "level": 18,
+   "weapon_type": "pierce"
+  },
+  {
+   "id": "fenrir-bearded-axe",
+   "keywords": "fenrir bearded axe",
+   "short_desc": "a bearded axe of the old north",
+   "room_desc": "A heavy bearded axe lies here, runes cut into its blade.",
+   "description": "A broad axe with a hooked beard, its blade pitted with age and incised with wolf-runes. The haft is dark ash bound with greasy leather.",
+   "kind": "weapon",
+   "level": 20,
+   "weapon_type": "slash",
+   "bonus": {
+    "hitroll": 2
+   }
+  },
+  {
+   "id": "ostragoth-black-glass-staff",
+   "keywords": "ostragoth black glass staff",
+   "short_desc": "a staff of black glass",
+   "room_desc": "A staff of smooth black glass lies here, cold to the eye.",
+   "description": "A seven-foot staff of black volcanic glass, polished to a mirror and capped with a silver claw. Light seems to sink into it, and it hums faintly in the hand.",
+   "kind": "weapon",
+   "level": 21,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  },
+  {
+   "id": "ostragoth-night-mantle",
+   "keywords": "ostragoth night mantle cloak",
+   "short_desc": "a mantle of night-black silk",
+   "room_desc": "A mantle of night-black silk lies here, heavy and cool.",
+   "description": "A mantle of silk so dark it seems to drink the light, lined in grey fur and clasped with a silver brooch in the shape of a closed eye. It is warm only where it touches you.",
+   "kind": "armor",
+   "level": 21,
+   "wear_slot": "about",
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}

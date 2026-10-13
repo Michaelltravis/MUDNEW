@@ -966,6 +966,318 @@
    "dir": "up",
    "to": 10914,
    "why": "a way back out"
+  },
+  {
+   "from": 20601,
+   "dir": "north",
+   "to": 20600,
+   "why": "the way back"
+  },
+  {
+   "from": 20604,
+   "dir": "south",
+   "to": 20610,
+   "why": "the way back"
+  },
+  {
+   "from": 20638,
+   "dir": "east",
+   "to": 20637,
+   "why": "the way back"
+  },
+  {
+   "from": 20712,
+   "dir": "east",
+   "to": 20711,
+   "why": "the way back"
+  },
+  {
+   "from": 24263,
+   "dir": "north",
+   "to": 24259,
+   "why": "the way back"
+  },
+  {
+   "from": 20602,
+   "dir": "north",
+   "to": 20601,
+   "why": "map neighbour"
+  },
+  {
+   "from": 20601,
+   "dir": "south",
+   "to": 20602,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24241,
+   "dir": "south",
+   "to": 24240,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24240,
+   "dir": "north",
+   "to": 24241,
+   "why": "map neighbour"
+  },
+  {
+   "from": 20603,
+   "dir": "west",
+   "to": 20602,
+   "why": "map neighbour"
+  },
+  {
+   "from": 20602,
+   "dir": "east",
+   "to": 20603,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24242,
+   "dir": "south",
+   "to": 24241,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24241,
+   "dir": "north",
+   "to": 24242,
+   "why": "map neighbour"
+  },
+  {
+   "from": 20605,
+   "dir": "west",
+   "to": 20603,
+   "why": "map neighbour"
+  },
+  {
+   "from": 20603,
+   "dir": "east",
+   "to": 20605,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24243,
+   "dir": "west",
+   "to": 24242,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24242,
+   "dir": "east",
+   "to": 24243,
+   "why": "map neighbour"
+  },
+  {
+   "from": 20606,
+   "dir": "west",
+   "to": 20605,
+   "why": "map neighbour"
+  },
+  {
+   "from": 20605,
+   "dir": "east",
+   "to": 20606,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24244,
+   "dir": "west",
+   "to": 24243,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24243,
+   "dir": "east",
+   "to": 24244,
+   "why": "map neighbour"
+  },
+  {
+   "from": 20609,
+   "dir": "west",
+   "to": 20606,
+   "why": "map neighbour"
+  },
+  {
+   "from": 20606,
+   "dir": "east",
+   "to": 20609,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24245,
+   "dir": "west",
+   "to": 24244,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24244,
+   "dir": "east",
+   "to": 24245,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24246,
+   "dir": "north",
+   "to": 24245,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24245,
+   "dir": "south",
+   "to": 24246,
+   "why": "map neighbour"
+  },
+  {
+   "from": 6677,
+   "dir": "up",
+   "to": 6676,
+   "why": "the way back"
+  },
+  {
+   "from": 6678,
+   "dir": "up",
+   "to": 6677,
+   "why": "the way back"
+  },
+  {
+   "from": 24602,
+   "dir": "south",
+   "to": 24601,
+   "why": "the way back"
+  },
+  {
+   "from": 24603,
+   "dir": "west",
+   "to": 24602,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24602,
+   "dir": "east",
+   "to": 24603,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24605,
+   "dir": "south",
+   "to": 24602,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24602,
+   "dir": "north",
+   "to": 24605,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24608,
+   "dir": "east",
+   "to": 24602,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24602,
+   "dir": "west",
+   "to": 24608,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24612,
+   "dir": "up",
+   "to": 24610,
+   "why": "the way back"
+  },
+  {
+   "from": 24612,
+   "dir": "south",
+   "to": 24607,
+   "why": "the way back"
+  },
+  {
+   "from": 24613,
+   "dir": "east",
+   "to": 24612,
+   "why": "the way back"
+  },
+  {
+   "from": 24612,
+   "dir": "east",
+   "to": 24607,
+   "why": "the way back"
+  },
+  {
+   "from": 24620,
+   "dir": "east",
+   "to": 24619,
+   "why": "the way back"
+  },
+  {
+   "from": 24612,
+   "dir": "down",
+   "to": 24607,
+   "why": "the way back"
+  },
+  {
+   "from": 24633,
+   "dir": "north",
+   "to": 24632,
+   "why": "the way back"
+  },
+  {
+   "from": 24642,
+   "dir": "west",
+   "to": 24641,
+   "why": "the way back"
+  },
+  {
+   "from": 24699,
+   "dir": "east",
+   "to": 24685,
+   "why": "the way back"
+  },
+  {
+   "from": 24688,
+   "dir": "east",
+   "to": 24699,
+   "why": "the way back"
+  },
+  {
+   "from": 24604,
+   "dir": "south",
+   "to": 24603,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24603,
+   "dir": "north",
+   "to": 24604,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24606,
+   "dir": "south",
+   "to": 24605,
+   "why": "map neighbour"
+  },
+  {
+   "from": 24605,
+   "dir": "north",
+   "to": 24606,
+   "why": "map neighbour"
+  },
+  {
+   "from": 9154,
+   "dir": "west",
+   "to": 8411,
+   "why": "map neighbour"
+  },
+  {
+   "from": 8411,
+   "dir": "east",
+   "to": 9154,
+   "why": "map neighbour"
   }
  ],
  "still_cut_off": []

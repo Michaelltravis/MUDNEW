@@ -24,8 +24,9 @@
      "description": "To the west lies In front of a pier at an island."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and west.",
-   "placeholder": true
+   "description": "A curve of grey shingle is cluttered with the leavings of a hundred\nwrecks: split barrels, rope gone stiff as wire, bleached spars and a\nship's lantern with no glass. The waves seem to arrive a long moment\nafter you see them break. To the west a rickety pier runs out over the\nwater, and a trodden way leads inland to the north. A cleft in the rocks\nat the beach's edge breathes cold air.",
+   "look": "shore",
+   "extra_descs": {}
   },
   "2401": {
    "vnum": 2401,
@@ -51,8 +52,14 @@
      "description": "To the west lies A Well Traveled Path."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead east, south\nand west.",
-   "placeholder": true
+   "description": "The forest draws back here from the beach in a ragged half circle,\nleaving a clearing of thin grass and trodden earth. Gulls call from\nsomewhere above, but their cries reach you a heartbeat late, as if from\nfar away. A narrow track enters the trees to the west, while the beach\nlies to the south. In the east, a dark mouth opens in a bank of rock\noverhung with ferns.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649600,
+     "max": 1
+    }
+   ]
   },
   "2402": {
    "vnum": 2402,
@@ -74,8 +81,14 @@
      "description": "To the west lies A Clearing In The Path."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead east and west.",
-   "placeholder": true
+   "description": "The path is well used, a pale ribbon of beaten earth between ferns and\ntall straight trees. Every step seems to take a little longer than it\nshould, and the birdsong in the leaves arrives after the birds have\nflown. Cart ruts, long dried, wind off between the trunks. The track\nruns east to a clearing by the shore and west on deeper into the forest.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649601,
+     "max": 1
+    }
+   ]
   },
   "2403": {
    "vnum": 2403,
@@ -97,8 +110,8 @@
      "description": "To the east lies A Well Traveled Path."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead north and east.",
-   "placeholder": true
+   "description": "A small clearing opens in the path, ringed by old oaks whose roots crawl\nacross the open ground like sleeping snakes. Shafts of green light fall\nat a slant and seem to hang rather than move. A fire ring of blackened\nstones holds only damp ash. The track leads east toward a well-trodden\nstretch, and a fainter way leaves to the north.",
+   "extra_descs": {}
   },
   "2404": {
    "vnum": 2404,
@@ -120,8 +133,8 @@
      "description": "To the south lies A Clearing In The Path."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east and south.",
-   "placeholder": true
+   "description": "The path here is endless in the way of a dream: the same trunks, the\nsame ferns and the same slant of green light, however far you walk. Moss\ngrows thick on one face of every trunk, though the trees seem to lean\nevery which way. Your own footfalls come back to you from behind. The\npath bends east toward a crowded clearing and south toward the open\nspace you left.",
+   "extra_descs": {}
   },
   "2405": {
    "vnum": 2405,
@@ -147,8 +160,14 @@
      "description": "To the west lies The Endless Path Thru The Forest."
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Brambles and young birches crowd close about this small clearing, so\nthat the sky is only a rag of grey overhead. A fallen tree lies half\nsunk in moss, its bark peeling in long slow curls. A sweet, drowsy smell\nhangs in the air and weighs on the eyelids. Paths leave in three\ndirections: north toward rocks, east along a bend in the trail, and west\nthe way you came.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649601,
+     "max": 1
+    }
+   ]
   },
   "2406": {
    "vnum": 2406,
@@ -170,8 +189,8 @@
      "description": "To the west lies A Small Crowded Clearing."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north and west.",
-   "placeholder": true
+   "description": "The trail bends sharply round a mossy boulder cracked by a single old\noak growing from the fissure. The air hangs heavy and sweet, and the\ndrone of unseen insects seems to arrive from a different hour. Mushrooms\nring the stone in pale circles. The trail runs west to the crowded\nclearing, and north to a dark tunnel in the hillside.",
+   "extra_descs": {}
   },
   "2407": {
    "vnum": 2407,
@@ -195,8 +214,9 @@
      "description": "To the south lies A Bend In The Trail."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
-   "placeholder": true
+   "description": "The tunnel burrows through the hill in a long straight line, its walls\nhung with roots and glistening with damp. The dark is complete a few\npaces in, and your own footsteps seem to follow you rather than lead. A\nsmell of turned earth and stale water lies thick in the air. The tunnel\nleads north to a hillside, and south back to the bend in the trail.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2408": {
    "vnum": 2408,
@@ -218,8 +238,8 @@
      "description": "To the west lies A Deep, Dark Cave."
     }
    },
-   "description": "A narrow path winds between the hillocks. The ground rises and falls in\ngrassy folds. Ways lead south and west.",
-   "placeholder": true
+   "description": "The trail breaks out of the trees onto a ledge of broken grey rock where\nthe hill shoulders up from the forest. Lichen has made yellow maps of\nthe boulders, and the wind comes in slow, sighing gusts. Far below, the\ncanopy rolls away in a green sea. To the west a gap in the hillside\nopens on a deep, dark cave, and the clearing lies south.",
+   "extra_descs": {}
   },
   "2409": {
    "vnum": 2409,
@@ -239,8 +259,15 @@
      "description": "To the east lies A Rocky Bend In The Trail."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
-   "placeholder": true
+   "description": "A huge cavern opens out of the hill, so deep that the entrance is only a\npale coin behind you. The air is thick and warm, and the very dark seems\nto move like slow water. Mounds of shed scale, as large as roof tiles,\nlie scattered across a floor of cracked stone. A vast, slow rumble\nshakes the dust from the roof at long intervals. The only way out is the\nopening to the east.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649606,
+     "max": 1
+    }
+   ]
   },
   "2410": {
    "vnum": 2410,
@@ -262,8 +289,14 @@
      "description": "To the east lies Entrance To The Hills."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead north and east.",
-   "placeholder": true
+   "description": "The path takes a sharp curve around the shoulder of a hill, where wiry\ngrass bends before a wind that never quite arrives. Outcrops of grey\nstone stand like sleeping beasts among the heather. The trail ahead\nrises to the north, while the entrance to the hills lies east. Your\nshadow seems to lag behind you on the turf.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649603,
+     "max": 1
+    }
+   ]
   },
   "2411": {
    "vnum": 2411,
@@ -285,8 +318,8 @@
      "description": "To the west lies A Sharp Curve In The Path."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead south and west.",
-   "placeholder": true
+   "description": "You come out of the tunnel onto a bare green slope, where the hills rise\nin gentle folds under a pale, low sky. A cairn of white stones marks the\nentrance, and the wind brings the sound of the sea a little late. Sheep\ntracks wind off across the turf. The path continues west along the\nhillside, and the tunnel mouth lies south.",
+   "extra_descs": {}
   },
   "2412": {
    "vnum": 2412,
@@ -308,8 +341,8 @@
      "description": "To the south lies A Sharp Curve In The Path."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead east and south.",
-   "placeholder": true
+   "description": "The ground steepens and turns to stony scree, with gorse clinging in the\nhollows and the sky growing wide and bright above. Each stone you kick\nrolls a slow, long way before it stops. A weathered post leans by the\npath, its carved marks worn to nothing. The trail goes east toward the\nsummit, and south back down the hillside.",
+   "extra_descs": {}
   },
   "2413": {
    "vnum": 2413,
@@ -331,8 +364,8 @@
      "description": "To the west lies Another Bend In The Trail."
     }
    },
-   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead north and west.",
-   "placeholder": true
+   "description": "A last steep rise of bare rock lies here below the summit, scarred by\nweather and stained orange with lichen. The wind sings thin and slow\nover the stone, and the sound arrives well after the gust that made it.\nBelow, the whole island lies spread out in the haze, the forest dark and\nthe beach a pale thread. The path climbs north to the plateau and falls\nwest toward the bend you left.",
+   "extra_descs": {}
   },
   "2414": {
    "vnum": 2414,
@@ -352,8 +385,9 @@
      "description": "To the east lies A Curve In The Caves."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
-   "placeholder": true
+   "description": "The cave mouth is a low arch of weathered rock, hung with fern and\ndripping slowly into a pool the size of a hat. Daylight reaches only a\nfew paces inside, and then thickens like honey before giving way to\ndark. Your voice comes back a breath too late. The cave leads on east\ninto the hill.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2415": {
    "vnum": 2415,
@@ -377,8 +411,9 @@
      "description": "To the west lies Entrance Into The Caves."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The tunnel bends sharply here, its walls pressed smooth and glossy by a\nlong seep of water. A faint drip counts out a time that does not match\nyour pulse. The floor is damp clay printed with the old tracks of heavy\npaws. The passage turns north toward a sharper bend, and west toward the\ncave mouth.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2416": {
    "vnum": 2416,
@@ -402,8 +437,19 @@
      "description": "To the east lies A Sharp Bend."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and east.",
-   "placeholder": true
+   "description": "The cave twists again, narrowing to a crooked throat where rock teeth\nhang from the roof and rise from the floor. The air is close and still,\nand the dust you stir hangs in the dark far longer than it should. A\nsmear of old soot on the wall marks where some visitor turned back. The\npassage goes north to a tight twist and east to the sharp bend.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649602,
+     "max": 1
+    },
+    {
+     "vnum": 649604,
+     "max": 1
+    }
+   ]
   },
   "2417": {
    "vnum": 2417,
@@ -427,8 +473,9 @@
      "description": "To the west lies Another Curve."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and west.",
-   "placeholder": true
+   "description": "At this sharp bend the roof of the cave drops so low that you must\nstoop, and the rock wears a fur of pale moss. Footsteps seem to sound a\nmoment after your feet leave the ground. Scratched arrows, half healed\nover by mineral crust, point in two directions at once. The tunnel runs\nsouth to the curve you passed, and west on into the dark.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2418": {
    "vnum": 2418,
@@ -452,8 +499,9 @@
      "description": "To the south lies Another Curve."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and south.",
-   "placeholder": true
+   "description": "The passage here is a narrow twist, barely wide enough for a man to\nsqueeze through with his pack held before him. The stone is clammy and\nsweating, and a low slow rumbling carries along it from deeper in.\nSounds arrive here as if heard through water. The way goes east toward\nthe last bend, and south back to the curve you passed.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2419": {
    "vnum": 2419,
@@ -477,8 +525,9 @@
      "description": "To the west lies A Narrow Twist."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The last bend opens the cave into a wider gallery where pale stalactites\nhang like wax from a candle left burning for years. Every drip sounds\ntwice, the second time long after the first. A heavy musk drifts in from\nthe north, thick with old smoke and stranger things. The gallery narrows\nback west toward the twist.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "2420": {
    "vnum": 2420,
@@ -502,8 +551,15 @@
      "description": "To the up lies A Cluttered Beach."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and up.",
-   "placeholder": true
+   "description": "A great vault of black rock swallows the torchlight, its far end\ninvisible beyond hills of fallen stone. Heaps of bones and rotted\nsailcloth lie where something dragged them in from the beach long ago.\nEach sound arrives late, and each slow breath from the shadows rolls\nround the walls like a tide. A rough chimney of rock climbs up toward a\ngleam of daylight, and the gallery you left lies south.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649605,
+     "max": 1
+    }
+   ]
   },
   "2422": {
    "vnum": 2422,
@@ -521,11 +577,346 @@
      "description": "To the south lies Before The Summit."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. A way leads south.",
-   "placeholder": true
+   "description": "The summit is a bare plateau of tilted rock, open to a sky that seems\ntoo near and too still. A ring of standing stones, leaning like tired\nwatchers, circles a flat slab worn hollow by the weather. Clouds drift\nacross the sun as slowly as fallen leaves on a pond. The only way down\nleads south along the trail you climbed.",
+   "extra_descs": {
+    "stones ring standing slab": "The standing stones lean toward the slab at their centre, and the hollow\nworn into it holds still, dark water that does not ripple in the wind."
+   }
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "649600": {
+   "vnum": 649600,
+   "name": "giant crab wreck",
+   "short_desc": "a giant wreck crab",
+   "long_desc": "A giant wreck crab picks sluggishly through the flotsam, one great claw raised and waiting.",
+   "description": "A crab as big as a washtub, its shell crusted with barnacles and old\nrope. It moves with a slow, deliberate patience that makes it no less\ndangerous.",
+   "level": 15,
+   "alignment": 0,
+   "hp_dice": "15d8+170",
+   "damage_dice": "4d6+9",
+   "armor_class": 52,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749600,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "649601": {
+   "vnum": 649601,
+   "name": "bear drowsy brown",
+   "short_desc": "a drowsy brown bear",
+   "long_desc": "A drowsy brown bear shambles through the trees, blinking at the world as though waking from a long dream.",
+   "description": "A big brown bear with matted fur and half-lidded eyes. It moves as\nthough underwater, but its claws are sharp and quick when it chooses.",
+   "level": 17,
+   "alignment": 0,
+   "hp_dice": "17d8+195",
+   "damage_dice": "5d6+9",
+   "armor_class": 46,
+   "exp": 955,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649602": {
+   "vnum": 649602,
+   "name": "bat giant cave lag",
+   "short_desc": "a giant cave bat",
+   "long_desc": "A giant cave bat hangs from the roof, its leathery wings folded and quivering.",
+   "description": "A bat with a wingspan broader than a man's arms, its fur grey with cave\ndust. Its cry reaches the ear a moment after its fangs.",
+   "level": 18,
+   "alignment": 0,
+   "hp_dice": "18d8+208",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649603": {
+   "vnum": 649603,
+   "name": "ghost mist drowned sailor",
+   "short_desc": "a drowned sailor's ghost",
+   "long_desc": "The ghost of a drowned sailor drifts here, trailing mist, reaching toward you in slow motion.",
+   "description": "A pale, translucent shape in a salt-stained coat, water streaming\nendlessly from its sleeves. Its hands reach out slowly, but the cold\nthey carry arrives all at once.",
+   "level": 22,
+   "alignment": -300,
+   "hp_dice": "22d8+342",
+   "damage_dice": "6d6+12",
+   "armor_class": 31,
+   "exp": 1230,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749601,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649604": {
+   "vnum": 649604,
+   "name": "troll cave tarry",
+   "short_desc": "a lumbering cave troll",
+   "long_desc": "A lumbering cave troll sways in the dark, its slow stare fixed on you.",
+   "description": "A mottled grey troll with long arms and a face like a fist. It seems\nhalf asleep until the moment it strikes, and then the blow comes too\nfast to follow.",
+   "level": 23,
+   "alignment": -500,
+   "hp_dice": "23d8+402",
+   "damage_dice": "6d6+17",
+   "armor_class": 23,
+   "exp": 1285,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749602,
+     "chance": 25
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649605": {
+   "vnum": 649605,
+   "name": "gorrak ogre dozing",
+   "short_desc": "Gorrak the Dozing Ogre",
+   "long_desc": "Gorrak the Dozing Ogre lies against a wall of the vault, one huge eye cracked open.",
+   "description": "Gorrak is an ogre of vast girth, wrapped in sailcloth and snoring like a\ngale. His eyelid lifts slowly, and the club beside him lifts slower\nstill, but when it falls the stone shakes.",
+   "level": 24,
+   "alignment": -600,
+   "hp_dice": "24d8+423",
+   "damage_dice": "7d6+15",
+   "armor_class": 20,
+   "exp": 1340,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749603,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649606": {
+   "vnum": 649606,
+   "name": "lag wyrm dragon",
+   "short_desc": "the Lag Wyrm",
+   "long_desc": "The Lag Wyrm lies coiled in the dark, vast and ancient, its slow breath moving the dust of ages.",
+   "description": "A dragon of the oldest kind, its scales dull as river stone and its eyes\nlike twin slow lanterns. Everything about it is slow: the breath, the\nblink, the turn of the great head. The doom it carries is not slow at\nall.",
+   "level": 25,
+   "alignment": -700,
+   "hp_dice": "25d8+444",
+   "damage_dice": "7d6+17",
+   "armor_class": 17,
+   "exp": 1395,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749604,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "749600": {
+   "vnum": 749600,
+   "name": "buckler crab shell",
+   "short_desc": "a crab shell buckler",
+   "room_desc": "A crab shell buckler lies here.",
+   "description": "A round buckler made from the shell of a huge crab, barnacles and all. It is tough and a bit slippery.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 15,
+   "wear_slot": "shield",
+   "armor": 4,
+   "weight": 6,
+   "value": 330
+  },
+  "749601": {
+   "vnum": 749601,
+   "name": "pendant sailor drowned silver",
+   "short_desc": "a salt-crusted pendant",
+   "room_desc": "A salt-crusted pendant lies here.",
+   "description": "A small silver anchor on a green chain, forever damp to the touch.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 22,
+   "wear_slot": "neck1",
+   "armor": 2,
+   "weight": 1,
+   "value": 470,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "749602": {
+   "vnum": 749602,
+   "name": "belt troll hide",
+   "short_desc": "a troll-hide belt",
+   "room_desc": "A troll-hide belt lies here.",
+   "description": "A broad belt of grey hide, thick as a finger and tough as old rope.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 23,
+   "wear_slot": "waist",
+   "armor": 2,
+   "weight": 1,
+   "value": 490
+  },
+  "749603": {
+   "vnum": 749603,
+   "name": "club ogre gorrak heavy",
+   "short_desc": "Gorrak's heavy club",
+   "room_desc": "A heavy ogre's club lies here.",
+   "description": "A knotted trunk of ironwood, wrapped in ship's rope for a grip. It falls slowly but lands hard.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 24,
+   "damage_dice": "2d7",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 640,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "749604": {
+   "vnum": 749604,
+   "name": "fang wyrm dragon lag",
+   "short_desc": "a fang of the Lag Wyrm",
+   "room_desc": "A long yellowed fang lies here.",
+   "description": "A fang as long as a short sword, hollow-ground and edged along both sides. It feels heavy in the hand, as if time pooled in it.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 25,
+   "damage_dice": "2d7",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 665,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

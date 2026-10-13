@@ -24,8 +24,8 @@
      "description": "To the south lies On The Bridge."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
-   "placeholder": true
+   "description": "A broad humped bridge of grey stone carries the road across a chasm\nwhose floor is lost in mist. Low parapets, worn smooth by generations of\nhands, are all that stand between you and the long fall. A cold wind\nclimbs out of the gorge with the muffled sound of a river far below. The\nspan runs on north toward its near end and south out over the gorge.",
+   "extra_descs": {}
   },
   "20701": {
    "vnum": 20701,
@@ -47,8 +47,10 @@
      "description": "To the south lies Before Moria Deep."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north and south.",
-   "placeholder": true
+   "description": "At the middle of the span the parapet has fallen away in one place,\nleaving a ragged gap above a sheer drop of black rock. Dwarf-runes,\nfilled with moss, run along the surviving stones in lines no one now\nreads. The roar of an unseen torrent rises from the chasm and hums in\nyour chest. The bridge goes on north back toward the gates and south\ntoward a darker shore.",
+   "extra_descs": {
+    "runes dwarf-runes": "The old dwarf-runes read, in the oldest tongue, only the names of the\nbuilders and a warning that the deep keeps what it takes."
+   }
   },
   "20703": {
    "vnum": 20703,
@@ -75,8 +77,9 @@
      }
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north and south.",
-   "placeholder": true
+   "description": "The bridge ends in a shelf of bare rock before a towering cliff, and in\nthe cliff face a tall door of iron-banded oak stands in a frame of cut\nstone. Scratches and old stains mark the threshold, and gnawed bones are\nground into the gravel. A thread of torchlight leaks from the crack\nbeneath the door, which leads south into the deep. The span you crossed\nlies behind you to the north.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "20704": {
    "vnum": 20704,
@@ -103,8 +106,9 @@
      }
     }
    },
-   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead north and south.",
-   "placeholder": true
+   "description": "Beyond the door the rock opens into a bare entry hall, its ceiling lost\nin smoke and shadow. The walls are cut in great blocks, blackened by old\nfires, and a rusted brazier gives off a sullen red glow. The air is foul\nwith damp, tallow and something older. A heavy door stands in the far\nwall, leading south to the guard post, and the door you came by lies\nback to the north.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "20705": {
    "vnum": 20705,
@@ -131,8 +135,15 @@
      }
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead north and south.",
-   "placeholder": true
+   "description": "A cramped guard post has been hacked from the rock, with a table of\nrough planks, a toppled stool and a rack of spears rusted into one solid\nlump. Narrow slits in the wall look out on nothing but dark. Spilled\nlamp oil and old blood stain the floor in dark rings. A door south leads\non into a passage, and the entry hall lies back through the door north.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646700,
+     "max": 1
+    }
+   ]
   },
   "20706": {
    "vnum": 20706,
@@ -156,8 +167,9 @@
      "description": "To the south lies The Passageway."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
-   "placeholder": true
+   "description": "The passage ends here in a low square chamber where the hewn walls sweat\nand the roof presses close overhead. A channel cut in the floor carries\na thread of black water off toward the passageway that continues south.\nLong claw marks score the wall at the height of your chest. The door to\nthe guard post lies behind you to the north, its frame split and\nhanging.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "20707": {
    "vnum": 20707,
@@ -199,8 +211,15 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A long passage cut square through the living rock runs on north and\nsouth, its walls greasy with damp. Two doors face each other at this\njunction: a warped one in the west wall opens on Gomel's Hole, and a\nheavy one in the east wall opens on Zalygin's Yard. Foul smells seep\naround both. A single guttering torch in an iron ring lights the\ncrossing.",
+   "look": "mine",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646700,
+     "max": 1
+    }
+   ]
   },
   "20708": {
    "vnum": 20708,
@@ -220,8 +239,9 @@
      "description": "To the east lies The Passageway."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
-   "placeholder": true
+   "description": "A ragged hole gnawed from the rock, more burrow than room, its walls\nscored by tooth and claw and its floor sunk into a bowl of packed earth\nand rotted bedding. Narrow holes too small for a man lead off into the\nstone. The reek of musk and old meat is thick enough to taste. The door\nin the east wall is the only proper way out.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "20709": {
    "vnum": 20709,
@@ -241,8 +261,9 @@
      "description": "To the west lies The Passageway."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
-   "placeholder": true
+   "description": "What was once a drill yard for the garrison is now a wide chamber of\ntrampled filth and heaped refuse. Rusted weapon stands lean at crazy\nangles, and the floor is cut with the ruts of dragged and heavy things.\nA smell of rank hide hangs under the high ceiling. The only way out is\nthe door in the west wall, back to the passageway.",
+   "look": "cave",
+   "extra_descs": {}
   },
   "20710": {
    "vnum": 20710,
@@ -262,8 +283,15 @@
      "description": "To the west lies The Passageway."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
-   "placeholder": true
+   "description": "A midden of broken pots, split barrels, rags and gnawed bones fills this\nden to knee depth, and the stink lays a hand across your mouth. Someone\nhas piled the worst of it into walls and humps, as a beast builds a\nnest. Pale fungus feeds on the heap and glows faintly. The door in the\nwest wall is the only clean thing in sight.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646704,
+     "max": 1
+    }
+   ]
   },
   "20711": {
    "vnum": 20711,
@@ -305,8 +333,9 @@
      }
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The passage bends on, its roof lower and its floor furrowed by countless\nfeet. In the east wall a door scrawled with crude daubs leads into\nTerasaki's Trashery, and in the west wall a plain door hangs ajar on a\nrotted cord, giving onto The Empty Room. South the passage dips toward a\nmouldy stairwell, and the way back lies north. Pale tufts of fungus\ncrowd the join of wall and floor.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "20712": {
    "vnum": 20712,
@@ -320,9 +349,20 @@
    "flags": [
     "indoors"
    ],
-   "exits": {},
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
-   "placeholder": true
+   "exits": {
+    "east": {
+     "to_room": 20711,
+     "description": "To the east lies The Passageway."
+    }
+   },
+   "description": "Nothing remains in this small square room but dust, a few dark marks on\nthe floor where furniture once stood, and a smell of long closing. The\nplaster has been picked from the walls in neat lines, as though by\npatient fingernails. A single iron hook hangs from the ceiling beam, and\nthe silence has the quality of a held breath.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646701,
+     "max": 1
+    }
+   ]
   },
   "20713": {
    "vnum": 20713,
@@ -344,8 +384,9 @@
      "description": "To the up lies Top of the Stairwell."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead north and up.",
-   "placeholder": true
+   "description": "A narrow stair rises from the passage, each tread worn into a dish by\nages of feet and slick with black mould. The walls wear the same fur of\ngrey growth, and water seeps in threads over the stone. Your footsteps\nsink into the damp without an echo. The steps climb up to a landing\nabove, while the passage lies to the north.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "20714": {
    "vnum": 20714,
@@ -367,8 +408,9 @@
      "description": "To the down lies The Mouldy Stairwell."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead north and down.",
-   "placeholder": true
+   "description": "The stair ends at a small landing where the mould thins and the air\ngrows dry and cold. A cracked niche in the wall holds a stub of tallow\nburnt to a black crust. The steps fall away down the way you came, into\nthe damp, and a corridor leads on north. Somewhere beyond it something\nheavy shifts and settles.",
+   "look": "mine",
+   "extra_descs": {}
   },
   "20715": {
    "vnum": 20715,
@@ -410,8 +452,14 @@
      }
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A long corridor of dressed stone runs on, its floor laid with cracked\nflagstones and its walls hung with the tatters of ancient banners. The\ndoor in the east wall is thick with cobweb and soot and leads to\nMorhun's Haunt, while the pale-painted door in the west wall opens on\nRiabev's Lair. A chill creeps from beneath the western door. The\ncorridor goes on north, and the landing of the stairwell lies south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646702,
+     "max": 1
+    }
+   ]
   },
   "20716": {
    "vnum": 20716,
@@ -431,8 +479,15 @@
      "description": "To the east lies Along The Corridor."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
-   "placeholder": true
+   "description": "A round chamber of black stone, bare but for a slab bier in the middle\nand a pale circle worn into the floor around it where something paced\nfor long years. A ring of candle stubs burns with a blue-white flame\nthat gives no warmth. Your breath hangs before you in the air. The door\nin the east wall opens back onto the corridor.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646705,
+     "max": 1
+    }
+   ]
   },
   "20717": {
    "vnum": 20717,
@@ -452,8 +507,9 @@
      "description": "To the west lies Along The Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "Dust lies like grey felt on the floor of this low chamber, undisturbed\nbut for one narrow track. Niches in the walls hold lumps of rotted cloth\nand the grin of old bone. The air tastes of cold stone and dead lamp\noil, and a faint moaning rides it from nowhere you can find. The door in\nthe west wall leads back to the corridor.",
+   "look": "crypt",
+   "extra_descs": {}
   },
   "20718": {
    "vnum": 20718,
@@ -500,8 +556,8 @@
      }
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The corridor ends in a small square hall with a door in each of its\nother three walls. The north door is plain and scarred, the east door is\nveiled in grey threads, and the great west door is bound in iron and\nstudded with the skulls of beasts. A rumbling voice leaks through it,\nand the floor before it is trampled bare of dust. Torch brackets on the\nwalls hold only ash, and the corridor you came by lies south.",
+   "extra_descs": {}
   },
   "20719": {
    "vnum": 20719,
@@ -521,8 +577,15 @@
      "description": "To the west lies The End Of The Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads west.",
-   "placeholder": true
+   "description": "Thick grey webs fill this chamber from floor to vault, hanging in sheets\nand ropes so dense that torchlight dies in them. The strands are sticky\nand tough as cord, and cocoons of old bundled cloth sway in the draught.\nDry husks crunch underfoot. The door in the west wall is the only clear\npath out.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646703,
+     "max": 1
+    }
+   ]
   },
   "20720": {
    "vnum": 20720,
@@ -542,8 +605,15 @@
      "description": "To the east lies The End Of The Corridor."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
-   "placeholder": true
+   "description": "A vast hall with a vault lost in shadow, its floor strewn with the\nwreckage of feasts: split casks, scorched bones, and a high seat built\nfrom broken doors. Banners of cured hide hang from the pillars, each\nstained with a great red handprint. A fire pit smoulders in the middle\nof the floor, filling the air with smoke and the reek of burnt fat. The\ndoor in the east wall is the only way out.",
+   "look": "cave",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646706,
+     "max": 1
+    }
+   ]
   },
   "20721": {
    "vnum": 20721,
@@ -563,8 +633,15 @@
      "description": "To the south lies The End Of The Corridor."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
-   "placeholder": true
+   "description": "A narrow cell of black stone, its walls bolted with iron rings, and its\nfloor a litter of chains and shattered shackles. Someone met an end\nhere: the flags are scored with a dark old stain and the rings are worn\nbright. Water drips somewhere in the dark at slow, steady intervals. The\nonly way out is the door in the south wall.",
+   "look": "dungeon",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 646701,
+     "max": 1
+    }
+   ]
   },
   "20750": {
    "vnum": 20750,
@@ -586,11 +663,347 @@
      "description": "To the south lies On The Bridge."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north and south.",
-   "placeholder": true
+   "description": "Here the road ends at the head of the bridge, beside a cairn of mossy\nstones that marks the last honest ground before the deep. To the north\nthe huge stone gates of Brethrenmere stand open, their great leaves\nswung wide and rusted fast against the wall. Pines lean over the track\nand drip with mist. South the paving narrows and rises onto the bridge\nitself.",
+   "extra_descs": {
+    "cairn stones mossy": "A knee-high cairn of mossy stones, each one scratched with a small mark\nby some traveller who crossed and was glad to be back, or never was."
+   }
   }
  },
- "mobs": {},
- "objects": {},
- "sealed": true
+ "mobs": {
+  "646700": {
+   "vnum": 646700,
+   "name": "goblin guard moria",
+   "short_desc": "a Moria goblin",
+   "long_desc": "A Moria goblin crouches here with a notched cleaver, watching the dark with yellow eyes.",
+   "description": "A hunched, grey-skinned goblin in scraps of dwarf mail, long arms\nhanging to its knees. It smells of tallow and old meat.",
+   "level": 18,
+   "alignment": -500,
+   "hp_dice": "18d8+240",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 216,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746700,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "646701": {
+   "vnum": 646701,
+   "name": "giant rat deep",
+   "short_desc": "a giant deep rat",
+   "long_desc": "A giant deep rat sits in the damp, gnawing at something that does not move.",
+   "description": "A rat the size of a hound, bald in patches, with eyes gone milk white\nfrom a life without sun and teeth stained brown.",
+   "level": 17,
+   "alignment": 0,
+   "hp_dice": "17d8+195",
+   "damage_dice": "5d6+9",
+   "armor_class": 46,
+   "exp": 955,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "646702": {
+   "vnum": 646702,
+   "name": "skeleton dwarf tomb",
+   "short_desc": "a dwarf skeleton",
+   "long_desc": "A dwarf skeleton in rotted mail stands motionless here, a rusted axe in its fingers.",
+   "description": "The bones of a dwarf long dead, bound together by something other than\nsinew. A cold light burns in its empty eye sockets.",
+   "level": 20,
+   "alignment": -300,
+   "hp_dice": "20d8+306",
+   "damage_dice": "6d6+10",
+   "armor_class": 37,
+   "exp": 1120,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": []
+  },
+  "646703": {
+   "vnum": 646703,
+   "name": "spider giant web dashuk",
+   "short_desc": "a giant web spider",
+   "long_desc": "A giant web spider hangs in the grey threads, its legs trembling at every sound.",
+   "description": "A spider the size of a cart, bristling with black hairs, with eight eyes\nthat glitter in the torchlight. Venom beads at the tips of its fangs.",
+   "level": 24,
+   "alignment": -200,
+   "hp_dice": "24d8+290",
+   "damage_dice": "7d6+12",
+   "armor_class": 25,
+   "exp": 1340,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746701,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "646704": {
+   "vnum": 646704,
+   "name": "troll cave hulking",
+   "short_desc": "a hulking cave troll",
+   "long_desc": "A hulking cave troll squats in the filth, chewing on something it should not.",
+   "description": "A troll with mottled green hide and knuckles that scrape the ground. Its\nsmall eyes are red and watery, and it grins with a mouth full of broken\nteeth.",
+   "level": 25,
+   "alignment": -600,
+   "hp_dice": "25d8+444",
+   "damage_dice": "7d6+17",
+   "armor_class": 17,
+   "exp": 1395,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746702,
+     "chance": 30
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "646705": {
+   "vnum": 646705,
+   "name": "riabev wight pale",
+   "short_desc": "Riabev the Pale",
+   "long_desc": "Riabev the Pale, a gaunt wight in a tattered dwarf lord's robe, stands beside the bier.",
+   "description": "Once a lord of the deep, Riabev is now a wight of grey skin and burning\neyes. A thin cold circlet rests on his brow, and the air around him\nseems to still.",
+   "level": 26,
+   "alignment": -800,
+   "hp_dice": "26d8+417",
+   "damage_dice": "7d6+15",
+   "armor_class": 19,
+   "exp": 1450,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746703,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "646706": {
+   "vnum": 646706,
+   "name": "asmolov ogre warlord",
+   "short_desc": "Asmolov the ogre warlord",
+   "long_desc": "Asmolov, the ogre warlord of the deep, roars from his high seat and shakes the smoke from the vault.",
+   "description": "Asmolov is a mountain of scarred flesh in a harness of dwarf plate\nhammered flat to fit him. He carries a maul made from a stone gate-post\nand curses all who enter in a voice that shakes the hall.",
+   "level": 27,
+   "alignment": -900,
+   "hp_dice": "27d8+487",
+   "damage_dice": "7d6+20",
+   "armor_class": 11,
+   "exp": 1505,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 746704,
+     "chance": 35
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "746700": {
+   "vnum": 746700,
+   "name": "cleaver goblin notched",
+   "short_desc": "a notched goblin cleaver",
+   "room_desc": "A notched goblin cleaver lies here.",
+   "description": "A broad, ugly blade of poor iron, nicked from hard use but still sharp enough.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 18,
+   "damage_dice": "2d6",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 490
+  },
+  "746701": {
+   "vnum": 746701,
+   "name": "cloak silk spider grey",
+   "short_desc": "a grey spidersilk cloak",
+   "room_desc": "A grey cloak of spidersilk lies here.",
+   "description": "A cloak woven of tough grey strands, light as breath and strong as cord.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 24,
+   "wear_slot": "about",
+   "armor": 3,
+   "weight": 3,
+   "value": 510,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  },
+  "746702": {
+   "vnum": 746702,
+   "name": "shield troll hide",
+   "short_desc": "a troll-hide shield",
+   "room_desc": "A troll-hide shield lies here.",
+   "description": "A round shield of green hide stretched over a frame of dwarf iron. Troll flesh is slow to cut, even dried.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 25,
+   "wear_slot": "shield",
+   "armor": 5,
+   "weight": 6,
+   "value": 530
+  },
+  "746703": {
+   "vnum": 746703,
+   "name": "ring cold circlet wight",
+   "short_desc": "a cold silver ring",
+   "room_desc": "A cold silver ring lies here.",
+   "description": "A thin silver band that never warms to the touch, set with a pale stone.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 26,
+   "wear_slot": "finger1",
+   "armor": 2,
+   "weight": 1,
+   "value": 550,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "746704": {
+   "vnum": 746704,
+   "name": "maul gate-post stone asmolov",
+   "short_desc": "Asmolov's gate-post maul",
+   "room_desc": "A huge stone maul lies here.",
+   "description": "A gate-post of dwarf stone, bound in iron and fitted with a haft as thick as a man's arm. It is brutally heavy.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 27,
+   "damage_dice": "2d7",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 715,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ]
+  }
+ }
 }

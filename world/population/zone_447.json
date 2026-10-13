@@ -1,0 +1,136 @@
+{
+ "zone": 447,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and the Lord of Mahn-Tor as the boss.",
+ "creatures": {
+  "644702": {
+   "helpers": {
+    "group": "z447_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a keep soldier"
+  },
+  "644703": {
+   "helpers": {
+    "group": "z447_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a keep warden",
+   "rank": "elite"
+  },
+  "644704": {
+   "helpers": {
+    "group": "z447_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a keep battle-mage",
+   "rank": "elite"
+  },
+  "644705": {
+   "helpers": {
+    "group": "z447_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Gorak the Drillmaster",
+   "rank": "sub-boss"
+  },
+  "644706": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "the Lord of Mahn-Tor",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Lord of Mahn-Tor rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "The Lord of Mahn-Tor gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "The Lord of Mahn-Tor raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "The Lord of Mahn-Tor begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 644702,
+   "route": [
+    10142,
+    10182
+   ],
+   "why": "a keep soldier walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 644706,
+   "room": 10183,
+   "why": "the Lord of Mahn-Tor in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      644702
+     ],
+     "shout": "The Lord of Mahn-Tor calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,157 @@
+{
+ "zone": 470,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Ostragoth, the sorcerer-lord as the boss.",
+ "creatures": {
+  "647000": {
+   "helpers": {
+    "group": "z470_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a black-cloaked castle guard"
+  },
+  "647001": {
+   "helpers": {
+    "group": "z470_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale tunnel spider"
+  },
+  "647002": {
+   "helpers": {
+    "group": "z470_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a barrow skeleton"
+  },
+  "647003": {
+   "helpers": {
+    "group": "z470_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a skinless cultist",
+   "rank": "elite"
+  },
+  "647004": {
+   "helpers": {
+    "group": "z470_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a draugr house-carl",
+   "rank": "elite"
+  },
+  "647005": {
+   "helpers": {
+    "group": "z470_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Fenrir, the Wolf-Jarl",
+   "rank": "sub-boss"
+  },
+  "647006": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Ostragoth, the sorcerer-lord",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Ostragoth, the sorcerer-lord rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Ostragoth, the sorcerer-lord gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Ostragoth, the sorcerer-lord raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Ostragoth, the sorcerer-lord begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 647000,
+   "route": [
+    8359,
+    8366,
+    8370,
+    8371,
+    8372
+   ],
+   "why": "a black-cloaked castle guard walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 647006,
+   "room": 8403,
+   "why": "Ostragoth, the sorcerer-lord in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      647000
+     ],
+     "shout": "Ostragoth, the sorcerer-lord calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

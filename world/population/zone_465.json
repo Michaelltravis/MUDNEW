@@ -1,0 +1,182 @@
+{
+ "zone": 465,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and a towering balrog as the boss.",
+ "creatures": {
+  "646500": {
+   "helpers": {
+    "group": "z465_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a soot-black mine orc"
+  },
+  "646501": {
+   "helpers": {
+    "group": "z465_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a pale cave spider"
+  },
+  "646502": {
+   "helpers": {
+    "group": "z465_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a snarling wolverine"
+  },
+  "646503": {
+   "helpers": {
+    "group": "z465_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a rattling skeleton miner"
+  },
+  "646504": {
+   "helpers": {
+    "group": "z465_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking cave troll",
+   "rank": "elite"
+  },
+  "646505": {
+   "helpers": {
+    "group": "z465_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a towering stone guardian",
+   "rank": "elite"
+  },
+  "646506": {
+   "helpers": {
+    "group": "z465_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "Elland, the orc warlord",
+   "rank": "sub-boss"
+  },
+  "646507": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "a towering balrog",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "A towering balrog rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "A towering balrog gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "A towering balrog raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "A towering balrog begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 646500,
+   "route": [
+    20503,
+    20502,
+    20504,
+    20505,
+    20523,
+    20524,
+    20525,
+    20526,
+    20527,
+    20529,
+    20530,
+    20576,
+    20577,
+    20579,
+    20580,
+    20582,
+    20583,
+    20585,
+    20586,
+    20588,
+    20589,
+    20590,
+    20591
+   ],
+   "why": "a soot-black mine orc walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 646507,
+   "room": 20597,
+   "why": "a towering balrog in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "646500": 2
+     },
+     "shout": "A towering balrog calls, and a soot-black mine orcs come!",
+     "why": "its brood"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,155 @@
+{
+ "zone": 480,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Lord Aldric Tudor, the Pale Master as the boss.",
+ "creatures": {
+  "648001": {
+   "helpers": {
+    "group": "z480_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a pale villager"
+  },
+  "648002": {
+   "helpers": {
+    "group": "z480_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a hollow-eyed farmhand"
+  },
+  "648003": {
+   "helpers": {
+    "group": "z480_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a black crow"
+  },
+  "648004": {
+   "helpers": {
+    "group": "z480_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a hunched grave ghoul",
+   "rank": "elite"
+  },
+  "648005": {
+   "helpers": {
+    "group": "z480_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "a vampire thrall",
+   "rank": "elite"
+  },
+  "648006": {
+   "helpers": {
+    "group": "z480_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "Mother Sorrel, the Midwife",
+   "rank": "sub-boss"
+  },
+  "648007": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "why": "Lord Aldric Tudor, the Pale Master",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Lord Aldric Tudor, the Pale Master rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Lord Aldric Tudor, the Pale Master gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Lord Aldric Tudor, the Pale Master raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Lord Aldric Tudor, the Pale Master begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 648001,
+   "route": [
+    206611,
+    206606,
+    206605,
+    6629,
+    6638,
+    6639,
+    6640,
+    6641,
+    6695
+   ],
+   "why": "a pale villager walks its ground"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 648007,
+   "room": 6679,
+   "why": "Lord Aldric Tudor, the Pale Master in its lair",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "648001": 2
+     },
+     "shout": "Lord Aldric Tudor, the Pale Master calls, and a pale villagers come!",
+     "why": "its brood"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "why": "the dark deepens"
+    }
+   ]
+  }
+ ]
+}

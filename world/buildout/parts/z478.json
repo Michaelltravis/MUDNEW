@@ -1,0 +1,526 @@
+{
+ "job": "z478",
+ "rooms": {
+  "24200": "A great sphere of dull red crystal fills the middle of this round chamber, pulsing slowly like a heartbeat. Heat rolls off it in waves and beads the curved walls with moisture. Scorch marks ring the floor in widening circles around its base. A narrow, rough climb leads up toward a dark cave, and the only other way out is an arched opening east into a steamy hallway.",
+  "24201": "Steam curls off the flagstones of this long hallway and gathers on the walls until it runs down in thin streaks. The air tastes of iron and wet stone. Empty torch brackets line the walls, black with soot, and the only light is a sullen red glow from somewhere ahead. The hall leads west to a round chamber and on east to a bend.",
+  "24202": "Here the hallway bends hard, and the steam hangs in a thick curtain at the corner. Rusty water trickles down the outer wall and hisses where it meets a patch of hot floor. An iron ring is set in the stone, its metal rubbed bright by the pull of many chains. The passage leads west back along the hall and south into more steam.",
+  "24203": "Condensation makes the walls of this stretch slick, and every footprint fades in the damp almost as soon as it is made. A grating in the floor breathes out scalding puffs at a steady rhythm, like a sleeper's breath. Flecks of faded paint cling to the plaster, the last trace of someone's idea of decoration. The hall goes north to a bend and south toward a further stretch of steam.",
+  "24204": "The hallway ends in a square of dark planks set into the floor, a heavy trapdoor whose ring pull has gone black with soot. Steam seeps up through its cracks, and the wood is hot enough to sting the palm. The ceiling shimmers with heat, and the stone sweats without pause. The hall runs back north, and the trapdoor opens down onto a stair.",
+  "24206": "You stand on a cramped landing just below the trapdoor, where a square of dim light shows overhead. The ledge is hot, its stone crusted with yellow brimstone that flakes under your boots. Worn steps drop away from here into a reddish gloom. A faint hiss of steam comes up from the depths, and the air smells of struck matches.",
+  "24207": "The stairs end in a wide landing scuffed by countless bare feet and the drag of heavy chains. Red light pulses on the walls from some distant furnace, and the air is dry enough to crack the lips. A cave passage opens east, and another opening leads south to a junction of tunnels. The stairs climb up toward the trapdoor above.",
+  "24208": {
+   "description": "This passage is a rough tube of red-brown rock, low enough that taller travellers must stoop. Fine grey ash carpets the floor and stirs in the hot draught. The way runs west to the foot of the stairs and south to a junction of passages. A steep incline of loose gravel climbs up toward a small room cut high in the rock.",
+   "look": "cave"
+  },
+  "24211": {
+   "description": "Three passages meet here in a ragged knot, the stone between them worn smooth by many passing feet. Soot has stained the ceiling black above a charred patch where someone once kept a fire. A trickle of warm water runs along the wall and vanishes into a crack. Tunnels lead north to a cave passage, west to another junction, and south into a wide cavern.",
+   "look": "cave"
+  },
+  "24213": {
+   "description": "The passage opens into a great cavern whose ceiling is lost in a hot red haze. Stalactites hang like rows of dark teeth, and some drip warm brown water onto the broken floor. Rubble and snapped tools lie where slaves once hauled stone. Passages lead north and west, a long hallway opens south, and a ragged hole in the floor drops down to a hidden chamber.",
+   "look": "cave"
+  },
+  "24215": "This hallway is straight and finely built, its walls of dressed stone sweating in the heat. Bronze sconces hold only cold embers and leave long soot streaks up the plaster. The flagstones are worn smooth down the middle by generations of marching feet. The cavern lies north, and the hallway runs on east and west.",
+  "24216": "A heavy door of black-banded oak stands in the north wall here, scorched along its edges. The floor is gritty with ash blown in whenever it is opened, and faint orange light pulses beneath it. The wood is warm to the touch. The hallway continues east to its end and west toward a junction.",
+  "24218": "This enormous room swallows the light, its ceiling so far above that it is only a darkness patterned with faint red cracks. Pillars of fused black glass stand in rows, each as thick as an ancient oak and ringed with scorch marks. The floor is a field of tumbled flagstones and heaps of cold slag. The only way out is the door south, back to the hallway.",
+  "24219": "The hallway ends at a blank wall of sooty stone that bears the ghostly outline of a bricked-up arch. A round opening in the floor, rimmed with iron staples, drops into a hot darkness, and rusted rungs lead down into it. Heat boils up from the hole until the air wavers. The only other way is west along the hall.",
+  "24226": {
+   "description": "You stand on a ledge at the rim of an immense vertical shaft whose black throat drops out of sight below. Hot air gusts up from it, carrying a dull red glow and a smell of burning. A rotten timber rail hangs half collapsed along the lip. Passages lead east into a royal hallway and west to a ruined stair, and iron rungs climb up to the long hallway.",
+   "look": "mine"
+  },
+  "24227": "The floor of this hallway is laid with black and crimson tiles, cracked by heat but still arranged in a proud pattern. Carved pillars line the walls, their faces the grinning visages of fire kings long dead. Tattered banners of scorched silk droop from iron poles. The hall bends north, and west it opens onto the rim of a great pit.",
+  "24228": "At this bend the royal hallway narrows, and a mosaic of tiny red tiles shows a figure crowned in flames. Many tiles have popped from the floor in the heat, leaving pits full of ash. The air is oven-hot, smelling of spice and smoke. The hall leads east toward a grander stretch and south back to its start.",
+  "24229": "Gilded sconces of twisted bronze flank this stretch of the royal hallway, each holding a gout of fire that never gutters. Gold leaf on the walls has blistered and peeled in the heat. A strip of carpet, once crimson and now the colour of dried blood, runs down the middle of the floor. The hall leads west to a bend and east to an imposing entrance.",
+  "24230": "Two enormous bronze doors, cast with scenes of cities in flames, mark the entrance to the throne room. The north door stands ajar, and a roaring heat pours through the gap. Scorched guard alcoves flank the doorway, their floors black with old grease and ash. The royal hallway leads back west.",
+  "24231": "A vast hall of black basalt opens around you, its ceiling hung with chains of glowing iron. At the far end rises a throne of fused slag and red iron, its arms carved as snarling wolves, and before it glows a wide trench of coals. Heat presses on you like a hand. The door south leads back to the entrance, and a narrow door behind the throne opens north.",
+  "24232": "This hidden room is a bare vault of dark rock lined with stone shelves, nearly all of them emptied long ago. Heavy iron chests stand open along the walls, their lids twisted by heat and their locks hacked away. Ash lies deep and undisturbed in the corners. The only way out is the door south, back to the throne room.",
+  "24233": "A flight of ruined stairs climbs from here into the dark, half its steps cracked and slumped into rubble. The landing is littered with fallen stone, and a thin crust of white salt gleams on the walls. The way east returns to the rim of the great pit, and the broken stairs go up toward a tunnel mouth.",
+  "24234": {
+   "description": "The ruined stairs end at the mouth of a tunnel system, where the walls close in and the red glow below fades to nothing. Tool marks scar the rock, and burnt-out torch stubs lie crusted to the floor. Tunnels lead north into the dark, a small clearing opens east, and the broken stairs go down.",
+   "look": "cave"
+  },
+  "24236": {
+   "description": "The tunnel is narrow and utterly dark, its walls pressing close and its floor sloping unevenly underfoot. Dry grit crunches with every step, and the air is warm and dead. Faint scratches in the rock look like tally marks made by many hands. Passages meet here at a junction north and east, while south the tunnel runs back to the stairs.",
+   "look": "cave"
+  },
+  "24248": {
+   "description": "Several tunnels meet at this junction, and the darkness is so complete that the walls can only be found by touch. The rock here is rough and dry, pitted with small hollows that hold drifts of pale dust. A narrow crawlway of bones opens east. Another tunnel runs north, and a third leads west.",
+   "look": "cave"
+  },
+  "24249": {
+   "description": "The tunnel narrows to a crooked slot, forcing you to turn your shoulders to pass. Black soot streaks the ceiling where long-gone torches burned. A faint smell of old smoke lingers in the dead air. The passage leads south to a junction and west deeper into the dark.",
+   "look": "cave"
+  },
+  "24250": {
+   "description": "The tunnel ends here at a low door of iron-bound planks set into the east wall. Deep scratches mark the planks at about waist height, as though many fingers once clawed at them. The rock floor dips into a shallow hollow worn by feet. The only way onward is east through the door.",
+   "look": "cave"
+  },
+  "24239": {
+   "description": "This crawlway is paved with old bones, ground to splinters underfoot and packed into the cracks of the rock. The ceiling presses low, forcing you to stoop, and the dry air tastes of chalk. Skulls peer from small niches in the walls. A narrow passage leads north into a maze of caverns, south along the crawlway, and west to a junction.",
+   "look": "cave"
+  },
+  "24240": {
+   "description": "A bewildering cluster of low caverns opens here, each hollow leading into three more, and the red glow of the fire seems to come from every side at once. Stone knobs and ridges break the walls into confusing shapes. Heat shimmers over the floor. The only certain way out is the crawlway of bones south.",
+   "look": "cave"
+  },
+  "24238": {
+   "description": "The crawlway of bones turns here in a tight bend, its floor a crunching mat of ribs and splintered long bones. Scorch marks blacken a few of the larger skulls set into the wall. The air is hot and still, with a sour tang of char. The crawlway leads north to a further length of itself, and west to a dark junction.",
+   "look": "cave"
+  },
+  "24237": {
+   "description": "This junction is a rough crossing of dark tunnels, their mouths gaping like open throats in the rock. A pool of congealed wax shows where a candle once guttered out on a flat stone. Warm air drifts in from the crawlway of bones. Ways lead east into that crawlway, south to a small clearing, and west along a tunnel.",
+   "look": "cave"
+  },
+  "24235": {
+   "description": "The tunnels widen into a small clearing of packed earth and flat rock, the only open space for some distance. A ring of blackened stones marks an old hearth, and a few rags hang from pegs driven into the wall. The air is warm and smells of cold ash. A junction lies north of here, and the tunnels of the entrance run west.",
+   "look": "cave"
+  },
+  "24251": {
+   "description": "This tunnel is a narrow bore through dark, gritty rock, its floor strewn with a litter of flaked stone. The air is warm and carries a faint sulphur stink. Long scratches mark the walls at shoulder height, as if something dragged a chain along them. The tunnel leads north into further darkness and south toward an exit from the tunnels.",
+   "look": "cave"
+  },
+  "24252": {
+   "description": "The tunnel bends sharply here, and the roof sags so low that you must duck to pass. Pale mineral streaks run through the rock like veins in an old hand. A stub of candle, melted to a puddle, clings to a ledge. Passages lead east into a dark tunnel and south to a straighter stretch.",
+   "look": "cave"
+  },
+  "24253": {
+   "description": "The tunnels end at a broken landing where the rock gives way to a ring of worked stone. Narrow iron stairs spiral up from its centre, black and slick with condensation. Warm draughts rise along them from some far-off furnace. A tunnel leads north back into the dark, a very small crawlspace opens east, and the spiral climbs up.",
+   "look": "cave"
+  },
+  "24254": {
+   "description": "You must crawl on hands and knees through this tiny burrow of dry rock, the ceiling scraping your back. Bits of old bone crunch under your palms, and the air is stale and thick. Faint red light shows at one end of the squeeze and total darkness at the other. The crawlspace leads east toward a dark tunnel and west to the tunnels' exit.",
+   "look": "cave"
+  },
+  "24255": "A narrow iron staircase winds tightly around a central pillar here, its steps cold-forged and worn hollow in the middle. The rail is slick with moisture, and heat rises along it from below. Faint tapping echoes down the pillar from above. The stair goes up toward a landing and down to the tunnels.",
+  "24256": "The spiral staircase ends at a small round landing floored in cracked marble. A sooty niche in the pillar holds a bronze lamp, long since out of oil. The air is dry and strangely perfumed with old incense. The stair winds down, and a doorway leads west into a hallway.",
+  "24257": "This hallway is short and crooked, its walls painted with bands of faded colours that make no pattern the eye can follow. Doors that are not doors, mere outlines in the plaster, line the sides. The floor tilts slightly, as if the whole passage had settled over centuries. It runs east to the stair landing and west to a stranger room.",
+  "24258": "Nothing in this room sits quite right: the corners meet at wrong angles and the ceiling slopes toward a different side than the floor does. Pale lines are inlaid in the stone in a spiral that draws the eye round and round. A faint thrum comes up from the floor, and the air smells of hot metal. The hallway lies east, and a round hole in the floor leads down.",
+  "24259": {
+   "description": "You cling to the wall of a vertical shaft that plunges down into red darkness. Rusted iron rungs are set into the rock, spaced for long arms, and they tremble when you grip them. Hot wind pours up past you with a hollow roar. The rungs lead up to the rim and down into the glow, and a gap in the wall opens south onto empty air.",
+   "look": "mine"
+  },
+  "24263": "There is no floor here, no wall, nothing but heat and a rushing roar as you plunge through a vast red emptiness. Sparks stream past like upward-falling stars, and the wind tears at your clothes. Far below, a glow waits patiently. The fall goes on and on, and the only thing to be done is to flail for any hold.",
+  "24260": {
+   "description": "The shaft here is wider, its rock wall pocked with ledges and old iron pitons driven in by those who worked this place. A cold green seep trails down the stone, hissing where it touches the hot rungs. Great breaths of heat roll past from below. A platform lies west, the rungs lead up and down, and a gap opens south onto the void.",
+   "look": "mine"
+  },
+  "24264": "A platform of massive timbers juts from the cavern wall, bolted into the rock with iron straps gone dark with age. The planks are charred and sticky with pitch, and the whole structure groans under your weight. Beyond the edge a gulf of red light yawns. East lies the shaft, and west a rope bridge sets out across the gulf.",
+  "24265": "The rope bridge sways beneath you, its planks gapped and furred with soot. Thick hemp cables, singed brown, run to rope rails at either side. Updraughts of hot air tug at your cloak, and below a red glow pulses like a vast eye. Solid footing lies east at the platform, and the bridge continues west.",
+  "24266": "At the middle of the bridge, the sway is worst, and each step sends a shiver through the cables. A few planks are missing, showing the gulf beneath in glimpses of molten orange. The rope rails are frayed and greasy under the hand. Heat from below makes your eyes water. The bridge runs east and west from here.",
+  "24267": "The far side of the bridge is close, and the cables here are bolted to a stone anchor-post hung with iron hooks. The planks are newer and sturdier, though still scorched. Faint clanging of metal on metal drifts across the gulf. The bridge leads east back across the gulf, and west it reaches a platform.",
+  "24269": "This broad stone platform is a junction of ways, its floor scored by the wheels of heavy carts and the drag of chains. A cable winch with a rusted handle stands near the edge. The air is dry and furnace-hot, and ahead the cavern wall is pierced by gateways. A narrow ledge climbs north, a massive gate stands west, the bridge runs east, and a steep stair drops down to a tiny corner.",
+  "24277": "A dangerous ledge no wider than a man's shoulders clings to the cavern wall here, crumbling at its outer edge. Loose pebbles skitter off it and are lost in the glow below. Smoke wreathes the rock, and the heat seems to push at your back. The ledge runs south to the platform and west toward a hideout.",
+  "24278": {
+   "description": "This high cavern is a lair for something huge, its floor heaped with bones of cattle and men. Enormous stone benches have been dragged together to make crude seats, and a gigantic anvil stands blackened in a corner. Soot lies thick on the roof, and the air stinks of sweat and burnt hair. The only way out is the ledge east.",
+   "look": "cave"
+  },
+  "24279": "A massive gate of black iron rises here, its twin leaves studded with spikes the length of a forearm. Heaps of cinder and old bone lie drifted against the base, and the stone around it is polished by shoulders pressing at it. Red firelight leaks from the cracks. The platform lies east, and a small door set in the gate leads west.",
+  "24280": "You are just inside the massive gate, in a high guardroom where chains and shackles hang in clusters from the walls. The air is a stifling mix of sweat, smoke and burnt iron. Whip marks score the pillars at head height, and a trough of scummy water stands against the wall. Ways lead out north and south into the prison, west along a slave path, and east through the gate.",
+  "24286": {
+   "description": "This stretch of prison is a long, dim hall lined with iron-barred alcoves, each strewn with rotted straw. Manacles on short chains hang from the walls, their cuffs worn thin by wrists. The stone is greasy with sweat and soot. A door to the east leads to a cell, the hall continues north, a slave path lies west, and the gate lies south.",
+   "look": "dungeon"
+  },
+  "24287": {
+   "description": "The hall of the prison ends in a close, hot corner where the ceiling hangs low and sooty. Rusty tools for punishment hang from hooks: a barbed lash, a cage, tongs black with old heat. Doors of iron bars lead north and east into cells. A slave path runs west, and the hall returns south.",
+   "look": "dungeon"
+  },
+  "24295": {
+   "description": "This cramped cell has no light but the red glow seeping under the door. A heap of rotted straw lies in one corner beside a bucket stained with filth, and names are scratched into the walls in rows. The stones are damp and sticky, and the stench is thick enough to chew. The door south leads back to the prison.",
+   "look": "dungeon"
+  },
+  "24296": {
+   "description": "A trapdoor-sized hole gapes in the middle of this smelly cell, its edges worn smooth by rope. Chains lie in a heap near it, and the walls are scorched with the shapes of splayed hands. The stink of sweat and old fear is strong. The prison lies west, and the hole drops down to a lower cavern.",
+   "look": "dungeon"
+  },
+  "24297": {
+   "description": "A huge, high cavern opens beneath the prison, its walls stained red-orange by the glow from fissures in the rock. Cart tracks wind across the floor to a heap of broken ore baskets, and iron winches stand like gallows overhead. Hot, sulphur-laden air presses on the lungs. A rope hangs from the hole above, leading up to a cell.",
+   "look": "cave"
+  },
+  "24285": "A hard-packed path runs along this stretch, scuffed by the shuffle of bare, shackled feet. A groove worn in the floor marks where chains have dragged for years. Smoke-grey light seeps from fissures in the walls, and a low moaning draught carries the stink of the prison. The path leads north to a bone-littered track and south along its length, and an opening east gives onto the prison.",
+  "24288": "Bones lie scattered thick along this path, picked clean and cracked for marrow, some still bound to rusty shackle-rings. The walls are black with long smoke. A crunch of splinters follows your every step, and the heat is steady and heavy. The way leads north to a great cavern and south to the slave path.",
+  "24289": {
+   "description": "This giant cavern is floored with smooth, glassy black rock that glints with a thousand tiny reflections of red fire. Immense columns of stone rise to a vaulted roof hidden in smoke. The only sound is a deep, distant rumble, as of a heart beating in the mountain. A door of silver-plated steel stands in the north wall, and the path of bones lies south.",
+   "look": "cave"
+  },
+  "24290": "This vault is lined with polished silver plate that throws back a warped, flickering image of everything within. Empty plinths and open caskets stand in rows, and every shelf is stripped bare. The heat has darkened the silver to the colour of old pewter. A reek of sulphur hangs in the air, and the only exit is the door south.",
+  "24284": "The slave path bends here between the sooty walls, its floor scuffed to a polished sheen. A trough of dark, cooling oil stands against the wall, and old whips of braided hide hang from pegs. The roof is low and the heat builds. The path runs north and south, and an opening east gives onto the prison.",
+  "24283": "The slave path ends its long run at a wide crossing near the gate, the floor trampled hard by many feet. Soot-black pillars are chipped where chains have been struck against them. A cold draught finds its way in from somewhere, a rare relief in the heat. A way east leads back to the gate, north runs the path, and south opens onto the prison.",
+  "24282": {
+   "description": "This prison hall is wide and low, its barred alcoves stuffed with filthy straw. Rows of iron rings are set at ankle height along the walls, polished by shifting prisoners. The air is oppressive with heat, and drops of sweat fall from the roof like rain. The slave path lies north, the hall continues east, and an iron door south leads to a cell.",
+   "look": "dungeon"
+  },
+  "24281": {
+   "description": "The prison hall forks here, its floor trodden to a hollow groove by the slow pacing of guards. A rack of rusted shackles hangs on the wall beside a bucket of oily water, and the air is dense with sweat and smoke. Iron doors lead east and south into cells. The gate lies north, and the hall runs west.",
+   "look": "dungeon"
+  },
+  "24291": {
+   "description": "This cell is a narrow stone box with a ledge for a bed and a slop bucket crusted with filth. Bars of old burn-marks streak the walls where hot irons were laid against the stone. A few lice-ridden rags lie scattered. The only way out is the door west, onto the prison hall.",
+   "look": "dungeon"
+  },
+  "24292": {
+   "description": "A heap of black straw fills one corner of this cell, and a tin bowl lies bent flat on the floor. The ceiling is so low that a tall prisoner could not stand upright, and the walls weep a greasy damp. A thin voice of wind whistles through a crack. The door north leads out to the prison hall.",
+   "look": "dungeon"
+  },
+  "24293": {
+   "description": "Tally marks climb the walls of this cell in thousands of tiny scratches, ending in a spray of angry gouges. The floor is bare stone, worn into a shallow dish at its centre. The air is close and fevered, and sweat runs down the stone. The only way out is the door north, to the prison hall.",
+   "look": "dungeon"
+  },
+  "24294": {
+   "description": "Heavy chains dangle from the ceiling of this cell, ending in iron cuffs hung at just above head height. Dried stains darken the floor beneath them. The cell is hot as a baker's oven, and the walls tick faintly as they cool and warm. The door west returns to the prison hall.",
+   "look": "dungeon"
+  },
+  "24270": "A slender ledge of rock forms a tiny corner here, tucked under the platform's overhang and half hidden from view. Heat ripples off the cliff, and a thread of smoke curls from a crack. A plain door of dark wood is set in the wall, painted the same colour as the stone. It leads west into a hidden corridor, and a steep stair climbs up to the platform.",
+  "24271": "This corridor is cramped and bare, its walls close enough to touch both at once. Dust lies on the floor in an even, undisturbed film, and the plaster has fallen away in patches. A faint smell of sweet spice mingles with the scent of hot metal. The corridor turns north, and a door east leads out to a tiny corner.",
+  "24272": "The corridor ends in a square little chamber fitted with a heavy door of riveted bronze, locked by many bolts. Faint red light glows in its seams, and scrapes mark the floor where the door has been pulled open and shut. The air here is hotter than anywhere nearby. The corridor runs south, and the bronze door leads east.",
+  "24273": "Four doors open off this vaulted chamber, and the whole room glitters with the reflections of treasure. Gold veins run through the walls, polished to a mirror shine, and the floor is inlaid with a great sunburst of crimson stone. The heat is almost solid. Doors lead north, east and south to inner treasuries, and the corridor lies west.",
+  "24274": "Piles of ancient wealth lie heaped in this vault: tarnished goblets, heavy bars of ruddy gold, and chests spilled open to show tumbled jewels. Everything glows faintly from the heat, and the air ripples in front of your eyes. A throne-like chair of black iron sits at the far end. The only door leads south, back to the treasure chambers.",
+  "24276": "Racks of weapons stand in rows in this vault, their blades glowing a dull cherry red and never cooling. Shields hang on hooks, the faces of their emblems blistered. The floor is paved with gold plate, and the heat roars against the face. A door leads west to the treasure chambers.",
+  "24275": "Great urns of beaten bronze fill this vault, each larger than a man and brimming with coins fused into solid lumps. Between them stand idols of molten glass, their features melting and re-forming slowly. The air smells of hot metal and incense. A door leads north to the treasure chambers.",
+  "24261": {
+   "description": "The shaft bottoms out in a narrow throat, where the rock glows a dull red and the heat is almost unbearable. A brittle crust of cinders covers every ledge. Below, the endless fall is a pit of fire, and the wall opens south onto it. A way leads east to a dirty room, and the rungs climb up the shaft.",
+   "look": "mine"
+  },
+  "24262": "This dirty room has a floor of caked mud and ash, trodden into hard ridges by dragging feet. Bits of broken pottery and rags lie in the corners, and the walls are smeared with black fingerprints. The air is hot and heavy, with a smell of burnt hair. The only way out is west, back to the shaft.",
+  "24217": "This is the middle of the long hallway, where arched recesses mark the walls at even spaces and hold nothing but soot. The stone of the floor is cracked with heat and polished by passing feet. Smoke stains the vaulted ceiling in drifting patterns. The hall runs east and west, and a door south leads into a large room.",
+  "24220": "This large room is a bare hall of rough stone, with long wooden benches overturned and charred. A hearth as wide as a cart fills one wall, its grate heaped with ash and half-burnt bones. Scorched tapestries hang in rags above it. The door north leads back to the hallway.",
+  "24221": "The long hallway ends in a high, bare chamber where a staircase of dark wood rises along the wall. The floor is covered with trampled straw and scattered chips of charcoal. A door south is bolted with a heavy iron bar. The hall runs east, and stairs climb up.",
+  "24222": "A small room, cluttered and close, is lined with shelves stacked with brittle scrolls and cracked jars. Soot has coated every surface, leaving a fine black dust over all. The air is hot and thick with the smell of cinders. The only way out is the door north.",
+  "24223": "The wooden stairs creak under every footfall and are worn to a dip in each tread. A rope serves as handrail, fraying where it passes through iron eyes. Heat gathers at the top, and the smell of old perfume drifts down. The stairs lead down to the hallway, and an opening east leads to a bedroom.",
+  "24224": "A great bed with posts of carved black wood dominates this bedroom, its curtains scorched into brown lace. A dressing table stands cracked and dull with grime, its mirror long since blistered black. Fine ash covers the rugs. A door east conceals a secret space, and the stairs lie west.",
+  "24225": "This cramped secret space is hardly bigger than a closet, its walls stuffed with cobwebs and soot. A small iron-bound chest stands empty in the corner, its lock burst open. The air is thick and still, and the heat makes the walls tick. The only way out is west, through the bedroom.",
+  "24212": {
+   "description": "The passage winds between walls of folded red-brown rock, rippled like melted wax. Pockets of black soot streak the ceiling above, and a patch of yellow sulphur crusts a crevice. The air is warm and gritty to breathe. The passage leads north to a tri-section and east into a large cavern.",
+   "look": "cave"
+  },
+  "24210": {
+   "description": "A second tri-section opens here, where tunnel mouths cut the rock in three directions. Scrapes and scuffs mark the floor from the passage of heavy loads. The ceiling is blackened, and the smell of old smoke hangs in the warm air. Passages lead north toward the stairs, east to another junction, and south to a winding passage.",
+   "look": "cave"
+  },
+  "24214": {
+   "description": "This hidden room is a pocket in the rock, reached only by a hole in the cavern ceiling above. The walls have been smoothed by hand, and a rough bench is hewn into one side. Tiny scraps of cloth and an old clay lamp lie in the dust. A way leads up to the large cavern.",
+   "look": "cave"
+  },
+  "24209": "A small room is cut high in the cavern wall at the top of the incline, a refuge from the heat below. Its floor is bare rock, strewn with scraps of straw and a tangle of old rope. The air is cooler here, though only by a little. The incline slopes down to the passage.",
+  "24241": {
+   "description": "The maze twists into a hollow where the walls bulge in smooth, glowing blisters of stone. Every path seems to bend back on itself, and heat shimmers over the floor in confusing ripples. Marks scratched on the rock by earlier wanderers have been smudged out. The caverns offer no clear way out.",
+   "look": "cave"
+  },
+  "24242": {
+   "description": "A low, wide cavern fans out in a dozen directions, each one a dead end of crumbling rock. The red glow comes from every side and from no side, making shadows swim. Dust lies in drifts like snow, scored with confused footprints. There is no clear way out.",
+   "look": "cave"
+  },
+  "24243": {
+   "description": "Pillars of stone grow from floor to ceiling here, forming a forest of rock columns that all look the same. The heat is damp and heavy, and drops of warm water fall from the roof. Wherever you turn, the same dull glow shines back. The caverns offer no way out.",
+   "look": "cave"
+  },
+  "24244": {
+   "description": "The cavern floor here slopes into a bowl, and the walls curve up around it like the inside of a great pot. Streaks of sulphur paint the rock yellow and orange. A hot breeze circles endlessly without finding a way out. No marked path leads from this confusing place.",
+   "look": "cave"
+  },
+  "24245": {
+   "description": "This dead end is a pocket of rock closed in on all sides, the walls blackened by heat and scored with desperate scratches. A scatter of bones lies in the corner, and the air is hot and unmoving. Whoever came here came to the end of the maze and found nothing. No way leads on.",
+   "look": "cave"
+  },
+  "24246": {
+   "description": "A long, winding cavern ends here in a tangle of rock folds and sagging ledges. The ceiling drips glassy black beads, and each lands with a tiny hiss. Stones glow orange at the cracks, and the floor is warm underfoot. You can see no sure way out.",
+   "look": "cave"
+  },
+  "24247": {
+   "description": "A fierce roar fills this chamber, where fire leaps from vents in the floor and licks the ceiling in sheets of white and gold. Molten rock oozes along channels cut in the stone and pools in glowing hollows. The heat blisters the skin, and the light hurts the eyes. No path leads from this furnace of the mountain.",
+   "look": "volcanic"
+  }
+ },
+ "extras": {
+  "24200": [
+   {
+    "keywords": "sphere crystal",
+    "description": "The sphere is smooth, glassy and as tall as a man, glowing from within with a sullen red light. Its surface hums when touched, and the palm comes away hot."
+   }
+  ],
+  "24204": [
+   {
+    "keywords": "trapdoor ring pull",
+    "description": "The trapdoor is thick planking bound with iron straps. Its ring pull is black with soot, and heat comes up through the gaps around it."
+   }
+  ],
+  "24228": [
+   {
+    "keywords": "mosaic figure",
+    "description": "The mosaic shows a tall figure wreathed in flame, standing over a ring of kneeling slaves. Its eyes are chips of red glass that catch the light."
+   }
+  ],
+  "24231": [
+   {
+    "keywords": "throne",
+    "description": "The throne is a single mass of fused slag and iron, its seat worn smooth. Its arms end in the snarling heads of wolves, whose open mouths hold small fires."
+   }
+  ],
+  "24278": [
+   {
+    "keywords": "anvil",
+    "description": "The anvil is bigger than a farm cart, its face dented by blows from some enormous hammer. The iron still glows faintly."
+   }
+  ],
+  "24279": [
+   {
+    "keywords": "gate massive iron spikes",
+    "description": "The gate is black iron on iron hinges as thick as a man's waist. Its spikes are blunted and stained, and a small door is cut into the bottom of the western leaf."
+   }
+  ],
+  "24280": [
+   {
+    "keywords": "shackles chains",
+    "description": "The shackles hang in long rows from the walls, their cuffs of different sizes. Some are worn thin, and some are still bright with use."
+   }
+  ],
+  "24290": [
+   {
+    "keywords": "silver plate plating",
+    "description": "The silver plating is beaten thin and fitted in overlapping panels over the stone. The heat has tarnished it, but it still returns a dim, wavering reflection."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "cinder-slave",
+   "keywords": "slave cinder prisoner",
+   "short_desc": "a cinder-scarred slave",
+   "long_desc": "A cinder-scarred slave shuffles here, eyes down, dragging a length of broken chain.",
+   "description": "This gaunt slave is burnt and blistered across the shoulders, with old whip welts crossing the burns. Rags hang from a frame worn to bone. The eyes that meet yours are dull with exhaustion.",
+   "kind": "humanoid",
+   "level": 17,
+   "aggressive": false,
+   "alignment": 300,
+   "rooms": [
+    "The Prison",
+    "The Slave Path",
+    "A Smelly Prison Cell",
+    "The Path of Bones"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "cracked-shackle",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "ember-imp",
+   "keywords": "ember imp fire demon",
+   "short_desc": "a flickering ember imp",
+   "long_desc": "A flickering ember imp scampers along the floor, spitting sparks and cackling.",
+   "description": "The imp is a hunched little demon no larger than a child, its skin the glossy black of cooling slag and cracked with orange fire. Tiny horns curl from its brow, and its grin shows teeth like hot needles. Smoke curls from its nostrils.",
+   "kind": "monster",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Steamy Hallway",
+    "In a Long Hallway",
+    "A Royal Hallway",
+    "A Cave Passage",
+    "A Tri-Section",
+    "The Strange Hallway"
+   ],
+   "count": 4,
+   "drops": []
+  },
+  {
+   "id": "cinder-spider",
+   "keywords": "cinder spider fire",
+   "short_desc": "a huge cinder spider",
+   "long_desc": "A huge cinder spider clings to the rock, its legs glowing faintly at the joints.",
+   "description": "The spider is as big as a dog, its carapace the grey of old ash and its leg joints glowing a sullen red. Heat pulses off its swollen body in waves. Its eyes are small beads of molten glass.",
+   "kind": "animal",
+   "level": 20,
+   "aggressive": true,
+   "alignment": -100,
+   "rooms": [
+    "A Dark Tunnel",
+    "A Dark Junction",
+    "A Narrow Crawlway Of Bones",
+    "The Maze Of Confusing Caverns",
+    "A Very Small Crawlspace"
+   ],
+   "count": 4,
+   "drops": []
+  },
+  {
+   "id": "fire-overseer",
+   "keywords": "overseer guard slaver whip",
+   "short_desc": "a whip-scarred overseer",
+   "long_desc": "A whip-scarred overseer paces here, a barbed lash coiled on his hip.",
+   "description": "This broad, heavy guard has skin like baked leather, ridged with old burns, and eyes that glow a faint orange. A barbed lash hangs at his belt, and he wears a collar of studded iron. He regards every living thing as a beast to be driven.",
+   "kind": "humanoid",
+   "level": 22,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Slave Path",
+    "The Prison",
+    "Inside the Massive Gate",
+    "Outside the Massive Gate"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "cinder-lash",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "royal-flame-guard",
+   "keywords": "royal flame guard fire soldier",
+   "short_desc": "a royal flame guard",
+   "long_desc": "A royal flame guard stands rigid here in armour of blackened bronze, flames licking at its helm.",
+   "description": "The guard is a tall figure of living fire clad in bronze plate, its visor pierced by two glowing slits. It bears a heavy shield stamped with a burning crown, and its movements make the air around it shimmer. It does not speak.",
+   "kind": "humanoid",
+   "level": 25,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "A Royal Hallway",
+    "The Entrance To The Throne Room",
+    "The Huge Throne Room"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "flame-guard-shield",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "magma-ogre",
+   "keywords": "magma ogre brute",
+   "short_desc": "a hulking magma ogre",
+   "long_desc": "A hulking magma ogre lumbers here, trailing smoke from its cracked, glowing hide.",
+   "description": "This ogre stands twice a man's height, its hide a lattice of black crust over a molten glow. Each step leaves a scorched print, and its fists are slabs of cooled rock. Steam hisses from the seams of its shoulders.",
+   "kind": "monster",
+   "level": 25,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "The Giant Cavern",
+    "The Enormous Room",
+    "The Magnificent Silver Vault"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "flame-guard-shield",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "gorrak-gigas",
+   "keywords": "gorrak fire gigas giant",
+   "short_desc": "Gorrak, the fire gigas",
+   "long_desc": "Gorrak, the fire gigas, squats here among the bones, a hammer as long as a man resting across his knees.",
+   "description": "Gorrak is a giant of ember-red skin, thickly muscled and scarred across the chest by a lifetime of fights. His beard is braided with iron rings, and smoke rolls from his shoulders as he breathes. He guards the ledge for Machk-Gyi.",
+   "kind": "monster",
+   "level": 26,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "The Fire Gigas Hideout"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "gigas-hammer",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "machk-gyi",
+   "keywords": "machk-gyi machk gyi fire lord demon",
+   "short_desc": "Machk-Gyi, the fire lord",
+   "long_desc": "Machk-Gyi, the fire lord, towers here amid his hoard, wreathed in a crown of living flame.",
+   "description": "Machk-Gyi is a towering lord of fire, his body a furnace of white-hot muscle caged in blackened iron plate. A crown of flames burns on his brow, and his voice is the crack of a whip over a roaring forge. Gold melts and runs at his feet.",
+   "kind": "monster",
+   "level": 27,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "Machk-Gyi's Inner Treasury"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "firelord-crown",
+     "chance": 35
+    },
+    {
+     "item": "gigas-hammer",
+     "chance": 10
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "cracked-shackle",
+   "keywords": "shackle iron cracked",
+   "short_desc": "a cracked iron shackle",
+   "room_desc": "A cracked iron shackle lies here.",
+   "description": "A heavy iron wrist shackle, snapped at the hinge. The inside is polished by years of wearing.",
+   "kind": "treasure",
+   "level": 17
+  },
+  {
+   "id": "cinder-lash",
+   "keywords": "lash whip barbed cinder",
+   "short_desc": "a cinder-barbed lash",
+   "room_desc": "A cinder-barbed lash lies coiled here.",
+   "description": "A long lash of braided hide, studded with barbs of blackened iron. The tips still smoulder faintly.",
+   "kind": "weapon",
+   "level": 22,
+   "weapon_type": "slash"
+  },
+  {
+   "id": "flame-guard-shield",
+   "keywords": "shield bronze flame crown",
+   "short_desc": "a bronze shield stamped with a burning crown",
+   "room_desc": "A bronze shield stamped with a burning crown lies here.",
+   "description": "A round shield of heavy bronze, still warm to the touch. A burning crown is stamped in its face.",
+   "kind": "armor",
+   "wear_slot": "shield",
+   "level": 25,
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "gigas-hammer",
+   "keywords": "hammer gigas iron huge",
+   "short_desc": "a huge gigas hammer",
+   "room_desc": "A huge gigas hammer lies here, glowing at the head.",
+   "description": "A hammer forged for a giant, its iron head still glowing dull red. The haft is bound in cord blackened by many hands.",
+   "kind": "weapon",
+   "level": 26,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  },
+  {
+   "id": "firelord-crown",
+   "keywords": "crown fire lord iron flame",
+   "short_desc": "the crown of the fire lord",
+   "room_desc": "A crown of black iron lies here, flickering with embers.",
+   "description": "A band of black iron set with spikes of red glass, each flickering as though lit by a coal within. It is always warm.",
+   "kind": "armor",
+   "wear_slot": "head",
+   "level": 27,
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}

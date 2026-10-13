@@ -1,0 +1,653 @@
+{
+ "job": "z454",
+ "rooms": {
+  "107300": {
+   "description": "The last grey of daylight reaches this narrow rock mouth by way of a stair-cut shaft that climbs up toward the Nasty Lake above, and it fades before it touches the far wall. Cold breathes out of the tunnel that runs on east into the black. The floor is worn smooth by older feet than yours, and the stone sweats where the air meets it. Here the world you know ends and the Caverns of the Pale Man begin.",
+   "look": "cave"
+  },
+  "107301": {
+   "description": "The tunnel tips and begins its long descent, the floor sloping under your boots toward deeper rock. Rough-hewn walls close in on both sides, glistening with a thin skin of wet. The entry is a dim paler patch behind you to the west, while ahead the way bends on east into a cold that smells of old stone. Pebbles skitter loose from your heel and are lost in the dark.",
+   "look": "cave"
+  },
+  "107302": {
+   "description": "Breath smokes in front of your face here, for the chill has come up out of the rock like a tide. Frost-fine crystals of damp cling to the ceiling in a pale fur. The tunnel keeps its slow slope, running on east, and the way back west toward the entry is already warmer than this. Your fingers ache against the cave wall.",
+   "look": "cave"
+  },
+  "107303": {
+   "description": "The passage twists through a throat of dark grey stone, each turn a little lower than the last. A thin trickle runs along a groove in the floor and vanishes into a crack. Somewhere ahead, water drips at slow, even intervals. The tunnel goes on east, and the way west climbs back toward a memory of light.",
+   "look": "cave"
+  },
+  "107304": {
+   "description": "A great weight of rock presses over your head, and the whole tunnel seems to hold its breath beneath it. The ceiling lifts a little here and the walls are scored with long pale seams of mineral. Your steps ring flat and dull, as if the stone drinks the sound. East the passage leans toward a place where the floor seems to settle, while the slope you came by runs back west.",
+   "look": "cave"
+  },
+  "107305": {
+   "description": "At last the floor stops its long fall and lies level, a broad shelf of damp stone worn by countless passings. The ceiling is low and ragged, hung with short stone teeth. The tunnel from the west ends against a blank wall of rock, and the only way on turns south into a smoother passage. The cold here is steady and patient, no longer a wind but a settled fact.",
+   "look": "cave"
+  },
+  "107306": {
+   "description": "The walls here have been worked, or perhaps worn, until they shine like old bone under a thumb. The passage runs straight north back to the level floor and south toward a bend. A low opening in the west wall gives onto a small room that someone clearly meant to hide. Faint tool marks show in the rock around it.",
+   "look": "cave"
+  },
+  "107309": {
+   "description": "The smooth passage bends here in a long, lazy curve, its walls bellying out like the inside of a great shell. Drips fall from the ceiling and ring on a little ridge of flowstone. The way north leads back to the polished stretch, while the bend carries on east. A sour mineral smell hangs in the air.",
+   "look": "cave"
+  },
+  "107310": {
+   "description": "The tunnel widens around a recess in the northern wall, a hollow like a niche cut to hold a lamp. Your own footsteps come back from the dark with a small delay. West the passage curves away behind you, and east it opens out wider still. The rock underfoot is gritty with pale sand ground from the walls.",
+   "look": "cave"
+  },
+  "107311": {
+   "description": "A shallow alcove, no deeper than a man might lie, hollowed from the living rock. The floor is dusted with fine pale grit, and old scorch marks stain the stone where someone once kept a fire. Only the way south, back to the passage, leads out. The chill is a little less cutting in this pocket, and the silence is thick.",
+   "look": "cave"
+  },
+  "107312": {
+   "description": "The walls draw back and the ceiling climbs, as if the tunnel were remembering that it was once something grander. Lumps of fallen stone lie in the dust, rounded by age. West is the way back toward the alcove, and east a sense of vast space waits, felt as a change in the air on your face. Far off, water falls with a thin silver sound.",
+   "look": "cave"
+  },
+  "107313": {
+   "description": "You step out of the tunnel into a cavern so large that your light finds neither roof nor far wall. Pale mold glows in faint green smears on the nearer rocks, enough to show a floor littered with boulders. Paths of trodden dust lead north, east and south among them, and the passage you came by lies behind you to the west. The air is cold and tastes of wet iron.",
+   "look": "cave"
+  },
+  "107314": {
+   "description": "The cavern floor here is a field of broken stalagmites, snapped long ago and lying like felled trees. A faint green glow clings to the cracks between them. The way east threads onward among the boulders, and the way south leads back to the part of the cavern you entered by. Overhead the dark is absolute.",
+   "look": "cave"
+  },
+  "107315": {
+   "description": "Four trails of trodden grit cross here beneath a ragged ceiling lost in blackness. A drift of pale flowstone like frozen candle wax fills one side of the floor and reflects the green glimmer of the mold. A narrower way begins to the north, the cavern spreads east and south, and the broken stalagmites lie to the west. Water ticks somewhere out of sight.",
+   "look": "cave"
+  },
+  "107328": {
+   "description": "The great cavern narrows toward a funnel of rock at this end, the walls leaning in as if to whisper. Thick mats of grey mold cover a slab of fallen stone and give off a faint, sickly shine. A wide passage opens to the north, and the cavern lies open south and east. The floor is slick and treacherous underfoot.",
+   "look": "cave"
+  },
+  "107329": {
+   "description": "The cavern gives way to a broad passage whose walls run almost parallel, as straight as if a mason had laid a rule to them. Old grooves in the floor suggest heavy things dragged over it. South the passage opens back into the great cavern, and north it continues toward a meeting of ways. The air moves faintly here, carrying a rank animal smell.",
+   "look": "cave"
+  },
+  "107330": {
+   "description": "Three tunnels meet in a low round chamber whose roof is black with soot. The worn floor is scuffed in all directions, and a dull, steady rumble comes along the eastern tunnel like the sound of a distant crowd. The way north runs on through a wide passage, and the way south leads back toward the cavern. Scratches on the wall mark a tally no one has finished.",
+   "look": "cave"
+  },
+  "107338": {
+   "description": "The wide passage runs on between smooth, sooty walls, its floor beaten flat by heavy tread. Splintered shafts of broken spears lie jammed in cracks along the sides. North the passage keeps its course, and south it returns to the three-way split. A smell of smoke and sour fur hangs here.",
+   "look": "cave"
+  },
+  "107339": {
+   "description": "Here the passage is wide enough for three to walk abreast, and the roof is hung with ropes of dripping stone. A crude ward of knotted sinew and bone dangles from a spike driven into the rock. The way south goes back along the wide passage, and north it opens toward the dens. Low growling talk echoes faintly out of the dark ahead.",
+   "look": "cave"
+  },
+  "107340": {
+   "description": "A rough archway of piled stones frames the entrance to the dens, its capstone daubed with a smear of red handprints. Trampled straw and gnawed bones spill out across the threshold. The passage you came by lies south, and east the dens begin in earnest, thick with heat and stench. The stone here is warm to the touch, which feels wrong after the long cold.",
+   "look": "cave"
+  },
+  "107341": {
+   "description": "A low-roofed den scooped out of the rock, its floor strewn with matted straw and the splintered ends of bones. Greasy smoke has blackened the ceiling above a ring of fire-cracked stones. The entrance lies west, and a second den opens east, deeper in. The smell is of wet dog, old meat and something fouler.",
+   "look": "cave"
+  },
+  "107342": {
+   "description": "Rotted hides hang from pegs hammered into the walls, stiff and dark with grease. A pile of broken crates and barrels has been dragged into one corner as a rough bed. The den continues north, and west lies the den you came through. Scratched into the stone at head height are crude pictures of men with arrows in them.",
+   "look": "cave"
+  },
+  "107343": {
+   "description": "The den narrows to a tunnel-like chamber where the straw is trodden into a black felt. A heap of old skulls, human and otherwise, is stacked along the wall in a careful pile. North the chamber widens toward a larger hall, and south it returns to the lower den. The ceiling drips something warm and brown.",
+   "look": "cave"
+  },
+  "107344": {
+   "description": "The heart of the den is a wide, round hall with a firepit at its centre, its ashes still faintly warm. A great chair of lashed bone and rough timber sits against the far wall, heaped with furs. Dens open to the north, east, south and west, each a dark mouth in the stone. Totem poles hung with teeth and rags crowd the edges of the room, and the smell is nearly solid.",
+   "look": "cave"
+  },
+  "107347": {
+   "description": "A cramped den full of sleeping pallets, each a shallow bed of straw and filthy blankets pressed flat by a heavy sleeper. A rack of crude clubs and spiked cudgels leans against the wall. The great hall lies south, and east the chamber runs on into another den. Dust and fleas drift in a slanting thread of ember-light.",
+   "look": "cave"
+  },
+  "107346": {
+   "description": "A corner den where the stone sweats and a puddle of dark water has gathered in a hollow. Scraps of leather and half-cured pelts hang drying from a line of knotted cord. South lies another den and west the cramped sleeping place. Someone has scratched a row of tally marks, hundreds strong, into the rock above the puddle.",
+   "look": "cave"
+  },
+  "107345": {
+   "description": "This den is hung with blackened iron pots and stolen cooking gear, a plunderer's kitchen with a stained slab for a table. The remains of a great meal lie scattered on the floor, picked clean. North the chamber continues into a corner den, and west it opens on the main hall. Black soot streaks the walls above a small fire that has burned to coals.",
+   "look": "cave"
+  },
+  "107349": {
+   "description": "The den opens on four ways and reeks of musk, for it is where the biggest sleepers lie. Huge nests of hide and straw fill the floor, each shaped by a body larger than a man. A passage leads north and another south, the main hall lies east, and a smaller den opens west. A rusted chain hangs from the ceiling, its end torn clean through.",
+   "look": "cave"
+  },
+  "107348": {
+   "description": "A dead-end store den, packed to the ceiling with plunder: split sacks, barrel staves, torn banners and a cart wheel with no cart. Everything is coated in the same grey dust. The only way out lies south. A faint dry rustling comes from among the sacks, only the settling of old cloth.",
+   "look": "cave"
+  },
+  "107351": {
+   "description": "A narrow den scraped out like a burrow, so low that you must stoop. The walls are rubbed shiny by the passage of many shoulders, and bits of coarse hair cling to every ridge. The only way out lies north. A heap of dried bones and bent arrowheads fills the back of the burrow.",
+   "look": "cave"
+  },
+  "107350": {
+   "description": "The westernmost den is the filthiest of all, a pit of trampled bedding and splintered bone under a ceiling furred with soot. Gouges in the walls show where claws have worried the stone in some old rage. The only way out is the den to the east. A heavy iron ring is sunk into the floor, rusted to a solid knot.",
+   "look": "cave"
+  },
+  "107331": {
+   "description": "A noise rises along this tunnel like surf heard through a wall, a rushing, muttering murmur that never quite resolves into words. The rock is cracked and hollow, and every step you take sets a faint chorus going. West the tunnel returns to the three-way split, and east it runs on toward the source of the sound. Fine grey dust sifts down from the ceiling with each footfall.",
+   "look": "cave"
+  },
+  "107332": {
+   "description": "Voices seem to speak from every crack in the stone, whispers and chitters and sighs overlapping until your ears ache. It is only the echo of far-off water finding a hundred small channels in the rock, but the mind does not believe it. The tunnel stretches west back toward the quieter way and east toward a louder place. Cold drafts brush your neck like fingers.",
+   "look": "cave"
+  },
+  "107333": {
+   "description": "The din here is enormous, a pounding, tumbling roar thrown back and forth between close walls of wet stone. Spray hangs in the air from some unseen fall, and the floor shivers faintly underfoot. The tunnel opens east toward the loudest part, a doorway leads south into a small side room, and the quieter way lies west. You must raise your voice to hear yourself think.",
+   "look": "cave"
+  },
+  "107335": {
+   "description": "The noise reaches a pitch that rattles loose grit from the roof and sets your teeth on edge. A churning stream of white water pours through a cleft in the rock, plunging away through a hole too narrow to follow. Chambers open to the north and east, and the way back lies west. Slick moss paints the stone in dark green stripes.",
+   "look": "cave"
+  },
+  "107337": {
+   "description": "A private chamber cut from the rock, its walls trimmed straight and its floor swept clean of grit. A heavy slab of stone serves as a table, and wedge-shaped holes in the walls once held shelves. Only the way south back to the loud passage leads out. The roar is muffled here to a low throb you feel in your ribs.",
+   "look": "cave"
+  },
+  "107336": {
+   "description": "A large room with a high, dripping ceiling and a floor of broken flagstones laid long before the caverns were claimed. Heaps of rubble stand in the corners and a long crack runs across the middle of the room. The way west returns to the pounding passage. Beneath the din, a slow, steady drip counts out the seconds.",
+   "look": "cave"
+  },
+  "107334": {
+   "description": "This small private chamber is tucked away from the worst of the noise, and a damp quiet fills it. Rusted brackets in the wall once held torches, and a drift of grey ash is all that is left of the last of them. The way north is the only way back out. The ceiling is so low that it brushes your hair.",
+   "look": "cave"
+  },
+  "107327": {
+   "description": "The great cavern curves away here around an immense column where roof and floor have grown together into one pillar of stone. Mold in pale green rosettes spreads over the base of it, and a faint luminous dust floats about the air. The cavern runs on south, and west it opens toward a pinched corner. The cold seeps up through your soles.",
+   "look": "cave"
+  },
+  "107321": {
+   "description": "A broad, flat stretch of the cavern where the floor is covered in a gritty carpet of pale sand and tiny stones. Paths of scuffed grit lead in four directions into the dark, and the glow of the mold shows only the nearest of the boulders. You hear the slow drip of a pool somewhere to the east. Far overhead, something unseen rustles in the black.",
+   "look": "cave"
+  },
+  "107322": {
+   "description": "The cavern floor ramps upward here toward a pair of tall stone doors long since fallen from their hinges and lying flat in the dust. Past them an archway of cut stone leads east into a grander hall. South the cavern opens on a lower stretch of rough ground, and west lies the broad flat sand. Carved leaf patterns still show on the nearer door.",
+   "look": "cave"
+  },
+  "107370": {
+   "description": "A vaulted chamber, its ceiling a pointed arch of cut stone ribbed with narrow bands of paler rock. The floor is paved in great square flags worn into shallow dishes by feet of ages ago. West is the rough cavern you came from, and east the hall continues beneath the same arching roof. Mold glows faintly in the joints of the paving.",
+   "look": "cave"
+  },
+  "107371": {
+   "description": "The vault continues here, its pillars rising from the floor like a grove of stone trees. Faded stripes of paint, once red and gold, run along the ribs of the arches above. The hall leads west toward the doors and east toward a dark opening in the floor. Every sound you make comes back from the high roof a moment late.",
+   "look": "cave"
+  },
+  "107372": {
+   "description": "A round hole as wide as a wagon yawns in the middle of the floor, rimmed with a low lip of rough stone. A rusted iron windlass stands beside it, its rope long rotted away to a few brown threads. Cold air rises from the black below in a steady, silent breath. The vaulted hall lies west, and the shaft itself drops away downward.",
+   "look": "mine"
+  },
+  "107373": {
+   "description": "You hang in the throat of the shaft, rungs of old iron set into the wall beneath your hands. The rock here is shiny with damp, and every breath rises as a white ghost in the dark. A square of faint light shows above where the shaft opens to the hall, and far below the blackness thickens. Rust flakes off the rungs and falls away without a sound.",
+   "look": "mine"
+  },
+  "107374": {
+   "description": "The shaft ends in a small round chamber, its floor heaped with rubble and the rotted ends of timbers. The last iron rung gives onto the wet stone, and overhead the shaft climbs away into darkness. A low arched way leads east toward a hall of dressed stone. Water has collected in the stones in cold, black puddles.",
+   "look": "mine"
+  },
+  "107375": {
+   "description": "A second vaulted chamber, lower and narrower than the first, with squat pillars that carry a heavy, ribbed roof. Carved bands of knotwork run around the walls at shoulder height, picked out in a fine green bloom of mold. The passage back to the shaft lies west, and east a pointed arch opens upon something grander. The air is dry and strangely still.",
+   "look": "cave"
+  },
+  "107376": {
+   "description": "A tall archway of fitted stone spans the passage here, its keystone carved with a pale, blank-eyed face. Ways meet beneath it: a broad carpeted passage heads north, a wider cavern opens east, and the vaulted hall lies to the west. The stone beneath your feet gives way to something soft and old. A dry cold falls from the arch like a shadow.",
+   "look": "cave"
+  },
+  "107377": {
+   "description": "The floor of the cave-way is carpeted from wall to wall with a thick, moth-eaten weave of deep red, worn to threads along its middle. Brass lamp-brackets, green with age, hang from the walls at regular intervals. The way north continues into the carpeted dark, and the archway lies south. No echo comes from your steps on the heavy pile.",
+   "look": "cave"
+  },
+  "107378": {
+   "description": "The wide cave-way continues, and the old carpet here is stained with dark patches where something heavy was dragged. Faded tapestries hang in rotted tatters from hooks driven into the rock. The way leads north deeper in, and south back toward the archway. A cold stillness presses on your ears.",
+   "look": "cave"
+  },
+  "107379": {
+   "description": "The wide cave-way grows richer as it nears its end: small carved niches line the walls, each holding a cracked dish of long-dried oil. The carpet is thick and nearly whole here, silenced with a century of dust. North the way ends at a corner before a great chamber, and south it runs back along the carpeted length. A faint, sweetish smell of old incense clings to the air.",
+   "look": "cave"
+  },
+  "107380": {
+   "description": "The cave-way turns at last to face a pair of tall doorposts, their doors long gone, and beyond them lies a chamber of state. Gold-painted scrollwork on the lintel has flaked to a dull yellow. The way east leads into the chamber itself, and the carpeted passage runs back south. The air is colder here, with the quiet of a place that is waited in.",
+   "look": "cave"
+  },
+  "107383": {
+   "description": "A lofty antechamber where four ways meet beneath a ceiling painted with a ring of pale faces. Waiting rooms lie to the north and south, the great chamber stands to the east, and the carpeted door lies west. The floor is covered in worn black and white tiles, chipped like old teeth. A chandelier of iron hangs dark and empty from a single chain.",
+   "look": "cave"
+  },
+  "107381": {
+   "description": "A narrow waiting chamber with a long stone bench running around its walls, polished smooth by those who sat to be called. Faded murals show ranks of pale-robed figures bowing toward a distant door. The only way out is south, back to the antechamber. Every sound is hushed here, as if the room expects silence from its petitioners.",
+   "look": "cave"
+  },
+  "107384": {
+   "description": "The Chamber of the Pale Man is a tall, bare hall of white-veined stone, cold as the heart of winter. Pillars of stained rock march in pairs down its length, and the floor is a mosaic of pale tiles worn to the colour of bone. Side chambers open north and south, a throne room lies east, and the antechamber waits west. A feeling of attention settles on you, as if the walls themselves are watching.",
+   "look": "cave"
+  },
+  "107382": {
+   "description": "A side chamber used for storage of the rich and the long-dead: rotted chests, collapsed shelves and bundles of mouldering silk. A single narrow window of stone looks into the great hall, letting in a trickle of glimmer. The only way out is south, into the Chamber of the Pale Man. The cold here has a deep, tomb-like patience.",
+   "look": "cave"
+  },
+  "107385": {
+   "description": "The throne room ends in a dais of five wide steps, and on it stands a great seat carved from a single block of bleached stone. Tall candle stands, long since drained of wax, flank it like pale sentries. The only way out is west to the Chamber of the Pale Man. The throne is cold even through your glove when you touch its arm.",
+   "look": "cave"
+  },
+  "107387": {
+   "description": "A second side chamber, with bare walls and a low ceiling blackened with the smoke of countless small lamps. A ring of worn depressions in the floor shows where kneeling figures once gathered. The only way out lies north, into the Chamber of the Pale Man. Candle-stubs lie melted into the floor in uneven puddles of white wax.",
+   "look": "cave"
+  },
+  "107386": {
+   "description": "Another waiting chamber, mirror to the first, though its bench has collapsed into a heap of broken stone. Scraps of gilded cloth lie in the corners, stiff and brown. The only way out lies north, to the antechamber. A cold seam of draught slides under your cloak.",
+   "look": "cave"
+  },
+  "107388": {
+   "description": "The cave-way opens suddenly into a wide cavern, the roof climbing out of sight and the floor sloping gently toward a pit. Pale mold patches glow in drifts on the walls like faded stars. West is the archway through which you came, east a pool of stillness waits around a deep well, and a grim chamber opens to the south. The smell of cold water and old stone is strong.",
+   "look": "cave"
+  },
+  "107390": {
+   "description": "A round well-mouth opens in the floor here, ringed by a low parapet of stones black with age. A stout iron hook set into the rim once held a bucket rope, and a few rotten strands still dangle from it. The cavern lies west, and the well itself plunges away downward into cold darkness. Breath rises from it like the breath of something sleeping.",
+   "look": "cave"
+  },
+  "107391": {
+   "description": "You cling to the slick wall of the well, with rungs of black iron set at wide intervals under your hands. The stone is wet and furred with pale growth, and far below you hear water shifting in the dark. Overhead the mouth of the well is a small grey coin of dim light. The cold is bitter and the air smells of deep stone.",
+   "look": "cave"
+  },
+  "107392": {
+   "description": "The well ends in a small domed chamber with a floor of wet gravel and a shallow pool of black water in the middle. The rungs of the shaft rise into the roof above you. A passage leads east from the chamber. Ripples spread across the pool from a slow drip that falls from the heart of the dome.",
+   "look": "cave"
+  },
+  "107393": {
+   "description": "Four low passages cross in a square chamber with a flat ceiling propped up by thick pillars of living rock. Strange signs are scratched into the pillars at the height of a man's chest, too weathered to read. The well chamber lies west, a faint glow shows east, and a side tunnel leads south. The air here is bitterly cold and perfectly still.",
+   "look": "cave"
+  },
+  "107394": {
+   "description": "A pale glow spills along this passage from the chamber ahead, shifting like light seen through water. It lies in long wavering stripes across the walls and floor and makes your hands look like a dead man's. The passage returns west to the crosschamber and goes on east toward the light. Your eyes ache from the unnatural brightness.",
+   "look": "cave"
+  },
+  "107395": {
+   "description": "This low cavern was once a dragon's lair, and the proof is everywhere: the rock is fused to a glassy black, scorched by fires long dead. In the middle lies a great saucer-shaped hollow worn smooth by a heavy body, now bare and empty. Veins of pale crystal in the roof throw out the glow that lights the place. The only way out is west.",
+   "look": "cave"
+  },
+  "107396": {
+   "description": "A narrow side tunnel, its floor greasy with wet clay and marked with the prints of many bare feet long since baked hard. The walls are scribbled with charcoal figures, stick men fleeing from a great shape. The tunnel leads north back to the crosschamber and south into the dark. Water oozes in a thin skin down the stone.",
+   "look": "cave"
+  },
+  "107397": {
+   "description": "The side tunnel bends here around a thick fin of rock, and the walls come so close that you must turn sideways in places. Grey rime lies in the crevices like old salt. North the tunnel runs back toward the crosschamber, and east it twists on toward a deeper room. A smell of cold iron hangs in the dark.",
+   "look": "cave"
+  },
+  "107398": {
+   "description": "A deep room, perhaps the lowest in these caverns, its ceiling so far above that your light dies before it finds it. The floor is a wide shelf of rock, dry as dust and strewn with the shards of pottery. Strange scoured marks run in concentric circles around the centre of the room. The only way out lies west, and the stillness is nearly sacred.",
+   "look": "cave"
+  },
+  "107389": {
+   "description": "A grim chamber with a round, domed ceiling and a floor of black stone, scarred with long deep scratches that cross and recross. Rusted shackles are bolted into the walls at the height of a man's wrists, and the iron has flaked away to a red crust. The only way out is north, to the widening cavern. A dull smell of old blood clings to the rock.",
+   "look": "cave"
+  },
+  "107323": {
+   "description": "A slope of broken scree runs across this part of the cavern, loose and noisy underfoot. Boulders the size of carts lie where they fell from the vanished roof, and between them the mold has made a pale green ledge. The cavern runs on north, south and west from here. A trickle of water winds through the pebbles with a tiny chuckle.",
+   "look": "cave"
+  },
+  "107324": {
+   "description": "A steep stair of tumbled stone climbs from the corner of the cavern into a crevice high in the wall. The floor is gritty and dry, and a faint breath of living air, with a hint of green, wanders down it from above. The cavern lies open to the north and west, and the climb leads up. Small bright flakes of mica twinkle in the rock like distant stars.",
+   "look": "cave"
+  },
+  "107319": {
+   "description": "The cavern floor is smoother here, a wide plain of pale stone dimpled with shallow cups where drip-water has gathered. Slender stone spikes rise from the cups, no taller than a child, and ring faintly when your sleeve brushes them. Paths of grit lead north, east and west. The glow of the mold is thin and cold.",
+   "look": "cave"
+  },
+  "107320": {
+   "description": "Four trails of grit cross in this stretch of the cavern, in a hollow between two long ridges of rubble. A great column of stone, tall and thick as a tower, stands at its heart with a ring of mold glowing around its foot. The cavern runs away in all four directions. The air smells of wet limestone and cold.",
+   "look": "cave"
+  },
+  "107316": {
+   "description": "A broad, empty reach of cavern floor lies here, scattered with the white, snapped ribs of stone that once hung from the roof. Your passage raises a cloud of fine pale dust that hangs in the still air. Trails lead north, east, south and west among the rubble. A dull glimmer of green mold marks the boulders and nothing else.",
+   "look": "cave"
+  },
+  "107318": {
+   "description": "The cavern floor tilts gently here toward a patch of darkness more complete than the rest. Stalagmites cluster like a thicket of pale candles, some as thin as a finger and some as thick as a barrel. The cavern opens north, east and west from here. A steady rain of drops falls through the dark and clinks upon the stones.",
+   "look": "cave"
+  },
+  "107317": {
+   "description": "The cavern narrows toward its southern edge, where a split in the rock leads off into a tighter space. Its floor is a pale crumble of old bones of stone, and thin veils of mineral hang from the ceiling in curtains. North the cavern spreads wide, east it runs on, and south a dark crack in the wall draws the eye. A cold wind sighs through the crack.",
+   "look": "cave"
+  },
+  "107325": {
+   "description": "You must turn sideways to pass this narrow crack in the walls, the rock pressing against both your chest and your back. The stone is cold and slippery, rubbed to a dull shine by those who have squeezed through before you. North the crack opens back into the great cavern, and west it widens at last into a room. Your breath comes loud in the confined dark.",
+   "look": "cave"
+  },
+  "107326": {
+   "description": "The Horror Chamber is a ragged pocket of black rock stained in great dark splashes on floor and wall. Heavy iron hooks hang from the ceiling on rusted chains, and a stone slab stands in the middle with channels cut in its surface. The only way out is the crack to the east. Even now the cold seems to carry an echo of screams.",
+   "look": "cave"
+  },
+  "107352": {
+   "description": "The cave floor tilts hard here into a steep climb, a stair of rough ledges and handholds worn by long use. Mold-slick rock makes every step uncertain. A faint, fresher smell drifts from above, and below lies the great cavern. The wall is cold and damp under your grasping hands.",
+   "look": "cave"
+  },
+  "107353": {
+   "description": "A fresh scent, green and wet and alive, drifts down the tunnel from above and makes the old air seem staler by contrast. The way is a rough chimney of rock with ledges to climb by, rubbed bright by countless hands. Above, the tunnel bends toward a looser space, and below it descends to the steep stair. Thin cobwebs of pale root hang from the roof.",
+   "look": "cave"
+  },
+  "107354": {
+   "description": "A small cavernway where the tunnel from below opens onto a low, damp ledge, with a lake's gleam showing off in two directions. A stream chuckles out of the rock to the east, and the way west leads along a muddy shore toward a moldy smell. Down the climb lies the way back into the deep. Thick beads of water hang from the ceiling like glass.",
+   "look": "cave"
+  },
+  "107355": {
+   "description": "A clear black stream, the tributary of the lake, runs alongside a narrow ledge of wet rock. Its water flows with a smooth, silent pull, cold enough to numb a hand that dips into it. The ledge leads east beside the stream and west to a small cavernway. Pale blind roots dangle from the roof and trail in the current.",
+   "look": "cave"
+  },
+  "107356": {
+   "description": "The ledge narrows here to little more than a shelf, and the tributary pulls hard at the base of it, loud against the stone. Spray freckles your face and chills it. The way runs east along the water and west back toward the cavernway. Slime paints the rock green below the waterline.",
+   "look": "cave"
+  },
+  "107357": {
+   "description": "The tributary pours under the wall in a dark, glassy tongue, vanishing beneath a low lintel of rock too small for a boat. The ledge turns here to follow a gap in the stone, and the passage runs north through a fissure, while the way west returns along the stream. A mournful sound comes from the hole where the water goes. A cold mist rises from it and beads on your lashes.",
+   "look": "cave"
+  },
+  "107358": {
+   "description": "A tiny crack in the rock, scarcely wider than your shoulders, climbs and twists between walls cold as ice. A thread of the lost stream trickles over the floor in a pale chain of puddles. The crack leads north to a chamber and south back to the place where the water flows under. Each breath puffs out in a small ghost of fog.",
+   "look": "cave"
+  },
+  "107359": {
+   "description": "Death's Kiss is a small, silent pocket of rock where the cold is so intense that the walls are furred with white rime. The floor is a mosaic of frozen puddles, and long icicles of mineral hang in a crown from the roof. Something terrible must once have happened here, for the silence has weight. The only way out lies south through the tiny crack.",
+   "look": "cave"
+  },
+  "107360": {
+   "description": "The cavern slopes to the black edge of the lake, whose still surface lies like a sheet of poured iron beyond a skirt of pebbles. A dim pallor, the faintest shine of mold, runs along the shoreline. A cavernway lies east, a moldy passage leads west, and the shore continues south. The air is heavy with the smell of cold water and rot.",
+   "look": "cave"
+  },
+  "107368": {
+   "description": "The shore of the underground lake runs along here in a thin strip of black shingle. The water is perfectly still, and the dark beyond it keeps its secrets well. The shore leads north and south along the water. Far out across the lake, something stirs the surface in a slow, wide ring.",
+   "look": "cave"
+  },
+  "107369": {
+   "description": "The shingle ends against a sheer wall of rock where the lake laps at a steep drop. A rough stair of slick, cut steps winds down into the water, vanishing beneath the surface into utter darkness. The shore lies north, and the stair leads down toward a lair. The lake gives off a smell of weed and old cold secrets.",
+   "look": "cave"
+  },
+  "107399": {
+   "description": "The stair ends in a drowned-looking hollow whose walls are slick with bluish slime and whose floor is a wide basin of sticky mud. Strings of pale jelly hang from the ceiling in glistening loops, and the air is thick with the taste of brine. Round pits sunk in the floor are full of green, lightless water. The only way out is the stair, climbing up to the lake's edge.",
+   "look": "cave"
+  },
+  "107361": {
+   "description": "The passage wanders from the lake's edge into a stretch where the walls are crusted with soft grey-green mold, thick as moss on a rotted log. Spores drift in the still air and catch in your throat. The shore lies east, and the passage runs on west into a deeper, damper fug. Your light shows the mold ripple and pulse as if breathing.",
+   "look": "cave"
+  },
+  "107362": {
+   "description": "Fat orange fungi in clusters hang from the roof of this passage, dripping a sweet, sickly juice onto the floor. The rock is so soft with rot that it crumbles under your fingers. The passage comes in from the east and bends south toward a larger cavern. Everything glows faintly with a green that makes your skin look ill.",
+   "look": "cave"
+  },
+  "107363": {
+   "description": "The mold cavern opens like the inside of a rotting fruit, its walls bulging with slick, glowing growths in sick yellows and greens. A thick, spongy carpet of fungus covers the floor and swallows the sound of your steps. A passage runs north to the moldy way, a cavern continues south, and another opens west. The air is warm and wet and heavy to breathe.",
+   "look": "cave"
+  },
+  "107367": {
+   "description": "Pillars of fungus as thick as a man's waist rise from the floor here, their caps spread wide like umbrellas dripping with spores. A pale lilac light pulses faintly from the gills. The cavern lies to the north, and a connecting hollow leads west. Dead things lie pressed into the carpet, only the shapes of them left.",
+   "look": "cave"
+  },
+  "107366": {
+   "description": "In this part of the mold cavern the growths are blue-white and brittle, and they crunch like frost under your boots. Curtains of web-fine threads hang between the stalagmites and tremble when you breathe. The cavern continues north and east, and a cold, dry opening lies west. The mold glow here is thin and cold, like moonlight on snow.",
+   "look": "cave"
+  },
+  "107364": {
+   "description": "A low-roofed bay of the mold cavern, the walls blackened and sticky with a tar-like blight that clings to your sleeves. Thin dark spores float in the glow like drifting ash. The cavern is open east and south from here. A heavy, mushroomy stench hangs in the dead air.",
+   "look": "cave"
+  },
+  "107365": {
+   "description": "Cold Storage is a dry, narrow chamber hewn square, and the air here is far colder than the dripping caverns beyond. Rows of empty stone shelves line the walls, their lips rimed with fine white frost. A few cracked clay jars and the staves of old kegs are all that remain of what was once kept here. The only way out lies east, into the mold cavern.",
+   "look": "cave"
+  },
+  "107307": {
+   "description": "The secret chamber is a neat square room with walls of dressed stone, hidden behind the smooth passage as if to hide it from careless eyes. A low stone shelf runs around the sides, and a faded circle is painted on the ceiling. The passage lies east. Beyond a narrow arch opposite, a darker way leads west.",
+   "look": "cave"
+  },
+  "107308": {
+   "description": "The Chamber of Fear is a small bare cell whose walls have been scratched all over with desperate marks: pleading words, crossed-out days and rough drawings of eyes. A circle of black stains lies on the floor beneath a ring set into the ceiling. The only way out is the secret chamber to the east. The air is stale and cold, and it prickles at the back of your neck.",
+   "look": "cave"
+  }
+ },
+ "extras": {},
+ "creatures": [
+  {
+   "id": "cave-spider",
+   "keywords": "cave spider pale",
+   "short_desc": "a pale cave spider",
+   "long_desc": "A pale cave spider crouches in the glow of the mold, its long legs ticking on the stone.",
+   "description": "The spider is the size of a mastiff, bleached white by a life without sun. Its many eyes catch the green light like drops of oil, and its fangs drip.",
+   "kind": "animal",
+   "level": 11,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "An Enormous Cavern"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "mold-lantern",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "bugbear",
+   "keywords": "bugbear shaggy brute",
+   "short_desc": "a shaggy bugbear",
+   "long_desc": "A shaggy bugbear stalks the den with a spiked club on its shoulder.",
+   "description": "Broad and hairy, the bugbear stands a head taller than a man, with yellow eyes and long arms that hang nearly to its knees. Its fur is matted with old blood and soot.",
+   "kind": "humanoid",
+   "level": 13,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "Den of the Bugbears",
+    "Entrance to the Dens",
+    "A Wide Passage"
+   ],
+   "count": 7,
+   "drops": [
+    {
+     "item": "bugbear-hide-vest",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "pale-cultist",
+   "keywords": "pale cultist robed",
+   "short_desc": "a pale-robed cultist",
+   "long_desc": "A pale-robed cultist keeps silent watch, hands folded in his sleeves.",
+   "description": "The cultist is thin and colourless as candle wax, his eyes pink-rimmed and his lips bloodless. He wears a robe of grey wool and a pendant shaped like a blank face.",
+   "kind": "humanoid",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "Waiting Chamber",
+    "Side Chamber",
+    "Wide Carpeted Caveway",
+    "Vaulted Chamber",
+    "Entering the Chamber"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "mold-lantern",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "mold-skeleton",
+   "keywords": "skeleton mold-eaten",
+   "short_desc": "a mold-eaten skeleton",
+   "long_desc": "A mold-eaten skeleton shambles through the glowing fungus, trailing threads of spores.",
+   "description": "Old bones furred with grey-green mold clatter together as it moves. Fungus sprouts from its eye sockets and ribs and lights its empty skull from within.",
+   "kind": "undead",
+   "level": 15,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "Mold Cavern",
+    "Moldy Passage",
+    "Cold Storage"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "mold-lantern",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "cave-troll",
+   "keywords": "cave troll grey",
+   "short_desc": "a grey cave troll",
+   "long_desc": "A grey cave troll lumbers about, knuckles dragging on the blood-stained stone.",
+   "description": "A hulking troll with skin like wet slate and long, rubbery arms. Its small eyes shine red in the dark, and its mouth is full of cracked and crooked tusks.",
+   "kind": "monster",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "Horror Chamber",
+    "Chamber of Fear"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "slimescale-buckler",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "aboleth",
+   "keywords": "aboleth slime fish",
+   "short_desc": "the aboleth of the lake",
+   "long_desc": "The aboleth wallows in its slimy basin, three red eyes turning slowly toward you.",
+   "description": "A vast, eel-bodied fish with four long tentacles and three slitted eyes set one above the other. Slime streams from its slick blue-green hide and the air around it tastes of brine.",
+   "kind": "monster",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Aboleth's Lair"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "slimescale-buckler",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "grukk-skullsplitter",
+   "keywords": "grukk skullsplitter bugbear chieftain",
+   "short_desc": "Grukk Skullsplitter, bugbear chieftain",
+   "long_desc": "Grukk Skullsplitter, chieftain of the bugbears, lolls on his bone chair and glares.",
+   "description": "Grukk is the largest bugbear you have seen, scarred across the face and draped in pelts. A notched cleaver as long as your leg rests across his knees.",
+   "kind": "humanoid",
+   "level": 18,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "Main Room in the Den"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "grukk-cleaver",
+     "chance": 35
+    },
+    {
+     "item": "bugbear-hide-vest",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "pale-man",
+   "keywords": "pale man lord ogre",
+   "short_desc": "the Pale Man, a bone-white ogre lord",
+   "long_desc": "The Pale Man, a towering bone-white ogre lord, sits unmoving upon his cold throne.",
+   "description": "The Pale Man is a hairless giant whose skin is the colour of bleached bone, his eyes two pits of colourless fire. His long fingers drum slowly on the arm of the throne, and the very air around him seems to freeze.",
+   "kind": "monster",
+   "level": 21,
+   "aggressive": true,
+   "alignment": -900,
+   "rooms": [
+    "Throne Room"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "pale-circlet",
+     "chance": 35
+    },
+    {
+     "item": "grukk-cleaver",
+     "chance": 10
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "mold-lantern",
+   "keywords": "lantern mold glowing",
+   "short_desc": "a mold-glow lantern",
+   "room_desc": "A lantern full of glowing mold sits here.",
+   "description": "A little iron lantern packed with cultured cave mold, which gives off a steady green light and a faint chill.",
+   "kind": "light",
+   "level": 11
+  },
+  {
+   "id": "bugbear-hide-vest",
+   "keywords": "vest hide bugbear",
+   "short_desc": "a greasy hide vest",
+   "room_desc": "A greasy hide vest lies here.",
+   "description": "A thick vest of bugbear hide, stitched with sinew and stiff with old grease. It is heavy but turns a blade well.",
+   "kind": "armor",
+   "level": 13,
+   "wear_slot": "body"
+  },
+  {
+   "id": "slimescale-buckler",
+   "keywords": "buckler slimescale scale shield",
+   "short_desc": "a slimescale buckler",
+   "room_desc": "A blue-green scaled buckler lies here.",
+   "description": "A small round shield faced with the slick blue-green scales of a deep-water beast. It is cold and always a little damp.",
+   "kind": "armor",
+   "level": 19,
+   "wear_slot": "shield",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "grukk-cleaver",
+   "keywords": "cleaver notched bugbear",
+   "short_desc": "Grukk's notched cleaver",
+   "room_desc": "A great notched cleaver lies here.",
+   "description": "A huge cleaver of crude iron, nicked along its edge by long use. It is built for a bugbear's grip and swings like an axe.",
+   "kind": "weapon",
+   "level": 18,
+   "weapon_type": "slash",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "pale-circlet",
+   "keywords": "circlet pale bone crown",
+   "short_desc": "the Pale Man's circlet",
+   "room_desc": "A circlet of white bone lies here.",
+   "description": "A narrow circlet of bleached bone set with a single colourless stone. It is cold as ice against the brow.",
+   "kind": "armor",
+   "level": 21,
+   "wear_slot": "head",
+   "bonus": {
+    "hp": 15
+   }
+  }
+ ]
+}

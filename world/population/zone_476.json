@@ -1,0 +1,153 @@
+{
+ "zone": 476,
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Ulgrathar, the High Druid as the boss.",
+ "creatures": {
+  "647600": {
+   "helpers": {
+    "group": "z476_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a bristling thicket boar"
+  },
+  "647601": {
+   "helpers": {
+    "group": "z476_animal",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A howl goes up, and the pack answers!"
+   },
+   "why": "a thorn-backed spider"
+  },
+  "647602": {
+   "helpers": {
+    "group": "z476_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a red-painted cultist"
+  },
+  "647603": {
+   "helpers": {
+    "group": "z476_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a scarred cell guard"
+  },
+  "647604": {
+   "helpers": {
+    "group": "z476_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "a hulking stone troll",
+   "rank": "elite"
+  },
+  "647605": {
+   "helpers": {
+    "group": "z476_humanoid",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A shout goes up, and they come running!"
+   },
+   "why": "a bloodied cultist priest",
+   "rank": "elite"
+  },
+  "647606": {
+   "helpers": {
+    "group": "z476_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "Grummash, the thicket beast",
+   "rank": "sub-boss"
+  },
+  "647607": {
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Ulgrathar, the High Druid",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Ulgrathar, the High Druid rages, and the fight turns deadlier!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Fury",
+      "telegraph": "Ulgrathar, the High Druid gathers itself for a sweeping assault!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Blow",
+      "telegraph": "Ulgrathar, the High Druid raises a killing blow at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Doom",
+      "telegraph": "Ulgrathar, the High Druid begins something terrible!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+9",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 647607,
+   "room": 24614,
+   "why": "Ulgrathar, the High Druid in its lair",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 4,
+     "raise": [
+      647602
+     ],
+     "shout": "Ulgrathar, the High Druid calls for help!",
+     "why": "its followers"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Ruin",
+     "school": "arcane",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.045,
+     "why": "step out"
+    }
+   ]
+  }
+ ]
+}
