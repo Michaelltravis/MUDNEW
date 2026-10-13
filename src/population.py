@@ -43,6 +43,31 @@ def numbers(level, rank=None):
             'xp': 30 * L * RANK_XP.get(rank, 2), 'detect_bonus': 10}
 
 
+def _avg(dice, default=0):
+    import re
+    m = re.match(r'\s*(\d+)d(\d+)\s*([+-]\s*\d+)?', str(dice or ''))
+    if not m:
+        return default
+    return int(m.group(1)) * (int(m.group(2)) + 1) / 2 + int((m.group(3) or '0').replace(' ', ''))
+
+
+def ranked(proto, rank):
+    """What a rank lifts in an old creature: its health, blows and experience up to the rank's
+    curve at its level (never down: a creature built tougher stays so)."""
+    if rank not in ('elite', 'sub-boss', 'boss'):
+        return {}
+    want, out = numbers(proto.get('level') or 1, rank), {}
+    have = proto.get('max_hp') or _avg(proto.get('hp_dice'))
+    if want['max_hp'] > have:
+        out.update(max_hp=want['max_hp'], hp=want['max_hp'], hp_dice=want['hp_dice'])
+    if _avg(want['damage_dice']) > _avg(proto.get('damage_dice')):
+        out['damage_dice'] = want['damage_dice']
+    for k in ('hitroll', 'damroll', 'xp', 'exp'):
+        if want[k] > (proto.get(k) or 0):
+            out[k] = want[k]
+    return out
+
+
 def load(pop_dir=POP_DIR) -> dict:
     out = {}
     for f in sorted(glob.glob(os.path.join(pop_dir, 'zone_*.json'))):
@@ -65,8 +90,10 @@ def apply(world, data=None) -> list:
             if 'name' not in proto:
                 if v not in world.mob_prototypes:
                     problems.append(f"zone {z}: no creature {v} to give {sorted(proto)}")
-                else:       # an old creature given a rank or helpers
-                    world.mob_prototypes[v] = dict(world.mob_prototypes[v], **{k: x for k, x in proto.items() if k != 'why'})
+                else:       # an old creature given a rank or helpers (a rank lifts its numbers to fit)
+                    old = world.mob_prototypes[v]
+                    world.mob_prototypes[v] = dict(old, **ranked(old, proto.get('rank')),
+                                                   **{k: x for k, x in proto.items() if k != 'why'})
                 continue
             p = dict(proto)
             p['vnum'] = v

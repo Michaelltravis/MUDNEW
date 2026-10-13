@@ -1,0 +1,124 @@
+{
+ "zone": 60,
+ "_about": "The Plains and the woods beside them (levels 1-22): goblins who swarm to each other's shriek, goblin scouts ranging the Dark Path, the goblin lieutenants and the wyverns of Carnage as elites, and Grukthar the Goblin King calling his horde.",
+ "creatures": {
+  "3501": {
+   "helpers": {
+    "group": "goblins",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The goblin shrieks, and more come running!"
+   },
+   "why": "goblins"
+  },
+  "606000": {
+   "helpers": {
+    "group": "goblins",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The goblin shrieks, and more come running!"
+   },
+   "why": "goblins"
+  },
+  "3502": {
+   "rank": "elite",
+   "helpers": {
+    "group": "goblins",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The goblin shrieks, and more come running!"
+   },
+   "why": "a goblin lieutenant"
+  },
+  "3500": {
+   "rank": "elite",
+   "why": "a wyvern"
+  },
+  "3503": {
+   "rank": "boss",
+   "helpers": {
+    "group": "goblins",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The goblin shrieks, and more come running!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Grukthar snarls: \"Nobody takes Grukthar's crown!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Horde Roar",
+      "telegraph": "Grukthar beats his chest and roars!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Skullsplitter",
+      "telegraph": "Grukthar hefts his jagged axe!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Warlord's Fury",
+      "telegraph": "Grukthar froths and gathers himself into a killing rage!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+7",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the Goblin King"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 606000,
+   "route": [
+    2703,
+    2705,
+    2713,
+    2714,
+    2720,
+    2728
+   ],
+   "why": "a goblin scout ranges the Dark Path"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 3503,
+   "room": 3519,
+   "why": "Grukthar on the Dark Path",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      70,
+      40
+     ],
+     "count": 3,
+     "rooms": 3,
+     "raise": [
+      3501
+     ],
+     "shout": "Grukthar screams: \"TO YOUR KING!\"",
+     "why": "the horde comes"
+    }
+   ]
+  }
+ ]
+}

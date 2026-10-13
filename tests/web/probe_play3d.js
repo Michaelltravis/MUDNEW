@@ -226,7 +226,8 @@ async function waitFor(page, fn, arg, secs = 60) {
 
   if (MODE === 'gates') {
     // just outside the gates: the Rat King, Black Jory, the Barrow King, the dracolich, the Alpha Wolf, Redferne
-    for (const [v, name] of [[7320, 'ratking'], [19742, 'jory'], [8690, 'barrowking'], [5011, 'dracolich'], [20009, 'alphawolf'], [7911, 'redferne']]) {
+    for (const [v, name] of [[7320, 'ratking'], [19742, 'jory'], [8690, 'barrowking'], [5011, 'dracolich'], [20009, 'alphawolf'], [7911, 'redferne'],
+                             [2590, 'summoner'], [5406, 'thalos'], [4044, 'grondar'], [3519, 'grukthar'], [12204, 'highpriest'], [8892, 'carcosa']]) {
       check(await goto(v), `in ${name} (${v})`);
       await sleep(3500);
       const info = await page.evaluate(() => { const r = MH3D.heroRoom(); return { look: r.data.look,

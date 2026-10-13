@@ -1,0 +1,183 @@
+{
+ "zone": 40,
+ "_about": "The Mountain Range (levels 3-25): orcs and hobgoblins of the tunnels who answer each other's war-cry, kobold packs, the hill giant, troll, cave mage and great cave bear as elites, and Grondar the Hill Giant Chieftain in his cave, hurling rocks from the roof and calling his kin.",
+ "creatures": {
+  "4004": {
+   "helpers": {
+    "group": "mountain_orcs",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The orc bellows a war-cry, and the tunnels echo with answering grunts!"
+   },
+   "why": "orcs and hobgoblins"
+  },
+  "4005": {
+   "helpers": {
+    "group": "mountain_orcs",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The orc bellows a war-cry, and the tunnels echo with answering grunts!"
+   },
+   "why": "orcs and hobgoblins"
+  },
+  "4056": {
+   "helpers": {
+    "group": "mountain_orcs",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The orc bellows a war-cry, and the tunnels echo with answering grunts!"
+   },
+   "why": "orcs and hobgoblins"
+  },
+  "4052": {
+   "helpers": {
+    "group": "mountain_orcs",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The orc bellows a war-cry, and the tunnels echo with answering grunts!"
+   },
+   "why": "orcs and hobgoblins"
+  },
+  "4055": {
+   "helpers": {
+    "group": "mountain_orcs",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The orc bellows a war-cry, and the tunnels echo with answering grunts!"
+   },
+   "why": "orcs and hobgoblins"
+  },
+  "4003": {
+   "helpers": {
+    "group": "kobolds",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The kobold yips for its pack!"
+   },
+   "why": "kobolds"
+  },
+  "4107": {
+   "helpers": {
+    "group": "kobolds",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The kobold yips for its pack!"
+   },
+   "why": "kobolds"
+  },
+  "4058": {
+   "rank": "elite",
+   "why": "an elite of the mountain"
+  },
+  "4101": {
+   "rank": "elite",
+   "why": "an elite of the mountain"
+  },
+  "4100": {
+   "rank": "elite",
+   "why": "an elite of the mountain"
+  },
+  "604003": {
+   "rank": "elite",
+   "why": "an elite of the mountain"
+  },
+  "40050": {
+   "name": "grondar hill giant chieftain",
+   "short_desc": "Grondar, the Hill Giant Chieftain",
+   "long_desc": "Grondar, the Hill Giant Chieftain, sits on a boulder gnawing a whole leg of mutton.",
+   "description": "Fourteen feet of muscle, hair and bad temper, wrapped in bearskins and hung with the skulls of mountain lions. A club made from a whole pine trunk leans against the cave wall within easy reach.",
+   "level": 20,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "giant",
+   "rank": "boss",
+   "alignment": -400,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Grondar roars and kicks over his boulder seat: \"SMASH!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Ground Slam",
+      "telegraph": "Grondar raises his pine-trunk club high over his head!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Backhand",
+      "telegraph": "Grondar swings a huge fist at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Boulder Hurl",
+      "telegraph": "Grondar heaves a boulder up over his head!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 4056,
+   "route": [
+    4055,
+    4054,
+    4056,
+    4063,
+    4062,
+    4066,
+    4067
+   ],
+   "why": "an orc prowls the Maze"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 40050,
+   "room": 4044,
+   "why": "Grondar in the Hill Giant Cave",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Falling Rocks",
+     "school": "physical",
+     "every": 9,
+     "radius": 2.4,
+     "last": 6,
+     "pct": 0.05,
+     "why": "rocks shaken from the roof: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      50
+     ],
+     "adds": {
+      "4058": 1
+     },
+     "shout": "Grondar bellows, and another hill giant lumbers in from the dark!",
+     "why": "his kin at 50%"
+    }
+   ]
+  }
+ ]
+}

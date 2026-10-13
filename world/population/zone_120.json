@@ -1,0 +1,321 @@
+{
+ "zone": 120,
+ "_about": "The Sea of Storms and Port Halyon (levels 3-34): the port's watch walks Main Street and answers its citizens; smugglers in the tar tunnels help each other; the Cult of Terror's cultists, effigies and shades answer their own; the great sea serpents, the hooded cultists, the shades of Carcosa and the executioner are elites; the Pallid Herald waits in Lost Carcosa; and the High Priest of Terror holds the Grand Temple, darkening it as he weakens and calling his faithful.",
+ "creatures": {
+  "12017": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! The watch! Help!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "12036": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! The watch! Help!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "12037": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! The watch! Help!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "12011": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! The watch! Help!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "12034": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! The watch! Help!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "12012": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! The watch! Help!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "12016": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! The watch! Help!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "12003": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! The watch! Help!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "12022": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Help! The watch! Help!",
+    "answer": false
+   },
+   "why": "calls the watch"
+  },
+  "12018": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The soldier shouts: \"Watch! To me!\""
+   },
+   "why": "the watch"
+  },
+  "12019": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The soldier shouts: \"Watch! To me!\""
+   },
+   "why": "the watch"
+  },
+  "12021": {
+   "helpers": {
+    "group": "halyon_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The soldier shouts: \"Watch! To me!\""
+   },
+   "why": "the watch"
+  },
+  "612014": {
+   "helpers": {
+    "group": "terror",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A cultist shrieks a prayer, and robed figures come running!"
+   },
+   "why": "the cult"
+  },
+  "612009": {
+   "helpers": {
+    "group": "terror",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A cultist shrieks a prayer, and robed figures come running!"
+   },
+   "why": "the cult"
+  },
+  "612015": {
+   "helpers": {
+    "group": "terror",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A cultist shrieks a prayer, and robed figures come running!"
+   },
+   "why": "the cult"
+  },
+  "612008": {
+   "rank": "elite",
+   "helpers": {
+    "group": "terror",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A cultist shrieks a prayer, and robed figures come running!"
+   },
+   "why": "a hooded cultist"
+  },
+  "612007": {
+   "helpers": {
+    "group": "smugglers",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The smuggler whistles: trouble in the tunnels!"
+   },
+   "why": "smugglers"
+  },
+  "612011": {
+   "helpers": {
+    "group": "smugglers",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The smuggler whistles: trouble in the tunnels!"
+   },
+   "why": "smugglers"
+  },
+  "612005": {
+   "rank": "elite",
+   "why": "an elite of the sea and the cult"
+  },
+  "612013": {
+   "rank": "elite",
+   "why": "an elite of the sea and the cult"
+  },
+  "612016": {
+   "rank": "elite",
+   "why": "an elite of the sea and the cult"
+  },
+  "12035": {
+   "rank": "elite",
+   "why": "an elite of the sea and the cult"
+  },
+  "120500": {
+   "name": "pallid herald",
+   "short_desc": "the Pallid Herald",
+   "long_desc": "The Pallid Herald stands in the dim street, its pale mask turned toward you.",
+   "description": "A tall figure in tattered yellow robes, its face hidden behind a smooth mask the colour of old bone. It brings word from a city that should not exist, and no one who hears that word sleeps well again.",
+   "level": 31,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "undead"
+   ],
+   "race": "undead",
+   "rank": "sub-boss",
+   "alignment": -1000
+  },
+  "120501": {
+   "name": "high priest terror",
+   "short_desc": "the High Priest of Terror",
+   "long_desc": "The High Priest of Terror stands before the great altar, arms raised to something unseen.",
+   "description": "Gaunt, shaven and painted with symbols that hurt to look at, in robes black as tar. He has given his eyes to his god, and two pits of shadow see you all the same.",
+   "level": 34,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "human",
+   "rank": "boss",
+   "alignment": -1000,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The High Priest of Terror tears his robe open: \"Behold my god, and DESPAIR!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Wave of Dread",
+      "telegraph": "The High Priest of Terror screams a prayer, and dread rolls through the temple!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+8",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Shadow Lash",
+      "telegraph": "The High Priest of Terror cracks a whip of living shadow!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+6",
+      "dodge": true
+     },
+     {
+      "name": "Rite of Terror",
+      "telegraph": "The High Priest of Terror begins the Rite of Terror!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+11",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 120500,
+   "rooms": [
+    8892
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 12019,
+   "route": [
+    12031,
+    12032,
+    212033,
+    12033,
+    12034
+   ],
+   "why": "a soldier walks Main Street"
+  },
+  {
+   "vnum": 612014,
+   "route": [
+    12111,
+    12123,
+    12112,
+    12114,
+    12116
+   ],
+   "why": "a cultist keeps the Tarry Tunnel"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 120501,
+   "room": 12204,
+   "why": "the High Priest of Terror in the Grand Temple",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "612014": 2
+     },
+     "shout": "The High Priest shrieks, and his faithful pour in from the halls!",
+     "why": "his cultists at 66% and 33%"
+    },
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "shout": "The temple lamps gutter, and shadows crowd in...",
+     "why": "the temple darkens as he weakens"
+    }
+   ]
+  }
+ ]
+}
