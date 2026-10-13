@@ -210,6 +210,21 @@ async def main():
           f'a spell cast again is refreshed, not doubled ({len(blessed)} copies, +{caster.hitroll - hr} hitroll)')
     for x in list(caster.affects):
         AffectManager.remove_affect(caster, x)
+    # a ward (the shields, fly) lasts 15 minutes at level 1 and 30 by level 50: one tick is 6 seconds
+    from spells import ward_ticks
+    check(ward_ticks(1) * 6 >= 15 * 60 and ward_ticks(50) * 6 == 30 * 60 and ward_ticks(60) == ward_ticks(50),
+          f'wards last 15 to 30 minutes ({ward_ticks(1) * 6 // 60}-{ward_ticks(50) * 6 // 60} min)')
+    caster.spells.update(fly=100, shield=100)
+    caster.mana = caster.max_mana = 5000
+    for sp in ('fly', 'shield'):
+        await CommandHandler.execute(caster, 'cast', [f"'{sp}'", caster.name.lower()])
+        caster.spell_cd = {}
+    held = {x.applies_to: x.duration for x in caster.affects}
+    want = ward_ticks(caster.level)
+    check(held.get('fly') == want and held.get('shielded') == want,
+          f'fly and shield, cast, last as a ward at the caster\'s level ({held.get("fly")}, {held.get("shielded")}; {want})')
+    for x in list(caster.affects):
+        AffectManager.remove_affect(caster, x)
     AffectManager.apply_affect(caster, {'name': 'Mana Shield', 'type': 'flag', 'applies_to': 'mana_shield', 'value': 1, 'duration': 5})
     hp, mana = caster.hp, caster.mana
     await caster.take_damage(40, a, 'physical')

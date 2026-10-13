@@ -18,6 +18,15 @@ from affects import AffectManager
 logger = logging.getLogger('Misthollow.Spells')
 
 # Spell definitions
+# A ward (armor, the shields, fly, the detections) lasts 15 minutes at level 1 and 30 by level 50:
+# cast once before setting out, not before every fight. One tick is 6 seconds.
+WARD_TICKS_BASE, WARD_TICKS_PER_LEVEL, WARD_TICKS_MAX = 150, 3, 300
+
+
+def ward_ticks(level) -> int:
+    return min(WARD_TICKS_MAX, WARD_TICKS_BASE + WARD_TICKS_PER_LEVEL * max(1, int(level or 1)))
+
+
 SPELLS = {
     # Offensive spells
     'magic_missile': {
@@ -135,8 +144,8 @@ SPELLS = {
         'name': 'Armor',
         'mana_cost': 15,
         'target': 'defensive',
-        'duration_ticks': 100,  # ~10 min base, scales with level
-        'scales_duration': True,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'ac', 'value': -20}, {'type': 'armour_ward', 'value': 60}],
         'message_self': 'You feel protected by magical armor.',
         'message_other': '$N is surrounded by a shimmering shield.',
@@ -181,7 +190,8 @@ SPELLS = {
         'name': 'Fly',
         'mana_cost': 30,
         'target': 'defensive',
-        'duration_ticks': 24,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'fly', 'value': 1}],
         'message_self': 'Your feet lift off the ground!',
         'message_other': '$N rises into the air.',
@@ -333,7 +343,8 @@ SPELLS = {
         'name': 'Detect Magic',
         'mana_cost': 10,
         'target': 'self',
-        'duration_ticks': 24,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'detect_magic', 'value': 1}],
         'message_self': 'Your eyes tingle.',
     },
@@ -513,7 +524,8 @@ SPELLS = {
         'name': 'Stoneskin',
         'mana_cost': 60,
         'target': 'defensive',
-        'duration_ticks': 12,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'stoneskin', 'value': 100}],  # Absorbs 100 damage
         'message_self': 'Your skin turns to stone!',
         'message_other': '$N\'s skin turns gray and hard as stone!',
@@ -522,8 +534,8 @@ SPELLS = {
         'name': 'Shield',
         'mana_cost': 25,
         'target': 'defensive',
-        'duration_ticks': 100,  # ~10 min base, scales with level
-        'scales_duration': True,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'ac', 'value': -30}, {'type': 'shielded', 'value': 1}],  # Better than armor
         'message_self': 'A shimmering force shield surrounds you!',
         'message_other': 'A shimmering force shield surrounds $N!',
@@ -550,7 +562,8 @@ SPELLS = {
         'name': 'Mana Shield',
         'mana_cost': 50,
         'target': 'self',
-        'duration_ticks': 10,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'mana_shield', 'value': 1}],  # Converts 50% damage to mana loss
         'message_self': 'A mana barrier forms around you!',
         'message_room': 'A crackling energy barrier surrounds $n!',
@@ -559,7 +572,8 @@ SPELLS = {
         'name': 'Ice Armor',
         'mana_cost': 45,
         'target': 'defensive',
-        'duration_ticks': 18,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'ac', 'value': -25}, {'type': 'ice_armor', 'value': 1}],
         'message_self': 'Icy armor forms around your body!',
         'message_other': 'Icy armor forms around $N!',
@@ -568,7 +582,8 @@ SPELLS = {
         'name': 'Fire Shield',
         'mana_cost': 50,
         'target': 'self',
-        'duration_ticks': 15,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'ac', 'value': -20}, {'type': 'fire_shield', 'value': 1}],
         'message_self': 'Flames surround you in a protective shield!',
         'message_room': 'Flames erupt around $n in a protective shield!',
@@ -586,7 +601,8 @@ SPELLS = {
         'name': 'Protection from Evil',
         'mana_cost': 30,
         'target': 'defensive',
-        'duration_ticks': 24,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'ac', 'value': -10}, {'type': 'prot_evil', 'value': 1}],
         'message_self': 'You are protected from evil!',
         'message_other': '$N is surrounded by a holy aura!',
@@ -595,7 +611,8 @@ SPELLS = {
         'name': 'Protection from Good',
         'mana_cost': 30,
         'target': 'defensive',
-        'duration_ticks': 24,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'ac', 'value': -10}, {'type': 'prot_good', 'value': 1}],
         'message_self': 'You are protected from good!',
         'message_other': '$N is surrounded by a dark aura!',
@@ -606,7 +623,8 @@ SPELLS = {
         'name': 'Shield of Faith',
         'mana_cost': 35,
         'target': 'defensive',
-        'duration_ticks': 18,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'ac', 'value': -25}, {'type': 'saving_throw', 'value': 2}, {'type': 'shielded', 'value': 1}],
         'message_self': 'Divine power shields you from harm!',
         'message_other': 'Divine light surrounds $N protectively!',
@@ -624,7 +642,8 @@ SPELLS = {
         'name': 'Barkskin',
         'mana_cost': 40,
         'target': 'defensive',
-        'duration_ticks': 24,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'ac', 'value': -35}],  # Natural armor, very strong
         'message_self': 'Your skin becomes as tough as bark!',
         'message_other': '$N\'s skin becomes thick and bark-like!',
@@ -734,7 +753,8 @@ SPELLS = {
         'name': 'Detect Evil',
         'mana_cost': 10,
         'target': 'self',
-        'duration_ticks': 24,
+        'duration_ticks': 150,  # a ward: 15 to 30 minutes, longer as the caster levels (ward_ticks)
+        'ward': True,
         'affects': [{'type': 'detect_evil', 'value': 1}],
         'message_self': 'You can sense evil auras.',
     },
@@ -2316,8 +2336,10 @@ class SpellHandler:
         # Apply buff/debuff affects
         if 'affects' in spell:
             duration = spell.get('duration_ticks', 24)
-            # Level scaling for certain buffs (armor, shield, etc.)
-            if spell.get('scales_duration'):
+            if spell.get('ward'):
+                duration = ward_ticks(getattr(caster, 'level', 1))
+            # Level scaling for certain buffs
+            elif spell.get('scales_duration'):
                 # Add 2 ticks per level (at 6 sec/tick: +12 sec per level)
                 # Level 1: 100 + 2 = 102 ticks (~10 min)
                 # Level 15: 100 + 30 = 130 ticks (~13 min)
