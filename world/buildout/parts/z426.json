@@ -1,0 +1,439 @@
+{
+ "job": "z426",
+ "rooms": {
+  "20300": {
+   "description": "Dry heat spills in from the large cave to the east, thinning to a stale, musky warmth as it meets the breath of the tunnels. The floor is trodden into a smooth hollow, scattered with gnawed splinters of bone and old dark stains. Rough walls close in overhead, and the daylight behind you shrinks to a pale smear. The passage leads west into the old cave, where an acrid reek of lizard-musk drifts out to meet you.",
+   "look": "cave"
+  },
+  "20301": {
+   "description": "The cave narrows to a throat of damp, sooty rock, its walls blackened by years of smoky torches. A rank, reptilian stench hangs thick enough to taste, and somewhere ahead water drips with slow patience. Deep claw-marks score the stone beside the opening, many and overlapping. The tunnel bends north into the dark, while the way east leads back toward the pale light at the cave mouth.",
+   "look": "cave"
+  },
+  "20302": {
+   "description": "The tunnel runs straight and low, so that a tall man must stoop beneath the ridges of the ceiling. The floor is gritty with sand carried in on many scaly feet, and a line of greasy handprints smears the wall at shoulder height. Warm, sour air creeps along the passage from the north, while the way south leads back to the cave's entrance. Far off, something clinks like a chain being dragged.",
+   "look": "cave"
+  },
+  "20303": {
+   "description": "Here the tunnel widens a little and the rock turns from grey to a rusty red, veined with pale seams that glint dully in the gloom. Puddles of foul water have gathered in the dips of the floor, ringed with a greenish scum. The reek of lizard flesh is stronger now, and a guttural muttering rolls down the passage from the north. Behind you the way south slopes gently back toward the entrance.",
+   "look": "cave"
+  },
+  "20304": {
+   "description": "The tunnel splits at a ragged hub of broken rock, beneath a ceiling black with soot. To the east a ruddy glow and the grunting of many throats mark the Meeting Chamber, and a cold draught breathes down from the north, where the floor gives way to a thin ledge over a chasm. A heap of splintered crates leans against one wall, long since looted. The passage south leads back down toward the old cave's entrance.",
+   "look": "cave"
+  },
+  "20310": {
+   "description": "The floor narrows here to a shelf of rock barely wider than your boots, with the wall rough at your shoulder and nothing at all on the other side. A cold updraught rises from the chasm, carrying the smell of damp stone and a dizzying emptiness. Pebbles shaken loose by your steps skitter over the edge and fall a long time before any sound returns. Behind you to the south the tunnel fork waits, and the ledge creeps on north.",
+   "look": "cave"
+  },
+  "20312": {
+   "description": "The ledge crumbles badly here, its outer lip eaten away so that you must press your back to the wall and shuffle sideways. Far below, a faint pale glimmer marks the chasm floor, and a slick, steep slope of wet rock falls away into the gloom beneath your feet. Damp rises from the depths and beads on the stone like sweat. The ledge continues north and south along the wall, and a descent down is possible for the desperate or the foolish.",
+   "look": "cave"
+  },
+  "20313": {
+   "description": "The ledge broadens at last into a shelf wide enough to stand on without clinging, and the wall curves in to meet an arched opening. Old iron pegs, rusted to stubs, are driven into the stone where a rope rail once ran. The chasm still gapes at your side, its depths hissing with the thin echo of wind. South the ledge winds back toward the fork, and a tunnel mouth lies north in the flank of the mountain.",
+   "look": "cave"
+  },
+  "20314": {
+   "description": "A square-cut tunnel bores into the heart of the mountain, its walls chiselled smooth by patient gnomish hands and its floor laid with worn flagstones. Shallow grooves run along the middle where the carts of the mine once rattled. Soot and old tallow drippings mark the places where lamps hung, though none burn now. The way north leads on toward the gnome silver mine proper, and the ledge over the chasm lies back south.",
+   "look": "mine"
+  },
+  "20315": {
+   "description": "A great arch of fitted stone frames the entrance, its keystone carved with a gnome's pick and lantern worn almost smooth. Beyond it the mine opens into broad galleries propped with timber, black with age and gnawed by damp. Broken lamp-brackets hang from the walls, and troglodyte filth is smeared across the old carvings in dark streaks. The tunnel leads west into the workings, and back south toward the chasm.",
+   "look": "mine"
+  },
+  "20316": {
+   "description": "The tunnel bends sharply here, the timber props leaning wearily as though tired of holding up the mountain. Veins of dull silver run through the rock in thin threads, catching what faint light leaks in from somewhere. Scraps of rag and rotten rope litter the corners, and the air is thick with heat and the sour-sweet reek of the creatures that now hold these workings. The tunnel runs north into the deeper mine, and east toward the entrance arch.",
+   "look": "mine"
+  },
+  "20317": {
+   "description": "A long straight gallery stretches on, the roof held by a rank of squared beams scored with the marks of picks and claws alike. A shallow ditch along one wall was meant to carry water away, but now it holds a black sludge that stinks of rot. A wrecked handcart lies on its side near the wall, its wheels long since torn off. The mine continues north, and the bend lies back to the south.",
+   "look": "mine"
+  },
+  "20318": {
+   "description": "Several side-cuts open off the gallery here, though most have been choked with rubble and rough barricades of splintered timber. Scratch-marks on the stone count off days in groups of five, left by some prisoner long ago. A trail of drag marks wanders east along the floor into a passage toward the guard chamber. The silver mine's main tunnel goes on north and back south.",
+   "look": "mine"
+  },
+  "20326": {
+   "description": "The gallery climbs a little, its floor gritty with crushed spar and flecks of silver that wink in whatever light there is. A miner's lantern lies smashed against the wall, its glass ground to powder underfoot. Heat gathers close beneath the ceiling, and the rock sweats with it. North the tunnel lifts toward a crossing of ways, and south it falls back toward the lower workings.",
+   "look": "mine"
+  },
+  "20327": {
+   "description": "Four tunnels meet at this crossing, the timber lintel of each blackened by smoke. Worn grooves in the floor show where ore carts once turned, though now boot-prints and the long drag of tails mark the dust instead. To the east a heavy door of iron-banded wood, stained and splintered, leads into the slave pen. A wide tunnel runs west, another north into the deep workings, and the way south returns to the upper mine.",
+   "look": "mine"
+  },
+  "20334": {
+   "description": "The tunnel burrows deep now, and the heat is a heavy hand pressing on your chest. Sweat and stale smoke hang in the air, and the walls glisten with a slick of condensation. Pale seams of silver ore stripe the rock, hacked at crudely where the troglodytes have ripped out what they could. The deep tunnel runs north toward a fork, and south toward the crossing.",
+   "look": "mine"
+  },
+  "20335": {
+   "description": "Two pillars of left-standing rock divide the tunnel into rough ways. To the east a lamp-lit opening leads into the guard chamber, and the clatter of armour and low growls spill out of it. North the deep tunnel runs on to a dead end, and the south way leads back to the long gallery. Fresh claw-slashes score the pillars at head height, and the floor is stained with old blood.",
+   "look": "mine"
+  },
+  "20338": {
+   "description": "The tunnel ends in a blunt wall of raw rock, but the floor has been cut away into a rough stair that drops through a hole in the stone. A thick, hot reek rises from below, smelling of old sweat, lamp oil and the tang of iron. A rusted ring hangs in the wall, a few links of cut chain dangling from it. The tunnel returns south, while the stair leads down into a lower chamber.",
+   "look": "mine"
+  },
+  "20339": {
+   "description": "This low, sweating chamber is the den of the slave master. A massive wooden block, scarred and darkened, stands in the middle of the floor, with a rack of whips and cruel hooks bolted to the wall beside it. Chains lie coiled in heaps, and the stone is stained brown in wide patches. A lamp of rancid fat gutters on a ledge, throwing long shadows. The only way out is up the rough stair.",
+   "look": "mine"
+  },
+  "20336": {
+   "description": "This squat room is hacked square from the rock, its low ceiling black with the smoke of cooking fires. Crude pallets of dry reeds and foul skins line the walls, and a broad table made from an old door stands crusted with spilled meat. A heavy door of black iron in the east wall, thick with bolts, guards the vault beyond. West the room opens back onto the fork in the tunnel.",
+   "look": "mine"
+  },
+  "20337": {
+   "description": "A cramped vault carved into the living rock, where the troglodytes hoard what they have stolen from gnomes and travellers. Split chests and broken shelves sag under tarnished plunder, and a few silver gleams catch in the dusk. The air is close and dry, smelling of dust and cold metal. The only way out is the iron door, back west into the guard chamber.",
+   "look": "mine"
+  },
+  "20328": {
+   "description": "Iron bars bolted into the rock divide this reeking pen into narrow stalls, each with a heap of filthy straw and a ring driven into the wall. The air is thick with heat, urine and despair, and chains clink faintly whenever the draught stirs them. Names, tally marks and a few half-finished prayers are scratched into the stone. The only way out is west, through the heavy door to the crossing.",
+   "look": "dungeon"
+  },
+  "20329": {
+   "description": "A narrower tunnel runs off from the crossing, its roof so low that the support beams brush your hair. The rock is cut with long, careful gnomish chisel strokes, but a black fungus has crept over them in patches. Sour water trickles down one wall into a dark puddle. The tunnel returns east to the crossing and runs on west into the dark, where the air grows cooler and stranger.",
+   "look": "mine"
+  },
+  "20330": {
+   "description": "A section of the roof has partly collapsed here, and a slope of broken stone spills across the floor, leaving only a narrow track beside it. Dust drifts down in thin streams from the cracks above. The old support beams are cracked and bowed, and someone has scratched a crooked gnomish rune on the nearest. West the tunnel runs toward a quieter place, and east it leads back toward the crossing.",
+   "look": "mine"
+  },
+  "20331": {
+   "description": "The tunnel is cool and strangely clean here, as if the troglodytes shun the place. The walls are dressed with fine gnomish masonry, and small stone lamps stand in recesses along them, all long cold. At the end of the passage a door of grey stone, carved with a crowned gnome beneath a pickaxe, leads west. East the tunnel returns toward the dark, rank reaches of the mine.",
+   "look": "mine"
+  },
+  "20332": {
+   "description": "A hushed vault of pale stone, where a great sarcophagus lies on a dais under a canopy of dust and cobwebs. Carved gnomes bearing picks and lamps stand in ranks along the walls, their faces worn by time. The floor is dry and cold, and a narrow stair spirals down through a gap in it. The stone door to the east leads out to the tunnel, and silence presses in.",
+   "look": "crypt"
+  },
+  "20333": {
+   "description": "Below the royal vault lies the true resting place, a small round chamber of black stone sealed from the world for centuries. A stone bier stands in the centre, the carved figure of a bearded king laid upon it in full armour, hands crossed over a pickaxe. Tiny silver studs set in the ceiling mimic stars and gleam faintly. Dust lies undisturbed on every surface, and a narrow stair leads up to the vault above.",
+   "look": "crypt"
+  },
+  "20344": {
+   "description": "A short, low passage joins the mine to the cells, its roof studded with hooks from which lanterns once swung. The stench of unwashed bodies and sour sweat grows with each step, and the clink of chains comes steadily from the east. Smears of old blood mark the walls at hip height. The passage runs west back to the main gallery and east into the chamber of cells.",
+   "look": "mine"
+  },
+  "20319": {
+   "description": "This hot, stinking hub has three short passages leading north, east and south toward the rows of cell doors. A fire-pit of cold ash and blackened bones squats in the centre of the floor, ringed with rough stools. Iron rings in the walls hold the ends of long chains, and the air is heavy with sweat and smoke. The way west returns along the low passage to the mine.",
+   "look": "dungeon"
+  },
+  "20320": {
+   "description": "A short stub of passage ends at a heavy door of rust-crusted bars, filthy with years of handling. A hook beside it holds an empty key-ring, and wet streaks run down the wall below a leaking seam in the stone. The door north leads into the cell, while the passage south opens back to the chamber of cells.",
+   "look": "dungeon"
+  },
+  "20321": {
+   "description": "A cramped cell hewn into the rock, scarcely long enough to lie down in. An iron ring is set into the floor, and a rust-eaten pail crusted with filth sits in one corner. Fingernail gouges mark the stone beside a heap of mouldering straw, and the heat is close and wet as a breath. The barred door opens south onto the passage outside.",
+   "look": "dungeon"
+  },
+  "20322": {
+   "description": "The passage here is a narrow, sweating throat of stone ending in a low door of black timber, bolted on the outside. Dark drips fall from a crack in the roof and have stained a long streak down the wall. A smell of old fish and trodden straw hangs over everything. The door leads east into a cell, and the passage west opens back into the chamber of cells.",
+   "look": "dungeon"
+  },
+  "20323": {
+   "description": "This cell is the smallest of the three, a squat box of rock with a ceiling you can touch. A chain hangs from a staple in the wall, its last link worn bright by a struggling wrist. The straw on the floor is matted into a nest and alive with crawling things. Faint light seeps under the door, which opens west to the passage.",
+   "look": "dungeon"
+  },
+  "20324": {
+   "description": "Here the passage ends in a bare stub of floor, its walls gouged by the careless swing of chains. A heap of broken manacles lies in one corner, rusted to the colour of dried blood. The door south is a slab of iron-studded wood with a grated peephole at head height. North, the passage runs back into the stifling chamber of cells.",
+   "look": "dungeon"
+  },
+  "20325": {
+   "description": "A narrow, windowless cell, hot as an oven and thick with the smell of old sweat. Names have been picked into the wall in rows with something sharp, and a pale handprint is pressed in the soot beside them. Bones of some small animal lie scattered in the straw. The only way out is north, through the door to the passage.",
+   "look": "dungeon"
+  },
+  "20340": {
+   "description": "You hang on a crack-ridden face of rock where the chasm plunges away, your fingers wedged in seams slick with damp. Above, the thin ledge is a pale line against the dark. Below, the walls fall away into a wider gloom where something faintly glows. The way up leads back to the ledge, and the way down is a long, sliding scramble toward the chasm floor.",
+   "look": "cave"
+  },
+  "20341": {
+   "description": "The chasm floor is a tumble of broken rock and drifts of fallen grit, hazed with cold mist. Long ropes of grey web hang from the crags and sway in the draught, sticky with dust and the husks of small creatures. The stone is chalky with droppings, and the air smells of musk and rot. A cave mouth opens in the rock to the north, strung with thick webbing, and the climb leads up the rock face.",
+   "look": "cave"
+  },
+  "20342": {
+   "description": "A high, rounded cavern, its roof drooping with sheets of silk as thick as sailcloth. The floor is carpeted in old webbing and brittle leavings, crunching underfoot, and heavy strands run from wall to wall like the rigging of a ship. A sour, chemical stink hangs in the still air, and the stone is slick with a clear, tacky fluid. South lies the cave mouth, and a darker chamber opens to the north.",
+   "look": "cave"
+  },
+  "20343": {
+   "description": "Pale sacs the size of barrels cling to the walls and floor of this warm, damp chamber, packed together in glistening clusters. Webs bind them like ropes, and a faint pulsing stirs inside the nearest. The air is humid and clinging, smelling of musk and sweet decay. The only way out is south, back through the queen's room.",
+   "look": "cave"
+  },
+  "20305": {
+   "description": "A wide, ragged chamber where the troglodytes gather to bark their council, its floor tamped hard by clawed feet. A ring of stone slabs serves as seats around a fire-pit still smouldering with greasy coals, and the walls are black with soot. Painted lizard-glyphs in red ochre march across the rock. A tunnel leads west to the fork, a low passage north to the meat locker, a hide-curtained way east to another guard chamber, and a heavy door south to the barracks.",
+   "look": "cave"
+  },
+  "20307": {
+   "description": "Rusted hooks hang from the low ceiling of this hot, narrow cell, and gutters cut in the floor run thick with dark fluid. The walls are stained brown, and flies hang in clouds in the stifling air. A great chopping block, hacked to a ragged dish in its middle, stands against the wall. The stench is almost unbearable, and the only way out is south.",
+   "look": "cave"
+  },
+  "20308": {
+   "description": "A broad guardroom with a roof of dark, smoke-stained rock, kept by those who serve the giant beyond. Heavy spears lean in racks beside the wall, and a stout table of split planks is scarred with knife cuts and gnawed knuckles of bone. Dice carved from teeth lie where a game was left. A massive door of timber and iron stands in the east wall, and the way west leads back to the meeting chamber.",
+   "look": "cave"
+  },
+  "20309": {
+   "description": "A vast cavern, its roof lost in darkness, where a giant has made his home. A bed of stripped hides and straw the size of a cart fills one end, and a boulder serves as a table, piled with gnawed bones. Pillars of rock the thickness of old oaks rise into the gloom, scratched with crude tallies. The air is rank and hot, and the only way out is the great door to the west.",
+   "look": "cave"
+  },
+  "20306": {
+   "description": "Row upon row of filthy pallets crowd this long, low room, each a nest of reeds and rotting skins. Clawed handholds climb the walls, and weapons of crude bronze and bone hang from pegs beside every bed. The heat and the reek of many bodies are suffocating, and the roof drips with condensation. The only way out is the door north, back to the meeting chamber.",
+   "look": "cave"
+  }
+ },
+ "extras": {
+  "20332": [
+   {
+    "keywords": "sarcophagus dais",
+    "description": "The lid of the sarcophagus is carved with a stern gnome crowned in silver-inlaid stone, and the runes at its foot name him a king of the deep delvings. Cobwebs hang from it in grey sheets."
+   }
+  ],
+  "20328": [
+   {
+    "keywords": "names scratches tally marks",
+    "description": "Hundreds of tally marks and a handful of names, some in gnomish script and some in the common tongue, are scratched into the stone. The newest are fresh and pale."
+   }
+  ],
+  "20343": [
+   {
+    "keywords": "sacs egg sacs",
+    "description": "The sacs are tough and translucent, and dark shapes curl within. They twitch whenever you step near."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "troglodyte-scavenger",
+   "keywords": "troglodyte scavenger lizard",
+   "short_desc": "a skulking troglodyte scavenger",
+   "long_desc": "A skulking troglodyte scavenger picks through the filth, hissing softly to itself.",
+   "description": "This scaly, mottled creature stands hunched and long-armed, its yellow eyes darting about. A ridge of spines runs down its back and a sour musk rolls off its hide. It carries a chipped knife in one clawed hand.",
+   "kind": "humanoid",
+   "level": 6,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "Outside Of An Old Cave",
+    "Entrance Of An Old Cave",
+    "The Tunnel Of An Old Cave",
+    "Fork In The Tunnel",
+    "A Bend In The Mine's Tunnels",
+    "A Tunnel In The Mine"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "troglodyte-hide-vest",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "troglodyte-warrior",
+   "keywords": "troglodyte warrior lizard",
+   "short_desc": "a hulking troglodyte warrior",
+   "long_desc": "A hulking troglodyte warrior prowls the gloom, its spiked club dragging across the stone.",
+   "description": "Tall and muscular, this troglodyte has a hide the colour of old bruises and a crest of bone running over its skull. Its rank body-stench makes the eyes water, and it grips a knobbed club with an easy cruelty.",
+   "kind": "humanoid",
+   "level": 9,
+   "aggressive": true,
+   "alignment": -450,
+   "rooms": [
+    "More Tunnels In The Silver Mine",
+    "More Tunnels In The Mine",
+    "Crossroads In The Silver Mine",
+    "Deep Mining Tunnel",
+    "Chamber Of Cells",
+    "Meeting Chamber",
+    "Troglodyte Barracks",
+    "Passage To The Guard Chamber"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "troglodyte-hide-vest",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "cave-lizard",
+   "keywords": "cave lizard pale",
+   "short_desc": "a pale cave lizard",
+   "long_desc": "A pale cave lizard clings to the wall, its blind head swaying from side to side.",
+   "description": "The lizard is as long as a man's leg, bone-white and eyeless, with a tongue that tastes the air in flicks. Its jaws are lined with small, hooked teeth.",
+   "kind": "animal",
+   "level": 7,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "A Tunnel In The Mountain",
+    "Entrance To The Gnome Silver Mine",
+    "Mining Tunnel",
+    "A Section Of A Mining Tunnel",
+    "A Mining Tunnel"
+   ],
+   "count": 2,
+   "drops": []
+  },
+  {
+   "id": "troglodyte-warden",
+   "keywords": "troglodyte warden guard lizard",
+   "short_desc": "a scarred troglodyte warden",
+   "long_desc": "A scarred troglodyte warden stands guard, a heavy shield strapped to its arm.",
+   "description": "This troglodyte is broader and darker than its fellows, its scales crossed with old scars and iron studs hammered into its crest. It carries a spiked shield and a notched cleaver, and it watches with the flat patience of a veteran jailer.",
+   "kind": "humanoid",
+   "level": 13,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "Guard Chamber",
+    "Treasure Vault",
+    "Slave Pen"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "warden-spiked-shield",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "puffer-spider",
+   "keywords": "puffer spider giant swollen",
+   "short_desc": "a swollen puffer spider",
+   "long_desc": "A swollen puffer spider hangs in its web, its bloated abdomen pulsing slowly.",
+   "description": "The spider is the size of a calf, its body a pale, bloated sac patterned with dark whorls. Eight eyes glint in a bristling head, and each leg ends in a hooked claw. A fine mist of spores seeps from it when it moves.",
+   "kind": "animal",
+   "level": 12,
+   "aggressive": true,
+   "alignment": -100,
+   "rooms": [
+    "Outside A Cave",
+    "Breeding Room"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "puffer-silk-cloak",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "vorzug-slave-master",
+   "keywords": "vorzug slave master troglodyte",
+   "short_desc": "Vorzug the Slave Master",
+   "long_desc": "Vorzug the Slave Master stands over his block, a barbed lash coiled in his fist.",
+   "description": "Vorzug is a gaunt, long-limbed troglodyte whose hide is crosshatched with the scars of his own trade. A necklace of broken shackle links rattles on his chest, and his yellow stare never leaves you. The lash in his hand is wet with old blood.",
+   "kind": "humanoid",
+   "level": 14,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "Chamber Of The Slave Master"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "slave-master-lash",
+     "chance": 35
+    },
+    {
+     "item": "warden-spiked-shield",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "hrungar-giant",
+   "keywords": "hrungar hill giant",
+   "short_desc": "Hrungar the hill giant",
+   "long_desc": "Hrungar the hill giant squats amid the bones of his meals, glaring down at all who enter.",
+   "description": "Hrungar is a mountain of grey, warty flesh, twice the height of a man, with a jaw like a quarry slab. Matted hair hangs in his eyes, and he hefts a club made from the trunk of an old tree. The troglodytes feed him their captives in exchange for his protection.",
+   "kind": "monster",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "Giant's Lair"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "giant-bone-club",
+     "chance": 35
+    },
+    {
+     "item": "puffer-silk-cloak",
+     "chance": 15
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "troglodyte-hide-vest",
+   "keywords": "hide vest scaly troglodyte",
+   "short_desc": "a scaly hide vest",
+   "room_desc": "A scaly hide vest lies here, reeking of musk.",
+   "description": "A crude vest stitched from lizard hide, stiff and ridged with small bony plates. It smells foul, but it turns a blade well enough.",
+   "kind": "armor",
+   "level": 9,
+   "wear_slot": "body",
+   "bonus": {
+    "hp": 10
+   }
+  },
+  {
+   "id": "warden-spiked-shield",
+   "keywords": "spiked shield warden iron",
+   "short_desc": "a spiked iron shield",
+   "room_desc": "A spiked iron shield lies here, dented and stained.",
+   "description": "A round shield of beaten iron, its boss ringed with crude spikes. Old blood is crusted in the dents.",
+   "kind": "armor",
+   "level": 13,
+   "wear_slot": "shield",
+   "bonus": {
+    "con": 1
+   }
+  },
+  {
+   "id": "puffer-silk-cloak",
+   "keywords": "silk cloak pale puffer",
+   "short_desc": "a pale silk cloak",
+   "room_desc": "A pale silk cloak lies here, shimmering faintly.",
+   "description": "A cloak spun from spider silk, light as a breath and surprisingly strong. It shimmers like frost in poor light.",
+   "kind": "armor",
+   "level": 12,
+   "wear_slot": "about",
+   "bonus": {
+    "dex": 1
+   }
+  },
+  {
+   "id": "slave-master-lash",
+   "keywords": "barbed lash whip slave",
+   "short_desc": "a barbed lash",
+   "room_desc": "A barbed lash lies coiled here.",
+   "description": "A long whip of braided hide, with small iron barbs knotted along its length. The handle is wrapped with a strip of old shackle chain.",
+   "kind": "weapon",
+   "level": 14,
+   "weapon_type": "slash",
+   "bonus": {
+    "hitroll": 2
+   }
+  },
+  {
+   "id": "giant-bone-club",
+   "keywords": "giant bone club tree",
+   "short_desc": "a giant's gnarled club",
+   "room_desc": "A giant's gnarled club lies here, as heavy as a young tree.",
+   "description": "A club hewn from an old tree trunk, studded with gnawed knuckle bones and iron spikes. A man needs both arms and a stout back just to lift it.",
+   "kind": "weapon",
+   "level": 16,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 2
+   }
+  }
+ ]
+}
