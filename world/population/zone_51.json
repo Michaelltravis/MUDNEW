@@ -1,0 +1,194 @@
+{
+ "zone": 51,
+ "_about": "Drow City (levels 1-28): dark elves who answer each other's call, driders, the weaponsmasters, masters and Matron Mothers as elites, the yochlol on the Bloodstained Dais and the Matron Mother of the city's heart as sub-bosses, and the High Priestess of Lloth in the Grand Temple, poisoning the floor and calling her driders.",
+ "creatures": {
+  "5101": {
+   "helpers": {
+    "group": "drow",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The drow hisses a command, and dark elves melt out of the shadows!"
+   },
+   "why": "drow"
+  },
+  "5102": {
+   "helpers": {
+    "group": "drow",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The drow hisses a command, and dark elves melt out of the shadows!"
+   },
+   "why": "drow"
+  },
+  "5103": {
+   "helpers": {
+    "group": "drow",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The drow hisses a command, and dark elves melt out of the shadows!"
+   },
+   "why": "drow"
+  },
+  "5104": {
+   "helpers": {
+    "group": "drow",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The drow hisses a command, and dark elves melt out of the shadows!"
+   },
+   "why": "drow"
+  },
+  "5109": {
+   "helpers": {
+    "group": "drow",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The drow hisses a command, and dark elves melt out of the shadows!"
+   },
+   "why": "drow"
+  },
+  "5110": {
+   "helpers": {
+    "group": "drow",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The drow hisses a command, and dark elves melt out of the shadows!"
+   },
+   "why": "drow"
+  },
+  "5105": {
+   "rank": "elite",
+   "why": "a drow elite",
+   "helpers": {
+    "group": "drow",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The drow hisses a command, and dark elves melt out of the shadows!"
+   }
+  },
+  "5106": {
+   "rank": "elite",
+   "why": "a drow elite",
+   "helpers": {
+    "group": "drow",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The drow hisses a command, and dark elves melt out of the shadows!"
+   }
+  },
+  "5107": {
+   "rank": "elite",
+   "why": "a drow elite",
+   "helpers": {
+    "group": "drow",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The drow hisses a command, and dark elves melt out of the shadows!"
+   }
+  },
+  "5108": {
+   "rank": "sub-boss",
+   "why": "a power of the city"
+  },
+  "5111": {
+   "rank": "sub-boss",
+   "why": "a power of the city"
+  },
+  "51200": {
+   "name": "high priestess lloth",
+   "short_desc": "the High Priestess of Lloth",
+   "long_desc": "The High Priestess of Lloth stands before the spider altar, her snake-headed whip coiling at her feet.",
+   "description": "Tall, silver-haired and terrible, in a gown of black spider-silk set with rubies. The five snakes of her whip hiss in turn; she speaks for the Spider Queen, and the whole city trembles when she is displeased.",
+   "level": 28,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "drow",
+   "rank": "boss",
+   "alignment": -1000,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The High Priestess shrieks: \"Lloth, Queen of Spiders, devour them!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Lloth's Wrath",
+      "telegraph": "The High Priestess raises her arms to the spider idol!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+7",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Serpent Whip",
+      "telegraph": "The High Priestess cracks her snake-headed whip at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Unholy Word",
+      "telegraph": "The High Priestess begins to speak a word of power!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+9",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 5102,
+   "route": [
+    5101,
+    5123,
+    5107,
+    5110
+   ],
+   "why": "a drow warrior walks the city street"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 51200,
+   "room": 5141,
+   "why": "the High Priestess in the Grand Temple of Lloth",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Lloth's Venom",
+     "school": "poison",
+     "every": 10,
+     "radius": 2.4,
+     "last": 12,
+     "pct": 0.045,
+     "why": "venom pooling on the floor: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "5109": 2
+     },
+     "shout": "The High Priestess calls, and driders scuttle down from the temple roof!",
+     "why": "driders at 66% and 33%"
+    }
+   ]
+  }
+ ]
+}

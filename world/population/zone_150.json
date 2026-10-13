@@ -1,0 +1,341 @@
+{
+ "zone": 150,
+ "_about": "King Welmar's castle (levels 1-33): the King's guards walk the corridors and come when anyone in the castle is attacked; the Captain, the Lifeguards and the Training Master are elites; Ergan the Murderer waits in his cell (a sub-boss); and King Welmar himself, if anyone is fool enough, calls every guard in the castle.",
+ "creatures": {
+  "15000": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15003": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15004": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15005": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15006": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15007": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15008": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15009": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15010": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15011": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15024": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15025": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15026": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15027": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15028": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15029": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   },
+   "why": "a guard of the castle"
+  },
+  "15014": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the guard"
+  },
+  "15016": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the guard"
+  },
+  "15017": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the guard"
+  },
+  "15019": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the guard"
+  },
+  "15022": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the guard"
+  },
+  "15023": {
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "why": "calls the guard"
+  },
+  "15012": {
+   "rank": "elite",
+   "why": "an elite of the guard",
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   }
+  },
+  "15013": {
+   "rank": "elite",
+   "why": "an elite of the guard",
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   }
+  },
+  "15020": {
+   "rank": "elite",
+   "why": "an elite of the guard",
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   }
+  },
+  "15021": {
+   "rank": "elite",
+   "why": "an elite of the guard",
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "The guard shouts: \"To arms! Guards of Welmar, to me!\""
+   }
+  },
+  "15015": {
+   "rank": "sub-boss",
+   "why": "Ergan the Murderer"
+  },
+  "15001": {
+   "rank": "boss",
+   "flags": [
+    "sentinel",
+    "boss"
+   ],
+   "helpers": {
+    "group": "welmar_guard",
+    "rooms": 4,
+    "count": 3,
+    "shout": "Guards! Help! Guards!",
+    "answer": false
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "King Welmar roars: \"Treason! TREASON!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Royal Decree",
+      "telegraph": "King Welmar rises from his throne: \"Kneel!\"",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+8",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Kingsblade",
+      "telegraph": "King Welmar draws the ancient blade of his house!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+6",
+      "dodge": true
+     },
+     {
+      "name": "Judgement",
+      "telegraph": "King Welmar raises his sword to pass judgement!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+11",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the king"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 15006,
+   "route": [
+    15030,
+    15035,
+    15040,
+    15045
+   ],
+   "why": "Matt walks the corridors"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 15001,
+   "room": 15017,
+   "why": "King Welmar by his throne",
+   "mechanics": [
+    {
+     "type": "call_guards",
+     "at": [
+      80,
+      50,
+      25
+     ],
+     "count": 4,
+     "rooms": 4,
+     "shout": "King Welmar bellows: \"GUARDS!\"",
+     "why": "the whole guard comes"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,244 @@
+{
+ "zone": 140,
+ "_about": "The Necropolis of Eternal Night (levels 25-47): the risen dead who answer each other's knell, skeletal legions that patrol the avenues, the necromancer, death knight and banshee as elites, the ancient lich a sub-boss, Morthul the Lich Lord on the Bone Throne raising legion after legion as the night thickens, and Verdraxx the green dragon breathing caustic poison in her lair.",
+ "creatures": {
+  "14001": {
+   "helpers": {
+    "group": "necropolis",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls somewhere in the dark, and the dead of the Necropolis answer!"
+   },
+   "why": "the dead"
+  },
+  "14002": {
+   "helpers": {
+    "group": "necropolis",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls somewhere in the dark, and the dead of the Necropolis answer!"
+   },
+   "why": "the dead"
+  },
+  "14003": {
+   "helpers": {
+    "group": "necropolis",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls somewhere in the dark, and the dead of the Necropolis answer!"
+   },
+   "why": "the dead"
+  },
+  "14005": {
+   "helpers": {
+    "group": "necropolis",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls somewhere in the dark, and the dead of the Necropolis answer!"
+   },
+   "why": "the dead"
+  },
+  "14006": {
+   "helpers": {
+    "group": "necropolis",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls somewhere in the dark, and the dead of the Necropolis answer!"
+   },
+   "why": "the dead"
+  },
+  "14004": {
+   "rank": "elite",
+   "helpers": {
+    "group": "necropolis",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A bell tolls somewhere in the dark, and the dead of the Necropolis answer!"
+   },
+   "why": "vampire spawn"
+  },
+  "14007": {
+   "rank": "elite",
+   "why": "an elite of the Necropolis"
+  },
+  "14009": {
+   "rank": "elite",
+   "why": "an elite of the Necropolis"
+  },
+  "14010": {
+   "rank": "elite",
+   "why": "an elite of the Necropolis"
+  },
+  "14008": {
+   "rank": "sub-boss",
+   "why": "the ancient lich"
+  },
+  "14030": {
+   "rank": "boss",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Verdraxx spreads her wings and fills the lair with a deafening roar!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Caustic Breath",
+      "telegraph": "Verdraxx rears back, her throat swelling with green poison!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+11",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Rending Claws",
+      "telegraph": "Verdraxx raises a taloned foreleg!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+9",
+      "dodge": true
+     },
+     {
+      "name": "Tail Sweep",
+      "telegraph": "Verdraxx coils her great tail to sweep the lair!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+15",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   },
+   "why": "the dragon"
+  },
+  "14050": {
+   "name": "morthul lich lord",
+   "short_desc": "Morthul the Lich Lord",
+   "long_desc": "Morthul the Lich Lord sits upon the Bone Throne, a crown of black iron on his fleshless brow.",
+   "description": "A skeleton in robes of rotted purple and gold, cold blue fire burning where his eyes once were. He built the Necropolis to house an army, and every grave in it is a soldier waiting for his word.",
+   "level": 45,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "undead"
+   ],
+   "race": "undead",
+   "rank": "boss",
+   "alignment": -1000,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Morthul rises from the Bone Throne: \"Rise, my legions! RISE!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Soul Storm",
+      "telegraph": "Morthul raises his staff, and screaming souls whirl about the throne!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+11",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Finger of Death",
+      "telegraph": "Morthul points a bony finger at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+9",
+      "dodge": true
+     },
+     {
+      "name": "Power Word: Kill",
+      "telegraph": "Morthul begins to speak a word of ending!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+15",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 14001,
+   "route": [
+    14000,
+    14001,
+    14003,
+    14028
+   ],
+   "why": "a skeletal warrior marches from the Gates of the Dead"
+  },
+  {
+   "vnum": 14005,
+   "route": [
+    14003,
+    14001,
+    14002,
+    14007,
+    14010,
+    14011,
+    14013
+   ],
+   "why": "a ghast prowls Crypt Row down to the catacombs"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 14050,
+   "room": 14027,
+   "why": "Morthul on the Bone Throne",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      75,
+      50,
+      25
+     ],
+     "adds": {
+      "14001": 3
+     },
+     "shout": "Morthul lifts his staff, and skeletal warriors claw up through the floor!",
+     "why": "his legions"
+    },
+    {
+     "type": "gloom",
+     "max": 0.85,
+     "shout": "Eternal night closes over the Bone Throne...",
+     "why": "the night thickens"
+    }
+   ]
+  },
+  {
+   "vnum": 14030,
+   "room": 14030,
+   "why": "Verdraxx in her lair",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Caustic Breath",
+     "school": "poison",
+     "every": 9,
+     "radius": 3.0,
+     "last": 14,
+     "pct": 0.05,
+     "why": "poison pools where she breathes: step out"
+    }
+   ]
+  }
+ ]
+}
