@@ -24,15 +24,17 @@ def quad(k, frames, swing=24, lift=35, bob=0.02, root='hips', front='fl', hind='
 
 
 def biped(k, frames, swing=28, lift=30, arm=24, bob=0.03, root='hips', leg='leg', arm_bone='arm', torso=None):
-    """A walk on two legs, arms swinging against them."""
+    """A walk on two legs, arms swinging against them. Turned about the body's own side-to-side
+    axis (turn()), so it works whichever way the limb bones happen to point."""
     h = frames // 2
+    X = (1, 0, 0)
     for f, a in ((0, 1), (h, -1)):
         for side, sgn in SIDES:
-            k.rot(f'{leg}1.{side}', f, x=swing * a * sgn)
+            k.turn(f'{leg}1.{side}', f, X, -swing * a * sgn)           # forward is -Y: a negative turn
             if arm_bone:
-                k.rot(f'{arm_bone}1.{side}', f, x=-arm * a * sgn)
+                k.turn(f'{arm_bone}1.{side}', f, X, arm * a * sgn)
     for side, at in (('L', h // 2), ('R', h + h // 2)):
-        k.rot(f'{leg}2.{side}', at, x=lift)
+        k.turn(f'{leg}2.{side}', at, X, lift)                        # the shin folds back
     k.loc(root, h // 2, y=bob).loc(root, h + h // 2, y=bob)
     if torso:
         k.rot(torso, h // 2, z=4).rot(torso, h + h // 2, z=-4)
@@ -81,12 +83,14 @@ def float_(k, frames, root, bob=0.06, sway=None, amp=6):
 
 
 def flap(k, frames, wings=('w1', 'w2'), up=40, down=-30):
-    """Wing beats: the inner bone of each wing up and down, the outer following a little behind."""
+    """Wing beats: the inner bone of each wing raised and lowered about the body's front-to-back
+    axis, the outer following a little behind."""
     h = frames // 2
     inner, outer = wings
+    Y = (0, 1, 0)
     for side, sgn in SIDES:
-        k.rot(f'{inner}.{side}', 0, y=up * sgn).rot(f'{inner}.{side}', h, y=down * sgn)
-        k.rot(f'{outer}.{side}', 2, y=up * 0.6 * sgn).rot(f'{outer}.{side}', h + 2, y=down * 0.6 * sgn)
+        k.turn(f'{inner}.{side}', 0, Y, -up * sgn).turn(f'{inner}.{side}', h, Y, -down * sgn)
+        k.turn(f'{outer}.{side}', min(frames - 1, 2), Y, -up * 0.5 * sgn).turn(f'{outer}.{side}', min(frames - 1, h + 2), Y, -down * 0.5 * sgn)
 
 
 def roll_over(k, frames, root='hips', drop=0.4, side=-1, limbs=(), neck=None):
