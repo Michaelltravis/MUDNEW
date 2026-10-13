@@ -203,6 +203,14 @@ export class FX {
       tex.flipY = false;
       this.g = new Particles(engine.scene, this.budget.glyphs, tex);
     }
+    // the flash lights (light()): made once, so the number of lights in the scene never changes
+    this.lightPool = [];
+    for (let i = 0; i < (this.budget.lights || 0); i++) {
+      const l = new THREE.PointLight(0xffffff, 0, 6, 1.6);
+      l.userData.free = true;
+      this.scene.add(l);
+      this.lightPool.push(l);
+    }
     this.textures = new Map();
     this.items = [];                   // live effects: {update(dt) -> keep?}
     this.overlay = overlay;            // DOM layer for floating text
@@ -400,14 +408,20 @@ export class FX {
   sparks(p, color = 0xffe0a0, n = 12) { this.p.emit(p, { count: n, color, speed: 4, life: 0.3, size: 0.16, gravity: 6, drag: 2 }); }
 
   // a short-lived point light (pooled small: at most a few at once)
+  // A flash of light. The lights are a fixed pool, always in the scene and dark when idle: adding
+  // or removing a light makes every lit material rebuild its shader, and a big spell's burst of
+  // them (meteors, novas) stalled the GPU until the browser dropped the 3D view (it went black).
   light(p, color, intensity = 5, time = 0.25) {
-    if (!this.take('lights')) return;
-    const l = new THREE.PointLight(color instanceof THREE.Color ? color : new THREE.Color(color), intensity, 6, 1.6);
+    if (!p || !Number.isFinite(p.x) || !Number.isFinite(p.y) || !Number.isFinite(p.z) || !(intensity > 0) || !(time > 0)) return;
+    const l = this.lightPool.find(x => x.userData.free);
+    if (!l) return;
+    l.userData.free = false;
+    l.color.set(color);
     l.position.copy(p);
-    this.scene.add(l);
+    l.intensity = intensity;
     let t = time;
     this.add({ update: dt => { t -= dt; l.intensity = intensity * Math.max(0, t / time); return t > 0; },
-      dispose: () => { this.scene.remove(l); l.dispose(); this.give('lights'); } });
+      dispose: () => { l.intensity = 0; l.userData.free = true; } });
   }
 
   // ---- melee: a bright arc swept in front of the attacker ----

@@ -6,6 +6,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { orbitOffset, pitchFor, dragOrbit, nearestTurn } from './orbit.js';
 
 // ?q=low|med|high, default high (the Mac mini and any recent laptop handle it)
@@ -32,6 +33,8 @@ export const MOODS = {
   snow: { sky: 0xe4eeff, ground: 0x8a96a8, hemi: 1.15, sun: 0xf4f8ff, sunI: 2.2, fog: 0xd8e4f0, near: 26, far: 75, exposure: 0.95, bg: 1.0 },
   // under the sea: green-blue light from above, the far distance lost in deep water
   underwater: { sky: 0x9ae0ec, ground: 0x2a5a60, hemi: 1.5, sun: 0xc0f0ff, sunI: 1.6, fog: 0x2a7890, near: 14, far: 48, exposure: 1.3, bg: 0.75 },
+  // a spider's lair: grey-green gloom under a webbed canopy
+  web: { sky: 0x8a9a8a, ground: 0x24261c, hemi: 0.95, sun: 0xc8d8b8, sunI: 0.8, fog: 0x2a3026, near: 16, far: 52, exposure: 1.2, bg: 0.6 },
   volcanic: { sky: 0x8a4a3a, ground: 0x2a0e06, hemi: 0.6, sun: 0xff8a50, sunI: 1.3, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1, bg: 0.75 },
 };
 
@@ -114,9 +117,21 @@ export function createEngine(container, opts = {}) {
   }, { passive: false });
 
   // ---- post: bloom only on what is really bright (torches, sparks), then tone map ----
+  // A pixel the GPU worked out as not-a-number (or infinite) would be smeared by the bloom's blur
+  // over most of the screen as black: the scene is clamped to finite light before the bloom.
+  const SCRUB = {
+    uniforms: { tDiffuse: { value: null } },
+    vertexShader: 'varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: `uniform sampler2D tDiffuse; varying vec2 vUv;
+      void main() { vec4 c = texture2D(tDiffuse, vUv);
+        bvec4 bad = bvec4(isnan(c.r) || isinf(c.r), isnan(c.g) || isinf(c.g), isnan(c.b) || isinf(c.b), isnan(c.a) || isinf(c.a));
+        c = vec4(bad.x ? 0.0 : c.r, bad.y ? 0.0 : c.g, bad.z ? 0.0 : c.b, bad.w ? 1.0 : c.a);
+        gl_FragColor = min(max(c, vec4(0.0)), vec4(64.0)); }`,
+  };
   function makeComposer() {
     const c = new EffectComposer(renderer);
     c.addPass(new RenderPass(scene, camera));
+    c.addPass(new ShaderPass(SCRUB));
     c.addPass(new UnrealBloomPass(new THREE.Vector2(256, 256), 0.32, 0.45, 0.88));
     c.addPass(new OutputPass());
     return c;
@@ -132,6 +147,32 @@ export function createEngine(container, opts = {}) {
   }
   window.addEventListener('resize', resize);
   resize();
+
+  // the GPU dropped the 3D view (a driver reset, a stall): three.js asks the browser for it back;
+  // when it comes back the bloom's buffers are made afresh. If it never does, say so and offer a
+  // reload rather than leave the world black under a working HUD.
+  let lostNote = null, lostTimer = 0;
+  renderer.domElement.addEventListener('webglcontextlost', () => {
+    console.warn('3D view lost (WebGL context lost)');
+    clearTimeout(lostTimer);
+    lostTimer = setTimeout(() => {
+      if (lostNote || typeof document === 'undefined') return;
+      lostNote = document.createElement('div');
+      lostNote.className = 'gl-lost';
+      lostNote.style.cssText = 'position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);z-index:50;padding:14px 18px;'
+        + 'background:rgba(12,10,16,0.92);border:1px solid #8a6a3a;border-radius:8px;color:#f0e2c0;font:15px/1.4 serif;text-align:center';
+      lostNote.innerHTML = 'The graphics card dropped the 3D view.<br><button style="margin-top:8px;padding:4px 14px;cursor:pointer">Reload the view</button>';
+      lostNote.querySelector('button').onclick = () => location.reload();
+      document.body.appendChild(lostNote);
+    }, 3000);
+  });
+  renderer.domElement.addEventListener('webglcontextrestored', () => {
+    console.warn('3D view restored');
+    clearTimeout(lostTimer);
+    if (lostNote) { lostNote.remove(); lostNote = null; }
+    if (composer) { if (composer.dispose) composer.dispose(); composer = makeComposer(); }
+    resize();
+  });
 
   // ---- mood blending ----
   const cur = { ...MOODS.day }, want = { ...MOODS.day };
