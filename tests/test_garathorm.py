@@ -69,8 +69,11 @@ async def main():
     crier = npcs(30502)[0]
     check(crier.room.vnum == 3014 and crier.helpers.get('group') == 'garathorm_watch', 'the town crier stands in the Market Square')
     came = allies.nearby_allies(crier, 3, 5)
-    check(came and all(getattr(m, 'vnum', None) in (30500, 3059, 3060, 3067) for m, _ in came),
+    check(came and all(getattr(m, 'vnum', None) in (30500, 30507, 3059, 3060, 3067) for m, _ in came),
           f'only the watch answers ({[getattr(m, "vnum", None) for m, _ in came]})')
+    keeper = npcs(30507)
+    check(len(keeper) == 1 and keeper[0].room.vnum == 3001 and 'sentinel' in keeper[0].flags,
+          'a temple guard stands by the altar')
     baker = next(m for m in world.npcs if getattr(m, 'vnum', None) == 3001)
     check(baker.helpers.get('answer') is False and not any(m is baker for m, _ in came), 'the baker calls the watch, but stays at the counter')
     h = Player.create_new(name='Ruffian', password=None, race='human', char_class='warrior',
