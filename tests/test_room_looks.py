@@ -89,6 +89,19 @@ async def main():
     water = [r for r in rooms.values() if r.sector_type in rl.WATER_SECTORS]
     check(all(r.look == r.sector_type for r in water), 'water stays water')
 
+    # the Sewer is underground throughout (owner: "sewers should look like a sewer"): no pipe
+    # junction drawn as a town street, no ledge as a mountain, no lair as a field
+    sewer = [r for r in rooms.values() if getattr(getattr(r, 'zone', None), 'number', None) == 72]
+    above = [(r.vnum, r.name, r.look) for r in sewer if r.look not in rl.UNDERGROUND and r.look not in rl.WATER_SECTORS]
+    check(sewer and not above, f'every room of the Sewer is underground or water ({above[:4]})')
+    check(rooms[7016].look == 'sewer' and rooms[7337].look == 'cave', 'a pipe bend is a sewer, the Basilisk\'s Cave a cave')
+    # filler the look contradicts is gone ("Bird calls echo through the canopy." down a sewer pipe)
+    wrong = [(r.vnum, line) for r in rooms.values() for kind, lines in rl.FILLER.items() if r.look not in rl.FILLER_FITS[kind]
+             for line in lines if line in rl._norm(r.description)]
+    check(not wrong, f'no room keeps filler its look contradicts ({wrong[:3]})')
+    check('canopy' not in rooms[7313].description and 'water' in rooms[7313].description.lower(),
+          'the Spongy Room in the sewers lost its birdsong and gained its own dank lines')
+
     # ---- the payloads carry it
     from map_system import build_zonemap
     zm = build_zonemap(world, rooms[4469].zone.number)

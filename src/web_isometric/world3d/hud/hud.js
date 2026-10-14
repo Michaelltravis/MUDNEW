@@ -924,9 +924,11 @@ export function createHud() {
     setTimeout(() => document.addEventListener('pointerdown', function off(e) { if (!el.contains(e.target)) { el.classList.add('hidden'); document.removeEventListener('pointerdown', off); } }), 0);
   }
   function openTalk(name, kw) { talk.toggle(true, name, kw); }
+  // a conversation stays in its room: leave (or be ferried off) and it closes
+  function closeTalk() { if (talk.open) talk.toggle(false); }
   // whisper someone: the chat input set to tell them
   function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
-  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, lootwin, giveTo, flashSlot,
+  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, closeTalk, lootwin, giveTo, flashSlot,
     spellbook, unslot, party, quest, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

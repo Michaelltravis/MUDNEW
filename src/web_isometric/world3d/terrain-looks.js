@@ -52,6 +52,14 @@ const CRYSTAL_MATS = {
   lava: new THREE.MeshBasicMaterial({ color: new THREE.Color(1.7, 0.36, 0.03) }),
 };
 const SEWER_WATER = new THREE.MeshStandardMaterial({ color: 0x2e3a1c, roughness: 0.55, metalness: 0.05, transparent: true, opacity: 0.94 });
+// a sewer's dirt: black standing water, grime, green slime down the walls, water from the pipes
+const PUDDLE_MAT = new THREE.MeshStandardMaterial({ color: 0x14180f, roughness: 0.06, metalness: 0.35, transparent: true, opacity: 0.85,
+  polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+const GRIME_MAT = new THREE.MeshStandardMaterial({ color: 0x1e1a10, roughness: 1, transparent: true, opacity: 0.55, depthWrite: false,
+  polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
+const SLIME_MAT = new THREE.MeshStandardMaterial({ color: 0x4a6a1e, emissive: 0x0e1a04, roughness: 0.3, transparent: true, opacity: 0.6,
+  depthWrite: false, side: THREE.DoubleSide });
+const DRIP_MAT = new THREE.MeshStandardMaterial({ color: 0x6a7a58, roughness: 0.1, metalness: 0.1, transparent: true, opacity: 0.55, depthWrite: false });
 const ICE_MAT = new THREE.MeshStandardMaterial({ color: 0xcfe8ff, roughness: 0.08, metalness: 0.1, transparent: true, opacity: 0.7,
   polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
 const WEB_MAT = (() => {
@@ -297,7 +305,62 @@ function sewer(c) {
     const g = new THREE.CylinderGeometry(0.18, 0.18, 0.9, 10); g.rotateX(Math.PI / 2); g.translate(ox + x + 0.5, 1.1, oz + 0.9);
     pipes.push(g);
   }
+  // pipes along the side walls too, and an iron drainpipe or two down the north wall
+  for (let y = 3; y < H - 3; y += 5) {
+    if (rng() < 0.45) continue;
+    for (const [wx, dir] of [[0.9, 1], [W - 0.9, -1]]) {
+      if (rng() < 0.5) continue;
+      const g = new THREE.CylinderGeometry(0.14, 0.14, 0.8, 8); g.rotateZ(Math.PI / 2); g.translate(ox + wx, 0.9 + rng() * 0.5, oz + y + 0.5);
+      pipes.push(g);
+    }
+  }
+  for (let x = 6; x < W - 4; x += 9) {
+    if (rng() < 0.5) continue;
+    const g = new THREE.CylinderGeometry(0.1, 0.1, 2.4, 8); g.translate(ox + x + 0.5, 1.2, oz + 0.75);
+    pipes.push(g);
+  }
   addMerged(c, pipes, IRON_MAT);
+  // what makes a sewer a sewer: black puddles and grime on the walkways, iron drain grates, slime
+  // streaking down the walls and water dribbling from the pipes into the channel
+  const floor = [];
+  for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) if (grid[y * W + x] === FLOOR) floor.push([x, y]);
+  const puddles = [], grime = [], grates = [], slime = [], drips = [];
+  for (const [x, y] of floor) {
+    const r = rng();
+    if (r < 0.07) {
+      const g = new THREE.CircleGeometry(0.35 + rng() * 0.45, 12); g.rotateX(-Math.PI / 2);
+      g.scale(1, 1, 0.55 + rng() * 0.4); g.rotateY(rng() * 3.14); g.translate(ox + x + 0.5, 0.012, oz + y + 0.5);
+      puddles.push(g);
+    } else if (r < 0.15) {
+      const g = new THREE.CircleGeometry(0.3 + rng() * 0.6, 10); g.rotateX(-Math.PI / 2);
+      g.scale(1, 1, 0.5 + rng() * 0.5); g.rotateY(rng() * 3.14); g.translate(ox + x + 0.5, 0.01, oz + y + 0.5);
+      grime.push(g);
+    } else if (r < 0.165 && grates.length < 3) {
+      const base = new THREE.BoxGeometry(0.8, 0.03, 0.8); base.translate(ox + x + 0.5, 0.015, oz + y + 0.5);
+      grates.push(base);
+      for (let i = -1; i <= 1; i++) {
+        const bar = new THREE.BoxGeometry(0.06, 0.05, 0.78); bar.translate(ox + x + 0.5 + i * 0.22, 0.04, oz + y + 0.5);
+        grates.push(bar);
+      }
+    }
+  }
+  for (let x = 1; x < W - 1; x++) {
+    if (grid[W + x] !== FLOOR || rng() < 0.6) continue;
+    const g = new THREE.PlaneGeometry(0.35 + rng() * 0.4, 1.4 + rng() * 1.2); g.translate(ox + x + 0.5, 0.9 + rng() * 0.4, oz + 1.02);
+    slime.push(g);
+  }
+  for (const pg of pipes.slice(0, 4)) {
+    pg.computeBoundingBox();
+    const bb = pg.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cz = bb.max.z + 0.05, top = bb.min.y;
+    if (top < 0.6) continue;
+    const g = new THREE.CylinderGeometry(0.03, 0.05, top + 0.2, 6); g.translate(cx, (top - 0.2) / 2, cz);
+    drips.push(g);
+  }
+  if (puddles.length) addMerged(c, puddles, PUDDLE_MAT, { shadow: false });
+  if (grime.length) addMerged(c, grime, GRIME_MAT, { shadow: false });
+  if (grates.length) addMerged(c, grates, IRON_MAT, { shadow: false });
+  if (slime.length) addMerged(c, slime, SLIME_MAT, { shadow: false });
+  if (drips.length) addMerged(c, drips, DRIP_MAT, { shadow: false });
   // weeds and puddles on the walkways, a lamp or two
   for (const p of layout.props || []) {
     if (D && rng() < 0.3) { b.add(D.get('torch_lit'), trs(ox + p.x + 0.5, 0.4, oz + p.y + 0.5, 0, 1.2), { shadow: false }); c.torches.push(new THREE.Vector3(ox + p.x + 0.5, 1.4, oz + p.y + 0.5)); }

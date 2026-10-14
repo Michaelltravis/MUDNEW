@@ -17,7 +17,23 @@
   "101071": "field",
   "101084": "field",
   "101090": "field",
-  "5503": "inside"
+  "5503": "inside",
+  "24206": "cave",
+  "24283": "cave",
+  "24284": "cave",
+  "24285": "cave",
+  "24288": "cave",
+  "13350": "inside",
+  "13352": "inside",
+  "13354": "inside",
+  "13356": "inside",
+  "13619": "cave",
+  "13620": "cave",
+  "13621": "cave",
+  "13623": "cave",
+  "20700": "cave",
+  "20701": "cave",
+  "20750": "cave"
  },
  "zones": {
   "465": "cave",
@@ -43,6 +59,26 @@
   "101071": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
   "101084": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
   "101090": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
-  "5503": "Clerics' Sanctum: the clerics' guild room under New Thalos, a room, not a cave"
+  "5503": "Clerics' Sanctum: the clerics' guild room under New Thalos, a room, not a cave",
+  "underground_zones:72": "The Sewer beneath Garathorm is underground throughout: its pipe junctions were imported as city streets, its ledges as mountain, the Lair as town and field (owner: a sewer should look like a sewer)",
+  "24206": "Under The Trapdoor: underground in Fire Grotto (drawn as field; owner: underground places should look underground)",
+  "24283": "The Slave Path: underground in Fire Grotto (drawn as inside; owner: underground places should look underground)",
+  "24284": "The Slave Path: underground in Fire Grotto (drawn as inside; owner: underground places should look underground)",
+  "24285": "The Slave Path: underground in Fire Grotto (drawn as inside; owner: underground places should look underground)",
+  "24288": "The Path of Bones: underground in Fire Grotto (drawn as inside; owner: underground places should look underground)",
+  "13350": "A Small Stone Building: underground in Orc Tunnels (drawn as forest; owner: underground places should look underground)",
+  "13352": "A Small Stone Building: underground in Orc Tunnels (drawn as forest; owner: underground places should look underground)",
+  "13354": "A Small Stone Building: underground in Orc Tunnels (drawn as forest; owner: underground places should look underground)",
+  "13356": "A Small Stone Building: underground in Orc Tunnels (drawn as forest; owner: underground places should look underground)",
+  "13619": "The Travelled Path: underground in Orc Tunnels (drawn as hills; owner: underground places should look underground)",
+  "13620": "The Travelled Path: underground in Orc Tunnels (drawn as hills; owner: underground places should look underground)",
+  "13621": "The Travelled Path: underground in Orc Tunnels (drawn as hills; owner: underground places should look underground)",
+  "13623": "The Travelled Path: underground in Orc Tunnels (drawn as hills; owner: underground places should look underground)",
+  "20700": "On The Bridge: underground in Moria Deep (drawn as forest; owner: underground places should look underground)",
+  "20701": "On The Bridge: underground in Moria Deep (drawn as forest; owner: underground places should look underground)",
+  "20750": "Before The Bridge To Moria Deep: underground in Moria Deep (drawn as forest; owner: underground places should look underground)"
+ },
+ "underground_zones": {
+  "72": "sewer"
  }
 }

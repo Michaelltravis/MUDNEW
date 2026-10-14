@@ -37,6 +37,8 @@ export const MOODS = {
   web: { sky: 0xa8b8a4, ground: 0x3a3a2c, hemi: 1.35, sun: 0xd8e4c8, sunI: 1.15, fog: 0x3a4236, near: 18, far: 56, exposure: 1.3, bg: 0.6 },
   // a dead city (Morkai): grave-green ghost-light in a cavern, dark but readable
   necropolis: { sky: 0x8a9c98, ground: 0x262a24, hemi: 1.15, sun: 0xb4d4c0, sunI: 0.95, fog: 0x1a2622, near: 20, far: 60, exposure: 1.4, bg: 0.4 },
+  // a sewer: sickly green-brown gloom off the water, close and dank, the lamps the only warmth
+  sewer: { sky: 0x7a8a6a, ground: 0x1e2014, hemi: 0.7, sun: 0x9aa880, sunI: 0.45, fog: 0x10140c, near: 16, far: 48, exposure: 1.25, bg: 0.3 },
   volcanic: { sky: 0x8a4a3a, ground: 0x2a0e06, hemi: 0.6, sun: 0xff8a50, sunI: 1.3, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1, bg: 0.75 },
 };
 

@@ -7,7 +7,7 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 
 // the instructions a telnet player needs and a window replaces with buttons
 const HINTS = [/^Use 'talk <npc> <number>' to respond\.?$/i, /^Use 'quest accept <quest_id>' to accept a quest\.?$/i,
-  /^\(quest accept [\w-]+\)$/i, /^Responses:$/i];
+  /^\(quest accept [\w-]+\)$/i, /^Responses:$/i, /^\[Hint\]/i];
 
 // what a reply to `talk` says: {says: [lines], choices: [{n, text}], offers: [quest ids]}. Only
 // what follows "You greet ..." is theirs (before it: your command's echo, the world going on);

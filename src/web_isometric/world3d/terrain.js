@@ -496,14 +496,16 @@ function exitFeatures(group, layout, ox, oz, room, kits, owned) {
       if (e.kind !== 'open') {
         const zoneExit = e.kind === 'zone';
         const inward = horiz ? (dir === 'north' ? 0.35 : -0.35) : (dir === 'west' ? 0.35 : -0.35);
-        const m = new THREE.Mesh(CURTAIN_GEO, zoneExit ? CURTAIN_GOLD : CURTAIN_BLUE);
+        // into another region: a gold glow under its gateway. Within the zone the path simply runs
+        // on (owner: "some of the rooms are not seamless"): no sheet of mist, just its name
+        const m = zoneExit ? new THREE.Mesh(CURTAIN_GEO, CURTAIN_GOLD) : new THREE.Object3D();
         m.scale.set(span, 1, 1);
         m.position.set(horiz ? x : x + inward, 1.25, horiz ? z + inward : z);
         if (!horiz) m.rotation.y = Math.PI / 2;
         group.add(m);
-        const label = zoneExit ? `↗ ${where(e)}` : `↗ ${where(e)}`;
+        const label = `↗ ${where(e)}`;
         const sp = labelSprite(label, zoneExit ? '#ffd88a' : '#cfe6ff', owned);
-        sp.position.set(m.position.x, 2.9, m.position.z);
+        sp.position.set(m.position.x, zoneExit ? 2.9 : 1.6, m.position.z);
         group.add(sp);
         // a closed door hides the glow behind it
         if (doors[dir]) {
@@ -708,9 +710,8 @@ const CURTAIN_TEX = curtainTexture();
 const CURTAIN_GEO = new THREE.PlaneGeometry(1, 2.5);
 const curtain = color => new THREE.MeshBasicMaterial({ color, map: CURTAIN_TEX, transparent: true, depthWrite: false,
   blending: THREE.AdditiveBlending, side: THREE.DoubleSide });
-// a passage within the zone: a faint mist the path runs on into (it used to be an overbright sheet
-// that bloomed to a white void: the owner wants the rooms seamless); a zone's border stays gold
-const CURTAIN_BLUE = curtain(new THREE.Color(0.16, 0.2, 0.26));
+// a zone's border: a gold glow under its gateway (a passage within the zone has no sheet at all:
+// the owner wants the rooms seamless)
 const CURTAIN_GOLD = curtain(new THREE.Color(1.8, 1.25, 0.45));
 const PORTAL_GEO = new THREE.RingGeometry(0.55, 0.85, 32);
 const PORTAL_MAT = new THREE.MeshBasicMaterial({ color: new THREE.Color(1.6, 0.9, 2.4), transparent: true, opacity: 0.85,

@@ -389,8 +389,9 @@ button { font: inherit; color: inherit; }
 #create .focus p { color: var(--ink-dim); margin: 6px 0; font-family: var(--lore); }
 #create .focus .fd { min-height: 3em; }   /* every class's blurb takes the same room: choosing one never re-centres the card */
 #create .stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 10px 0 16px; }
-#create .stats div { padding: 10px 0; border-radius: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--edge-dim); text-align: center; }
-#create .stats div.prime { border-color: var(--gold); box-shadow: 0 0 12px rgba(243,210,140,.25); }
+#create .stats > div { padding: 10px 0; border-radius: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--edge-dim); text-align: center; }
+#create .stats.rolling .v { opacity: .35; transition: opacity .15s; }
+#create .stats > div.prime { border-color: var(--gold); box-shadow: 0 0 12px rgba(243,210,140,.25); }
 #create .stats .v { font: 700 21px var(--title); color: var(--gold-hi); }
 #create .stats .k { font: 700 10px var(--label); color: var(--ink-dim); letter-spacing: .12em; }
 #create .row2 { display: flex; gap: 10px; }

@@ -55,6 +55,42 @@ const LANDMARK = [
 ];
 const COLORS = ['blue', 'red', 'yellow', 'green'];
 
+// every town its own: two house colours and an accent, and a stone tint, picked from the zone's
+// number (Garathorm reads red and blue, another town green and yellow); a desert town is sandstone
+const TOWN_TINTS = [0xffffff, 0xf2e6d4, 0xe4e8ee, 0xf6ead0, 0xe8e0d8];
+function townStyle(room) {
+  const n = (room && room.zoneRef && room.zoneRef.num) || 0;
+  const h = (n * 2654435761) >>> 0;
+  const a = h % 4, b = (a + 1 + (h >> 3) % 3) % 4;
+  const accent = [0, 1, 2, 3].find(i => i !== a && i !== b);
+  const desert = /desert|sand|dune|oasis/i.test((room && room.zoneRef && room.zoneRef.name) || '');
+  return { colors: [COLORS[a], COLORS[a], COLORS[b], COLORS[b], COLORS[accent]], tint: desert ? 0xf4d8a8 : TOWN_TINTS[(h >> 6) % TOWN_TINTS.length], key: `town${n}` };
+}
+
+// what part of town a street is, from its name and words: what stands on it and what lines it
+const DISTRICTS = [
+  ['market', /\b(market|bazaar|square|fair|plaza|merchant|stall|trade)\b/],
+  ['docks', /\b(dock|docks|quay|wharf|harbou?r|pier|port|warehouse)\b/],
+  ['guard', /\b(gate|guard|barracks|garrison|watch|wall|tower|armou?ry)\b/],
+  ['temple', /\b(temple|church|chapel|cathedral|shrine|fountain|garden|park)\b/],
+  ['poor', /\b(alley|slum|poor|beggar|dump|gutter|shanty)\b/],
+  ['noble', /\b(noble|manor|palace|villa|estate|royal|lord)\b/],
+];
+function districtOf(layout) {
+  const text = `${layout.name || ''} ${layout.description || ''}`.toLowerCase();
+  return (DISTRICTS.find(([, re]) => re.test(text)) || ['street'])[0];
+}
+const DISTRICT_PROPS = {
+  market: { big: ['tent', 'tent', 'building_market_X', 'crate_long_A'], small: ['crate_A_big', 'sack', 'crate_B_small', 'barrel', 'sack'] },
+  docks: { big: ['pallet', 'resource_lumber', 'crate_long_A'], small: ['barrel', 'crate_A_big', 'barrel', 'crate_B_small', 'sack'] },
+  guard: { big: ['weaponrack', 'target', 'crate_long_A'], small: ['barrel', 'weaponrack', 'crate_B_small'] },
+  temple: { big: ['building_well_X', 'tree_single_A', 'trees_A_medium'], small: ['bucket_water', 'tree_single_A', 'sack'] },
+  poor: { big: ['pallet', 'wheelbarrow', 'crate_long_A'], small: ['crate_B_small', 'sack', 'barrel', 'bucket_water'] },
+  noble: { big: ['tree_single_A', 'trees_A_medium', 'building_well_X'], small: ['tree_single_A', 'barrel'] },
+  street: { big: ['building_well_X', 'crate_long_A', 'wheelbarrow', 'tent', 'tree_single_A'], small: ['barrel', 'crate_A_big', 'sack', 'bucket_water', 'crate_B_small'] },
+};
+const PROP_SCALE = { tent: 2.2, tree_single_A: 3.2, trees_A_medium: 2.6, pallet: 4, resource_lumber: 3.5, weaponrack: 4, target: 4, wheelbarrow: 5, crate_long_A: 5 };
+
 // a dead city (the 'necropolis' look, dead Morkai): the same streets in black stone, graves and
 // bones for street furniture, ghost-green braziers in place of torches
 const NECRO_STONE = 0x4a4652;
@@ -65,7 +101,9 @@ function darkTown(T) {
 export function townStreet(c) {
   const { layout, ox, oz, kits, room, b, rng, runs, occ } = c;
   const necro = layout.theme === 'necropolis';
-  const T = necro ? darkTown(kits.town) : kits.town;
+  const style = townStyle(room);
+  const district = districtOf(layout);
+  const T = necro ? darkTown(kits.town) : kits.town && (style.tint === 0xffffff ? kits.town : { get: k => tinted(kits.town.get(k), style.tint, style.key) });
   const pickLandmark = text => (LANDMARK.find(([re]) => re.test(String(text || '').toLowerCase())) || [])[1];
   let streetLandmark = pickLandmark(`${layout.name} ${layout.description}`);
   for (const run of runs) {
@@ -96,8 +134,28 @@ export function townStreet(c) {
     while (end - cursor > 2.2) {
       let key;
       if (landmark) { key = landmark; landmark = null; if (mode === 'houses') streetLandmark = null; }
-      else key = rng() < 0.55 ? 'building_home_A' : rng() < 0.75 ? 'building_home_B' : 'building_tavern';
-      const model = T.get(`${key}_${COLORS[Math.floor(rng() * COLORS.length)]}`) || T.get(`${key}_blue`);
+      else if (mode === 'houses' && rng() < 0.12) {
+        // a pocket garden between houses: a tree or two behind a fence
+        const gw = 3.2;
+        if (end - cursor < gw + 0.5) break;
+        const along = cursor + gw / 2;
+        const depth = 2.2;
+        const [gx, gz] = side === 'north' ? [ox + along, oz + depth] : side === 'south' ? [ox + along, oz + 15 - depth]
+          : side === 'west' ? [ox + depth, oz + along] : [ox + 24 - depth, oz + along];
+        const tree = T.get(rng() < 0.5 ? 'tree_single_A' : 'trees_A_medium');
+        if (tree) b.add(occ(tree), trs(gx, 0, gz, rng() * 6.28, 2.6 + rng() * 0.8));
+        const fence = T.get(rng() < 0.5 ? 'fence_wood_straight' : 'fence_stone_straight');
+        if (fence) b.add(occ(fence), trs(side === 'north' || side === 'south' ? gx : gx + (side === 'west' ? 1.4 : -1.4), 0,
+          side === 'north' || side === 'south' ? gz + (side === 'north' ? 1.4 : -1.4) : gz, YAW[side], 3.2));
+        cursor += gw + 0.35;
+        continue;
+      }
+      else {
+        const r = rng();
+        key = district === 'guard' && r < 0.3 ? 'building_barracks' : district === 'docks' && r < 0.15 ? 'building_watermill'
+          : r < 0.5 ? 'building_home_A' : r < 0.78 ? 'building_home_B' : r < 0.9 ? 'building_tavern' : 'building_blacksmith';
+      }
+      const model = T.get(`${key}_${style.colors[Math.floor(rng() * style.colors.length)]}`) || T.get(`${key}_blue`);
       if (!model) break;
       const size = new THREE.Vector3(); model.box.getSize(size);
       let s = 6;
@@ -138,13 +196,16 @@ export function townStreet(c) {
       }
       continue;
     }
+    // the district's furniture: a market's tents and crates, the docks' pallets and lumber, the
+    // guard's weapon racks, a temple square's well and trees...
+    const kit = DISTRICT_PROPS[district] || DISTRICT_PROPS.street;
     if (o.big) {
-      const key = ['building_well_blue', 'crate_long_A', 'wheelbarrow', 'tent'][Math.floor(rng() * 4)];
-      const s = key.startsWith('building_well') ? 2.6 : key === 'tent' ? 2.2 : 5;
+      let key = kit.big[Math.floor(rng() * kit.big.length)].replace('_X', `_${style.colors[0]}`);
+      const s = key.startsWith('building_well') ? 2.6 : key.startsWith('building_market') ? 1.4 : PROP_SCALE[key] || 5;
       b.add(occ(T.get(key) || T.get('barrel')), trs(cx, 0, cz, Math.floor(rng() * 4) * Math.PI / 2, s));
     } else {
-      const key = ['barrel', 'crate_A_big', 'sack', 'bucket_water', 'crate_B_small'][Math.floor(rng() * 5)];
-      b.add(T.get(key), trs(cx, 0, cz, rng() * 6.28, 4.5));
+      const key = kit.small[Math.floor(rng() * kit.small.length)];
+      b.add(T.get(key) || T.get('barrel'), trs(cx, 0, cz, rng() * 6.28, PROP_SCALE[key] || 4.5));
     }
   }
 }
