@@ -38,6 +38,7 @@ import { groundItems } from './lootlogic.js';
 import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
 import { createWorldMap } from './hud/worldmap.js';
 import { createAmbient } from './hud/ambient.js';
+import { AimCircle, clampAim, aimCommand } from './aim.js';
 
 const $ = s => document.querySelector(s);
 const WATER_TILE = 4;   // zone.js / terrain.js tile kinds
@@ -397,6 +398,8 @@ async function runGame() {
     mm.setTime(payload.time);
     window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, loot, fx, combat, hud, cues, THREE, sound, adorn, wards,
       heroRoom: () => heroRoom, hop: () => hop, gate, lastPayload: () => lastPayload,
+      // for probes: an area spell being aimed ({id, at, radius}), or null
+      aim: () => (aiming ? { id: aiming.ab.id, at: aiming.at, radius: aiming.ab.radius } : null),
       // for probes: walk onto a passage of this room on purpose (what clicking it does)
       walkToPassage: dir => { const sp = zone.passageWorld(heroRoom, dir); ctl.walkTo(sp.x, sp.z, null, { goal: { room: heroRoom.vnum, dir }, avoid: null }); } };
   }
@@ -636,7 +639,48 @@ async function runGame() {
 
   // ---- targeting and actions ----
   const canvas = engine.renderer.domElement;
+  // ---- aiming an area spell (aim.js): the key starts it, the mouse moves the circle, a left
+  // click (or the key again) casts it there, a right click or Escape lets it go ----
+  const aimCircle = new AimCircle(engine.scene);
+  let aiming = null;           // { ab, at: {x, z} }
+  let mouse = null;            // the last place the mouse was over the canvas
+  function aimPoint() {
+    const p = hero.root.position;
+    let g = mouse && ctl.groundAt(mouse.x, mouse.y);
+    if (!g && ents.targeted && ents.targeted.root) g = ents.targeted.root.position;
+    if (!g) g = p;
+    return clampAim(p, g, aiming.ab.range, heroRoom, ROOM_W, ROOM_H);
+  }
+  function startAim(ab) {
+    if (!hero || !heroRoom || !ctl) return false;
+    aiming = { ab };
+    aimCircle.show(ab.radius, ab.range, 0xffa040);
+    aiming.at = aimPoint();
+    aimCircle.place(aiming.at, hero.root.position, aiming.at.clamped);
+    hud.toast(`${ab.name || 'Aim'}: click to cast, right-click or Esc to cancel`);
+    return true;
+  }
+  function stopAim() { aiming = null; aimCircle.hide(); }
+  function castAimed() {
+    if (!aiming) return;
+    const ab = aiming.ab, at = aimPoint();
+    stopAim();
+    MH.bus.emit('hud.ability', { ...ab, at });
+  }
+  canvas.addEventListener('pointermove', e => { mouse = { x: e.clientX, y: e.clientY }; });
+  engine.onTick(dt => {
+    if (!aiming) return;
+    if (!hero || !heroRoom) return stopAim();
+    aiming.at = aimPoint();
+    aimCircle.place(aiming.at, hero.root.position, aiming.at.clamped);
+    aimCircle.tick(dt);
+  });
   canvas.addEventListener('pointerdown', e => {
+    if (aiming) {
+      if (e.button === 0) { e.stopImmediatePropagation(); castAimed(); }
+      else if (e.button === 2) stopAim();
+      return;
+    }
     if (e.button !== 0 || e.ctrlKey || !ctl) return;
     const hit = ents.pick(e.clientX, e.clientY);
     if (hit) { ents.setTarget(hit.key, { byHand: true }); return; }
@@ -766,6 +810,11 @@ async function runGame() {
   ]));
   const NO_GCD = new Set(['brace', 'sidestep', 'interrupt', 'flee', 'escape', 'evade']);
   MH.bus.on('hud.ability', ab => {
+    // an area spell: the key starts the aim (the same key again casts it where the circle is)
+    if (ab.radius && !ab.at) {
+      if (aiming && aiming.ab.id === ab.id) return castAimed();
+      if (startAim(ab)) return;
+    }
     const t = ents.targeted;
     // real time: skills and casts wait for the global cooldown (the bar shows its sweep)
     if (actionMode() && MH.state.inCombat && !NO_GCD.has(ab.id)) {
@@ -782,6 +831,12 @@ async function runGame() {
     if (ab.ally) {
       begin(t && t.kind === 'player' ? t : null);
       return MH.sendCommand(abilityCommand(ab, t && t.kind === 'player' ? refFor(t) : null));
+    }
+    // aimed: turn to the circle, cast with its centre in the room's own metres
+    if (ab.at) {
+      begin(null);
+      if (ctl) ctl.face(ab.at.x, ab.at.z);
+      return MH.sendCommand(aimCommand(abilityCommand(ab, null), heroRoom, ab.at));
     }
     if (ab.self || !t || t.kind !== 'mob') {
       if (!ab.self && !t) return hud.toast('No target — click a creature or press Tab.');
@@ -890,6 +945,7 @@ async function runGame() {
   // E: do what the prompt says
   window.addEventListener('keydown', e => {
     if (!hero || e.repeat || /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+    if (aiming && e.key === 'Escape') { stopAim(); e.stopPropagation(); return; }
     // a marked blow coming: Q, E or X answer it first (reactions.js)
     const answer = react.press(e.key, performance.now());
     if (answer) { MH.sendCommand(answer); drawReact(performance.now()); e.preventDefault(); return; }

@@ -679,8 +679,12 @@ def _wrap_spells():
                 text = _plain(lines)
                 res = ('resist' if any(w in text for w in ('resists your spell', 'shrugs off', 'unaffected'))
                        else 'immune' if 'immune' in text else None)
+                # an aimed area spell lands where the caster put it: its centre and reach
+                aim = getattr(caster, '_aim', None)
                 ev.emit_at(room, mark, 'spell', src=caster, dst=tgt, spell=spell_name, res=res,
-                           school=cr.spell_school(spell_name, spell, caster), shape=cr.ability_range(spell_name, True)[1])
+                           school=cr.spell_school(spell_name, spell, caster),
+                           shape=f'blast:{aim[2]:g}' if aim else cr.ability_range(spell_name, True)[1],
+                           at=[aim[0], aim[1]] if aim else None)
             if target is not None and hp0 is not None and getattr(target, 'hp', hp0) > hp0 and room is not None:
                 ev.emit(room, 'heal', src=caster, dst=target, amt=int(target.hp - hp0), school=cr.spell_school(spell_name, spell, caster))
         return result

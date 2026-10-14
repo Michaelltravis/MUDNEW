@@ -1895,6 +1895,19 @@ BARD_SONGS = {
 }
 
 
+# Room spells a /play player aims: the mouse places a circle on the ground and the cast carries
+# its centre ("cast 'meteor storm' @12.5,7"). The blast reaches this far (metres) from where it
+# lands, and lands no farther than AIM_RANGE from the caster. Without a point (telnet, or a
+# /play player who casts from the command line) a room spell strikes every foe here, as before.
+AIM_RADIUS = {
+    'meteor_storm': 7.0, 'earthquake': 8.0, 'apocalypse': 9.0, 'apocalypse_necro': 9.0,
+    'remorseless_winter': 7.0, 'howling_blast': 6.0, 'void_eruption': 6.0, 'blood_boil': 6.0,
+    'hallowed_ground': 5.0, 'requiem': 7.0, 'siren_song': 6.0, 'chord_of_disruption': 6.0,
+    'mass_charm': 5.0,
+}
+AIM_RANGE = 16.0
+
+
 class SpellHandler:
     """Handles spell casting and effects."""
     
@@ -1987,7 +2000,8 @@ class SpellHandler:
 
         # a spell for the room's foes with none here strikes nothing: nothing is spent
         if spell.get('target') == 'room' and spell_name not in cls.ROOM_NO_FOES_NEEDED and not cls.foes_in_room(caster):
-            await caster.send(f"{c['yellow']}There is nothing here for {spell.get('name', spell_name)} to strike.{c['reset']}")
+            where = 'where you aimed it' if getattr(caster, '_aim', None) else 'here'
+            await caster.send(f"{c['yellow']}There is nothing {where} for {spell.get('name', spell_name)} to strike.{c['reset']}")
             return
 
         # Check proficiency for failure (after the target and reach checks: you can't
@@ -2390,11 +2404,12 @@ class SpellHandler:
         return out
 
     @classmethod
-    def foes_in_room(cls, caster):
+    def foes_in_room(cls, caster, aim=None):
         """Whom a spell meant for the room's foes strikes: the creatures fighting the caster,
         their group or their pets; before a fight, every creature here that may be attacked.
         Never a player (a duel's foe aside), anyone's pet, a quest's figure, an NPC at their post,
-        nor anything in a peaceful room."""
+        nor anything in a peaceful room. An aimed spell (aim, else the caster's _aim: x, z,
+        radius) strikes every such foe inside its circle, fighting or not: the caster chose them."""
         room = getattr(caster, 'room', None)
         if room is None or 'peaceful' in (getattr(room, 'flags', None) or ()):
             return []
@@ -2416,6 +2431,10 @@ class SpellHandler:
                 return False
             return touch(ch)
         here = [ch for ch in list(room.characters) if foe(ch)]
+        aim = aim or getattr(caster, '_aim', None)
+        if aim:
+            import combat_range as cr
+            return cr.within((aim[0], aim[1]), here, aim[2])
         fighting = [ch for ch in here if getattr(ch, 'fighting', None) in friends or any(getattr(f, 'fighting', None) is ch for f in friends)]
         return fighting or here
 
@@ -2809,9 +2828,10 @@ class SpellHandler:
         """Hallowed Ground: for its rounds the floor sears every foe standing here."""
         import marquee_abilities as ma
         rounds = int(spell.get('duration_ticks', 10))
+        aim = getattr(caster, '_aim', None)          # the ground it was cast on stays hallowed
 
         async def step(e, i):
-            for foe in cls.foes_in_room(e.caster):
+            for foe in cls.foes_in_room(e.caster, aim=aim):
                 await ma._deal(e.caster, foe, (cls.roll_dice('2d6') + e.caster.level // 2) * e.power, 'holy')
         ma._begin(ma.Effect(caster, 'hallowed_ground', rounds, step=step))
 

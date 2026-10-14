@@ -121,6 +121,13 @@ The goblin is engulfed in flames for 45 damage!
 - **Offensive spells** - Require a target: `cast fireball orc`
 - **Defensive spells** - Default to self: `cast armor` or `cast armor thorin`
 - **Group spells** - Affect your whole party: `cast group_heal`
+- **Area spells** - Strike every foe in the room: `cast 'meteor storm'`. In /play you **aim** them:
+  the spell's key puts a circle (the blast's size) under the mouse and a ring round you (how far it
+  can land); click to cast it there, or press the key again; right-click or Esc lets it go. Only the
+  foes inside the circle are struck, so you can hit one pack without waking the rest of the room.
+  Typed, an aimed cast is `cast 'meteor storm' @12,7` (where in the room, in metres). Each spell's
+  blast and reach are in `spells.py` (`AIM_RADIUS`, `AIM_RANGE`: 16 m); Hallowed Ground keeps
+  burning the ground it was cast on.
 
 ### Mana Management
 
