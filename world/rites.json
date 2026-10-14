@@ -1,0 +1,228 @@
+{
+ "_about": "Rites of passage (src/rites.py): gates locked by keys their keepers carry (the key crumbles when used; the gate is warded against picks, bashes and spells; the zone reset locks it again), and toll-keepers who carry you across for a fare (talk, pay, or give them gold). Loaded at world load after world/population.",
+ "keys": {
+  "necropolis-key": {
+   "vnum": 799900,
+   "keywords": "key bone necropolis finger",
+   "short_desc": "a bone key carved like a finger",
+   "description": "A long key carved from a single finger bone, yellowed and polished by a guardian's grip. It is cold, and it fits only the door of the ruined temple.",
+   "level": 19,
+   "zone": 495
+  },
+  "oracle-key": {
+   "vnum": 799901,
+   "keywords": "key claw sphinx oracle",
+   "short_desc": "a claw-shaped key",
+   "description": "A curved gold key shaped like a lion's claw, still warm from the Sphinx's throat. It opens the Oracle's chamber.",
+   "level": 21,
+   "zone": 495
+  },
+  "altar-key": {
+   "vnum": 799902,
+   "keywords": "key rose gold altar",
+   "short_desc": "a little rose-gold key",
+   "description": "A small key of rose-gold, worked with doves and myrtle. It opens the way to Aphrodite's altar.",
+   "level": 21,
+   "zone": 495
+  },
+  "hades-key": {
+   "vnum": 799903,
+   "keywords": "key black iron hades gates",
+   "short_desc": "a black iron key",
+   "description": "A heavy key of black iron, rough as if it had been forged in a hurry by a smith who feared it. It opens the gates of Hades.",
+   "level": 25,
+   "zone": 495
+  },
+  "white-key": {
+   "vnum": 799904,
+   "keywords": "key white pale gate",
+   "short_desc": "a white key",
+   "description": "A key the colour of bleached driftwood. It opens the white gate.",
+   "level": 23,
+   "zone": 495
+  },
+  "gray-key": {
+   "vnum": 799905,
+   "keywords": "key gray grey ash gate",
+   "short_desc": "a gray key",
+   "description": "A key the colour of cold ash. It opens the gray gate.",
+   "level": 24,
+   "zone": 495
+  },
+  "black-key": {
+   "vnum": 799906,
+   "keywords": "key black dark gate tartarus",
+   "short_desc": "a black key",
+   "description": "A key so dark it seems to swallow the light around it. It opens the black gate to Tartarus.",
+   "level": 25,
+   "zone": 495
+  },
+  "ember-key": {
+   "vnum": 799907,
+   "keywords": "key ember fire red",
+   "short_desc": "an ember-red key",
+   "description": "A key of glowing red metal, hot enough to make the palm sweat. It opens the fiery door.",
+   "level": 25,
+   "zone": 495
+  },
+  "rime-key": {
+   "vnum": 799908,
+   "keywords": "key rime ice blue",
+   "short_desc": "a key of blue ice",
+   "description": "A key cut from blue ice that never melts. It opens the icy door.",
+   "level": 26,
+   "zone": 495
+  },
+  "mist-key": {
+   "vnum": 799909,
+   "keywords": "key mist grey fog",
+   "short_desc": "a key of solid mist",
+   "description": "A grey key that is solid only for now, its edges curling like fog. It opens the misty door.",
+   "level": 26,
+   "zone": 495
+  }
+ },
+ "gates": [
+  {
+   "room": 3741,
+   "dir": "north",
+   "key": "necropolis-key",
+   "keeper": 649512,
+   "why": "Island of the Dead: the Necropolis Warden keeps the temple door"
+  },
+  {
+   "room": 3762,
+   "dir": "east",
+   "key": "oracle-key",
+   "keeper": 649513,
+   "why": "the Sphinx keeps the Oracle's chamber"
+  },
+  {
+   "room": 3766,
+   "dir": "south",
+   "key": "altar-key",
+   "keeper": 649514,
+   "why": "the Siren keeps Aphrodite's altar"
+  },
+  {
+   "room": 3775,
+   "dir": "north",
+   "key": "hades-key",
+   "keeper": 649515,
+   "why": "Cerberus keeps the gates of Hades"
+  },
+  {
+   "room": 3782,
+   "dir": "north",
+   "key": "white-key",
+   "keeper": 649516,
+   "why": "the white gate"
+  },
+  {
+   "room": 3783,
+   "dir": "north",
+   "key": "gray-key",
+   "keeper": 649517,
+   "why": "the gray gate"
+  },
+  {
+   "room": 3784,
+   "dir": "north",
+   "key": "black-key",
+   "keeper": 649518,
+   "why": "the black gate to Tartarus"
+  },
+  {
+   "room": 3794,
+   "dir": "south",
+   "key": "ember-key",
+   "keeper": 649519,
+   "why": "Alecto keeps the fiery door"
+  },
+  {
+   "room": 3795,
+   "dir": "south",
+   "key": "rime-key",
+   "keeper": 649520,
+   "why": "Megaera keeps the icy door"
+  },
+  {
+   "room": 3796,
+   "dir": "south",
+   "key": "mist-key",
+   "keeper": 649521,
+   "why": "Tisiphone keeps the misty door, before Hades' throne"
+  }
+ ],
+ "tolls": [
+  {
+   "id": "styx",
+   "npc": 649505,
+   "room": 3772,
+   "from_name": "the wharf",
+   "fare": 1,
+   "via": 3773,
+   "to": 3774,
+   "secs": 9,
+   "bars": [
+    {
+     "room": 3772,
+     "dir": "north",
+     "name": "River Styx",
+     "say": "The Styx slides past, black and deep. No one swims it and no boat but Charon's crosses it. He waits at the wharf for his coin."
+    }
+   ],
+   "journey": [
+    "The black boat slides out from the wharf. Charon leans on his pole without a word.",
+    "Pale faces turn beneath the water as you pass, mouths opening on names you do not know.",
+    "The far bank rises out of the dark: a landing of black stone, and beyond it, gates."
+   ],
+   "say": {
+    "greet": "Charon turns his hooded head toward you and holds out a bony hand. 'One coin for the crossing,' he rasps. 'The dead pay it under the tongue. You, living one, may pay it in your hand.'",
+    "pay": "Pay the ferryman one gold coin.",
+    "ask": "What waits on the other side?",
+    "leave": "I will not cross yet.",
+    "lore": "'The gates of Hades, and the dog that keeps them. The judges. The white gate, the gray and the black, and below them Tartarus.' His coal eyes do not blink. 'Every gate has its keeper, and every keeper its key. Take the key and the gate is yours. One coin.'",
+    "bye": "Charon says nothing. The boat rocks at the wharf.",
+    "paid": "Charon closes his fingers on the coin. He steps down into the black boat and nods you aboard.",
+    "broke": "Charon's hand stays out. 'No coin, no crossing,' he rasps.",
+    "arrive": "The boat bumps against the far landing. Charon pushes off into the dark without looking back.",
+    "short": "Charon looks at what you offer and does not take it. 'One coin.'"
+   }
+  },
+  {
+   "id": "styx-back",
+   "npc": 649511,
+   "room": 3774,
+   "from_name": "the far landing",
+   "fare": 1,
+   "via": 3773,
+   "to": 3772,
+   "secs": 7,
+   "bars": [
+    {
+     "room": 3774,
+     "dir": "south",
+     "name": "River Styx",
+     "say": "The Styx slides past, black and deep. The hollow oarsman sits in his boat at the landing, waiting for a coin."
+    }
+   ],
+   "journey": [
+    "The grey boat slides back across the black water. The oarsman rows without a sound.",
+    "Behind you the gates of Hades shrink into the dark."
+   ],
+   "say": {
+    "greet": "The hollow oarsman lifts the face that is not there. 'Back to the living? One coin.'",
+    "pay": "Pay the oarsman one gold coin.",
+    "ask": "Why do you row the living back?",
+    "leave": "Not yet.",
+    "lore": "'Charon carries the dead one way. The living are my lord's mistake, and I correct it.' His voice is the creak of an oar. 'One coin.'",
+    "bye": "The oarsman waits.",
+    "paid": "The oarsman takes the coin and dips his oars.",
+    "broke": "'One coin,' says the oarsman, and waits.",
+    "arrive": "The boat grates against the wharf. The oarsman is already rowing away.",
+    "short": "'One coin,' says the oarsman."
+   }
+  }
+ ]
+}

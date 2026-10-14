@@ -293,14 +293,17 @@ SEAL_NAME = 'gate barred'
 
 
 def is_seal(door):
-    """True for the bar across a sealed zone's way in."""
-    return isinstance(door, dict) and door.get('sealed_zone') is not None
+    """True for the bar across a sealed zone's way in, or a crossing only a ferryman makes
+    (rites.py: the Styx)."""
+    return isinstance(door, dict) and (door.get('sealed_zone') is not None or bool(door.get('crossing')))
 
 
 def seal_message(door):
     """What stops someone at a sealed zone's edge (None for any other door)."""
     if not is_seal(door):
         return None
+    if door.get('crossing'):
+        return door['crossing']
     zone = (getattr(WORLD, 'zones', None) or {}).get(door['sealed_zone'])
     name = getattr(zone, 'name', None) or 'that land'
     return f"The way into {name} is barred; that land is still being charted."
@@ -324,7 +327,7 @@ def seal_zones(world):
                 ex['_unsealed_door'] = ex.get('door')
                 ex['door'] = {'name': SEAL_NAME, 'state': 'closed', 'locked': True, 'pickproof': True,
                               'sealed_zone': tz.number}
-            elif not barred and is_seal(ex.get('door')):
+            elif not barred and is_seal(ex.get('door')) and (ex.get('door') or {}).get('sealed_zone') is not None:
                 before = ex.pop('_unsealed_door', None)
                 if isinstance(before, dict):
                     ex['door'] = before

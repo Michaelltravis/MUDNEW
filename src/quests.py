@@ -2104,6 +2104,15 @@ class QuestManager:
                         state = QuestManager._get_chain_state(player, chain_id, auto_init=True)
                         if stage:
                             state['stage'] = stage
+                elif effect_type == 'toll':
+                    # a ferryman's fare (rites.py): paid and carried, or refused
+                    import rites
+                    npc = next((ch for ch in (getattr(player.room, 'characters', None) or [])
+                                if getattr(ch, 'vnum', None) == effect.get('npc')), None)
+                    if npc is not None:
+                        await rites.pay(player, npc)
+                    player.dialogue_state.pop(str(npc_vnum), None)
+                    return True
                 elif effect_type == 'grant_reward':
                     exp = effect.get('exp', 0)
                     gold = effect.get('gold', 0)

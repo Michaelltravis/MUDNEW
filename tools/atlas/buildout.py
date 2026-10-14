@@ -199,8 +199,8 @@ def check_design(part, zs, w):
         if not isinstance(c.get('count'), int) or not 1 <= c['count'] <= 60:
             probs.append(f'creature {cid}: count must be 1-60')
         secs, names = c.get('sectors') or [], c.get('rooms') or []
-        if not secs and not names:
-            probs.append(f'creature {cid}: give "sectors" and/or "rooms"')
+        if not secs and not names and not c.get('at'):
+            probs.append(f'creature {cid}: give "sectors", "rooms" or "at"')
         for s in secs:
             if s not in SECTORS:
                 probs.append(f'creature {cid}: unknown sector {s!r}')
@@ -250,6 +250,9 @@ def where(c, zs, w, only=None):
     of the tunnels keep out of dead Morkai)."""
     secs, names = set(c.get('sectors') or []), set(c.get('rooms') or [])
     avoid = set(c.get('avoid') or [])
+    if c.get('at'):
+        # exact rooms by number (a gatekeeper before its door, where room names repeat)
+        return sorted(int(v) for v in c['at'] if int(v) in w.rooms and w.rooms[int(v)]['_zone'] in zs)
     out = []
     for v, r in w.rooms.items():
         if r['_zone'] not in zs or (only is not None and v not in only) or r.get('name') in avoid:
@@ -451,7 +454,7 @@ def apply(new_zones, new_rooms, write=False):
                 at = int(start + n * step) % len(spots)
                 for j in range(len(spots)):
                     resets = new_rooms[spots[(at + j) % len(spots)]].setdefault('mob_resets', [])
-                    if len(resets) < 2:
+                    if len(resets) < 2 or c.get('at'):          # an exact placement is meant
                         resets.append({'vnum': v, 'max': count})
                         placed += 1
                         break

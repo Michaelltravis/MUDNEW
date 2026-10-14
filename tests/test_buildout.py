@@ -78,6 +78,7 @@ async def main():
     mixed = [v for v, h in homes.items() if len(h) > 1]
     check(not mixed, f'a creature lives on the water or on land, not both ({[new_mobs[v]["short_desc"] for v in mixed[:4]]})')
     dropped = {e.get('vnum') for p in new_mobs.values() for e in (p.get('loot_table') or []) if isinstance(e, dict)}
+    dropped |= {(e.get('vnum') if isinstance(e, dict) else e) for p in new_mobs.values() for e in (p.get('inventory') or [])}   # a gatekeeper's key (rites.py)
     orphan = sorted(set(new_objs) - dropped)
     check(not orphan, f'every new item is dropped by a creature ({orphan[:5]})')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")

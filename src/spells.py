@@ -3632,6 +3632,11 @@ class SpellHandler:
                 await caster.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
                 return
 
+            import rites
+            if rites.is_warded(door) and door.get('locked'):
+                await caster.send(f"{c['yellow']}{rites.ward_message(door)}{c['reset']}")
+                return
+
             # Make a loud noise
             await caster.room.send_to_room(
                 f"{c['bright_red']}**CRASH** The {doors.label(door)} explodes into splinters!{c['reset']}"
