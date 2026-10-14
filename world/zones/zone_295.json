@@ -292,6 +292,10 @@
     {
      "vnum": 29562,
      "chance": 30
+    },
+    {
+     "vnum": 29563,
+     "chance": 25
     }
    ],
    "boss_loot_chance": 100,
@@ -597,8 +601,8 @@
   },
   "29562": {
    "vnum": 29562,
-   "name": "grave-silk leggings",
-   "short_desc": "a pair of grave-silk leggings",
+   "name": "lich-lord grave-silk leggings",
+   "short_desc": "a pair of lich-lord's grave-silk leggings",
    "room_desc": "A pair of black silk leggings lies here.",
    "description": "Close-fitting leggings of black silk, cold to the touch, worn under a robe.",
    "item_type": "armor",
@@ -622,7 +626,38 @@
    "flags": [
     "magic",
     "glow"
-   ]
+   ],
+   "set_id": "lichlord_shroud"
+  },
+  "29563": {
+   "vnum": 29563,
+   "name": "lich-lord skull phylactery",
+   "short_desc": "a lich-lord's skull phylactery",
+   "room_desc": "A yellowed skull with two cold green lights in its eyes rests here.",
+   "description": "A small skull, yellowed and polished smooth by long handling. A cold green light burns in each eye socket, and something inside it whispers when it is held.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 60000,
+   "wear_slot": "hold",
+   "armor_class": 0,
+   "affects": [
+    {
+     "type": "int",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 50
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 0,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "lichlord_shroud"
   }
  },
  "rooms": {

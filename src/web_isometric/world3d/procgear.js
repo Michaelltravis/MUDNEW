@@ -243,6 +243,14 @@ function orb(m) {
   for (let k = 0; k < 3; k++) { const a = k / 3 * Math.PI * 2; m.tube([[0, -0.02, 0, 0.02], [Math.cos(a) * 0.11, 0.1, Math.sin(a) * 0.11, 0.014]], 4, 'metal'); }
   return m.done();
 }
+// a skull held up in the hand (a necromancer's phylactery), eyes alight
+function skull(m) {
+  m.ball(0, 0.2, 0, 0.13, 0.14, 0.14, 'bone');                                   // the cranium
+  m.box(0, 0.09, 0.04, 0.13, 0.08, 0.11, 'bone');                                  // the jaw
+  for (const x of [-0.045, 0.045]) m.ball(x, 0.21, 0.12, 0.034, 0.036, 0.02, 'gem');   // the eyes
+  m.ball(0, 0.15, 0.135, 0.016, 0.026, 0.01, 'hole');                              // the nose
+  return m.done();
+}
 function censer(m) {
   m.tube([[0, 0.0, 0, 0.008], [0, -0.42, 0, 0.008]], 3, 'metal_dark');
   m.ball(0, -0.52, 0, 0.12, 0.11, 0.12, 'metal');
@@ -316,7 +324,7 @@ function staff_plain(m) {
   return m.done();
 }
 
-export const SHAPES = { bow, mace, lute, hammer, spear, polearm, scythe, pick, whip, claw, lyre, harp, flute, drum, horn, orb, censer, lantern, torch,
+export const SHAPES = { bow, mace, lute, hammer, spear, polearm, scythe, pick, whip, claw, lyre, harp, flute, drum, horn, orb, skull, censer, lantern, torch,
   staff_crystal, staff_skull, staff_gnarled, staff_plain };
 
 // ---- add-ons: small pieces that make finer gear finer ----

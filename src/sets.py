@@ -320,10 +320,16 @@ NAMED_SETS = {
             28561: "lich-lord cowl",
             29560: "lich-lord bone-knuckled wraps",
             29561: "lich-lord grave-walker shoes",
+            28562: "lich-lord shroud of the drowned",
+            28563: "lich-lord grave-silk sleeves",
+            29562: "lich-lord grave-silk leggings",
+            29563: "lich-lord skull phylactery",
         },
         "bonuses": {
             2: {"int": 3, "shadow_resist": 15},
             4: {"damroll": 6, "max_mana": 60, "max_hp": 60},
+            6: {"int": 2, "wis": 2, "max_mana": 80},
+            8: {"damroll": 6, "max_hp": 80, "shadow_resist": 10},
         },
     },
     "nightblade_leathers": {

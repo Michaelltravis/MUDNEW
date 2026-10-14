@@ -39,11 +39,13 @@ To re-kit a character that already has the old kit, run `gearup <name>` again.
 
 **A whole mage, to see:** the Archmage's Vestments is a full eight-piece set, with bonuses at 2, 4, 6 and 8 pieces (`sets.py` counts any tier now, not only 2 and 4). With the legendary crystal staff Synapse in the hand, a gearup mage wears nothing outside it. Deckard has `"gearup": true` in `world/grants.json`, so their next login gives them the whole kit. Their class decides which kit; a mage gets the Archmage's.
 
+**A whole necromancer, too:** the Lich-Lord's Shroud is also eight pieces, with bonuses at 2, 4, 6 and 8, and a gearup necromancer wears all of it, with the legendary scythe Famine's Needle in the hand. The skull phylactery is held up in the off hand, its eyes alight (`procgear.js skull`).
+
 ## New gear
 | Set | For | Where | Pieces |
 |---|---|---|---|
 | Archmage's Vestments (60-66), head to toe | mage | the Eclipse Regent, the Black Observatory | starwoven robe, pointed wizard hat, silk gloves, star-silk slippers, starfall mantle, starwoven leggings, silk sleeves, star orb (held) |
-| Lich-Lord's Shroud (60-68) | necromancer | the Thalassine Lich (robe, cowl); the Bone-Crowned Sovereign (wraps, shoes) | grave-silk robe, cowl, bone-knuckled wraps, grave-walker shoes |
+| Lich-Lord's Shroud (60-68), head to toe | necromancer | the Thalassine Lich (robe, cowl, shroud, sleeves); the Bone-Crowned Sovereign (wraps, shoes, leggings, phylactery) | grave-silk robe, cowl, bone-knuckled wraps, grave-walker shoes, shroud of the drowned, grave-silk sleeves, grave-silk leggings, skull phylactery (held) |
 | Nightblade's Leathers (55-60) | thief, assassin, bard | Shadow Lord Malachar, Shadowspire Citadel | leather jerkin, hood, gloves, breeches |
 
 Also:
