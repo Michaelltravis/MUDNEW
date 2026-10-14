@@ -406,6 +406,23 @@ function mitre(m, at) {
   return m.done();
 }
 
+// a cloth mask over the face below the eyes (a masked cowl): a band round the front of the head,
+// flaring a little as it falls to the chin
+function facemask(m, at) {
+  // the face sits inside the hood: narrower than the hood's width, the front of the face its depth
+  const [x, y, z] = at.p, r = (at.r || 0.42) * 0.72, rz = (at.rz || 0.4) * 1.0;
+  const top = y + 0.05, bot = y - 0.15, flare = 1.04, N = 10, A0 = 0.08 * Math.PI, A1 = 0.92 * Math.PI;
+  const P = (a, h, f) => [x + Math.cos(a) * r * f, h, z + Math.sin(a) * rz * f];
+  for (let k = 0; k < N; k++) {
+    const a0 = A0 + k / N * (A1 - A0), a1 = A0 + (k + 1) / N * (A1 - A0);
+    m.quad(P(a1, bot, flare), P(a0, bot, flare), P(a0, top, 1), P(a1, top, 1), 'cloth');
+  }
+  const hem = [];
+  for (let k = 0; k <= N; k++) { const a = A0 + k / N * (A1 - A0); hem.push([...P(a, top, 1.01), 0.018]); }
+  m.tube(hem, 4, 'trim');                                                              // the hem under the eyes
+  return m.done();
+}
+
 // a class's emblem, flat on the back of its cloak (shared/items.js CLASS_SIG motifs)
 const star = (n, r0, r1) => Array.from({ length: n * 2 }, (_, k) => { const a = k / (n * 2) * Math.PI * 2 + Math.PI / 2; const r = k % 2 ? r1 : r0; return [Math.cos(a) * r, Math.sin(a) * r]; });
 const lens = (w, h) => [...Array.from({ length: 8 }, (_, k) => { const a = Math.PI * k / 7; return [-Math.cos(a) * w, Math.sin(a) * h]; }), ...Array.from({ length: 6 }, (_, k) => { const a = Math.PI * (k + 1) / 7; return [Math.cos(a) * w, -Math.sin(a) * h]; })];
@@ -464,7 +481,7 @@ function emblem(m, at) {
   return m.done();
 }
 
-export const ADDONS = { gem, boss, crest, pauldron, crown, emblem, brimhat, cap, mitre };
+export const ADDONS = { gem, boss, crest, pauldron, crown, emblem, brimhat, cap, mitre, facemask };
 
 // turned over along y (a lantern made to hang from a hip, carried in a hand instead)
 function flipY(a) {

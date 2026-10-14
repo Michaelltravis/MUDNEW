@@ -287,6 +287,11 @@ export function planLook(look, cls, kit) {
     const name = add(HEAD[h.k], headRoles(h, cls), FIT[`${HEAD[h.k]}@${headModel}`]);
     if (name && h.k === 'helm' && (h.t || 0) >= 2) addons.push({ kind: 'crest', on: name, spot: 'top', roles: { cloth: h.s || h.c ? clothOf(h, cls) : PLUME[cls] || 'crimson' } });
   }
+  // a masked cowl: a cloth over the face below the eyes, in the cowl's own colour
+  if (hooded && h && h.v === 'masked') {
+    const c = clothOf(h, cls);
+    addons.push({ kind: 'facemask', on: headPart, bone: 'head', spot: 'crown', mask: true, roles: { cloth: darkOf(c, h), trim: trimFor(h) || worn(c, h) } });
+  }
   if (h && h.k === 'crown') addons.push({ kind: 'crown', on: headPart, bone: 'head', spot: 'crown', variant: h.v,
     roles: { metal: worn(h.m || 'gold', h), gem: gemOr(h, 'gem_red') } });
   // the back: a cloak (or, from level 10, the class's own), the class's emblem on it from level 20
