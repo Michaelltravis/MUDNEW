@@ -5697,6 +5697,26 @@ class CommandHandler:
 
     # ==================== MAGIC ====================
     
+    @staticmethod
+    def _aim_for(player, spell_key, at):
+        """Where an aimed area spell lands (x, z, radius), or None: the point kept inside the
+        room and no farther from the caster than spells.AIM_RANGE (a point beyond is drawn in
+        along the line toward it). Only the spells in spells.AIM_RADIUS take aim."""
+        if at is None or getattr(player, 'room', None) is None:
+            return None
+        from spells import AIM_RADIUS, AIM_RANGE
+        import combat_range as cr
+        if spell_key not in AIM_RADIUS:
+            return None
+        x = max(0.0, min(cr.ROOM_W, at[0]))
+        z = max(0.0, min(cr.ROOM_H, at[1]))
+        me = cr.pos_of(player)
+        if me is not None:
+            d = ((x - me[0]) ** 2 + (z - me[1]) ** 2) ** 0.5
+            if d > AIM_RANGE:
+                x, z = me[0] + (x - me[0]) * AIM_RANGE / d, me[1] + (z - me[1]) * AIM_RANGE / d
+        return (round(x, 2), round(z, 2), AIM_RADIUS[spell_key])
+
     @classmethod
     async def cmd_cast(cls, player: 'Player', args: List[str]):
         """Cast a spell."""
@@ -5710,6 +5730,16 @@ class CommandHandler:
         if not player.spells:
             await player.send(f"{c['red']}You don't know any spells!{c['reset']}")
             return
+
+        # an aimed area spell from /play: "cast 'meteor storm' @12.5,7" (where in the room, metres)
+        aim_at = None
+        if args and re.fullmatch(r'@-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?', args[-1]):
+            x, z = args[-1][1:].split(',')
+            aim_at = (float(x), float(z))
+            args = args[:-1]
+            if not args:
+                await player.send("Cast what spell?")
+                return
 
         # Join all args to handle quoted spell names
         raw = ' '.join(args).strip()
@@ -5779,7 +5809,12 @@ class CommandHandler:
             return
 
         from spells import SpellHandler
-        await SpellHandler.cast_spell(player, matching_spell, target_name)
+        aim = cls._aim_for(player, matching_spell, aim_at)
+        player._aim = aim
+        try:
+            await SpellHandler.cast_spell(player, matching_spell, target_name)
+        finally:
+            player._aim = None
         
     @classmethod
     async def cmd_spells(cls, player: 'Player', args: List[str]):

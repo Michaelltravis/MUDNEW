@@ -330,6 +330,11 @@ def _entry(cls, ability, kind, level, talent=None, note=''):
         e['target'] = tgt
         if tgt in ('enemy', 'ally'):
             e['range'] = cr.ability_range(ability, True)[0]
+        from spells import AIM_RADIUS, AIM_RANGE
+        if ability in AIM_RADIUS:
+            # an area spell /play aims: the circle's radius and how far from you it may land
+            e['radius'] = AIM_RADIUS[ability]
+            e['range'] = AIM_RANGE
     else:
         rng, shape = cr.ABILITY_RANGE.get(ability, (None, None))
         if ability in SELF_SKILLS or shape == 'self':

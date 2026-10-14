@@ -604,7 +604,13 @@ HELP_TOPICS = {'auction': {'category': 'command',
                                '- Penalized by active light\n',
                 'syntax': 'camouflage',
                 'title': 'Camouflage'},
- 'cast': {'category': 'command', 'description': 'Cast a spell.', 'syntax': 'cast', 'title': 'Cast'},
+ 'cast': {'category': 'command',
+          'description': "Cast a spell: cast '<spell>' [target]. A spell for the room's foes (Meteor Storm, "
+                         "Earthquake, Hallowed Ground, Requiem...) strikes every foe here. In /play you aim it "
+                         "instead: its key puts a circle under the mouse, a click casts it there and it strikes "
+                         "only the foes inside (right-click or Esc lets it go). Typed, an aimed cast is "
+                         "cast '<spell>' @x,z, where in the room in metres.",
+          'syntax': "cast '<spell>' [target | @x,z]", 'title': 'Cast'},
  'chain_lightning': {'category': 'spell',
                      'classes': ['mage'],
                      'description': 'Chain Lightning\n'

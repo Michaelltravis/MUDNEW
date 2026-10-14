@@ -302,6 +302,12 @@ export class CombatView {
   ability(e) {
     const src = this.resolve(e.src);
     let dst = this.resolve(e.dst);
+    // an aimed area spell lands where it was aimed (the server's room metres), not on a creature
+    if (e.at && e.at.length === 2) {
+      const spot = new THREE.Object3D();
+      spot.position.copy(this.toWorld(e.at[0], e.at[1]));
+      dst = { root: spot, point: true };
+    }
     const r = this.recipe(abilityId(e), src && !src.mob ? src.cls : null, e);
     // something thrown at nobody in particular goes to the hero's target
     if (!dst && src && src.hero && r.travel && this.ents.targeted && this.ents.targeted.root) {
@@ -314,7 +320,7 @@ export class CombatView {
     // number comes with its wound event; an ally's blessing never makes them flinch
     const friendly = r.flags.has('ally') || (dst && !dst.mob && src && !src.mob && !e.res);
     const landAll = () => {
-      if (dst && src && dst.root !== src.root && !friendly) this.land({ ...e, res: e.res || 'hit', heavy: r.flags.has('heavy') }, src, dst, school);
+      if (dst && !dst.point && src && dst.root !== src.root && !friendly) this.land({ ...e, res: e.res || 'hit', heavy: r.flags.has('heavy') }, src, dst, school);
       for (const t of e.also || []) { const w = this.resolve(t.dst); if (w) this.land({ ...t, res: t.res || 'hit', heavy: r.flags.has('heavy') }, src, w, school); }
     };
     this.director.play(r, { src, dst, hits, e, onLand: landAll });

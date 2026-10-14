@@ -27,6 +27,10 @@
 //           Gauntlet wields a greatblade, Gauntletb sees it re-dressed within seconds.
 //   mount: buy a horse and mount it: the hero sits a steed and runs faster; dismount: on foot.
 //   looks: a cave, a sewer, a desert and a crawlway under Moria draw as what they are (room_looks.py).
+//   aim:    in the crypt: an area spell's key starts the aim (a circle under the mouse, the
+//           reach round the hero); the circle follows the mouse; a click sends "cast ... @x,z"
+//           in the room's own metres; Escape lets it go; an aimed spell's event lands its
+//           blast on the point (aim.js, combat.js).
 //   abilityfx: in the crypt with a spectre, a few of the character's own abilities each start
 //           their own recipe on the key press (abilityfx.js) and the server's event plays the
 //           rest (what flies, lands, lingers), with no page errors.
@@ -925,6 +929,48 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.screenshot({ path: path.join(OUT, 'gear-npcs.png') });
     await page.evaluate(() => MH.sendCommand('goto 3001', false));
     await sleep(800);
+  }
+
+  if (MODE === 'aim') {
+    check(await goto(18620), 'in the crypt (18620)');
+    await sleep(1500);
+    const box = await page.evaluate(() => { const r = MH3D.engine.renderer.domElement.getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; });
+    await page.mouse.move(box.x + box.w * 0.5, box.y + box.h * 0.5);
+    // Meteor Storm's key (the circle 7 m, the reach 16 m: spells.py AIM_RADIUS, AIM_RANGE)
+    await page.evaluate(() => MH.bus.emit('hud.ability', { id: 'meteor_storm', name: 'Meteor Storm', spell: true, self: true, radius: 7, range: 16 }));
+    await sleep(800);
+    const a1 = await page.evaluate(() => MH3D.aim());
+    check(a1 && a1.id === 'meteor_storm' && a1.radius === 7, `the key starts the aim (${JSON.stringify(a1)})`);
+    await page.mouse.move(box.x + box.w * 0.72, box.y + box.h * 0.62, { steps: 8 });
+    await sleep(1500);
+    const a2 = await page.evaluate(() => MH3D.aim());
+    check(a2 && a1 && Math.hypot(a2.at.x - a1.at.x, a2.at.z - a1.at.z) > 0.5, 'the circle follows the mouse');
+    await page.screenshot({ path: path.join(OUT, 'aim-circle.png') });
+    await page.evaluate(() => { window.__sent.length = 0; });
+    await page.mouse.click(box.x + box.w * 0.72, box.y + box.h * 0.62);
+    await sleep(800);
+    const sent = await page.evaluate(() => window.__sent.slice());
+    check(sent.some(c => /^cast 'meteor storm' @\d+(\.\d)?,\d+(\.\d)?$/.test(c)) && !(await page.evaluate(() => MH3D.aim())),
+      `a click casts it there and the aim ends (${sent.join(' | ')})`);
+    await page.evaluate(() => MH.bus.emit('hud.ability', { id: 'meteor_storm', name: 'Meteor Storm', spell: true, self: true, radius: 7, range: 16 }));
+    await sleep(500);
+    await page.keyboard.press('Escape');
+    await sleep(500);
+    check(!(await page.evaluate(() => MH3D.aim())), 'Escape lets the aim go');
+    // an aimed spell's event: the blast lands on the point (another player's view of it)
+    const landed = await page.evaluate(async () => {
+      const room = MH3D.heroRoom(), at = [6, 7];
+      const d = MH3D.combat.director, seen = [];
+      const land = d.land.bind(d);
+      d.land = (r, who, ...rest) => { seen.push([who.root.position.x - room.ox, who.root.position.z - room.oz]); return land(r, who, ...rest); };
+      MH3D.combat.handle([{ k: 'spell', src: { p: MH.state.playerName }, spell: 'meteor_storm', school: 'fire', shape: 'blast:7', at }], room.vnum);
+      for (let i = 0; i < 40 && !seen.length; i++) await new Promise(r => setTimeout(r, 100));
+      d.land = land;
+      return seen;
+    });
+    check(landed.length && Math.hypot(landed[0][0] - 6, landed[0][1] - 7) < 0.1, `the aimed blast lands on its point (${JSON.stringify(landed)})`);
+    await sleep(600);
+    await page.screenshot({ path: path.join(OUT, 'aim-landed.png') });
   }
 
   check(errors.length === 0, `no page errors${errors.length ? ': ' + errors.join(' / ') : ''}`);
