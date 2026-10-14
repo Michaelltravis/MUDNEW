@@ -732,5 +732,64 @@
   "height": 0.671,
   "for": "whales, seals, leviathans; tinted by bestiary.js",
   "ref": 3.032
+ },
+ "camel": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2734,
+  "height": 1.97,
+  "for": "camel; tinted by bestiary.js"
+ },
+ "clam": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1600,
+  "height": 0.332,
+  "for": "giant clams, oysters, mussels; tinted by bestiary.js",
+  "ref": 0.563
+ },
+ "frog": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1792,
+  "height": 0.445,
+  "for": "frog; tinted by bestiary.js",
+  "ref": 0.719
+ },
+ "ray": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Bite_Front",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1898,
+  "height": 0.24,
+  "for": "manta rays, ixitxachitl; tinted by bestiary.js",
+  "ref": 1.155
  }
 }

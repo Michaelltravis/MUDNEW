@@ -10,6 +10,8 @@
   unicorn    unicorns, pegasi, ki-rin: a horse with a spiral horn and a silver mane
   lizard     lizards, salamanders: sprawled legs, flat head, long tapering tail
   crocodile  crocodiles, giant lizards, basilisks: a long armoured lizard with a toothy snout
+  camel      camels, dromedaries: long legs, a long arched neck, a hump, padded feet
+  frog       frogs and toads: squat and wide, bulging eyes on top, a broad mouth, no tail
 Each is pale enough that bestiary tints colour it (a tiger orange, a panther black, a bear brown).
     tools/art3d/blender/run.sh models/beast.py --preview --variant cat
 """
@@ -36,6 +38,8 @@ P = {
     'pig': dict(length=1.0, height=0.5, girth=0.26, leg=0.55, neck=0.1, neck_up=0.2, head=0.14, muzzle=0.09, tail=0.15, tail_r=0.025, tail_droop=0.2, width=1.05),
     'sheep': dict(length=0.95, height=0.62, girth=0.26, leg=0.85, neck=0.2, neck_up=0.55, head=0.1, muzzle=0.07, tail=0.12, tail_r=0.05, tail_droop=0.7),
     'cow': dict(length=1.3, height=0.95, girth=0.32, leg=1.05, neck=0.3, neck_up=0.35, head=0.15, muzzle=0.13, tail=0.55, tail_r=0.03, tail_droop=0.9, width=1.05),
+    'camel': dict(length=1.5, height=1.2, girth=0.34, leg=1.7, neck=0.75, neck_up=0.7, head=0.12, muzzle=0.2, tail=0.4, tail_r=0.03, tail_droop=0.9),
+    'frog': dict(length=0.5, height=0.2, girth=0.17, leg=0.55, neck=0.03, neck_up=0.3, head=0.15, muzzle=0.03, tail=0.02, tail_r=0.02, tail_droop=0.0, sprawl=0.75, width=1.3),
     'crocodile': dict(length=1.4, height=0.24, girth=0.19, leg=0.5, neck=0.14, neck_up=0.1, head=0.12, muzzle=0.32, tail=1.3, tail_r=0.11, tail_droop=0.95, sprawl=0.9, width=1.1),
 }[V]
 H = P['height']
@@ -63,9 +67,14 @@ hr = Q['head_r']
 mx, my, mz = Q['muzzle']
 add(part('sphere', 'skull', (0, hy, hz), (1.05 * hr, 1.1 * hr, 0.95 * hr), segments=10), 'scale' if V in ('lizard', 'crocodile') else 'coat', 'head')
 for side, x in (('L', 1), ('R', -1)):
-    ex = (0.55 if V not in ('horse', 'unicorn', 'deer') else 0.7) * hr * x
-    add(part('sphere', f'eye.{side}', (ex, hy - 0.75 * hr, hz + 0.2 * hr), 0.16 * hr, segments=6), 'eye', 'head')
-    add(part('sphere', f'pupil.{side}', (ex * 1.05, hy - 0.85 * hr, hz + 0.2 * hr), 0.09 * hr, segments=6), 'pupil', 'head')
+    ex = (0.55 if V not in ('horse', 'unicorn', 'deer', 'camel') else 0.7) * hr * x
+    if V == 'frog':
+        # bulging eyes on top of the head
+        add(part('sphere', f'eye.{side}', (0.5 * hr * x, hy - 0.35 * hr, hz + 0.75 * hr), 0.32 * hr, segments=8), 'eye', 'head')
+        add(part('sphere', f'pupil.{side}', (0.55 * hr * x, hy - 0.62 * hr, hz + 0.85 * hr), 0.14 * hr, segments=6), 'pupil', 'head')
+    else:
+        add(part('sphere', f'eye.{side}', (ex, hy - 0.75 * hr, hz + 0.2 * hr), 0.16 * hr, segments=6), 'eye', 'head')
+        add(part('sphere', f'pupil.{side}', (ex * 1.05, hy - 0.85 * hr, hz + 0.2 * hr), 0.09 * hr, segments=6), 'pupil', 'head')
     if V == 'rabbit':
         add(part('cone', f'ear.{side}', (0.3 * hr * x, hy + 0.15 * hr, hz + 1.6 * hr), (0.2 * hr, 0.08 * hr, 1.0 * hr), rot=(math.radians(-15), math.radians(10 * x), 0), segments=5), 'coat', 'head')
     if V in ('pig', 'sheep', 'cow'):
@@ -75,7 +84,7 @@ for side, x in (('L', 1), ('R', -1)):
     if V in ('cat', 'lion', 'bear', 'rat', 'rat_king'):
         er = {'cat': 0.38, 'lion': 0.3, 'bear': 0.32, 'rat': 0.5, 'rat_king': 0.45}[V] * hr
         add(part('sphere', f'ear.{side}', (0.62 * hr * x, hy + 0.1 * hr, hz + 0.85 * hr), (er, er * 0.35, er), segments=8), 'pink' if V.startswith('rat') else 'coat', 'head')
-    if V in ('deer', 'horse', 'unicorn'):
+    if V in ('deer', 'horse', 'unicorn', 'camel'):
         add(part('cone', f'ear.{side}', (0.45 * hr * x, hy + 0.2 * hr, hz + 0.95 * hr), (0.18 * hr, 0.1 * hr, 0.45 * hr), rot=(math.radians(-15), math.radians(15 * x), 0), segments=4), 'coat', 'head')
     if V == 'deer':
         # antlers: a beam swept back and up, with tines
@@ -88,7 +97,15 @@ for side, x in (('L', 1), ('R', -1)):
     # paws, claws and hooves
     for leg in ('fl3', 'hl3'):
         c = s.co(f'{leg}.{side}')
-        if V in ('deer', 'horse', 'unicorn'):
+        if V == 'camel':
+            # broad padded feet
+            add(part('sphere', f'pad.{leg}.{side}', (c.x, c.y - 0.02, 0.03 * H), (0.09 * H * P['girth'] / 0.2, 0.11 * H * P['girth'] / 0.2, 0.03 * H), segments=8), 'dark', f'{leg}.{side}')
+        elif V == 'frog':
+            # webbed toes splayed flat
+            for j, a in enumerate((-35, 0, 35)):
+                add(part('cone', f'toe{j}.{leg}.{side}', (c.x + 0.05 * math.sin(math.radians(a)) * x, c.y - 0.05 * math.cos(math.radians(a)), 0.01), (0.012, 0.05, 0.008),
+                         rot=(math.radians(90), 0, math.radians(-a * x)), segments=3), 'coat', f'{leg}.{side}')
+        elif V in ('deer', 'horse', 'unicorn'):
             add(part('cyl', f'hoof.{leg}.{side}', (c.x, c.y, 0.045 * H), (0.065 * H * P['girth'] / 0.2, 0.065 * H * P['girth'] / 0.2, 0.045 * H), segments=6), 'hoof', f'{leg}.{side}')
         elif V in ('pig', 'sheep', 'cow'):
             lr = 0.24 * P['girth'] * P['leg'] ** 0.3
@@ -99,7 +116,8 @@ for side, x in (('L', 1), ('R', -1)):
                 add(part('cone', f'claw{j}.{leg}.{side}', (c.x + dx * lr, c.y - lr * 0.95, lr * 0.35), (lr * 0.22, lr * 0.45, lr * 0.22),
                          rot=(math.radians(90), 0, 0), segments=4), 'claw', f'{leg}.{side}')
 # the nose, and each kind's own marks
-add(part('sphere', 'nose', (0, my - 0.45 * hr, mz + 0.1 * hr), (0.3 * hr, 0.18 * hr, 0.2 * hr), segments=6), 'nose', 'muzzle')
+if V != 'frog':
+    add(part('sphere', 'nose', (0, my - 0.45 * hr, mz + 0.1 * hr), (0.3 * hr, 0.18 * hr, 0.2 * hr), segments=6), 'nose', 'muzzle')
 if V == 'lion':
     add(part('ico', 'mane', (0, hy + 0.35 * hr, hz - 0.1 * hr), (2.1 * hr, 1.5 * hr, 2.0 * hr)), 'mane', 'neck')
     add(part('sphere', 'tuft', Q['tail'], 0.06, segments=6), 'mane', 'tail2')
@@ -144,6 +162,17 @@ if V == 'rabbit':
 if V == 'cow':
     for i, (x, y) in enumerate(((0.2, -0.1), (-0.18, 0.15), (0.15, 0.3), (-0.2, -0.25))):
         add(part('sphere', f'patch{i}', (x * 1.2, y, H + 0.15), (0.12, 0.14, 0.12), segments=8), 'dark', 'spine' if -0.1 < y < 0.2 else ('chest' if y <= -0.1 else 'hips'))
+if V == 'camel':
+    # the hump on the back, a shaggy crown, thick lips
+    add(part('sphere', 'hump', (0, 0.04, H + P['girth'] * 0.8), (0.3, 0.38, 0.3), segments=12), 'coat', 'spine')
+    add(part('sphere', 'humptop', (0, 0.04, H + P['girth'] * 1.25), (0.16, 0.22, 0.08), segments=8), 'mane', 'spine')
+    add(part('sphere', 'lips', (0, my - 0.2 * hr, mz - 0.25 * hr), (0.45 * hr, 0.55 * hr, 0.3 * hr), segments=8), 'belly', 'muzzle')
+if V == 'frog':
+    # a broad mouth line and a pale throat
+    add(part('cyl', 'mouth', (0, hy - 0.55 * hr, hz - 0.25 * hr), (0.85 * hr, 0.55 * hr, 0.04 * hr), segments=12), 'dark', 'head')
+    add(part('sphere', 'throat', (0, hy - 0.35 * hr, hz - 0.55 * hr), (0.6 * hr, 0.55 * hr, 0.35 * hr), segments=8), 'belly', 'head')
+    for i, (x, y) in enumerate(((0.08, -0.05), (-0.09, 0.04), (0.05, 0.12), (-0.04, -0.12))):
+        add(part('sphere', f'wart{i}', (x, y, H + P['girth'] * 0.85), 0.03, segments=5), 'coat', 'spine')
 if V == 'bear':
     add(part('sphere', 'snoutpale', (0, my + 0.2 * hr, mz - 0.05 * hr), (0.45 * hr, 0.6 * hr, 0.4 * hr), segments=8), 'belly', 'muzzle')
 
@@ -151,10 +180,10 @@ boss = V == 'rat_king'
 body = finish_body(body, arm, parts, budget=4000 if boss else 2900)
 
 c = Clips(arm)
-walk = {'rabbit': 16, 'pig': 24, 'sheep': 26, 'cow': 34, 'cat': 26, 'lion': 30, 'bear': 34, 'rat': 18, 'rat_king': 22, 'deer': 28, 'horse': 30, 'unicorn': 30, 'lizard': 20, 'crocodile': 30}[V]
+walk = {'camel': 34, 'frog': 14, 'rabbit': 16, 'pig': 24, 'sheep': 26, 'cow': 34, 'cat': 26, 'lion': 30, 'bear': 34, 'rat': 18, 'rat_king': 22, 'deer': 28, 'horse': 30, 'unicorn': 30, 'lizard': 20, 'crocodile': 30}[V]
 quadruped_clips(c, gaits, walk=walk, swing=18 if P.get('sprawl') else 24, lift=25 if P.get('sprawl') else 35, height=H)
 
 mhb.export(arm, body, V, opt['out'], kind='boss' if boss else 'creature', clips=c.names,
-           meta={'for': V + '; tinted by bestiary.js', **({'ref': 'length'} if V in ('lizard', 'crocodile') else {})})
+           meta={'for': V + '; tinted by bestiary.js', **({'ref': 'length'} if V in ('lizard', 'crocodile', 'frog') else {})})
 if opt['preview']:
     mhb.preview(arm, body, V, opt['out'], poses=(('Idle', 0), ('Walk', walk // 4), ('Run', 3), ('Bite_Front', 10), ('Death', 999)))

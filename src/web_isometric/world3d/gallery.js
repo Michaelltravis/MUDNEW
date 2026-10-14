@@ -83,7 +83,8 @@ export const KIN_SAMPLES = ['a lean grey wolf', 'a black dire wolf', 'a tawny pr
   'a giant hornet', 'a dusk moth', 'a banded sea snake', 'a spitting cobra', 'a horned viper', 'a swamp hydra', 'a giant worm',
   'a giant centipede', 'a great sea serpent', 'a red dragon', 'a rock wyvern', 'the dracolich', 'a green dragon whelp',
   'a hollow-eyed shade', 'a restless spirit', 'a fire elemental', 'an ice elemental', 'the djinn', 'a wailing banshee', 'a will-o-wisp',
-  'a green slime', 'a grey ooze', 'a giant river frog', 'a pale moon jellyfish', 'a giant clam', 'a gelatinous cube'];
+  'a green slime', 'a grey ooze', 'a giant river frog', 'a pale moon jellyfish', 'a giant clam', 'a gelatinous cube',
+  'a desert camel', 'a wererat', 'the ixitxachitl', 'a fluffy duckling'];
 
 export async function showBeastGallery(engine, kits, samples = SAMPLES) {
   const q = new URLSearchParams(location.search), only = q.get('only');
