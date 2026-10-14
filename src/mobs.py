@@ -122,6 +122,11 @@ EXTRA_LOOT_TABLES = {
 }
 
 
+def spared(char) -> bool:
+    """An immortal creatures leave alone: nohassle ("Mobs will ignore you") or wizinvis."""
+    return bool(getattr(char, 'nohassle', False) or getattr(char, 'wizinvis', False))
+
+
 class Mobile(Character):
     """Non-player character (mob)."""
     
@@ -908,7 +913,7 @@ class Mobile(Character):
             return False
 
         for char in list(self.room.characters):
-            if char == self or not hasattr(char, 'connection') or char.is_fighting:
+            if char == self or not hasattr(char, 'connection') or char.is_fighting or spared(char):
                 continue
             faction_key = FactionManager.normalize_key(self.faction)
             if not faction_key:
@@ -927,7 +932,7 @@ class Mobile(Character):
         # Find potential targets (excluding hidden/sneaking players who pass their check)
         targets = []
         for char in self.room.characters:
-            if char == self or not hasattr(char, 'connection'):
+            if char == self or not hasattr(char, 'connection') or spared(char):
                 continue
 
             # Skip if this mob is blinded or asleep
