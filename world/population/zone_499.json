@@ -136,5 +136,29 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 649902,
+   "rooms": [
+    5708,
+    5709,
+    5710,
+    5725,
+    5730,
+    5731,
+    5751,
+    5754,
+    5756,
+    5759,
+    5762,
+    5763,
+    5764,
+    5765
+   ],
+   "total": 18,
+   "why": "a giant maze rat"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 14 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

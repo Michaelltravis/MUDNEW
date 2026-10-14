@@ -166,5 +166,63 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 647400,
+   "rooms": [
+    4664,
+    4666,
+    4669,
+    4672,
+    4675,
+    4676,
+    4683
+   ],
+   "total": 13,
+   "why": "a pale cave spider"
+  },
+  {
+   "vnum": 647401,
+   "rooms": [
+    4667,
+    21703,
+    21704,
+    21707,
+    21708,
+    21738,
+    21782
+   ],
+   "total": 11,
+   "why": "a cave elf sentry"
+  },
+  {
+   "vnum": 647402,
+   "rooms": [
+    21753,
+    21755,
+    21756,
+    21757,
+    21759,
+    21761
+   ],
+   "total": 9,
+   "why": "a surly jailer"
+  },
+  {
+   "vnum": 647403,
+   "rooms": [
+    21763,
+    21765,
+    21766,
+    21767,
+    21794,
+    21795,
+    21796
+   ],
+   "total": 12,
+   "why": "an arena gladiator"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 27 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

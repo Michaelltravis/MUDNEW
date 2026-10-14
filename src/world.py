@@ -704,6 +704,12 @@ class World:
             population.apply(self)
         except Exception as e:
             logger.error(f"population failed: {e}")
+        # rites of passage (world/rites.json): keyed gates and their keepers, toll-keepers
+        try:
+            import rites
+            rites.apply(self)
+        except Exception as e:
+            logger.error(f"rites failed: {e}")
         # Tidy the imported door data (both sides agree) and remember the reset state
         try:
             import doors

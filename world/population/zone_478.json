@@ -151,5 +151,56 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 647801,
+   "rooms": [
+    24203,
+    24206,
+    24208,
+    24210,
+    24213,
+    24215,
+    24218,
+    24219,
+    24256
+   ],
+   "total": 13,
+   "why": "a flickering ember imp"
+  },
+  {
+   "vnum": 647802,
+   "rooms": [
+    24234,
+    24237,
+    24239,
+    24241,
+    24243,
+    24245,
+    24247,
+    24248,
+    24249
+   ],
+   "total": 13,
+   "why": "a huge cinder spider"
+  },
+  {
+   "vnum": 647803,
+   "rooms": [
+    24279,
+    24281,
+    24283,
+    24284,
+    24286,
+    24288,
+    24293,
+    24295,
+    24296
+   ],
+   "total": 13,
+   "why": "a whip-scarred overseer"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 27 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

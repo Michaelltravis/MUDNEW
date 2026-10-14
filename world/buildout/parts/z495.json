@@ -397,11 +397,15 @@
    "sectors": [
     "field"
    ],
-   "count": 6,
+   "count": 12,
    "drops": [
     {
      "item": "grey-feather",
      "chance": 25
+    },
+    {
+     "item": "ferryman-pole",
+     "chance": 5
     }
    ]
   },
@@ -418,7 +422,7 @@
    "sectors": [
     "forest"
    ],
-   "count": 5,
+   "count": 9,
    "drops": [
     {
      "item": "grey-feather",
@@ -439,7 +443,7 @@
    "sectors": [
     "inside"
    ],
-   "count": 8,
+   "count": 14,
    "drops": [
     {
      "item": "sentinel-shield",
@@ -501,26 +505,16 @@
    "id": "charon",
    "keywords": "charon ferryman boatman",
    "short_desc": "Charon the Ferryman",
-   "long_desc": "Charon the Ferryman leans on his long black pole at the end of the wharf, a hooded and silent figure.",
-   "description": "Charon is old beyond reckoning, his beard a tangled grey cloud and his eyes like two sunken coals under his hood. He holds a long pole of black wood and speaks to no one without payment, and his patience has run out for those who bring none.",
+   "long_desc": "Charon the Ferryman leans on his long black pole at the end of the wharf, waiting for the fare.",
+   "description": "Charon is old beyond reckoning, his beard a tangled grey cloud and his eyes like two sunken coals under his hood. His black boat rocks at the foot of the wharf, and he holds out one bony hand to all who come down the passage. He carries no one across the Styx without his coin, and no one has ever made him.",
    "kind": "humanoid",
    "level": 24,
-   "aggressive": true,
+   "aggressive": false,
    "alignment": -300,
    "rooms": [
-    "Before The Gates Of Hades"
+    "Before The River Styx"
    ],
-   "count": 1,
-   "drops": [
-    {
-     "item": "ferryman-pole",
-     "chance": 35
-    },
-    {
-     "item": "judge-pall",
-     "chance": 10
-    }
-   ]
+   "count": 1
   },
   {
    "id": "judge-of-the-dead",
@@ -544,6 +538,255 @@
     {
      "item": "fury-whip",
      "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "forest-lamia",
+   "keywords": "lamia serpent woman forest",
+   "short_desc": "a forest lamia",
+   "kind": "monster",
+   "level": 17,
+   "aggressive": true,
+   "count": 5,
+   "sectors": [
+    "forest"
+   ],
+   "long_desc": "A forest lamia coils between the dark trunks, her serpent tail rustling in the leaves.",
+   "description": "From the waist up she is a woman with ash-pale skin and black hair; below, a long scaled tail winds back into the undergrowth. She smiles with too many teeth and waits for travellers to stray from the path."
+  },
+  {
+   "id": "temple-acolyte",
+   "keywords": "acolyte shade temple priest ghost",
+   "short_desc": "a shade of a temple acolyte",
+   "kind": "undead",
+   "level": 18,
+   "aggressive": true,
+   "count": 7,
+   "at": [
+    3743,
+    3745,
+    3750,
+    3752,
+    3757,
+    3764,
+    3765
+   ],
+   "long_desc": "The shade of a temple acolyte drifts along the corridor, still murmuring its old prayers.",
+   "description": "A grey robe hangs on nothing, and a face like smoke turns toward you under the hood. It still swings a censer that gives no smoke, and its prayers end in a hiss when it sees the living."
+  },
+  {
+   "id": "wailing-shade",
+   "keywords": "shade wailing soul ghost",
+   "short_desc": "a wailing shade",
+   "kind": "undead",
+   "level": 21,
+   "aggressive": true,
+   "count": 10,
+   "at": [
+    3776,
+    3777,
+    3778,
+    3785,
+    3786,
+    3787,
+    3788,
+    3789,
+    3790,
+    3793
+   ],
+   "long_desc": "A wailing shade drifts here, mourning a life it can no longer remember.",
+   "description": "It is the thin grey ghost of someone ordinary, worn down by the long dark until only grief is left. It flies at the living with a howl, as if warmth were a thing it could take back."
+  },
+  {
+   "id": "hound-of-hades",
+   "keywords": "hound hades dog black",
+   "short_desc": "a black hound of Hades",
+   "kind": "monster",
+   "level": 22,
+   "aggressive": true,
+   "count": 5,
+   "at": [
+    3776,
+    3777,
+    3786,
+    3787,
+    3792
+   ],
+   "long_desc": "A black hound of Hades pads through the gloom, its eyes two coals.",
+   "description": "It is the size of a pony and lean as a famine, its black coat matted with ash. Smoke curls from its jaws when it breathes, and it hunts by the smell of a beating heart."
+  },
+  {
+   "id": "hollow-oarsman",
+   "keywords": "oarsman boatman hollow shade",
+   "short_desc": "the hollow oarsman",
+   "kind": "undead",
+   "level": 20,
+   "aggressive": false,
+   "count": 1,
+   "at": [
+    3774
+   ],
+   "long_desc": "The hollow oarsman sits in a small grey boat at the foot of the far landing.",
+   "description": "He is a thin shade in a rower's smock, and his face is a hollow where a face should be. He serves Charon on the far shore, and for one coin he will row the living back across the Styx, the only kindness the underworld offers."
+  },
+  {
+   "id": "necropolis-warden",
+   "keywords": "warden necropolis skeleton bone champion",
+   "short_desc": "the Necropolis Warden",
+   "kind": "undead",
+   "level": 19,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3741
+   ],
+   "long_desc": "The Necropolis Warden stands before the temple door, a great bone key on a chain at its belt.",
+   "description": "It was a champion once, and its bones are still clad in green bronze and bound with old wire. A key of carved bone hangs at its hip, and it has kept this door through a thousand years of wind off the sea."
+  },
+  {
+   "id": "oracle-sphinx",
+   "keywords": "sphinx oracle guardian lion",
+   "short_desc": "the Sphinx of the Oracle",
+   "kind": "monster",
+   "level": 21,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3762
+   ],
+   "long_desc": "The Sphinx of the Oracle lies across the passage, her lion's tail twitching.",
+   "description": "She has the body of a great tawny lion, the wings of an eagle folded on her back and the calm face of a woman. A claw-shaped key hangs on a gold band about her neck, and she lets no one pass to the Oracle who has not bested her."
+  },
+  {
+   "id": "altar-siren",
+   "keywords": "siren altar bird woman",
+   "short_desc": "the Siren of the Altar",
+   "kind": "monster",
+   "level": 21,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3766
+   ],
+   "long_desc": "The Siren of the Altar perches by the door to Aphrodite's chamber, singing softly.",
+   "description": "She is a woman to the waist and a great grey bird below, her talons gripping a fallen column. Her song is lovely and very old, and a little rose-gold key glints among the feathers at her throat."
+  },
+  {
+   "id": "cerberus",
+   "keywords": "cerberus hound three headed dog",
+   "short_desc": "Cerberus",
+   "kind": "monster",
+   "level": 25,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3775
+   ],
+   "long_desc": "Cerberus, the three-headed hound of Hades, bars the gates with a growl like thunder.",
+   "description": "Three great heads rise from one black body as big as a bull, each with its own hunger and its own pair of burning eyes. A collar of black iron rings the middle neck, and from it hangs the key to the gates of Hades."
+  },
+  {
+   "id": "white-warden",
+   "keywords": "warden white gate shade",
+   "short_desc": "the Warden of the White Gate",
+   "kind": "undead",
+   "level": 23,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3782
+   ],
+   "long_desc": "The Warden of the White Gate stands before the pale gate, a white key at its belt.",
+   "description": "It wears armour bleached like driftwood and a helm with no face behind it. It judges the merely forgetful, and it lets none pass the white gate without taking the key from its belt."
+  },
+  {
+   "id": "gray-warden",
+   "keywords": "warden gray grey gate shade",
+   "short_desc": "the Warden of the Gray Gate",
+   "kind": "undead",
+   "level": 24,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3783
+   ],
+   "long_desc": "The Warden of the Gray Gate stands before the ash-coloured gate, a gray key at its belt.",
+   "description": "Its armour is the grey of old ash and its sword is notched from a thousand duels. It guards the way of those who were neither good nor wicked, and it holds the gray key in a mailed fist."
+  },
+  {
+   "id": "black-warden",
+   "keywords": "warden black gate shade",
+   "short_desc": "the Warden of the Black Gate",
+   "kind": "undead",
+   "level": 25,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3784
+   ],
+   "long_desc": "The Warden of the Black Gate stands before the last gate, a black key at its belt.",
+   "description": "Its armour drinks the light, and the darkness inside its helm moves like something breathing. Beyond its gate lies Tartarus, and it carries the black key that opens the way down."
+  },
+  {
+   "id": "alecto",
+   "keywords": "alecto fury fire winged",
+   "short_desc": "Alecto the Unresting",
+   "kind": "monster",
+   "level": 25,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3794
+   ],
+   "long_desc": "Alecto the Unresting hovers before the fiery door on wings of smouldering leather.",
+   "description": "She is the eldest of the Furies, her hair a nest of hissing snakes and her eyes weeping fire. An ember-red key hangs at her throat, hot enough to scorch the hand that takes it."
+  },
+  {
+   "id": "megaera",
+   "keywords": "megaera fury ice winged",
+   "short_desc": "Megaera the Grudging",
+   "kind": "monster",
+   "level": 26,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3795
+   ],
+   "long_desc": "Megaera the Grudging hovers before the icy door, frost on her black wings.",
+   "description": "The second Fury is wrapped in rime, and her breath fogs the air with cold. She hates with a slow, patient hate, and the key she keeps is cut from blue ice that never melts."
+  },
+  {
+   "id": "tisiphone",
+   "keywords": "tisiphone fury mist winged",
+   "short_desc": "Tisiphone the Avenger",
+   "kind": "monster",
+   "level": 26,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3796
+   ],
+   "long_desc": "Tisiphone the Avenger hovers before the misty door, half lost in fog.",
+   "description": "The youngest Fury avenges murder, and she is never quite where she seems to be. A grey key of solid mist hangs from her wrist, and it is only solid while she lives."
+  },
+  {
+   "id": "hades",
+   "keywords": "hades lord dead underworld king",
+   "short_desc": "Hades, Lord of the Dead",
+   "kind": "undead",
+   "level": 27,
+   "aggressive": true,
+   "count": 1,
+   "at": [
+    3797
+   ],
+   "long_desc": "Hades, Lord of the Dead, sits on his onyx throne and watches you come.",
+   "description": "He is tall and grave, robed in black, with a beard like smoke and eyes as old as the first grave. A dark helm rests on the arm of his throne, and every shade in his kingdom falls silent when he speaks.",
+   "drops": [
+    {
+     "item": "helm-of-darkness",
+     "chance": 30
     }
    ]
   }
@@ -605,6 +848,19 @@
    "wear_slot": "about",
    "bonus": {
     "wis": 1
+   }
+  },
+  {
+   "id": "helm-of-darkness",
+   "keywords": "helm darkness hades dark",
+   "short_desc": "the Helm of Darkness",
+   "room_desc": "A dark helm lies here, hard to look at directly.",
+   "description": "A helm of dull black bronze, cold and close-fitting, forged for the Lord of the Dead. Light slides off it, and its wearer is hard to see clearly.",
+   "kind": "armor",
+   "level": 27,
+   "wear_slot": "head",
+   "bonus": {
+    "dex": 1
    }
   }
  ]

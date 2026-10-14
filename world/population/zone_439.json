@@ -162,5 +162,46 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 643900,
+   "rooms": [
+    1047,
+    1048,
+    1049
+   ],
+   "total": 8,
+   "why": "a bronze-clawed harpy"
+  },
+  {
+   "vnum": 643901,
+   "rooms": [
+    1000,
+    1044
+   ],
+   "total": 5,
+   "why": "a golden-maned lion"
+  },
+  {
+   "vnum": 643902,
+   "rooms": [
+    1014,
+    1016,
+    1021
+   ],
+   "total": 7,
+   "why": "a living marble guard"
+  },
+  {
+   "vnum": 643903,
+   "rooms": [
+    1005,
+    1007
+   ],
+   "total": 5,
+   "why": "a snorting minotaur"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 10 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

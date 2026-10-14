@@ -194,5 +194,26 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 23809,
+   "rooms": [
+    23820,
+    23821
+   ],
+   "total": 3,
+   "why": "a shadow bat"
+  },
+  {
+   "vnum": 23810,
+   "rooms": [
+    23801,
+    23818
+   ],
+   "total": 3,
+   "why": "a shadow bat"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 4 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

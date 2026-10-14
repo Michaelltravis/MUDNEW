@@ -198,5 +198,88 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 7101,
+   "rooms": [
+    7028,
+    7034,
+    7217,
+    7218,
+    7219,
+    7221,
+    7300
+   ],
+   "total": 9,
+   "why": "a diseased rat"
+  },
+  {
+   "vnum": 7104,
+   "rooms": [
+    7013,
+    7016,
+    7048,
+    7063,
+    7068,
+    7279
+   ],
+   "total": 8,
+   "why": "a sewer thief"
+  },
+  {
+   "vnum": 7105,
+   "rooms": [
+    7035,
+    7036,
+    7220,
+    7282
+   ],
+   "total": 5,
+   "why": "a gray ooze"
+  },
+  {
+   "vnum": 7205,
+   "rooms": [
+    7205,
+    7305,
+    7310,
+    7315,
+    7316,
+    7317,
+    7334
+   ],
+   "total": 9,
+   "why": "a sewer bat"
+  },
+  {
+   "vnum": 7206,
+   "rooms": [
+    7202,
+    7224,
+    7229,
+    7231,
+    7232,
+    7318,
+    7344
+   ],
+   "total": 9,
+   "why": "a sewer snake"
+  },
+  {
+   "vnum": 7207,
+   "rooms": [
+    7216,
+    7223,
+    7307,
+    7322,
+    7327,
+    7330,
+    7342
+   ],
+   "total": 9,
+   "why": "a giant sewer rat"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 38 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

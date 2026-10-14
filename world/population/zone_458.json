@@ -151,5 +151,50 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 645800,
+   "rooms": [
+    105747,
+    105749,
+    105753,
+    105754,
+    105757,
+    105759,
+    105765
+   ],
+   "total": 11,
+   "why": "a gaunt grey wolf"
+  },
+  {
+   "vnum": 645801,
+   "rooms": [
+    105704,
+    105706,
+    105707,
+    105715,
+    105721,
+    105723,
+    105730
+   ],
+   "total": 11,
+   "why": "a skeletal servant"
+  },
+  {
+   "vnum": 645802,
+   "rooms": [
+    105705,
+    105718,
+    105719,
+    105725,
+    105726,
+    105732,
+    105783
+   ],
+   "total": 11,
+   "why": "a waltzing ghost"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 21 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

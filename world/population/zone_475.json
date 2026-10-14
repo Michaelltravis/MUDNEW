@@ -320,5 +320,39 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 47500,
+   "rooms": [
+    16215,
+    16217,
+    16219,
+    16220,
+    16222,
+    16225,
+    16227,
+    16232,
+    16234
+   ],
+   "total": 15,
+   "why": "a bone walker"
+  },
+  {
+   "vnum": 47502,
+   "rooms": [
+    16240,
+    16243,
+    16244,
+    16246,
+    16247,
+    16249,
+    16251,
+    16253
+   ],
+   "total": 12,
+   "why": "a chaos imp"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 17 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

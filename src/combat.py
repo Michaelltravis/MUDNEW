@@ -412,6 +412,12 @@ class CombatHandler:
             return
         if not attacker or attacker.hp <= 0:
             return
+        # a toll-keeper (rites.py) carries people across; no one fights him
+        if 'no_attack' in (getattr(defender, 'flags', None) or []) and hasattr(attacker, 'connection'):
+            c = cls.config.COLORS
+            await attacker.send(f"{c['yellow']}{defender.name[:1].upper() + defender.name[1:]} does not even look at your weapon. "
+                                f"Whatever power keeps the crossing keeps him too.{c['reset']}")
+            return
         # a creature with helpers (population.py) calls them when a player attacks it
         if getattr(defender, 'helpers', None) and hasattr(attacker, 'connection') and not getattr(defender, 'fighting', None):
             try:

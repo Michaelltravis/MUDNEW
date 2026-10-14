@@ -156,5 +156,34 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 642600,
+   "rooms": [
+    20300,
+    20302
+   ],
+   "total": 5,
+   "why": "a skulking troglodyte scavenger"
+  },
+  {
+   "vnum": 642601,
+   "rooms": [
+    20317,
+    20319
+   ],
+   "total": 5,
+   "why": "a hulking troglodyte warrior"
+  },
+  {
+   "vnum": 642602,
+   "rooms": [
+    20313
+   ],
+   "total": 3,
+   "why": "a pale cave lizard"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 5 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

@@ -147,5 +147,49 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 643602,
+   "rooms": [
+    105808,
+    105809,
+    105810,
+    105811,
+    105812,
+    105813,
+    105815,
+    105816,
+    105817,
+    105818,
+    105857,
+    105859,
+    105862,
+    105864,
+    105866,
+    105868
+   ],
+   "total": 22,
+   "why": "a grim tower guard"
+  },
+  {
+   "vnum": 643603,
+   "rooms": [
+    105863,
+    105870,
+    105871,
+    105872,
+    105873,
+    105874,
+    105875,
+    105877,
+    105880,
+    105883,
+    105884
+   ],
+   "total": 15,
+   "why": "a robed cultist"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 27 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

@@ -166,5 +166,56 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 645400,
+   "rooms": [
+    107312,
+    107314,
+    107315,
+    107317,
+    107318
+   ],
+   "total": 10,
+   "why": "a pale cave spider"
+  },
+  {
+   "vnum": 645401,
+   "rooms": [
+    107328,
+    107330,
+    107338,
+    107340,
+    107342
+   ],
+   "total": 12,
+   "why": "a shaggy bugbear"
+  },
+  {
+   "vnum": 645402,
+   "rooms": [
+    107370,
+    107372,
+    107376,
+    107378,
+    107380
+   ],
+   "total": 10,
+   "why": "a pale-robed cultist"
+  },
+  {
+   "vnum": 645403,
+   "rooms": [
+    107360,
+    107361,
+    107363,
+    107365,
+    107366
+   ],
+   "total": 8,
+   "why": "a mold-eaten skeleton"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 20 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

@@ -151,5 +151,47 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 648001,
+   "rooms": [
+    6638,
+    6640,
+    6641,
+    6668,
+    206606,
+    206610
+   ],
+   "total": 11,
+   "why": "a pale villager"
+  },
+  {
+   "vnum": 648002,
+   "rooms": [
+    6645,
+    6647,
+    6648,
+    6650,
+    6662,
+    6664
+   ],
+   "total": 10,
+   "why": "a hollow-eyed farmhand"
+  },
+  {
+   "vnum": 648003,
+   "rooms": [
+    6629,
+    6631,
+    6636,
+    6653,
+    6656,
+    6660
+   ],
+   "total": 9,
+   "why": "a black crow"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 18 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

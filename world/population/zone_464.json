@@ -134,5 +134,34 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 646402,
+   "rooms": [
+    20600,
+    20602,
+    20604,
+    20608,
+    20615,
+    20616,
+    20617,
+    20618,
+    20622,
+    20624,
+    20625,
+    20627,
+    20628,
+    20629,
+    20633,
+    20634,
+    20641,
+    20656,
+    20657
+   ],
+   "total": 23,
+   "why": "a pale tunnel spider"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 19 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

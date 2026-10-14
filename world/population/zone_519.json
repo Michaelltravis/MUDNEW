@@ -164,5 +164,48 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 651900,
+   "rooms": [
+    3414,
+    3415,
+    3436,
+    3438,
+    3440,
+    3450,
+    3452
+   ],
+   "total": 15,
+   "why": "a singed apprentice wizard"
+  },
+  {
+   "vnum": 651901,
+   "rooms": [
+    3485,
+    3487,
+    3488,
+    3490,
+    3492,
+    3496
+   ],
+   "total": 12,
+   "why": "a robed elementalist"
+  },
+  {
+   "vnum": 651902,
+   "rooms": [
+    3413,
+    3418,
+    3426,
+    3429,
+    3432,
+    3448
+   ],
+   "total": 12,
+   "why": "a white-gold golem"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 19 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

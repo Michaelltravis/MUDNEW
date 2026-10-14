@@ -143,5 +143,44 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 644901,
+   "rooms": [
+    106221,
+    106222,
+    106224,
+    106225,
+    106232,
+    106233,
+    106235,
+    106239,
+    106240,
+    106242,
+    106286
+   ],
+   "total": 15,
+   "why": "a bristling jungle boar"
+  },
+  {
+   "vnum": 644902,
+   "rooms": [
+    106236,
+    106244,
+    106245,
+    106247,
+    106248,
+    106250,
+    106253,
+    106255,
+    106258,
+    106261,
+    106262
+   ],
+   "total": 16,
+   "why": "an ashen tribesman"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 22 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

@@ -147,5 +147,60 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 650500,
+   "rooms": [
+    24874,
+    24876,
+    24878,
+    24896,
+    224803,
+    224805
+   ],
+   "total": 12,
+   "why": "a tomb skeleton"
+  },
+  {
+   "vnum": 650501,
+   "rooms": [
+    24841,
+    24861,
+    24863,
+    24884,
+    24886,
+    24961
+   ],
+   "total": 11,
+   "why": "a gaunt crypt ghoul"
+  },
+  {
+   "vnum": 650502,
+   "rooms": [
+    24865,
+    24867,
+    24889,
+    24893,
+    224811,
+    224813
+   ],
+   "total": 10,
+   "why": "a pale cave spider"
+  },
+  {
+   "vnum": 650503,
+   "rooms": [
+    24833,
+    24835,
+    24851,
+    24857,
+    24891,
+    224806
+   ],
+   "total": 10,
+   "why": "a hooded grave cultist"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 24 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

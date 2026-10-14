@@ -130,5 +130,39 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 652102,
+   "rooms": [
+    12404,
+    12405,
+    12406,
+    12408,
+    12409,
+    12410,
+    12415,
+    12416,
+    12417,
+    12419,
+    12420,
+    12421,
+    12427,
+    12428,
+    12430,
+    12431,
+    12438,
+    12439,
+    12441,
+    12442,
+    12452,
+    12454,
+    12455,
+    12460
+   ],
+   "total": 29,
+   "why": "a winter wolf"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 24 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

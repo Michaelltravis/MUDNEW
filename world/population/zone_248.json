@@ -125,5 +125,28 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 24801,
+   "rooms": [
+    24804,
+    24810,
+    24812
+   ],
+   "total": 6,
+   "why": "a Clockwork Soldier"
+  },
+  {
+   "vnum": 24802,
+   "rooms": [
+    24806,
+    24818,
+    24820
+   ],
+   "total": 5,
+   "why": "a Steam Golem"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 6 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

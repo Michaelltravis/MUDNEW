@@ -147,5 +147,51 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 652200,
+   "rooms": [
+    3904,
+    3906,
+    3914,
+    3925
+   ],
+   "total": 8,
+   "why": "a gaunt frost wolf"
+  },
+  {
+   "vnum": 652201,
+   "rooms": [
+    3943,
+    3946,
+    3947
+   ],
+   "total": 6,
+   "why": "a huge white cave bear"
+  },
+  {
+   "vnum": 652202,
+   "rooms": [
+    3955,
+    3962,
+    3967,
+    3968
+   ],
+   "total": 8,
+   "why": "a pale rime spider"
+  },
+  {
+   "vnum": 652203,
+   "rooms": [
+    3907,
+    3909,
+    3917,
+    3923
+   ],
+   "total": 7,
+   "why": "a hulking ice troll"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 15 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

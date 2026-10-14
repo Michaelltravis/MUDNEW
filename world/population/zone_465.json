@@ -178,5 +178,55 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 646500,
+   "rooms": [
+    20502,
+    20506,
+    20508,
+    20518,
+    20520
+   ],
+   "total": 13,
+   "why": "a soot-black mine orc"
+  },
+  {
+   "vnum": 646501,
+   "rooms": [
+    20509,
+    20512,
+    20534,
+    20546,
+    20583
+   ],
+   "total": 9,
+   "why": "a pale cave spider"
+  },
+  {
+   "vnum": 646502,
+   "rooms": [
+    20511,
+    20513,
+    20514,
+    20516
+   ],
+   "total": 7,
+   "why": "a snarling wolverine"
+  },
+  {
+   "vnum": 646503,
+   "rooms": [
+    20535,
+    20536,
+    20556,
+    20557,
+    20563
+   ],
+   "total": 9,
+   "why": "a rattling skeleton miner"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 19 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

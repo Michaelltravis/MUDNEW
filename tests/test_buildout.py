@@ -52,7 +52,8 @@ async def main():
     left = sorted(v for v, r in raw.items() if r.get('placeholder'))
     check(not left, f'every connector room is written by hand ({len(left)} still placeholders: {left[:6]})')
     new_mobs = {v: p for v, p in world.mob_prototypes.items() if buildout.MOB_BASE <= v < buildout.OBJ_BASE}
-    new_objs = {v: p for v, p in world.obj_prototypes.items() if buildout.OBJ_BASE <= v < buildout.OBJ_BASE + 100000}
+    new_objs = {v: p for v, p in world.obj_prototypes.items() if buildout.OBJ_BASE <= v < buildout.OBJ_BASE + 100000
+                and not p.get('gate_key')}          # (a gate's key is rites.py's, carried by its keeper)
     check(len(new_mobs) >= 40 and len(new_objs) >= 30, f'the zones have their new creatures and items ({len(new_mobs)}, {len(new_objs)})')
     # (of the creatures the build-out made: a zone's population file may add its own in the range)
     made = set(json.load(open(buildout.REGISTRY, encoding='utf-8')).get('mobs', {}).values())
@@ -78,6 +79,7 @@ async def main():
     mixed = [v for v, h in homes.items() if len(h) > 1]
     check(not mixed, f'a creature lives on the water or on land, not both ({[new_mobs[v]["short_desc"] for v in mixed[:4]]})')
     dropped = {e.get('vnum') for p in new_mobs.values() for e in (p.get('loot_table') or []) if isinstance(e, dict)}
+    dropped |= {(e.get('vnum') if isinstance(e, dict) else e) for p in new_mobs.values() for e in (p.get('inventory') or [])}   # a gatekeeper's key (rites.py)
     orphan = sorted(set(new_objs) - dropped)
     check(not orphan, f'every new item is dropped by a creature ({orphan[:5]})')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")

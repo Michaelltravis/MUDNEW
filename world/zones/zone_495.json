@@ -34,7 +34,7 @@
    "mob_resets": [
     {
      "vnum": 649500,
-     "max": 6
+     "max": 12
     }
    ]
   },
@@ -84,7 +84,13 @@
    },
    "description": "A cairn of pale stones stands waist-high above the tideline, each one\nlaid with care and none of them carrying a name. Behind it the island\nrises into a wall of bare black trees that hold the mist like wool. The\ngrass is flattened and silvered with damp, and the shore continues east\nand west along the same low line.",
    "look": "shore",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 12
+    }
+   ]
   },
   "3703": {
    "vnum": 3703,
@@ -136,7 +142,7 @@
    "mob_resets": [
     {
      "vnum": 649500,
-     "max": 6
+     "max": 12
     }
    ]
   },
@@ -188,7 +194,13 @@
    "look": "shore",
    "extra_descs": {
     "stone standing scales feather": "The carving shows a pair of balanced scales, and on one pan a single\nfeather no bigger than your thumb. The sea wind has worn the lines\nnearly smooth, but whoever cut them was careful."
-   }
+   },
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 12
+    }
+   ]
   },
   "3707": {
    "vnum": 3707,
@@ -240,7 +252,7 @@
    "mob_resets": [
     {
      "vnum": 649500,
-     "max": 6
+     "max": 12
     }
    ]
   },
@@ -290,7 +302,13 @@
    },
    "description": "Dark sand drifts up here into low dunes, held together by pale clumps of\nsea grass that rattle softly in the breeze. Wet footprints would last no\ntime in this light, and you see none. The shore keeps to the water's\nedge, running south toward the anchor and north toward a sharper bend.",
    "look": "shore",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 12
+    }
+   ]
   },
   "3711": {
    "vnum": 3711,
@@ -342,7 +360,7 @@
    "mob_resets": [
     {
      "vnum": 649500,
-     "max": 6
+     "max": 12
     }
    ]
   },
@@ -392,7 +410,13 @@
    },
    "description": "Flotsam has collected in a long drift along the tideline: splintered\nplanks, a cracked oar, cork floats gone black, a tangle of rope. None of\nit looks to have been touched in years. The grey sea slaps and\nwithdraws. The shore runs on east and west.",
    "look": "shore",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 12
+    }
+   ]
   },
   "3715": {
    "vnum": 3715,
@@ -472,7 +496,7 @@
    "mob_resets": [
     {
      "vnum": 649500,
-     "max": 6
+     "max": 12
     }
    ]
   },
@@ -522,7 +546,13 @@
    },
    "description": "Great flat slabs of grey slate run down to the water in terraces, slick\nwith spray and green at the edges. Pools collect in their hollows and\nhold still reflections of the sky. The trees behind are bent permanently\ntoward the land by old storms. The shore continues north and south.",
    "look": "shore",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 12
+    }
+   ]
   },
   "3720": {
    "vnum": 3720,
@@ -574,7 +604,7 @@
    "mob_resets": [
     {
      "vnum": 649500,
-     "max": 6
+     "max": 12
     }
    ]
   },
@@ -624,7 +654,13 @@
    },
    "description": "The island's edge turns another corner here, and black rocks run out\ninto the surf like a broken causeway. Thick weed drapes them, and the\nwater sucks and gurgles in the gaps. The wind off the sea has a taste of\nold brine. East the sand returns toward the forest edge, and the shore\nsweeps south along the water.",
    "look": "shore",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649500,
+     "max": 12
+    }
+   ]
   },
   "3724": {
    "vnum": 3724,
@@ -694,7 +730,13 @@
     }
    },
    "description": "The forest closes in here, hornbeam and holly crowding the bank until\nthe water has to push between them. Moss grows thick on every north-\nfacing trunk, but nothing stirs in the branches overhead. The path is a\nmuddy ribbon beside the stream, and it carries on north toward the light\nand south into the shadows.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 9
+    }
+   ]
   },
   "3727": {
    "vnum": 3727,
@@ -717,7 +759,13 @@
     }
    },
    "description": "The trees lean together over the water and form a low green roof,\nthrough which the grey sky shows in coins. A fallen alder lies across\npart of the stream and has gathered a drift of pale leaves. The air\nsmells of wet earth and something older, like stone cellars. The path\nfollows the stream north and south.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649507,
+     "max": 5
+    }
+   ]
   },
   "3728": {
    "vnum": 3728,
@@ -744,7 +792,7 @@
    "mob_resets": [
     {
      "vnum": 649501,
-     "max": 5
+     "max": 9
     }
    ]
   },
@@ -792,7 +840,17 @@
     }
    },
    "description": "The trail leaves the stream and makes a sharp turn among thick-boled\noaks, as if bending round something that was once there. Roots break the\nground in knuckles, and a lichen like grey hair hangs from the lowest\nboughs. The path runs north back toward the stream and west deeper into\nthe forest.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 9
+    },
+    {
+     "vnum": 649507,
+     "max": 5
+    }
+   ]
   },
   "3731": {
    "vnum": 3731,
@@ -815,13 +873,7 @@
     }
    },
    "description": "A path of beaten earth winds between close-set trunks, the way marked by\na few flat stones that someone laid long ago. Dead branches creak above\nyou though no wind reaches this far in. The light is a dim green-grey,\nand the smell of leaf mould lies heavy. The path goes east toward the\nturn and west toward a lighter place.",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 649501,
-     "max": 5
-    }
-   ]
+   "extra_descs": {}
   },
   "3732": {
    "vnum": 3732,
@@ -844,7 +896,13 @@
     }
    },
    "description": "The trees step back and leave a small round clearing, floored with short\npale grass and ringed by silent trunks. At its edge a low wall of fitted\nstone is half swallowed by ivy, and the ground feels hushed, as though\nthe air itself were listening. A path runs back east into the forest,\nand west the stonework thickens toward the ruin ahead.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 9
+    }
+   ]
   },
   "3733": {
    "vnum": 3733,
@@ -867,7 +925,13 @@
     }
    },
    "description": "The forest begins to thin here, the trunks growing slimmer and farther\napart, and a cool wind carrying salt comes in from beyond the trees. The\npath is sandy and pale, bordered by wiry bent grass. Through the last of\nthe trunks to the north the sky opens wide and grey over the water, and\nthe trail leads south back into the dense wood.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649507,
+     "max": 5
+    }
+   ]
   },
   "3734": {
    "vnum": 3734,
@@ -894,7 +958,7 @@
    "mob_resets": [
     {
      "vnum": 649501,
-     "max": 5
+     "max": 9
     }
    ]
   },
@@ -942,7 +1006,13 @@
     }
    },
    "description": "A line of stunted thorn trees follows the trail here, each one bent the\nsame way by a wind that you cannot feel. The ground between them is bare\nand hard, as if swept. Mist hangs at knee height. The path goes on north\nand south through the thorns.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 9
+    }
+   ]
   },
   "3737": {
    "vnum": 3737,
@@ -965,7 +1035,13 @@
     }
    },
    "description": "The forest is thick here, and the light comes down in dim bars, grey and\ngreen. Brambles tug at your sleeves along the path's edge, while the\ntrunks are wrapped in ivy like old bandages. A dead branch has fallen\nacross the trail and been trampled flat. The path runs north and south\nthrough the wood.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649507,
+     "max": 5
+    }
+   ]
   },
   "3738": {
    "vnum": 3738,
@@ -992,7 +1068,7 @@
    "mob_resets": [
     {
      "vnum": 649501,
-     "max": 5
+     "max": 9
     }
    ]
   },
@@ -1017,7 +1093,13 @@
     }
    },
    "description": "Here the path runs between two great hollow oaks, their trunks seamed\nand black, their roots reaching across the track like fingers. A lone\ngrey feather has caught in a crack of bark and trembles without falling.\nThe leaf mould is deep and silent underfoot. The way east leads to a\nclearing, and the path continues west.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649501,
+     "max": 9
+    }
+   ]
   },
   "3740": {
    "vnum": 3740,
@@ -1040,7 +1122,13 @@
     }
    },
    "description": "A second small clearing opens among the trees, its grass bleached and\nshort as if grazed, though no beast has been this way. A flat stone lies\nin the centre, round and worn, and mist gathers about it in a slow pool.\nTo the east the ruined necropolis shows its broken pillars through the\ntrunks, while west the forest path continues.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649507,
+     "max": 5
+    }
+   ]
   },
   "3741": {
    "vnum": 3741,
@@ -1082,7 +1170,11 @@
    "mob_resets": [
     {
      "vnum": 649501,
-     "max": 5
+     "max": 9
+    },
+    {
+     "vnum": 649512,
+     "max": 1
     }
    ]
   },
@@ -1148,7 +1240,13 @@
    },
    "description": "A broad antechamber, its walls ranked with shallow alcoves, each holding\na small stone figure of a seated judge with a feather in his hair. The\nfloor is checkered pale and dark, laid in neat squares. A pale light\nspills from the great hall to the east, and a passage leads north, while\na door stands west.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649508,
+     "max": 7
+    }
+   ]
   },
   "3744": {
    "vnum": 3744,
@@ -1174,7 +1272,13 @@
    },
    "description": "The corridor turns here along a gentle arc, following the curve of some\ngreat round room that lies hidden beyond the wall. Cold iron rings are\nset into the stone at regular intervals, hung with the rotted remains of\nrope. The only sounds are your steps and a faint drip. The passage runs\nwest, and back south to the antechamber.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    }
+   ]
   },
   "3745": {
    "vnum": 3745,
@@ -1200,7 +1304,13 @@
    },
    "description": "A turning in the corridor, where the floor dips slightly toward a drain\nchoked with grey sediment. The walls are bare and cold to the touch, and\nthe faint tang of copper hangs in the air. Someone has scratched a tally\nof short vertical lines into the plaster, row upon row. East lies the\nother half of the corridor, and south a door leads to a corner room.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649508,
+     "max": 7
+    }
+   ]
   },
   "3746": {
    "vnum": 3746,
@@ -1258,13 +1368,7 @@
    },
    "description": "A small stone room with a low ceiling, bare except for a stone bench\nalong the wall and a shallow niche where a lamp once burned. Dust lies\nthick on everything, unmarked, and the silence presses on your ears. The\nonly way out is the doorway back to the entrance hall.",
    "look": "crypt",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 649502,
-     "max": 8
-    }
-   ]
+   "extra_descs": {}
   },
   "3748": {
    "vnum": 3748,
@@ -1295,7 +1399,13 @@
    },
    "description": "A square antechamber, its walls painted with faded figures walking in\nprocession, each carrying a small pair of scales. The paint has flaked\naway from the faces and left only grey stone. A heavy door in the far\nwall stands ajar to the east, and an open archway leads west back to the\nentrance hall.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    }
+   ]
   },
   "3749": {
    "vnum": 3749,
@@ -1352,7 +1462,13 @@
    },
    "description": "The corridor winds sharply here, its walls close enough to touch both at\nonce. Faint carvings of long-necked birds run along the stone at\nshoulder height, their beaks all pointing the same way. A cold draught\nmoves along the floor. The passage goes west deeper into the temple, and\na door lies south.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649508,
+     "max": 7
+    }
+   ]
   },
   "3751": {
    "vnum": 3751,
@@ -1404,7 +1520,17 @@
    },
    "description": "A hush lies on this stretch of corridor so deep that your own breathing\nseems intrusive. The ceiling is lower here and stained dark in lines, as\nif water once ran in from above. Dry flakes of old reed matting crunch\nunderfoot. The way goes east along the winding passage, and south back\ndown it.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    },
+    {
+     "vnum": 649508,
+     "max": 7
+    }
+   ]
   },
   "3753": {
    "vnum": 3753,
@@ -1469,13 +1595,7 @@
    },
    "description": "Three passages meet in this dim junction, and the stone floor is\npolished to a dull shine by the passing of countless slow feet. Wax\ndrippings have hardened in a thick crust below an iron sconce. A heavy\ndoor stands shut to the north, another to the west, and the corridor you\ncame along winds back south.",
    "look": "crypt",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 649502,
-     "max": 8
-    }
-   ]
+   "extra_descs": {}
   },
   "3755": {
    "vnum": 3755,
@@ -1528,7 +1648,13 @@
    },
    "description": "A tiny cell of a room, hardly larger than a closet, with a stone ledge\nrunning round three walls at the height of a seat. Tallow stains darken\nthe wall above each place, as though patient people once sat here and\nwaited. Nothing else remains. The only way out is the door east into the\njunction.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    }
+   ]
   },
   "3757": {
    "vnum": 3757,
@@ -1554,7 +1680,13 @@
    },
    "description": "A long straight corridor runs on ahead, the roof held up by squat square\npillars set into the walls. Each pillar bears a faded red band, and the\nbands blur toward the far end. Your footsteps return as thin echoes. The\npassage goes west deeper in, and a doorway opens east into the small\nchamber behind you.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649508,
+     "max": 7
+    }
+   ]
   },
   "3758": {
    "vnum": 3758,
@@ -1642,7 +1774,13 @@
    },
    "description": "A tight chamber where two passages meet at a right angle, the corner\nringed by a low stone curb. Painted on the wall is a faded figure with\nthe head of a bird, its beak raised as if to speak. The air is dry and\nfaintly sweet. A door in the wall leads south, and the straight corridor\nlies east.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    }
+   ]
   },
   "3761": {
    "vnum": 3761,
@@ -1668,13 +1806,7 @@
    },
    "description": "A short corridor with a floor of rough black flags and walls hung with\nold frayed cords that once held tablets. The ceiling is only just above\nyour head, and condensation gleams along it. Everything is very quiet.\nThe passage leads back north to the chamber and on south.",
    "look": "crypt",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 649502,
-     "max": 8
-    }
-   ]
+   "extra_descs": {}
   },
   "3762": {
    "vnum": 3762,
@@ -1705,7 +1837,13 @@
    },
    "description": "The short corridor ends against a plain wall of sooty stone, its last\nyard dressed with a row of seven small clay lamps, all cold. A carved\nstone lintel arches over a doorway set in the east wall. You may go east\nthrough it, or back north along the passage.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649513,
+     "max": 1
+    }
+   ]
   },
   "3763": {
    "vnum": 3763,
@@ -1764,7 +1902,17 @@
    },
    "description": "The corridor twists here like a stair that has lost its steps, bending\nslowly left and then right between walls scored with spiral lines. A\ntrickle of damp has left a green stain down one side. Your own shadow\nlengthens and shrinks as you pass the lamp-niches. The twisting passage\ngoes north, and south through a door to the chamber behind.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    },
+    {
+     "vnum": 649508,
+     "max": 7
+    }
+   ]
   },
   "3765": {
    "vnum": 3765,
@@ -1790,7 +1938,13 @@
    },
    "description": "The passage doubles back on itself in a slow curve, the grey walls\nrunning with delicate carved vines that frame small faces, all worn\nblank. A chill breath of air passes over your hands. Underfoot a few\ntiles show a pattern of waves. East the twisting passage continues, and\nsouth it winds back.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649508,
+     "max": 7
+    }
+   ]
   },
   "3766": {
    "vnum": 3766,
@@ -1821,7 +1975,13 @@
    },
    "description": "The last twist of the corridor ends in a narrow landing before a pair of\ntall doors, their panels carved with doves and roses. Petals of dried\nrose lie scattered on the floor, brown and brittle as paper. A sweet and\nsorrowful scent clings to the air. The doors lead south, and the\ncorridor winds back west.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649514,
+     "max": 1
+    }
+   ]
   },
   "3767": {
    "vnum": 3767,
@@ -1875,7 +2035,7 @@
    "mob_resets": [
     {
      "vnum": 649502,
-     "max": 8
+     "max": 14
     }
    ]
   },
@@ -1929,7 +2089,13 @@
    },
    "description": "The tunnel opens onto a broad ledge of black rock above a wide\nunderground river, whose slow oily water slides past in the dark. The\nfar bank cannot be seen, and a faint wind blows off the water bringing\nthe smell of cold iron. A narrow ledge of stone follows the bank north\ntoward a wharf, and the way back leads south up the passage.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649505,
+     "max": 1
+    }
+   ]
   },
   "3773": {
    "vnum": 3773,
@@ -1977,7 +2143,7 @@
    "extra_descs": {},
    "mob_resets": [
     {
-     "vnum": 649505,
+     "vnum": 649511,
      "max": 1
     }
    ]
@@ -2014,8 +2180,16 @@
    "extra_descs": {},
    "mob_resets": [
     {
+     "vnum": 649502,
+     "max": 14
+    },
+    {
      "vnum": 649504,
      "max": 2
+    },
+    {
+     "vnum": 649515,
+     "max": 1
     }
    ]
   },
@@ -2043,7 +2217,17 @@
    },
    "description": "A vast cavern, grey and dim, stretches around you with a roof lost in\nshadow. Pale shapes drift along the rock without ever quite arriving,\nand the air is cold and faintly sweet. Distant murmurs rise and fall\nlike a crowd that has forgotten its words. Beyond lie more gates north,\nand the great doors south.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649509,
+     "max": 10
+    },
+    {
+     "vnum": 649510,
+     "max": 5
+    }
+   ]
   },
   "3777": {
    "vnum": 3777,
@@ -2073,7 +2257,17 @@
    },
    "description": "Three ways divide here before a tall archway, with a tall black spear of\nstone standing sentinel in the middle of the floor. Beyond the arch to\nthe north rise the grim gates to Tartarus, white, grey and black. A door\nopens east to a long low room where voices murmur. The path south\nreturns to the cavern, with its pale drifting shapes.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649509,
+     "max": 10
+    },
+    {
+     "vnum": 649510,
+     "max": 5
+    }
+   ]
   },
   "3778": {
    "vnum": 3778,
@@ -2110,8 +2304,8 @@
    "extra_descs": {},
    "mob_resets": [
     {
-     "vnum": 649502,
-     "max": 8
+     "vnum": 649509,
+     "max": 10
     }
    ]
   },
@@ -2137,7 +2331,13 @@
    "look": "crypt",
    "extra_descs": {
     "balance scales pans gold": "The great balance hangs from a bronze beam, its pans of beaten gold\nhanging level though nothing rests in either. A small feather is cast\ninto the base, as the standard against which all hearts are weighed."
-   }
+   },
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    }
+   ]
   },
   "3780": {
    "vnum": 3780,
@@ -2218,7 +2418,13 @@
    },
    "description": "A tall gate of white marble stands in an arch of polished stone, its two\nleaves carved with pale rows of laurel leaves. Light from nowhere falls\non it evenly, and not a speck of dust lies on the floor. It feels like a\nplace for the blameless. The way south returns to the archway, and a\ndoor leads north to the next gate.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649516,
+     "max": 1
+    }
+   ]
   },
   "3783": {
    "vnum": 3783,
@@ -2252,8 +2458,16 @@
    "extra_descs": {},
    "mob_resets": [
     {
+     "vnum": 649502,
+     "max": 14
+    },
+    {
      "vnum": 649504,
      "max": 2
+    },
+    {
+     "vnum": 649517,
+     "max": 1
     }
    ]
   },
@@ -2286,7 +2500,13 @@
    },
    "description": "A gate of black iron towers here, its bars as thick as a man's arm and\nwrought into the shape of folded wings. Cold wells up from the floor,\nand the stone around the arch is scorched and cracked. A smell of old\nsmoke and hot metal drifts down from the passage beyond. A door leads\nnorth toward Tartarus, and the grey gate lies south.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649518,
+     "max": 1
+    }
+   ]
   },
   "3785": {
    "vnum": 3785,
@@ -2315,8 +2535,8 @@
    "extra_descs": {},
    "mob_resets": [
     {
-     "vnum": 649502,
-     "max": 8
+     "vnum": 649509,
+     "max": 10
     }
    ]
   },
@@ -2344,7 +2564,17 @@
    },
    "description": "You stand at the foot of a bleak hill of loose black shale, where\nnothing grows and the air is heavy and thick. Rills of slow, tarry water\ngather in the hollows. A faint wail drifts across the slope, rising and\nfalling, and never comes any closer. A path leads back up the hill, and\nthe way south descends toward a river.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649509,
+     "max": 10
+    },
+    {
+     "vnum": 649510,
+     "max": 5
+    }
+   ]
   },
   "3787": {
    "vnum": 3787,
@@ -2370,7 +2600,21 @@
    },
    "description": "A wide dark river flows past in silence here, between banks of smooth\ngrey stones, its surface lapping soundlessly. Pale flowers of poppy grow\nin the cracks, nodding in a breath of air. A sweet drowsiness steals\nover you, and the thoughts of the living world grow faint. The path\nleads north up toward the hill, and south onto a garden walk.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    },
+    {
+     "vnum": 649509,
+     "max": 10
+    },
+    {
+     "vnum": 649510,
+     "max": 5
+    }
+   ]
   },
   "3788": {
    "vnum": 3788,
@@ -2414,7 +2658,13 @@
    },
    "description": "A paved garden walk runs between low hedges of grey-green yew, each\ntrimmed square and neat, and the light is like an even dusk. Small cold\nflowers blossom along the border, white and unscented. Doors of pale\nwood stand to east and west, leading into the garden proper, and another\npassage runs south through a heavy arch of black stone. The path returns\nnorth to the river.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649509,
+     "max": 10
+    }
+   ]
   },
   "3789": {
    "vnum": 3789,
@@ -2435,7 +2685,13 @@
     }
    },
    "description": "The Garden of Everlasting Peace spreads out in terraces of soft turf and\nbeds of pale blossom, each flower perfect and cold to the touch. A\nwinding stream runs through it in a bed of white pebbles, and a marble\nbench waits beside it. It is peaceful in the way of a held breath. The\ndoor east leads back out to the garden path.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649509,
+     "max": 10
+    }
+   ]
   },
   "3790": {
    "vnum": 3790,
@@ -2458,7 +2714,13 @@
    "description": "Here is the Garden of Everlasting Peace, a vast round lawn of silver\ngrass ringed with slender white trees whose leaves never fall. A shallow\npool lies in the centre, perfectly clear, reflecting a sky that is not\nthere. Everything is still and bright and lovely, yet no bird sings and\nno wind stirs. The door west leads back to the garden path.",
    "extra_descs": {
     "pool clear water": "The pool is clear to its bed of white pebbles, and no ripple ever\ncrosses it. Its surface shows a blue sky and a drifting white cloud,\nthough no sky can be seen above."
-   }
+   },
+   "mob_resets": [
+    {
+     "vnum": 649509,
+     "max": 10
+    }
+   ]
   },
   "3791": {
    "vnum": 3791,
@@ -2486,6 +2748,10 @@
    "look": "crypt",
    "extra_descs": {},
    "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    },
     {
      "vnum": 649503,
      "max": 2
@@ -2519,12 +2785,12 @@
    "extra_descs": {},
    "mob_resets": [
     {
-     "vnum": 649502,
-     "max": 8
-    },
-    {
      "vnum": 649503,
      "max": 2
+    },
+    {
+     "vnum": 649510,
+     "max": 5
     }
    ]
   },
@@ -2552,7 +2818,13 @@
    },
    "description": "Chains hang in swags from the ceiling here, and each link is carved with\na tiny and terrible face. The floor is hot underfoot, and sparks\nsometimes crackle among the rusted iron. Somewhere beyond, wings beat\nslowly in the dark. The hall leads north back toward the first trial and\nsouth to a fiery door.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649509,
+     "max": 10
+    }
+   ]
   },
   "3794": {
    "vnum": 3794,
@@ -2583,7 +2855,13 @@
    },
    "description": "A massive door of red-hot bronze fills the south wall, its surface\nrippling with heat and its handle glowing like an ember. The stones of\nthe floor glow faintly orange at the cracks. Sweat runs down your face\nin moments. The passage lies north, and the door south opens to a colder\nroom.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649519,
+     "max": 1
+    }
+   ]
   },
   "3795": {
    "vnum": 3795,
@@ -2614,7 +2892,17 @@
    },
    "description": "A door of blue-white ice fills the south wall, its panels clouded and\nrimed with frost so thick it hides what lies behind. The room is\nbitterly cold, the breath freezing in your beard, and frozen crystals\nsparkle on every stone. Your fingers ache. The door south opens to a\nmisty room, and the fiery door lies north.",
    "look": "snow",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649502,
+     "max": 14
+    },
+    {
+     "vnum": 649520,
+     "max": 1
+    }
+   ]
   },
   "3796": {
    "vnum": 3796,
@@ -2645,7 +2933,13 @@
    },
    "description": "A door of thick grey vapour hangs in the south wall, shifting and\ncurling like a living thing. The floor is damp and slick, and every\nsound comes back muffled, as if heard through wet wool. You can see no\nmore than an arm's length. The vapour opens south onto the throne room,\nand the cold door is north.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649521,
+     "max": 1
+    }
+   ]
   },
   "3797": {
    "vnum": 3797,
@@ -2675,7 +2969,13 @@
    },
    "description": "A mighty hall opens here, its pillars of black marble climbing into a\nroof lost in darkness. Rows of torches burn with a cold green flame that\ncasts no warmth. At the far end, between the pillars, the floor rises\ntoward great seats, and the air is heavy with authority. A mist-door\nleads north, and the hall continues east and west before the thrones.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 649522,
+     "max": 1
+    }
+   ]
   },
   "3798": {
    "vnum": 3798,
@@ -2725,7 +3025,7 @@
    "mob_resets": [
     {
      "vnum": 649502,
-     "max": 8
+     "max": 14
     }
    ]
   }
@@ -2754,6 +3054,10 @@
     {
      "vnum": 749500,
      "chance": 25
+    },
+    {
+     "vnum": 749501,
+     "chance": 5
     },
     {
      "vnum": 202,
@@ -2947,8 +3251,8 @@
    "vnum": 649505,
    "name": "charon ferryman boatman",
    "short_desc": "Charon the Ferryman",
-   "long_desc": "Charon the Ferryman leans on his long black pole at the end of the wharf, a hooded and silent figure.",
-   "description": "Charon is old beyond reckoning, his beard a tangled grey cloud and his\neyes like two sunken coals under his hood. He holds a long pole of black\nwood and speaks to no one without payment, and his patience has run out\nfor those who bring none.",
+   "long_desc": "Charon the Ferryman leans on his long black pole at the end of the wharf, waiting for the fare.",
+   "description": "Charon is old beyond reckoning, his beard a tangled grey cloud and his\neyes like two sunken coals under his hood. His black boat rocks at the\nfoot of the wharf, and he holds out one bony hand to all who come down\nthe passage. He carries no one across the Styx without his coin, and no\none has ever made him.",
    "level": 24,
    "alignment": -300,
    "hp_dice": "24d8+334",
@@ -2957,36 +3261,9 @@
    "exp": 1340,
    "gold": 288,
    "flags": [
-    "stay_zone",
-    "aggressive"
+    "stay_zone"
    ],
-   "inventory": [],
-   "loot_table": [
-    {
-     "vnum": 749501,
-     "chance": 35
-    },
-    {
-     "vnum": 749504,
-     "chance": 10
-    },
-    {
-     "vnum": 210,
-     "chance": 5
-    },
-    {
-     "vnum": 211,
-     "chance": 5
-    },
-    {
-     "vnum": 212,
-     "chance": 5
-    },
-    {
-     "vnum": 213,
-     "chance": 5
-    }
-   ]
+   "inventory": []
   },
   "649506": {
    "vnum": 649506,
@@ -3015,6 +3292,339 @@
     {
      "vnum": 749503,
      "chance": 10
+    },
+    {
+     "vnum": 210,
+     "chance": 5
+    },
+    {
+     "vnum": 211,
+     "chance": 5
+    },
+    {
+     "vnum": 212,
+     "chance": 5
+    },
+    {
+     "vnum": 213,
+     "chance": 5
+    }
+   ]
+  },
+  "649507": {
+   "vnum": 649507,
+   "name": "lamia serpent woman forest",
+   "short_desc": "a forest lamia",
+   "long_desc": "A forest lamia coils between the dark trunks, her serpent tail rustling in the leaves.",
+   "description": "From the waist up she is a woman with ash-pale skin and black hair;\nbelow, a long scaled tail winds back into the undergrowth. She smiles\nwith too many teeth and waits for travellers to stray from the path.",
+   "level": 17,
+   "alignment": -500,
+   "hp_dice": "17d8+285",
+   "damage_dice": "5d6+11",
+   "armor_class": 41,
+   "exp": 955,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649508": {
+   "vnum": 649508,
+   "name": "acolyte shade temple priest ghost",
+   "short_desc": "a shade of a temple acolyte",
+   "long_desc": "The shade of a temple acolyte drifts along the corridor, still murmuring its old prayers.",
+   "description": "A grey robe hangs on nothing, and a face like smoke turns toward you\nunder the hood. It still swings a censer that gives no smoke, and its\nprayers end in a hiss when it sees the living.",
+   "level": 18,
+   "alignment": -800,
+   "hp_dice": "18d8+272",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": []
+  },
+  "649509": {
+   "vnum": 649509,
+   "name": "shade wailing soul ghost",
+   "short_desc": "a wailing shade",
+   "long_desc": "A wailing shade drifts here, mourning a life it can no longer remember.",
+   "description": "It is the thin grey ghost of someone ordinary, worn down by the long\ndark until only grief is left. It flies at the living with a howl, as if\nwarmth were a thing it could take back.",
+   "level": 21,
+   "alignment": -800,
+   "hp_dice": "21d8+324",
+   "damage_dice": "6d6+11",
+   "armor_class": 34,
+   "exp": 1175,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": []
+  },
+  "649510": {
+   "vnum": 649510,
+   "name": "hound hades dog black",
+   "short_desc": "a black hound of Hades",
+   "long_desc": "A black hound of Hades pads through the gloom, its eyes two coals.",
+   "description": "It is the size of a pony and lean as a famine, its black coat matted\nwith ash. Smoke curls from its jaws when it breathes, and it hunts by\nthe smell of a beating heart.",
+   "level": 22,
+   "alignment": -500,
+   "hp_dice": "22d8+382",
+   "damage_dice": "6d6+16",
+   "armor_class": 26,
+   "exp": 1230,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649511": {
+   "vnum": 649511,
+   "name": "oarsman boatman hollow shade",
+   "short_desc": "the hollow oarsman",
+   "long_desc": "The hollow oarsman sits in a small grey boat at the foot of the far landing.",
+   "description": "He is a thin shade in a rower's smock, and his face is a hollow where a\nface should be. He serves Charon on the far shore, and for one coin he\nwill row the living back across the Styx, the only kindness the\nunderworld offers.",
+   "level": 20,
+   "alignment": -800,
+   "hp_dice": "20d8+306",
+   "damage_dice": "6d6+10",
+   "armor_class": 37,
+   "exp": 1120,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "undead"
+   ],
+   "inventory": []
+  },
+  "649512": {
+   "vnum": 649512,
+   "name": "warden necropolis skeleton bone champion",
+   "short_desc": "the Necropolis Warden",
+   "long_desc": "The Necropolis Warden stands before the temple door, a great bone key on a chain at its belt.",
+   "description": "It was a champion once, and its bones are still clad in green bronze and\nbound with old wire. A key of carved bone hangs at its hip, and it has\nkept this door through a thousand years of wind off the sea.",
+   "level": 19,
+   "alignment": -800,
+   "hp_dice": "19d8+289",
+   "damage_dice": "5d6+12",
+   "armor_class": 40,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": []
+  },
+  "649513": {
+   "vnum": 649513,
+   "name": "sphinx oracle guardian lion",
+   "short_desc": "the Sphinx of the Oracle",
+   "long_desc": "The Sphinx of the Oracle lies across the passage, her lion's tail twitching.",
+   "description": "She has the body of a great tawny lion, the wings of an eagle folded on\nher back and the calm face of a woman. A claw-shaped key hangs on a gold\nband about her neck, and she lets no one pass to the Oracle who has not\nbested her.",
+   "level": 21,
+   "alignment": -500,
+   "hp_dice": "21d8+362",
+   "damage_dice": "6d6+14",
+   "armor_class": 29,
+   "exp": 1175,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649514": {
+   "vnum": 649514,
+   "name": "siren altar bird woman",
+   "short_desc": "the Siren of the Altar",
+   "long_desc": "The Siren of the Altar perches by the door to Aphrodite's chamber, singing softly.",
+   "description": "She is a woman to the waist and a great grey bird below, her talons\ngripping a fallen column. Her song is lovely and very old, and a little\nrose-gold key glints among the feathers at her throat.",
+   "level": 21,
+   "alignment": -500,
+   "hp_dice": "21d8+362",
+   "damage_dice": "6d6+14",
+   "armor_class": 29,
+   "exp": 1175,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649515": {
+   "vnum": 649515,
+   "name": "cerberus hound three headed dog",
+   "short_desc": "Cerberus",
+   "long_desc": "Cerberus, the three-headed hound of Hades, bars the gates with a growl like thunder.",
+   "description": "Three great heads rise from one black body as big as a bull, each with\nits own hunger and its own pair of burning eyes. A collar of black iron\nrings the middle neck, and from it hangs the key to the gates of Hades.",
+   "level": 25,
+   "alignment": -500,
+   "hp_dice": "25d8+444",
+   "damage_dice": "7d6+17",
+   "armor_class": 17,
+   "exp": 1395,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649516": {
+   "vnum": 649516,
+   "name": "warden white gate shade",
+   "short_desc": "the Warden of the White Gate",
+   "long_desc": "The Warden of the White Gate stands before the pale gate, a white key at its belt.",
+   "description": "It wears armour bleached like driftwood and a helm with no face behind\nit. It judges the merely forgetful, and it lets none pass the white gate\nwithout taking the key from its belt.",
+   "level": 23,
+   "alignment": -800,
+   "hp_dice": "23d8+360",
+   "damage_dice": "6d6+14",
+   "armor_class": 28,
+   "exp": 1285,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": []
+  },
+  "649517": {
+   "vnum": 649517,
+   "name": "warden gray grey gate shade",
+   "short_desc": "the Warden of the Gray Gate",
+   "long_desc": "The Warden of the Gray Gate stands before the ash-coloured gate, a gray key at its belt.",
+   "description": "Its armour is the grey of old ash and its sword is notched from a\nthousand duels. It guards the way of those who were neither good nor\nwicked, and it holds the gray key in a mailed fist.",
+   "level": 24,
+   "alignment": -800,
+   "hp_dice": "24d8+379",
+   "damage_dice": "7d6+12",
+   "armor_class": 25,
+   "exp": 1340,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": []
+  },
+  "649518": {
+   "vnum": 649518,
+   "name": "warden black gate shade",
+   "short_desc": "the Warden of the Black Gate",
+   "long_desc": "The Warden of the Black Gate stands before the last gate, a black key at its belt.",
+   "description": "Its armour drinks the light, and the darkness inside its helm moves like\nsomething breathing. Beyond its gate lies Tartarus, and it carries the\nblack key that opens the way down.",
+   "level": 25,
+   "alignment": -800,
+   "hp_dice": "25d8+398",
+   "damage_dice": "7d6+13",
+   "armor_class": 22,
+   "exp": 1395,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": []
+  },
+  "649519": {
+   "vnum": 649519,
+   "name": "alecto fury fire winged",
+   "short_desc": "Alecto the Unresting",
+   "long_desc": "Alecto the Unresting hovers before the fiery door on wings of smouldering leather.",
+   "description": "She is the eldest of the Furies, her hair a nest of hissing snakes and\nher eyes weeping fire. An ember-red key hangs at her throat, hot enough\nto scorch the hand that takes it.",
+   "level": 25,
+   "alignment": -500,
+   "hp_dice": "25d8+444",
+   "damage_dice": "7d6+17",
+   "armor_class": 17,
+   "exp": 1395,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649520": {
+   "vnum": 649520,
+   "name": "megaera fury ice winged",
+   "short_desc": "Megaera the Grudging",
+   "long_desc": "Megaera the Grudging hovers before the icy door, frost on her black wings.",
+   "description": "The second Fury is wrapped in rime, and her breath fogs the air with\ncold. She hates with a slow, patient hate, and the key she keeps is cut\nfrom blue ice that never melts.",
+   "level": 26,
+   "alignment": -500,
+   "hp_dice": "26d8+465",
+   "damage_dice": "7d6+19",
+   "armor_class": 14,
+   "exp": 1450,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649521": {
+   "vnum": 649521,
+   "name": "tisiphone fury mist winged",
+   "short_desc": "Tisiphone the Avenger",
+   "long_desc": "Tisiphone the Avenger hovers before the misty door, half lost in fog.",
+   "description": "The youngest Fury avenges murder, and she is never quite where she seems\nto be. A grey key of solid mist hangs from her wrist, and it is only\nsolid while she lives.",
+   "level": 26,
+   "alignment": -500,
+   "hp_dice": "26d8+465",
+   "damage_dice": "7d6+19",
+   "armor_class": 14,
+   "exp": 1450,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "649522": {
+   "vnum": 649522,
+   "name": "hades lord dead underworld king",
+   "short_desc": "Hades, Lord of the Dead",
+   "long_desc": "Hades, Lord of the Dead, sits on his onyx throne and watches you come.",
+   "description": "He is tall and grave, robed in black, with a beard like smoke and eyes\nas old as the first grave. A dark helm rests on the arm of his throne,\nand every shade in his kingdom falls silent when he speaks.",
+   "level": 27,
+   "alignment": -800,
+   "hp_dice": "27d8+437",
+   "damage_dice": "7d6+16",
+   "armor_class": 16,
+   "exp": 1505,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 749505,
+     "chance": 30
     },
     {
      "vnum": 210,
@@ -3118,6 +3728,26 @@
    "affects": [
     {
      "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "749505": {
+   "vnum": 749505,
+   "name": "helm darkness hades dark",
+   "short_desc": "the Helm of Darkness",
+   "room_desc": "A dark helm lies here, hard to look at directly.",
+   "description": "A helm of dull black bronze, cold and close-fitting, forged for the Lord of the Dead. Light slides off it, and its wearer is hard to see clearly.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 27,
+   "wear_slot": "head",
+   "armor": 4,
+   "weight": 3,
+   "value": 570,
+   "affects": [
+    {
+     "type": "dex",
      "value": 1
     }
    ]

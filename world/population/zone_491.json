@@ -147,5 +147,44 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 649101,
+   "rooms": [
+    15104,
+    15111,
+    15112,
+    15113,
+    15114,
+    15120,
+    15139,
+    15141,
+    15142,
+    15143,
+    15149,
+    15152,
+    15161,
+    15162,
+    15165,
+    15173,
+    15177,
+    15182
+   ],
+   "total": 24,
+   "why": "a scarred goblin warrior"
+  },
+  {
+   "vnum": 649102,
+   "rooms": [
+    15106,
+    15107,
+    15117,
+    15126
+   ],
+   "total": 8,
+   "why": "a giant crab"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 22 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

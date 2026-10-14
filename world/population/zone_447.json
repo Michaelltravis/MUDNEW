@@ -307,5 +307,37 @@
     10199
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 644702,
+   "rooms": [
+    10143,
+    10145,
+    10147,
+    10148,
+    10150,
+    10164,
+    10165,
+    10166,
+    10167,
+    10168,
+    10170,
+    10171,
+    10175,
+    10178,
+    10179,
+    10181,
+    10184,
+    10185,
+    10186,
+    10187,
+    10189,
+    10193
+   ],
+   "total": 29,
+   "why": "a keep soldier"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 22 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

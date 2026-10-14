@@ -49,16 +49,6 @@
    "why": "a bronze-helmed gate guard",
    "rank": "elite"
   },
-  "649505": {
-   "helpers": {
-    "group": "z495_humanoid",
-    "rooms": 2,
-    "count": 2,
-    "shout": "A shout goes up, and they come running!"
-   },
-   "why": "Charon the Ferryman",
-   "rank": "sub-boss"
-  },
   "649506": {
    "rank": "boss",
    "flags": [
@@ -107,6 +97,131 @@
      }
     ]
    }
+  },
+  "649512": {
+   "rank": "sub-boss",
+   "why": "the Necropolis Warden, keeper of the temple door (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649513": {
+   "rank": "sub-boss",
+   "why": "the Sphinx of the Oracle (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649514": {
+   "rank": "sub-boss",
+   "why": "the Siren of the Altar (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649515": {
+   "rank": "sub-boss",
+   "why": "Cerberus, keeper of the gates of Hades (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649516": {
+   "rank": "sub-boss",
+   "why": "the Warden of the White Gate (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649517": {
+   "rank": "sub-boss",
+   "why": "the Warden of the Gray Gate (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649518": {
+   "rank": "sub-boss",
+   "why": "the Warden of the Black Gate (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649519": {
+   "rank": "sub-boss",
+   "why": "Alecto (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649520": {
+   "rank": "sub-boss",
+   "why": "Megaera (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649521": {
+   "rank": "sub-boss",
+   "why": "Tisiphone (a gatekeeper: carries the key to its door, rites.json)"
+  },
+  "649522": {
+   "rank": "boss",
+   "why": "Hades, Lord of the Dead, on the onyx throne",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss",
+    "undead"
+   ],
+   "boss_config": {
+    "enrage_time": 200,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Hades rises from the onyx throne, and the shades of his kingdom pour out of the walls!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Helm of Darkness",
+      "telegraph": "Hades lifts the dark helm, and the light in the hall begins to die!",
+      "cast_time": 2,
+      "cooldown": 14,
+      "damage_dice": "3d8+8",
+      "aoe": true,
+      "radius": 5.0
+     },
+     {
+      "name": "Bident",
+      "telegraph": "Hades levels his two-pronged spear at you!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+7",
+      "dodge": true
+     },
+     {
+      "name": "Judgement of the Dead",
+      "telegraph": "Hades speaks your name, and the shades fall silent to hear the sentence!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "5d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  },
+  "649508": {
+   "helpers": {
+    "group": "z495_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "island regulars"
+  },
+  "649509": {
+   "helpers": {
+    "group": "z495_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead answer!"
+   },
+   "why": "island regulars"
+  },
+  "649510": {
+   "helpers": {
+    "group": "z495_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "island regulars"
+  },
+  "649507": {
+   "helpers": {
+    "group": "z495_monster",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A roar echoes, and more of them come!"
+   },
+   "why": "island regulars"
   }
  },
  "patrols": [

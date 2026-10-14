@@ -166,5 +166,28 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 10004,
+   "rooms": [
+    10005,
+    10006,
+    10009
+   ],
+   "total": 5,
+   "why": "a goblin raider"
+  },
+  {
+   "vnum": 10005,
+   "rooms": [
+    10001,
+    10004,
+    10007
+   ],
+   "total": 4,
+   "why": "a giant cave bat"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 6 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

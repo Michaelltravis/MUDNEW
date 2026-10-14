@@ -453,7 +453,7 @@ class CommandHandler:
                 await player.send(f"{c['yellow']}{sealed}{c['reset']}")
                 return
             if sealed:          # a builder walks through to work on it
-                await player.send(f"{c['cyan']}(You pass the bar: this land is sealed to mortals.){c['reset']}")
+                await player.send(f"{c['cyan']}(You pass the bar: {'mortals need the ferryman here' if door.get('crossing') else 'this land is sealed to mortals'}.){c['reset']}")
                 is_closed = False
 
             if is_closed:
@@ -5159,6 +5159,10 @@ class CommandHandler:
         if door.get('state') != 'closed':
             await player.send(f"{c['yellow']}The door is already open.{c['reset']}")
             return
+        import rites
+        if rites.is_warded(door) and door.get('locked'):
+            await player.send(f"{c['yellow']}{rites.ward_message(door)}{c['reset']}")
+            return
         max_hp = cls._door_max_hp(door)
         if 'hp' not in door:
             door['hp'] = max_hp
@@ -9354,12 +9358,36 @@ class CommandHandler:
         # Find target
         target = None
         for char in player.room.characters:
-            if char != player and target_name in char.name.lower():
+            if char != player and (target_name in char.name.lower() or player.matches_character(char, target_name)):
                 target = char
                 break
                 
         if not target:
             await player.send(f"You don't see '{target_name}' here.")
+            return
+
+        # coins: "give 5 gold <who>", "give coin <who>" (one gold piece). A toll-keeper takes it
+        # as the fare (rites.py); anyone else simply gets the gold.
+        words = [w.lower() for w in args[:-1]]
+        if words and words[-1] in ('gold', 'coin', 'coins') and (len(words) == 1 or words[0].isdigit()):
+            amount = int(words[0]) if words[0].isdigit() else 1
+            if amount <= 0:
+                await player.send("Give how much?")
+                return
+            import rites
+            if rites.toll_for(target):
+                await rites.pay(player, target, gold=amount)
+                return
+            if (player.gold or 0) < amount:
+                await player.send("You don't have that much gold.")
+                return
+            player.gold -= amount
+            target.gold = (getattr(target, 'gold', 0) or 0) + amount
+            what = 'a gold coin' if amount == 1 else f'{amount} gold coins'
+            await player.send(f"You give {what} to {target.name}.")
+            if hasattr(target, 'send'):
+                await target.send(f"{player.name} gives you {what}.")
+            await player.room.send_to_room(f"{player.name} gives some gold to {target.name}.", exclude=[player, target])
             return
             
         # Find item
@@ -9379,6 +9407,25 @@ class CommandHandler:
                 
         await player.send(f"You don't have '{item_name}'.")
     
+    @classmethod
+    async def cmd_pay(cls, player: 'Player', args: List[str]):
+        """Pay a ferryman or toll-keeper their fare: pay <who> (rites.py)."""
+        import rites
+        if not player.room:
+            return
+        target = None
+        name = ' '.join(args).lower()
+        for char in player.room.characters:
+            if char is player:
+                continue
+            if rites.toll_for(char) and (not name or name in char.name.lower() or player.matches_character(char, name)):
+                target = char
+                break
+        if target is None:
+            await player.send("There is no one here to pay." if not name else f"You don't see '{name}' here to pay.")
+            return
+        await rites.pay(player, target)
+
     # ==================== COMMUNICATION ====================
 
     @classmethod
@@ -11779,6 +11826,11 @@ class CommandHandler:
 
         doors.apply(player.room, direction, locked=False)
         await player.send(f"{c['green']}*Click* You unlock the {name} {direction}.{c['reset']}")
+        # a gate's key (rites.py) does its one work and crumbles in the lock
+        import rites
+        used = rites.crumble_key(player, door)
+        if used:
+            await player.send(f"{c['yellow']}{used[:1].upper() + used[1:]} crumbles to dust in the lock.{c['reset']}")
 
     @classmethod
     async def cmd_pick(cls, player: 'Player', args: List[str]):

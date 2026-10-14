@@ -163,5 +163,36 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 642400,
+   "rooms": [
+    15313,
+    15317
+   ],
+   "total": 5,
+   "why": "a fat grave rat"
+  },
+  {
+   "vnum": 642401,
+   "rooms": [
+    15315,
+    15332,
+    15342
+   ],
+   "total": 7,
+   "why": "a clattering tomb skeleton"
+  },
+  {
+   "vnum": 642402,
+   "rooms": [
+    15345,
+    15347
+   ],
+   "total": 4,
+   "why": "a mouldering zombie"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 7 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

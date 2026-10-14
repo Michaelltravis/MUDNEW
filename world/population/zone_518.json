@@ -161,5 +161,40 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 651800,
+   "rooms": [
+    4205,
+    4237,
+    4238,
+    4242
+   ],
+   "total": 8,
+   "why": "a shambling corpse-miner"
+  },
+  {
+   "vnum": 651801,
+   "rooms": [
+    4218,
+    4219,
+    4220,
+    4249
+   ],
+   "total": 7,
+   "why": "a giant cave rat"
+  },
+  {
+   "vnum": 651802,
+   "rooms": [
+    4207,
+    4209,
+    4210
+   ],
+   "total": 5,
+   "why": "a black-robed cultist"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 11 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }
