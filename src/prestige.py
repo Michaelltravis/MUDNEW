@@ -76,7 +76,7 @@ PRESTIGE_CLASSES = {
             'unbreakable': {
                 'name': 'Unbreakable',
                 'description': 'For 8 seconds, you cannot drop below 1 HP. Afterward, heal 25% of max HP.',
-                'cooldown': 180,
+                'cooldown': 120,
                 'mana_cost': 0,
                 'type': 'buff',
             },
@@ -160,7 +160,7 @@ PRESTIGE_CLASSES = {
             'temporal_shift': {
                 'name': 'Temporal Shift',
                 'description': 'Bend time: reset all spell cooldowns and gain 50% mana back. For 10 seconds, spells cost no mana.',
-                'cooldown': 180,
+                'cooldown': 120,
                 'mana_cost': 0,
                 'type': 'buff',
             },
@@ -213,7 +213,7 @@ PRESTIGE_CLASSES = {
             'divine_resurrection': {
                 'name': 'Divine Resurrection',
                 'description': 'Resurrect a fallen group member at 50% HP/mana, or fully heal a living ally and remove all debuffs.',
-                'cooldown': 180,
+                'cooldown': 120,
                 'mana_cost': 100,
                 'type': 'heal',
             },
@@ -227,7 +227,7 @@ PRESTIGE_CLASSES = {
             'grace_of_the_divine': {
                 'name': 'Grace of the Divine',
                 'description': 'For 15 seconds, all your heals are doubled and cost 50% less mana. Overhealing creates a damage shield.',
-                'cooldown': 150,
+                'cooldown': 120,
                 'mana_cost': 60,
                 'type': 'buff',
             },
@@ -376,7 +376,7 @@ PRESTIGE_CLASSES = {
             'martyrdom': {
                 'name': 'Martyrdom',
                 'description': 'Absorb all damage dealt to group members for 8 seconds. You take 40% reduced damage during this. Cannot die during martyrdom.',
-                'cooldown': 180,
+                'cooldown': 120,
                 'mana_cost': 80,
                 'type': 'buff',
             },
@@ -407,7 +407,7 @@ PRESTIGE_CLASSES = {
             'dark_ascension': {
                 'name': 'Dark Ascension',
                 'description': 'Transform into a lich form for 25 seconds. +40% spell damage, immune to fear/stun, and all kills generate 2 soul shards.',
-                'cooldown': 180,
+                'cooldown': 120,
                 'mana_cost': 80,
                 'type': 'buff',
             },
@@ -527,7 +527,7 @@ PRESTIGE_CLASSES = {
             'standing_ovation': {
                 'name': 'Standing Ovation',
                 'description': 'End your current song with a masterful finale. Heal all group members for 30% max HP and grant 10 seconds of +30% all stats.',
-                'cooldown': 150,
+                'cooldown': 120,
                 'mana_cost': 80,
                 'type': 'heal',
             },
@@ -556,7 +556,7 @@ PRESTIGE_CLASSES = {
             'heroic_ballad': {
                 'name': 'Heroic Ballad',
                 'description': 'Sing of the group\'s heroic deeds. For 15 seconds, all group members that drop below 20% HP are instantly healed to 40% HP (once each).',
-                'cooldown': 150,
+                'cooldown': 120,
                 'mana_cost': 70,
                 'type': 'buff',
             },

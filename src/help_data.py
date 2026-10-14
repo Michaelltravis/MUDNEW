@@ -3645,13 +3645,13 @@ HELP_TOPICS = {'auction': {'category': 'command',
      'description': 'Enter a sustained damage mode where all attacks deal increased damage.\n\n'
                     'MECHANICS:\n'
                     '- +15 damage and haste for 40 seconds\n'
-                    '- 3 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Warrior class\n'
                     '- Level 56\n',
      'syntax': 'warpath',
      'level': 56,
-     'cooldown': 180,
+     'cooldown': 120,
  },
  'titans_wrath': {
      'category': 'skill',
@@ -3662,13 +3662,13 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     '- IMMUNE to all damage\n'
                     '- Double damage on all attacks\n'
                     '- Attacks cleave to all enemies\n'
-                    '- 10 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Warrior class\n'
                     '- Level 60\n',
      'syntax': 'titans_wrath',
      'level': 60,
-     'cooldown': 600,
+     'cooldown': 120,
  },
 
  # ----- MAGE LEVEL 31-60 -----
@@ -3680,14 +3680,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     'MECHANICS:\n'
                     '- Haste + hit/damage bonus for whole group\n'
                     '- 40 second duration\n'
-                    '- 5 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Mage class\n'
                     '- Level 38\n',
      'syntax': "cast 'time warp'",
      'level': 38,
      'mana': 120,
-     'cooldown': 300,
+     'cooldown': 120,
  },
  'arcane_explosion': {
      'category': 'spell',
@@ -3751,14 +3751,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     '- MASSIVE AoE damage to all enemies\n'
                     '- Stuns all targets\n'
                     '- Leaves burning ground (DoT)\n'
-                    '- 10 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Mage class\n'
                     '- Level 60\n',
      'syntax': "cast 'meteor storm'",
      'level': 60,
      'mana': 200,
-     'cooldown': 600,
+     'cooldown': 120,
  },
 
  # ----- CLERIC LEVEL 31-60 -----
@@ -3837,14 +3837,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
      'description': 'Channel pure divine serenity, fully restoring a target\'s health.\n\n'
                     'MECHANICS:\n'
                     '- Fully heals one target\n'
-                    '- 3 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Cleric class\n'
                     '- Level 56\n',
      'syntax': "cast 'serenity' <target>",
      'level': 56,
      'mana': 150,
-     'cooldown': 180,
+     'cooldown': 120,
  },
  'divine_intervention': {
      'category': 'spell',
@@ -3855,14 +3855,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     '- Fully heals entire party\n'
                     '- Resurrects any dead party members\n'
                     '- Grants temporary immunity\n'
-                    '- 10 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Cleric class\n'
                     '- Level 60\n',
      'syntax': "cast 'divine intervention'",
      'level': 60,
      'mana': 300,
-     'cooldown': 600,
+     'cooldown': 120,
  },
 
  # ----- THIEF LEVEL 31-60 -----
@@ -3906,13 +3906,13 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     'MECHANICS:\n'
                     '- All physical attacks miss\n'
                     '- 10 second duration\n'
-                    '- 3 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Thief class\n'
                     '- Level 50\n',
      'syntax': 'evasion',
      'level': 50,
-     'cooldown': 180,
+     'cooldown': 120,
  },
  'marked_for_death_thief': {
      'category': 'skill',
@@ -3939,13 +3939,13 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     '- Cannot be detected\n'
                     '- All attacks are critical hits\n'
                     '- 30 second duration\n'
-                    '- 10 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Thief class\n'
                     '- Level 60\n',
      'syntax': 'perfect_crime',
      'level': 60,
-     'cooldown': 600,
+     'cooldown': 120,
  },
 
  # ----- RANGER LEVEL 31-60 -----
@@ -4038,13 +4038,13 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     '- Summons wolf, bear, hawk, cat, and boar\n'
                     '- All pets are in permanent frenzy\n'
                     '- Lasts 30 seconds\n'
-                    '- 10 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Ranger class\n'
                     '- Level 60\n',
      'syntax': 'alpha_pack',
      'level': 60,
-     'cooldown': 600,
+     'cooldown': 120,
  },
 
  # ----- PALADIN LEVEL 31-60 -----
@@ -4126,14 +4126,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     'MECHANICS:\n'
                     '- IMMUNE to all damage\n'
                     '- 16 second duration\n'
-                    '- 5 minute cooldown\n\n'
+                    '- 3 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Paladin class\n'
                     '- Level 56\n',
      'syntax': "cast 'divine shield'",
      'level': 56,
      'mana': 80,
-     'cooldown': 300,
+     'cooldown': 180,
  },
  'crusaders_judgment': {
      'category': 'spell',
@@ -4144,14 +4144,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     '- MASSIVE holy damage to target\n'
                     '- Grants party temporary invulnerability\n'
                     '- Resurrects dead party members\n'
-                    '- 10 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Paladin class\n'
                     '- Level 60\n',
      'syntax': "cast 'crusaders judgment' <target>",
      'level': 60,
      'mana': 250,
-     'cooldown': 600,
+     'cooldown': 120,
  },
 
  # ----- NECROMANCER LEVEL 31-60 -----
@@ -4215,14 +4215,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     'MECHANICS:\n'
                     '- Summons a powerful flying pet\n'
                     '- Lasts 60 seconds\n'
-                    '- 3 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Necromancer class\n'
                     '- Level 50\n',
      'syntax': "cast 'summon gargoyle'",
      'level': 50,
      'mana': 100,
-     'cooldown': 180,
+     'cooldown': 120,
  },
  'soul_harvest': {
      'category': 'spell',
@@ -4249,14 +4249,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     'MECHANICS:\n'
                     '- Raises all corpses in the zone\n'
                     '- Creates massive undead army\n'
-                    '- 10 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Necromancer class\n'
                     '- Level 60\n',
      'syntax': "cast 'apocalypse'",
      'level': 60,
      'mana': 250,
-     'cooldown': 600,
+     'cooldown': 120,
  },
 
  # ----- BARD LEVEL 31-60 -----
@@ -4357,14 +4357,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
                     '- +10 hit/damage\n'
                     '- Haste + 20% damage reduction\n'
                     '- 60 second duration\n'
-                    '- 10 minute cooldown\n\n'
+                    '- 2 minute cooldown\n\n'
                     'REQUIREMENTS:\n'
                     '- Bard class\n'
                     '- Level 60\n',
      'syntax': "cast 'magnum opus'",
      'level': 60,
      'mana': 200,
-     'cooldown': 600,
+     'cooldown': 120,
  },
 
  # ----- ASSASSIN LEVEL 31-60 -----
