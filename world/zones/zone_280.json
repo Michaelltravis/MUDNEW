@@ -332,6 +332,38 @@
     {
      "vnum": 28060,
      "chance": 30
+    },
+    {
+     "vnum": 28061,
+     "chance": 25
+    },
+    {
+     "vnum": 28062,
+     "chance": 25
+    },
+    {
+     "vnum": 28063,
+     "chance": 25
+    },
+    {
+     "vnum": 28064,
+     "chance": 25
+    },
+    {
+     "vnum": 28065,
+     "chance": 25
+    },
+    {
+     "vnum": 28066,
+     "chance": 25
+    },
+    {
+     "vnum": 28067,
+     "chance": 25
+    },
+    {
+     "vnum": 28068,
+     "chance": 25
     }
    ],
    "boss_loot_chance": 100,
@@ -606,6 +638,246 @@
     "magic",
     "glow"
    ]
+  },
+  "28061": {
+   "vnum": 28061,
+   "name": "wildwarden hood",
+   "short_desc": "the Wildwarden's hood",
+   "room_desc": "A deep green hood, smelling of pine, lies here.",
+   "description": "A deep hood of green wool, waxed against the rain, its edge stitched with a running line of leaves.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "head",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "wildwarden_garb"
+  },
+  "28062": {
+   "vnum": 28062,
+   "name": "wildwarden leather jerkin",
+   "short_desc": "the Wildwarden's leather jerkin",
+   "room_desc": "A green-stained leather jerkin lies here.",
+   "description": "Supple leather stained the green of deep woods, quilted at the shoulders where a bowstring rubs.",
+   "item_type": "armor",
+   "weight": 8,
+   "value": 45000,
+   "wear_slot": "body",
+   "armor_class": 11,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 3
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 11,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "wildwarden_garb"
+  },
+  "28063": {
+   "vnum": 28063,
+   "name": "wildwarden leather bracers",
+   "short_desc": "a pair of the Wildwarden's leather bracers",
+   "room_desc": "A pair of tooled leather bracers lies here.",
+   "description": "Bracers of tooled leather; the left one is scored deep by ten thousand bowstrings.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "arms",
+   "armor_class": 4,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 4,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "wildwarden_garb"
+  },
+  "28064": {
+   "vnum": 28064,
+   "name": "wildwarden archer gloves leather",
+   "short_desc": "a pair of the Wildwarden's archer's gloves",
+   "room_desc": "A pair of three-fingered archer's gloves lies here.",
+   "description": "Archer's gloves of soft leather, three fingers covered and the rest bare for the feel of the string.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "hands",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "wildwarden_garb"
+  },
+  "28065": {
+   "vnum": 28065,
+   "name": "wildwarden leather leggings",
+   "short_desc": "a pair of the Wildwarden's leather leggings",
+   "room_desc": "A pair of green leather leggings lies here.",
+   "description": "Leggings of green-stained leather, patched at the knees from long nights lying in wait.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 45000,
+   "wear_slot": "legs",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "wildwarden_garb"
+  },
+  "28066": {
+   "vnum": 28066,
+   "name": "wildwarden soft boots leather",
+   "short_desc": "a pair of the Wildwarden's soft boots",
+   "room_desc": "A pair of soft leather boots lies here.",
+   "description": "Soft boots of deerskin that leave no print a hound could follow.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "feet",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "wildwarden_garb"
+  },
+  "28067": {
+   "vnum": 28067,
+   "name": "wildwarden cloak",
+   "short_desc": "the Wildwarden's cloak",
+   "room_desc": "A mottled green cloak lies here, hard to see against the ground.",
+   "description": "A cloak of mottled green and brown that seems to take the colour of whatever it lies against.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "about",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "nature_resist",
+     "value": 10
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "wildwarden_garb"
+  },
+  "28068": {
+   "vnum": 28068,
+   "name": "wildwarden quiver",
+   "short_desc": "the Wildwarden's quiver",
+   "room_desc": "A quiver of green-fletched arrows lies here.",
+   "description": "A deep quiver of tooled leather, full of arrows fletched with green feathers; it never seems to run empty.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "hold",
+   "armor_class": 0,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 3
+    },
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 0,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "wildwarden_garb"
   }
  },
  "rooms": {

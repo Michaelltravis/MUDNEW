@@ -132,6 +132,22 @@
     {
      "vnum": 24513,
      "chance": 30
+    },
+    {
+     "vnum": 24514,
+     "chance": 25
+    },
+    {
+     "vnum": 24515,
+     "chance": 25
+    },
+    {
+     "vnum": 24516,
+     "chance": 25
+    },
+    {
+     "vnum": 24517,
+     "chance": 25
     }
    ]
   }
@@ -320,6 +336,126 @@
    "type": "armor",
    "min_level": 56,
    "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "nightblade_leathers"
+  },
+  "24514": {
+   "vnum": 24514,
+   "name": "nightblade leather bracers",
+   "short_desc": "a pair of nightblade's leather bracers",
+   "room_desc": "A pair of black leather bracers lies here.",
+   "description": "Bracers of black leather with a slim knife sheathed along the inside of each.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "arms",
+   "armor_class": 4,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 56,
+   "armor": 4,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "nightblade_leathers"
+  },
+  "24515": {
+   "vnum": 24515,
+   "name": "nightblade soft boots",
+   "short_desc": "a pair of nightblade's soft boots",
+   "room_desc": "A pair of soft black boots lies here.",
+   "description": "Boots of black felt that make no sound on stone or stair.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "feet",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 56,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "nightblade_leathers"
+  },
+  "24516": {
+   "vnum": 24516,
+   "name": "nightblade cloak",
+   "short_desc": "a nightblade's cloak",
+   "room_desc": "A black cloak lies here, nearly invisible in shadow.",
+   "description": "A cloak of black wool, short enough to run in, with a deep hood that folds away into the collar.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "about",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "shadow_resist",
+     "value": 10
+    }
+   ],
+   "type": "armor",
+   "min_level": 56,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "nightblade_leathers"
+  },
+  "24517": {
+   "vnum": 24517,
+   "name": "nightblade belt hidden knives",
+   "short_desc": "a nightblade's belt of hidden knives",
+   "room_desc": "A belt of black leather, oddly heavy, lies here.",
+   "description": "A belt of black leather with a dozen throwing knives hidden along its inside edge.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "waist",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 56,
+   "armor": 3,
    "flags": [
     "magic",
     "glow"

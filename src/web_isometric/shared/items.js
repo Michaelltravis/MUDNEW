@@ -350,6 +350,12 @@
     archmage_vestments:   { pal: { a: '#4058b8', b: '#1a2050', shine: 0.45 }, accent: '#cfe0ff', emblem: 'chaosstar' },
     lichlord_shroud:      { pal: { a: '#46464f', b: '#101016', shine: 0.3 }, accent: '#7cf0c0', emblem: 'skull' },
     nightblade_leathers:  { pal: { a: '#403238', b: '#141014', shine: 0.3 }, accent: '#d03040', emblem: 'claw' },
+    warlords_battleplate: { pal: { a: '#8a2a1e', b: '#3a1210', shine: 0.4 }, accent: '#e8a040', emblem: 'horsemen' },
+    dawnward_aegis:       { pal: { a: '#f2ead2', b: '#b89a4a', shine: 0.4 }, accent: '#ffe08a', emblem: 'ankh' },
+    radiant_choir:        { pal: { a: '#e8eef8', b: '#6a88c0', shine: 0.4 }, accent: '#fff2a0', emblem: 'ankh' },
+    wildwarden_garb:      { pal: { a: '#4f7a3a', b: '#203a18', shine: 0.4 }, accent: '#c8e070', emblem: 'leaf' },
+    black_lotus_veil:     { pal: { a: '#3a2240', b: '#120814', shine: 0.4 }, accent: '#a050d0', emblem: 'spider' },
+    last_song_raiment:    { pal: { a: '#b0303a', b: '#4a1018', shine: 0.4 }, accent: '#f0c040', emblem: 'ankh' },
   };
 
   function shapeFor(info) {

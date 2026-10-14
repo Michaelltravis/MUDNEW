@@ -3378,6 +3378,22 @@
     {
      "vnum": 22004,
      "chance": 20
+    },
+    {
+     "vnum": 22114,
+     "chance": 25
+    },
+    {
+     "vnum": 22115,
+     "chance": 25
+    },
+    {
+     "vnum": 22116,
+     "chance": 25
+    },
+    {
+     "vnum": 22117,
+     "chance": 25
     }
    ],
    "boss_loot_chance": 100,
@@ -3587,6 +3603,22 @@
     {
      "vnum": 22097,
      "chance": 15
+    },
+    {
+     "vnum": 22110,
+     "chance": 25
+    },
+    {
+     "vnum": 22111,
+     "chance": 25
+    },
+    {
+     "vnum": 22112,
+     "chance": 25
+    },
+    {
+     "vnum": 22113,
+     "chance": 25
     }
    ],
    "boss_loot_chance": 100,
@@ -3784,6 +3816,38 @@
     {
      "vnum": 22102,
      "chance": 15
+    },
+    {
+     "vnum": 22120,
+     "chance": 25
+    },
+    {
+     "vnum": 22121,
+     "chance": 25
+    },
+    {
+     "vnum": 22122,
+     "chance": 25
+    },
+    {
+     "vnum": 22123,
+     "chance": 25
+    },
+    {
+     "vnum": 22124,
+     "chance": 25
+    },
+    {
+     "vnum": 22125,
+     "chance": 25
+    },
+    {
+     "vnum": 22126,
+     "chance": 25
+    },
+    {
+     "vnum": 22127,
+     "chance": 25
     }
    ],
    "boss_loot_chance": 100,
@@ -4813,6 +4877,486 @@
    "type": "armor",
    "min_level": 50,
    "armor": 15
+  },
+  "22110": {
+   "vnum": 22110,
+   "name": "warlord bearskin war-helm",
+   "short_desc": "the Warlord's bearskin war-helm",
+   "room_desc": "A war-helm made from a great bear's head lies here, its teeth still bared.",
+   "description": "The whole head of a great cave bear, cured hard and lined with an iron cap, its jaws framing the wearer's face. Whoever killed it did so alone.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 45000,
+   "wear_slot": "head",
+   "armor_class": 10,
+   "affects": [
+    {
+     "type": "str",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 3
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 10,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "warlords_battleplate"
+  },
+  "22111": {
+   "vnum": 22111,
+   "name": "warlord blackened plate cuirass",
+   "short_desc": "the Warlord's blackened plate cuirass",
+   "room_desc": "A dented cuirass of blackened plate lies here.",
+   "description": "Heavy plates of blackened steel over a coat of red leather, every dent left unhammered as a tally of the blows it turned.",
+   "item_type": "armor",
+   "weight": 30,
+   "value": 45000,
+   "wear_slot": "body",
+   "armor_class": 16,
+   "affects": [
+    {
+     "type": "str",
+     "value": 3
+    },
+    {
+     "type": "con",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 16,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "warlords_battleplate"
+  },
+  "22112": {
+   "vnum": 22112,
+   "name": "warlord blackened steel vambraces",
+   "short_desc": "a pair of the Warlord's blackened steel vambraces",
+   "room_desc": "A pair of black steel vambraces lies here.",
+   "description": "Vambraces of blackened steel, scarred along the outer edge where they have caught a hundred blades.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 45000,
+   "wear_slot": "arms",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "str",
+     "value": 2
+    },
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 6,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "warlords_battleplate"
+  },
+  "22113": {
+   "vnum": 22113,
+   "name": "warlord blackened steel gauntlets",
+   "short_desc": "a pair of the Warlord's blackened steel gauntlets",
+   "room_desc": "A pair of heavy black gauntlets lies here.",
+   "description": "Gauntlets of blackened steel, the knuckles studded, the palms worn smooth by the grip of a greatsword.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 45000,
+   "wear_slot": "hands",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 3
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 6,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "warlords_battleplate"
+  },
+  "22114": {
+   "vnum": 22114,
+   "name": "warlord blackened steel greaves",
+   "short_desc": "a pair of the Warlord's blackened steel greaves",
+   "room_desc": "A pair of black steel greaves lies here.",
+   "description": "Greaves of blackened steel that ring when struck, buckled over legs of red leather.",
+   "item_type": "armor",
+   "weight": 10,
+   "value": 45000,
+   "wear_slot": "legs",
+   "armor_class": 8,
+   "affects": [
+    {
+     "type": "str",
+     "value": 2
+    },
+    {
+     "type": "max_hp",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 8,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "warlords_battleplate"
+  },
+  "22115": {
+   "vnum": 22115,
+   "name": "warlord blackened steel sabatons",
+   "short_desc": "a pair of the Warlord's blackened steel sabatons",
+   "room_desc": "A pair of black steel sabatons lies here.",
+   "description": "Sabatons of blackened steel, toes capped and soles nailed for the mud of a battlefield.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 45000,
+   "wear_slot": "feet",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "con",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "warlords_battleplate"
+  },
+  "22116": {
+   "vnum": 22116,
+   "name": "warlord wolf-pelt cloak fur",
+   "short_desc": "the Warlord's wolf-pelt cloak",
+   "room_desc": "A heavy cloak of grey wolf pelts lies here.",
+   "description": "Three great wolf pelts stitched into one cloak, the heads still on, their jaws clasped at the wearer's shoulders.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 45000,
+   "wear_slot": "about",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "con",
+     "value": 2
+    },
+    {
+     "type": "max_hp",
+     "value": 40
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 6,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "warlords_battleplate"
+  },
+  "22117": {
+   "vnum": 22117,
+   "name": "warlord war-belt",
+   "short_desc": "the Warlord's war-belt",
+   "room_desc": "A wide belt of red leather, hung with trophies, lies here.",
+   "description": "A wide war-belt of red leather and iron plates, hung with the teeth and rings of beaten champions.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 45000,
+   "wear_slot": "waist",
+   "armor_class": 4,
+   "affects": [
+    {
+     "type": "str",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 4,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "warlords_battleplate"
+  },
+  "22120": {
+   "vnum": 22120,
+   "name": "black lotus cowl hood",
+   "short_desc": "the Black Lotus cowl",
+   "room_desc": "A deep cowl of purple-black silk lies here.",
+   "description": "A deep cowl of silk the colour of a bruise, a black lotus embroidered at the brow, worn by those Death sends ahead of him.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "head",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "black_lotus_veil"
+  },
+  "22121": {
+   "vnum": 22121,
+   "name": "black lotus leather armor",
+   "short_desc": "the Black Lotus leather armor",
+   "room_desc": "A suit of black leather, oiled silent, lies here.",
+   "description": "Black leather oiled until it makes no sound at all, with sheaths sewn inside the lining for six knives.",
+   "item_type": "armor",
+   "weight": 7,
+   "value": 45000,
+   "wear_slot": "body",
+   "armor_class": 11,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 3
+    },
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 11,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "black_lotus_veil"
+  },
+  "22122": {
+   "vnum": 22122,
+   "name": "black lotus wrist-wraps",
+   "short_desc": "a pair of the Black Lotus wrist-wraps",
+   "room_desc": "A pair of black silk wrist-wraps lies here.",
+   "description": "Long wraps of black silk wound from wrist to elbow, a garrotte wire hidden in each.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "arms",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "black_lotus_veil"
+  },
+  "22123": {
+   "vnum": 22123,
+   "name": "black lotus gloves leather",
+   "short_desc": "a pair of the Black Lotus gloves",
+   "room_desc": "A pair of thin black gloves lies here.",
+   "description": "Gloves of thin black leather, the fingertips stained with something that is not ink.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "hands",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "black_lotus_veil"
+  },
+  "22124": {
+   "vnum": 22124,
+   "name": "black lotus leather breeches",
+   "short_desc": "a pair of the Black Lotus leather breeches",
+   "room_desc": "A pair of black leather breeches lies here.",
+   "description": "Breeches of black leather, close-fitting and silent.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 45000,
+   "wear_slot": "legs",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "black_lotus_veil"
+  },
+  "22125": {
+   "vnum": 22125,
+   "name": "black lotus soft boots",
+   "short_desc": "a pair of the Black Lotus soft boots",
+   "room_desc": "A pair of soft black boots lies here.",
+   "description": "Boots of black felt over leather soles, made to cross a marble floor without a whisper.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "feet",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "black_lotus_veil"
+  },
+  "22126": {
+   "vnum": 22126,
+   "name": "black lotus cloak",
+   "short_desc": "the Black Lotus cloak",
+   "room_desc": "A purple-black cloak lies here like a pool of shadow.",
+   "description": "A cloak of purple-black silk that drinks the light around it; in a dim room the eye slides off it.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "about",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "shadow_resist",
+     "value": 10
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "black_lotus_veil"
+  },
+  "22127": {
+   "vnum": 22127,
+   "name": "black lotus poisoner belt",
+   "short_desc": "the Black Lotus poisoner's belt",
+   "room_desc": "A belt of small black vials lies here.",
+   "description": "A belt of black leather lined with tiny stoppered vials, each one marked with a lotus petal.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "waist",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    },
+    {
+     "type": "poison_resist",
+     "value": 10
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "black_lotus_veil"
   }
  },
  "lifespan": 30,
