@@ -7,7 +7,7 @@ import { Batcher, trs } from './assets.js';
 import { cutout } from './cutout.js';
 import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard } from './terrain-town.js';
 import { castleWalls, castleYard, zoneGates } from './terrain-castle.js';
-import { underground, dressHall, outdoorEdge, outdoorDress, mountainCliffs, sunkenRuins, webDress, RUIN_RE, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
+import { underground, dressHall, outdoorEdge, outdoorDress, mountainCliffs, sunkenRuins, webDress, tinted, RUIN_RE, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
 
 export const ROOM_W = 24, ROOM_H = 15;
 const FLOOR = 0, BLOCK = 1, WATER = 4;
@@ -16,7 +16,7 @@ const INDOOR = new Set(['inside', 'dungeon', 'cave', 'mine', 'crypt', 'sewer']);
 export const isIndoor = theme => INDOOR.has(theme);
 // stone floor and walls: interiors and dungeons, and town streets (walled, open sky)
 // (caves and mines are rock, terrain-looks.js)
-const PAVED = new Set(['inside', 'dungeon', 'crypt', 'sewer', 'city', 'castle']);
+const PAVED = new Set(['inside', 'dungeon', 'crypt', 'sewer', 'city', 'castle', 'necropolis']);
 const CARD = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
 
 // ---- deterministic noise (world-space, so neighbouring rooms join seamlessly) ----
@@ -92,6 +92,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
   const group = new THREE.Group();
   group.name = `room_${layout.vnum}`;
   const torches = [];
+  const ghostfires = [];    // a dead city's braziers: cold green flames, no warm light
   const b = new Batcher();
   const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
   const D = kits.dungeon, N = kits.nature;
@@ -103,7 +104,8 @@ export function buildRoom(layout, ox, oz, kits, room) {
     waterSurface(layout, ox, oz, group);
     underground(ctx(), theme);
   } else if (PAVED.has(theme)) {
-    const town = theme === 'city', castle = theme === 'castle';
+    // (a dead city is a town's streets in black stone, terrain-town.js)
+    const town = theme === 'city' || theme === 'necropolis', castle = theme === 'castle';
     const kind = theme === 'inside' ? interiorKind(layout) : null;
     // ---- floor: KayKit stone tiles at 1 m ----
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
@@ -111,11 +113,14 @@ export function buildRoom(layout, ox, oz, kits, room) {
       if (at(x, y) === BLOCK && (x === 0 || y === 0 || x === W - 1 || y === H - 1)) continue;
       if (at(x, y) === WATER) continue;   // a sewer's channel (terrain-looks.js draws its water)
       const r = rng();
-      const key = town ? (r < 0.1 ? 'floor_tile_small_weeds_A' : 'floor_tile_small_broken_A')
+      const key = theme === 'necropolis' ? (r < 0.5 ? 'floor_tile_small_broken_A' : 'floor_tile_small')
+        : town ? (r < 0.1 ? 'floor_tile_small_weeds_A' : 'floor_tile_small_broken_A')
         : theme === 'sewer' ? (r < 0.35 ? 'floor_tile_small_weeds_A' : r < 0.55 ? 'floor_tile_small_broken_A' : 'floor_tile_small')
         : (kind && interiorFloorKey(kind, r, layout.vnum))
         || (r < 0.07 ? 'floor_tile_small_broken_A' : r < 0.13 ? 'floor_tile_small_weeds_A' : 'floor_tile_small');
-      b.add(D.get(key), trs(ox + x + 0.5, -0.05, oz + y + 0.5, Math.floor(rng() * 4) * Math.PI / 2, 0.5, 0.5, 0.5), { shadow: false });
+      // a dead city's paving is dark and grave-cold
+      const tile = theme === 'necropolis' ? tinted(D.get(key), 0x6a6872, 'necro') : D.get(key);
+      b.add(tile, trs(ox + x + 0.5, -0.05, oz + y + 0.5, Math.floor(rng() * 4) * Math.PI / 2, 0.5, 0.5, 0.5), { shadow: false });
     }
     // ---- walls: border runs as stretched KayKit wall pieces ----
     const wall = asOccluder(D.get('wall'));
@@ -160,6 +165,15 @@ export function buildRoom(layout, ox, oz, kits, room) {
     }
     // ---- decorative props (walk-through): small things only ----
     for (const p of (kind && kits.furniture) || (town && kits.town) || dressed ? [] : layout.props || []) {
+      if (theme === 'necropolis') {
+        // a brazier of cold green ghost-fire, or bones
+        const G = kits.graveyard;
+        if (rng() < 0.45) {
+          b.add(D.get('torch_lit'), trs(ox + p.x + 0.5, 0.4, oz + p.y + 0.5, 0, 1.6), { shadow: false });
+          ghostfires.push(new THREE.Vector3(ox + p.x + 0.5, 1.6, oz + p.y + 0.5));
+        } else if (G) b.add(G.get(['bone_A', 'bone_B', 'bone_C', 'skull', 'candle_melted'][Math.floor(rng() * 5)]), trs(ox + p.x + 0.5, 0, oz + p.y + 0.5, rng() * 6.28, 0.9), { shadow: false });
+        continue;
+      }
       if (town) {
         // a standing torch lights the street
         if (rng() < 0.5) {
@@ -280,6 +294,12 @@ export function buildRoom(layout, ox, oz, kits, room) {
   for (const t of torches) {
     const f = new THREE.Mesh(FLAME_GEO, FLAME_MAT);
     f.position.copy(t).add(new THREE.Vector3(0, -0.05, -0.12));
+    group.add(f);
+  }
+  for (const t of ghostfires) {
+    const f = new THREE.Mesh(FLAME_GEO, GHOST_FLAME_MAT);
+    f.position.copy(t).add(new THREE.Vector3(0, -0.05, -0.12));
+    f.scale.setScalar(1.4);
     group.add(f);
   }
   return { group, torches, layout, ox, oz, doors, owned };
@@ -708,3 +728,4 @@ const WATER_GEO = new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2);
 const WATER_MAT = new THREE.MeshStandardMaterial({ color: 0x2f6f86, roughness: 0.12, metalness: 0.2, transparent: true, opacity: 0.82 });
 const FLAME_GEO = new THREE.SphereGeometry(0.11, 10, 8);
 const FLAME_MAT = new THREE.MeshBasicMaterial({ color: new THREE.Color(6, 3.2, 1.1) });
+const GHOST_FLAME_MAT = new THREE.MeshBasicMaterial({ color: new THREE.Color(1.2, 5, 2.4) });

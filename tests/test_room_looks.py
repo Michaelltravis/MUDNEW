@@ -67,6 +67,8 @@ async def main():
     check(rooms[5300].look == 'desert', 'The Great Eastern Desert is desert (once typed field)')
     check(look_of('The Castle Yard') not in rl.UNDERGROUND, "a castle's yard is not underground")
     check(look_of('Deeper and Deeper') == 'cave', "the Pale Man's caverns are caves throughout")
+    # dead Morkai (owner: "end game area and themed dark, undead, skeletons, aberrations")
+    check(rooms[13832].look == 'necropolis' and rooms[13841].look == 'crypt', "Morkai's streets are a dead city, its halls crypts")
     taverns = [r for r in rooms.values() if r.sector_type == 'inside' and 'tavern' in r.name.lower()
                and not r.name.lower().startswith(('below', 'under', 'beneath'))]   # a mine under a tavern is a mine
     check(taverns and all(r.look not in rl.UNDERGROUND for r in taverns), 'no tavern turns into a cave')

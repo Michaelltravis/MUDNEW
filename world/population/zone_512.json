@@ -113,40 +113,80 @@
   },
   "651213": {
    "helpers": {
-    "group": "z512_humanoid",
+    "group": "z512_undead",
     "rooms": 2,
     "count": 2,
-    "shout": "A shout goes up, and they come running!"
+    "shout": "A cold wail rises, and the dead of Morkai answer!"
    },
-   "why": "an orc blackguard"
+   "why": "a death knight of Morkai",
+   "rank": "elite"
   },
   "651214": {
    "helpers": {
-    "group": "z512_monster",
+    "group": "z512_undead",
     "rooms": 2,
     "count": 2,
-    "shout": "A roar echoes, and more of them come!"
+    "shout": "A cold wail rises, and the dead of Morkai answer!"
    },
-   "why": "a hulking cave troll"
+   "why": "a rotting orc ghoul"
   },
   "651215": {
    "helpers": {
-    "group": "z512_humanoid",
+    "group": "z512_undead",
     "rooms": 2,
     "count": 2,
-    "shout": "A shout goes up, and they come running!"
+    "shout": "A cold wail rises, and the dead of Morkai answer!"
    },
-   "why": "Vrakk the Red-Eyed, lieutenant of Morkai"
+   "why": "Vrakk the Hollow-Eyed, death knight of the spire",
+   "rank": "sub-boss"
   },
   "651216": {
-   "helpers": {
-    "group": "z512_humanoid",
-    "rooms": 2,
-    "count": 2,
-    "shout": "A shout goes up, and they come running!"
-   },
-   "why": "Gorbash Skullcleaver, the orc war-chief",
-   "rank": "elite"
+   "rank": "boss",
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "boss"
+   ],
+   "why": "Gorbash the Bone King, lich-lord of dead Morkai",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Gorbash the Bone King rises from the high seat, and every bone in Morkai stirs!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Grave Cleave",
+      "telegraph": "Gorbash the Bone King lifts his skull-faced maul for a sweeping blow!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "4d10+22",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Bone Spike",
+      "telegraph": "Gorbash the Bone King points at you, and the floor splits beneath your feet!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "4d10+18",
+      "dodge": true
+     },
+     {
+      "name": "Soul Drain",
+      "telegraph": "Gorbash the Bone King begins to draw the souls out of the living!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "5d10+26",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
   },
   "651218": {
    "helpers": {
@@ -241,6 +281,71 @@
      }
     ]
    }
+  },
+  "651212": {
+   "helpers": {
+    "group": "z512_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead of Morkai answer!"
+   },
+   "why": "a skeletal orc warrior"
+  },
+  "651224": {
+   "helpers": {
+    "group": "z512_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead of Morkai answer!"
+   },
+   "why": "a skeletal orc archer"
+  },
+  "651225": {
+   "helpers": {
+    "group": "z512_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead of Morkai answer!"
+   },
+   "why": "an orc bone-shaman"
+  },
+  "651226": {
+   "helpers": {
+    "group": "z512_undead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A cold wail rises, and the dead of Morkai answer!"
+   },
+   "why": "a soul wraith"
+  },
+  "651227": {
+   "helpers": {
+    "group": "z512_aberration",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A wet chittering rises, and more of them come crawling!"
+   },
+   "why": "an eye tyrant",
+   "rank": "elite"
+  },
+  "651228": {
+   "helpers": {
+    "group": "z512_aberration",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A wet chittering rises, and more of them come crawling!"
+   },
+   "why": "a mind flayer",
+   "rank": "elite"
+  },
+  "651229": {
+   "helpers": {
+    "group": "z512_aberration",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A wet chittering rises, and more of them come crawling!"
+   },
+   "why": "a tentacled horror"
   }
  },
  "bosses": [
@@ -274,6 +379,141 @@
      "why": "step out"
     }
    ]
+  },
+  {
+   "vnum": 651216,
+   "room": 13841,
+   "why": "Gorbash the Bone King on the high seat of dead Morkai",
+   "mechanics": [
+    {
+     "type": "gloom",
+     "max": 0.8,
+     "shout": "The green fires of Morkai gutter and die as the Bone King rises...",
+     "why": "darkness"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "651212": 2,
+      "651213": 1
+     },
+     "shout": "Gorbash raises his maul, and the dead of Morkai come to their king!",
+     "why": "his dead"
+    },
+    {
+     "type": "plague_pools",
+     "label": "Grave-chill",
+     "school": "necrotic",
+     "every": 9,
+     "radius": 2.5,
+     "last": 10,
+     "pct": 0.05,
+     "why": "step out"
+    }
+   ]
+  }
+ ],
+ "spawns": [
+  {
+   "vnum": 651212,
+   "rooms": [
+    13832,
+    13833,
+    13836,
+    13842,
+    13845,
+    13894,
+    13895,
+    13897
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651213,
+   "rooms": [
+    13831,
+    13843,
+    13847
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651214,
+   "rooms": [
+    13833,
+    13835,
+    13846,
+    13893,
+    13895,
+    13897
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651224,
+   "rooms": [
+    13836,
+    13837,
+    13838
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651225,
+   "rooms": [
+    13885,
+    13888,
+    13891
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651226,
+   "rooms": [
+    13835,
+    13844,
+    13892,
+    13896
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651227,
+   "rooms": [
+    13886,
+    13891
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651228,
+   "rooms": [
+    13888,
+    13899
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651229,
+   "rooms": [
+    13842,
+    13892,
+    13896
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
   }
  ]
 }

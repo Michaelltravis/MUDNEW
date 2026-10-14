@@ -7466,7 +7466,13 @@
    },
    "description": "The tunnel here is a low square bore, its walls hacked by pick and\nchisel and shored at intervals with blackened timbers. A stair of rough-\ncut steps climbs up into the dark toward an old portal room. Iron rings\nare set in the rock to hang lanterns, though only one still holds a cold\nstub of tallow. The passage runs south from the foot of the steps.",
    "look": "mine",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651210,
+     "max": 1
+    }
+   ]
   },
   "13678": {
    "vnum": 13678,
@@ -7779,13 +7785,7 @@
     }
    },
    "description": "A long hallway of black-veined stone runs through the heart of the\ntemple, lit by iron braziers burning a sullen red. Heavy doors stand\neast and west, each marked with a clawed sigil, and an archway south\nopens upon the sanctuary where incense hangs thick in the air. The\nhallway goes on north into deeper gloom. Your footsteps ring on\nflagstones worn into shallow dips.",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651210,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13688": {
    "vnum": 13688,
@@ -7829,13 +7829,7 @@
     }
    },
    "description": "Rows of straw pallets lie crowded along the walls of this long low room,\neach with a folded blanket and a small clay lamp. A worn drill-board\nhangs near the door, scored with chalked lessons in a crooked orcish\nscript. The room smells of tallow, sweat and cold stone. The only door\nopens east onto the temple hallway.",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651212,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13690": {
    "vnum": 13690,
@@ -7903,13 +7897,7 @@
    "description": "Tall pillars carved as screaming horned faces hold up the sanctuary's\nvaulted roof, and the air is heavy with bitter incense. A broad altar of\nblack basalt squats in the middle of the floor, its surface stained by\nthe offerings of many years. A door in the far wall leads south into the\ninner sanctum, while the hallway lies back north. A red glow pulses from\niron bowls set high in the walls.",
    "extra_descs": {
     "altar basalt": "The altar is a single block of black basalt, its top grooved with\nchannels that run to a stained basin at one corner. Old offerings have\nleft a dark crust in every groove."
-   },
-   "mob_resets": [
-    {
-     "vnum": 651212,
-     "max": 1
-    }
-   ]
+   }
   },
   "13693": {
    "vnum": 13693,
@@ -8158,7 +8146,13 @@
    },
    "description": "A crossing where the tunnel splits three ways beneath a cracked roof.\nGrit sifts down constantly. The floor is paved with flat stones in one\npatch, as if someone once began to make a road and gave up. Passages\nlead north, south and west.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651209,
+     "max": 1
+    }
+   ]
   },
   "13702": {
    "vnum": 13702,
@@ -8185,7 +8179,7 @@
    "extra_descs": {},
    "mob_resets": [
     {
-     "vnum": 651209,
+     "vnum": 651208,
      "max": 1
     }
    ]
@@ -8264,13 +8258,7 @@
    },
    "description": "A bend where the tunnel climbs a little way from the east toward the\nnorth. The roof drips steadily on a flat stone. Someone has stacked a\ncairn of small pebbles by the wall as a marker. A rancid reek drifts\ndown from the passage ahead.",
    "look": "cave",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651208,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13706": {
    "vnum": 13706,
@@ -8686,7 +8674,13 @@
    },
    "description": "Another meeting of tunnels, where the walls are scrawled with crude\npictures of tusked heads in charcoal. The roof is high and flat. A well-\ntrodden path leads west, and a narrower passage goes north and south.\nSmoke stains the ceiling in a great dark fan.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651208,
+     "max": 1
+    }
+   ]
   },
   "13723": {
    "vnum": 13723,
@@ -8819,13 +8813,7 @@
     }
    },
    "description": "The hallway ends in a three-way meeting, where the squared stone gives\nway to rough tunnel. A pair of broken pillars stand to each side of the\nopening east, and the passage west sags into a bend. A scrap of faded\ngreen cloth is nailed to the wall, a forgotten banner. The hall runs\nsouth.",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651208,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13728": {
    "vnum": 13728,
@@ -8877,7 +8865,17 @@
    "description": "Faded murals of marching figures cover the walls of the hallway here,\nworn to ghosts by time and soot. Their hands are raised as though in\ngreeting or in surrender. A film of dust lies thick over the floor. The\nhall continues north, and returns south.",
    "extra_descs": {
     "murals figures": "The marching figures were once painted in bright pigment, but only their\noutlines survive. At their head one figure wears a crown, and every\norcish hand has scratched out its face."
-   }
+   },
+   "mob_resets": [
+    {
+     "vnum": 651209,
+     "max": 1
+    },
+    {
+     "vnum": 651210,
+     "max": 1
+    }
+   ]
   },
   "13730": {
    "vnum": 13730,
@@ -8927,7 +8925,13 @@
     }
    },
    "description": "A hallway cut square and true from the rock by some skilled hand, far\nfiner than the tunnels around it. The walls are smooth, though scored\nwith the claw marks of later visitors. Doorless alcoves stand empty at\nintervals. It runs north and south, and a faint chill breathes along it.",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651208,
+     "max": 1
+    }
+   ]
   },
   "13732": {
    "vnum": 13732,
@@ -8953,13 +8957,7 @@
    },
    "description": "A cavern of modest size, its roof a flat ceiling pitted with holes like\na sponge. Pale mushrooms grow in rings across the floor. The air feels\nheavy and still. A tunnel goes east to a crossing, and a squared hallway\ncut by tools runs north.",
    "look": "cave",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651210,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13733": {
    "vnum": 13733,
@@ -9039,13 +9037,7 @@
    },
    "description": "The tunnel slopes downward here, and the rock changes from grey to a\nrust-red banded stone. Scrapes in the walls show where heavy loads were\ndragged. A smell of damp iron fills the air. The tunnel runs north and\nsouth.",
    "look": "cave",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651209,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13736": {
    "vnum": 13736,
@@ -9161,13 +9153,7 @@
    },
    "description": "The tunnel slopes gently and the air grows moist and cold, for a lake\nlies close ahead to the north. The floor is wet pebble and silt, ribbed\nby old high-water lines. Hooks of iron are hammered into the wall, from\nwhich a net once hung. The way back south leads to a junction of\ntunnels.",
    "look": "cave",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651208,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13740": {
    "vnum": 13740,
@@ -9217,7 +9203,13 @@
    },
    "description": "A round chamber with a ragged hole in the roof through which a rope of\nknotted hide hangs. The floor is a mess of rubble and dried droppings\nfallen from above. Scratches on the walls mark the reach of those who\nhave climbed. The way out is south, and the hole leads up to dusty\ntunnels.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651208,
+     "max": 1
+    }
+   ]
   },
   "13742": {
    "vnum": 13742,
@@ -9429,7 +9421,13 @@
    },
    "description": "A straight, narrow gut of tunnel runs north and south here between walls\nthat sweat with damp. Old torch smoke has blackened the ceiling in long\nstreaks, and a spent brand lies in a niche. The footing is treacherous\nwith loose gravel. Somewhere ahead, running water mutters in the dark.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651210,
+     "max": 1
+    }
+   ]
   },
   "13751": {
    "vnum": 13751,
@@ -9453,7 +9451,13 @@
    },
    "description": "A sharp elbow of the tunnel, where the passage swings in from the west\ntoward a longer run north. Orc claws have scored crude arrows and\nslashes into the rock, marking some claim or warning. The floor is\nchurned to mud by countless iron-shod feet. A sour animal reek hangs in\nthe air.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651209,
+     "max": 1
+    }
+   ]
   },
   "13752": {
    "vnum": 13752,
@@ -9505,7 +9509,13 @@
    },
    "description": "A bend in the passage where the tunnel turns from the west toward the\nnorth. The rock overhead is cracked and a trickle of water falls in a\nslender silver thread to splash on a flat stone. Bits of flint litter\nthe floor where someone sharpened blades. Warm air rolls down from the\npassage ahead.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651208,
+     "max": 1
+    }
+   ]
   },
   "13754": {
    "vnum": 13754,
@@ -9531,13 +9541,7 @@
    },
    "description": "The tunnel runs close beside the river, whose dark water can be heard\nrushing near at hand. Wet air blows in from the west where the river\nflows, and the passage leads east to a bend. Pebbles and silt cover the\nfloor. The planks of an old boat lie against the wall, grey and furred\nwith mould.",
    "look": "cave",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651208,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13755": {
    "vnum": 13755,
@@ -10206,13 +10210,7 @@
    "look": "cave",
    "extra_descs": {
     "crystals pool": "The crystals are clear as glass and sharp as nails, clustered thick on\nthe walls. The pool is shallow, and its water tastes of cold iron."
-   },
-   "mob_resets": [
-    {
-     "vnum": 651210,
-     "max": 1
-    }
-   ]
+   }
   },
   "13779": {
    "vnum": 13779,
@@ -10298,7 +10296,13 @@
    },
    "description": "A junction in the dusty tunnels, where the floor has been swept by many\nfeet into dark bare patches. A stack of empty barrels, staves cracked,\nstands in a corner. Old iron nails still stud the walls where lamps once\nhung. Ways lead north, east and west.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651208,
+     "max": 1
+    }
+   ]
   },
   "13782": {
    "vnum": 13782,
@@ -10346,13 +10350,7 @@
    },
    "description": "A long dry passage where a draught blows steadily, carrying the dust in\nveils along the floor. Cracks in the wall have been stuffed with rags,\nlong rotted to powder. Grey webs of dust hang from the roof. The tunnel\nruns east and west.",
    "look": "cave",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651209,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13784": {
    "vnum": 13784,
@@ -10404,13 +10402,7 @@
    },
    "description": "Dust lies deep and soft in this tunnel, as fine as flour, and rises in\nclouds at each step. The hole in the floor drops down to the chamber\nbelow. Along the walls, pale shelves of rock are furred in grey. The\ntunnel runs north.",
    "look": "cave",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651208,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13786": {
    "vnum": 13786,
@@ -10466,7 +10458,13 @@
    },
    "description": "A broader place in the tunnels, where the roof is held up by a pair of\nfat timber props. A door of rusted iron is bolted with three heavy bars,\nand it opens on a prison to the north. Another tunnel leads east, and\nthe way you came lies south. The floor is scored with the marks of\ndragged feet.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651210,
+     "max": 1
+    }
+   ]
   },
   "13788": {
    "vnum": 13788,
@@ -10512,7 +10510,13 @@
    },
    "description": "The tunnel ends against a wall of broken rock. A heap of rotten sacking\nlies in one corner, beside a puddle of old wax. Scratched in the stone\nis an arrow pointing back the way you came, and a single word you cannot\nread. The only way out is back west.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651209,
+     "max": 1
+    }
+   ]
   },
   "13790": {
    "vnum": 13790,
@@ -10591,7 +10595,13 @@
    },
    "description": "A wide cavern floor, long since given to an orc war-band: black rings of\nold fires, trampled bedding of rotten straw, and a rack of splintered\nspear shafts. The walls bear daubs of red ochre in the shape of crude\nhands. A tunnel leads west toward the lake, and a stranger natural\npassage opens east. Nothing here has been tended in a long while.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651208,
+     "max": 1
+    }
+   ]
   },
   "13801": {
    "vnum": 13801,
@@ -10721,17 +10731,7 @@
    },
    "description": "The cave tunnel straightens and runs level to a mouth in the stone where\na great flight of stairs begins to the east. The air moves strongly\nhere, rising from far below with a smell of hot stone and smoke, and a\nlow rumble of drums comes with it. Handprints in ochre mark the walls in\na long line. The way west returns toward the gallery.",
    "look": "cave",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651208,
-     "max": 1
-    },
-    {
-     "vnum": 651210,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13806": {
    "vnum": 13806,
@@ -10809,7 +10809,13 @@
    },
    "description": "Halfway down the spiral a rough landing has been hewn from the wall,\nwhere long ago some guard dozed on a stone bench. Crude tallies and a\ndrawing of a tusked face are scratched into the bench. The warm air is\nthicker here, tinged with the sharp reek of hot metal. The stair goes on\nboth up and down.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651208,
+     "max": 1
+    }
+   ]
   },
   "13809": {
    "vnum": 13809,
@@ -10891,7 +10897,13 @@
    },
    "description": "This old cave tunnel is rounded and smooth, its floor worn by ages of\nfeet into a shallow trough. Pale crusts of mineral cling to the ceiling\nin clots. The air is dry and a little stale, like a long-shut cupboard.\nThe tunnel runs south, and back west lies the foot of the stairs.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651210,
+     "max": 1
+    }
+   ]
   },
   "13814": {
    "vnum": 13814,
@@ -10969,13 +10981,7 @@
    },
    "description": "The old tunnel ends here against a blank face of fallen rock, where the\nroof has come down in a slope of rubble. Between the stones, a hand's\nwidth of black gap breathes cold air. A small rounded niche in the wall\nholds a heap of ancient bones, brittle and grey. The only way out is\nback north.",
    "look": "cave",
-   "extra_descs": {},
-   "mob_resets": [
-    {
-     "vnum": 651209,
-     "max": 1
-    }
-   ]
+   "extra_descs": {}
   },
   "13817": {
    "vnum": 13817,
@@ -11001,7 +11007,13 @@
    },
    "description": "The cave tunnel rises to a low mouth opening north onto the Oldest Road,\nand a trace of lighter air drifts in. The floor holds the ruts of\nancient cart wheels where the road once ran into the rock. Scraps of\nflowstone cover the walls like candle drippings. The tunnel leads on\neast into dry darkness.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651209,
+     "max": 1
+    }
+   ]
   },
   "13818": {
    "vnum": 13818,
@@ -11031,13 +11043,7 @@
    "look": "cave",
    "extra_descs": {
     "posts runes": "The stone posts are carved with runes so worn they can be felt more\neasily than read. One bears the crude scratch of an orc tally over the\nolder writing."
-   },
-   "mob_resets": [
-    {
-     "vnum": 651208,
-     "max": 1
-    }
-   ]
+   }
   },
   "13819": {
    "vnum": 13819,
@@ -11061,7 +11067,13 @@
    },
    "description": "The old road bends along the foot of a cliff wall, its slabs split by\nribs of pale stone growing up between them. Drifted dust lies in smooth\nbanks. On the other hand a drop falls away into dark of unknown depth.\nMilestones, if they ever stood, have toppled. The road goes north and\nreturns east.",
    "look": "cave",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651208,
+     "max": 1
+    }
+   ]
   },
   "13820": {
    "vnum": 13820,
@@ -11255,17 +11267,11 @@
      "description": "To the west lies A Steam Filled Tunnel."
     }
    },
-   "description": "Travellers and conquerors have piled stones here for ages, until the\nheap stands taller than a man at the meeting of four ways. Every stone\nis a tribute or a taunt, and some are daubed with crude orcish marks.\nSteam seeps from tunnel mouths east and west, hissing softly, while the\npath continues south toward the great gate of an orc city and north back\nto the cleft. The air is thick and hot.",
+   "description": "Travellers once piled stones here as tribute where four ways meet; now\nthe heap is crowned with orc skulls, all set facing south as a warning\nto those who come up from the tunnels. Cold air flows from the tunnel\nmouths east and west, carrying a smell of grave-dust. North the path\nreturns toward the cleft, and south it runs down to the black gate of\nMorkai, where no drums have sounded for a long time.",
    "look": "cave",
    "extra_descs": {
-    "mound stones heap": "The stones are of every size, some carried from far away, many scratched\nwith tribal marks or the names of the dead. A fresh stone with a smear\nof blood on it rests at the very top."
-   },
-   "mob_resets": [
-    {
-     "vnum": 651214,
-     "max": 1
-    }
-   ]
+    "mound stones heap skulls": "Most of the stones are scratched with orcish tallies, but the newest\nbear a single mark, a ring with a dot at its centre like a staring eye.\nAn orc's broken war-horn has been laid at the very top."
+   }
   },
   "13829": {
    "vnum": 13829,
@@ -11342,7 +11348,7 @@
      }
     }
    },
-   "description": "A mighty gate of black iron and rough-cut timber closes the way into the\norc city, set in a wall of fitted boulders with spikes along its top.\nSkulls on pikes grin from the battlements above. A small door has been\ncut in the great leaves and stands ready to open south into Morkai. The\npath leads back north toward the mound.",
+   "description": "The great gate of Morkai stands open, its black iron leaves wrenched\noutward as though something forced its way out rather than in. Orc\nskulls still grin from the pikes along the battlements, and below them\nthe gate's last defenders stand propped in their armour, dead and\nwaiting. A chill breath flows from the city beyond. Few who pass south\nfrom here come back; the mound of stones lies north.",
    "look": "cave",
    "extra_descs": {},
    "mob_resets": [
@@ -11380,8 +11386,15 @@
      "description": "To the west lies A Mound Of Carcasses."
     }
    },
-   "description": "Inside the gate, the orc city of Morkai opens out in a huge cavern lit\nby roaring fires on iron tripods. Squat towers of black stone lean over\nlanes that wind east, south and west. A forest of stalactites hangs from\nthe cavern roof far above, shining red in the firelight. The great gate\nstands north, and the stink of smoke, tallow and meat is everywhere.\nDrums beat somewhere in the maze.",
-   "extra_descs": {}
+   "description": "Inside the gate, the dead city of Morkai opens out in a vast cavern lit\nby tripods of cold green fire that give no warmth. Squat towers of black\nstone lean over silent lanes that wind east, south and west, and\nstalactites hang from the roof like teeth. Nothing here breathes, yet\narmoured shapes move in the gloom between the houses. The broken gate\nlies north.",
+   "look": "necropolis",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651212,
+     "max": 1
+    }
+   ]
   },
   "13833": {
    "vnum": 13833,
@@ -11407,11 +11420,16 @@
      "description": "To the west lies The City Of Morkai."
     }
    },
-   "description": "A crooked street of trampled filth and cinders runs through ranks of low\nhouses built of rough stone and hide. Pennants of tattered black cloth\nhang on poles across the lane. A door stands open east into a stone\nbuilding, while the street runs south and back west to the city gate.\nGutters carry a thick greasy runoff.",
+   "description": "A crooked street runs between low houses of stone and hide, their\ndoorways dark and their hearths long cold. Orc bones lie where they\nfell, still gripping their cleavers, and some of them have begun to\nstir. Black pennants hang limp from poles across the lane. A door stands\nopen east into a stone building, the street runs south, and the gate\nroad lies back west.",
+   "look": "necropolis",
    "extra_descs": {},
    "mob_resets": [
     {
      "vnum": 651212,
+     "max": 1
+    },
+    {
+     "vnum": 651214,
      "max": 1
     }
    ]
@@ -11432,8 +11450,8 @@
      "description": "To the west lies In The Streets Of Morkai."
     }
    },
-   "description": "A bare stone room, windowless, with a floor of beaten earth and a hearth\nof piled rocks where embers glow. Weapon racks, empty now, line the\nwall, and a heavy table with a cleaver-hacked top stands in the middle.\nBloody handprints decorate the lintel. The door west opens to the\nstreet.",
-   "look": "cave",
+   "description": "A bare stone room with a hearth of piled rocks, its ashes grey and cold\nfor many seasons. A family of orcs lies on the beaten earth floor, laid\nout side by side as if for a burial nobody finished, and one empty space\nwaits among them. Weapon racks stand bare along the wall. The door west\nopens back onto the street.",
+   "look": "crypt",
    "extra_descs": {}
   },
   "13835": {
@@ -11460,8 +11478,19 @@
      "description": "To the south lies In The Streets Of Morkai."
     }
    },
-   "description": "The street broadens at a crossing where a stone trough stands, filled\nwith cloudy water and floating ash. East a gate of black iron bars leads\ninto the grounds of a church, and the street goes on south and back\nnorth. Bone-and-hide banners hang from the houses, stiff with grease.\nThe cavern roof is lost in smoke.",
-   "extra_descs": {}
+   "description": "The street broadens at a crossing where a stone trough stands full of\nblack water skinned with ash. Bone-and-hide banners hang stiff from the\nhouses, and a pale mist creeps along the gutters. East a gate of black\niron bars leads into the grounds of a church, the street runs on south,\nand it climbs back north toward the houses.",
+   "look": "necropolis",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651214,
+     "max": 1
+    },
+    {
+     "vnum": 651226,
+     "max": 1
+    }
+   ]
   },
   "13836": {
    "vnum": 13836,
@@ -11492,11 +11521,21 @@
      "description": "To the west lies In The Streets Of Morkai."
     }
    },
-   "description": "A square before the foot of the Black Spire, a tower of glassy dark\nstone rising until it merges with the cavern roof. Its door stands\nsouth, a huge slab of iron with a spiked ring for a knocker. Streets run\nnorth and west from the square, and war banners flap on poles around the\nbase. The stone of the spire hums faintly.",
-   "look": "cave",
+   "description": "A square opens before the Black Spire, a tower of glassy dark stone that\nrises until it merges with the cavern roof. Its iron door stands south,\nand a sickly violet light pulses in the slits high above. War banners of\nthe dead tribes hang in tatters around the base, and skeletal sentries\nstand among them, still until disturbed. Streets run north and west from\nthe square.",
+   "look": "necropolis",
    "extra_descs": {
-    "spire tower": "The spire is sheer and seamless, as if poured in one piece from molten\nglass. Its surface is cold to the touch and shows your face darkly."
-   }
+    "spire tower": "The spire is sheer and seamless, as if poured in one piece from molten\nglass. It is cold as ice to the touch, and the face it shows back to you\nis thin and grey, like the face of a corpse."
+   },
+   "mob_resets": [
+    {
+     "vnum": 651212,
+     "max": 1
+    },
+    {
+     "vnum": 651224,
+     "max": 1
+    }
+   ]
   },
   "13837": {
    "vnum": 13837,
@@ -11518,9 +11557,15 @@
      "description": "To the up lies The Second Floor Of The Black Spire."
     }
    },
-   "description": "The ground floor of the spire is a round hall of dark glassy stone,\nringed by arrow slits that look onto nothing. A spiral stair of iron\nwinds up the wall to the floor above. Weapons hang on the walls in\norderly rows, each ticketed with a scrap of hide. A great brazier smokes\nin the middle of the floor. The door north returns to the square\noutside.",
-   "look": "cave",
-   "extra_descs": {}
+   "description": "The ground floor of the spire is a round hall of dark glassy stone\nringed with arrow slits. Skeletal orc archers still stand at the slits\nwith their bows drawn on nothing, and their skulls turn slowly as you\npass. A spiral stair of iron winds up the wall, and a great brazier\nburns with a cold violet flame. The door north returns to the square.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651224,
+     "max": 1
+    }
+   ]
   },
   "13838": {
    "vnum": 13838,
@@ -11542,9 +11587,15 @@
      "description": "To the down lies Inside The Black Spire."
     }
    },
-   "description": "A round chamber furnished for a commander, with a long table spread with\nmaps scratched on hide and weighted with daggers. Narrow slits in the\nwalls show the glow of the city below. A rack of banners stands by the\nstair, each one crusted with filth. The stair runs down to the hall and\nup to the spire's top.",
-   "look": "cave",
-   "extra_descs": {}
+   "description": "A round chamber once furnished for a war-leader, its long table still\nspread with maps scratched on hide and pinned with daggers. Every map\nhas been redrawn in a dark and careful hand, marking roads up out of the\ndeeps toward the lands above. Narrow slits look down on the ghost-lit\ncity. The stair climbs up to the spire's top and winds down to the hall.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651224,
+     "max": 1
+    }
+   ]
   },
   "13839": {
    "vnum": 13839,
@@ -11562,8 +11613,8 @@
      "description": "To the down lies The Second Floor Of The Black Spire."
     }
    },
-   "description": "The roof of the spire is a flat platform ringed by a low parapet of\nfanged merlons. From here the whole of Morkai spreads out below in a\njumble of fires and smoke. A huge bronze drum stands on a frame, its\nskin scarred by mallets, beside a basket of unlit torches. The cavern\nroof hangs close above. The stair leads down.",
-   "look": "cave",
+   "description": "The roof of the spire is a flat platform ringed by a parapet of fanged\nmerlons, close beneath the cavern roof. Below, Morkai spreads out in a\nsilent jumble of green fires and black towers, and nothing in it moves\nthat is alive. A great bronze drum stands on its frame with its skin\nsplit open. The only way off is the stair down.",
+   "look": "necropolis",
    "extra_descs": {},
    "mob_resets": [
     {
@@ -11594,7 +11645,8 @@
      "description": "To the south lies The High Seat Of Morkai."
     }
    },
-   "description": "A broad vestibule of black granite, floored with a rug woven of grey\nwolf pelts, stiff and cracked with age. Two great iron braziers flank an\nopening framed with the curving horns of some huge beast. Chains of\nrusted spurs and gorgets hang in the arch as tributes. The throne room\nlies south, and the hall of the dead north.",
+   "description": "A vestibule of black granite, floored with a rug of grey wolf pelts gone\nstiff and bald with age. Two iron braziers flank an arch framed with the\nhorns of some huge beast, and both burn with a dead blue flame. The\nhelms of orc chieftains hang in the arch as tributes, a skull still\ninside each one. The throne room lies south, and the hall of the dead\nnorth.",
+   "look": "crypt",
    "extra_descs": {}
   },
   "13841": {
@@ -11613,9 +11665,11 @@
      "description": "To the north lies Before The Throne Room."
     }
    },
-   "description": "A vast chamber at the heart of the city's power, its walls hung with\ncaptured banners and the heads of beasts. On a dais of seven steps\nstands the high seat, a throne built of bones and black iron, spiked\nwith tusks. Trophies of past rulers hang in rows along the wall. The\nonly way out is the vestibule north.",
-   "look": "cave",
-   "extra_descs": {},
+   "description": "A vast chamber at the heart of the city's power, hung with captured\nbanners that stir in no wind. On a dais of seven steps stands the high\nseat, a throne of bones and black iron spiked with tusks, and on it sits\nthe city's king, dead and crowned and terribly awake. Rows of past\nrulers' skulls watch from the walls. The only way out is the vestibule\nnorth.",
+   "look": "crypt",
+   "extra_descs": {
+    "throne seat bones": "The throne is built of orc thighbones lashed with black iron and spiked\nwith tusks. Its arms are worn smooth by a ruler's hands, and the seat is\ncold as a grave."
+   },
    "mob_resets": [
     {
      "vnum": 651216,
@@ -11639,8 +11693,19 @@
      "description": "To the east lies In The Streets Of Morkai."
     }
    },
-   "description": "A dead-end alley of leaning shacks, closed at the far end by a blank\nwall hung with drying skins. Puddles of rust-coloured water stand\nbetween the stones, and a sour smell of tanning vats fills the nose. A\nbroken cart lies on its side, one wheel missing. The only way out is\neast.",
-   "extra_descs": {}
+   "description": "A dead-end alley of leaning shacks, closed at the far end by a blank\nwall hung with skins that never finished drying. Rust-coloured water\nstands between the stones, and something pale and many-legged has left a\nglistening trail through it. A broken cart lies on its side, its driver\nstill slumped across the shafts. The only way out is east.",
+   "look": "necropolis",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651212,
+     "max": 1
+    },
+    {
+     "vnum": 651229,
+     "max": 1
+    }
+   ]
   },
   "13843": {
    "vnum": 13843,
@@ -11662,14 +11727,14 @@
      "description": "To the south lies In The Streets Of Morkai."
     }
    },
-   "description": "The central plaza is a wide trampled square, ringed by the tallest\nhouses of the city. In its middle stands a huge cracked statue of an orc\nin plate armour, its sword arm missing. Fire pits burn at each corner,\nsome with spits above them. The wide street leads north to the gate and\nsouth into the city.",
-   "look": "cave",
+   "description": "The central plaza is a wide square ringed by the tallest houses of the\ncity, every door gaping open. In its middle stands a huge cracked statue\nof an orc in plate armour, and around its base the dead of the last\nbattle lie in heaps, some of them slowly rising. Fire pits at each\ncorner burn with green flame. The wide street leads north to the gate\nand south into the city.",
+   "look": "necropolis",
    "extra_descs": {
-    "statue orc armour": "The statue shows a great orc chieftain with a shattered sword arm, and\nits plate is chipped and scarred by a thousand thrown rocks. Someone has\npainted a red grin upon its face."
+    "statue orc armour": "The statue shows a great orc chieftain with a shattered sword arm. Fresh\nscratches cover its plinth, as though many bony hands have tried to\nclimb it."
    },
    "mob_resets": [
     {
-     "vnum": 651209,
+     "vnum": 651213,
      "max": 1
     }
    ]
@@ -11698,11 +11763,17 @@
      "description": "To the west lies The Hall Of Corpses."
     }
    },
-   "description": "A great round well, ringed with a wall of white bones mortared in lime,\nstands in a small plaza. A faint grey breath rises from its depths, and\nwhispers curl around the rim. Lanes lead north and east, and a gaping\narch west opens on a hall piled with the dead. A chain and bucket hang\non a rusted windlass.",
-   "look": "cave",
+   "description": "A great round well, walled with white bones mortared in lime, stands at\nthe heart of a small plaza. A pale grey light breathes up out of it, and\nwith the light come whispers in orcish and in older tongues. Here the\ndying of Morkai began. Lanes lead north and east, and a gaping arch west\nopens on a hall emptied of its dead.",
+   "look": "necropolis",
    "extra_descs": {
-    "well bones wall": "The well wall is built of long bones, laid in rings and held with lime.\nDown in the darkness something sighs."
-   }
+    "well bones wall": "The well wall is built of long bones laid in rings. Far down, the grey\nlight moves like a slow tide, and now and then it shows a face pressed\nup against the dark."
+   },
+   "mob_resets": [
+    {
+     "vnum": 651226,
+     "max": 1
+    }
+   ]
   },
   "13845": {
    "vnum": 13845,
@@ -11724,7 +11795,8 @@
      "description": "To the south lies The Well Of Souls."
     }
    },
-   "description": "A narrow street winds between the high blank walls of storehouses, their\ndoors barred with iron. Chalked marks on the walls count sacks and\nbarrels. A muddy channel runs down the centre, carrying the runoff\ntoward the well. The street goes north and south.",
+   "description": "A narrow street winds between the blank walls of storehouses, their\ndoors barred with iron from the inside. Something has gouged long claw\nmarks down the bars, and a dried slime glitters on the stones beneath\nthem. A channel down the middle runs with thin grey water toward the\nwell. The street goes north and south.",
+   "look": "necropolis",
    "extra_descs": {},
    "mob_resets": [
     {
@@ -11753,16 +11825,12 @@
      "description": "To the south lies In The Streets Of Morkai."
     }
    },
-   "description": "A hill of slaughtered beasts is heaped here, a great mound of hides,\nhorns and rotting flesh. Pale maggots seethe in it, and vast flies cloud\nthe air. A foul green slime runs from the base of the pile in a slow\nstream. The heart of the city lies east, and a lane runs south.",
-   "look": "cave",
+   "description": "A hill of the dead is heaped here, beasts and orcs together, hides and\nhorns and armour tangled in one great rotting mound. It is never still:\nlimbs shift, jaws work, and now and then a ghoul crawls out of the pile\nto feed. A foul green ooze seeps from its base. The heart of the city\nlies east, and a lane runs south.",
+   "look": "necropolis",
    "extra_descs": {
-    "mound carcasses hides": "The mound has been piled for months, each layer fresher than the last,\nand crawls with a crust of flies. A crow's nest of old horns sticks out\nof the top."
+    "mound carcasses hides dead": "Orc and beast lie tangled in the heap, layer on layer. Many of the bones\nhave been cracked and sucked clean, and the gnawing marks are far too\nsmall and far too many."
    },
    "mob_resets": [
-    {
-     "vnum": 651208,
-     "max": 1
-    },
     {
      "vnum": 651214,
      "max": 1
@@ -11796,14 +11864,10 @@
      }
     }
    },
-   "description": "A long hall whose walls are lined with niches, each stuffed with a\nwithered body bound in rags, the dead of the war-tribes preserved by the\ndry heat. Hooks hang from the beams for the newest arrivals. Torches\nburn low and dim in brackets. The arch east opens to the well, and a\nheavy door south leads on to the throne room.",
+   "description": "A long hall whose walls are lined with niches, each made for a withered\norc bound in rags. Most niches are empty now: the dead have climbed\ndown, and their wrappings trail across the floor toward the doors. Hooks\nhang from the beams where newer bodies once hung. The arch east opens to\nthe well, and a heavy door south leads on toward the throne.",
    "look": "crypt",
    "extra_descs": {},
    "mob_resets": [
-    {
-     "vnum": 651210,
-     "max": 1
-    },
     {
      "vnum": 651213,
      "max": 1
@@ -11834,10 +11898,10 @@
      "description": "To the south lies Along The Oldest Road."
     }
    },
-   "description": "A towering gate of fused black stone stands here, its great doors long\nsince fallen and lying in slabs on the ground. Beyond it a hot wind\nroars out of the dark. A road of old stone runs on north to a ruined\nbridge, south toward a descent, and east back along the way you came.\nFaces of tormented figures are carved all along the gateposts.",
-   "look": "volcanic",
+   "description": "A towering gate of fused black stone stands here, its great doors fallen\nand lying in slabs. From the dark beyond comes a cold, wet wind and a\nsound of many soft things moving, and a slime trail as wide as a cart\nruns out between the posts. A road of old stone runs north to a ruined\nbridge, south toward a descent, and east back along the way you came.",
+   "look": "cave",
    "extra_descs": {
-    "gateposts faces figures": "The gateposts are carved from base to lintel with writhing figures,\ntheir mouths open wide, their hands clutching at the stone around them.\nSome of the faces have been chiselled away by later hands."
+    "gateposts faces figures": "The gateposts are carved with writhing figures, their mouths wide. Among\nthe old carvings, newer marks have been scored deep into the stone:\nrings of eyes, and long curling shapes like tentacles."
    }
   },
   "13884": {
@@ -11867,7 +11931,8 @@
      "description": "To the west lies In The Streets Of Morkai."
     }
    },
-   "description": "A gatehouse of black and white stone, built in stripes, spans the way to\nthe church, one half polished and the other half rough. A pair of iron\nlamps hang in the arch, one burning bright and one smoking dull. The\nstreet lies back west, and a heavy door east leads on into the ante\nchamber. Prayers painted along the wall are half scraped away.",
+   "description": "A gatehouse of black and white stone, built in stripes, spans the way to\nthe church. Of the two iron lamps in its arch, the bright one has gone\nout, and the dark one burns on with a smoky violet flame. The prayers\npainted along the wall have been scraped away and written over in a\ncrabbed, unreadable script. The street lies back west, and a heavy door\neast leads on into the ante chamber.",
+   "look": "crypt",
    "extra_descs": {}
   },
   "13885": {
@@ -11892,8 +11957,15 @@
      "description": "To the west lies The Gate To The Church Of Light And Darkness."
     }
    },
-   "description": "A narrow ante chamber where worshippers once shed their weapons, though\nthe racks along the wall are empty and dusty. Benches of black wood line\nboth sides, and the floor is laid in alternating tiles of white marble\nand black slate. A hush lies upon the place, deeper than the quiet of an\nordinary room. The church proper opens east, and the gate door is west.",
-   "extra_descs": {}
+   "description": "A narrow ante chamber where worshippers once laid down their weapons.\nThe racks along the wall are full again, but with bones: arms and legs\nstacked as neatly as firewood. Benches of black wood line both sides,\nand the floor is laid in tiles of white marble and black slate. The\nchurch proper opens east, and the gate door is west.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651225,
+     "max": 1
+    }
+   ]
   },
   "13886": {
    "vnum": 13886,
@@ -11925,8 +11997,15 @@
      "description": "To the west lies The Ante Chamber To The Church Of Light And Darkness."
     }
    },
-   "description": "The great nave of the church is paved in checkers of pale and sombre\nstone. Pillars of white marble and black basalt rise in two rows to a\nvault lost in shadow. Side aisles curve away north and south behind the\npillars, while the altar stone stands east at the head of the nave. The\ndoor of the ante chamber is west.",
-   "extra_descs": {}
+   "description": "The great nave of the church is paved in checkers of pale and sombre\nstone, and pillars of white marble and black basalt rise to a vault lost\nin shadow. The pews are filled with the dead, sitting upright in rows as\nif waiting for a sermon. Side aisles curve away north and south behind\nthe pillars, the altar stone stands east, and the ante chamber door is\nwest.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651227,
+     "max": 1
+    }
+   ]
   },
   "13887": {
    "vnum": 13887,
@@ -11950,7 +12029,8 @@
      "description": "To the south lies The Church Of Light And Darkness."
     }
    },
-   "description": "This aisle of the church is a gloomy alley between pillars and wall,\nwhere candle stubs gutter in niches. Pale carvings of a radiant figure\nline the wall, each one hacked across the face by some iconoclast. The\naisle bends east toward the altar end, and back south toward the nave.\nThe air smells of old wax.",
+   "description": "This aisle of the church is a gloomy alley between pillars and wall,\nwhere candle stubs burn with a cold blue light that never shortens. Pale\ncarvings of a radiant figure line the wall, every face hacked away and\nreplaced with a single carved eye. The aisle bends east toward the altar\nend, and back south toward the nave.",
+   "look": "crypt",
    "extra_descs": {}
   },
   "13888": {
@@ -11975,8 +12055,19 @@
      "description": "To the east lies The Church Of Light And Darkness."
     }
    },
-   "description": "A side aisle of the church, where tall narrow windows once stood but\nhave been bricked up, leaving only their pointed outlines. Stone saints\nline the wall on plinths, though all have been beheaded and the heads\npiled in a corner. A thick rug of dust muffles every step. The aisle\ngoes north to the nave and east round the altar.",
-   "extra_descs": {}
+   "description": "A side aisle of the church, where tall windows have been bricked up,\nleaving only their pointed outlines. Stone saints stand on plinths along\nthe wall, all of them beheaded, and the heads lie piled in a corner with\ntheir eyes gouged out. Something wet has dragged itself across the dust\nhere more than once. The aisle goes north to the nave and east round the\naltar.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651225,
+     "max": 1
+    },
+    {
+     "vnum": 651228,
+     "max": 1
+    }
+   ]
   },
   "13889": {
    "vnum": 13889,
@@ -12011,10 +12102,10 @@
      "description": "To the west lies The Church Of Light And Darkness."
     }
    },
-   "description": "A great stone block, scorched and stained, stands upon a stepped dais at\nthe head of the church. Channels in its surface lead to gutters in the\nfloor, and the dais steps are polished by knees. Dark spatters mark the\nwall behind it. Aisles curve north and south round the dais, a door in\nthe far wall leads east to an inner sanctum, and the nave runs west.",
-   "look": "cave",
+   "description": "A great stone block, scorched and stained, stands on a stepped dais at\nthe head of the church. Its channels run with a black, oily fluid that\nwells up out of the stone itself, and the dais is ringed with kneeling\nskeletons in priests' robes, brows pressed to the floor. Aisles curve\nnorth and south round the dais, a door leads east to an inner sanctum,\nand the nave runs west.",
+   "look": "crypt",
    "extra_descs": {
-    "altar stone block": "The altar is a single slab of dark stone, hollowed in the middle and\nworn smooth where hands have gripped its edges. No god's name is carved\non it, which perhaps is why it serves so many."
+    "altar stone block": "The altar is a single slab of dark stone, hollowed in the middle. The\nblack fluid in its hollow is cold, and it creeps very slightly toward\nthe warmth of your hand."
    }
   },
   "13890": {
@@ -12039,7 +12130,8 @@
      "description": "To the west lies The Church Of Light And Darkness."
     }
    },
-   "description": "The aisle ends in a small chapel recess, where a stone basin stands\nfilled with black water that never seems to move. Painted on the wall\nbehind it is a half-faded sun, and under it a crescent of darker paint.\nThe altar stone lies south, and the aisle runs back west. Dust drifts in\nthe thin light of a single lamp.",
+   "description": "The aisle ends in a small chapel recess, where a stone basin holds black\nwater that never moves. Painted on the wall behind it is a faded sun,\nand over the sun someone has painted a great dark eye, fresh and\nglistening. The altar stone lies south, and the aisle runs back west. A\nsingle lamp burns violet in the gloom.",
+   "look": "crypt",
    "extra_descs": {}
   },
   "13891": {
@@ -12064,8 +12156,19 @@
      "description": "To the west lies The Church Of Light And Darkness."
     }
    },
-   "description": "Rows of broken pews lie smashed against the wall in this corner of the\nchurch, their carved ends gnawed by rats. A fallen sconce lies in a\npuddle of old tallow. A faint breeze carries a smell of rot from below\nthe floor. The altar lies north and the aisle goes west.",
-   "extra_descs": {}
+   "description": "Rows of broken pews lie smashed against the wall in this corner of the\nchurch, their carved ends gnawed. A cold draught breathes up through\ncracks in the floor, carrying a smell of deep earth and rot, and every\ncrack is edged with a pale, rubbery growth that twitches at a touch. The\naltar lies north and the aisle goes west.",
+   "look": "crypt",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651225,
+     "max": 1
+    },
+    {
+     "vnum": 651227,
+     "max": 1
+    }
+   ]
   },
   "13892": {
    "vnum": 13892,
@@ -12091,8 +12194,19 @@
      "description": "To the west lies In The Streets Of Morkai."
     }
    },
-   "description": "A bleak street, hung with butchers' hooks and drying racks of meat, runs\nbetween two blank walls. Flies swarm thick in the warm air. The pavement\nis black with old blood and trodden offal. The street leads north to a\nheap of rot, south to a low building and back west.",
-   "extra_descs": {}
+   "description": "A bleak street hung with butchers' hooks runs between two blank walls.\nThe hooks are still loaded, but what hangs from them now are orcs, and\ntheir heads turn to follow you. The paving is black with old blood. The\nstreet leads north to the heap of the dead, south to a low building, and\nback west.",
+   "look": "necropolis",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651226,
+     "max": 1
+    },
+    {
+     "vnum": 651229,
+     "max": 1
+    }
+   ]
   },
   "13893": {
    "vnum": 13893,
@@ -12110,9 +12224,15 @@
      "description": "To the north lies In The Streets Of Morkai."
     }
    },
-   "description": "A low vaulted room where the dead of the city are laid out on slabs of\nstone, row after row, each slab with a drain cut beneath it. Rust-brown\nstains run into channels in the floor. A butcher's saw and a hook-\nhandled knife hang from a bench. The cold here is sharper than in the\nstreets. The only way out is north.",
+   "description": "A low vaulted room where the city's dead were laid out on slabs of\nstone, row after row, each with a drain cut beneath it. Every slab is\nempty. The straps that held the bodies down have been snapped from the\ninside, and a butcher's saw lies where it was dropped. The cold here is\nsharper than in the streets. The only way out is north.",
    "look": "crypt",
-   "extra_descs": {}
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651214,
+     "max": 1
+    }
+   ]
   },
   "13894": {
    "vnum": 13894,
@@ -12134,8 +12254,15 @@
      "description": "To the south lies In The Streets Of Morkai."
     }
    },
-   "description": "The street turns a corner here by a smithy whose chimney belches soot.\nThe hammering that rings from within never stops, even in the quiet\nbetween drumbeats. The cobbles are black with coal dust. The road leads\neast and back south.",
-   "extra_descs": {}
+   "description": "The street turns a corner by a smithy whose chimney has long gone cold.\nInside, the hammering still rings, slow and steady, from a smith who has\nbeen dead a long time. The cobbles are black with coal dust and scored\nby iron-shod feet that never tire. The road leads east and back south.",
+   "look": "necropolis",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651212,
+     "max": 1
+    }
+   ]
   },
   "13895": {
    "vnum": 13895,
@@ -12157,11 +12284,16 @@
      "description": "To the west lies The Well Of Souls."
     }
    },
-   "description": "The street slopes down toward a pit in the west, from which a cold air\nbreathes. Skulls are set in the wall plaster on each side, hundreds of\nthem, jaws agape. Braziers burn low and green. The street runs back east\ntoward the spire.",
+   "description": "The street slopes down toward a pit in the west, from which a cold air\nbreathes. Skulls are set into the wall plaster on each side, hundreds of\nthem, jaws agape, and as you pass they click their teeth together in a\ndry, rippling chatter. Braziers burn low and green. The street runs back\neast toward the spire.",
+   "look": "necropolis",
    "extra_descs": {},
    "mob_resets": [
     {
      "vnum": 651212,
+     "max": 1
+    },
+    {
+     "vnum": 651214,
      "max": 1
     }
    ]
@@ -12190,8 +12322,19 @@
      "description": "To the west lies In The Streets Of Morkai."
     }
    },
-   "description": "A wide street where carts of meat and scrap iron have worn deep ruts\ninto the stone. Stalls of rough planks line the verges, strewn with hide\nscraps and bone. The black bulk of the spire's base shows east, and the\nstreet goes on north and west. A fat drift of smoke hangs under the\nawnings.",
-   "extra_descs": {}
+   "description": "A wide street where carts once wore deep ruts into the stone. The market\nstalls along the verges are laid out with bones sorted by size, as if\nthe dead still keep their trade. The black bulk of the spire's base\nshows east, and the street goes on north and west. A cold mist hangs\nunder the rotted awnings.",
+   "look": "necropolis",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651226,
+     "max": 1
+    },
+    {
+     "vnum": 651229,
+     "max": 1
+    }
+   ]
   },
   "13897": {
    "vnum": 13897,
@@ -12217,8 +12360,19 @@
      "description": "To the west lies In The Streets Of Morkai."
     }
    },
-   "description": "A corner where three lanes join, with an iron gibbet standing at the\ncrossing and a cage that creaks in the draught. A heap of broken crates\nis piled against a house wall. The plaza lies north, the street runs on\nsouth, and a short alley goes west. Stained flagstones show where many\npunishments have been carried out.",
-   "extra_descs": {}
+   "description": "A corner where three lanes join, with an iron gibbet standing at the\ncrossing. Its cage creaks in the draught, and the skeleton inside grips\nthe bars and watches you. A heap of broken crates is piled against a\nhouse wall. The plaza lies north, the street runs on south, and a short\nalley goes west.",
+   "look": "necropolis",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 651212,
+     "max": 1
+    },
+    {
+     "vnum": 651214,
+     "max": 1
+    }
+   ]
   },
   "13898": {
    "vnum": 13898,
@@ -12240,7 +12394,8 @@
      "description": "To the south lies At The Entrance To The Black Spire."
     }
    },
-   "description": "The street runs straight and downhill toward a black shaft of stone\nrising out of the smoke ahead. The cobbles are slick with grease and\nspilled drink, and strings of dried ears hang across the lane as\ntrophies. Rowdy singing seeps through a tavern wall. The street lies\nback north toward the crossing, and runs on south to a square.",
+   "description": "The street runs straight and downhill toward the black shaft of the\nspire rising out of the gloom ahead. Strings of dried ears still hang\nacross the lane, and from behind a tavern wall comes a sound like\nsinging, flat and tuneless and never pausing for breath. The street lies\nback north toward the crossing, and runs on south to a square.",
+   "look": "necropolis",
    "extra_descs": {}
   },
   "13899": {
@@ -12259,12 +12414,12 @@
      "description": "To the west lies The Altar Stone Of Some Dark God."
     }
    },
-   "description": "A bare windowless chamber, small as a cell, where the church keeps its\nsecrets. A shallow niche holds a silver bowl blackened by fire. Carvings\nof eyes cover the walls from floor to ceiling, each one staring toward\nthe door. The air is dry and dead, and your breath is the only sound.\nThe door west leads back to the altar.",
-   "look": "cave",
+   "description": "A bare windowless chamber, small as a cell, where the church kept its\nsecrets. Carvings of eyes cover the walls from floor to ceiling, and\nhere and there a real eye, wet and lidless, has opened in the stone\namong them. A silver bowl blackened by fire sits in a niche. The air is\ndead, and your breath is the only sound. The door west leads back to the\naltar.",
+   "look": "crypt",
    "extra_descs": {},
    "mob_resets": [
     {
-     "vnum": 651208,
+     "vnum": 651228,
      "max": 1
     }
    ]
@@ -12786,48 +12941,31 @@
   },
   "651212": {
    "vnum": 651212,
-   "name": "orc townsman peasant morkai",
-   "short_desc": "an orc townsman of Morkai",
-   "long_desc": "An orc townsman of Morkai shoulders through the street with a sack of scrap iron.",
-   "description": "A stooped, thick-armed orc in a stained leather apron, scarred from the\nforges and quarrels of the city. He eyes strangers sourly but looks for\nno fight.",
-   "level": 42,
-   "alignment": -300,
-   "hp_dice": "42d8+684",
-   "damage_dice": "11d6+24",
+   "name": "skeleton skeletal orc warrior",
+   "short_desc": "a skeletal orc warrior",
+   "long_desc": "A skeletal orc warrior shambles through the street, a rusted cleaver dragging behind it.",
+   "description": "The bones of a big orc, still wearing scraps of hide and a dented iron\ncap. Green fire burns in its empty sockets, and it fights with the same\nbrute fury it had in life.",
+   "level": 60,
+   "alignment": -800,
+   "hp_dice": "60d8+1270",
+   "damage_dice": "16d6+32",
    "armor_class": -20,
-   "exp": 2330,
-   "gold": 504,
-   "flags": [
-    "stay_zone"
-   ],
-   "inventory": []
-  },
-  "651213": {
-   "vnum": 651213,
-   "name": "orc blackguard elite black armour",
-   "short_desc": "an orc blackguard",
-   "long_desc": "An orc blackguard in blackened plate stands here, a heavy flanged mace across his shoulder.",
-   "description": "A huge orc in plate that is more scar than metal, the champion of a\ndozen pit fights. His helm is crowned with the spikes of rivals' teeth.",
-   "level": 50,
-   "alignment": -700,
-   "hp_dice": "50d8+870",
-   "damage_dice": "13d6+28",
-   "armor_class": -20,
-   "exp": 2770,
-   "gold": 600,
+   "exp": 3320,
+   "gold": 0,
    "flags": [
     "stay_zone",
-    "aggressive"
+    "aggressive",
+    "undead"
    ],
    "inventory": [],
    "loot_table": [
     {
-     "vnum": 751206,
-     "chance": 25
+     "vnum": 751215,
+     "chance": 6
     },
     {
-     "vnum": 751205,
-     "chance": 25
+     "vnum": 751216,
+     "chance": 4
     },
     {
      "vnum": 214,
@@ -12849,16 +12987,230 @@
   },
   "651214": {
    "vnum": 651214,
-   "name": "cave troll hulking",
-   "short_desc": "a hulking cave troll",
-   "long_desc": "A hulking cave troll slouches here, dragging a club the size of a tree trunk.",
-   "description": "A mountain of grey warty flesh, bent under the low roof, with long arms\nthat scrape the floor. Its small eyes gleam red, and the bones of its\nlast meals hang from its belt.",
-   "level": 51,
-   "alignment": -500,
-   "hp_dice": "51d8+1119",
-   "damage_dice": "13d6+37",
+   "name": "ghoul rotting orc",
+   "short_desc": "a rotting orc ghoul",
+   "long_desc": "A rotting orc ghoul crouches over a corpse, tearing at it with black nails.",
+   "description": "A bloated, grey-green orc corpse with a jaw that unhinges to the chest.\nIts claws drip a paralysing filth, and it moves in sudden, scuttling\nbursts.",
+   "level": 60,
+   "alignment": -800,
+   "hp_dice": "60d8+1270",
+   "damage_dice": "16d6+32",
    "armor_class": -20,
-   "exp": 2825,
+   "exp": 3320,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751216,
+     "chance": 8
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651224": {
+   "vnum": 651224,
+   "name": "skeleton skeletal orc archer",
+   "short_desc": "a skeletal orc archer",
+   "long_desc": "A skeletal orc archer stands at an arrow slit, bow drawn, its skull turning toward you.",
+   "description": "An orc skeleton in a cracked leather jerkin, a black longbow of horn in\nits fleshless hands. Its arrows are fletched with what look like human\nfingernails.",
+   "level": 61,
+   "alignment": -800,
+   "hp_dice": "61d8+1301",
+   "damage_dice": "16d6+34",
+   "armor_class": -20,
+   "exp": 3375,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751215,
+     "chance": 5
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651213": {
+   "vnum": 651213,
+   "name": "death knight morkai armoured",
+   "short_desc": "a death knight of Morkai",
+   "long_desc": "A death knight of Morkai keeps its silent watch in black plate, a cold blue light burning behind its visor.",
+   "description": "Once the war-chief's sworn blackguard, now a hollow suit of black iron\nmoved by something that remembers only its oath. Where it walks, frost\ncreeps across the stones.",
+   "level": 64,
+   "alignment": -800,
+   "hp_dice": "64d8+1395",
+   "damage_dice": "17d6+35",
+   "armor_class": -20,
+   "exp": 3540,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751217,
+     "chance": 10
+    },
+    {
+     "vnum": 751215,
+     "chance": 8
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651225": {
+   "vnum": 651225,
+   "name": "shaman bone orc lich",
+   "short_desc": "an orc bone-shaman",
+   "long_desc": "An orc bone-shaman chants over a heap of bones, which twitch in answer.",
+   "description": "A withered orc corpse in a robe sewn with finger bones, its jaw bound\nshut with wire so that it chants through its teeth. A staff of stacked\nvertebrae crackles with grave-cold light.",
+   "level": 63,
+   "alignment": -800,
+   "hp_dice": "63d8+1364",
+   "damage_dice": "16d6+37",
+   "armor_class": -20,
+   "exp": 3485,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751218,
+     "chance": 10
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651226": {
+   "vnum": 651226,
+   "name": "wraith soul spirit",
+   "short_desc": "a soul wraith",
+   "long_desc": "A soul wraith drifts up out of the stones, its face a smear of grey light.",
+   "description": "One of the many souls the Well drew up from below, stretched thin and\nstarving. Its touch drains warmth and will, and it whispers names it no\nlonger owns.",
+   "level": 62,
+   "alignment": -800,
+   "hp_dice": "62d8+1332",
+   "damage_dice": "16d6+35",
+   "armor_class": -20,
+   "exp": 3430,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751218,
+     "chance": 8
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651227": {
+   "vnum": 651227,
+   "name": "eye tyrant beholder",
+   "short_desc": "an eye tyrant",
+   "long_desc": "An eye tyrant floats in the gloom, its great eye fixed on you and its stalks writhing.",
+   "description": "A floating orb of grey, scarred hide as wide as a cart, split by a mouth\nof needle teeth. A single huge eye stares from its face, and a crown of\nsmaller eyes on stalks looks every way at once.",
+   "level": 65,
+   "alignment": -500,
+   "hp_dice": "65d8+1584",
+   "damage_dice": "17d6+46",
+   "armor_class": -20,
+   "exp": 3595,
    "gold": 0,
    "flags": [
     "stay_zone",
@@ -12867,8 +13219,94 @@
    "inventory": [],
    "loot_table": [
     {
-     "vnum": 751206,
-     "chance": 20
+     "vnum": 751219,
+     "chance": 12
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651228": {
+   "vnum": 651228,
+   "name": "mind flayer illithid",
+   "short_desc": "a mind flayer",
+   "long_desc": "A mind flayer glides through the shadows, its face a nest of writhing tentacles.",
+   "description": "A tall, robed figure with mauve, glistening skin and a head like an\noctopus, four feelers twisting where its mouth should be. It does not\nspeak, but you hear it all the same.",
+   "level": 64,
+   "alignment": -500,
+   "hp_dice": "64d8+1548",
+   "damage_dice": "17d6+44",
+   "armor_class": -20,
+   "exp": 3540,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751219,
+     "chance": 10
+    },
+    {
+     "vnum": 751218,
+     "chance": 6
+    },
+    {
+     "vnum": 214,
+     "chance": 5
+    },
+    {
+     "vnum": 215,
+     "chance": 5
+    },
+    {
+     "vnum": 216,
+     "chance": 5
+    },
+    {
+     "vnum": 217,
+     "chance": 5
+    }
+   ]
+  },
+  "651229": {
+   "vnum": 651229,
+   "name": "horror tentacled aberration",
+   "short_desc": "a tentacled horror",
+   "long_desc": "A tentacled horror heaves itself across the stones, leaving a trail of glistening slime.",
+   "description": "A sagging mass of pale flesh and too many eyes, borne along on a mat of\ngrasping tentacles. It came up out of the dark below the city and has\nnot stopped feeding since.",
+   "level": 63,
+   "alignment": -500,
+   "hp_dice": "63d8+1513",
+   "damage_dice": "16d6+46",
+   "armor_class": -20,
+   "exp": 3485,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 751219,
+     "chance": 6
     },
     {
      "vnum": 214,
@@ -12890,30 +13328,31 @@
   },
   "651215": {
    "vnum": 651215,
-   "name": "vrakk lieutenant orc captain",
-   "short_desc": "Vrakk the Red-Eyed, lieutenant of Morkai",
-   "long_desc": "Vrakk the Red-Eyed, lieutenant of Morkai, scans the city from beside his great drum.",
-   "description": "A lean, sinewy orc with one eye gone red as an ember, wrapped in a\ncaptain's cloak of black wolfhide. A dozen small blades sit on his belt,\nand he is quick with all of them.",
-   "level": 49,
+   "name": "vrakk hollow-eyed death knight lieutenant",
+   "short_desc": "Vrakk the Hollow-Eyed",
+   "long_desc": "Vrakk the Hollow-Eyed, a death knight in red-stained plate, keeps watch from the top of the spire.",
+   "description": "Gorbash's lieutenant in life, Vrakk is now a towering death knight whose\nhelm holds only darkness and two pinpricks of red. He still beats the\ngreat drum at times, though no living war-band answers it.",
+   "level": 66,
    "alignment": -800,
-   "hp_dice": "49d8+846",
-   "damage_dice": "13d6+27",
+   "hp_dice": "66d8+1460",
+   "damage_dice": "17d6+38",
    "armor_class": -20,
-   "exp": 2715,
-   "gold": 588,
+   "exp": 3650,
+   "gold": 0,
    "flags": [
     "stay_zone",
-    "aggressive"
+    "aggressive",
+    "undead"
    ],
    "inventory": [],
    "loot_table": [
     {
-     "vnum": 751208,
+     "vnum": 751220,
      "chance": 35
     },
     {
-     "vnum": 751205,
-     "chance": 30
+     "vnum": 751208,
+     "chance": 20
     },
     {
      "vnum": 214,
@@ -12935,30 +13374,31 @@
   },
   "651216": {
    "vnum": 651216,
-   "name": "gorbash skullcleaver war-chief warchief orc chief",
-   "short_desc": "Gorbash Skullcleaver, the orc war-chief",
-   "long_desc": "Gorbash Skullcleaver, the orc war-chief, sits on the high seat with a huge maul across his knees.",
-   "description": "A towering orc scarred from brow to belt, with a necklace of knuckle\nbones and a skull-faced maul that few men could lift. He rules Morkai's\nwar-bands by fear alone, and his roar can shake dust from the roof.",
-   "level": 51,
-   "alignment": -900,
-   "hp_dice": "51d8+895",
-   "damage_dice": "13d6+30",
+   "name": "gorbash bone king lich orc",
+   "short_desc": "Gorbash the Bone King",
+   "long_desc": "Gorbash the Bone King sits on the high seat, a lich crowned in black iron, his maul across his knees.",
+   "description": "Once the war-chief who ruled Morkai by fear, Gorbash drank from the Well\nof Souls to outlive his enemies and became something worse. His flesh\nhas fallen away, his crown has fused to his skull, and every dead thing\nin the city answers his will.",
+   "level": 68,
+   "alignment": -800,
+   "hp_dice": "68d8+1526",
+   "damage_dice": "18d6+37",
    "armor_class": -20,
-   "exp": 2825,
-   "gold": 612,
+   "exp": 3760,
+   "gold": 0,
    "flags": [
     "stay_zone",
-    "aggressive"
+    "aggressive",
+    "undead"
    ],
    "inventory": [],
    "loot_table": [
     {
-     "vnum": 751209,
+     "vnum": 751221,
      "chance": 35
     },
     {
-     "vnum": 751208,
-     "chance": 20
+     "vnum": 751209,
+     "chance": 25
     },
     {
      "vnum": 214,
@@ -13421,6 +13861,134 @@
     {
      "type": "damroll",
      "value": 2
+    }
+   ]
+  },
+  "751215": {
+   "vnum": 751215,
+   "name": "cleaver bone hafted black",
+   "short_desc": "a bone-hafted cleaver",
+   "room_desc": "A black cleaver with a haft of fused bone lies here.",
+   "description": "A broad orc cleaver of black iron, its wooden haft long since replaced with a column of fused vertebrae. It is cold in the hand and never quite dull.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 61,
+   "damage_dice": "2d12",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 1565
+  },
+  "751216": {
+   "vnum": 751216,
+   "name": "shroud grave wrappings grey",
+   "short_desc": "a grave-wrapped shroud",
+   "room_desc": "A grey shroud of grave-wrappings lies here in a heap.",
+   "description": "Long strips of burial linen wound into a hooded cloak, stiff with grave-dust. The dead pay little heed to one who wears it.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 60,
+   "wear_slot": "about",
+   "armor": 6,
+   "weight": 3,
+   "value": 1230
+  },
+  "751217": {
+   "vnum": 751217,
+   "name": "greathelm helm death knight black",
+   "short_desc": "a death knight's greathelm",
+   "room_desc": "A black iron greathelm, rimed with frost, lies here.",
+   "description": "A closed helm of black iron, its visor a narrow slit. Frost forms on it even here, and a faint blue glow lingers inside long after it leaves a dead head.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 64,
+   "wear_slot": "head",
+   "armor": 7,
+   "weight": 3,
+   "value": 1310,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "751218": {
+   "vnum": 751218,
+   "name": "amulet soul glass grey",
+   "short_desc": "a soul-glass amulet",
+   "room_desc": "A pendant of cloudy grey glass lies here, glowing faintly.",
+   "description": "A tear of grey glass on a chain of bone beads. Something small and pale moves inside it, and it murmurs when held to the ear.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 63,
+   "wear_slot": "neck1",
+   "armor": 5,
+   "weight": 1,
+   "value": 1290,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "751219": {
+   "vnum": 751219,
+   "name": "ring void iron black",
+   "short_desc": "a ring of void-iron",
+   "room_desc": "A ring of lightless black metal lies here.",
+   "description": "A heavy band of metal so black it seems a hole in the air. It was cut from the stuff of the deep places, and the eye slides off it.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 65,
+   "wear_slot": "finger1",
+   "armor": 5,
+   "weight": 1,
+   "value": 1330,
+   "affects": [
+    {
+     "type": "int",
+     "value": 1
+    }
+   ]
+  },
+  "751220": {
+   "vnum": 751220,
+   "name": "blackplate plate armour red stained",
+   "short_desc": "Vrakk's blackplate",
+   "room_desc": "A suit of black plate stained with old red lies here.",
+   "description": "The death knight's own armour, black iron plates riveted over a hauberk of mail and streaked with stains that never wash out. It is heavy and cold, and it does not dent.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 66,
+   "wear_slot": "body",
+   "armor": 11,
+   "weight": 10,
+   "value": 1350,
+   "affects": [
+    {
+     "type": "str",
+     "value": 1
+    }
+   ]
+  },
+  "751221": {
+   "vnum": 751221,
+   "name": "crown bone king black iron",
+   "short_desc": "the crown of the Bone King",
+   "room_desc": "A crown of black iron and bone lies here.",
+   "description": "A heavy circlet of black iron set with orc teeth and a single grey soul-glass stone. It was fused to a dead king's skull; worn by the living, it hums with cold strength.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 68,
+   "wear_slot": "head",
+   "armor": 7,
+   "weight": 3,
+   "value": 1390,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 15
     }
    ]
   },

@@ -127,6 +127,7 @@
     280: 'volcanic',    // Ashen Expanse
     290: 'voidstar',    // Black Observatory
     295: 'necropolis',  // Crown of Bone
+    514: 'necropolis',  // Morkai's under-tombs (dead Morkai, end-game)
     300: 'darkcastle',  // Shattered Throne
   };
 

@@ -131,6 +131,7 @@ export const LOOK_SAMPLES = [
   { look: 'water_swim', sector: 'water_swim', name: 'On Mira Retrum', description: 'The river runs wide and slow between grassy banks.' },
   { look: 'water_noswim', sector: 'water_noswim', name: 'On Mira Retrum', description: 'Deep water, too deep to wade.' },
   { look: 'web', sector: 'field', name: 'Webbed Entrance', description: 'Sticky webs coat the limbs of the trees; webbed remains of crickets, rats and men hang in cocoons.' },
+  { look: 'necropolis', sector: 'city', name: 'In The Streets Of Morkai', description: 'A crooked street of black stone houses; orc bones lie where they fell, and green ghost-fire burns in the braziers.' },
   { look: 'castle', sector: 'city', name: 'The Castle Yard', description: 'High walls ring the yard; banners hang from the battlements.' },
   { look: 'castle', sector: 'field', key: 'blackcastle', name: 'Before The Dark Castle', description: 'A grim castle of black stone rises before you.' },
   // a way into another region (key gate*): a named gateway on the far side

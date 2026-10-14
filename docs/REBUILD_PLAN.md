@@ -1716,6 +1716,9 @@ says a cave, the room should look like a cave. Let's think how to fix this going
     - a gatehouse with a raised portcullis over every way out;
     - a yard of a well, crates, weapon racks and targets;
     - the stone tinted black, white, red or bone from the room's words.
+  - **dead cities (`necropolis`):** a town's streets in black stone, with crypts, shrines, dead
+    trees, graves, bones and skulls in place of street furniture, braziers of cold green
+    ghost-fire, and a grave-green mood (`terrain-town.js`, `engine.js`). Morkai's streets use it.
   - **ways into another region (any room):** a stone gateway over every cardinal exit of kind
     `zone`. It has two great pillars, a lintel carrying the region's name on a carved plaque,
     banners, and a fire either side. Indoors and underground it is lower and plainer. On the
@@ -1826,3 +1829,32 @@ Owner: "let's find a way to increase character speed? Maybe that's mounts since 
     a chat line; captions are optional. Telnet keeps the text.
   - One system now (`ambient_events.py` is gone). Use `ambient` / `ambient now` (immortal) to
     inspect a room.
+
+### Dead Morkai: an end-game city of the dead
+Owner: "Morkai should be an end game area and themed dark, undead, skeletons, aberrations."
+- **Scope:** the city (35 rooms in the Orc Tunnels, 13828 and 13831–13899) and its under-tombs
+  (zone 514, 33 rooms) are now levels 60–68. The approach tunnels stay 42–52, and the Gate To
+  Morkai warns that few come back.
+- **The story:** the orc city fell to what woke under the Well of Souls (Moloch, beneath the tombs).
+  Its orcs rose as the dead, and aberrations crawl up through the Gateway To The Underworld. Every
+  room is rewritten (`world/buildout/parts/z512b.json`, `z514.json`).
+- **The creatures**, each named so its 3D body fits (`looks.js`, `bestiary.js`):
+  - skeletal orc warriors and archers, rotting orc ghouls, orc bone-shamans, soul wraiths, death
+    knights (elite);
+  - eye tyrants and mind flayers (elite), tentacled horrors;
+  - in the tombs, carrion crawlers, gibbering mouthers, risen cultists and a bone colossus;
+  - Vrakk the Hollow-Eyed (sub-boss) atop the Black Spire;
+  - **Gorbash the Bone King** (boss) on the high seat, with gloom, waves of his dead and
+    grave-chill pools;
+  - Imrael the Lich and Moloch (68) below.
+- **Drops** (60–68): a bone-hafted cleaver, a grave shroud, a death knight's greathelm, a
+  soul-glass amulet, a void-iron ring, Vrakk's blackplate and the crown of the Bone King.
+- **The look:** streets and squares are `necropolis`; halls, the church and the morgue are
+  `crypt`; zone 514's zone key is `necropolis`, which sets dark music.
+- **Counts:** a reset counts its creature across the whole zone (`world.reset_zone`). A build-out
+  creature placed in many rooms with `max: 1` therefore spawns once per zone, whatever its count
+  says. Morkai's creatures use population `spawns`, which set the zone-wide total, so the counts
+  written hold. Other build-out zones still have the one-per-zone cap.
+- `buildout.py`: a creature's `"avoid": [room names]` keeps it out of rooms; the tunnel orcs avoid
+  dead Morkai.
+

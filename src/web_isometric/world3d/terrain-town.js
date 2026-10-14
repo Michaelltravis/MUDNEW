@@ -10,6 +10,7 @@
 // walks around them (the server never sees this: it is furniture, not geometry).
 import * as THREE from 'three';
 import { trs } from './assets.js';
+import { tinted } from './terrain-looks.js';
 
 const BLOCK = 1, FLOOR = 0;
 const CARD = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
@@ -54,9 +55,17 @@ const LANDMARK = [
 ];
 const COLORS = ['blue', 'red', 'yellow', 'green'];
 
+// a dead city (the 'necropolis' look, dead Morkai): the same streets in black stone, graves and
+// bones for street furniture, ghost-green braziers in place of torches
+const NECRO_STONE = 0x4a4652;
+function darkTown(T) {
+  return T && { get: k => tinted(T.get(k), NECRO_STONE, 'necro') };
+}
+
 export function townStreet(c) {
   const { layout, ox, oz, kits, room, b, rng, runs, occ } = c;
-  const T = kits.town;
+  const necro = layout.theme === 'necropolis';
+  const T = necro ? darkTown(kits.town) : kits.town;
   const pickLandmark = text => (LANDMARK.find(([re]) => re.test(String(text || '').toLowerCase())) || [])[1];
   let streetLandmark = pickLandmark(`${layout.name} ${layout.description}`);
   for (const run of runs) {
@@ -114,8 +123,21 @@ export function townStreet(c) {
     }
   }
   // street furniture on roomgen's obstacles (they block in the grid already)
+  const G = kits.graveyard;
   for (const o of layout.obstacles || []) {
     const cx = ox + o.x + (o.big ? 1 : 0.5), cz = oz + o.y + (o.big ? 1 : 0.5);
+    if (necro && G) {
+      // the dead city: a crypt, a shrine, dead trees, graves; bones and skulls underfoot
+      const yaw = Math.floor(rng() * 4) * Math.PI / 2;
+      if (o.big) {
+        const key = ['crypt', 'shrine_candles', 'tree_dead_large', 'grave_A', 'grave_B'][Math.floor(rng() * 5)];
+        b.add(occ(G.get(key)), trs(cx, 0, cz, yaw, key === 'crypt' ? 0.45 : key.startsWith('tree') ? 0.8 : 0.6));
+      } else {
+        const key = ['gravestone', 'gravemarker_A', 'ribcage', 'post_skull', 'bone_A', 'skull_candle'][Math.floor(rng() * 6)];
+        b.add(G.get(key), trs(cx, 0, cz, rng() * 6.28, key.startsWith('grave') ? 0.55 : 0.9));
+      }
+      continue;
+    }
     if (o.big) {
       const key = ['building_well_blue', 'crate_long_A', 'wheelbarrow', 'tent'][Math.floor(rng() * 4)];
       const s = key.startsWith('building_well') ? 2.6 : key === 'tent' ? 2.2 : 5;

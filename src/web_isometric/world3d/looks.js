@@ -47,7 +47,7 @@ const TITLES = new Set(('king queen lord lady chief chieftain leader master mist
   + 'sentry watchman lieutenant sergeant recruit veteran novice initiate zealot templar inquisitor herald').split(/\s+/));
 // the race words a role word defers to
 const RACES = /\b(goblins?|hobgoblins?|kobolds?|orcs?|half-orcs?|gnolls?|bugbears?|trolls?|ogres?|giants?|skeleton|skeletal|zombies?|ghouls?|undead|vampires?|spectral|ghostly|ghosts?|demons?|imps?|minotaurs?|sahuagin|myconoids?|myconids?)\b/;
-const UNDEAD = /\b(skeleton|skeletons|skeletal|zombie|zombies|ghoul|ghouls|ghast|undead|lich|wight|bone|bones|corpse|mummy|mummies|revenant|vampire|vampires|deathknight|death knight|drowned|ossuary|ribcage|charnel|draugr|undying|dead performers?)\b/;
+const UNDEAD = /\b(skeleton|skeletons|skeletal|zombie|zombies|ghoul|ghouls|ghast|undead|lich|wight|bone|bones|corpse|mummy|mummies|revenant|vampire|vampires|deathknight|death knight|drowned|risen|ossuary|ribcage|charnel|draugr|undying|dead performers?)\b/;
 // an undead creature that is not a person keeps its body, rotten or bare to the bone
 const ROTTEN = /\b(undead|zombie|zombies|zombified|rotting|rotten|drowned|ghoul|plague)\b/;
 const BONY = /\b(skeleton|skeletal|bone|bones)\b/;
@@ -183,7 +183,7 @@ function person(m, all, why = 'person') {
 // the walking dead: a skeleton dressed by what it was
 function undead(m, all) {
   const h = hashStr(m.pv != null ? `pv${m.pv}` : all);
-  const big = /\b(giant|juggernaut|harvester|behemoth)\b/.test(all) ? 1.6 : 1;
+  const big = /\b(giant|juggernaut|harvester|behemoth|colossus|colossi)\b/.test(all) ? 1.6 : 1;
   const scale = ((m.boss || (m.flags || []).includes('boss')) ? 1.25 : 1) * big;
   const s = scale !== 1 ? scale : undefined, why = 'undead';
   if (/\b(vampire|vampires)\b/.test(all)) return { model: 'rogue_hooded', loadout: ['Knife'], tint: 0x8a6a8a, scale: s, why };
@@ -195,7 +195,7 @@ function undead(m, all) {
   const tint = /\bdrowned\b/.test(all) ? 0x8ab0a8 : /\b(mummy|mummies)\b/.test(all) ? 0xd8c8a0
     : /\b(zombies?|ghouls?|ghast|revenant|corpse|rotting)\b/.test(all) ? 0x9ab08a : /\blich\b/.test(all) ? 0xc8b8e8 : undefined;
   const model = /\b(lich|necromancer|mage|priests?|priestess|vicar|cantor|choir|sorcerer|wizard|shaman|witch|warlock|cleric|acolyte|sovereign|king|queen|herald|sanctifier)\b/.test(all) ? 'skeleton_mage'
-    : /\b(warrior|guard|guardian|knight|soldier|champion|sentinel|juggernaut|harvester|captain|mummy|mummies)\b/.test(all) ? 'skeleton_warrior'
+    : /\b(warrior|guard|guardian|knight|soldier|champion|sentinel|juggernaut|harvester|colossus|captain|mummy|mummies)\b/.test(all) ? 'skeleton_warrior'
       : /\b(archer|rogue|thief|scout|assassin|hunter|collector|thrall)\b/.test(all) ? 'skeleton_rogue'
         : /\b(zombies?|ghouls?|ghast|revenant|corpse)\b/.test(all) ? 'skeleton_minion'
           : ['skeleton_warrior', 'skeleton_rogue', 'skeleton_minion'][h % 3];
@@ -263,7 +263,8 @@ function choose(m, { head, words, all }) {
     // "the vampire hunter" hunts vampires; "a goblin mushroom farmer" is a goblin
     const agent = AGENTS.has(head);
     const race = words.slice(0, agent ? -2 : -1).join(' ');
-    if (UNDEAD.test(race)) return undead(m, all);
+    // ("a death knight": the dead by their whole name, not only their race)
+    if (UNDEAD.test(race) || /\bdeath ?knights?\b/.test(words.join(' '))) return undead(m, all);
     const rm = race.match(RACES) || (TITLES.has(head) && !agent ? all.match(RACES) : null);   // "King of the Goblins"
     if (rm) {
       if (UNDEAD.test(rm[0])) return undead(m, all);
