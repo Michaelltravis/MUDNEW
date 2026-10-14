@@ -17,6 +17,7 @@ import asyncio
 import collections
 import logging
 import os
+import re
 import statistics
 import sys
 
@@ -26,6 +27,15 @@ sys.path.insert(0, os.path.join(ROOT, 'src'))
 DEEP = {'water_noswim', 'underwater', 'air'}
 GODLY = {'imm_only', 'godroom', 'god_room', 'gods_only'}
 SPARSE = 0.35          # hostile creatures per walkable room below which an adventuring zone is thin
+TRAVEL_SPARSE = 0.2    # ... and a road or open plain between places (fewer fights on the way)
+TRAVEL_RE = re.compile(r'\b(road|plains|highway|trail)\b', re.I)
+
+
+def is_travel(name, sectors):
+    """A road or open plain between places: named so, or most of its rooms open field or road."""
+    sectors = list(sectors)
+    roads = sum(1 for sec in sectors if sec in ('field', 'road', 'plains'))
+    return bool(TRAVEL_RE.search(name or '')) or roads > 0.6 * max(1, len(sectors))
 
 
 def key_sources(world):
@@ -59,8 +69,9 @@ def survey(world):
             continue
         s = zones.setdefault(z, {'zone': z, 'name': getattr(r.zone, 'name', str(z)), 'rooms': 0, 'walk': 0, 'city': 0,
                                  'mobs': 0, 'hostile': 0, 'levels': [], 'doors': 0, 'locked': 0, 'nokey': [],
-                                 'bosses': 0, 'empty_walk': 0})
+                                 'bosses': 0, 'empty_walk': 0, 'sectors': []})
         s['rooms'] += 1
+        s['sectors'].append(getattr(r, 'sector_type', '') or '')
         flags = set(getattr(r, 'flags', None) or [])
         walk = getattr(r, 'sector_type', '') not in DEEP and not (flags & GODLY)
         s['walk'] += walk
@@ -90,7 +101,8 @@ def survey(world):
         s['per_room'] = s['hostile'] / max(1, s['walk'])
         s['town'] = (s['mobs'] and s['hostile'] < 0.4 * s['mobs']) or s['city'] > 0.5 * s['rooms']
         s['band'] = (min(s['levels']), int(statistics.median(s['levels'])), max(s['levels'])) if s['levels'] else None
-        s['sparse'] = (not s['town']) and s['walk'] >= 8 and s['per_room'] < SPARSE
+        s['travel'] = is_travel(s['name'], s['sectors'])
+        s['sparse'] = (not s['town']) and s['walk'] >= 8 and s['per_room'] < (TRAVEL_SPARSE if s['travel'] else SPARSE)
     return zones
 
 
@@ -103,7 +115,7 @@ def table(zones, md=False):
         out.append('|' + '---|' * len(head))
     for s in rows:
         band = f"{s['band'][0]}-{s['band'][2]} (med {s['band'][1]})" if s['band'] else '-'
-        note = 'SPARSE' if s['sparse'] else ('town' if s['town'] else '')
+        note = 'SPARSE' if s['sparse'] else ('town' if s['town'] else 'travel' if s['travel'] else '')
         cells = [s['zone'], s['name'][:28], s['walk'], s['mobs'], s['hostile'], f"{s['per_room']:.2f}", s['empty_walk'],
                  band, s['doors'], s['locked'], len(s['nokey']), note]
         out.append(('| ' + ' | '.join(map(str, cells)) + ' |') if md else

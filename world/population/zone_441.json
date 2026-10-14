@@ -66,6 +66,22 @@
    ],
    "race": "undead",
    "alignment": -600
+  },
+  "791441": {
+   "name": "wolf grey forest",
+   "short_desc": "a grey forest wolf",
+   "long_desc": "A grey forest wolf slinks between the trees, watching you.",
+   "description": "A lean grey wolf with a ragged ear and yellow eyes. The king's foresters never cleared this part of the wood, and the wolves know it.",
+   "level": 12,
+   "kind": "animal",
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "rank": "regular",
+   "fills": true,
+   "water": false,
+   "why": "the zone's regulars (tools/audit/densify.py fills its empty rooms with them): it had no ordinary foe of its own"
   }
  },
  "patrols": [
@@ -101,5 +117,18 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 791441,
+   "rooms": [
+    8665,
+    8667,
+    8669
+   ],
+   "total": 3,
+   "why": "a grey forest wolf"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 3 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

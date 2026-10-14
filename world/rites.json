@@ -208,6 +208,342 @@
    "description": "A crude key on a thong of hide. It opens the way to Elstar.",
    "level": 12,
    "zone": 62
+  },
+  "z25-key": {
+   "vnum": 799025,
+   "keywords": "key pentacle silver summoning",
+   "short_desc": "a pentacle key",
+   "description": "A silver key shaped like a five-pointed star. It opens the Pentagram Chamber.",
+   "level": 18,
+   "zone": 25
+  },
+  "z33-key": {
+   "vnum": 799033,
+   "keywords": "key iron smith smithery",
+   "short_desc": "a smith's iron key",
+   "description": "A heavy iron key black from the forge. It opens the Smithery.",
+   "level": 22,
+   "zone": 33
+  },
+  "z65-key": {
+   "vnum": 799065,
+   "keywords": "key mithril tarnished maze",
+   "short_desc": "a key of tarnished mithril",
+   "description": "A small key of tarnished mithril, cold as a grave. It opens the way into the Mine Maze.",
+   "level": 27,
+   "zone": 65
+  },
+  "z79-key": {
+   "vnum": 799079,
+   "keywords": "key wax sealed house redferne",
+   "short_desc": "a wax-sealed key",
+   "description": "A brass key sealed in a blob of red wax with a wizard's sigil. It opens Redferne's front door.",
+   "level": 20,
+   "zone": 79
+  },
+  "z416-key": {
+   "vnum": 799416,
+   "keywords": "key blood altar khal",
+   "short_desc": "a blood-red altar key",
+   "description": "A key of rust-red iron that leaves a stain on the hand. It opens Lord Khal's altar.",
+   "level": 14,
+   "zone": 416
+  },
+  "z419-key": {
+   "vnum": 799419,
+   "keywords": "key bone pale chapel",
+   "short_desc": "a chapel key of pale bone",
+   "description": "A key carved from pale bone, warm to the touch. It opens the Chapel of Mishrak.",
+   "level": 20,
+   "zone": 419
+  },
+  "z436-key": {
+   "vnum": 799436,
+   "keywords": "key baron brass manor",
+   "short_desc": "the baron's key",
+   "description": "A heavy brass key with the baron's crest. It opens his private rooms.",
+   "level": 22,
+   "zone": 436
+  },
+  "z469-key": {
+   "vnum": 799469,
+   "keywords": "key crystal star tower",
+   "short_desc": "a key of starlit crystal",
+   "description": "A key of clear crystal with a point of light inside. It opens the Grand Mistress's entranceway.",
+   "level": 28,
+   "zone": 469
+  },
+  "z475-key": {
+   "vnum": 799475,
+   "keywords": "key chaos shifting",
+   "short_desc": "a key that will not keep its shape",
+   "description": "A key whose teeth shift each time you look at it. It opens the decorated door.",
+   "level": 26,
+   "zone": 475
+  },
+  "z476-key": {
+   "vnum": 799476,
+   "keywords": "key wood living druid mansion",
+   "short_desc": "a key of living wood",
+   "description": "A key grown from living wood, still sprouting a leaf. It opens the High Druid's mansion.",
+   "level": 26,
+   "zone": 476
+  },
+  "z478-key": {
+   "vnum": 799478,
+   "keywords": "key obsidian black treasury",
+   "short_desc": "a key of black obsidian",
+   "description": "A key of glassy black obsidian, hot to the touch. It opens the fire lord's inner treasury.",
+   "level": 27,
+   "zone": 478
+  },
+  "z479-key": {
+   "vnum": 799479,
+   "keywords": "key iron bone altar annihilation",
+   "short_desc": "a key of black iron and bone",
+   "description": "A key of black iron with a handle of bone. It opens the Altar of Annihilation.",
+   "level": 20,
+   "zone": 479
+  },
+  "z488-key": {
+   "vnum": 799488,
+   "keywords": "key soot stone maze",
+   "short_desc": "a soot-stained key",
+   "description": "A crude key, black with soot. It opens the way into the stone maze.",
+   "level": 15,
+   "zone": 488
+  },
+  "z501-key": {
+   "vnum": 799501,
+   "keywords": "key emerald set shaft",
+   "short_desc": "an emerald-set key",
+   "description": "A heavy dwarven key set with a chip of emerald. It opens the chamber outside the emerald vault.",
+   "level": 40,
+   "zone": 501
+  },
+  "z508-key": {
+   "vnum": 799508,
+   "keywords": "key stair king rusted",
+   "short_desc": "a king's stair key",
+   "description": "A long rusted key stamped with a dwarven crown. It opens the way down the king's stair.",
+   "level": 46,
+   "zone": 508
+  },
+  "z514-key": {
+   "vnum": 799514,
+   "keywords": "key sealing pale glass stone",
+   "short_desc": "a sealing key of pale glass",
+   "description": "A key of pale glass that hums faintly. It opens the way to the Stone of Sealing.",
+   "level": 66,
+   "zone": 514
+  },
+  "z245-key": {
+   "vnum": 799245,
+   "keywords": "key warded of shadows",
+   "short_desc": "a warded key to the Throne of Shadows",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Throne of Shadows.",
+   "level": 55,
+   "zone": 245
+  },
+  "z455-key": {
+   "vnum": 799455,
+   "keywords": "key warded concealed demise",
+   "short_desc": "a warded key to the Mound of Concealed Demise",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Mound of Concealed Demise.",
+   "level": 21,
+   "zone": 455
+  },
+  "z61-key": {
+   "vnum": 799061,
+   "keywords": "key warded queen spider",
+   "short_desc": "a warded key to the Den Of The Queen Spider",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Den Of The Queen Spider.",
+   "level": 15,
+   "zone": 61
+  },
+  "z445-key": {
+   "vnum": 799445,
+   "keywords": "key warded s room",
+   "short_desc": "a warded key to the Chieftain's Room",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Chieftain's Room.",
+   "level": 22,
+   "zone": 445
+  },
+  "z471-key": {
+   "vnum": 799471,
+   "keywords": "key warded dark castle",
+   "short_desc": "the Black Priest's key",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way to the Black Priest.",
+   "level": 18,
+   "zone": 471
+  },
+  "z238-key": {
+   "vnum": 799238,
+   "keywords": "key warded refectory",
+   "short_desc": "a warded key to the Refectory",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Refectory.",
+   "level": 35,
+   "zone": 238
+  },
+  "z248-key": {
+   "vnum": 799248,
+   "keywords": "key warded furnace core",
+   "short_desc": "a warded key to the Furnace Core",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Furnace Core.",
+   "level": 60,
+   "zone": 248
+  },
+  "z140-key": {
+   "vnum": 799140,
+   "keywords": "key warded bone throne",
+   "short_desc": "a warded key to the Bone Throne",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Bone Throne.",
+   "level": 45,
+   "zone": 140
+  },
+  "z424-key": {
+   "vnum": 799424,
+   "keywords": "key warded golden tomb",
+   "short_desc": "Aldric Vane's key",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way to Aldric Vane.",
+   "level": 18,
+   "zone": 424
+  },
+  "z481-key": {
+   "vnum": 799481,
+   "keywords": "key warded deep dragon",
+   "short_desc": "a warded key to the Lair Of The Deep Dragon",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Lair Of The Deep Dragon.",
+   "level": 33,
+   "zone": 481
+  },
+  "z461-key": {
+   "vnum": 799461,
+   "keywords": "key warded of acrasia",
+   "short_desc": "Acrasia's key",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way to Acrasia.",
+   "level": 23,
+   "zone": 461
+  },
+  "z502-key": {
+   "vnum": 799502,
+   "keywords": "key warded draconian shrine",
+   "short_desc": "a warded key to the Draconian Shrine",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Draconian Shrine.",
+   "level": 21,
+   "zone": 502
+  },
+  "z454-key": {
+   "vnum": 799454,
+   "keywords": "key warded throne room",
+   "short_desc": "a warded key to the Throne Room",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Throne Room.",
+   "level": 21,
+   "zone": 454
+  },
+  "z435-key": {
+   "vnum": 799435,
+   "keywords": "key warded s nest",
+   "short_desc": "a warded key to Farrot's Nest",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into Farrot's Nest.",
+   "level": 18,
+   "zone": 435
+  },
+  "z515-key": {
+   "vnum": 799515,
+   "keywords": "key warded of orcus",
+   "short_desc": "a warded key to the Sanctuary Of Orcus",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Sanctuary Of Orcus.",
+   "level": 55,
+   "zone": 515
+  },
+  "z68-key": {
+   "vnum": 799068,
+   "keywords": "key warded outer pier",
+   "short_desc": "a warded key to the Outer Pier",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Outer Pier.",
+   "level": 45,
+   "zone": 68
+  },
+  "z472-key": {
+   "vnum": 799472,
+   "keywords": "key warded mountain top",
+   "short_desc": "the Wyvern Matriarch's key",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way to the Wyvern Matriarch.",
+   "level": 26,
+   "zone": 472
+  },
+  "z439-key": {
+   "vnum": 799439,
+   "keywords": "key warded the titans",
+   "short_desc": "a warded key to the Tomb of Kronos, Lord of the Titans",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Tomb of Kronos, Lord of the Titans.",
+   "level": 17,
+   "zone": 439
+  },
+  "z464-key": {
+   "vnum": 799464,
+   "keywords": "key warded the pedestal",
+   "short_desc": "Overseer Harrok the Corrupted's key",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way to Overseer Harrok the Corrupted.",
+   "level": 24,
+   "zone": 464
+  },
+  "z210-key": {
+   "vnum": 799210,
+   "keywords": "key warded of sticks",
+   "short_desc": "a warded key to the Tunnel Of Sticks",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Tunnel Of Sticks.",
+   "level": 38,
+   "zone": 210
+  },
+  "z509-key": {
+   "vnum": 799509,
+   "keywords": "key warded black rock",
+   "short_desc": "a warded key to the Black Rock",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Black Rock.",
+   "level": 49,
+   "zone": 509
+  },
+  "z449-key": {
+   "vnum": 799449,
+   "keywords": "key volcanic glass black crest",
+   "short_desc": "a key of black volcanic glass",
+   "description": "A key of black volcanic glass, still warm. It opens the way up to the smoking crest of the volcano.",
+   "level": 13,
+   "zone": 449
+  },
+  "z120-key": {
+   "vnum": 799120,
+   "keywords": "key warded of terror",
+   "short_desc": "a warded key to the Grand Temple Of Terror",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Grand Temple Of Terror.",
+   "level": 34,
+   "zone": 120
+  },
+  "z160-key": {
+   "vnum": 799160,
+   "keywords": "key warded dragon lair",
+   "short_desc": "a warded key to the Prismatic Dragon Lair",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Prismatic Dragon Lair.",
+   "level": 50,
+   "zone": 160
+  },
+  "z73-key": {
+   "vnum": 799073,
+   "keywords": "key warded s sanctum",
+   "short_desc": "a warded key to the Mindflayer's Sanctum",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Mindflayer's Sanctum.",
+   "level": 30,
+   "zone": 73
+  },
+  "z80-key": {
+   "vnum": 799080,
+   "keywords": "key warded treasure cavern",
+   "short_desc": "a warded key to the Treasure Cavern",
+   "description": "An old key worn smooth by its keeper's hand, cut with a ward-sign. It opens the way into the Treasure Cavern.",
+   "level": 50,
+   "zone": 80
   }
  },
  "gates": [
@@ -516,6 +852,632 @@
     "vnum": 790062
    },
    "why": "The Orc Enclave: the Huntmaster keeps the tunnel to Elstar"
+  },
+  {
+   "room": 2587,
+   "dir": "south",
+   "key": "z25-key",
+   "keeper": {
+    "from": 791025,
+    "room": 2587,
+    "keywords": "warden pentagram golem",
+    "short_desc": "the Pentagram Warden",
+    "long_desc": "The Pentagram Warden stands before the chamber, a silver pentacle key set in its chest.",
+    "level": 18,
+    "vnum": 790025
+   },
+   "why": "High Tower of Magic I: the Pentagram Warden keeps the Master Summoner's chamber"
+  },
+  {
+   "room": 3303,
+   "dir": "east",
+   "key": "z33-key",
+   "keeper": {
+    "from": 3306,
+    "room": 3303,
+    "keywords": "cyclops forge guard",
+    "short_desc": "the Forge Cyclops",
+    "long_desc": "The Forge Cyclops stands before the smithery door, an iron key hung on a thong.",
+    "level": 22,
+    "vnum": 790033
+   },
+   "why": "The Three of Swords: the Forge Cyclops keeps Aglandiir's smithery"
+  },
+  {
+   "room": 6544,
+   "dir": "north",
+   "key": "z65-key",
+   "keeper": {
+    "from": 6502,
+    "room": 6544,
+    "keywords": "wraith maze warden",
+    "short_desc": "the Maze Wraith",
+    "long_desc": "The Maze Wraith drifts before the maze gate, a mithril key glinting in its grey hand.",
+    "level": 27,
+    "vnum": 790065
+   },
+   "why": "Dwarven Kingdom: the Maze Wraith keeps the way to the mazekeeper"
+  },
+  {
+   "room": 7900,
+   "dir": "north",
+   "key": "z79-key",
+   "keeper": {
+    "from": 791079,
+    "room": 7900,
+    "keywords": "doorkeeper homunculus",
+    "short_desc": "the Doorkeeper Homunculus",
+    "long_desc": "The Doorkeeper Homunculus squats before the front door, a wax-sealed key in its fist.",
+    "level": 20,
+    "vnum": 790079
+   },
+   "why": "Redferne's Residence: the Doorkeeper Homunculus keeps the wizard's door"
+  },
+  {
+   "room": 2721,
+   "dir": "north",
+   "key": "z416-key",
+   "keeper": {
+    "from": 641604,
+    "room": 2721,
+    "keywords": "keeper altar blood cultist",
+    "short_desc": "the Altar Keeper",
+    "long_desc": "The Altar Keeper stands before Lord Khal's altar, a blood-red key at his throat.",
+    "level": 14,
+    "vnum": 790416
+   },
+   "why": "Castle of Caboon: the Altar Keeper keeps Lord Khal's altar"
+  },
+  {
+   "room": 8028,
+   "dir": "south",
+   "key": "z419-key",
+   "keeper": {
+    "from": 641902,
+    "room": 8028,
+    "keywords": "deacon chapel hooded cultist",
+    "short_desc": "the Chapel Deacon",
+    "long_desc": "The Chapel Deacon guards the chapel door, a pale bone key at his belt.",
+    "level": 20,
+    "vnum": 790419
+   },
+   "why": "Mishrak: the Chapel Deacon keeps Maelgrim's chapel"
+  },
+  {
+   "room": 105866,
+   "dir": "west",
+   "key": "z436-key",
+   "keeper": {
+    "from": 643603,
+    "room": 105866,
+    "keywords": "steward robed cultist",
+    "short_desc": "the Baron's Steward",
+    "long_desc": "The Baron's Steward stands before the baron's rooms, a brass key on a chain.",
+    "level": 22,
+    "vnum": 790436
+   },
+   "why": "Baron Kalveh's Fief: the Steward keeps the baron's rooms"
+  },
+  {
+   "room": 2675,
+   "dir": "north",
+   "key": "z469-key",
+   "keeper": {
+    "from": 791469,
+    "room": 2675,
+    "keywords": "warden spark entranceway",
+    "short_desc": "the Spark Warden",
+    "long_desc": "The Spark Warden crackles before the entranceway, a crystal key turning inside it.",
+    "level": 28,
+    "vnum": 790469
+   },
+   "why": "High Tower of Magic II: the Spark Warden keeps the Grand Mistress's entranceway"
+  },
+  {
+   "room": 16255,
+   "dir": "west",
+   "key": "z475-key",
+   "keeper": {
+    "from": 47503,
+    "room": 16255,
+    "keywords": "warden chaos leech",
+    "short_desc": "the Chaos Warden",
+    "long_desc": "The Chaos Warden swells before the decorated door, a shifting key caught in its hide.",
+    "level": 26,
+    "vnum": 790475
+   },
+   "why": "World of Chaos: the Chaos Warden keeps the way to the Lord of Chaos"
+  },
+  {
+   "room": 24600,
+   "dir": "north",
+   "key": "z476-key",
+   "keeper": {
+    "from": 647605,
+    "room": 24600,
+    "keywords": "thornwarden priest cultist",
+    "short_desc": "the Thornwarden",
+    "long_desc": "The Thornwarden stands before the mansion, a living-wood key bound to his staff.",
+    "level": 26,
+    "vnum": 790476
+   },
+   "why": "Stone Circle: the Thornwarden keeps the High Druid's mansion"
+  },
+  {
+   "room": 24273,
+   "dir": "south",
+   "key": "z478-key",
+   "keeper": {
+    "from": 647804,
+    "room": 24273,
+    "keywords": "treasury warden flame guard",
+    "short_desc": "the Treasury Flamewarden",
+    "long_desc": "The Treasury Flamewarden stands before the inner treasury, an obsidian key at his belt.",
+    "level": 27,
+    "vnum": 790478
+   },
+   "why": "Fire Grotto: the Flamewarden keeps Machk-Gyi's treasury"
+  },
+  {
+   "room": 205557,
+   "dir": "west",
+   "key": "z479-key",
+   "keeper": {
+    "from": 47905,
+    "room": 205557,
+    "keywords": "altar knight wraith",
+    "short_desc": "the Altar Wraith Knight",
+    "long_desc": "The Altar Wraith Knight bars the way to the altar, a bone-handled key at its side.",
+    "level": 20,
+    "vnum": 790479
+   },
+   "why": "Ancalador: the Altar Wraith Knight keeps Morticia's altar"
+  },
+  {
+   "room": 5805,
+   "dir": "north",
+   "key": "z488-key",
+   "keeper": {
+    "from": 648801,
+    "room": 5805,
+    "keywords": "warden troglodyte maze",
+    "short_desc": "the Maze Warden",
+    "long_desc": "The Maze Warden crouches before the maze door, a soot-stained key in its claws.",
+    "level": 15,
+    "vnum": 790488
+   },
+   "why": "Tunnels of Sin: the Maze Warden keeps the way to Vhaz'ul"
+  },
+  {
+   "room": 24775,
+   "dir": "north",
+   "key": "z501-key",
+   "keeper": 650105,
+   "why": "Aredrel: Kharn Ironvein, captain of the shaft guard, keeps the deep shaft"
+  },
+  {
+   "room": 13198,
+   "dir": "west",
+   "key": "z508-key",
+   "keeper": {
+    "from": 650803,
+    "room": 13198,
+    "keywords": "stairwarden skeletal hero",
+    "short_desc": "the Stair Warden",
+    "long_desc": "The Stair Warden stands at the top of the king's stair, a crown-stamped key at its belt.",
+    "level": 46,
+    "vnum": 790508
+   },
+   "why": "Durmandel II: the Stair Warden keeps the way to Durgrim"
+  },
+  {
+   "room": 13857,
+   "dir": "south",
+   "key": "z514-key",
+   "keeper": 651406,
+   "why": "Morkai's tombs: Imrael the Lich keeps the way to Moloch"
+  },
+  {
+   "room": 24525,
+   "dir": "north",
+   "key": "z245-key",
+   "keeper": {
+    "from": 24501,
+    "vnum": 790245,
+    "room": 24525,
+    "keywords": "warden gatewarden stalker",
+    "short_desc": "the Warden of the Throne of Shadows",
+    "long_desc": "The Warden of the Throne of Shadows stands before the way to Shadow Lord Malachar, a heavy key at its belt.",
+    "level": 52
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Shadowspire Citadel: the Warden of the Throne of Shadows holds the key to the Throne of Shadows, where Shadow Lord Malachar waits"
+  },
+  {
+   "room": 10909,
+   "dir": "up",
+   "key": "z455-key",
+   "keeper": 645505,
+   "make_door": true,
+   "name": "barrier",
+   "why": "Gondor Island: the keeper Captain Harrowmere the Drowned holds the key to the Mound of Concealed Demise, where Aldric waits"
+  },
+  {
+   "room": 6133,
+   "dir": "west",
+   "key": "z61-key",
+   "keeper": {
+    "from": 6113,
+    "vnum": 790061,
+    "room": 6133,
+    "keywords": "warden gatewarden spider",
+    "short_desc": "the spider gatewarden",
+    "long_desc": "The spider gatewarden stands before the way to the Queen spider, a heavy key at its belt.",
+    "level": 12
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Haon-Dor (Dark): the spider gatewarden holds the key to the Den Of The Queen Spider, where the Queen spider waits"
+  },
+  {
+   "room": 2249,
+   "dir": "north",
+   "key": "z445-key",
+   "keeper": {
+    "from": 644503,
+    "vnum": 790445,
+    "room": 2249,
+    "keywords": "warden gatewarden warlord",
+    "short_desc": "the Warden of the Chieftain's Room",
+    "long_desc": "The Warden of the Chieftain's Room stands before the way to Brogg Skullsplitter, a heavy key at its belt.",
+    "level": 22
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Ogre Village: the Warden of the Chieftain's Room holds the key to the Chieftain's Room, where Brogg Skullsplitter waits"
+  },
+  {
+   "room": 8355,
+   "dir": "up",
+   "key": "z471-key",
+   "keeper": {
+    "from": 647108,
+    "vnum": 790471,
+    "room": 8355,
+    "keywords": "warden gatewarden cultist",
+    "short_desc": "the cultist gatewarden",
+    "long_desc": "The cultist gatewarden stands before the way to the Black Priest, a heavy key at its belt.",
+    "level": 16
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Badlands II: the cultist gatewarden holds the key to the Before The Dark Castle, where the Black Priest waits"
+  },
+  {
+   "room": 23810,
+   "dir": "east",
+   "key": "z238-key",
+   "keeper": {
+    "from": 23803,
+    "vnum": 790238,
+    "room": 23810,
+    "keywords": "warden gatewarden priest",
+    "short_desc": "the Warden of the Refectory",
+    "long_desc": "The Warden of the Refectory stands before the way to the Abbot's Ghost, a heavy key at its belt.",
+    "level": 32
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "The Haunted Monastery: the Warden of the Refectory holds the key to the Refectory, where the Abbot's Ghost waits"
+  },
+  {
+   "room": 24822,
+   "dir": "north",
+   "key": "z248-key",
+   "keeper": {
+    "from": 24802,
+    "vnum": 790248,
+    "room": 24822,
+    "keywords": "warden gatewarden golem",
+    "short_desc": "the Warden of the Furnace Core",
+    "long_desc": "The Warden of the Furnace Core stands before the way to Archon Prime, a heavy key at its belt.",
+    "level": 57
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "The Clockwork Foundry: the Warden of the Furnace Core holds the key to the Furnace Core, where Archon Prime waits"
+  },
+  {
+   "room": 14019,
+   "dir": "south",
+   "key": "z140-key",
+   "keeper": {
+    "from": 14007,
+    "vnum": 790140,
+    "room": 14019,
+    "keywords": "warden gatewarden necromancer",
+    "short_desc": "the Warden of the Bone Throne",
+    "long_desc": "The Warden of the Bone Throne stands before the way to Morthul the Lich Lord, a heavy key at its belt.",
+    "level": 42
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "The Necropolis of Eternal Night: the Warden of the Bone Throne holds the key to the Bone Throne, where Morthul the Lich Lord waits"
+  },
+  {
+   "room": 15313,
+   "dir": "south",
+   "key": "z424-key",
+   "keeper": {
+    "from": 642400,
+    "vnum": 790424,
+    "room": 15313,
+    "keywords": "gravewarden warden grave rat",
+    "short_desc": "the Gravewarden",
+    "long_desc": "The Gravewarden, a rat grown huge on the dead, crouches before the golden tomb with a key in its teeth.",
+    "level": 15
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Castle Catacombs: the rat gatewarden holds the key to the In Front Of A Golden Tomb, where Aldric Vane waits"
+  },
+  {
+   "room": 9936,
+   "dir": "up",
+   "key": "z481-key",
+   "keeper": {
+    "from": 9933,
+    "vnum": 790481,
+    "room": 9936,
+    "keywords": "warden gatewarden golem",
+    "short_desc": "the golem gatewarden",
+    "long_desc": "The golem gatewarden stands before the way to the Deep Dragon, a heavy key at its belt.",
+    "level": 33
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Ghenna: the golem gatewarden holds the key to the Lair Of The Deep Dragon, where the Deep Dragon waits"
+  },
+  {
+   "room": 10829,
+   "dir": "north",
+   "key": "z461-key",
+   "keeper": 646106,
+   "make_door": true,
+   "name": "gate",
+   "why": "Tombs of Atuan: the keeper Kossil, high priestess of the Nameless holds the key to the Before the Throne of Acrasia, where Acrasia waits"
+  },
+  {
+   "room": 2050,
+   "dir": "north",
+   "key": "z502-key",
+   "keeper": {
+    "from": 650202,
+    "vnum": 790502,
+    "room": 2050,
+    "keywords": "warden gatewarden spider",
+    "short_desc": "the Warden of the Draconian Shrine",
+    "long_desc": "The Warden of the Draconian Shrine stands before the way to Zhaarok, a heavy key at its belt.",
+    "level": 18
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Draconian Camp: the Warden of the Draconian Shrine holds the key to the Draconian Shrine, where Zhaarok waits"
+  },
+  {
+   "room": 107384,
+   "dir": "east",
+   "key": "z454-key",
+   "keeper": {
+    "from": 645402,
+    "vnum": 790454,
+    "room": 107384,
+    "keywords": "warden gatewarden cultist",
+    "short_desc": "the Warden of the Throne Room",
+    "long_desc": "The Warden of the Throne Room stands before the way to the Pale Man, a heavy key at its belt.",
+    "level": 18
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Caverns of the Pale Man: the Warden of the Throne Room holds the key to the Throne Room, where the Pale Man waits"
+  },
+  {
+   "room": 1297,
+   "dir": "east",
+   "key": "z435-key",
+   "keeper": {
+    "from": 643509,
+    "vnum": 790435,
+    "room": 1297,
+    "keywords": "warden gatewarden owlbear",
+    "short_desc": "the Warden of Farrot's Nest",
+    "long_desc": "The Warden of Farrot's Nest stands before the way to Farrot the great roc, a heavy key at its belt.",
+    "level": 16
+   },
+   "make_door": true,
+   "name": "barrier",
+   "why": "MiNar I: the Warden of Farrot's Nest holds the key to Farrot's Nest, where Farrot the great roc waits"
+  },
+  {
+   "room": 13926,
+   "dir": "west",
+   "key": "z515-key",
+   "keeper": {
+    "from": 651502,
+    "vnum": 790515,
+    "room": 13926,
+    "keywords": "warden gatewarden guard",
+    "short_desc": "the Warden of the Sanctuary Of Orcus",
+    "long_desc": "The Warden of the Sanctuary Of Orcus stands before the way to Malgrath, a heavy key at its belt.",
+    "level": 54
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Orcus Temple: the Warden of the Sanctuary Of Orcus holds the key to the Sanctuary Of Orcus, where Malgrath waits"
+  },
+  {
+   "room": 6802,
+   "dir": "south",
+   "key": "z68-key",
+   "keeper": {
+    "from": 6803,
+    "vnum": 790068,
+    "room": 6802,
+    "keywords": "warden gatewarden serpent",
+    "short_desc": "the Warden of the Outer Pier",
+    "long_desc": "The Warden of the Outer Pier stands before the way to Captain Blackhand, a heavy key at its belt.",
+    "level": 42
+   },
+   "make_door": true,
+   "name": "barrier",
+   "why": "The Sunken Coast: the Warden of the Outer Pier holds the key to the Outer Pier, where Captain Blackhand waits"
+  },
+  {
+   "room": 16106,
+   "dir": "up",
+   "key": "z472-key",
+   "keeper": {
+    "from": 647201,
+    "vnum": 790472,
+    "room": 16106,
+    "keywords": "warden gatewarden scout",
+    "short_desc": "the scout gatewarden",
+    "long_desc": "The scout gatewarden stands before the way to the Wyvern Matriarch, a heavy key at its belt.",
+    "level": 23
+   },
+   "make_door": true,
+   "name": "barrier",
+   "why": "Mount Ravenmist: the scout gatewarden holds the key to the On The Mountain Top, where the Wyvern Matriarch waits"
+  },
+  {
+   "room": 1042,
+   "dir": "north",
+   "key": "z439-key",
+   "keeper": 643906,
+   "make_door": true,
+   "name": "gate",
+   "why": "Mount Olympus: the keeper Talos, Bronze Guardian of the Thrones holds the key to the Tomb of Kronos, Lord of the Titans, where Hyperion waits"
+  },
+  {
+   "room": 20625,
+   "dir": "up",
+   "key": "z464-key",
+   "keeper": 646405,
+   "make_door": true,
+   "name": "barrier",
+   "why": "Brethrenmere: the keeper Brakk the Hollow Foreman holds the key to the Atop the Pedestal, where Overseer Harrok the Corrupted waits"
+  },
+  {
+   "room": 21101,
+   "dir": "east",
+   "key": "z210-key",
+   "keeper": {
+    "from": 21011,
+    "vnum": 790210,
+    "room": 21101,
+    "keywords": "warden gatewarden stalker",
+    "short_desc": "the Warden of the Tunnel Of Sticks",
+    "long_desc": "The Warden of the Tunnel Of Sticks stands before the way to the Stick Mother, a heavy key at its belt.",
+    "level": 37
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Tunnel Of Sticks: the Warden of the Tunnel Of Sticks holds the key to the Tunnel Of Sticks, where the Stick Mother waits"
+  },
+  {
+   "room": 13174,
+   "dir": "north",
+   "key": "z509-key",
+   "keeper": {
+    "from": 650902,
+    "vnum": 790509,
+    "room": 13174,
+    "keywords": "warden gatewarden worm",
+    "short_desc": "the Warden of the Black Rock",
+    "long_desc": "The Warden of the Black Rock stands before the way to Gorrakh the Rock-Eater, a heavy key at its belt.",
+    "level": 46
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Durmandel Mines I: the Warden of the Black Rock holds the key to the Black Rock, where Gorrakh the Rock-Eater waits"
+  },
+  {
+   "room": 106259,
+   "dir": "up",
+   "key": "z449-key",
+   "keeper": 644905,
+   "make_door": true,
+   "name": "barrier",
+   "why": "Leper Island: the keeper Gorrak, the cultist Death-Speaker holds the key to the Smoking Crest of the Volcano, where the fire spirit of the crest waits"
+  },
+  {
+   "room": 12200,
+   "dir": "north",
+   "key": "z120-key",
+   "keeper": {
+    "from": 612014,
+    "vnum": 790120,
+    "room": 12200,
+    "keywords": "warden gatewarden terror",
+    "short_desc": "the Warden of the Grand Temple Of Terror",
+    "long_desc": "The Warden of the Grand Temple Of Terror stands before the way to the High Priest of Terror, a heavy key at its belt.",
+    "level": 31
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "Sea of Storms: the Warden of the Grand Temple Of Terror holds the key to the Grand Temple Of Terror, where the High Priest of Terror waits"
+  },
+  {
+   "room": 16024,
+   "dir": "up",
+   "key": "z160-key",
+   "keeper": {
+    "from": 16009,
+    "vnum": 790160,
+    "room": 16024,
+    "keywords": "warden gatewarden balor",
+    "short_desc": "the Warden of the Prismatic Dragon Lair",
+    "long_desc": "The Warden of the Prismatic Dragon Lair stands before the way to Kaleidos the Prismatic Dragon, a heavy key at its belt.",
+    "level": 47
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "The Plane of Eternal Chaos: the Warden of the Prismatic Dragon Lair holds the key to the Prismatic Dragon Lair, where Kaleidos the Prismatic Dragon waits"
+  },
+  {
+   "room": 7351,
+   "dir": "east",
+   "key": "z73-key",
+   "keeper": {
+    "from": 7303,
+    "vnum": 790073,
+    "room": 7351,
+    "keywords": "warden gatewarden flayer",
+    "short_desc": "the Warden of the Mindflayer's Sanctum",
+    "long_desc": "The Warden of the Mindflayer's Sanctum stands before the way to the Master Mindflayer, a heavy key at its belt.",
+    "level": 27
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "The Mindflayer's Lair: the Warden of the Mindflayer's Sanctum holds the key to the Mindflayer's Sanctum, where the Master Mindflayer waits"
+  },
+  {
+   "room": 8002,
+   "dir": "north",
+   "key": "z80-key",
+   "keeper": {
+    "from": 8001,
+    "vnum": 790080,
+    "room": 8002,
+    "keywords": "warden gatewarden warrior",
+    "short_desc": "the Warden of the Treasure Cavern",
+    "long_desc": "The Warden of the Treasure Cavern stands before the way to Scorathax the Red Dragon, a heavy key at its belt.",
+    "level": 47
+   },
+   "make_door": true,
+   "name": "gate",
+   "why": "The Dragon's Domain: the Warden of the Treasure Cavern holds the key to the Treasure Cavern, where Scorathax the Red Dragon waits"
   }
  ],
  "tolls": [

@@ -35,7 +35,7 @@ ROOT = density.ROOT
 POP = os.path.join(ROOT, 'world', 'population')
 TARGET = 0.45
 TRAVEL_TARGET = 0.25     # a road or open plain between places: fewer fights on the way
-REACH = 6
+REACH = 10
 WATER = {'water_swim', 'water_noswim', 'underwater'}
 BARRED = {'peaceful', 'no_mob', 'death', 'deathtrap', 'imm_only', 'godroom', 'god_room', 'gods_only'}
 ONE_OF_A_KIND = re.compile(r'^(the|[A-Z])')
@@ -97,21 +97,35 @@ def plan(world, zones):
             {int(x['vnum']) for x in (pop.get('spawns') or []) if len(x.get('rooms') or []) <= 3}
         for mv in placed:
             homes.pop(mv, None)
-        if not homes:
+        # a zone's own regulars written for it in its population file ("fills": a zone that had no
+        # ordinary foe): they may stand anywhere open in it, spread evenly
+        recruits = {int(v): c for v, c in ((pop.get('creatures') or {}).items()) if isinstance(c, dict) and c.get('fills')}
+        if not homes and not recruits:
             out[z] = {'skip': 'no ordinary hostile creature to fill with'}
             continue
 
+        # a zone that keeps its creatures in place with no_mob rooms (a wizard's house, every room
+        # barred to wanderers) may still have them placed there ("fill_no_mob" in its population)
+        barred = BARRED - {'no_mob'} if pop.get('fill_no_mob') else BARRED
+
         def open_room(r):
             flags = set(getattr(r, 'flags', None) or [])
-            return (r.vnum not in hostile_rooms and not (flags & BARRED) and getattr(r, 'sector_type', '') not in density.DEEP - WATER
+            return (r.vnum not in hostile_rooms and not (flags & barred) and getattr(r, 'sector_type', '') not in density.DEEP - WATER
                     and not any(getattr(c, 'special', None) == 'shopkeeper' for c in r.characters))
         free = {v for v, r in rooms.items() if open_room(r)}
-        roads = sum(1 for r in rooms.values() if getattr(r, 'sector_type', '') in ('field', 'road', 'plains'))
-        travel = roads > 0.6 * len(rooms) or re.search(r'\b(road|plains|highway|trail)\b', s['name'], re.I)
+        travel = s['travel']          # (density.is_travel: the audit and the fill agree)
         need = max(0, math.ceil((TRAVEL_TARGET if travel else TARGET) * s['walk']) - s['hostile'])
         # nearest free rooms to each creature's homes (water to water, land to land)
         reach = {}
+        for mv, c in recruits.items():
+            wet = bool(c.get('water'))
+            spots = [v for v in sorted(free) if (getattr(rooms[v], 'sector_type', '') in WATER) == wet]
+            # every other open room first, so they spread out rather than bunch
+            reach[mv] = spots[::2] + spots[1::2]
+            homes.setdefault(mv, set())
         for mv, hs in homes.items():
+            if mv in reach:
+                continue
             wet = all(getattr(rooms[h], 'sector_type', '') in WATER for h in hs)
             dist, frontier = {h: 0 for h in hs}, list(hs)
             while frontier:

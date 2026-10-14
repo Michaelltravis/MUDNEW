@@ -146,6 +146,22 @@
      }
     ]
    }
+  },
+  "791051": {
+   "name": "drow patrol warrior",
+   "short_desc": "a drow patrol warrior",
+   "long_desc": "A drow patrol warrior moves silently through the dark streets.",
+   "description": "A slender dark elf in black mail, a hand crossbow at the hip and a short sword in hand. The patrols kill outsiders on sight.",
+   "level": 14,
+   "kind": "humanoid",
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "rank": "regular",
+   "fills": true,
+   "water": false,
+   "why": "the zone's regulars (tools/audit/densify.py fills its empty rooms with them): it had no ordinary foe of its own"
   }
  },
  "patrols": [
@@ -190,5 +206,28 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 791051,
+   "rooms": [
+    5102,
+    5117,
+    5122,
+    5127,
+    5130,
+    5132,
+    5135,
+    5137,
+    5139,
+    5145,
+    5147,
+    5151,
+    5153
+   ],
+   "total": 13,
+   "why": "a drow patrol warrior"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 13 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

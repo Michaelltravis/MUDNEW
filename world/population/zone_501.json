@@ -163,6 +163,9 @@
   {
    "vnum": 650101,
    "rooms": [
+    24768,
+    24769,
+    24770,
     24771,
     24773,
     24774,
@@ -175,26 +178,31 @@
     24788,
     24789
    ],
-   "total": 16,
+   "total": 19,
    "why": "an emerald cave spider"
   },
   {
    "vnum": 650102,
    "rooms": [
+    24702,
+    24703,
     24704,
     24705,
     24706,
     24707,
     24708,
+    24709,
+    24711,
+    24713,
     24790,
     24791,
     24794,
     24796,
     224800
    ],
-   "total": 15,
+   "total": 20,
    "why": "a restless dwarf skeleton"
   }
  ],
- "_fill": "tools/audit/densify.py: 21 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
+ "_fill": "tools/audit/densify.py: 29 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

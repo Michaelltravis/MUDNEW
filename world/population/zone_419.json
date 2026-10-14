@@ -180,10 +180,12 @@
   {
    "vnum": 641902,
    "rooms": [
+    8004,
     8012,
     8018,
     8020,
     8021,
+    8022,
     8026,
     8027,
     8028,
@@ -194,9 +196,9 @@
     8043,
     8096
    ],
-   "total": 17,
+   "total": 19,
    "why": "a hooded cultist"
   }
  ],
- "_fill": "tools/audit/densify.py: 28 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
+ "_fill": "tools/audit/densify.py: 30 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

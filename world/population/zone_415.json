@@ -5,6 +5,40 @@
   "641501": {
    "rank": "elite",
    "why": "a stray shark"
+  },
+  "791415": {
+   "name": "pike river snapping fish",
+   "short_desc": "a snapping river pike",
+   "long_desc": "A snapping river pike lurks in the reeds, all teeth and green scales.",
+   "description": "It is as long as a man's leg, mottled green and brown, with a jaw full of needle teeth. It strikes at anything that moves in the water.",
+   "level": 10,
+   "kind": "animal",
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "rank": "regular",
+   "fills": true,
+   "water": true,
+   "why": "the zone's regulars (tools/audit/densify.py fills its empty rooms with them): it had no ordinary foe of its own"
   }
- }
+ },
+ "fill": [
+  {
+   "vnum": 791415,
+   "rooms": [
+    10501,
+    10503,
+    10506,
+    10508,
+    10510,
+    10512,
+    10515,
+    10517
+   ],
+   "total": 8,
+   "why": "a snapping river pike"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 8 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

@@ -63,6 +63,15 @@ def apply(world, data=None):
     for g in DATA['gates']:
         room = world.rooms.get(int(g['room']))
         ex = (getattr(room, 'exits', None) or {}).get(g['dir']) if room else None
+        if isinstance(ex, dict) and not ex.get('door') and g.get('make_door'):
+            # an open approach to a boss: the gate is built here (a warded gate indoors, a barrier
+            # of old stones under the sky), both sides
+            ex['door'] = {'name': g.get('name') or 'gate', 'state': 'closed', 'locked': True}
+            to = world.rooms.get(ex.get('to_room')) or ex.get('room')
+            back = {'north': 'south', 'south': 'north', 'east': 'west', 'west': 'east', 'up': 'down', 'down': 'up'}.get(g['dir'])
+            far = ((getattr(to, 'exits', None) or {}).get(back)) if to is not None else None
+            if isinstance(far, dict) and not far.get('door'):
+                far['door'] = {'name': g.get('name') or 'gate', 'state': 'closed', 'locked': True}
         if not isinstance(ex, dict) or not ex.get('door'):
             problems.append(f"gate {g['room']} {g['dir']}: no door there")
             continue
@@ -74,7 +83,7 @@ def apply(world, data=None):
         door.update(state='closed', locked=True, key_vnum=kv, pickproof=True, warded=True)
         if g.get('name'):
             door['name'] = g['name']
-        to = world.rooms.get(ex.get('to_room'))
+        to = world.rooms.get(ex.get('to_room')) or ex.get('room')
         back = {'north': 'south', 'south': 'north', 'east': 'west', 'west': 'east', 'up': 'down', 'down': 'up'}.get(g['dir'])
         far = ((getattr(to, 'exits', None) or {}).get(back) or {}) if to else {}
         if isinstance(far, dict) and far.get('door'):
