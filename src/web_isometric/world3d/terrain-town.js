@@ -67,6 +67,17 @@ function townStyle(room) {
   return { colors: [COLORS[a], COLORS[a], COLORS[b], COLORS[b], COLORS[accent]], tint: desert ? 0xf4d8a8 : TOWN_TINTS[(h >> 6) % TOWN_TINTS.length], key: `town${n}` };
 }
 
+// a house for the blocks beyond the streets (terrain.js fills a town's empty cells with them):
+// the town's own colours and tint
+export function townHouse(kits, room, rng) {
+  if (!kits.town) return null;
+  const style = townStyle(room);
+  const T = style.tint === 0xffffff ? kits.town : { get: k => tinted(kits.town.get(k), style.tint, style.key) };
+  const r = rng();
+  const key = r < 0.45 ? 'building_home_A' : r < 0.8 ? 'building_home_B' : r < 0.9 ? 'building_tavern' : r < 0.96 ? 'building_blacksmith' : 'building_tower_A';
+  return T.get(`${key}_${style.colors[Math.floor(rng() * style.colors.length)]}`) || T.get(`${key}_blue`);
+}
+
 // what part of town a street is, from its name and words: what stands on it and what lines it
 const DISTRICTS = [
   ['market', /\b(market|bazaar|square|fair|plaza|merchant|stall|trade)\b/],

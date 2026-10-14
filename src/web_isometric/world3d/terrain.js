@@ -5,7 +5,7 @@ import { isDeadly, deathTrap } from './deathtrap.js';
 import * as THREE from 'three';
 import { Batcher, trs } from './assets.js';
 import { cutout } from './cutout.js';
-import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard } from './terrain-town.js';
+import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard, townHouse } from './terrain-town.js';
 import { castleWalls, castleYard, zoneGates } from './terrain-castle.js';
 import { underground, dressHall, outdoorEdge, outdoorDress, mountainCliffs, sunkenRuins, webDress, tinted, RUIN_RE, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
 
@@ -286,6 +286,9 @@ export function buildRoom(layout, ox, oz, kits, room) {
 
   // the country beyond the room's edge where the zone map has no room: no void
   if (!PAVED.has(theme) && !UNDERGROUND.has(theme) && room && room.zoneRef) fillerLand(ctx(), theme);
+  // a town's empty cells: more town (cobbles and roofs), not the sky showing through (owner: "the
+  // town isn't seamless")
+  else if ((theme === 'city' || theme === 'castle') && room && room.zoneRef && kits.town) fillerLand(ctx(), 'town');
   if (!PAVED.has(theme) && kits.graveyard && isGraveyard(layout)) graveyard(ctx());
   // a death trap: a ledge round a burning abyss, bones, skulls on poles at the ways in (deathtrap.js)
   if (room && isDeadly(room.data ? room.data.flags : room.flags)) deathTrap(ctx());
@@ -387,6 +390,7 @@ const FILL = {
   water_swim: { water: true },
   water_noswim: { water: true },
   default: { trees: 0.03, bushes: 0.04, rocks: 0.01, grass: 0.08 },
+  town: { houses: true },
 };
 function fillerLand(c, theme) {
   const { layout, ox, oz, kits, b, rng, occ, owned, group, room } = c;
@@ -395,7 +399,7 @@ function fillerLand(c, theme) {
   const cells = room.zoneRef.cells;
   const empty = (dx, dy) => !cells.get(`${room.cx + dx},${room.cy + dy}`);
   const spec = FILL[theme] || FILL.default;
-  const pal = GROUND[theme] || GROUND.default;
+  const pal = GROUND[theme === 'town' ? 'city' : theme] || GROUND.default;
   const edge = outdoorEdge(theme, kits);
   const trees = (edge ? edge.trees : theme === 'swamp' ? ['DeadTree_1', 'DeadTree_2'].map(k => N.get(k))
     : ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'Pine_1', 'Pine_2'].map(k => N.get(k))).filter(Boolean);
@@ -440,6 +444,19 @@ function fillerLand(c, theme) {
     const ground = new THREE.Mesh(geo, GROUND_MAT);
     ground.receiveShadow = true;
     group.add(ground);
+    // a town: blocks of houses, roofs to the edge of sight, a tree here and there
+    if (spec.houses) {
+      for (let gz = z0 + 3.5; gz < z0 + d - 1; gz += 7) for (let gx = x0 + 3.5; gx < x0 + w - 1; gx += 7) {
+        if (rng() < 0.1) {
+          const tree = kits.town.get(rng() < 0.5 ? 'tree_single_A' : 'trees_A_medium');
+          if (tree) b.add(tree, trs(gx, 0, gz, rng() * 6.28, 2.8), { shadow: false });
+          continue;
+        }
+        const house = townHouse(kits, room, rng);
+        if (house) b.add(occ(house), trs(gx + (rng() - 0.5), 0, gz + (rng() - 0.5), Math.floor(rng() * 4) * Math.PI / 2, 5.2 + rng() * 0.8), { shadow: false });
+      }
+      continue;
+    }
     // what grows there, on a jittered grid so it doesn't clump
     const area = w * d, step = 1.0;
     for (let gz = z0 + 0.5; gz < z0 + d; gz += step) for (let gx = x0 + 0.5; gx < x0 + w; gx += step) {
