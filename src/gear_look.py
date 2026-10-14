@@ -197,6 +197,21 @@ HEADS = [
     (_rx(r'mask|veil'), 'mask'),
 ]
 
+# a staff's head (world3d/procgear.js staff_*): drawn from its words; none, and the class decides
+STAFF_HEADS = [
+    (_rx(r'skull|bone|lich|death|grave|necro|corpse|tomb'), 'skull'),
+    (_rx(r'crystal|gem|star|astronom|prism|arcane|shard|quartz|sapphire|ruby|emerald|moon|sun'), 'crystal'),
+    (_rx(r'gnarled|oak|root|twisted|druid|thorn|vine|yew|branch|briar|bramble|living wood|driftwood'), 'gnarled'),
+    (_rx(r'pilgrim|walking|quarter-?staff|plain|simple|shepherd|crook'), 'plain'),
+]
+# a hat's shape (procgear.js brimhat, cap, mitre; the pack's wizard hat): none, and the class decides
+HATS = [
+    (_rx(r'wizard|witch|pointed|conical|mage|archmage|sorcer|magus|star'), 'wizard'),
+    (_rx(r'mitre|miter|bishop|prelate'), 'mitre'),
+    (_rx(r'cap\b|beret|bandana|headband|turban|skull ?cap|coif|kerchief'), 'cap'),
+    (_rx(r'tricorn|feather|brim|wide|plumed|cavalier|travell?er|bard|minstrel|wanderer|straw'), 'brim'),
+]
+
 SHIELDS = [
     (_rx(r'spike|spiked|barbed|thorn'), 'spike'),
     (_rx(r'tower|kite|pavise|great ?shield|rectang|heater|square'), 'square'),
@@ -346,6 +361,10 @@ def weapon_piece(item):
     p = {'k': kind, 'h': hands}
     if kind == 'instrument':
         p['v'] = _first(INSTRUMENTS, text, 'lute')
+    if kind == 'staff':
+        head = _first(STAFF_HEADS, text)
+        if head:
+            p['v'] = head
     if kind in ('staff', 'bow', 'wand', 'instrument'):
         p['m'] = _first(WOODS, text, 'wood')
         metal = _first(METALS, text)
@@ -398,6 +417,10 @@ def head_piece(item):
     p = {'k': kind}
     if kind == 'crown':
         p['v'] = _first(CROWNS, text, 'crown')
+    if kind == 'hat':
+        v = _first(HATS, text)
+        if v:
+            p['v'] = v
     if kind in ('helm', 'crown', 'horned'):
         p['m'] = _material(text, 'gold' if kind == 'crown' else 'iron')
     else:

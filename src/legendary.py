@@ -366,6 +366,19 @@ LEGENDARY_ITEMS = {
         'lore_text': 'Reality tore once — a wound from horizon to horizon, bleeding light and wrong geometry. A surgeon who had stitched a thousand human wounds looked up and said, "I can fix that." She did. The leftover sutures became these vambraces. They remember how to hold things together, and more importantly, how to pull them apart.',
         'drop_source': 'The Cosmo-Surgeon',
     },
+    99021: {
+        'vnum': 99021, 'name': 'Skyrend, the Sundering Longbow',
+        'short_desc': 'Skyrend, the Sundering Longbow',
+        'room_desc': 'A tall longbow of white ash hums where it lies, its string a thread of dawn.',
+        'description': 'A longbow taller than its archer, cut from the heartwood of a tree struck nine times by lightning. Its string is a single drawn-out thread of first light; at full draw the air ahead of it splits with a sound like tearing silk.',
+        'item_type': 'weapon', 'wear_slot': 'wield', 'weight': 5, 'cost': 54000,
+        'damage_dice': '3d8', 'weapon_type': 'pierce', 'rarity': 'legendary',
+        'affects': [{'type': 'dex', 'value': 4}, {'type': 'hitroll', 'value': 6}, {'type': 'damroll', 'value': 3}],
+        'procs': [{'type': 'on_hit', 'effect': 'echo_shatter', 'chance': 18, 'damage': 22,
+                   'desc': 'Chance on hit: The arrow splits the sky behind it, a second shard striking a nearby foe for 11-22 damage'}],
+        'lore_text': 'The last ranger of the high passes shot an arrow at the storm that had taken her village, and the storm broke in two. She carved the bow from the tree it had struck, and strung it with the morning that followed.',
+        'drop_source': 'the Ember Sovereign',
+    },
 }
 
 
@@ -396,6 +409,7 @@ LEGENDARY_BOSSES = {
     99018: (27010, 'the Oakfather', 5),
     99019: (9722, 'the Gilded Hierophant', 5),
     99020: (9726, 'Serathiel the Fallen', 4),
+    99021: (28020, 'the Ember Sovereign', 4),
 }
 BOSS_LEGENDARY_DROPS = {boss: (vnum, chance) for vnum, (boss, _, chance) in LEGENDARY_BOSSES.items()}
 for _v, (_boss, _name, _chance) in LEGENDARY_BOSSES.items():

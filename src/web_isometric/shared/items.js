@@ -347,6 +347,9 @@
     chaos_weave:          { pal: { a: '#b06ce0', b: '#4a2a78', shine: 0.7 }, accent: '#e08aff', emblem: 'chaosstar' },
     apocalypse_raiment:   { pal: { a: '#5a2a2a', b: '#1c1014', shine: 0.4 }, accent: '#e0402a', emblem: 'horsemen' },
     frostlords_mantle:    { pal: { a: '#cfe8ff', b: '#5a82c0', shine: 0.85 }, accent: '#bfe2ff', emblem: 'snowflake' },
+    archmage_vestments:   { pal: { a: '#4058b8', b: '#1a2050', shine: 0.45 }, accent: '#cfe0ff', emblem: 'chaosstar' },
+    lichlord_shroud:      { pal: { a: '#46464f', b: '#101016', shine: 0.3 }, accent: '#7cf0c0', emblem: 'skull' },
+    nightblade_leathers:  { pal: { a: '#403238', b: '#141014', shine: 0.3 }, accent: '#d03040', emblem: 'claw' },
   };
 
   function shapeFor(info) {

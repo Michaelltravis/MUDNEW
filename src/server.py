@@ -621,6 +621,14 @@ class Connection:
             import logging
             logging.getLogger('Misthollow').error(f"Ability catch-up error: {e}")
 
+        # a class wears only what it is trained in (class_gear.py): an older character puts the rest away
+        try:
+            import class_gear
+            await class_gear.shed(self.player)
+        except Exception as e:
+            import logging
+            logging.getLogger('Misthollow').error(f"Class gear check error: {e}")
+
         if room:
             room.characters.append(self.player)
             

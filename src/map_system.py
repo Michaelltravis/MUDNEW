@@ -606,6 +606,14 @@ def _wear_slot(item):
         return None
 
 
+def _gear_rules(player):
+    try:
+        import class_gear
+        return class_gear.for_client(player)
+    except Exception:
+        return None
+
+
 def item_info(item):
     """Compact item payload used for ground items, inventory and equipment:
     enough for the client to draw a real icon and rarity border."""
@@ -626,6 +634,15 @@ def item_info(item):
     }
     if getattr(item, 'fixed', False):
         info['fixed'] = True      # a fixture: part of the room, not loot
+    if itype in ('weapon', 'armor', 'worn', 'treasure'):
+        # what the class rules look at (class_gear.py): 'w:sword:2', 's' (a shield), 'a:3' (plate)
+        try:
+            import class_gear
+            gk = class_gear.client_key(item, info['slot'])
+            if gk:
+                info['gk'] = gk
+        except Exception:
+            pass
     # a corpse shows what it holds, so the 3D client's loot window can list it
     if itype == 'container' and str(info['name']).lower().startswith('corpse of'):
         info['contents'] = [item_info(it) for it in (getattr(item, 'contents', None) or [])[:30]]
@@ -1923,6 +1940,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'race': getattr(player, 'race', ''),
             'class_skills': Config().CLASSES.get(getattr(player,'char_class','').lower(), {}).get('skills', []),
             'class_spells': Config().CLASSES.get(getattr(player,'char_class','').lower(), {}).get('spells', []),
+            # what the class may wear and wield (class_gear.py): the inventory greys out the rest
+            'gear_rules': _gear_rules(player),
             'title': getattr(player, 'title', ''),
             'str': getattr(player, 'str', 0),
             'int': getattr(player, 'int', 0),

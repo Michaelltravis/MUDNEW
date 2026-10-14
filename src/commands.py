@@ -4550,6 +4550,11 @@ class CommandHandler:
                 if getattr(item, 'weapon_type', '') not in ('pierce', 'stab') and not allowed_name:
                     await player.send("Off-hand weapons must be daggers, knives, or short swords.")
                     return
+                import class_gear
+                why = class_gear.refusal(player, item, 'dual_wield')
+                if why:
+                    await player.send(why)
+                    return
                 player.inventory.remove(item)
                 player.equipment['dual_wield'] = item
                 await player.send(f"You off-hand {item.short_desc}.")
@@ -9154,7 +9159,13 @@ class CommandHandler:
 
     @classmethod
     async def _put_on(cls, player, item, slot, you='wear', they='wears'):
-        """Put `item` (carried) in `slot`; what was there goes back to the pack (a swap)."""
+        """Put `item` (carried) in `slot`; what was there goes back to the pack (a swap). A class
+        isn't trained in everything (class_gear.py): that is refused, and nothing moves."""
+        import class_gear
+        why = class_gear.refusal(player, item, slot)
+        if why:
+            await player.send(why)
+            return False
         old = player.equipment.get(slot)
         if old is not None:
             player.equipment[slot] = None
@@ -9167,6 +9178,7 @@ class CommandHandler:
         await player.send(f"You {you} {item.short_desc}.")
         if player.room:
             await player.room.send_to_room(f"{player.name} {they} {item.short_desc}.", exclude=[player])
+        return True
 
     @staticmethod
     def _slot_names(slots):
@@ -9185,12 +9197,13 @@ class CommandHandler:
             return
 
         if ' '.join(args).lower() == 'all':
+            import class_gear
             worn_count = 0
             for item in list(player.inventory):
                 if item.item_type == 'weapon':
                     continue
                 slot = free_slot(player, item)
-                if not slot:
+                if not slot or not class_gear.allows(player, item, slot):
                     continue
                 player.inventory.remove(item)
                 player.equipment[slot] = item
@@ -9261,9 +9274,11 @@ class CommandHandler:
             else:
                 slot = 'dual_wield'
         if slot == 'dual_wield':
-            await cls._put_on(player, item, slot, 'off-hand', 'off-hands')
+            done = await cls._put_on(player, item, slot, 'off-hand', 'off-hands')
         else:
-            await cls._put_on(player, item, slot, 'wield', 'wields')
+            done = await cls._put_on(player, item, slot, 'wield', 'wields')
+        if not done:
+            return
         try:
             from tips import TipManager
             await TipManager.show_tutorial_hint(player, 'tutorial_wield')
@@ -17374,10 +17389,14 @@ class CommandHandler:
     async def gear_up(cls, target) -> list:
         """The kit gearup gives (also a login gift's, grants.py `gearup`): the highest level, the best
         gear in every slot, a whole named set, a legendary weapon, gold and the fastest mount,
-        ridden; saved. Returns what it gave, as short phrases."""
+        ridden; saved. Returns what it gave, as short phrases. Everything is of the class's own
+        kind (class_gear.py): a mage gets robes, a hat and a staff, not a war helm and a
+        greatsword; a two-handed weapon goes without a shield."""
         from objects import create_object, infer_wear_slot
         from prestige import get_max_level
         import gear_look
+        import class_gear
+        fits = lambda obj, slot: class_gear.allows(target, obj, slot)
         from sets import NAMED_SETS
         from legendary import LEGENDARY_ITEMS, create_legendary
         from mounts import MOUNT_TEMPLATES, MountManager
@@ -17413,7 +17432,9 @@ class CommandHandler:
             slot = 'wield' if kind == 'weapon' else infer_wear_slot(obj)
             if not slot or (kind == 'treasure' and not proto.get('wear_slot')):
                 continue
-            score = (gear_look.item_level(obj), avg(getattr(obj, 'damage_dice', '')) + getattr(obj, 'armor', 0),
+            if not fits(obj, slot):
+                continue
+            score = (class_gear.suits(target, obj, slot), gear_look.item_level(obj), avg(getattr(obj, 'damage_dice', '')) + getattr(obj, 'armor', 0),
                      len(getattr(obj, 'affects', []) or []))
             for s in pairs.get(slot, [slot]):
                 best.setdefault(s, []).append((score, vnum))
@@ -17424,11 +17445,22 @@ class CommandHandler:
             pick = next((v for _, v in cands if v not in used or s.endswith('2')), None)
             if pick is not None:
                 chosen[s] = pick
-        # a whole named set over the slots it covers: the strongest one
-        set_key = max(NAMED_SETS, key=lambda k: max((NAMED_SETS[k].get('level_range') or (0, 0))))
+        # a whole named set over the slots it covers: the strongest one the class can wear all of
+        # (one made for the class first)
+        def wearable(k):
+            objs = [create_object(int(v), target.world) for v in NAMED_SETS[k]['pieces']]
+            return all(o is not None and fits(o, 'wield' if o.item_type == 'weapon' else infer_wear_slot(o)) for o in objs)
+        cls_name = str(getattr(target, 'char_class', '')).lower()
+        def suited(k):
+            # every piece within one step of the class's own weight (a warrior's set is mail or plate)
+            objs = [create_object(int(v), target.world) for v in NAMED_SETS[k]['pieces']]
+            return min([class_gear.suits(target, o) for o in objs if o is not None] or [0]) >= -1
+        set_key = max((k for k in NAMED_SETS if cls_name in (NAMED_SETS[k].get('classes') or (cls_name,))),
+                      key=lambda k: (wearable(k), cls_name in (NAMED_SETS[k].get('classes') or ()), suited(k),
+                                     max((NAMED_SETS[k].get('level_range') or (0, 0)))))
         for v in NAMED_SETS[set_key]['pieces']:
             obj = create_object(int(v), target.world)
-            if obj:
+            if obj and fits(obj, 'wield' if obj.item_type == 'weapon' else infer_wear_slot(obj)):
                 slot = 'wield' if obj.item_type == 'weapon' else infer_wear_slot(obj)
                 for s in pairs.get(slot, [slot]):
                     if chosen.get(s) not in [int(x) for x in NAMED_SETS[set_key]['pieces']]:
@@ -17445,17 +17477,24 @@ class CommandHandler:
             obj = create_object(v, target.world)
             if obj:
                 target.equipment[s] = obj
-        # a legendary weapon in the hand: the strongest that strikes on a hit
-        legend = max((v for v, d in LEGENDARY_ITEMS.items()
-                      if (d.get('item_type') or d.get('type')) == 'weapon' and any(p.get('type') == 'on_hit' for p in d.get('procs', []))),
-                     key=lambda v: (avg(LEGENDARY_ITEMS[v].get('damage_dice')), v), default=None)
-        if legend:
-            leg = create_legendary(legend, target.world)
-            if leg:
-                if target.equipment.get('wield'):
-                    target.inventory.append(target.equipment['wield'])
-                target.equipment['wield'] = leg
-                report.append(f"legendary {leg.short_desc}")
+        # a legendary weapon in the hand: the strongest of the class's kind (one that strikes on a hit first)
+        legends = [(v, create_legendary(v, target.world)) for v, d in LEGENDARY_ITEMS.items()
+                   if (d.get('item_type') or d.get('type')) == 'weapon']
+        legends = [(v, o) for v, o in legends if o is not None and fits(o, 'wield')]
+        if legends:
+            v, leg = max(legends, key=lambda p: (class_gear.preference(target, p[1]),
+                                                 any(x.get('type') == 'on_hit' for x in LEGENDARY_ITEMS[p[0]].get('procs', [])),
+                                                 avg(LEGENDARY_ITEMS[p[0]].get('damage_dice')), p[0]))
+            if target.equipment.get('wield'):
+                target.inventory.append(target.equipment['wield'])
+            target.equipment['wield'] = leg
+            report.append(f"legendary {leg.short_desc}")
+        # two hands on a two-handed weapon: no shield
+        w = target.equipment.get('wield')
+        if w is not None and target.equipment.get('shield') is not None:
+            p = gear_look.weapon_piece(w)
+            if p.get('h') == 2 or p['k'] in ('bow', 'staff', 'polearm', 'spear', 'scythe'):
+                target.inventory.append(target.equipment.pop('shield'))
         report.append(f"{len(target.equipment)} slots filled, the {NAMED_SETS[set_key].get('name', set_key)} set")
         target.gold += 50000
         report.append('50,000 gold')

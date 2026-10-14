@@ -168,7 +168,8 @@ There are 84 modules. The systems, and where they live:
 - **Equipment** (`equip.py`):
   - where things go: a ring on either finger, neck and wrist pairs, the off hand for light weapons;
   - `wear/wield <item> [slot]` swaps; `remove <slot>`; `hold`; `2.ring`;
-  - procs and sets (`procs.py`, `sets.py`); gear stats and resistances; item levels (`gear_look.py`).
+  - procs and sets (`procs.py`, `sets.py`); gear stats and resistances; item levels (`gear_look.py`);
+  - what each class may wear and wield, D&D style (`class_gear.py`, [docs/gear/class_gear.md](gear/class_gear.md)).
 - **Mounts** (`mounts.py`): speed (capped at +80%), loyalty, faction and boss mounts, `ride n n 3e`
   speedwalk, `mount last`.
 
@@ -266,7 +267,7 @@ The owner's requests and what each became:
 |---|---|
 | `ambient` / `ambient now` | Shows a room's place tags; sends a murmur now |
 | `givemount <who> <mount>` | Gives a mount and puts them on it |
-| `gearup <who>` | The endgame kit |
+| `gearup <who>` | The endgame kit, of the class's own kind |
 | `goto`, `set`, `slay`, `oload`, `restore` | As before |
 
 ---

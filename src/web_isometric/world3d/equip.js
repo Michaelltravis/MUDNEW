@@ -115,7 +115,7 @@ function fitTo(g, fit, bone, kit) {
 
 // what each role of a built-in-code piece is painted with, unless its look says otherwise
 const PROC_PAINT = { wood: 'wood', wood_dark: 'wood_dark', wood_pale: 'wood_pale', metal: 'steel', metal_dark: 'steel~dark',
-  leather: 'leather_dark', string: 'white', hole: 'black~dark', gem: 'gem_red', bone: 'bone', cloth: 'red', gold: 'gold' };
+  leather: 'leather_dark', string: 'white', hole: 'black~dark', gem: 'gem_red', bone: 'bone', cloth: 'red', gold: 'gold', trim: 'gold', accent: 'white' };
 function painter(kit, roles, worn) {
   return role => {
     let name = roles && roles[role];
@@ -146,7 +146,7 @@ function frameOf(kit, name) {
 function procGeometry(kit, pr) {
   const donor = kit.pieces[pr.piece];
   if (!donor) return null;
-  const a = buildProc(pr.shape, pr.look, painter(kit, pr.roles, pr.look && (pr.look.t || 0) === 0), { flip: HANGING.has(pr.shape) });
+  const a = buildProc(pr.shape, pr.look, painter(kit, pr.roles, pr.look && (pr.look.t || 0) === 0), { flip: HANGING.has(pr.shape) || pr.shape.startsWith('staff_') });
   if (!a) return null;
   const { M, b } = frameOf(kit, pr.piece);
   return skinTo(toGeometry(a).applyMatrix4(M), b);
@@ -214,7 +214,8 @@ export const SPOTS = {
   // round the top of a head (a body part: the rig's frame)
   crown(s, ad) {
     // a crown on top, a circlet lower, round the brow
-    const y = s.box.max.y - (ad.variant === 'circlet' ? 0.36 : 0.27), z = mid(s.box, 'z'), x = mid(s.box, 'x');
+    // a hat (gearlook.js HATS) sits at the brow, as a circlet does
+    const y = s.box.max.y - (ad.variant === 'circlet' || ad.hat ? 0.36 : 0.27), z = mid(s.box, 'z'), x = mid(s.box, 'x');
     const across = (o, d, fallback) => { const h = cast(s, o, d); return h == null ? fallback : h; };
     const x1 = FAR - across([FAR, y, z], [-1, 0, 0], FAR - s.box.max.x), x0 = across([-FAR, y, z], [1, 0, 0], FAR + s.box.min.x) - FAR;
     const z1 = FAR - across([x, y, FAR], [0, 0, -1], FAR - s.box.max.z), z0 = across([x, y, -FAR], [0, 0, 1], FAR + s.box.min.z) - FAR;

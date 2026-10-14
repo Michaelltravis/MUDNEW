@@ -52,3 +52,25 @@ test('the pack\'s search: every word typed, in the name, type, slot or rarity', 
   assert.ok(!matchesSearch(ring, 'potion') && !matchesSearch(ring, 'gold ring'), 'every word must match');
   assert.ok(matchesSearch(potion, 'potion heal') && !matchesSearch(null, 'x'));
 });
+
+test("gear the class isn't trained in (class_gear.py): greyed, no slot to drop it in, a line in the tooltip", async () => {
+  const { barredBy, setGearRules, tooltip } = await import('../../src/web_isometric/world3d/hud/inventory.js');
+  const mage = { armour: 0, shield: false, weapons: ['dagger', 'staff', 'thrown', 'wand'] };
+  const thief = { armour: 1, shield: false, weapons: ['bow', 'claw', 'crossbow', 'dagger', 'mace', 'sword1', 'thrown', 'whip'] };
+  const plate = { name: 'plate', type: 'armor', slot: 'body', gk: 'a:3' };
+  const robe = { name: 'robe', type: 'armor', slot: 'body', gk: 'a:0' };
+  const greatsword = { name: 'claymore', type: 'weapon', gk: 'w:sword:2' };
+  const rapier = { name: 'rapier', type: 'weapon', gk: 'w:sword:1' };
+  assert.equal(barredBy(plate, mage), 'plate armour');
+  assert.equal(barredBy(robe, mage), null);
+  assert.equal(barredBy(greatsword, thief), 'two-handed swords');
+  assert.equal(barredBy(rapier, thief), null);
+  assert.equal(barredBy({ name: 'shield', type: 'armor', slot: 'shield', gk: 's' }, mage), 'shields');
+  assert.equal(barredBy(plate, null), null, 'no rules: anything goes');
+  assert.deepEqual(slotsFor(plate, mage), []);
+  assert.deepEqual(slotsFor(robe, mage), ['body']);
+  setGearRules(mage);
+  assert.match(tooltip(plate), /Not for your class: no plate armour/);
+  assert.doesNotMatch(tooltip(robe), /Not for your class/);
+  setGearRules(null);
+});

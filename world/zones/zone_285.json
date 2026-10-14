@@ -321,6 +321,14 @@
     {
      "vnum": 28554,
      "chance": 35
+    },
+    {
+     "vnum": 28560,
+     "chance": 35
+    },
+    {
+     "vnum": 28561,
+     "chance": 35
     }
    ],
    "boss_loot_chance": 100,
@@ -541,6 +549,66 @@
     "damroll": 10,
     "mana_regen": 20
    }
+  },
+  "28560": {
+   "vnum": 28560,
+   "name": "lich-lord grave-silk robe",
+   "short_desc": "a lich-lord's grave-silk robe",
+   "room_desc": "A black robe, damp with the cold of the grave, lies here.",
+   "description": "Black grave-silk hangs heavy and cold, its hem frayed into threads that move like roots. Bone buttons run from collar to waist.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 60000,
+   "wear_slot": "body",
+   "armor_class": 9,
+   "affects": [
+    {
+     "type": "int",
+     "value": 4
+    },
+    {
+     "type": "shadow_resist",
+     "value": 10
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 9,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "lichlord_shroud"
+  },
+  "28561": {
+   "vnum": 28561,
+   "name": "lich-lord cowl hood",
+   "short_desc": "a lich-lord's cowl",
+   "room_desc": "A deep black cowl lies crumpled here.",
+   "description": "A deep cowl of grave-silk. Whatever wears it, only two cold points of light show from the dark inside.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 50000,
+   "wear_slot": "head",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "int",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "lichlord_shroud"
   }
  },
  "rooms": {

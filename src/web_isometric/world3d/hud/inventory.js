@@ -41,11 +41,32 @@ export function keywordFor(item, list) {
   return n > 1 ? `${n}.${kw}` : kw;
 }
 
+// ---- what the class may use (class_gear.py sends the rules as player.gear_rules, and each
+// item's gk: 'w:sword:2' a weapon's kind and hands, 's' a shield, 'a:3' armour by weight) ----
+const ARMOUR = ['cloth', 'leather', 'mail', 'plate'];
+let RULES = null;
+export const setGearRules = r => { RULES = r || null; };
+// why the class can't use it (a short phrase), or null
+export function barredBy(item, rules = RULES) {
+  if (!item || !item.gk || !rules) return null;
+  const [k, a, b] = String(item.gk).split(':');
+  if (k === 'w') {
+    const ws = rules.weapons || [];
+    if (ws.includes(a) || (a === 'sword' && b === '1' && ws.includes('sword1'))) return null;
+    return a === 'sword' && b === '2' ? 'two-handed swords' : `${a}s`;
+  }
+  if (k === 's') return rules.shield ? null : 'shields';
+  if (k === 'a') return +a > rules.armour ? `${ARMOUR[+a] || 'heavy'} armour` : null;
+  return null;
+}
+
 // ---- drag and drop (pure: tests/web) ----
 export const PAIRS = { finger: ['finger1', 'finger2'], neck: ['neck1', 'neck2'], wrist: ['wrist1', 'wrist2'] };
-// the slots an item may go in (the server says yes or no: a weapon's off hand needs dual wield)
-export function slotsFor(item) {
+// the slots an item may go in (the server says yes or no: a weapon's off hand needs dual wield);
+// none for what the class isn't trained in
+export function slotsFor(item, rules = RULES) {
   if (!item) return [];
+  if (barredBy(item, rules)) return [];
   const t = item.type;
   if (t === 'weapon') return ['wield', 'dual_wield'];
   const s = String(item.slot || '');
@@ -105,6 +126,8 @@ export function tooltip(item) {
     if (loc && mod != null) rows.push(`<div class="tt-aff">${mod > 0 ? '+' : ''}${esc(mod)} ${esc(String(loc).replace(/_/g, ' '))}</div>`);
   }
   for (const p of item.procs || []) rows.push(`<div class="tt-proc">${esc(p)}</div>`);
+  const bar = barredBy(item);
+  if (bar) rows.push(`<div class="tt-bar">Not for your class: no ${esc(bar)}</div>`);
   const foot = [item.weight ? `${item.weight} lb` : '', item.cost ? `${item.cost} gold` : ''].filter(Boolean).join(' · ');
   if (foot) rows.push(`<div class="tt-foot">${esc(foot)}</div>`);
   return rows.join('');
@@ -159,7 +182,7 @@ export function createInventory() {
   }
   function cell(item, worn, list, label) {
     const d = document.createElement('div');
-    d.className = 'inv-cell' + (item ? '' : ' empty');
+    d.className = 'inv-cell' + (item ? '' : ' empty') + (item && barredBy(item) ? ' barred' : '');
     if (!item) { d.innerHTML = `<span>${label || ''}</span>`; return d; }
     d.dataset.name = item.short || item.name || '';
     const r = item.set_id ? 'set' : (item.rarity || 'common');
@@ -189,6 +212,7 @@ export function createInventory() {
   function render() {
     if (!player || !open) return;
     const eq = player.equipment || {}, inv = player.inventory || [];
+    setGearRules(player.gear_rules);
     const query = search.value.trim();
     const nsig = JSON.stringify([eq, inv.map(i => i.name + i.rarity), player.gold, query]);
     if (nsig === sig) return;
@@ -241,6 +265,6 @@ export function createInventory() {
   return {
     toggle,
     get open() { return open; },
-    update(p) { player = p; render(); },
+    update(p) { player = p; setGearRules(p && p.gear_rules); render(); },
   };
 }
