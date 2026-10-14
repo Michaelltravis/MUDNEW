@@ -47,6 +47,23 @@ class Affect:
             self.remaining = self.duration
 
 
+def _tick_event(character, affect, amount, heal=False):
+    """Show a tick on the 3D client (combat_hooks.tick_event); never let drawing break a tick."""
+    try:
+        from combat_hooks import tick_event
+        tick_event(character, affect, amount, heal)
+    except Exception:
+        pass
+
+
+def _wore_off(character, affect):
+    try:
+        from combat_hooks import wore_off
+        wore_off(character, affect)
+    except Exception:
+        pass
+
+
 class AffectManager:
     """
     Manages the application, removal, and ticking of affects on characters.
@@ -294,6 +311,7 @@ class AffectManager:
                     damage_dealt = old_hp - character.hp
 
                     if damage_dealt > 0:
+                        _tick_event(character, affect, damage_dealt)
                         # Notify the character
                         if hasattr(character, 'send'):
                             await character.send(f"\x1b[32mYou shudder from the poison in your veins! ({damage_dealt} damage)\x1b[0m")
@@ -323,6 +341,7 @@ class AffectManager:
                 damage_dealt = old_hp - character.hp
 
                 if damage_dealt > 0:
+                    _tick_event(character, affect, damage_dealt)
                     # Notify the character
                     if hasattr(character, 'send'):
                         await character.send(f"\x1b[32mYou take {damage_dealt} damage from {affect.name}!\x1b[0m")
@@ -343,6 +362,7 @@ class AffectManager:
                 # Healing over time
                 heal_amount = min(affect.value, character.max_hp - character.hp)
                 character.hp += heal_amount
+                _tick_event(character, affect, heal_amount, heal=True)
                 if hasattr(character, 'send') and heal_amount > 0:
                     await character.send(f"You heal {heal_amount} HP from {affect.name}.")
 
@@ -353,6 +373,7 @@ class AffectManager:
                 # Notify the character that the affect has worn off
                 if hasattr(character, 'send'):
                     await character.send(f"The effect of {affect.name} wears off.")
+                _wore_off(character, affect)
 
         # Remove expired affects (not during poison-only ticks)
         if not poison_only:

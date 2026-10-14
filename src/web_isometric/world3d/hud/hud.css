@@ -119,6 +119,24 @@ button { font: inherit; color: inherit; }
 #target-frame .tname { font: 700 17px var(--title); letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 1px 0 #000; }
 #target-frame .tsub { font: 500 12.5px var(--label); color: var(--ink-dim); letter-spacing: .03em; }
 #target-frame .vbar { margin-top: 6px; }
+/* what lingers on the target: a chip each, ringed in its school's colour */
+#target-frame .tails { display: flex; gap: 4px; margin-top: 4px; min-height: 0; }
+#target-frame .tails:empty { display: none; }
+#target-frame .ail { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font: 700 10px var(--label); color: #fff;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.25), var(--ail, #6a6a78) 70%); box-shadow: 0 0 0 1.5px #140c04, 0 0 6px var(--ail, transparent); }
+#target-frame .ail.s-fire { --ail: #e0601e; } #target-frame .ail.s-frost { --ail: #5ab0e8; } #target-frame .ail.s-poison { --ail: #7ab82e; }
+#target-frame .ail.s-shadow { --ail: #7a3ac0; } #target-frame .ail.s-necrotic { --ail: #3a9a5a; } #target-frame .ail.s-arcane { --ail: #a050e0; }
+#target-frame .ail.s-holy { --ail: #d8b030; } #target-frame .ail.s-lightning { --ail: #6a8ae8; } #target-frame .ail.s-blood { --ail: #b02020; }
+#target-frame .ail.s-nature { --ail: #5aa02a; }
+/* charges a class builds beside its mana: pips under the bars */
+#player-frame .pips { display: flex; gap: 5px; margin-top: 5px; }
+#player-frame .pips.hidden { display: none; }
+#player-frame .pips i { width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid rgba(200,122,255,.55); background: rgba(40,16,60,.6); transition: background .2s, box-shadow .2s; }
+#player-frame .pips i.on { background: radial-gradient(circle at 35% 30%, #fff, #c87aff 55%, #6a2aa8); box-shadow: 0 0 8px #c87aff; border-color: #e8c8ff; }
+#player-frame .pips i.pop { animation: pip-pop .45s ease-out; }
+@keyframes pip-pop { 0% { transform: scale(.3); } 60% { transform: scale(1.45); } 100% { transform: scale(1); } }
+#player-frame .pips.spent { animation: pips-spent .6s ease-out; }
+@keyframes pips-spent { 0% { filter: brightness(2.6) drop-shadow(0 0 8px #e8c8ff); } 100% { filter: none; } }
 #target-frame.hostile .tname { color: var(--hostile); }
 #target-frame.neutral .tname { color: var(--neutral); }
 #target-frame.npc .tname { color: var(--npc); }
@@ -294,6 +312,9 @@ button { font: inherit; color: inherit; }
 .chat-tabs button.new::after { content: ' •'; color: var(--ember); }
 #log[data-tab="group"] > div:not(.l-group), #log[data-tab="say"] > div:not(.l-say),
 #log[data-tab="tell"] > div:not(.l-tell) { display: none; }
+/* the blow-by-blow (msgkind.py) lives in the Combat tab; All shows it only when asked */
+#log[data-tab="all"]:not(.with-combat) > div.k-combat, #log[data-tab="combat"] > div:not(.k-combat):not(.k-reward) { display: none; }
+#log .k-reward { color: #f3d27a; }
 #log .l-group { color: #8fe0ff; } #log .l-tell { color: #e8a8ff; } #log .l-say { color: #f6eed8; }
 .chat-row { display: flex; gap: 6px; margin: 2px 10px 10px; }
 #chat-mode { flex: none; min-width: 52px; font: 700 12px var(--label); letter-spacing: .05em; border-radius: 6px; cursor: pointer;

@@ -23,6 +23,19 @@ logger = logging.getLogger('Misthollow.Spells')
 WARD_TICKS_BASE, WARD_TICKS_PER_LEVEL, WARD_TICKS_MAX = 150, 3, 300
 
 
+def arcane_max(ch):
+    """How many arcane charges a mage may hold: five, six with Arcane Mastery (one rule for every
+    place a charge is gained, the spell's and Arcane Blast's alike)."""
+    cap = getattr(ch, 'max_arcane_charges', 5) or 5
+    try:
+        from talents import TalentManager
+        if TalentManager.get_talent_rank(ch, 'arcane_mastery') > 0:
+            cap = max(cap, 6)
+    except Exception:
+        pass
+    return cap
+
+
 def ward_ticks(level) -> int:
     return min(WARD_TICKS_MAX, WARD_TICKS_BASE + WARD_TICKS_PER_LEVEL * max(1, int(level or 1)))
 
@@ -2565,10 +2578,11 @@ class SpellHandler:
 
         # Build arcane charges on offensive casts
         if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
-            if hasattr(caster, 'arcane_charges') and hasattr(caster, 'max_arcane_charges'):
-                if caster.arcane_charges < caster.max_arcane_charges:
+            if hasattr(caster, 'arcane_charges'):
+                cap = arcane_max(caster)
+                if caster.arcane_charges < cap:
                     caster.arcane_charges += 1
-                    await caster.send(f"{c['cyan']}Arcane charge gained ({caster.arcane_charges}/{caster.max_arcane_charges}).{c['reset']}")
+                    await caster.send(f"{c['cyan']}Arcane charge gained ({caster.arcane_charges}/{cap}).{c['reset']}")
         
         if killed:
             from combat import CombatHandler

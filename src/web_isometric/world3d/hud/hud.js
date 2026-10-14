@@ -3,6 +3,7 @@
 // driven by the shared net.js state (`map` payloads, `combat.update`, server text).
 // Actions go out as bus events ('hud.attack', 'hud.ability', 'hud.flee') for main.js,
 // which knows the target and plays the hero's animation.
+import { splitByKind } from './logkinds.js';
 import { createInventory } from './inventory.js';
 import { createCharacter } from './character.js';
 import { createSpellbook } from './spellbook.js';
@@ -227,6 +228,7 @@ export function createHud() {
     $('#xpbar').title = capped ? 'Max level' : `Experience: ${p.exp || 0} / ${next}`;
     // buffs and debuffs: an icon each, a ring that empties as it wears off
     renderBuffs(Array.isArray(p.affects) ? p.affects : []);
+    paintPips(p.charges);
     inventory.update(p);
     character.update(p);
     paintRiding(p);
@@ -548,6 +550,47 @@ export function createHud() {
 
   // ---- target ----
   let targetKey = '';
+  // ---- charges a class builds beside its mana (a mage's arcane charges): pips under the bars.
+  // A charge gained pops in; spending them flares the row as they go into the spell ----
+  let pipsShown = -1;
+  function paintPips(ch, spent) {
+    const el = els.pf.querySelector('.pips');
+    if (!ch || !ch.max) { el.classList.add('hidden'); pipsShown = -1; return; }
+    el.classList.remove('hidden');
+    el.dataset.res = ch.name || 'arcane';
+    el.title = `${ch.label || 'Charges'}: ${ch.value} / ${ch.max}`;
+    if (el.childElementCount !== ch.max) el.innerHTML = '<i></i>'.repeat(ch.max);
+    [...el.children].forEach((pip, i) => {
+      const on = i < ch.value;
+      if (on && !pip.classList.contains('on') && pipsShown >= 0 && i >= pipsShown) { pip.classList.remove('pop'); void pip.offsetWidth; pip.classList.add('pop'); }
+      pip.classList.toggle('on', on);
+    });
+    if (spent) { el.classList.remove('spent'); void el.offsetWidth; el.classList.add('spent'); }
+    pipsShown = ch.value;
+  }
+  // a 'res' event (combat_hooks._watch_charges): the pips change at once, before any refresh
+  function setCharges(e) {
+    const p = st.player;
+    const ch = { name: e.name, label: (p && p.charges && p.charges.label) || 'Arcane Charges', value: e.v, max: e.max };
+    if (p) p.charges = ch;
+    paintPips(ch, e.spent);
+  }
+  // ---- what lingers on the target (a burn, a poison, a slow): chips under its health bar, from
+  // the zone map (map_system._ailments) and from the ticks seen since (combat.js tick) ----
+  function noteAilment(ent, name, school) {
+    if (!ent || !ent.data || !name) return;
+    const seen = ent.data.ailSeen || (ent.data.ailSeen = {});
+    seen[name] = { s: school, until: performance.now() + 7000 };
+    if (st.target && st.target.id != null && st.target.id === ent.data.id) setTarget({ ...st.target, ailSeen: seen });
+  }
+  function paintAilments(t) {
+    const el = els.tf.querySelector('.tails');
+    const now = performance.now(), list = new Map();
+    for (const a of (t && t.ails) || []) list.set(a.n, { n: a.n, s: a.s, r: a.r });
+    for (const [n, v] of Object.entries((t && t.ailSeen) || {})) if (v.until > now && !list.has(n)) list.set(n, { n, s: v.s });
+    const html = [...list.values()].slice(0, 6).map(a => `<span class="ail s-${esc(a.s || 'none')}" title="${esc(a.n)}${a.r ? ` · ${a.r} more ticks` : ''}">${esc((a.n || '?').trim().charAt(0).toUpperCase())}</span>`).join('');
+    if (el.innerHTML !== html) el.innerHTML = html;
+  }
   function setTarget(t) {
     st.target = t;
     els.tf.classList.toggle('hidden', !t);
@@ -580,6 +623,7 @@ export function createHud() {
     els.tf.querySelector('.tsub').textContent = `${t.kind === 'player' ? `Level ${t.level || '?'} ${t.char_class || ''}` : `Level ${t.level || '?'} · ${con.label}`}${role}`;
     vbar(els.tf.querySelector('.vbar.hp'), t.maxHp ? t.hp : 1, t.maxHp || 1);
     if (!t.maxHp) els.tf.querySelector('.vbar.hp span').textContent = '';
+    paintAilments(t);
     // its portrait, once per target
     const key = t.kind === 'player' ? `p:${t.name}` : `m:${t.id}`;
     if (key !== targetKey) {
@@ -647,10 +691,11 @@ export function createHud() {
     if (/^You say,|^\w+ says,|^You say '|^\w+ says '/.test(text)) return 'say';
     return '';
   }
-  function log(html, cls) {
+  function log(html, cls, sort) {
     const atBottom = stick;
     const d = document.createElement('div');
     if (cls) { d.className = cls; d.textContent = html; } else d.innerHTML = html;
+    if (sort) d.classList.add(`k-${sort}`);      // msgkind.py: combat, reward
     const kind = lineKind(d.textContent.trim());
     if (kind) {
       d.classList.add(`l-${kind}`);
@@ -665,9 +710,10 @@ export function createHud() {
     if (!html || !MH.state.isLoggedIn) return;
     const plain = l => l.replace(/<[^>]+>/g, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
     const lines = String(html).split(/\r?\n/).filter(l => plain(l).trim() && !PROMPT.test(plain(l)));
-    if (lines.length) log(lines.join('\n'));
+    for (const g of splitByKind(lines)) log(g.html, null, g.kind);
   });
-  MH.bus.on('terminal.echo', cmd => log(`> ${cmd}`, 'cmd'));
+  // a command typed shows as typed; one the bar sent for a fight goes with the fight ({ text, kind })
+  MH.bus.on('terminal.echo', cmd => (typeof cmd === 'object' ? log(`> ${cmd.text}`, 'cmd', cmd.kind) : log(`> ${cmd}`, 'cmd')));
   // tabs filter the log; the mode chip decides what Enter does with plain text
   document.querySelectorAll('#chat .chat-tabs button').forEach(b => b.addEventListener('click', () => {
     els.log.dataset.tab = b.dataset.tab;
@@ -727,9 +773,16 @@ export function createHud() {
     const kb = ls.get('mh3d_bodies') === 'classic' ? 'classic' : 'kin';
     els.settings.querySelectorAll('[data-set="bodies"] button').forEach(b => b.classList.toggle('on', b.dataset.v === kb));
     els.settings.querySelectorAll('[data-set="xbars"] button').forEach(b => b.classList.toggle('on', +b.dataset.v === bars.count));
+    const ct = ls.get('mh3d_combattext') === 'on' ? 'on' : 'off';
+    els.settings.querySelectorAll('[data-set="combattext"] button').forEach(b => b.classList.toggle('on', b.dataset.v === ct));
+    els.log.classList.toggle('with-combat', ct === 'on');
     const cap = ls.get('mh3d_ambcap') === 'on' ? 'on' : 'off';
     els.settings.querySelectorAll('[data-set="ambcap"] button').forEach(b => b.classList.toggle('on', b.dataset.v === cap));
   };
+  // the blow-by-blow in the All tab too (it is drawn; the Combat tab always has it)
+  els.settings.querySelectorAll('[data-set="combattext"] button').forEach(b => b.addEventListener('click', () => {
+    ls.set('mh3d_combattext', b.dataset.v); syncSettings(); els.log.scrollTop = els.log.scrollHeight;
+  }));
   // the world's murmurs as a line of text too (hud/ambient.js)
   els.settings.querySelectorAll('[data-set="ambcap"] button').forEach(b => b.addEventListener('click', () => {
     ls.set('mh3d_ambcap', b.dataset.v); syncSettings();
@@ -861,6 +914,8 @@ export function createHud() {
     if (!MH.state.isLoggedIn) return;
     const k = e.key;
     if (k === 'Enter') { els.input.focus(); e.preventDefault(); return; }
+    // (a key held a moment too long repeats: one press is one use)
+    if (e.repeat && (k === 'f' || k === 'F' || k === ' ' || /^Digit[1-8]$/.test(e.code || ''))) { e.preventDefault(); return; }
     if (k === 'f' || k === 'F' || k === ' ') { use('attack'); e.preventDefault(); return; }
     // 1-8 and Shift+1-8: the main bar; Alt+1-8 and Alt+Shift+1-8: the extra bars 3 and 4
     const digit = /^Digit([1-8])$/.exec(e.code || '');
@@ -931,6 +986,6 @@ export function createHud() {
   // whisper someone: the chat input set to tell them
   function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
-  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, closeTalk, lootwin, giveTo, flashSlot,
+  return { showGame, setPlayer, setTarget, setCharges, noteAilment, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, closeTalk, lootwin, giveTo, flashSlot,
     spellbook, unslot, party, quest, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

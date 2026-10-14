@@ -4,6 +4,7 @@ Misthollow Server
 Handles network connections and player sessions.
 """
 
+import msgkind
 import asyncio
 import logging
 import re
@@ -134,9 +135,13 @@ class Connection:
         try:
             if message is None:
                 return
-            # Word-wrap for a telnet terminal (a web page wraps its own text)
+            # Word-wrap for a telnet terminal (a web page wraps its own text); a web page is
+            # told what kind each line is (msgkind.py: the blow-by-blow, a kill's reward), so
+            # /play can keep its log for what isn't drawn
             if not self.is_web:
                 message = _wrap_text(message, 80)
+            elif self.state == self.STATE_PLAYING:
+                message = msgkind.mark(message)
             # Convert all newlines to \r\n for telnet compatibility
             message = message.replace('\r\n', '\n').replace('\n', '\r\n')
             if newline and not message.endswith('\r\n'):

@@ -166,7 +166,8 @@
     const sock = MH.state.mudSocket;
     if (!trimmed || !sock || sock.readyState !== WebSocket.OPEN) return false;
     sock.send(trimmed);
-    if (echo) MH.bus.emit('terminal.echo', MH.secretLine(trimmed) || trimmed);
+    // echo: true shows it as typed; a kind ('combat') files it with that kind's lines (hud/logkinds.js)
+    if (echo) MH.bus.emit('terminal.echo', typeof echo === 'string' ? { text: MH.secretLine(trimmed) || trimmed, kind: echo } : MH.secretLine(trimmed) || trimmed);
     return true;
   };
 
