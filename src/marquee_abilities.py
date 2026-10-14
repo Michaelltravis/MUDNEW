@@ -43,8 +43,9 @@ import marquee_scale as ms
 logger = logging.getLogger('Misthollow')
 
 # seconds
-COOLDOWNS = {'unbroken_banner': 480, 'singularity': 480, 'seraphs_vigil': 600, 'wings_of_dawn': 480,
-             'lich_ascension': 600, 'heist': 480, 'heartseeker': 360, 'song_of_the_ages': 480, 'thousand_shadows': 480}
+# seconds; a class's ultimate comes round every few fights (three minutes), not once an evening
+COOLDOWNS = {'unbroken_banner': 180, 'singularity': 180, 'seraphs_vigil': 180, 'wings_of_dawn': 180,
+             'lich_ascension': 180, 'heist': 180, 'heartseeker': 180, 'song_of_the_ages': 180, 'thousand_shadows': 180}
 NAMES = {'unbroken_banner': 'Unbroken Banner', 'singularity': 'Singularity', 'seraphs_vigil': "Seraph's Vigil",
          'wings_of_dawn': 'Wings of Dawn', 'lich_ascension': 'Lich Ascension', 'heist': 'The Heist of Ages',
          'heartseeker': 'Heartseeker', 'song_of_the_ages': 'Song of the Ages', 'thousand_shadows': 'Thousand Shadows'}

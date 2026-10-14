@@ -670,7 +670,7 @@ SPELLS = {
     'divine_protection': {
         'name': 'Divine Protection',
         'mana_cost': 100,
-        'cooldown': 300,          # invulnerability is a lifesaver, not a stance (as divine_shield_master)
+        'cooldown': 120,          # invulnerability is a lifesaver, not a stance (as divine_shield_master)
         'target': 'self',
         'duration_ticks': 3,
         'affects': [{'type': 'invulnerable', 'value': 1}],  # Nearly invulnerable
@@ -1297,13 +1297,13 @@ SPELLS = {
     },
     'ascendant_hour': {  # was avenging_wrath
         'name': 'Ascendant Hour', 'mana_cost': 120, 'target': 'self', 'duration_ticks': 20,
-        'level_required': 50, 'class_required': 'paladin', 'cooldown': 180,
+        'level_required': 50, 'class_required': 'paladin', 'cooldown': 120,
         'affects': [{'type': 'damroll', 'value': 12}, {'type': 'hitroll', 'value': 8}, {'type': 'heal_power', 'value': 30}, {'type': 'haste', 'value': 1}],
         'message_self': 'The Order\'s light crowns you; your hour is ascendant.',
     },
     'verdict_of_the_order': {  # was crusaders_judgment
         'name': 'Verdict of the Order', 'mana_cost': 250, 'damage_dice': '12d10+40', 'target': 'offensive',
-        'level_required': 60, 'class_required': 'paladin', 'cooldown': 600,
+        'level_required': 60, 'class_required': 'paladin', 'cooldown': 120,
         'special': 'crusaders_judgment',
         'message_self': 'You pronounce the Order\'s final verdict upon $N!',
     },
@@ -1327,7 +1327,7 @@ SPELLS = {
     },
     'font_of_the_vigil': {  # was lightwell
         'name': 'Font of the Vigil', 'mana_cost': 100, 'target': 'room', 'duration_ticks': 30,
-        'level_required': 50, 'class_required': 'cleric', 'cooldown': 180,
+        'level_required': 50, 'class_required': 'cleric', 'cooldown': 120,
         'special': 'lightwell', 'heal_per_tick': '2d8+5',
         'message_self': 'You raise a font of the Vigil; its light mends all who tarry near.',
     },
@@ -1356,19 +1356,19 @@ SPELLS = {
     },
     'quicken': {  # was time_warp
         'name': 'Quicken', 'mana_cost': 120, 'target': 'group', 'duration_ticks': 20,
-        'level_required': 38, 'class_required': 'mage', 'cooldown': 300,
+        'level_required': 38, 'class_required': 'mage', 'cooldown': 120,
         'affects': [{'type': 'haste', 'value': 1}, {'type': 'hitroll', 'value': 4}, {'type': 'damroll', 'value': 3}],
         'message_self': 'You quicken the hour for your circle.',
     },
     'rimeheart': {  # was icy_veins
         'name': 'Rimeheart', 'mana_cost': 100, 'target': 'self', 'duration_ticks': 15,
-        'level_required': 50, 'class_required': 'mage', 'cooldown': 180,
+        'level_required': 50, 'class_required': 'mage', 'cooldown': 120,
         'affects': [{'type': 'crit_chance', 'value': 30}, {'type': 'haste', 'value': 1}, {'type': 'spell_power', 'value': 15}],
         'message_self': 'Crypt-cold floods your veins; your casting sharpens to ice.',
     },
     'kindling_focus': {  # was combustion_master
         'name': 'Kindling Focus', 'mana_cost': 80, 'target': 'self', 'duration_ticks': 12,
-        'level_required': 56, 'class_required': 'mage', 'cooldown': 180,
+        'level_required': 56, 'class_required': 'mage', 'cooldown': 120,
         'affects': [{'type': 'fire_crit', 'value': 100}, {'type': 'damroll', 'value': 8}],
         'message_self': 'You gather every ember into a single searing focus.',
     },
@@ -1387,7 +1387,7 @@ SPELLS = {
         'target': 'room',
         'level_required': 60,
         'class_required': 'mage',
-        'cooldown': 600,  # 10 minutes
+        'cooldown': 120,  # 10 minutes
         'element': 'fire',
         'special': 'meteor_storm',
         'affects': [{'type': 'stunned', 'value': 1}],
@@ -1430,7 +1430,7 @@ SPELLS = {
         'target': 'defensive',
         'level_required': 56,
         'class_required': 'cleric',
-        'cooldown': 180,
+        'cooldown': 120,
         'special': 'serenity',
         'message_self': 'You channel pure divine serenity into $N, fully restoring them!',
         'message_other': 'Waves of holy serenity wash over you, fully restoring your health!',
@@ -1441,7 +1441,7 @@ SPELLS = {
         'target': 'group',
         'level_required': 60,
         'class_required': 'cleric',
-        'cooldown': 600,  # 10 minutes
+        'cooldown': 120,  # 10 minutes
         'special': 'divine_intervention',
         'message_self': 'You invoke DIVINE INTERVENTION - the gods themselves answer!',
         'message_room': 'The heavens OPEN as $n invokes DIVINE INTERVENTION!',
@@ -1467,7 +1467,7 @@ SPELLS = {
         'duration_ticks': 8,
         'level_required': 56,
         'class_required': 'paladin',
-        'cooldown': 300,
+        'cooldown': 180,
         'affects': [{'type': 'invulnerable', 'value': 1}],
         'message_self': 'You are surrounded by an IMPENETRABLE divine shield!',
         'message_room': '$n is encased in a bubble of PURE DIVINE LIGHT!',
@@ -1494,7 +1494,7 @@ SPELLS = {
         'duration_ticks': 30,
         'level_required': 50,
         'class_required': 'necromancer',
-        'cooldown': 180,
+        'cooldown': 120,
         'special': 'summon_gargoyle',
         'message_self': 'You summon a fearsome gargoyle from the shadows!',
         'message_room': 'A stone gargoyle materializes beside $n, ready to serve!',
@@ -1516,7 +1516,7 @@ SPELLS = {
         'target': 'room',
         'level_required': 60,
         'class_required': 'necromancer',
-        'cooldown': 600,
+        'cooldown': 120,
         'special': 'apocalypse_necro',
         'message_self': 'You unleash the APOCALYPSE - every corpse in the zone RISES!',
         'message_room': 'The ground TEARS OPEN as $n commands an ARMY OF THE DEAD to rise!',
@@ -1602,7 +1602,7 @@ SPELLS = {
         'duration_ticks': 30,
         'level_required': 60,
         'class_required': 'bard',
-        'cooldown': 600,
+        'cooldown': 120,
         'special': 'magnum_opus',
         'affects': [
             {'type': 'all_stats', 'value': 5},
@@ -1668,7 +1668,7 @@ SPELLS = {
     },
     'grand_illusion': {
         'name': 'Grand Illusion', 'mana_cost': 100, 'target': 'self', 'duration_ticks': 10,
-        'cooldown': 180,
+        'cooldown': 120,
         'affects': [{'type': 'displacement', 'value': 1}, {'type': 'mirror_image', 'value': 3}],
         'message_self': 'The stage is yours: a dozen of you take a bow at once.',
         'message_room': 'A dozen copies of $n take a bow at once!',

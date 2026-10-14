@@ -3210,7 +3210,7 @@ class CommandHandler:
         player.ritual_duration = duration_rounds
         
         # Set cooldown (5 minutes)
-        player.dark_ritual_cooldown = now + 300
+        player.dark_ritual_cooldown = now + 120  # 2 minutes
         
         await player.send(f"{c['bright_magenta']}You begin the dark ritual, sacrificing {hp_cost} HP and {mana_cost} mana!{c['reset']}")
         await player.send(f"{c['green']}All {len(undead_pets)} undead servants are empowered for {duration_rounds} rounds!{c['reset']}")
@@ -8562,8 +8562,7 @@ class CommandHandler:
             await player.send(f"{c['red']}You need 10 Faith! (Current: {player.faith}/10){c['reset']}")
             return
         player.faith -= 10
-        player.divine_intervention_cooldown = now + 300
-        # Target self or named ally
+        player.divine_intervention_cooldown = now + 120  # 2 minutes
         target = player
         if args:
             target_name = ' '.join(args).lower()
@@ -17517,7 +17516,8 @@ class CommandHandler:
                    if (d.get('item_type') or d.get('type')) == 'weapon']
         legends = [(v, o) for v, o in legends if o is not None and fits(o, 'wield')]
         if legends:
-            v, leg = max(legends, key=lambda p: (class_gear.preference(target, p[1]),
+            v, leg = max(legends, key=lambda p: (cls_name in (LEGENDARY_ITEMS[p[0]].get('classes') or ()),
+                                                 class_gear.preference(target, p[1]),
                                                  any(x.get('type') == 'on_hit' for x in LEGENDARY_ITEMS[p[0]].get('procs', [])),
                                                  avg(LEGENDARY_ITEMS[p[0]].get('damage_dice')), p[0]))
             if target.equipment.get('wield'):
@@ -19995,7 +19995,7 @@ class CommandHandler:
             await player.send(f"{c['yellow']}Warpath on cooldown ({remaining}s).{c['reset']}")
             return
         
-        player.warpath_cooldown = now + 180  # 3 minutes
+        player.warpath_cooldown = now + 120  # 2 minutes
         
         from affects import AffectManager
         
@@ -20040,7 +20040,7 @@ class CommandHandler:
             await player.send(f"{c['yellow']}Titan's Wrath on cooldown ({int(remaining/60)}m {remaining%60}s).{c['reset']}")
             return
         
-        player.titans_wrath_cooldown = now + 600  # 10 minutes
+        player.titans_wrath_cooldown = now + 120  # 2 minutes
         
         from affects import AffectManager
         
@@ -20209,7 +20209,7 @@ class CommandHandler:
             await player.send(f"{c['yellow']}Evasion on cooldown ({remaining}s).{c['reset']}")
             return
 
-        player.evasion_cooldown = now + 180  # 3 minutes
+        player.evasion_cooldown = now + 120  # 2 minutes
         player.evasion_until = now + 10  # 10 seconds
 
         await player.send(f"{c['cyan']}You enter a state of perfect EVASION - all attacks will miss for 10 seconds!{c['reset']}")
@@ -20313,7 +20313,7 @@ class CommandHandler:
             await player.send(f"{c['yellow']}Perfect Crime on cooldown ({int(remaining/60)}m {remaining%60}s).{c['reset']}")
             return
         
-        player.perfect_crime_cooldown = now + 600  # 10 minutes
+        player.perfect_crime_cooldown = now + 120  # 2 minutes
         
         from affects import AffectManager
         
@@ -20636,7 +20636,7 @@ class CommandHandler:
             await player.send(f"{c['yellow']}Alpha Pack on cooldown ({int(remaining/60)}m {remaining%60}s).{c['reset']}")
             return
         
-        player.alpha_pack_cooldown = now + 600  # 10 minutes
+        player.alpha_pack_cooldown = now + 120  # 2 minutes
         
         from pets import Pet
         
@@ -20940,7 +20940,7 @@ class CommandHandler:
             await player.send(f"{c['cyan']}(Currently at {int(hp_pct*100)}% HP){c['reset']}")
             return
         
-        player.death_mark_cooldown = now + 600  # 10 minutes
+        player.death_mark_cooldown = now + 120  # 2 minutes
         
         # Instant kill
         await player.send(f"{c['bright_red']}████████████████████████████████████████████{c['reset']}")
@@ -21718,7 +21718,7 @@ class CommandHandler:
             return
 
         player.inspiration -= 10
-        player.magnum_opus_cooldown = now + 180
+        player.magnum_opus_cooldown = now + 120  # 2 minutes
 
         from affects import AffectManager
 

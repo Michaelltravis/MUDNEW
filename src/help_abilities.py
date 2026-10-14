@@ -538,31 +538,31 @@ SKILL_PROSE = {
     # --- the marquee abilities, each earned through its class's quest (marquee.py) ---
     'unbroken_banner': ("Marquee. Plant a war banner: foes beside you reel and every foe turns "
                         "on you; for five rounds you and your allies deal a quarter more, shake "
-                        "off stuns and fear and mend. Eight-minute cooldown.", "unbroken banner"),
+                        "off stuns and fear and mend. Three-minute cooldown.", "unbroken banner"),
     'singularity': ("Marquee. Tear a hole in the world: every foe is dragged to one point "
                     "and crushed there for two rounds, then it implodes and leaves them "
-                    "slowed. Bosses only stagger. Eight-minute cooldown.", "singularity [target]"),
+                    "slowed. Bosses only stagger. Three-minute cooldown.", "singularity [target]"),
     'seraphs_vigil': ("Marquee. Call down a seraph for six rounds: each round it heals whoever "
                       "beside you is most wounded, and while it stands each of you survives one "
-                      "killing blow. Ten-minute cooldown.", "seraphs vigil"),
+                      "killing blow. Three-minute cooldown.", "seraphs vigil"),
     'wings_of_dawn': ("Marquee. Rise on wings of light and crash down: radiant damage to every "
                       "foe within six metres, a quarter of their health back to every ally "
-                      "beside you and a shield of light on each. Eight-minute cooldown.", "wings of dawn"),
+                      "beside you and a shield of light on each. Three-minute cooldown.", "wings of dawn"),
     'lich_ascension': ("Marquee. Six rounds as a lich: spells cost half, soul bolts split to a "
                        "second foe, a quarter of what you deal drains back to you, and death is "
-                       "turned away once. Ten-minute cooldown.", "lich ascension"),
+                       "turned away once. Three-minute cooldown.", "lich ascension"),
     'heist': ("Marquee. The Heist of Ages: gone in smoke and behind every foe at once — each is "
               "struck from behind and relieved of half the gold it carries, and your next three "
-              "swings land as criticals. Eight-minute cooldown.", "heist"),
+              "swings land as criticals. Three-minute cooldown.", "heist"),
     'heartseeker': ("Marquee. Draw for a breath, then loose one arrow through every foe on its "
                     "line: a deep wound, a mark that makes them take a fifth more for four rounds, "
-                    "and two rounds held where they stand. Six-minute cooldown.", "heartseeker [target]"),
+                    "and two rounds held where they stand. Three-minute cooldown.", "heartseeker [target]"),
     'song_of_the_ages': ("Marquee. Five rounds of the Song of the Ages: your allies' abilities come "
                          "back twice as fast and they deal and heal a fifth more; your foes slow, and "
-                         "the last note stuns them. Eight-minute cooldown.", "song of the ages"),
+                         "the last note stuns them. Three-minute cooldown.", "song of the ages"),
     'thousand_shadows': ("Marquee. Your shadow splits into a thousand: for three rounds they strike "
                          "every foe around you, and the last of them finishes the weakest (a boss "
-                         "takes a heavier blow instead). Eight-minute cooldown.", "thousand shadows"),
+                         "takes a heavier blow instead). Three-minute cooldown.", "thousand shadows"),
 }
 
 

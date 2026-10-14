@@ -126,7 +126,7 @@ async def main():
     check(3.0 * dpr < implode < 5.5 * dpr, f'then it implodes ({implode} vs {4 * dpr:.0f})')
     check(time.time() < b.slowed_until and not getattr(boss, 'slowed_until', 0), 'leaving them slowed (not the boss)')
     check(('mira', 'singularity') not in ma.EFFECTS, 'the effect is over')
-    check(mage.marquee_cd.get('singularity', 0) > time.time() + 400, 'its cooldown is kept on the character')
+    check(mage.marquee_cd.get('singularity', 0) > time.time() + 150, 'its cooldown is kept on the character (3 minutes)')
     mage.connection.lines.clear()
     await CommandHandler.execute(mage, 'singularity', [])
     check(mage.connection.said('not ready'), 'used again at once: not ready yet')

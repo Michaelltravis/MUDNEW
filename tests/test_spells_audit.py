@@ -166,7 +166,7 @@ async def main():
     await CommandHandler.execute(caster, 'cast', ["'meteor storm'"])
     check('not ready yet' in said(caster).lower() and caster.mana == mana,
           f"a spell on its cooldown is refused and costs nothing ({said(caster)[:60]})")
-    check(caster.spell_cd.get('meteor_storm', 0) > sim.CLOCK.t + 500, "…and the cooldown is kept on the character (10 minutes)")
+    check(caster.spell_cd.get('meteor_storm', 0) > sim.CLOCK.t + 100, "…and the cooldown is kept on the character (2 minutes)")
     caster.connection.lines.clear()
     hp0 = a.hp
     await CommandHandler.execute(caster, 'cast', ["'cinderlance'", a.name.split()[-1].lower()])

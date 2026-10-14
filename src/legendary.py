@@ -316,6 +316,7 @@ LEGENDARY_ITEMS = {
     },
     99017: {
         'vnum': 99017, 'name': 'Lacuna, the Absent Edge',
+        'classes': ('thief',),          # gearup's legendary for a thief (an assassin keeps the Unraveling)
         'short_desc': 'Lacuna, the Absent Edge',
         'room_desc': 'A gap in the shape of a sword hangs in the air where a blade should be.',
         'description': 'There is no sword here. There is an absence of sword — a blade-shaped hole in reality where matter refuses to exist. The hilt is real enough, wrapped in leather from an animal that was never catalogued, but the blade is pure nothing.',

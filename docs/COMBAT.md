@@ -129,6 +129,15 @@ The goblin is engulfed in flames for 45 damage!
   blast and reach are in `spells.py` (`AIM_RADIUS`, `AIM_RANGE`: 16 m); Hallowed Ground keeps
   burning the ground it was cast on.
 
+### Cooldowns
+
+No ability waits more than **two minutes** between uses: a fight lasts a minute or two, so a
+capstone (Meteor Storm, Verdict of the Order, Magnum Opus, Divine Intervention, Apocalypse, Titan's
+Wrath, Perfect Crime, Alpha Pack, Death Mark) comes round every fight or two, not once an evening.
+Two exceptions wait **three minutes**: the class ultimates earned from the marquee quests
+(Singularity, Unbroken Banner, Lich Ascension...) and the paladin's Divine Shield (full
+invulnerability). Anything already at two minutes or less is unchanged.
+
 ### Mana Management
 
 - Spells cost mana

@@ -41,7 +41,7 @@ RULES = {
     'paladin': {'armour': 3, 'shield': True, 'weapons': ALL_WEAPONS - {'wand', 'instrument'}},
 }
 # the weapon each class is drawn with, first choice first (gearup, a legendary for the class)
-PREFERRED = {'mage': ['staff', 'wand'], 'necromancer': ['scythe', 'staff', 'wand'], 'thief': ['dagger', 'sword1'],
+PREFERRED = {'mage': ['staff', 'wand'], 'necromancer': ['scythe', 'staff', 'wand'], 'thief': ['sword1', 'dagger'],
              'assassin': ['dagger', 'sword1'], 'bard': ['sword1', 'instrument'], 'ranger': ['bow', 'crossbow', 'sword'],
              'cleric': ['mace', 'hammer'], 'warrior': ['sword', 'axe'], 'paladin': ['sword1', 'mace', 'hammer']}
 WEAPON_WORDS = {'sword': 'swords', 'sword1': 'one-handed swords', 'axe': 'axes', 'dagger': 'daggers', 'mace': 'maces and clubs',
