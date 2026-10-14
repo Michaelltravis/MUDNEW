@@ -17,6 +17,11 @@ from config import Config
 logger = logging.getLogger('Misthollow.Combat')
 
 
+def cap_first(s: str) -> str:
+    """A name at the start of a line: "a rotting orc ghoul" -> "A rotting orc ghoul"."""
+    return s[:1].upper() + s[1:] if s else s
+
+
 class CombatHandler:
     """Handles combat mechanics."""
 
@@ -1814,10 +1819,10 @@ class CombatHandler:
             victim.position = 'dead'
             c_d = cls.config.COLORS
             if hasattr(killer, 'send'):
-                await killer.send(f"{c_d['bright_red']}☠ {victim.name} is DEAD! You killed {victim.name}.{c_d['reset']}")
+                await killer.send(f"{c_d['bright_red']}☠ {cap_first(victim.name)} is DEAD! You killed {victim.name}.{c_d['reset']}")
             if victim.room:
                 await victim.room.send_to_room(
-                    f"{c_d['red']}{victim.name} is DEAD!{c_d['reset']}", exclude=[killer])
+                    f"{c_d['red']}{cap_first(victim.name)} is DEAD!{c_d['reset']}", exclude=[killer])
 
         # Arena PvP intercept — no real death in arena
         try:

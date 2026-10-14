@@ -662,7 +662,7 @@ def _target_of(player, args):
         f = getattr(player, 'fighting', None)
         return f if isinstance(f, Mobile) else None
     for ch in (getattr(getattr(player, 'room', None), 'characters', None) or []):
-        if isinstance(ch, Mobile) and text in ch.name.lower():
+        if isinstance(ch, Mobile) and (text in ch.name.lower() or text in (getattr(ch, 'keyword_name', '') or '').lower()):
             return ch
     return None
 

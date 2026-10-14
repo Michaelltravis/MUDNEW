@@ -48,7 +48,8 @@ def _has_flag(mob, flag: str) -> bool:
 
 
 def _name_lower(mob) -> str:
-    return getattr(mob, 'name', '').lower()
+    # its keywords too, when it is called by its description (mobs.Mobile.said_name)
+    return f"{getattr(mob, 'keyword_name', '') or ''} {getattr(mob, 'name', '')}".strip().lower()
 
 
 def _keywords_set(mob) -> set:

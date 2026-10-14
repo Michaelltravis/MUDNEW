@@ -576,7 +576,7 @@ class FactionManager:
         "torchbearer" no bear, "the grocer" no imp). A plural, an "-ly" ("a ghostly servant") and a
         name ending in a kind ("the dracolich", "the hobgoblin") still count."""
         import re
-        text = f"{getattr(victim, 'name', '') or ''} {getattr(victim, 'short_desc', '') or ''}".lower()
+        text = f"{getattr(victim, 'keyword_name', '') or ''} {getattr(victim, 'name', '') or ''} {getattr(victim, 'short_desc', '') or ''}".lower()
         words = set(re.findall(r'[a-z]+', text))
         found = set()
         for keyword in MOB_KILL_FACTION_MAP:
