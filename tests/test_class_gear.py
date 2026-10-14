@@ -137,6 +137,10 @@ async def main():
                 'assassin': 'nightblade_leathers', 'bard': 'nightblade_leathers'}.get(cls)
         if want:
             check(want in sets, f'{cls}: wears its own set ({want})')
+        if cls in ('mage', 'necromancer'):
+            whole = {int(v) for v in NAMED_SETS[want]['pieces']}
+            worn = {getattr(i, 'vnum', None) for i in p.equipment.values() if i}
+            check(len(whole) == 8 and whole <= worn, f'{cls}: the whole eight-piece {NAMED_SETS[want]["name"]}, head to toe ({sorted(whole - worn)})')
     check(looks['mage']['main']['k'] == 'staff' and looks['mage']['body']['w'] == 0 and looks['mage']['head']['k'] == 'hat',
           'a mage at the top: a staff, robes and a hat')
     check(looks['necromancer']['main']['k'] in ('scythe', 'staff') and looks['necromancer']['head']['k'] == 'hood', 'a necromancer: a scythe or a staff, a cowl')

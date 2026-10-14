@@ -329,6 +329,14 @@
     {
      "vnum": 28561,
      "chance": 35
+    },
+    {
+     "vnum": 28562,
+     "chance": 25
+    },
+    {
+     "vnum": 28563,
+     "chance": 25
     }
    ],
    "boss_loot_chance": 100,
@@ -604,6 +612,66 @@
    "type": "armor",
    "min_level": 62,
    "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "lichlord_shroud"
+  },
+  "28562": {
+   "vnum": 28562,
+   "name": "lich-lord shroud drowned cloak",
+   "short_desc": "a lich-lord's shroud of the drowned",
+   "room_desc": "A long black shroud, still dripping, lies in a cold puddle here.",
+   "description": "A burial shroud of black grave-silk, long enough to drag behind its wearer. It never quite dries; the hem leaves a thin wet line wherever it passes, and it smells of deep water.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 55000,
+   "wear_slot": "about",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    },
+    {
+     "type": "shadow_resist",
+     "value": 10
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 6,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "lichlord_shroud"
+  },
+  "28563": {
+   "vnum": 28563,
+   "name": "lich-lord grave-silk sleeves",
+   "short_desc": "a pair of lich-lord's grave-silk sleeves",
+   "room_desc": "A pair of black silk sleeves, cold to the touch, lies here.",
+   "description": "Loose over-sleeves of black grave-silk, their cuffs stitched with tiny finger-bones that click when the hands move.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 35000,
+   "wear_slot": "arms",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    },
+    {
+     "type": "wis",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
    "flags": [
     "magic",
     "glow"

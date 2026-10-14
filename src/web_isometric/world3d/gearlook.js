@@ -68,7 +68,7 @@ const MAIN = {
 };
 // built in code (procgear.js): kind -> shape (an instrument by its variant)
 export const PROC = { bow: 'bow', mace: 'mace', hammer: 'hammer', spear: 'spear', polearm: 'polearm', scythe: 'scythe',
-  pick: 'pick', whip: 'whip', claw: 'claw', instrument: 'lute', orb: 'orb', relic: 'orb', skull: 'orb', censer: 'censer',
+  pick: 'pick', whip: 'whip', claw: 'claw', instrument: 'lute', orb: 'orb', relic: 'orb', skull: 'skull', censer: 'censer',
   lantern: 'lantern', torch: 'torch' };
 const INSTRUMENT_SHAPES = new Set(['lute', 'lyre', 'harp', 'flute', 'drum', 'horn']);
 // a staff by its head (gear_look.py STAFF_HEADS), else the class's own: a wizard's crystal, a
