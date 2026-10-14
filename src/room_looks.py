@@ -29,11 +29,18 @@ from collections import Counter
 logger = logging.getLogger('Misthollow')
 
 LOOKS = ('cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'castle',
-         'necropolis')
+         'necropolis', 'stones')
 UNDERGROUND = {'cave', 'mine', 'crypt', 'sewer', 'dungeon'}
 # a hand override (world/looks.json) may also keep a room as plain country or a plain room
 OVERRIDE_LOOKS = LOOKS + ('field', 'forest', 'hills', 'mountain', 'city', 'inside')
-OUTDOOR = {'desert', 'snow', 'volcanic', 'swamp', 'web'}   # (a shore is an edge: it doesn't spread)
+OUTDOOR = {'desert', 'snow', 'volcanic', 'swamp', 'web', 'stones'}   # (a shore is an edge: it doesn't spread)
+# a sacred ring or a field of standing stones (the Stone Circle): turf and flagstones under the sky,
+# a ring of standing stones for walls. Old imports typed such places 'city' (paved, walled), so a
+# room drawn as a town whose words name standing stones and no town at all is one of these
+STONES_RE = re.compile(r'\b(standing stones?|stone circle|stone ring|ring of (?:grey |great |tall )?stones|monoliths?|'
+                       r'menhirs?|megaliths?|dolmens?|the stones (?:lean|crowd|seem|here))\b', re.I)
+TOWN_RE = re.compile(r'\b(streets?|houses?|homes?|cottages?|shops?|stores?|markets?|inns?|taverns?|alleys?|guilds?|bakery|'
+                     r'smithy|blacksmiths?|merchants?|stalls?|townsfolk|citizens?|city walls?|warehouses?|shopkeepers?|bank)\b', re.I)
 
 # first match wins: the specific before the general
 LOOK_WORDS = [
@@ -78,6 +85,7 @@ SPREAD = {
     'sewer': (3, ENCLOSED_SECTORS | {'forest', 'mountain', 'hills', 'field'}),   # the old sewer was typed anyhow
     'dungeon': (2, ENCLOSED_SECTORS), 'crypt': (1, ENCLOSED_SECTORS),
     'desert': (3, {'field', 'hills', 'mountain', 'desert'}), 'volcanic': (3, {'field', 'hills', 'mountain'}),
+    'stones': (2, {'field', 'hills', 'city'}),
     'snow': (3, {'field', 'hills', 'mountain', 'forest'}), 'swamp': (2, {'field', 'swamp'}),
     'web': (3, {'field', 'hills', 'forest', 'city', 'mountain'}),
 }
@@ -323,6 +331,8 @@ def _fits(room, look):
     sector = getattr(room, 'sector_type', '') or 'inside'
     if look in UNDERGROUND:
         return sector in ENCLOSED_SECTORS and not INTERIOR_RE.search(f'{room.name} {room.description}')
+    if look == 'stones':
+        return sector in OUTDOOR_FROM_DESC or (sector == 'city' and not TOWN_RE.search(f'{room.name} {room.description}'))
     return sector in OUTDOOR_FROM_DESC
 
 
@@ -416,6 +426,9 @@ def classify(world, overrides=None):
             continue
         if not look and _trees(room):
             look, why = 'forest', 'description'
+        text = f'{room.name} {room.description}'
+        if not look and sector in ('city', 'field', 'hills') and STONES_RE.search(text) and not TOWN_RE.search(text):
+            look, why = 'stones', 'description'
         if not look and _zone(room) in ov['zones'] and _fits(room, ov['zones'][_zone(room)]):
             look, why = ov['zones'][_zone(room)], 'zone'
         room.look, room.look_why = (look, why) if look else (sector, None)

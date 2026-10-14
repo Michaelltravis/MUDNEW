@@ -201,7 +201,7 @@ const BED_OF_THEME = { forest: 'forest', field: 'meadow', hills: 'meadow', swamp
   water_noswim: 'sunken', underwater: 'sunken' };
 // a room's look (room_looks.py) says more than its zone's old theme
 export const LOOK_BED = { cave: 'mines', mine: 'mines', sewer: 'sewer', crypt: 'necropolis', dungeon: 'sewer',
-  snow: 'frozen', desert: 'desert', volcanic: 'volcanic', shore: 'sunken', swamp: 'swamp', web: 'darkforest', castle: 'castle', necropolis: 'necropolis' };
+  snow: 'frozen', desert: 'desert', volcanic: 'volcanic', shore: 'sunken', stones: 'meadow', swamp: 'swamp', web: 'darkforest', castle: 'castle', necropolis: 'necropolis' };
 export function bedFor({ theme, zoneKey } = {}) {
   if (LOOK_BED[theme]) return LOOK_BED[theme];
   if (theme === 'inside') return 'castle';                     // indoors: a quiet room tone

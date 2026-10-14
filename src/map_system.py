@@ -1273,6 +1273,8 @@ def build_zonemap(world, zone_num: int) -> Optional[dict]:
             'look': getattr(room, 'look', None) or getattr(room, 'sector_type', '') or '',   # room_looks.py
             'flags': list(room.flags) if hasattr(room, 'flags') else [],
             'description': getattr(room, 'description', '') or '',
+            # what its words say stands in it (room_features.py): the client draws them
+            'features': getattr(room, 'features', None) or [],
             'cell': [cx, cy], 'level': coords[v][2], 'exits': exits,
         })
     w = max(c[0] for c in cells.values()) + 1

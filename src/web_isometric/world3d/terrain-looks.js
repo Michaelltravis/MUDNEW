@@ -16,6 +16,7 @@
 // BLOCK (the server never sees it: it is scenery, like furniture).
 import * as THREE from 'three';
 import { trs } from './assets.js';
+import { menhir } from './terrain-features.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 const FLOOR = 0, BLOCK = 1, WATER = 4;
@@ -377,6 +378,9 @@ export function outdoorEdge(theme, kits) {
   if (theme === 'volcanic') return { trees: ['DeadTree_1', 'DeadTree_2'].map(k => tinted(N.get(k), 0x2a2420, 'scorch')), treeP: 0.12, rock: k => tinted(N.get(k), 0x3a302c, 'basalt'), bush: null };
   if (theme === 'web') return { trees: ['DeadTree_1', 'DeadTree_2', 'TwistedTree_1', 'DeadTree_1'].map(k => tinted(N.get(k), 0xa4a496, 'webbed')).filter(Boolean), treeP: 0.7, rock: k => tinted(N.get(k), 0x5a5648, 'lairrock'), bush: null };
   if (theme === 'shore') return { trees: [], treeP: 0, rock: k => N.get(k), bush: null };
+  // a stone circle (the Stone Circle of the Raven Clans): standing stones ring the open turf, grey
+  // boulders between them, a lone pine or two
+  if (theme === 'stones') return { trees: [menhir(0), menhir(1), menhir(2), menhir(0), menhir(1), N.get('Pine_2')], treeP: 0.32, rock: k => tinted(N.get(k), MOUNTAIN_ROCK, 'mtnrock'), bush: null };
   if (theme === 'desert') return { trees: [], treeP: 0, rock: k => tinted(N.get(k), 0xffc890, 'sandstone'), bush: null };
   if (theme === 'water_swim' || theme === 'water_noswim') return { trees: ['CommonTree_1', 'CommonTree_3', 'Pine_1'].map(k => N.get(k)), treeP: 0.18, rock: k => N.get(k), bush: null, banks: true };
   if (theme === 'mountain') return { trees: ['Pine_1', 'Pine_2'].map(k => tinted(N.get(k), 0x8aa08a, 'alpine')), treeP: 0.12, rock: k => tinted(N.get(k), MOUNTAIN_ROCK, 'mtnrock'), bush: null, cliffs: true };
@@ -443,6 +447,12 @@ export function outdoorDress(c, theme) {
       if (!ln(x, y) && r < 0.05) b.add(tinted(N.get('Bush_Common'), cc, `coral${k}`, { emissive: ce, glow: 1 }), trs(px, 0, pz, yaw, 0.55 + rng() * 0.5), { shadow: false });
       else if (!ln(x, y) && r < 0.08) b.add(tinted(N.get('Fern_1'), new THREE.Color(0.9, 2.2, 2.0), 'seafan'), trs(px, 0, pz, yaw, 0.9 + rng() * 0.5), { shadow: false });
       else if (r < 0.105) b.add(tinted(N.get('Pebble_Round_3'), new THREE.Color(2.2, 1.9, 1.7), 'shell'), trs(px, 0, pz, yaw, 1.1), { shadow: false });
+    } else if (theme === 'stones') {
+      // short moor grass, tall tufts, grey pebbles; only pebbles on the ways through
+      if (ln(x, y)) { if (r < 0.06) b.add(tinted(N.get('Pebble_Round_1'), MOUNTAIN_ROCK, 'mtnpeb'), trs(px, 0, pz, yaw, 1.2), { shadow: false }); }
+      else if (r < 0.22) b.add(N.get('Grass_Common_Short'), trs(px, 0, pz, yaw, 0.6 + rng() * 0.3), { shadow: false });
+      else if (r < 0.26) b.add(N.get('Grass_Wispy_Tall'), trs(px, 0, pz, yaw, 0.6), { shadow: false });
+      else if (r < 0.3) b.add(tinted(N.get('Pebble_Round_3'), MOUNTAIN_ROCK, 'mtnpeb'), trs(px, 0, pz, yaw, 1.3), { shadow: false });
     } else if (theme === 'snow') {
       if (r < 0.03) b.add(tinted(N.get('Rock_Medium_1'), 0xe8eef4, 'snowrock'), trs(px, 0, pz, yaw, 0.25), { shadow: false });
     } else if (theme === 'volcanic') {
@@ -491,6 +501,8 @@ function driftwood(out, x, z, yaw, rng) {
 export const LOOK_GROUND = {
   cave: { a: 0x5c5650, b: 0x766e66, path: 0x7e766c, wet: 0x2a3844 },
   mine: { a: 0x4c4034, b: 0x645444, path: 0x76644e, wet: 0x262c2e },
+  // a stone circle: cropped moor turf, a worn grey track
+  stones: { a: 0x5f7448, b: 0x7c8a58, path: 0x8a8678, wet: 0x3c4a3a },
   snow: { a: 0xd8e2ec, b: 0xf2f6fa, path: 0xb4c0ca, wet: 0x9cc4dc },
   shore: { a: 0xd4c08a, b: 0xe6d6a6, path: 0xc0a874, wet: 0x5a8a98 },
   volcanic: { a: 0x2a2422, b: 0x40342c, path: 0x56443a, wet: 0x4a1a08 },

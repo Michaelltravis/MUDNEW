@@ -140,6 +140,15 @@ export const LOOK_SAMPLES = [
   { look: 'cave', sector: 'inside', key: 'gatecave', name: 'A Narrow Tunnel', description: 'The tunnel runs on through the rock.', zoneExit: { side: 'north', zoneName: 'Orc Tunnels' } },
   { look: 'field', key: 'gateup', name: 'At The Foot Of The Long Stair', description: 'Worn steps climb the cliff toward the keep above.', zoneExit: { side: 'up', zoneName: 'Mahn-Tor Keep' } },
   { look: 'inside', key: 'webroom', name: 'The Den Of The Queen Spider', description: 'Webs coat every wall; cocoons hang from the ceiling and egg sacs crowd the corners of the webbed chamber.' },
+  // what the words say stands in a room (room_features.py): real rooms, their features as the game reads them
+  { look: 'stones', sector: 'city', key: 'stones', name: 'A Sharp Bend In The Stone Circle', description: 'The circle makes a sharp turn at a stone wrapped in a collar of red-dyed wool. The ground is pocked with the holes of old stakes.',
+    features: [{ k: 'standing_stone', n: 2, main: true, c: 'red' }, { k: 'stake_holes', n: 1 }] },
+  { look: 'stones', sector: 'city', key: 'slaughter', name: 'At The Slaughter Stone', description: 'A broad black stone lies flat as an altar, chains bolted to its sides.',
+    features: [{ k: 'altar', n: 2, main: true, c: 'black' }, { k: 'chains', n: 1 }] },
+  { look: 'city', sector: 'city', key: 'gathering', name: 'The Gathering Place', description: 'A wide trampled square rimmed by log benches. A tall pole bears a ring of sun-whitened skulls; old bloodstains darken the packed earth.',
+    features: [{ k: 'brazier', n: 1 }, { k: 'pole', n: 1 }, { k: 'skull', n: 2 }, { k: 'bench', n: 2 }, { k: 'blood', n: 1 }, { k: 'ash', n: 1 }] },
+  { look: 'inside', sector: 'inside', key: 'temple', name: 'The Temple', description: 'A great altar of slab stone; braziers smoulder at every corner, skull-lamps hang from chains.',
+    features: [{ k: 'altar', n: 1, c: 'black' }, { k: 'brazier', n: 2 }, { k: 'skull', n: 1 }, { k: 'lantern', n: 1 }, { k: 'ash', n: 1, c: 'black' }, { k: 'chains', n: 1 }] },
   { look: 'hills', key: 'gatesouth', name: 'The Border Hills', description: 'The hills fall away to the south.', zoneExit: { side: 'south', zoneName: 'The Eastern Highlands' } },
 ];
 export function buildLooksGallery(engine, kits) {

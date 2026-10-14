@@ -7,6 +7,7 @@ import { Batcher, trs } from './assets.js';
 import { cutout } from './cutout.js';
 import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard, townHouse } from './terrain-town.js';
 import { castleWalls, castleYard, zoneGates } from './terrain-castle.js';
+import { drawFeatures, featureCells } from './terrain-features.js';
 import { underground, dressHall, outdoorEdge, outdoorDress, mountainCliffs, sunkenRuins, webDress, tinted, RUIN_RE, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
 
 export const ROOM_W = 24, ROOM_H = 15;
@@ -100,6 +101,10 @@ export function buildRoom(layout, ox, oz, kits, room) {
   const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
   const D = kits.dungeon, N = kits.nature;
 
+  // what the room's words say stands in it (terrain-features.js): its cells are drawn as open
+  // floor (no wall or tree grows on them) and given back to the walkable grid as blocked after
+  const featCells = featureCells(layout);
+  for (const i of featCells) grid[i] = FLOOR;
   const ctx = () => ({ layout, ox, oz, kits, room, b, rng, runs: runs(grid, W, H), occ: asOccluder, torches, owned, group });
   if (UNDERGROUND.has(theme)) {
     // ---- caves and mines: rough rock ground, rock for walls (terrain-looks.js) ----
@@ -296,6 +301,8 @@ export function buildRoom(layout, ox, oz, kits, room) {
   if (theme !== 'web' && webbed(layout)) webDress(ctx(), { indoor: true });
   // a way into another region: a named stone gateway (terrain-castle.js)
   if (room) zoneGates(ctx(), theme);
+  drawFeatures(ctx());
+  for (const i of featCells) grid[i] = BLOCK;
   b.build(group);
   const doors = room ? exitFeatures(group, layout, ox, oz, room, kits, owned) : {};
   // flames: tiny HDR spheres so the bloom pass picks them up
@@ -386,6 +393,7 @@ const FILL = {
   snow: { trees: 0.09, bushes: 0, rocks: 0.03, grass: 0 },
   swamp: { trees: 0.06, bushes: 0.03, rocks: 0, grass: 0.1 },
   volcanic: { trees: 0.03, bushes: 0, rocks: 0.07, grass: 0 },
+  stones: { trees: 0.02, bushes: 0, rocks: 0.03, grass: 0.08 },
   shore: { water: true },
   water_swim: { water: true },
   water_noswim: { water: true },

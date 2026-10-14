@@ -1,5 +1,5 @@
 {
- "_about": "How rooms look in 3D, by hand, where room_looks.py's reading of their words falls short (src/room_looks.py). 'rooms' pins one room's look; 'zones' gives a zone's look to its rooms that have none of their own (underground looks only to enclosed rooms that don't read as a building's, outdoor looks only to open country). Looks: cave, mine, crypt, sewer, dungeon, desert, snow, shore, volcanic, swamp. Give each entry its reason in '_why'.",
+ "_about": "How rooms look in 3D, by hand, where room_looks.py's reading of their words falls short (src/room_looks.py). 'rooms' pins one room's look; 'zones' gives a zone's look to its rooms that have none of their own (underground looks only to enclosed rooms that don't read as a building's, outdoor looks only to open country). Looks: cave, mine, crypt, sewer, dungeon, desert, snow, shore, volcanic, swamp, stones. Give each entry its reason in '_why'.",
  "rooms": {
   "6092": "field",
   "101000": "field",
@@ -33,11 +33,13 @@
   "13623": "cave",
   "20700": "cave",
   "20701": "cave",
-  "20750": "cave"
+  "20750": "cave",
+  "24671": "cave"
  },
  "zones": {
   "465": "cave",
-  "424": "crypt"
+  "424": "crypt",
+  "476": "stones"
  },
  "_why": {
   "465": "Below Moria: crawlways, chimneys and junctions under the mountain, a third short of the automatic zone rule",
@@ -76,7 +78,9 @@
   "13623": "The Travelled Path: underground in Orc Tunnels (drawn as hills; owner: underground places should look underground)",
   "20700": "On The Bridge: underground in Moria Deep (drawn as forest; owner: underground places should look underground)",
   "20701": "On The Bridge: underground in Moria Deep (drawn as forest; owner: underground places should look underground)",
-  "20750": "Before The Bridge To Moria Deep: underground in Moria Deep (drawn as forest; owner: underground places should look underground)"
+  "20750": "Before The Bridge To Moria Deep: underground in Moria Deep (drawn as forest; owner: underground places should look underground)",
+  "476": "Stone Circle: a ring of standing stones, altars and a stone city under the open sky, typed city by an old import",
+  "24671": "Inside The Great Stone: a hollow inside a standing stone of the Stone Circle; roofed, not open turf"
  },
  "underground_zones": {
   "72": "sewer"
