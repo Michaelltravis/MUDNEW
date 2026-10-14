@@ -17,6 +17,7 @@
 import * as THREE from 'three';
 import { trs } from './assets.js';
 import { menhir } from './terrain-features.js';
+import { PLACES, placeEdge, dressPlace } from './terrain-places.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 const FLOOR = 0, BLOCK = 1, WATER = 4;
@@ -372,8 +373,10 @@ function sewer(c) {
 
 // ---------------------------------------------------------------- open country
 // what grows (or lies) on an outdoor look's edges: [key, kit, tint] lists by look
-export function outdoorEdge(theme, kits) {
+export function outdoorEdge(theme, kits, layout) {
   const N = kits.nature, G = kits.graveyard;
+  // a village, a camp, a garden, ruins (terrain-places.js)
+  if (PLACES.has(theme)) return { ...placeEdge(theme, kits, layout), rock: k => N.get(k), bush: null };
   if (theme === 'snow') return { trees: ['Pine_1', 'Pine_2'].map(k => tinted(N.get(k), 0xdfe8f0, 'frost')), treeP: 0.35, rock: k => tinted(N.get(k), 0xe8eef4, 'snowrock'), bush: null };
   if (theme === 'volcanic') return { trees: ['DeadTree_1', 'DeadTree_2'].map(k => tinted(N.get(k), 0x2a2420, 'scorch')), treeP: 0.12, rock: k => tinted(N.get(k), 0x3a302c, 'basalt'), bush: null };
   if (theme === 'web') return { trees: ['DeadTree_1', 'DeadTree_2', 'TwistedTree_1', 'DeadTree_1'].map(k => tinted(N.get(k), 0xa4a496, 'webbed')).filter(Boolean), treeP: 0.7, rock: k => tinted(N.get(k), 0x5a5648, 'lairrock'), bush: null };
@@ -426,6 +429,7 @@ export function outdoorDress(c, theme) {
   const { W, H, grid } = layout;
   const N = kits.nature, G = kits.graveyard;
   const ln = lane(layout);
+  if (PLACES.has(theme)) { dressPlace(c, theme, ln); return; }
   const solid = [], glow = [];
   for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) {
     if (grid[y * W + x] !== FLOOR) continue;
@@ -502,6 +506,12 @@ export const LOOK_GROUND = {
   cave: { a: 0x5c5650, b: 0x766e66, path: 0x7e766c, wet: 0x2a3844 },
   mine: { a: 0x4c4034, b: 0x645444, path: 0x76644e, wet: 0x262c2e },
   // a stone circle: cropped moor turf, a worn grey track
+  // a village's beaten earth, a camp's trampled mud, a garden's lawn and gravel, a ruin's grass over old paving
+  village: { a: 0x77874c, b: 0x8f985c, path: 0x8a7452, wet: 0x3c4a3a },
+  camp: { a: 0x6e6a48, b: 0x847a54, path: 0x75614a, wet: 0x3a3a2e },
+  garden: { a: 0x4f8a3e, b: 0x6aa24a, path: 0xc8bc9a, wet: 0x2e5a4a },
+  terrace: { a: 0xd8d2c4, b: 0xe8e2d6, path: 0xc4bcaa, wet: 0x8aa0aa },
+  ruins: { a: 0x6f8048, b: 0x8a8c5e, path: 0xa49c88, wet: 0x3c4a3a },
   stones: { a: 0x5f7448, b: 0x7c8a58, path: 0x8a8678, wet: 0x3c4a3a },
   snow: { a: 0xd8e2ec, b: 0xf2f6fa, path: 0xb4c0ca, wet: 0x9cc4dc },
   shore: { a: 0xd4c08a, b: 0xe6d6a6, path: 0xc0a874, wet: 0x5a8a98 },

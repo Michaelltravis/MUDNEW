@@ -233,7 +233,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
       }
     }
     // a look's own edge (terrain-looks.js: frosted pines, scorched trees, bare sand), else the wilds'
-    const edge = outdoorEdge(theme, kits);
+    const edge = outdoorEdge(theme, kits, layout);
     const trees = edge ? edge.trees.filter(Boolean) : theme === 'swamp' ? ['DeadTree_1', 'DeadTree_2', 'Pine_1'].map(k => N.get(k)) :
       ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'CommonTree_1', 'Pine_1', 'Pine_2'].map(k => N.get(k));
     const treeP = edge ? edge.treeP : theme === 'forest' ? 0.78 : theme === 'swamp' ? 0.3 : 0.22;
@@ -251,6 +251,9 @@ export function buildRoom(layout, ox, oz, kits, room) {
       } else if ((dd >= 2 || (theme === 'forest' && dd >= 1)) && trees.length && r < treeP) {
         const tree = trees[Math.floor(rng() * trees.length)];
         b.add(asOccluder(tree), trs(px, 0, pz, yaw, 0.55 + rng() * 0.3));
+      } else if (dd <= 2 && edge && edge.near) {
+        // a place's own edge: a village's bushes and fences, a garden's hedges, a camp's stakes
+        if (r < 0.7) { const m = edge.near(rng); if (m && m.model) b.add(asOccluder(m.model), trs(px, 0, pz, m.yaw === undefined ? yaw : m.yaw, m.s)); }
       } else if (dd <= 2 && r < 0.62) {
         const rr = rng();
         const key = bare || rr < 0.18 ? `Rock_Medium_${1 + Math.floor(rng() * 3)}` : rr < 0.8 ? 'Bush_Common' : 'Bush_Common_Flowers';
@@ -394,6 +397,11 @@ const FILL = {
   swamp: { trees: 0.06, bushes: 0.03, rocks: 0, grass: 0.1 },
   volcanic: { trees: 0.03, bushes: 0, rocks: 0.07, grass: 0 },
   stones: { trees: 0.02, bushes: 0, rocks: 0.03, grass: 0.08 },
+  village: { trees: 0.035, bushes: 0.04, rocks: 0.005, grass: 0.08 },
+  camp: { trees: 0.03, bushes: 0.02, rocks: 0.01, grass: 0.05 },
+  garden: { trees: 0.05, bushes: 0.08, rocks: 0, grass: 0.1 },
+  terrace: { trees: 0.015, bushes: 0.01, rocks: 0, grass: 0 },
+  ruins: { trees: 0.025, bushes: 0.02, rocks: 0.02, grass: 0.08 },
   shore: { water: true },
   water_swim: { water: true },
   water_noswim: { water: true },
@@ -408,7 +416,7 @@ function fillerLand(c, theme) {
   const empty = (dx, dy) => !cells.get(`${room.cx + dx},${room.cy + dy}`);
   const spec = FILL[theme] || FILL.default;
   const pal = GROUND[theme === 'town' ? 'city' : theme] || GROUND.default;
-  const edge = outdoorEdge(theme, kits);
+  const edge = outdoorEdge(theme, kits, layout);
   const trees = (edge ? edge.trees : theme === 'swamp' ? ['DeadTree_1', 'DeadTree_2'].map(k => N.get(k))
     : ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'Pine_1', 'Pine_2'].map(k => N.get(k))).filter(Boolean);
   const rockOf = k => edge && edge.rock ? edge.rock(k) : N.get(k);

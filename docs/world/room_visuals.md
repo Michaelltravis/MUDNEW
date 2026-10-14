@@ -12,8 +12,8 @@ Two things decide what a room looks like in /play:
 
 The audit (`tools/audit/room_text.py`, report in [room_text_audit.md](room_text_audit.md)) reads all 124 zones and 9,251 rooms:
 - half of all rooms (4,656) name something standing in them, but none of it was drawn;
-- 361 rooms are drawn against their text:
-  - 211 have the town look and nothing of a town in the words (no streets, houses, shops, paving, windows or doors);
+- 361 rooms were drawn against their text before Phase 2, and 184 after it:
+  - 211 had the town look and nothing of a town in the words (no streets, houses, shops, paving, windows or doors); 34 are left;
   - 95 are roofed (inside, cave, crypt) though the words speak only of sky, open air, grass or wind;
   - 55 are open-air though the words speak only of a ceiling, a chamber or a hall.
 
@@ -62,33 +62,55 @@ The classifier gives `stones` to any open room whose words say standing stones, 
 
 Screenshots: `/play?demo&gallery=rooms&only=stones,slaughter,gathering,temple` shows four real rooms as their words read.
 
-## Phase 2: the 211 town-look rooms with no town
+## Phase 2 (done): town-look rooms that are no town
 
-These are rooms in zones typed `city` whose words describe something else. Worst first, with what their text actually says:
+Before this phase, 211 rooms had the town look with nothing of a town in their words. 34 are left, and they are real streets that never say so: Garathorm's Park Road and Concourse, New Thalos's drives, Mishrak's wall roads.
 
-| Zone | Rooms | What the text says | Fix |
-|---|---|---|---|
-| 491 Morvoct | 34 | a fishing village: driftwood huts hung with nets, sandy paths | a `village` look: huts on sand |
-| 408 Trade Road | 22 | the Dusty Road between low stone walls and fields | `field` |
-| 475 World Of Chaos | 10 | a road laid of skulls | `necropolis`, or a bone-field look |
-| 515 Orcus Temple | 10 | temple courtyards of black stone | `castle` yard in black stone |
-| 30 Garathorm Inner City | 10 | quays, a riverside path, a Japanese garden | `shore` for the quay, a `garden` look |
-| 54 New Thalos | 10 | the desert outside the gates | `desert` for the rooms outside the walls |
-| 220 Castle Of The Apocalypse II | 10 | paths toward Ocam's Reach | read them; `castle` yard or `field` |
-| 494 Eden | 9 | gravel paths between beds of lavender and sage | a `garden` look |
-| 52 Thalos | 8 | the deserted temple grounds and gate of a ruined city | a `ruins` look |
-| 439 Mount Olympus | 8 | | read them |
+**Buildings typed as their town's street** are now drawn as rooms. An old import gave many buildings their town's sector, `city`, so they were drawn as market streets: the Orcus priests' quarters, the School House classrooms, Morvoct's huts, Brethrenmere's washrooms and newsroom. A city-typed room is now drawn as a room when:
+- its name is a building's (quarters, hut, classroom, office, kitchen, workshop, sanctum, stable...);
+- and its text reads indoors.
 
-The work, per zone:
-1. Read the rooms (`python3 tools/audit/room_text.py --zone N`).
-2. Pick the look, with a reason in `world/looks.json`.
-3. Check in the gallery.
+A den hacked out of the living rock (the Cyclops's in Morvoct) is drawn as a cave. These rooms also get indoor ambient lines now, not street ones.
 
-**New looks to add here:**
-- **camp**: tents, fire pits, palisade stakes on trampled earth. The ogres' Gathering Place [2245] is the clearest case: its text has log benches round a trampled square, but it is drawn now as a market square.
-- **village**: huts of wood, wattle or driftwood on dirt or sand, nets and drying racks.
-- **ruins**: broken walls, fallen columns and rubble under the sky.
-- **garden**: hedges, flower beds, paths.
+**City-typed rooms whose words describe another place** take that place's look (`room_looks.py`, the `TOWNLESS` table). First match wins:
+
+| Look | Words | Where |
+|---|---|---|
+| `necropolis` | a road, path or walkway of bones or skulls | World Of Chaos's Path Of Bones, the City of Ancients' Walkway of Bones |
+| `ruins` (new) | ruins, ruined, crumbling, collapsed, broken columns, a deserted city | Thalos, the City of Ancients, a burnt-out inn on the Caravan Road |
+| `garden` (new) | gardens, flower beds, lawns, hedges, orchards, beehives, a park | Eden, Ghenna's twisting hedges, Garathorm's park, Salem's Lot's town garden |
+| `camp` (new) | camps, tents, fire pits, palisades | the ogres' Gathering Place and fire pit |
+| `village` (new) | a village, huts, hovels, thatch, wattle, byres, a farmhouse, palms | Morvoct's sandy paths among the huts, the ogre village, Hommlet's lanes |
+| `desert` | the desert, dunes, sands | outside New Thalos's southern gate |
+| `field` | fields, countryside, meadows, pastures | the Great Field of Garathorm, the Old Road |
+
+**Guards against real towns:**
+- A ruin or a road of bones may stand in a town that names its houses.
+- Every other look needs a text that says nothing of a town: no shops or houses, and no cobbles, paving, quays or town walls.
+- A garden is never read from a road's name. Park Road is a street past the park.
+- A look found only in the description must be named twice; a look in the room's own name is enough once.
+- Villages, camps and ruins spread one room to neighbours with no words of their own, never onto a town street.
+
+**Pins in `world/looks.json`**, about 100 rooms, each with its reason:
+- Morvoct's cliffs and harpy nests are `mountain`, and its cyclops's den is `cave`;
+- the Shortcut through the Mountain Range is `cave`;
+- Ocam's Reach in the Castle of the Apocalypse is `dungeon`;
+- the Trade Road's country roads (the Dusty Road over the heath, the Caravan Road, the King's Road) are `field`;
+- Elvandar's common platform among the trees is `forest`;
+- the Orcus Temple courtyard of black walls is `castle`;
+- the Ocean Pier is `shore`;
+- Mount Olympus's Gods' Table and thrones are a new look, `terrace`: white marble paving and whole marble columns under the sky.
+
+**How they are drawn** (`world3d/terrain-places.js`, new; every piece is built in code):
+- **village:** beaten-earth ground; round huts of wattle or mud under thatch, set just behind the open ground with their doors facing in; bushes, fence lengths and woodpiles along the edge; sacks, crates and barrels on the ground.
+- **camp:** trampled mud; A-frame hide tents facing the middle; sharpened palisade stakes along the edge; logs, bones and sacks on the ground.
+- **garden:** lawn with a pale gravel path; clipped hedges along the edge, trees behind them; flower groups and flowering bushes.
+- **ruins:** grass over old paving; broken walls and broken columns of pale stone; rubble and fallen column drums.
+- **terrace:** pale marble paving; whole white columns; nothing growing.
+
+Each look has its ground colours, minimap colour, footsteps, ambient sound and the country drawn beyond the room's edge. The text reader also stopped misreading gardens: "beds of roses" are not beds, "petals carpet the paths" lays no rug, and "rain strikes the stone" raises no standing stone.
+
+Screenshots: `/play?demo&gallery=rooms&only=village,camp,garden,ruins,olympus`.
 
 ## Phase 3: roofed and open, the wrong way round
 
@@ -117,6 +139,14 @@ The places players remember: boss lairs, the altars of the Stone Circle, throne 
   - the reader: 24641, places named as destinations, colours, plurals, stake holes, an altar and not a table;
   - that every feature the reader names, the client places and draws;
   - the world at load: features read, the zone map sends them, the Stone Circle draws as stones, its ambient lines are outdoor ones.
+- `python3 tests/test_room_places.py` checks Phase 2:
+  - buildings typed as streets are rooms, and a den is a cave;
+  - bones, ruins, gardens, villages, camps and the terrace are each read right;
+  - real streets stay streets;
+  - the town-look count stays low;
+  - a classroom gets no street ambient lines;
+  - the reader's garden fixes.
+- `tests/web/roomlooks.test.mjs` walks every look, the new ones included.
 - `node --test tests/web/roomfeatures.test.mjs` checks placement:
   - no way out is ever shut;
   - solid features are walls to the walker;

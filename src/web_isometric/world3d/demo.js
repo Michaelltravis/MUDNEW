@@ -149,6 +149,17 @@ export const LOOK_SAMPLES = [
     features: [{ k: 'brazier', n: 1 }, { k: 'pole', n: 1 }, { k: 'skull', n: 2 }, { k: 'bench', n: 2 }, { k: 'blood', n: 1 }, { k: 'ash', n: 1 }] },
   { look: 'inside', sector: 'inside', key: 'temple', name: 'The Temple', description: 'A great altar of slab stone; braziers smoulder at every corner, skull-lamps hang from chains.',
     features: [{ k: 'altar', n: 1, c: 'black' }, { k: 'brazier', n: 2 }, { k: 'skull', n: 1 }, { k: 'lantern', n: 1 }, { k: 'ash', n: 1, c: 'black' }, { k: 'chains', n: 1 }] },
+  // places an old import typed 'city' that are no town (room_looks.py TOWNLESS): real rooms
+  { look: "village", sector: 'city', key: "village", name: "The Palm Covered Path", description: "The sand is smooth here, swept clean by broom and by wind, and the palms stand in a tidy row on each side. Flags of bright cloth snap from poles, and a ring of whitewashed stones marks the approach to a large hut.",
+    features: [{k: "pole", n: 2}, {k: "banner", n: 2}] },
+  { look: "camp", sector: 'city', key: "camp", name: "The Firepit Before the Lodge", description: "A huge firepit smoulders in the middle of the clearing, ringed by blackened boulders and heaped with charred bones. Spits of green wood stand over the embers, still dripping fat.",
+    features: [{k: "brazier", n: 2, main: true}, {k: "bones", n: 2}, {k: "ash", n: 2}] },
+  { look: "garden", sector: 'city', key: "garden", name: "The Flower Garden", description: "Beds of roses, lilies and anemones spill across this corner in banks of crimson and gold. Petals carpet the paths, and the scent is almost too rich to breathe.",
+    features: [{k: "flowers", n: 2, main: true}] },
+  { look: "ruins", sector: 'city', key: "ruins", name: "Main Street", description: "This was once a magnificent street, but now is in total ruin. The streets are barren and windswept and the silence is unending.",
+    features: [{k: "rubble", n: 1}] },
+  { look: "terrace", sector: 'city', key: "olympus", name: "Crossing The Gods' Table", description: "The Gods' Table narrows here to a stately ribbon of marble, wide enough for six to walk abreast. Its surface is scored with the long-dried stains of spilled wine.",
+    features: [{k: "throne", n: 1}, {k: "table", n: 2, main: true}] },
   { look: 'hills', key: 'gatesouth', name: 'The Border Hills', description: 'The hills fall away to the south.', zoneExit: { side: 'south', zoneName: 'The Eastern Highlands' } },
 ];
 export function buildLooksGallery(engine, kits) {

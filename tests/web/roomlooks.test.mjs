@@ -17,7 +17,8 @@ for (const f of ['world3d/hud-shim.js', 'shared/themes-zones.js', 'shared/roomge
   vm.runInThisContext(fs.readFileSync(path.join(ROOT, 'src/web_isometric', f), 'utf8'), { filename: f });
 }
 const MH = globalThis.MH;
-const LOOKS = ['cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'castle', 'necropolis'];
+const LOOKS = ['cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'castle', 'necropolis',
+  'stones', 'village', 'camp', 'garden', 'ruins', 'terrace'];
 
 function sampleRooms(n = 60) {
   const out = [];
