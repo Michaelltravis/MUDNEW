@@ -112,6 +112,22 @@
     ]
    },
    "why": "King Minos"
+  },
+  "791009": {
+   "name": "pit beast horned labyrinth",
+   "short_desc": "a horned pit-beast",
+   "long_desc": "A horned pit-beast prowls the dark of the pit, snorting.",
+   "description": "It is a squat, bull-headed thing bred in the labyrinth below the island of Minos, all horn and shoulder. It charges at the smell of anything living.",
+   "level": 24,
+   "kind": "monster",
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "rank": "regular",
+   "fills": true,
+   "water": false,
+   "why": "the zone's regulars (tools/audit/densify.py fills its empty rooms with them): it had no ordinary foe of its own"
   }
  },
  "bosses": [
@@ -135,5 +151,19 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 791009,
+   "rooms": [
+    922,
+    926,
+    929,
+    931
+   ],
+   "total": 4,
+   "why": "a horned pit-beast"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 4 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

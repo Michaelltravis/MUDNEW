@@ -66,6 +66,22 @@
      }
     ]
    }
+  },
+  "791064": {
+   "name": "wisp nightmare dream",
+   "short_desc": "a wisp of nightmare",
+   "long_desc": "A wisp of nightmare drifts through the room, flickering black and violet.",
+   "description": "It is a scrap of a bad dream that has slipped out of Rand's sleep: a cold, whispering shimmer that remembers every fear you ever had.",
+   "level": 16,
+   "kind": "monster",
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "rank": "regular",
+   "fills": true,
+   "water": false,
+   "why": "the zone's regulars (tools/audit/densify.py fills its empty rooms with them): it had no ordinary foe of its own"
   }
  },
  "bosses": [
@@ -94,5 +110,25 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 791064,
+   "rooms": [
+    6408,
+    6410,
+    6414,
+    6417,
+    6419,
+    6421,
+    6423,
+    6425,
+    6427,
+    6429
+   ],
+   "total": 10,
+   "why": "a wisp of nightmare"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 10 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

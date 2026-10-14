@@ -132,6 +132,22 @@
     ]
    },
    "why": "the Grand Mistress"
+  },
+  "791469": {
+   "name": "spark elemental stray",
+   "short_desc": "a stray elemental spark",
+   "long_desc": "A stray elemental spark crackles in the air, drifting from wall to wall.",
+   "description": "A ball of loose magic that escaped some experiment in the upper tower. It burns whatever it touches.",
+   "level": 20,
+   "kind": "monster",
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "rank": "regular",
+   "fills": true,
+   "water": false,
+   "why": "the zone's regulars (tools/audit/densify.py fills its empty rooms with them): it had no ordinary foe of its own"
   }
  },
  "bosses": [
@@ -164,5 +180,24 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 791469,
+   "rooms": [
+    2599,
+    2603,
+    2605,
+    2607,
+    2610,
+    2613,
+    2615,
+    2617,
+    2619
+   ],
+   "total": 9,
+   "why": "a stray elemental spark"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 9 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

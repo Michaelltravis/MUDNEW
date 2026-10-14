@@ -184,13 +184,24 @@
   {
    "vnum": 604002,
    "rooms": [
+    4010,
+    4011,
+    4014,
+    8515,
+    8516,
+    8517,
     8518,
+    8519,
+    8529,
+    8530,
+    8532,
     8533,
     8534,
     8535,
     8536,
     8537,
     8538,
+    8539,
     8540,
     8542,
     8544,
@@ -204,14 +215,24 @@
     8553,
     8554,
     8555,
+    8556,
+    8557,
+    8558,
     8559,
     8560,
     8561,
-    8562
+    8562,
+    8563,
+    8564,
+    8565,
+    8566,
+    8567,
+    8568,
+    8569
    ],
-   "total": 27,
+   "total": 48,
    "why": "a grey rock spider"
   }
  ],
- "_fill": "tools/audit/densify.py: 24 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
+ "_fill": "tools/audit/densify.py: 45 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

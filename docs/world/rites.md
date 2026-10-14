@@ -33,20 +33,18 @@ Almost no door in the world was locked.
 - The fills are written as `"fill"` entries in `world/population/zone_<n>.json`. `population.py` applies them at load and raises every reset of that creature in the zone to the new total.
 - The tool plans from the world without fills, so running it again gives the same answer.
 
-**After:** 1,227 more creatures across 52 zones. Twelve zones are still under the line, each on purpose:
-
-| Kind of zone | Zones |
-|---|---|
-| Travel zones, at their lower aim | Trade Road, Plains |
-| Monster towns full of peaceful inhabitants | Drow City, Orc Enclave, High Tower I and II |
-| Small zones whose few foes are elites | Quickstream, King's Forest |
-| Puzzle houses with one guardian a room | Rand's Tower, Redferne's Residence |
-| An empty tunnel | the pit of Minos |
-| No more free rooms near its creatures | Mountain Range |
-
-**Balance.** The fill adds more fights, not harder ones. `tools/balance/zones.py --zones 521,210`:
-- **The Winterwood (level 14, now 31 foes):** a party of three loses no one, and its worst moment costs 42%. A lone warrior at the zone's median level dies 5 times in 30 fights, to its level-20 foes.
-- **The Tunnel of Sticks (level 35, now 46 foes):** a party's worst moment costs 15%, and lone heroes nearly always win.
+**After:** 1,339 more creatures across 61 zones. **No zone is thin any more**: every adventuring zone has at least 0.35 hostile creatures per walkable room, and roads and plains at least 0.2.
+- Nine zones had no ordinary foe of their own (only elites, named creatures or peaceful folk), so each got one written for it in its population file (`"fills": true`), spread through its empty rooms:
+  - a snapping river pike (Quickstream);
+  - a horned pit-beast (the pit of Minos);
+  - a grey forest wolf (King's Forest);
+  - a conjured homunculus (Redferne's house, placed in its `no_mob` rooms by `"fill_no_mob"`);
+  - a wisp of nightmare (Rand's Tower);
+  - an orc raider (the Orc Enclave);
+  - an apprentice's golem and a stray elemental spark (the High Towers);
+  - a drow patrol warrior (Drow City).
+- The fill reaches up to 10 steps from where a kind already lives, so Mountain Range is no longer short of rooms.
+- The audit judges a road or open plain between places by its own aim (`density.is_travel`), as the fill does.
 
 ## Rites of passage (`src/rites.py`, `world/rites.json`)
 
@@ -86,26 +84,24 @@ A ferryman, bargeman or gate-warden who carries you across for a fare:
 - **New regulars:** forest lamias, temple acolyte shades, wailing shades and hounds of Hades.
 - **Totals:** 25 creatures before, 77 now.
 
-### Sixteen more boss approaches
-Each has a mini-boss with the key before the last door to the boss:
-- Drow City (the Temple Warden of Lloth);
-- Great Pyramid (the Tomb Guardian);
-- Arachnos (the Brood Warden);
-- Haunted Swamp (Old Snapjaw);
-- Troglodyte Mines;
-- Mahn-Tor Keep;
-- Castle of Ostragoth;
-- Salem's Lot;
-- Morvoct;
-- Phaeton's Academy;
-- Durmandel I (the Gatestone);
-- Lost Crypt II (the Blood Herald);
-- Morkai (the Throne Warden);
-- the Winterlands (the Frost Herald);
-- Rand's Tower (the Demon of Decay);
-- the Orc Enclave (the Huntmaster).
-
-Four candidate gates were left out because the boss can be reached another way: Sea of Storms, Garathorm Cathedral, Castle Varok and Below Moria.
+### Every boss zone
+**59 of the 106 zones with a boss are gated**, and [gates.md](gates.md) gives the decision for each zone. Among them:
+- **Existing doors** on the way to the boss now have a gatekeeper, a sub-boss made from one of the zone's own creatures. For example:
+  - Drow City (the Temple Warden of Lloth);
+  - the Great Pyramid (the Tomb Guardian);
+  - Arachnos (the Brood Warden);
+  - the Haunted Swamp (Old Snapjaw);
+  - Morkai (the Throne Warden);
+  - the Dwarven Kingdom (the Maze Wraith);
+  - High Tower I (the Pentagram Warden).
+- **A named lieutenant** carries the key where the zone has one: Kharn Ironvein (Aredrel), Imrael (Morkai's tombs), Kossil (Tombs of Atuan), Talos (Mount Olympus).
+- **Open approaches with a single way into the boss room** get a gate built there (`"make_door"`). A dragon's lair or a temple sanctum gets a gate; under the open sky (a pier, a mountain top) the boss gets a barrier of old stones.
+- **No gate** where it would do harm or nothing:
+  - a town or a puzzle;
+  - open country;
+  - a marquee quest zone;
+  - a boss room with more than one way in;
+  - a door that is the zone's own entrance.
 
 ### The river barge
 An old bargeman at Garathorm's Quay (3049) poles you up the river and through the mountain rapids to the tunnel landing (5002) for five gold. A bargewoman brings you back. Before this, the only way along the river was a raft costing about a thousand gold.

@@ -137,6 +137,15 @@ async def main():
     check(not missing, f"every gate is locked and warded, and its keeper carries its key ({len(rites.DATA['gates'])} gates; {missing[:3]})")
     away = [t['id'] for t in rites.DATA['tolls'] if not any(c.vnum == t['npc'] and c.room and c.room.vnum == t['room'] for c in world.npcs)]
     check(not away, f'every toll-keeper stands at their landing ({away})')
+    # density (tools/audit/density.py): no adventuring zone is thin, no locked door is keyless
+    sys.path.insert(0, os.path.join(HERE, '..', 'tools', 'audit'))
+    import density
+    zones = density.survey(world)
+    thin = [(z, s['name']) for z, s in zones.items() if s['sparse']]
+    check(not thin, f'no adventuring zone is thin ({len(thin)}: {thin[:4]})')
+    check(not any(s['nokey'] for s in zones.values()), 'every locked door has a key somewhere in the world')
+    gated = {world.rooms[g['room']].zone.number for g in rites.DATA['gates']}
+    check(len(gated) >= 59, f'gatekeepers hold the way to the boss in {len(gated)} zones')
     # the river barge: the Quay up to the tunnel landing for five gold
     put(3049)
     p.gold = 7

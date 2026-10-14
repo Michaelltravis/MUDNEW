@@ -94,6 +94,22 @@
    ],
    "race": "human",
    "alignment": 300
+  },
+  "791079": {
+   "name": "homunculus conjured servant",
+   "short_desc": "a conjured homunculus",
+   "long_desc": "A conjured homunculus scuttles along the floor, muttering to itself.",
+   "description": "A knee-high thing of clay and wax with a wizard's sigil burned into its brow. Redferne made dozens to keep his house, and they guard it jealously.",
+   "level": 16,
+   "kind": "monster",
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "rank": "regular",
+   "fills": true,
+   "water": false,
+   "why": "the zone's regulars (tools/audit/densify.py fills its empty rooms with them): it had no ordinary foe of its own"
   }
  },
  "spawns": [
@@ -140,5 +156,22 @@
     }
    ]
   }
- ]
+ ],
+ "fill_no_mob": true,
+ "_fill_no_mob": "Every room of Redferne's house is no_mob (nothing wanders in or out): its homunculi are placed in the rooms and stay there",
+ "fill": [
+  {
+   "vnum": 791079,
+   "rooms": [
+    7900,
+    7902,
+    7904,
+    7906,
+    7909
+   ],
+   "total": 5,
+   "why": "a conjured homunculus"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 5 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

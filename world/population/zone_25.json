@@ -162,6 +162,22 @@
    ],
    "race": "demon",
    "alignment": -800
+  },
+  "791025": {
+   "name": "golem apprentice clay",
+   "short_desc": "an apprentice's golem",
+   "long_desc": "An apprentice's golem lumbers along, following its last order.",
+   "description": "A clumsy man-shaped lump of clay and iron bands, made by a student of the tower and never unmade. It attacks anyone who is not wearing an apprentice's robe.",
+   "level": 13,
+   "kind": "monster",
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "rank": "regular",
+   "fills": true,
+   "water": false,
+   "why": "the zone's regulars (tools/audit/densify.py fills its empty rooms with them): it had no ordinary foe of its own"
   }
  },
  "patrols": [
@@ -225,5 +241,30 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 791025,
+   "rooms": [
+    2513,
+    2515,
+    2517,
+    2521,
+    2523,
+    2525,
+    2527,
+    2530,
+    2532,
+    2536,
+    2538,
+    2541,
+    2543,
+    2545,
+    2547
+   ],
+   "total": 15,
+   "why": "an apprentice's golem"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 15 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }
