@@ -524,17 +524,17 @@
   },
   "512": {
    "name": "Orc Tunnels",
-   "levels": [42, 52],
-   "theme": "The Orc Tunnels: a vast warren of mine tunnels across the second and third deeps, grey and natural cave-tunnels, underground lakes, the orc town of Morkai's streets, the whispering hallway, and the Great Hall of Orschnag, the orc king.",
-   "mood": "Huge, brutal and teeming: drums, torchlight, orc war-chants.",
+   "levels": [42, 68],
+   "theme": "The Orc Tunnels: a vast warren of mine tunnels across the second and third deeps, grey and natural cave-tunnels, underground lakes, the whispering hallway, and the Great Hall of Orschnag, the orc king (levels 42-52). At its deep end lies dead Morkai, the orc city that fell to what woke under the Well of Souls: an end-game city of the dead (levels 60-68), its orcs risen as skeletons, ghouls and death knights under Gorbash the Bone King, with aberrations crawling up through the Gateway To The Underworld.",
+   "mood": "The tunnels: huge, brutal and teeming, drums, torchlight, orc war-chants. Morkai: silent dead streets, ghost-fire, bone.",
    "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Orschnag the orc king in his great hall). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
    "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
   },
   "514": {
    "name": "Morkai",
-   "levels": [45, 55],
-   "theme": "Morkai's under-tombs: glowing and hot cave tunnels, a lava chamber and the fire vein, the hall of mirrors, the great hall and tomb of the Pale, Moloch's repose and the Stone of Sealing.",
-   "mood": "Hellish and ancient: lava light, mirrors that show the wrong things.",
+   "levels": [60, 68],
+   "theme": "Morkai's under-tombs, where the dying began: cold ghost-lit tunnels and ossuaries, the Hall of Mirrors, the great hall and tomb of the Pale, the Stone of Sealing and Moloch's Repose, where the ancient demon lord stirs among the bones. End-game (levels 60-68): undead and aberrations.",
+   "mood": "Dead and cold: whispers in the dark, bones underfoot, pale light, a last ember of hell at the bottom.",
    "creatures": "Design 5 to 7 kinds that fit the theme: regulars (count about one per five rooms), two elite kinds (count 1-2, near the top level), one named sub-boss (count 1) and one named boss (count 1, at the zone's top level: Moloch at his repose). Give the named ones a room by name (\"rooms\": [...]) where they belong.",
    "items": "Three to five items that fit, dropped by the creatures (the boss and sub-boss drop the best)."
   },

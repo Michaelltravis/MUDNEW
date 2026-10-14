@@ -8,7 +8,8 @@ The writing lives in world/buildout/parts/<job>.json (one per job of tools/atlas
 A room's description replaces its placeholder (wrapped at 72 columns, like the rest of the
 world). Creatures and items carry words and facts; their numbers come from their level and kind
 (stats(), item_numbers()), fitted to the creatures and gear the world already has, and they are
-placed by their terrains and room names, the same way on every build.
+placed by their terrains and room names, the same way on every build ("avoid": [room names]
+keeps a creature out of rooms its terrains would otherwise give it).
 
     python3 tools/atlas/buildout.py --check world/buildout/parts/<job>.json   # a writer's check
     python3 tools/atlas/buildout.py --merge <job>        # fold parts/<job>.p1.json, .p2.json ... in
@@ -127,7 +128,8 @@ def check(path, world=None, quiet=False):
             if look and look not in room_looks.LOOKS:
                 probs.append(f'{v}: unknown look {look!r} (one of {", ".join(room_looks.LOOKS)})')
             named = room_looks.words_look(room.get('name'))
-            if look and named and named != look:
+            # (a web's lair in a cave or a crypt is drawn as one, with the webs hung in it)
+            if look and named and named != look and not (named == 'web' and look in room_looks.UNDERGROUND):
                 probs.append(f'{v} {room.get("name")}: its name says {named}, its look says {look}')
             text = text.get('description') or ''
         if not isinstance(text, str) or not text.strip():
@@ -244,11 +246,13 @@ def check_design(part, zs, w):
 
 def where(c, zs, w, only=None):
     """The rooms a creature may stand in: of the rooms its writer wrote (`only`), those of its
-    sectors or names, never where creatures may not go."""
+    sectors or names, never where creatures may not go, nor rooms named in its "avoid" (the orcs
+    of the tunnels keep out of dead Morkai)."""
     secs, names = set(c.get('sectors') or []), set(c.get('rooms') or [])
+    avoid = set(c.get('avoid') or [])
     out = []
     for v, r in w.rooms.items():
-        if r['_zone'] not in zs or (only is not None and v not in only):
+        if r['_zone'] not in zs or (only is not None and v not in only) or r.get('name') in avoid:
             continue
         flags = set(r.get('flags') or [])
         if flags & {'no_mob', 'imm_only', 'deathtrap', 'death', 'peaceful'}:

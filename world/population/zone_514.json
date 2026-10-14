@@ -1,24 +1,24 @@
 {
  "zone": 514,
- "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Moloch, the Ancient Demon Lord as the boss.",
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Moloch, the Ancient Demon Lord as the boss (re-themed for end-game Morkai: undead and aberrations).",
  "creatures": {
   "651400": {
    "helpers": {
-    "group": "z514_animal",
+    "group": "z514_aberration",
     "rooms": 2,
     "count": 2,
-    "shout": "A howl goes up, and the pack answers!"
+    "shout": "A wet chittering rises, and more of them come crawling!"
    },
-   "why": "a giant ember beetle"
+   "why": "a carrion crawler"
   },
   "651401": {
    "helpers": {
-    "group": "z514_monster",
+    "group": "z514_aberration",
     "rooms": 2,
     "count": 2,
-    "shout": "A roar echoes, and more of them come!"
+    "shout": "A wet chittering rises, and more of them come crawling!"
    },
-   "why": "a cinder imp"
+   "why": "a gibbering mouther"
   },
   "651402": {
    "helpers": {
@@ -31,21 +31,21 @@
   },
   "651403": {
    "helpers": {
-    "group": "z514_humanoid",
+    "group": "z514_undead",
     "rooms": 2,
     "count": 2,
-    "shout": "A shout goes up, and they come running!"
+    "shout": "A cold wail rises, and the dead answer!"
    },
-   "why": "a pale cultist"
+   "why": "a risen pale cultist"
   },
   "651404": {
    "helpers": {
-    "group": "z514_monster",
+    "group": "z514_undead",
     "rooms": 2,
     "count": 2,
-    "shout": "A roar echoes, and more of them come!"
+    "shout": "A cold wail rises, and the dead answer!"
    },
-   "why": "a hulking magma golem",
+   "why": "a bone colossus",
    "rank": "elite"
   },
   "651405": {
@@ -65,7 +65,7 @@
     "count": 2,
     "shout": "A cold wail rises, and the dead answer!"
    },
-   "why": "Imrael, the Pale High Priest",
+   "why": "Imrael the Lich, Pale High Priest",
    "rank": "sub-boss"
   },
   "651407": {
@@ -164,6 +164,65 @@
      "why": "step out"
     }
    ]
+  }
+ ],
+ "spawns": [
+  {
+   "vnum": 651400,
+   "rooms": [
+    13850,
+    13866,
+    13872,
+    13878
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651401,
+   "rooms": [
+    13866,
+    13874,
+    13882
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651402,
+   "rooms": [
+    13855,
+    13856
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651403,
+   "rooms": [
+    13857,
+    13858
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651404,
+   "rooms": [
+    13851,
+    13854
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
+  },
+  {
+   "vnum": 651405,
+   "rooms": [
+    13857,
+    13858
+   ],
+   "max": 1,
+   "why": "one in each room the build-out placed it (a reset counts across the zone)"
   }
  ]
 }

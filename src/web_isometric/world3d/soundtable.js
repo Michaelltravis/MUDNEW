@@ -145,7 +145,7 @@ export function surfaceFor({ theme, zoneKey, snowy, icy, interior } = {}) {
   if (theme === 'desert' || theme === 'shore') return 'step_dirt';
   if (theme === 'inside') return interior === 'tavern' || interior === 'house' || interior === 'bedroom' || interior === 'library' ? 'step_wood'
     : interior === 'throne' || interior === 'temple' ? 'step_carpet' : 'step_stone';
-  if (theme === 'city' || theme === 'castle' || theme === 'dungeon' || theme === 'cave' || theme === 'mountain') return 'step_stone';
+  if (theme === 'city' || theme === 'castle' || theme === 'necropolis' || theme === 'dungeon' || theme === 'cave' || theme === 'mountain') return 'step_stone';
   if (theme === 'forest' || theme === 'field' || theme === 'hills' || zoneKey === 'meadow' || zoneKey === 'elven') return 'step_grass';
   return 'step_dirt';
 }
@@ -157,7 +157,7 @@ const DUNGEON = new Set(['sewer', 'mines', 'dwarvenhall', 'clockwork', 'arcane']
 const TOWN = new Set(['midgaard', 'rome', 'sandstone', 'castle', 'temple', 'chessboard']);
 export function musicFor({ theme, zoneKey, dark, interior } = {}) {
   if (theme === 'inside' && interior === 'tavern') return 'inn';
-  if (theme === 'crypt' || theme === 'volcanic' || theme === 'web') return 'dark';
+  if (theme === 'crypt' || theme === 'volcanic' || theme === 'web' || theme === 'necropolis') return 'dark';
   if (theme === 'cave' || theme === 'mine' || theme === 'sewer') return 'dungeon';
   if (DARK.has(zoneKey)) return 'dark';
   if (theme === 'castle') return 'town';
@@ -201,7 +201,7 @@ const BED_OF_THEME = { forest: 'forest', field: 'meadow', hills: 'meadow', swamp
   water_noswim: 'sunken', underwater: 'sunken' };
 // a room's look (room_looks.py) says more than its zone's old theme
 export const LOOK_BED = { cave: 'mines', mine: 'mines', sewer: 'sewer', crypt: 'necropolis', dungeon: 'sewer',
-  snow: 'frozen', desert: 'desert', volcanic: 'volcanic', shore: 'sunken', swamp: 'swamp', web: 'darkforest', castle: 'castle' };
+  snow: 'frozen', desert: 'desert', volcanic: 'volcanic', shore: 'sunken', swamp: 'swamp', web: 'darkforest', castle: 'castle', necropolis: 'necropolis' };
 export function bedFor({ theme, zoneKey } = {}) {
   if (LOOK_BED[theme]) return LOOK_BED[theme];
   if (theme === 'inside') return 'castle';                     // indoors: a quiet room tone

@@ -54,8 +54,10 @@ async def main():
     new_mobs = {v: p for v, p in world.mob_prototypes.items() if buildout.MOB_BASE <= v < buildout.OBJ_BASE}
     new_objs = {v: p for v, p in world.obj_prototypes.items() if buildout.OBJ_BASE <= v < buildout.OBJ_BASE + 100000}
     check(len(new_mobs) >= 40 and len(new_objs) >= 30, f'the zones have their new creatures and items ({len(new_mobs)}, {len(new_objs)})')
-    off = [v for v, p in new_mobs.items()
-           if p['damage_dice'] not in (buildout.stats(p['level'], 'animal')['damage_dice'], buildout.stats(p['level'], 'monster')['damage_dice'])]
+    # (of the creatures the build-out made: a zone's population file may add its own in the range)
+    made = set(json.load(open(buildout.REGISTRY, encoding='utf-8')).get('mobs', {}).values())
+    off = [v for v, p in new_mobs.items() if v in made
+           and p['damage_dice'] not in (buildout.stats(p['level'], 'animal')['damage_dice'], buildout.stats(p['level'], 'monster')['damage_dice'])]
     check(not off, f'every new creature hits as its level says ({off[:5]})')
     placed, wrong, wet_wrong = {}, [], []
     for r in world.rooms.values():

@@ -28,7 +28,8 @@ from collections import Counter
 
 logger = logging.getLogger('Misthollow')
 
-LOOKS = ('cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'castle')
+LOOKS = ('cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'castle',
+         'necropolis')
 UNDERGROUND = {'cave', 'mine', 'crypt', 'sewer', 'dungeon'}
 OUTDOOR = {'desert', 'snow', 'volcanic', 'swamp', 'web'}   # (a shore is an edge: it doesn't spread)
 
