@@ -464,6 +464,12 @@ class FactionManager:
             if reason:
                 msg += f" - {reason}"
             await player.send(msg)
+            try:
+                from combat_hooks import reward_event
+                reward_event(player, 'rep', faction=faction.name, amt=int(amount), standing=str(level_after),
+                             changed=level_before != level_after)
+            except Exception:
+                pass
 
             if level_before != level_after:
                 await player.send(f"Your standing with {faction.name} is now {level_after}.")

@@ -524,6 +524,37 @@ def wore_off(character, affect):
         ev.emit_private(character, 'fade', dst=character, name=name)
 
 
+def _wrap_gain_exp(klass):
+    """Every experience gain tells the player's page (an 'xp' event): how much, its bonuses
+    (boss, streak, rested), where it came from, and where the bar stands after it, so the XP bar
+    fills as the number rises (and a new level is known at once)."""
+    orig = klass.gain_exp
+
+    async def gain_exp(self, amount, *args, **kwargs):
+        level0 = getattr(self, 'level', 1)
+        result = await orig(self, amount, *args, **kwargs)
+        if amount and amount > 0 and getattr(self, 'room', None) is not None:
+            breakdown = kwargs.get('breakdown') or (args[1] if len(args) > 1 else None) or {}
+            source = 'kill' if breakdown.get('kill') else (kwargs.get('source') or (args[0] if args else 'other'))
+            try:
+                from map_system import _exp_thresholds
+                floor, nxt = _exp_thresholds(self)
+            except Exception:
+                floor, nxt = 0, 0
+            bonus = {k: int(v) for k, v in breakdown.items() if k in ('boss', 'streak', 'rested') and v}
+            ev.emit_private(self, 'xp', dst=self, amt=int(amount), src_kind=str(source), bonus=bonus or None,
+                            exp=int(getattr(self, 'exp', 0) or 0), floor=floor, next=nxt,
+                            up=getattr(self, 'level', 1) if getattr(self, 'level', 1) != level0 else None)
+        return result
+    klass.gain_exp = gain_exp
+
+
+def reward_event(player, k, **fields):
+    """A kill's other rewards for the player's page: 'gold' (amt), 'rep' (faction, amt, standing)."""
+    if getattr(player, 'room', None) is not None and (hasattr(player, 'account_name') or getattr(player, 'is_player', False)):
+        ev.emit_private(player, k, dst=player, **fields)
+
+
 def _watch_charges(klass):
     """A mage's arcane charges, watched: every change (gained, spent, decayed) tells their page
     at once ('res' event), so the pips by the portrait keep up without waiting for a refresh."""
@@ -742,7 +773,7 @@ def install():
     from mobs import Mobile
     for step in (_wrap_one_round, lambda: _wrap_take_damage(Player), lambda: _wrap_take_damage(Mobile),
                  _wrap_deaths, _wrap_execute, _wrap_mob_ai, _wrap_spells, lambda: _wrap_intent_cancel(Mobile),
-                 lambda: _wrap_stuns(Character), lambda: _watch_charges(Player)):
+                 lambda: _wrap_stuns(Character), lambda: _watch_charges(Player), lambda: _wrap_gain_exp(Player)):
         try:
             step()
         except Exception as e:

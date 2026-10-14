@@ -153,6 +153,7 @@ async function runGame() {
   combat.onCharges = e => hud.setCharges(e);
   combat.onAilment = (ent, name, school) => hud.noteAilment(ent, name, school);
   combat.onFade = () => { if (MH.refreshState) setTimeout(() => MH.refreshState(), 200); };
+  combat.onReward = (e, from) => hud.reward(e, from);
   // stepping out of a marked blow's ground: the server hears where you stand at once
   cues.onLeave = () => { posClock = 0; };
   combat.onTelegraphEnd = k => cues.telegraphEnd(k);

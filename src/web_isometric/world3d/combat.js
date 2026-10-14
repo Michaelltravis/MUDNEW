@@ -250,6 +250,7 @@ export class CombatView {
       case 'fizzle': return this.fizzle(e);
       case 'proc': return this.proc(e);
       case 'fade': return this.fade(e);
+      case 'xp': case 'gold': case 'rep': return this.reward(e);
       case 'res': return this.onCharges && this.isHero(e.dst) && this.onCharges(e);
       default: return null;
     }
@@ -371,6 +372,26 @@ export class CombatView {
       this.fx.light(p, color, 6, 0.3);
       this.fx.text(p.clone().setY(p.y + 0.7), e.name || 'Proc', { color: '#' + color.toString(16).padStart(6, '0'), size: 14, rise: 0.8 });
     });
+  }
+  // a kill's reward (combat_hooks: 'xp', 'gold', 'rep'): the experience rises in gold over the
+  // fallen creature, and the HUD fills the bar, flies the coins to the pack, toasts the standing
+  reward(e) {
+    // (the reward can arrive before the death it pays for: then the creature still targeted)
+    const t = this.ents && this.ents.targeted;
+    const kill = this.lastKill && performance.now() - this.lastKill.at < 6000 ? this.lastKill.pos
+      : t && t.root && t.kind === 'mob' ? t.root.position.clone() : null;
+    if (e.k === 'xp' && e.src_kind === 'kill' && kill) {
+      this.fx.text(kill.clone().setY(kill.y + 1.6), `+${e.amt} XP`, { color: '#f3d27a', size: 20, rise: 1.6, life: 1.6 });
+    }
+    if (this.onReward) this.onReward(e, kill ? this.screenOf(kill) : null);
+  }
+  // a point in the world on the page (css px), or null behind the camera
+  screenOf(v) {
+    const cam = this.engine.camera, cv = this.engine.renderer.domElement;
+    const p = v.clone().setY(v.y + 1).project(cam);
+    if (p.z > 1) return null;
+    const r = cv.getBoundingClientRect();
+    return { x: r.left + (p.x + 1) / 2 * r.width, y: r.top + (1 - p.y) / 2 * r.height };
   }
   // an effect on the hero has worn off (affects.py): its name, greyed, sinks away over them
   fade(e) {
@@ -512,6 +533,8 @@ export class CombatView {
     if (this.gloomFrom != null && e.dst && e.dst.m === this.gloomFrom && this.onGloom) { this.gloomFrom = null; this.onGloom(0); }
     const dst = this.resolve(e.dst);
     if (!dst) return;
+    // where the last creature fell: its reward rises there and its coins fly from there
+    if (dst.mob) this.lastKill = { pos: dst.root.position.clone(), at: performance.now() };
     this.sfx(dst.hero ? 'hero_death' : 'death', dst);
     this.fx.p.emit(this.chest(dst), { count: 30, color: 0xd8d0c0, speed: 2.4, up: 0.8, life: 0.9, size: 0.45, grow: 0.6, drag: 1.4 });
   }

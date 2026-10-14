@@ -11,7 +11,9 @@ more on the graphics"):
 - a mage's arcane charges: one cap for every place they are gained (six with Arcane Mastery, the
   spell's "(2/5)" and Arcane Blast's "[5/6]" no longer disagree), in the payload, and every change
   tells the page at once;
-- a creature's target frame lists what lingers on it (map_system._ailments).
+- a creature's target frame lists what lingers on it (map_system._ailments);
+- a kill's rewards tell the page (phase 3): experience with its bonuses and where the bar stands,
+  the gold, a change in standing with a faction.
 
     python3 tests/test_combat_text.py
 """
@@ -130,6 +132,28 @@ async def main():
         private.clear()
         await AffectManager.tick_affects(p)
         check(any(e['k'] == 'fade' and e['name'] == 'Mana Shield' for e in private), 'an effect wearing off tells the page')
+
+        # ---- rewards (phase 3)
+        private.clear()
+        p.exp = 0
+        await p.gain_exp(209, breakdown={'kill': 91, 'streak': 27, 'rested': 91})
+        xp = next((e for e in private if e['k'] == 'xp'), None)
+        check(xp is not None and xp['amt'] == 209 and xp['src_kind'] == 'kill' and xp['bonus'] == {'streak': 27, 'rested': 91}
+              and xp['exp'] == p.exp and xp['next'] > xp['floor'] >= 0, f'experience tells the page, bonuses and the bar ({xp})')
+        private.clear()
+        await p.gain_exp(50, source='quest')
+        check(private and private[-1]['k'] == 'xp' and private[-1]['src_kind'] == 'quest' and private[-1]['bonus'] is None, 'a quest\'s experience too, without kill bonuses')
+        private.clear()
+        from factions import FactionManager, FACTIONS
+        key = next(iter(FACTIONS))
+        await FactionManager.apply_reputation_change(p, key, 16, 'Slaying a test')
+        r = next((e for e in private if e['k'] == 'rep'), None)
+        check(r is not None and r['amt'] == 16 and r['faction'] == FACTIONS[key].name and r['standing'], f'a change in standing tells the page ({r})')
+        private.clear()
+        combat_hooks.reward_event(p, 'gold', amt=330, total=1330)
+        import combat as combat_mod
+        check(private and private[-1]['k'] == 'gold' and private[-1]['amt'] == 330
+              and "reward_event(killer, 'gold'" in inspect.getsource(combat_mod), "a kill's gold tells the page")
     finally:
         ev.emit, ev.emit_private = real_emit, real_private
 

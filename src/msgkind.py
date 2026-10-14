@@ -31,7 +31,7 @@ COMBAT_RE = re.compile(
     r'(looks ill from |You take \d+ damage from |You heal \d+ HP from |The effect of .+ wears off|'
     r'Arcane charges? |\[Arcane Charges: |fizzles|STAGGERED|\[[█░▓▒ ]{5,}\]|\[\d+ damage\]|'
     r'\*\*\* CRITICAL|OBLITERATES|ANNIHILATES|DEVASTATES|MASSACRES|^[💥💤✨🔥❄⚡🩸☠🌀🛡]\s|'
-    r'^[\w\' -]+ attacks (?:you|[A-Z]\w+)!$)')
+    r'^[\w\' -]+ attacks (?:you|[A-Z]\w+)!$|^You attack .+!$)')
 
 # speech is never hidden (a boss's taunt in the middle of its blow included)
 SPEECH_RE = re.compile(r"(\b(?:says?|yells?|shouts?|screams?|whispers?|tells? (?:you|the group))\b[,:]? ['\"]|^You (?:say|tell)|\bsays,)", re.I)
