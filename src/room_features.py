@@ -23,7 +23,9 @@ FEATURES = [
     ('standing_stone', r'standing stones?|monoliths?|menhirs?|megaliths?|stone circle|ring of (?:grey |great |tall )?stones|'
                        r'corner stone|uprights?|dolmens?|the stones (?:here|above|lean|seem|crowd)|'
                        r'(?:a|the|tall|broad|lopsided|weathered|carved|great|grand|squat|nearest|fire-blackened) stone'
-                       r'(?=\s+(?:stands?|leans?|rises?|wrapped|carved|crowned|cut|stained|tilts?|split|plastered|squats?|shaped)|[,.;])', 4, 'edge'),
+                       r'(?=\s+(?:stands?|leans?|rises?|wrapped|carved|crowned|cut|stained|tilts?|split|plastered|squats?|shaped))|'
+                       # ("the tall stone." but not "rain strikes the stone.")
+                       r'(?:tall|broad|lopsided|weathered|carved|great|grand|squat|nearest|fire-blackened) stone(?=[,.;])', 4, 'edge'),
     ('altar', r'altars?|offering stones?|slaughter stone|sacrificial stones?', 2, 'centre'),
     ('statue', r'statues?|idols?|effig(?:y|ies)|carved figures?|hunched old man', 2, 'centre'),
     ('obelisk', r'obelisks?', 1, 'centre'),
@@ -49,7 +51,10 @@ FEATURES = [
     ('table', r'tables?|desks?|trestles?|workbenches?', 2, 'centre'),
     ('bench', r'benches|\bbench\b|pews?', 3, 'edge'),
     ('shelf', r'shelves|shelf|bookcases?|bookshelves', 3, 'edge'),
-    ('bed', r'beds?\b|cots?\b|bunks?|pallets? of straw|straw pallets?', 3, 'edge'),
+    # (not a flower bed, a river bed, "beds of roses")
+    ('bed', r'(?<!flower )(?<!river )(?<!garden )(?<!stream )(?<!moss )(?<!reed )(?<!sea )(?<!cart )beds?\b'
+            r'(?!\s+of\s+(?:\w+\s+){0,2}?(?:roses|lilies|flowers|herbs|lavender|sage|moss|reeds|ferns|leaves|kelp|coral|anemones|tulips|thyme|mint))'
+            r'|cots?\b|bunks?|pallets? of straw|straw pallets?', 3, 'edge'),
     ('chest', r'chests?\b|coffers?|strongbox(?:es)?', 3, 'edge'),
     ('barrel', r'barrels?|kegs?|casks?|vats?', 4, 'edge'),
     ('crate', r'crates?|sacks?|bales?', 4, 'edge'),
@@ -59,7 +64,7 @@ FEATURES = [
     ('mushroom', r'mushrooms?|toadstools?|fung(?:us|i)', 4, 'scatter'),
     ('flowers', r'wildflowers?|flowers?|blossoms?|blooms?', 4, 'scatter'),
     ('fence', r'fences?|fenced|railings?', 3, 'edge'),
-    ('rug', r'rugs?|carpets?', 1, 'ground'),
+    ('rug', r'rugs?|carpets?(?!\s+(?:of|the|every|its|their)\b)', 1, 'ground'),     # (not "petals carpet the paths")
     ('blood', r'blood(?:stain|stained|y)?|gore|dark stains?|stained (?:dark|black)', 3, 'ground'),
     ('ash', r'scorched|blackened|soot|charred|ash\b', 2, 'ground'),
     ('stake_holes', r'holes of (?:old )?stakes|post ?holes', 1, 'ground'),

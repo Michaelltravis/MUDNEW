@@ -248,10 +248,12 @@ class AtmosphereManager:
         # what the place is, by its look (room_looks.py), before its imported sector: a ring of
         # standing stones typed 'city' is under the sky, a cave typed 'field' is underground
         look = getattr(room, 'look', None)
-        if look in ('stones', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'field', 'forest', 'hills', 'mountain'):
+        if look in ('stones', 'village', 'camp', 'garden', 'ruins', 'terrace', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'field', 'forest', 'hills', 'mountain'):
             sector = look if look in outdoor_sectors else 'field'
         elif look in ('cave', 'mine', 'crypt', 'sewer'):
             sector = 'cave'
+        elif look in ('inside', 'dungeon') and sector == 'city':
+            sector = 'inside'           # (a town's classroom or quarters typed as its street)
         is_outdoor = sector in outdoor_sectors
         is_city = sector in city_sectors
         is_underground = sector in underground_sectors

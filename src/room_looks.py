@@ -29,11 +29,11 @@ from collections import Counter
 logger = logging.getLogger('Misthollow')
 
 LOOKS = ('cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'castle',
-         'necropolis', 'stones')
+         'necropolis', 'stones', 'village', 'camp', 'garden', 'ruins', 'terrace')
 UNDERGROUND = {'cave', 'mine', 'crypt', 'sewer', 'dungeon'}
 # a hand override (world/looks.json) may also keep a room as plain country or a plain room
 OVERRIDE_LOOKS = LOOKS + ('field', 'forest', 'hills', 'mountain', 'city', 'inside')
-OUTDOOR = {'desert', 'snow', 'volcanic', 'swamp', 'web', 'stones'}   # (a shore is an edge: it doesn't spread)
+OUTDOOR = {'desert', 'snow', 'volcanic', 'swamp', 'web', 'stones', 'village', 'camp', 'garden', 'ruins', 'terrace'}   # (a shore is an edge: it doesn't spread)
 # a sacred ring or a field of standing stones (the Stone Circle): turf and flagstones under the sky,
 # a ring of standing stones for walls. Old imports typed such places 'city' (paved, walled), so a
 # room drawn as a town whose words name standing stones and no town at all is one of these
@@ -41,6 +41,69 @@ STONES_RE = re.compile(r'\b(standing stones?|stone circle|stone ring|ring of (?:
                        r'menhirs?|megaliths?|dolmens?|the stones (?:lean|crowd|seem|here))\b', re.I)
 TOWN_RE = re.compile(r'\b(streets?|houses?|homes?|cottages?|shops?|stores?|markets?|inns?|taverns?|alleys?|guilds?|bakery|'
                      r'smithy|blacksmiths?|merchants?|stalls?|townsfolk|citizens?|city walls?|warehouses?|shopkeepers?|bank)\b', re.I)
+
+# ---- a room typed 'city' that is no town (Phase 2, docs/world/room_visuals.md): an old import
+# typed villages, camps, gardens, ruins and plain roads 'city', and they were drawn as market
+# streets. Its words say what it is; first match wins. Ruins, gardens and a road of bones say so
+# plainly even where a ruined city's houses are named; the rest only where no town is.
+TOWNLESS = [
+    ('necropolis', r'\b(?:road|path|walkway|pavements?|way) (?:laid )?of (?:bones?|skulls?)|walls? built (?:entirely )?of (?:stacked )?skulls|bone pavements?\b', 1, True),
+    ('ruins', r'\b(ruins?|ruined|crumbling|crumbled|broken columns?|collapsed|toppled|shattered (?:walls?|columns?)|fallen (?:columns?|masonry)|'
+              r'deserted city|once (?:lush|beautiful|grand|proud)|mass destruction)\b', 2, True),
+    ('garden', r'\b(gardens?|flower ?beds?|beds of (?:\w+ )?(?:roses|lilies|lavender|herbs|flowers)|lawns?|hedges?|orchards?|'
+               r'beehives?|rose ?bushes|topiary|\bpark\b)\b', 2, False),
+    ('camp', r'\b(camps?|campsite|encampment|tents?|fire ?pits?|campfires?|palisades?|bedrolls?)\b', 2, False),
+    ('village', r'\b(village|hamlet|huts?|hovels?|shacks?|thatch(?:ed)?|wattle|byres?|farmhouse|farmyard|palms?|nets? (?:hung|drying))\b', 2, False),
+    ('desert', r'\b(desert|dunes?|sands)\b', 2, False),
+    ('field', r'\b(fields?|countryside|farmland|meadows?|pastures?|hedgerows?|ditches)\b', 2, False),
+]
+TOWNLESS_RES = [(look, re.compile(pat, re.I), n, plain) for look, pat, n, plain in TOWNLESS]
+# a building typed 'city' (an import gave a town's huts, quarters, classrooms and washrooms the
+# town's sector): drawn as a room, not a street
+CITY_BUILDING = re.compile(r'\b(quarters|huts?|den|sheds?|workshop|prison|class ?rooms?|washroom|surgery|newsroom|outhouse|'
+                           r'sanctuary|sanctum|hideaway|rooms?|halls?|chambers?|corridors?|office|wing|cellar|alcove|kitchen|'
+                           r'parlou?r|library|study|lodge|barn|stables?|barracks|workshops?|cartographers|dining area|rest)\b', re.I)
+NOT_A_BUILDING = re.compile(r'\b(grounds|path|road|courtyard|yard|garden|decks?|platform|porch|balcony|walk|pens|nest|perch)\b', re.I)
+OPEN_AIR = re.compile(r'\b(open air|open sky|under the sky|open to (?:the|a) [\w-]*\s*sky|no ceiling)\b', re.I)
+
+
+def city_building(room):
+    """'inside' or 'cave' for a city-typed room that is plainly a building's room or a den in the
+    rock; None otherwise."""
+    name, desc = room.name or '', room.description or ''
+    if (not CITY_BUILDING.search(name) or NOT_A_BUILDING.search(name) or OUTSIDE_RE.search(name)
+            or STREET_RE.search(name) or OPEN_AIR.search(desc)):
+        return None
+    if not (reads_indoors(desc) or ROOFED.search(desc) or len(BUILDING_CUES.findall(desc)) >= 2):
+        return None
+    if re.search(r'\b(living rock|hollowed out of the rock|hacked out of|cut (?:into|from) the rock|in the rock)\b', desc, re.I):
+        return 'cave'
+    return 'inside'
+
+
+# a town's paving, quays and walls say town as plainly as its shops
+TOWN_MORE = re.compile(r'\b(cobble\w*|paving|paved|quays?|town walls?|towpath|avenue)\b', re.I)
+ROAD_NAME = re.compile(r'\b(road|street|avenue|lane)\b', re.I)
+
+
+def townless(room):
+    """The look a city-typed room's words give it when they describe no town (None: a town, or
+    nothing said). A room named for it is it ("The Flower Garden", "A Ruined House", but not
+    "Park Road", a street); otherwise its description must say it more than once, and, but for
+    ruins and a road of bones, say nothing of a town."""
+    name = room.name or ''
+    text = f'{name}. {room.description or ""}'
+    town = TOWN_RE.search(text) or TOWN_MORE.search(text)
+    for look, rx, need, plain in TOWNLESS_RES:
+        if look == 'garden' and ROAD_NAME.search(name):
+            continue                # (a road past a park or through a village of gardens)
+        if rx.search(name):
+            return look
+        if town and not plain:
+            continue
+        if len(rx.findall(text)) >= need:
+            return look
+    return None
 
 # first match wins: the specific before the general
 LOOK_WORDS = [
@@ -86,6 +149,9 @@ SPREAD = {
     'dungeon': (2, ENCLOSED_SECTORS), 'crypt': (1, ENCLOSED_SECTORS),
     'desert': (3, {'field', 'hills', 'mountain', 'desert'}), 'volcanic': (3, {'field', 'hills', 'mountain'}),
     'stones': (2, {'field', 'hills', 'city'}),
+    # a village's or a camp's or a ruin's rooms with no word of their own (a crossing of paths
+    # between the huts), one step and never onto a town street (classify checks the words)
+    'village': (1, {'city'}), 'camp': (1, {'city', 'field'}), 'ruins': (1, {'city'}),
     'snow': (3, {'field', 'hills', 'mountain', 'forest'}), 'swamp': (2, {'field', 'swamp'}),
     'web': (3, {'field', 'hills', 'forest', 'city', 'mountain'}),
 }
@@ -331,7 +397,7 @@ def _fits(room, look):
     sector = getattr(room, 'sector_type', '') or 'inside'
     if look in UNDERGROUND:
         return sector in ENCLOSED_SECTORS and not INTERIOR_RE.search(f'{room.name} {room.description}')
-    if look == 'stones':
+    if look in ('stones', 'village', 'camp', 'garden', 'ruins', 'terrace'):
         return sector in OUTDOOR_FROM_DESC or (sector == 'city' and not TOWN_RE.search(f'{room.name} {room.description}'))
     return sector in OUTDOOR_FROM_DESC
 
@@ -359,7 +425,7 @@ FILLER = {
               'Spray mists the air around.'),
 }
 FILLER_FITS = {'city': {'city', 'castle'}, 'forest': {'forest', 'darkforest', 'web', 'swamp'},
-               'field': {'field', 'hills', 'shore'}, 'mountain': {'mountain', 'hills', 'snow'},
+               'field': {'field', 'hills', 'shore', 'village', 'camp', 'garden'}, 'mountain': {'mountain', 'hills', 'snow'},
                'hills': {'hills', 'field', 'mountain'}, 'water': WATER_SECTORS | {'shore'}}
 OWN_LINES = {
     'sewer': ('Foul water trickles along a channel down the middle of the floor.', 'Pipes sweat and drip somewhere in the dark.',
@@ -429,6 +495,9 @@ def classify(world, overrides=None):
         text = f'{room.name} {room.description}'
         if not look and sector in ('city', 'field', 'hills') and STONES_RE.search(text) and not TOWN_RE.search(text):
             look, why = 'stones', 'description'
+        if not look and sector == 'city':
+            b = city_building(room)
+            look, why = (b, 'name') if b else (townless(room), 'description')
         if not look and _zone(room) in ov['zones'] and _fits(room, ov['zones'][_zone(room)]):
             look, why = ov['zones'][_zone(room)], 'zone'
         room.look, room.look_why = (look, why) if look else (sector, None)
@@ -448,6 +517,8 @@ def classify(world, overrides=None):
             if wave >= steps or sector not in through:
                 continue
             if look in UNDERGROUND and look != 'sewer' and INTERIOR_RE.search(f'{room.name} {room.description}'):
+                continue
+            if look in ('village', 'camp', 'ruins') and (TOWN_RE.search(f'{room.name} {room.description}') or STREET_RE.search(room.name or '')):
                 continue
             taken[room] = look
         for room, look in taken.items():
@@ -487,7 +558,8 @@ INDOOR_FILLER = [
 ]
 _FILLER_RE = [re.compile(r'\s*' + r'\s+'.join(re.escape(w) for w in f.split())) for f in INDOOR_FILLER]
 OPEN_LOOKS = {'field', 'forest', 'hills', 'mountain', 'desert', 'snow', 'shore', 'swamp', 'volcanic',
-              'water_swim', 'water_noswim', 'underwater', 'city', 'darkforest'}
+              'water_swim', 'water_noswim', 'underwater', 'city', 'darkforest',
+              'stones', 'village', 'camp', 'garden', 'ruins', 'terrace'}
 
 
 def strip_filler(world) -> int:
