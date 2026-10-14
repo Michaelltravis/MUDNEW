@@ -26,7 +26,7 @@ import { buffList } from './buffs.js';
 import { lookPortrait, creaturePortrait } from './portrait.js';
 import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable, costLine, rankOf, MAIN, keyOf, slotForKey } from '../abilities.js';
 import { createBars } from './bars.js';
-import { conOf } from '../targeting.js';
+import { conOf, shownName } from '../targeting.js';
 import { recipeFor } from '../abilityfx.js';
 import { RECIPES } from '../abilityfx-table.js';
 import { sound } from '../audio.js';
@@ -572,7 +572,7 @@ export function createHud() {
     const con = t.kind === 'player' ? { key: 'ally', label: 'Player' } : conOf(t.level || 1, me);
     const kind = t.kind === 'player' ? 'ally' : t.hostile ? 'hostile' : (t.shopkeeper || t.trainer) ? 'npc' : 'neutral';
     els.tf.className = `hud panel ornate ${kind} con-${con.key}${t.boss ? ' boss' : ''}`;
-    els.tf.querySelector('.tname').textContent = t.name;
+    els.tf.querySelector('.tname').textContent = shownName(t, t.kind);
     els.tf.querySelector('.lvl').textContent = t.kind === 'player' ? (t.level || '') : (t.level || '?');
     const role = t.shopkeeper ? ' · shopkeeper' : t.trainer ? ' · trainer' : t.boss ? ' · boss' : t.rank === 'sub-boss' ? ' · sub-boss' : t.rank === 'elite' ? ' · elite' : '';
     els.tf.querySelector('.tsub').textContent = `${t.kind === 'player' ? `Level ${t.level || '?'} ${t.char_class || ''}` : `Level ${t.level || '?'} · ${con.label}`}${role}`;

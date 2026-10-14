@@ -9,7 +9,7 @@ import { spawnDressed, dress } from './equip.js';
 import { creatureLook, hashStr, npcDress } from './looks.js';
 import { makeProc, makeProp } from './proc.js';
 import { makeKin } from './kin.js';
-import { isHostile, conOf } from './targeting.js';
+import { isHostile, conOf, shownName } from './targeting.js';
 import { fallOver, nameKey } from './corpse.js';
 
 export const CLASS_MODEL = {
@@ -202,7 +202,7 @@ export class Entities {
     e.plate = document.createElement('div');
     e.plate.className = 'plate ' + (w.kind === 'player' ? 'pl' : isHostile(w) ? 'hostile' : (w.data.shopkeeper || w.data.trainer) ? 'npc' : 'neutral');
     e.plate.innerHTML = '<span class="row"><span class="lv"></span><span class="nm"></span></span><i class="hp"><b></b></i>';
-    e.plate.querySelector('.nm').textContent = w.data.name;
+    e.plate.querySelector('.nm').textContent = shownName(w.data, w.kind);
     if (w.kind === 'mob' && w.data.level) e.plate.querySelector('.lv').textContent = w.data.level;
     if (w.data.boss) e.plate.classList.add('boss');
     // an elite (silver) or a sub-boss (gold): a zone's ranks (population.py)

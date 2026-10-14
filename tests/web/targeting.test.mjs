@@ -2,7 +2,7 @@
 // menu (world3d/hud/verbs.js).   node --test tests/web/*.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { isHostile, shouldRetarget, retargetOnDeath, refFor, abilityCommand, tabOrder } from '../../src/web_isometric/world3d/targeting.js';
+import { isHostile, shouldRetarget, retargetOnDeath, refFor, abilityCommand, tabOrder, shownName } from '../../src/web_isometric/world3d/targeting.js';
 import { verbsFor } from '../../src/web_isometric/world3d/hud/verbs.js';
 
 const NOW = 1_000_000;
@@ -46,6 +46,13 @@ test('commands name a creature by its id and a player by name; skills keep their
   assert.equal(abilityCommand({ id: 'holy_smite' }, '#3'), 'holy_smite #3');
   assert.equal(abilityCommand({ id: 'magic_missile', spell: true }, '#3'), "cast 'magic missile' #3");
   assert.equal(abilityCommand({ id: 'rally' }, null), 'rally');
+});
+
+test('nameplates show what a creature is, not its keywords; players by name', () => {
+  assert.equal(shownName({ name: 'ogre wandering brute giant', short: 'a wandering ogre' }, 'mob'), 'Wandering ogre');
+  assert.equal(shownName({ name: 'gorak drillmaster sergeant master', short: 'Gorak the Drillmaster' }, 'mob'), 'Gorak the Drillmaster');
+  assert.equal(shownName({ name: 'rat', short: '' }, 'mob'), 'rat');
+  assert.equal(shownName({ name: 'Gauntlet', short: 'the hero' }, 'player'), 'Gauntlet');
 });
 
 test('right-click menus: creature, shopkeeper, player, door, yourself, the ground', () => {
