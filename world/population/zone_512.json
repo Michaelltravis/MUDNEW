@@ -436,5 +436,224 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 651200,
+   "rooms": [
+    13304,
+    13306,
+    13317,
+    13319,
+    13348,
+    13356
+   ],
+   "total": 17,
+   "why": "a Skull Clan orc"
+  },
+  {
+   "vnum": 651201,
+   "rooms": [
+    13362,
+    13366,
+    13401,
+    13407,
+    13409
+   ],
+   "total": 11,
+   "why": "a scarred tunnel warg"
+  },
+  {
+   "vnum": 651202,
+   "rooms": [
+    13332,
+    13346,
+    13434,
+    13439,
+    13441
+   ],
+   "total": 10,
+   "why": "a pale giant cave spider"
+  },
+  {
+   "vnum": 651203,
+   "rooms": [
+    13683,
+    13684,
+    13687,
+    13689,
+    13690
+   ],
+   "total": 8,
+   "why": "a bone-hung orc shaman"
+  },
+  {
+   "vnum": 651204,
+   "rooms": [
+    13327,
+    13328,
+    13330,
+    13335,
+    13336
+   ],
+   "total": 7,
+   "why": "a hulking ice troll"
+  },
+  {
+   "vnum": 651205,
+   "rooms": [
+    13414,
+    13431,
+    13664,
+    13665,
+    13673
+   ],
+   "total": 7,
+   "why": "a raging orc berserker"
+  },
+  {
+   "vnum": 651208,
+   "rooms": [
+    13703,
+    13721,
+    13730,
+    13732,
+    13740,
+    13754
+   ],
+   "total": 16,
+   "why": "a tusked orc warrior"
+  },
+  {
+   "vnum": 651209,
+   "rooms": [
+    13700,
+    13723,
+    13752,
+    13788,
+    13815
+   ],
+   "total": 10,
+   "why": "a gaunt cave wolf"
+  },
+  {
+   "vnum": 651210,
+   "rooms": [
+    13672,
+    13676,
+    13728,
+    13749,
+    13786
+   ],
+   "total": 10,
+   "why": "a pale cave spider"
+  },
+  {
+   "vnum": 651211,
+   "rooms": [
+    13745,
+    13757,
+    13760,
+    13761,
+    13763
+   ],
+   "total": 10,
+   "why": "a blind lake eel"
+  },
+  {
+   "vnum": 651212,
+   "rooms": [
+    13822,
+    13823,
+    13825,
+    13827,
+    13834
+   ],
+   "total": 13,
+   "why": "a skeletal orc warrior"
+  },
+  {
+   "vnum": 651214,
+   "rooms": [
+    13829,
+    13848,
+    13884
+   ],
+   "total": 9,
+   "why": "a rotting orc ghoul"
+  },
+  {
+   "vnum": 651219,
+   "rooms": [
+    13646,
+    13694,
+    13696,
+    13697,
+    13699
+   ],
+   "total": 6,
+   "why": "a hulking manticore"
+  },
+  {
+   "vnum": 651221,
+   "rooms": [
+    13382,
+    13394,
+    13446,
+    13448,
+    13453,
+    13456
+   ],
+   "total": 20,
+   "why": "a tunnel orc warrior"
+  },
+  {
+   "vnum": 651222,
+   "rooms": [
+    13378,
+    13387,
+    13459,
+    13461,
+    13474
+   ],
+   "total": 13,
+   "why": "a gaunt cave wolf"
+  },
+  {
+   "vnum": 651224,
+   "rooms": [
+    13840
+   ],
+   "total": 4,
+   "why": "a skeletal orc archer"
+  },
+  {
+   "vnum": 651225,
+   "rooms": [
+    13889,
+    13890
+   ],
+   "total": 5,
+   "why": "an orc bone-shaman"
+  },
+  {
+   "vnum": 651226,
+   "rooms": [
+    13887,
+    13898
+   ],
+   "total": 6,
+   "why": "a soul wraith"
+  },
+  {
+   "vnum": 651229,
+   "rooms": [
+    13824,
+    13828
+   ],
+   "total": 5,
+   "why": "a tentacled horror"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 83 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

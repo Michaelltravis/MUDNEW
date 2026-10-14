@@ -293,5 +293,179 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 640802,
+   "rooms": [
+    8620,
+    8625,
+    8630,
+    8631,
+    8634,
+    8636
+   ],
+   "total": 13,
+   "why": "a lean grey wolf"
+  },
+  {
+   "vnum": 640803,
+   "rooms": [
+    8202,
+    8271,
+    8273,
+    8303,
+    9138,
+    9140
+   ],
+   "total": 12,
+   "why": "a masked highwayman"
+  },
+  {
+   "vnum": 640804,
+   "rooms": [
+    19715,
+    19722,
+    19738,
+    19740,
+    19744
+   ],
+   "total": 10,
+   "why": "a black dire wolf"
+  },
+  {
+   "vnum": 640808,
+   "rooms": [
+    8623,
+    8627,
+    8629,
+    8638,
+    8646
+   ],
+   "total": 8,
+   "why": "a big brown bear"
+  },
+  {
+   "vnum": 640809,
+   "rooms": [
+    8671,
+    8673,
+    8701,
+    8703,
+    8719,
+    8721
+   ],
+   "total": 11,
+   "why": "a giant web spider"
+  },
+  {
+   "vnum": 640810,
+   "rooms": [
+    8706,
+    8708,
+    8709,
+    8711,
+    8713
+   ],
+   "total": 8,
+   "why": "a hulking bog troll"
+  },
+  {
+   "vnum": 640811,
+   "rooms": [
+    8682,
+    8683,
+    8685,
+    8687,
+    8691
+   ],
+   "total": 8,
+   "why": "a tomb robber"
+  },
+  {
+   "vnum": 640812,
+   "rooms": [
+    8675,
+    8676,
+    8678,
+    8679,
+    8681
+   ],
+   "total": 9,
+   "why": "a shadow wraith"
+  },
+  {
+   "vnum": 640815,
+   "rooms": [
+    1309,
+    1325,
+    1326,
+    1333,
+    1343
+   ],
+   "total": 9,
+   "why": "a giant black spider"
+  },
+  {
+   "vnum": 640817,
+   "rooms": [
+    1832,
+    1839,
+    1841,
+    1847,
+    1849
+   ],
+   "total": 8,
+   "why": "a shaggy brown bear"
+  },
+  {
+   "vnum": 640818,
+   "rooms": [
+    1819,
+    1828,
+    1834,
+    1836,
+    1843
+   ],
+   "total": 9,
+   "why": "a furtive poacher"
+  },
+  {
+   "vnum": 640819,
+   "rooms": [
+    8150,
+    8159,
+    8161,
+    8163,
+    8183
+   ],
+   "total": 8,
+   "why": "an ash-grey wraith"
+  },
+  {
+   "vnum": 640823,
+   "rooms": [
+    8100,
+    8104,
+    8106,
+    8108,
+    8110
+   ],
+   "total": 9,
+   "why": "a feral hound"
+  },
+  {
+   "vnum": 640824,
+   "rooms": [
+    8102,
+    8109,
+    8166,
+    8169,
+    8171
+   ],
+   "total": 8,
+   "why": "a gaunt ghoul"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 73 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

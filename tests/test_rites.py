@@ -127,6 +127,23 @@ async def main():
     doors.reset_zone(world, world.rooms[3775].zone)
     check(door.get('locked') and door.get('state') == 'closed', "the zone's reset locks the gate again")
 
+    # ---- every gate and toll in the world
+    missing = []
+    for g in rites.DATA['gates']:
+        d = world.rooms[g['room']].exits[g['dir']]['door']
+        k = doors.key_vnum(d)
+        if not (d.get('locked') and d.get('warded') and any(any(getattr(i, 'vnum', None) == k for i in c.inventory) for c in world.npcs)):
+            missing.append((g['room'], g['dir']))
+    check(not missing, f"every gate is locked and warded, and its keeper carries its key ({len(rites.DATA['gates'])} gates; {missing[:3]})")
+    away = [t['id'] for t in rites.DATA['tolls'] if not any(c.vnum == t['npc'] and c.room and c.room.vnum == t['room'] for c in world.npcs)]
+    check(not away, f'every toll-keeper stands at their landing ({away})')
+    # the river barge: the Quay up to the tunnel landing for five gold
+    put(3049)
+    p.gold = 7
+    await do('pay bargeman')
+    await asyncio.sleep(10.6)
+    check(p.room.vnum == 5002 and p.gold == 2, 'the bargeman poles you up the river for five gold')
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 

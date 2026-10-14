@@ -130,5 +130,49 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 6600,
+   "rooms": [
+    4632,
+    4633,
+    4634,
+    4636,
+    4637,
+    4638
+   ],
+   "total": 7,
+   "why": "a timber wolf"
+  },
+  {
+   "vnum": 6602,
+   "rooms": [
+    4600,
+    4601,
+    4605,
+    4641,
+    4642,
+    4643,
+    6606
+   ],
+   "total": 8,
+   "why": "a forest bandit"
+  },
+  {
+   "vnum": 606602,
+   "rooms": [
+    4608,
+    4609,
+    4611,
+    4612,
+    4614,
+    4615,
+    4617
+   ],
+   "total": 12,
+   "why": "a frost wolf"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 20 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

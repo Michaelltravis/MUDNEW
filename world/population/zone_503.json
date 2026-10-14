@@ -149,5 +149,53 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 650301,
+   "rooms": [
+    13021,
+    13025,
+    13032,
+    13036,
+    13037,
+    13041,
+    13042,
+    13043,
+    13044,
+    13077,
+    13078,
+    13079,
+    13087,
+    13098,
+    13099,
+    213016
+   ],
+   "total": 23,
+   "why": "a renegade dwarf guard"
+  },
+  {
+   "vnum": 650302,
+   "rooms": [
+    13018,
+    13019,
+    13061,
+    13062,
+    13063,
+    13064,
+    13065,
+    13066,
+    13067,
+    213001,
+    213005,
+    213007,
+    213009,
+    213010,
+    213012
+   ],
+   "total": 22,
+   "why": "a pale tunnel spider"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 31 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

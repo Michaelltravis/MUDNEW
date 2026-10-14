@@ -172,5 +172,67 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 650900,
+   "rooms": [
+    13150,
+    13165,
+    13167,
+    13180,
+    13197,
+    13211,
+    13213,
+    13241,
+    13243,
+    13256,
+    13271,
+    13273,
+    13279
+   ],
+   "total": 23,
+   "why": "a skeleton miner"
+  },
+  {
+   "vnum": 650901,
+   "rooms": [
+    13146,
+    13147,
+    13161,
+    13162,
+    13163,
+    13182,
+    13184,
+    13204,
+    13220,
+    13222,
+    13239,
+    13258,
+    13260
+   ],
+   "total": 21,
+   "why": "a gaunt mine ghoul"
+  },
+  {
+   "vnum": 650902,
+   "rooms": [
+    13149,
+    13152,
+    13153,
+    13173,
+    13174,
+    13177,
+    13201,
+    13226,
+    13228,
+    13247,
+    13251,
+    13276
+   ],
+   "total": 18,
+   "why": "a pale rock worm"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 38 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

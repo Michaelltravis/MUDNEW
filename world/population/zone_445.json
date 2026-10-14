@@ -154,5 +154,51 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 644500,
+   "rooms": [
+    2200,
+    2202,
+    2205,
+    2207,
+    2230,
+    2233,
+    4307,
+    4313
+   ],
+   "total": 14,
+   "why": "a black forest wolf"
+  },
+  {
+   "vnum": 644501,
+   "rooms": [
+    2213,
+    2217,
+    2218,
+    2221,
+    2222,
+    2224,
+    2225
+   ],
+   "total": 9,
+   "why": "a giant rock crab"
+  },
+  {
+   "vnum": 644502,
+   "rooms": [
+    2234,
+    2237,
+    2238,
+    2239,
+    2240,
+    2241,
+    2244
+   ],
+   "total": 11,
+   "why": "a hulking ogre"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 22 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

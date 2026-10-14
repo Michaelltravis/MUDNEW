@@ -153,5 +153,50 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 641901,
+   "rooms": [
+    8041,
+    8046,
+    8048,
+    8049,
+    8053,
+    8054,
+    8055,
+    8056,
+    8057,
+    8082,
+    8083,
+    8084,
+    8086,
+    8087,
+    8094
+   ],
+   "total": 18,
+   "why": "a gaunt grey wolf"
+  },
+  {
+   "vnum": 641902,
+   "rooms": [
+    8012,
+    8018,
+    8020,
+    8021,
+    8026,
+    8027,
+    8028,
+    8029,
+    8030,
+    8034,
+    8035,
+    8043,
+    8096
+   ],
+   "total": 17,
+   "why": "a hooded cultist"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 28 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

@@ -160,5 +160,36 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 641600,
+   "rooms": [
+    2704,
+    2706
+   ],
+   "total": 5,
+   "why": "a robed cultist"
+  },
+  {
+   "vnum": 641601,
+   "rooms": [
+    2736,
+    2748,
+    2750
+   ],
+   "total": 7,
+   "why": "a rattling skeleton"
+  },
+  {
+   "vnum": 641602,
+   "rooms": [
+    2733,
+    2735
+   ],
+   "total": 5,
+   "why": "a wailing ghost"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 7 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

@@ -151,5 +151,37 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 650200,
+   "rooms": [
+    2003,
+    2016,
+    2018
+   ],
+   "total": 8,
+   "why": "a brass-scaled draconian"
+  },
+  {
+   "vnum": 650201,
+   "rooms": [
+    2014,
+    2025
+   ],
+   "total": 5,
+   "why": "a bronze-scaled draconian"
+  },
+  {
+   "vnum": 650202,
+   "rooms": [
+    2007,
+    2009,
+    2043
+   ],
+   "total": 6,
+   "why": "a giant cave spider"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 8 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

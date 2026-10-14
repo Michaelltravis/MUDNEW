@@ -153,5 +153,35 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 645300,
+   "rooms": [
+    49402,
+    49403
+   ],
+   "total": 5,
+   "why": "a kobold sentry"
+  },
+  {
+   "vnum": 645301,
+   "rooms": [
+    49416,
+    49418
+   ],
+   "total": 4,
+   "why": "a black cinder crab"
+  },
+  {
+   "vnum": 645302,
+   "rooms": [
+    49421,
+    49429
+   ],
+   "total": 5,
+   "why": "a lizard hatchling"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 6 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

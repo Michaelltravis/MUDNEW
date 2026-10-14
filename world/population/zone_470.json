@@ -153,5 +153,57 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 647000,
+   "rooms": [
+    8358,
+    8360,
+    8362,
+    8363,
+    8365,
+    8367,
+    8369,
+    8370,
+    8371,
+    8375
+   ],
+   "total": 16,
+   "why": "a black-cloaked castle guard"
+  },
+  {
+   "vnum": 647001,
+   "rooms": [
+    8451,
+    8453,
+    8454,
+    8458,
+    8461,
+    8462,
+    8470,
+    8472,
+    8474
+   ],
+   "total": 13,
+   "why": "a pale tunnel spider"
+  },
+  {
+   "vnum": 647002,
+   "rooms": [
+    8408,
+    8409,
+    8411,
+    8412,
+    8456,
+    8459,
+    8465,
+    8467,
+    8469
+   ],
+   "total": 14,
+   "why": "a barrow skeleton"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 28 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

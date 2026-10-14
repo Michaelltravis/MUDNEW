@@ -138,5 +138,49 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 648800,
+   "rooms": [
+    5801,
+    5802,
+    5837,
+    5840,
+    5842,
+    5843,
+    5848
+   ],
+   "total": 12,
+   "why": "a whispering ghost"
+  },
+  {
+   "vnum": 648801,
+   "rooms": [
+    5804,
+    5805,
+    5806,
+    5807,
+    5808,
+    5810,
+    5817
+   ],
+   "total": 12,
+   "why": "a scaly troglodyte"
+  },
+  {
+   "vnum": 648802,
+   "rooms": [
+    5816,
+    5823,
+    5826,
+    5829,
+    5830,
+    5831
+   ],
+   "total": 10,
+   "why": "a pale crab spider"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 20 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

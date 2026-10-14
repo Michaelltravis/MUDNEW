@@ -42,7 +42,7 @@ def key_sources(world):
     for p in world.mob_prototypes.values():
         for v in p.get('inventory') or []:
             out.add(int(v['vnum'] if isinstance(v, dict) else v))
-        for v in p.get('loot_table') or []:
+        for v in (p.get('loot_table') or []) + (p.get('boss_loot_table') or []):
             out.add(int(v['vnum'] if isinstance(v, dict) else v))
         for v in (p.get('equipment') or {}).values() if isinstance(p.get('equipment'), dict) else []:
             out.add(int(v['vnum'] if isinstance(v, dict) else v))
@@ -137,6 +137,10 @@ async def main():
     print(table(zones, md=bool(a.md)) if not a.md else '')
     if a.md:
         with open(os.path.join(ROOT, a.md), 'w', encoding='utf-8') as f:
+            f.write('# Zone density (generated)\n\n'
+                    f'`python3 tools/audit/density.py --md {a.md}` writes this table from the world as it loads. '
+                    f'{len(zones)} zones; {len(sparse)} adventuring zones under {SPARSE} hostile creatures per walkable room; '
+                    f'{len(nokey)} locked doors whose key nothing provides. See docs/world/rites.md for what was done about it.\n\n')
             f.write(table(zones, md=True) + '\n')
         print('wrote', a.md)
 

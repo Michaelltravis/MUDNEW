@@ -1,576 +1,628 @@
 {
-  "_about": "Who lives where in the Castle of the Apocalypse II, and which doors their keys open (src/population.py, applied when the world loads, so a rebuild of world/zones keeps it). The owner, 2026-10-12: Kirgan the Destroyer holds the key to the guardian's chamber; Pestilence is in the room right after the door from the Inner Hall; War at the end of the guardian chambers; Famine in the other guardian chambers on the far side (14163); Death the final boss. Mechanics (src/boss_mechanics.py): Pestilence drops plague pools to step out of; War calls the castle's guards at 75% and 40%; Famine starves whoever stands still; Death raises waves of servants and darkens the room as he weakens. Creatures (the owner, 'populate the castle'): regulars (skeletal sentries, plague cultists, hellhound packs, ghouls, gargoyles), elites (a death knight and a hellfire warden on patrol, a plague abomination), sub-bosses (the Bone Marshal, the Ashen Seneschal, the Carrion Queen). Each calls its own kind within a room or two when attacked (allies.py).",
-  "zone": 220,
-  "bosses": [
-    {
-      "vnum": 22100,
-      "room": 22100,
-      "why": "Kirgan the Destroyer, in the Guard Room off the inner corridor: he carries the inner gate key (his loot, every time)"
-    },
-    {
-      "vnum": 22070,
-      "room": 14151,
-      "why": "Pestilence, in the first Guardian Chamber, through the Inner Hall's locked door",
-      "mechanics": [
-        {
-          "type": "plague_pools",
-          "every": 9,
-          "radius": 2.4,
-          "last": 14,
-          "pct": 0.04,
-          "why": "plague pools at a fighter's feet: step out"
-        }
-      ]
-    },
-    {
-      "vnum": 22071,
-      "room": 14158,
-      "why": "War, at The End Of The Guardian Chambers (the east wing)",
-      "mechanics": [
-        {
-          "type": "call_guards",
-          "at": [
-            75,
-            40
-          ],
-          "count": 3,
-          "rooms": 2,
-          "raise": [
-            22040
-          ],
-          "shout": "War raises his blade and roars 'TO ME!' The castle's guardians answer!",
-          "why": "calls the castle's guards at 75% and 40%"
-        }
-      ]
-    },
-    {
-      "vnum": 22072,
-      "room": 14163,
-      "why": "Famine, in the guardian chambers on the far (west) side",
-      "mechanics": [
-        {
-          "type": "hunger",
-          "every": 3,
-          "pct": 0.025,
-          "stamina": 10,
-          "warn": "Famine's hunger gnaws at all who stand still. Keep moving!",
-          "why": "starves whoever stands still"
-        }
-      ]
-    },
-    {
-      "vnum": 22073,
-      "room": 14153,
-      "why": "Death, the final boss, at The Gates To Hell",
-      "mechanics": [
-        {
-          "type": "waves",
-          "at": [
-            75,
-            50,
-            25
-          ],
-          "adds": {
-            "22040": 2
-          },
-          "shout": "Death lifts his scythe, and the dead of the castle rise to serve him!",
-          "why": "waves of servants at 75/50/25%"
-        },
-        {
-          "type": "gloom",
-          "max": 0.85,
-          "shout": "The light gutters and dies around Death...",
-          "why": "the room darkens as he weakens"
-        }
-      ]
-    }
-  ],
-  "doors": [
-    {
-      "room": 14150,
-      "dir": "south",
-      "key": 22051,
-      "name": "inner gate",
-      "why": "the Inner Hall's door into the Guardian Chambers opens to Kirgan's key"
-    }
-  ],
-  "creatures": {
-    "22200": {
-      "name": "skeletal sentry skeleton",
-      "short_desc": "a skeletal sentry",
-      "long_desc": "A skeletal sentry stands its post, rusted halberd lowered.",
-      "description": "Old mail hangs off yellowed bones. Whatever it guarded, it guards still, and it does not tire.",
-      "level": 55,
-      "hp_dice": "21d10+4095",
-      "max_hp": 4200,
-      "hp": 4200,
-      "damage_dice": "12d8+18",
-      "hitroll": 27,
-      "damroll": 18,
-      "ac": -55,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive",
-        "undead"
-      ],
-      "gold": 330,
-      "exp": 366,
-      "xp": 2200,
-      "detect_bonus": 20,
-      "helpers": {
-        "group": "castle",
-        "rooms": 2,
-        "count": 2
-      }
-    },
-    "22201": {
-      "name": "plague cultist robed",
-      "short_desc": "a plague cultist",
-      "long_desc": "A plague cultist mutters prayers to Pestilence, censer swinging.",
-      "description": "Sores weep beneath a sackcloth robe. The censer it carries breathes a sweet, sick smoke.",
-      "level": 56,
-      "hp_dice": "19d10+3705",
-      "max_hp": 3800,
-      "hp": 3800,
-      "damage_dice": "10d8+16",
-      "hitroll": 28,
-      "damroll": 18,
-      "ac": -58,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive"
-      ],
-      "gold": 336,
-      "exp": 373,
-      "xp": 2240,
-      "detect_bonus": 20,
-      "helpers": {
-        "group": "cult",
-        "rooms": 2,
-        "count": 2,
-        "shout": "The cultist shrieks a prayer to Pestilence!"
-      }
-    },
-    "22202": {
-      "name": "hellhound hound",
-      "short_desc": "a hellhound",
-      "long_desc": "A hellhound paces here, embers dripping from its jaws.",
-      "description": "Black-hided and heavy-shouldered, it smells of brimstone. Where one hunts, the pack is near.",
-      "level": 57,
-      "hp_dice": "22d10+4390",
-      "max_hp": 4500,
-      "hp": 4500,
-      "damage_dice": "13d8+20",
-      "hitroll": 28,
-      "damroll": 19,
-      "ac": -61,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive"
-      ],
-      "gold": 342,
-      "exp": 380,
-      "xp": 2280,
-      "detect_bonus": 20,
-      "helpers": {
-        "group": "hounds",
-        "rooms": 2,
-        "count": 2,
-        "shout": "The hellhound howls for its pack!"
-      }
-    },
-    "22203": {
-      "name": "ravenous ghoul",
-      "short_desc": "a ravenous ghoul",
-      "long_desc": "A ravenous ghoul crouches over something it would rather you did not see.",
-      "description": "Grey skin stretched over hunger. Its claws are long, cracked and black with old blood.",
-      "level": 57,
-      "hp_dice": "21d10+4195",
-      "max_hp": 4300,
-      "hp": 4300,
-      "damage_dice": "12d8+22",
-      "hitroll": 28,
-      "damroll": 19,
-      "ac": -61,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive",
-        "undead"
-      ],
-      "gold": 342,
-      "exp": 380,
-      "xp": 2280,
-      "detect_bonus": 20,
-      "helpers": {
-        "group": "castle",
-        "rooms": 2,
-        "count": 2
-      }
-    },
-    "22204": {
-      "name": "stone gargoyle",
-      "short_desc": "a stone gargoyle",
-      "long_desc": "A stone gargoyle perches on the battlement, too still to be stone.",
-      "description": "Weathered grey wings folded tight; the moss on it stirs when it breathes.",
-      "level": 58,
-      "hp_dice": "26d10+5070",
-      "max_hp": 5200,
-      "hp": 5200,
-      "damage_dice": "12d10+20",
-      "hitroll": 29,
-      "damroll": 19,
-      "ac": -64,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive"
-      ],
-      "gold": 348,
-      "exp": 386,
-      "xp": 2320,
-      "detect_bonus": 20,
-      "helpers": {
-        "group": "walls",
-        "rooms": 2,
-        "count": 2
-      }
-    },
-    "22210": {
-      "name": "death knight",
-      "short_desc": "a death knight",
-      "long_desc": "A death knight marches the inner halls, black plate ringing.",
-      "description": "A knight of the castle, dead and risen. Frost crusts its plate; the runes on its blade burn cold blue.",
-      "level": 61,
-      "hp_dice": "65d10+12675",
-      "max_hp": 13000,
-      "hp": 13000,
-      "damage_dice": "16d10+30",
-      "hitroll": 30,
-      "damroll": 20,
-      "ac": -73,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive",
-        "undead"
-      ],
-      "gold": 366,
-      "exp": 406,
-      "xp": 9760,
-      "detect_bonus": 20,
-      "rank": "elite",
-      "helpers": {
-        "group": "castle",
-        "rooms": 2,
-        "count": 3,
-        "shout": "The death knight raises its blade: the castle wakes!"
-      },
-      "inventory": [
-        22060
-      ]
-    },
-    "22211": {
-      "name": "plague abomination",
-      "short_desc": "a plague abomination",
-      "long_desc": "A plague abomination lurches here, sewn together from the sick.",
-      "description": "Too many arms, stitched with wire. Flies follow it in a cloud; its belly sloshes when it moves.",
-      "level": 61,
-      "hp_dice": "75d10+14625",
-      "max_hp": 15000,
-      "hp": 15000,
-      "damage_dice": "15d10+28",
-      "hitroll": 30,
-      "damroll": 20,
-      "ac": -73,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive",
-        "undead"
-      ],
-      "gold": 366,
-      "exp": 406,
-      "xp": 9760,
-      "detect_bonus": 20,
-      "rank": "elite",
-      "helpers": {
-        "group": "cult",
-        "rooms": 2,
-        "count": 3
-      }
-    },
-    "22212": {
-      "name": "hellfire warden demon",
-      "short_desc": "a hellfire warden",
-      "long_desc": "A hellfire warden stalks the walkway, wreathed in flame.",
-      "description": "A horned demon bound to keep the walls. It burns where it steps.",
-      "level": 62,
-      "hp_dice": "70d10+13650",
-      "max_hp": 14000,
-      "hp": 14000,
-      "damage_dice": "16d10+32",
-      "hitroll": 31,
-      "damroll": 20,
-      "ac": -76,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive"
-      ],
-      "gold": 372,
-      "exp": 413,
-      "xp": 9920,
-      "detect_bonus": 20,
-      "rank": "elite",
-      "helpers": {
-        "group": "walls",
-        "rooms": 2,
-        "count": 3
-      }
-    },
-    "22220": {
-      "name": "bone marshal",
-      "short_desc": "the Bone Marshal",
-      "long_desc": "The Bone Marshal stands at the junction, marshalling the dead.",
-      "description": "A towering skeleton in a commander's rotten tabard. When it raises its baton, the dead fall into ranks.",
-      "level": 63,
-      "hp_dice": "160d10+31200",
-      "max_hp": 32000,
-      "hp": 32000,
-      "damage_dice": "18d10+36",
-      "hitroll": 31,
-      "damroll": 21,
-      "ac": -79,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive",
-        "undead",
-        "sentinel"
-      ],
-      "gold": 378,
-      "exp": 420,
-      "xp": 25200,
-      "detect_bonus": 20,
-      "rank": "sub-boss",
-      "helpers": {
-        "group": "castle",
-        "rooms": 3,
-        "count": 4,
-        "shout": "The Bone Marshal raises its baton: \"RANKS!\" The dead of the halls answer!"
-      },
-      "inventory": [
-        22060,
-        22080
-      ]
-    },
-    "22221": {
-      "name": "ashen seneschal",
-      "short_desc": "the Ashen Seneschal",
-      "long_desc": "The Ashen Seneschal waits at the end of the corridor, keys of bone at its belt.",
-      "description": "Once steward of the castle; now ash given shape. It still keeps the household, and the household is dead.",
-      "level": 63,
-      "hp_dice": "150d10+29250",
-      "max_hp": 30000,
-      "hp": 30000,
-      "damage_dice": "17d10+34",
-      "hitroll": 31,
-      "damroll": 21,
-      "ac": -79,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive",
-        "undead",
-        "sentinel"
-      ],
-      "gold": 378,
-      "exp": 420,
-      "xp": 25200,
-      "detect_bonus": 20,
-      "rank": "sub-boss",
-      "helpers": {
-        "group": "castle",
-        "rooms": 2,
-        "count": 3
-      },
-      "inventory": [
-        22084
-      ]
-    },
-    "22222": {
-      "name": "carrion queen",
-      "short_desc": "the Carrion Queen",
-      "long_desc": "The Carrion Queen roosts on the ragged walkway, crows thick about her.",
-      "description": "A gaunt winged hag in a cloak of black feathers. Every crow on the walls is her eye.",
-      "level": 64,
-      "hp_dice": "170d10+33150",
-      "max_hp": 34000,
-      "hp": 34000,
-      "damage_dice": "18d10+38",
-      "hitroll": 32,
-      "damroll": 21,
-      "ac": -82,
-      "armor_class": -2,
-      "alignment": -700,
-      "flags": [
-        "aggressive",
-        "sentinel"
-      ],
-      "gold": 384,
-      "exp": 426,
-      "xp": 25600,
-      "detect_bonus": 20,
-      "rank": "sub-boss",
-      "helpers": {
-        "group": "walls",
-        "rooms": 3,
-        "count": 3,
-        "shout": "The Carrion Queen shrieks, and the walls answer!"
-      },
-      "inventory": [
-        22060
-      ]
-    }
+ "_about": "Who lives where in the Castle of the Apocalypse II, and which doors their keys open (src/population.py, applied when the world loads, so a rebuild of world/zones keeps it). The owner, 2026-10-12: Kirgan the Destroyer holds the key to the guardian's chamber; Pestilence is in the room right after the door from the Inner Hall; War at the end of the guardian chambers; Famine in the other guardian chambers on the far side (14163); Death the final boss. Mechanics (src/boss_mechanics.py): Pestilence drops plague pools to step out of; War calls the castle's guards at 75% and 40%; Famine starves whoever stands still; Death raises waves of servants and darkens the room as he weakens. Creatures (the owner, 'populate the castle'): regulars (skeletal sentries, plague cultists, hellhound packs, ghouls, gargoyles), elites (a death knight and a hellfire warden on patrol, a plague abomination), sub-bosses (the Bone Marshal, the Ashen Seneschal, the Carrion Queen). Each calls its own kind within a room or two when attacked (allies.py).",
+ "zone": 220,
+ "bosses": [
+  {
+   "vnum": 22100,
+   "room": 22100,
+   "why": "Kirgan the Destroyer, in the Guard Room off the inner corridor: he carries the inner gate key (his loot, every time)"
   },
-  "spawns": [
+  {
+   "vnum": 22070,
+   "room": 14151,
+   "why": "Pestilence, in the first Guardian Chamber, through the Inner Hall's locked door",
+   "mechanics": [
     {
-      "vnum": 22200,
-      "rooms": [
-        14112,
-        14124,
-        14128,
-        14131,
-        14135,
-        22002,
-        22007,
-        22010,
-        22012,
-        22014
-      ],
-      "why": "skeletal sentries keep the inner-wall halls"
-    },
-    {
-      "vnum": 22201,
-      "rooms": [
-        14229,
-        22028,
-        22033,
-        22037,
-        22107,
-        22109
-      ],
-      "why": "Pestilence's cultists on the way to Ocam's Reach"
-    },
-    {
-      "vnum": 22202,
-      "rooms": [
-        14205,
-        14207,
-        14209,
-        14211,
-        14217,
-        14219
-      ],
-      "why": "hellhound packs prowl the pathway round the castle"
-    },
-    {
-      "vnum": 22203,
-      "rooms": [
-        14140,
-        14142,
-        14145,
-        14146
-      ],
-      "why": "ghouls in the inner corridor, before the guardian chambers"
-    },
-    {
-      "vnum": 22204,
-      "rooms": [
-        14164,
-        14168,
-        14182,
-        14194,
-        14198,
-        22024
-      ],
-      "why": "gargoyles on the walls"
-    },
-    {
-      "vnum": 22211,
-      "rooms": [
-        22112
-      ],
-      "why": "an abomination in Ocam's Reach"
-    },
-    {
-      "vnum": 22220,
-      "rooms": [
-        14139
-      ],
-      "why": "the Bone Marshal at the Junction of the Inner Halls"
-    },
-    {
-      "vnum": 22221,
-      "rooms": [
-        22021
-      ],
-      "why": "the Ashen Seneschal at the End of the Inner Corridor"
-    },
-    {
-      "vnum": 22222,
-      "rooms": [
-        14190
-      ],
-      "why": "the Carrion Queen on the walkway atop the castle"
+     "type": "plague_pools",
+     "every": 9,
+     "radius": 2.4,
+     "last": 14,
+     "pct": 0.04,
+     "why": "plague pools at a fighter's feet: step out"
     }
-  ],
-  "patrols": [
+   ]
+  },
+  {
+   "vnum": 22071,
+   "room": 14158,
+   "why": "War, at The End Of The Guardian Chambers (the east wing)",
+   "mechanics": [
     {
-      "vnum": 22210,
-      "route": [
-        14104,
-        14105,
-        22004,
-        14107,
-        22005,
-        14109,
-        22006,
-        14111
-      ],
-      "why": "a death knight marches the inner-wall halls"
-    },
-    {
-      "vnum": 22202,
-      "route": [
-        14200,
-        14201,
-        14202,
-        14203,
-        14204,
-        14214,
-        14215,
-        14216
-      ],
-      "why": "a hellhound runs the pathway round the castle"
-    },
-    {
-      "vnum": 22212,
-      "route": [
-        14173,
-        14174,
-        14175,
-        14176,
-        14177,
-        14178,
-        22102,
-        14180
-      ],
-      "why": "a hellfire warden walks the castle walls"
+     "type": "call_guards",
+     "at": [
+      75,
+      40
+     ],
+     "count": 3,
+     "rooms": 2,
+     "raise": [
+      22040
+     ],
+     "shout": "War raises his blade and roars 'TO ME!' The castle's guardians answer!",
+     "why": "calls the castle's guards at 75% and 40%"
     }
-  ]
+   ]
+  },
+  {
+   "vnum": 22072,
+   "room": 14163,
+   "why": "Famine, in the guardian chambers on the far (west) side",
+   "mechanics": [
+    {
+     "type": "hunger",
+     "every": 3,
+     "pct": 0.025,
+     "stamina": 10,
+     "warn": "Famine's hunger gnaws at all who stand still. Keep moving!",
+     "why": "starves whoever stands still"
+    }
+   ]
+  },
+  {
+   "vnum": 22073,
+   "room": 14153,
+   "why": "Death, the final boss, at The Gates To Hell",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      75,
+      50,
+      25
+     ],
+     "adds": {
+      "22040": 2
+     },
+     "shout": "Death lifts his scythe, and the dead of the castle rise to serve him!",
+     "why": "waves of servants at 75/50/25%"
+    },
+    {
+     "type": "gloom",
+     "max": 0.85,
+     "shout": "The light gutters and dies around Death...",
+     "why": "the room darkens as he weakens"
+    }
+   ]
+  }
+ ],
+ "doors": [
+  {
+   "room": 14150,
+   "dir": "south",
+   "key": 22051,
+   "name": "inner gate",
+   "why": "the Inner Hall's door into the Guardian Chambers opens to Kirgan's key"
+  }
+ ],
+ "creatures": {
+  "22200": {
+   "name": "skeletal sentry skeleton",
+   "short_desc": "a skeletal sentry",
+   "long_desc": "A skeletal sentry stands its post, rusted halberd lowered.",
+   "description": "Old mail hangs off yellowed bones. Whatever it guarded, it guards still, and it does not tire.",
+   "level": 55,
+   "hp_dice": "21d10+4095",
+   "max_hp": 4200,
+   "hp": 4200,
+   "damage_dice": "12d8+18",
+   "hitroll": 27,
+   "damroll": 18,
+   "ac": -55,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive",
+    "undead"
+   ],
+   "gold": 330,
+   "exp": 366,
+   "xp": 2200,
+   "detect_bonus": 20,
+   "helpers": {
+    "group": "castle",
+    "rooms": 2,
+    "count": 2
+   }
+  },
+  "22201": {
+   "name": "plague cultist robed",
+   "short_desc": "a plague cultist",
+   "long_desc": "A plague cultist mutters prayers to Pestilence, censer swinging.",
+   "description": "Sores weep beneath a sackcloth robe. The censer it carries breathes a sweet, sick smoke.",
+   "level": 56,
+   "hp_dice": "19d10+3705",
+   "max_hp": 3800,
+   "hp": 3800,
+   "damage_dice": "10d8+16",
+   "hitroll": 28,
+   "damroll": 18,
+   "ac": -58,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive"
+   ],
+   "gold": 336,
+   "exp": 373,
+   "xp": 2240,
+   "detect_bonus": 20,
+   "helpers": {
+    "group": "cult",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The cultist shrieks a prayer to Pestilence!"
+   }
+  },
+  "22202": {
+   "name": "hellhound hound",
+   "short_desc": "a hellhound",
+   "long_desc": "A hellhound paces here, embers dripping from its jaws.",
+   "description": "Black-hided and heavy-shouldered, it smells of brimstone. Where one hunts, the pack is near.",
+   "level": 57,
+   "hp_dice": "22d10+4390",
+   "max_hp": 4500,
+   "hp": 4500,
+   "damage_dice": "13d8+20",
+   "hitroll": 28,
+   "damroll": 19,
+   "ac": -61,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive"
+   ],
+   "gold": 342,
+   "exp": 380,
+   "xp": 2280,
+   "detect_bonus": 20,
+   "helpers": {
+    "group": "hounds",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The hellhound howls for its pack!"
+   }
+  },
+  "22203": {
+   "name": "ravenous ghoul",
+   "short_desc": "a ravenous ghoul",
+   "long_desc": "A ravenous ghoul crouches over something it would rather you did not see.",
+   "description": "Grey skin stretched over hunger. Its claws are long, cracked and black with old blood.",
+   "level": 57,
+   "hp_dice": "21d10+4195",
+   "max_hp": 4300,
+   "hp": 4300,
+   "damage_dice": "12d8+22",
+   "hitroll": 28,
+   "damroll": 19,
+   "ac": -61,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive",
+    "undead"
+   ],
+   "gold": 342,
+   "exp": 380,
+   "xp": 2280,
+   "detect_bonus": 20,
+   "helpers": {
+    "group": "castle",
+    "rooms": 2,
+    "count": 2
+   }
+  },
+  "22204": {
+   "name": "stone gargoyle",
+   "short_desc": "a stone gargoyle",
+   "long_desc": "A stone gargoyle perches on the battlement, too still to be stone.",
+   "description": "Weathered grey wings folded tight; the moss on it stirs when it breathes.",
+   "level": 58,
+   "hp_dice": "26d10+5070",
+   "max_hp": 5200,
+   "hp": 5200,
+   "damage_dice": "12d10+20",
+   "hitroll": 29,
+   "damroll": 19,
+   "ac": -64,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive"
+   ],
+   "gold": 348,
+   "exp": 386,
+   "xp": 2320,
+   "detect_bonus": 20,
+   "helpers": {
+    "group": "walls",
+    "rooms": 2,
+    "count": 2
+   }
+  },
+  "22210": {
+   "name": "death knight",
+   "short_desc": "a death knight",
+   "long_desc": "A death knight marches the inner halls, black plate ringing.",
+   "description": "A knight of the castle, dead and risen. Frost crusts its plate; the runes on its blade burn cold blue.",
+   "level": 61,
+   "hp_dice": "65d10+12675",
+   "max_hp": 13000,
+   "hp": 13000,
+   "damage_dice": "16d10+30",
+   "hitroll": 30,
+   "damroll": 20,
+   "ac": -73,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive",
+    "undead"
+   ],
+   "gold": 366,
+   "exp": 406,
+   "xp": 9760,
+   "detect_bonus": 20,
+   "rank": "elite",
+   "helpers": {
+    "group": "castle",
+    "rooms": 2,
+    "count": 3,
+    "shout": "The death knight raises its blade: the castle wakes!"
+   },
+   "inventory": [
+    22060
+   ]
+  },
+  "22211": {
+   "name": "plague abomination",
+   "short_desc": "a plague abomination",
+   "long_desc": "A plague abomination lurches here, sewn together from the sick.",
+   "description": "Too many arms, stitched with wire. Flies follow it in a cloud; its belly sloshes when it moves.",
+   "level": 61,
+   "hp_dice": "75d10+14625",
+   "max_hp": 15000,
+   "hp": 15000,
+   "damage_dice": "15d10+28",
+   "hitroll": 30,
+   "damroll": 20,
+   "ac": -73,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive",
+    "undead"
+   ],
+   "gold": 366,
+   "exp": 406,
+   "xp": 9760,
+   "detect_bonus": 20,
+   "rank": "elite",
+   "helpers": {
+    "group": "cult",
+    "rooms": 2,
+    "count": 3
+   }
+  },
+  "22212": {
+   "name": "hellfire warden demon",
+   "short_desc": "a hellfire warden",
+   "long_desc": "A hellfire warden stalks the walkway, wreathed in flame.",
+   "description": "A horned demon bound to keep the walls. It burns where it steps.",
+   "level": 62,
+   "hp_dice": "70d10+13650",
+   "max_hp": 14000,
+   "hp": 14000,
+   "damage_dice": "16d10+32",
+   "hitroll": 31,
+   "damroll": 20,
+   "ac": -76,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive"
+   ],
+   "gold": 372,
+   "exp": 413,
+   "xp": 9920,
+   "detect_bonus": 20,
+   "rank": "elite",
+   "helpers": {
+    "group": "walls",
+    "rooms": 2,
+    "count": 3
+   }
+  },
+  "22220": {
+   "name": "bone marshal",
+   "short_desc": "the Bone Marshal",
+   "long_desc": "The Bone Marshal stands at the junction, marshalling the dead.",
+   "description": "A towering skeleton in a commander's rotten tabard. When it raises its baton, the dead fall into ranks.",
+   "level": 63,
+   "hp_dice": "160d10+31200",
+   "max_hp": 32000,
+   "hp": 32000,
+   "damage_dice": "18d10+36",
+   "hitroll": 31,
+   "damroll": 21,
+   "ac": -79,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive",
+    "undead",
+    "sentinel"
+   ],
+   "gold": 378,
+   "exp": 420,
+   "xp": 25200,
+   "detect_bonus": 20,
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "castle",
+    "rooms": 3,
+    "count": 4,
+    "shout": "The Bone Marshal raises its baton: \"RANKS!\" The dead of the halls answer!"
+   },
+   "inventory": [
+    22060,
+    22080
+   ]
+  },
+  "22221": {
+   "name": "ashen seneschal",
+   "short_desc": "the Ashen Seneschal",
+   "long_desc": "The Ashen Seneschal waits at the end of the corridor, keys of bone at its belt.",
+   "description": "Once steward of the castle; now ash given shape. It still keeps the household, and the household is dead.",
+   "level": 63,
+   "hp_dice": "150d10+29250",
+   "max_hp": 30000,
+   "hp": 30000,
+   "damage_dice": "17d10+34",
+   "hitroll": 31,
+   "damroll": 21,
+   "ac": -79,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive",
+    "undead",
+    "sentinel"
+   ],
+   "gold": 378,
+   "exp": 420,
+   "xp": 25200,
+   "detect_bonus": 20,
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "castle",
+    "rooms": 2,
+    "count": 3
+   },
+   "inventory": [
+    22084
+   ]
+  },
+  "22222": {
+   "name": "carrion queen",
+   "short_desc": "the Carrion Queen",
+   "long_desc": "The Carrion Queen roosts on the ragged walkway, crows thick about her.",
+   "description": "A gaunt winged hag in a cloak of black feathers. Every crow on the walls is her eye.",
+   "level": 64,
+   "hp_dice": "170d10+33150",
+   "max_hp": 34000,
+   "hp": 34000,
+   "damage_dice": "18d10+38",
+   "hitroll": 32,
+   "damroll": 21,
+   "ac": -82,
+   "armor_class": -2,
+   "alignment": -700,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "gold": 384,
+   "exp": 426,
+   "xp": 25600,
+   "detect_bonus": 20,
+   "rank": "sub-boss",
+   "helpers": {
+    "group": "walls",
+    "rooms": 3,
+    "count": 3,
+    "shout": "The Carrion Queen shrieks, and the walls answer!"
+   },
+   "inventory": [
+    22060
+   ]
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 22200,
+   "rooms": [
+    14112,
+    14124,
+    14128,
+    14131,
+    14135,
+    22002,
+    22007,
+    22010,
+    22012,
+    22014
+   ],
+   "why": "skeletal sentries keep the inner-wall halls"
+  },
+  {
+   "vnum": 22201,
+   "rooms": [
+    14229,
+    22028,
+    22033,
+    22037,
+    22107,
+    22109
+   ],
+   "why": "Pestilence's cultists on the way to Ocam's Reach"
+  },
+  {
+   "vnum": 22202,
+   "rooms": [
+    14205,
+    14207,
+    14209,
+    14211,
+    14217,
+    14219
+   ],
+   "why": "hellhound packs prowl the pathway round the castle"
+  },
+  {
+   "vnum": 22203,
+   "rooms": [
+    14140,
+    14142,
+    14145,
+    14146
+   ],
+   "why": "ghouls in the inner corridor, before the guardian chambers"
+  },
+  {
+   "vnum": 22204,
+   "rooms": [
+    14164,
+    14168,
+    14182,
+    14194,
+    14198,
+    22024
+   ],
+   "why": "gargoyles on the walls"
+  },
+  {
+   "vnum": 22211,
+   "rooms": [
+    22112
+   ],
+   "why": "an abomination in Ocam's Reach"
+  },
+  {
+   "vnum": 22220,
+   "rooms": [
+    14139
+   ],
+   "why": "the Bone Marshal at the Junction of the Inner Halls"
+  },
+  {
+   "vnum": 22221,
+   "rooms": [
+    22021
+   ],
+   "why": "the Ashen Seneschal at the End of the Inner Corridor"
+  },
+  {
+   "vnum": 22222,
+   "rooms": [
+    14190
+   ],
+   "why": "the Carrion Queen on the walkway atop the castle"
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 22210,
+   "route": [
+    14104,
+    14105,
+    22004,
+    14107,
+    22005,
+    14109,
+    22006,
+    14111
+   ],
+   "why": "a death knight marches the inner-wall halls"
+  },
+  {
+   "vnum": 22202,
+   "route": [
+    14200,
+    14201,
+    14202,
+    14203,
+    14204,
+    14214,
+    14215,
+    14216
+   ],
+   "why": "a hellhound runs the pathway round the castle"
+  },
+  {
+   "vnum": 22212,
+   "route": [
+    14173,
+    14174,
+    14175,
+    14176,
+    14177,
+    14178,
+    22102,
+    14180
+   ],
+   "why": "a hellfire warden walks the castle walls"
+  }
+ ],
+ "fill": [
+  {
+   "vnum": 22040,
+   "rooms": [
+    14105,
+    14107,
+    14109
+   ],
+   "total": 6,
+   "why": "an undead guardian"
+  },
+  {
+   "vnum": 22200,
+   "rooms": [
+    14102,
+    14111,
+    14126
+   ],
+   "total": 13,
+   "why": "a skeletal sentry"
+  },
+  {
+   "vnum": 22201,
+   "rooms": [
+    14224,
+    22032,
+    22036
+   ],
+   "total": 9,
+   "why": "a plague cultist"
+  },
+  {
+   "vnum": 22202,
+   "rooms": [
+    14201,
+    14206,
+    14208
+   ],
+   "total": 10,
+   "why": "a hellhound"
+  },
+  {
+   "vnum": 22203,
+   "rooms": [
+    14147,
+    22020
+   ],
+   "total": 6,
+   "why": "a ravenous ghoul"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 14 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

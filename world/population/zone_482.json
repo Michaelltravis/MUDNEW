@@ -359,5 +359,29 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 48200,
+   "rooms": [
+    1901,
+    1904,
+    1907,
+    1917
+   ],
+   "total": 9,
+   "why": "a poltergeist"
+  },
+  {
+   "vnum": 48220,
+   "rooms": [
+    1930,
+    1932,
+    1933
+   ],
+   "total": 8,
+   "why": "a dead performer"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 7 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

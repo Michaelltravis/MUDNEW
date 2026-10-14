@@ -138,5 +138,50 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 647201,
+   "rooms": [
+    16105,
+    16108,
+    16109,
+    16111,
+    16112,
+    16113,
+    16125,
+    16126,
+    16140,
+    16141,
+    16148,
+    16175,
+    16179,
+    16180
+   ],
+   "total": 19,
+   "why": "an outcast scout"
+  },
+  {
+   "vnum": 647202,
+   "rooms": [
+    16115,
+    16117,
+    16118,
+    16119,
+    16121,
+    16122,
+    16123,
+    16134,
+    16136,
+    16137,
+    16145,
+    16147,
+    16158,
+    16184
+   ],
+   "total": 18,
+   "why": "a mountain troll"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 28 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

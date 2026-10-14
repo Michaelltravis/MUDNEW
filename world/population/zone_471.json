@@ -152,5 +152,75 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 647101,
+   "rooms": [
+    8307,
+    8309,
+    9102,
+    9114,
+    9116,
+    9118,
+    9119
+   ],
+   "total": 11,
+   "why": "a badland jackal"
+  },
+  {
+   "vnum": 647102,
+   "rooms": [
+    8341,
+    9122,
+    9124,
+    9128,
+    9130,
+    9132
+   ],
+   "total": 10,
+   "why": "a gnoll raider"
+  },
+  {
+   "vnum": 647104,
+   "rooms": [
+    8310,
+    8311,
+    8314,
+    8315,
+    8317,
+    8318,
+    8319
+   ],
+   "total": 11,
+   "why": "a restless spirit"
+  },
+  {
+   "vnum": 647107,
+   "rooms": [
+    8321,
+    8322,
+    8324,
+    8327,
+    8330,
+    8331
+   ],
+   "total": 9,
+   "why": "a grey web spider"
+  },
+  {
+   "vnum": 647108,
+   "rooms": [
+    8354,
+    8355,
+    9143,
+    9144,
+    9146,
+    9147
+   ],
+   "total": 8,
+   "why": "a black-robed cultist"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 32 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

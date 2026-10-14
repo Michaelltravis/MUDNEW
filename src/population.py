@@ -7,7 +7,8 @@ after the zone files and before the first reset, so a rebuild of world/zones kee
      "doors":  [{"room": 14150, "dir": "south", "key": 22051, "name": "inner gate"}]}   # locked to a key
 
 Also "creatures" (prototypes by vnum: rank regular/elite/sub-boss, helpers {group, rooms, count}),
-"spawns" [{vnum, rooms, max}] and "patrols" [{vnum, route}] (mobs.patrol_ai; allies.py).
+"spawns" [{vnum, rooms, max}], "patrols" [{vnum, route}] (mobs.patrol_ai; allies.py) and "fill"
+[{vnum, rooms, total}] (more of a creature in a thin zone, tools/audit/densify.py).
 
 A creature needs only its words, level and rank: health, blows, armour and experience left out
 are worked out from them (numbers()). An entry for a creature the zone files already have, with
@@ -125,6 +126,27 @@ def apply(world, data=None) -> list:
                     problems.append(f"zone {z}: no room {rv} for {vnum}")
                     continue
                 room.mob_resets.append({'vnum': vnum, 'max': max(int(sp.get('max', 1)), total)})
+        # fill (tools/audit/densify.py): more of the zone's own ordinary creatures, in empty rooms
+        # near where they already live. Every reset of the creature in the zone counts to the new
+        # total, so the old rooms keep theirs.
+        zone_rooms = None
+        for fl in ([] if os.environ.get('MH_NO_FILL') else d.get('fill') or []):   # (densify.py plans without them)
+            vnum, total = int(fl['vnum']), int(fl['total'])
+            if vnum not in world.mob_prototypes:
+                problems.append(f"zone {z}: no creature {vnum} to fill with")
+                continue
+            if zone_rooms is None:
+                zone_rooms = [r for r in world.rooms.values() if getattr(getattr(r, 'zone', None), 'number', None) == int(z)]
+            for r in zone_rooms:
+                for m in r.mob_resets or []:
+                    if isinstance(m, dict) and int(m.get('vnum', -1)) == vnum and not m.get('route'):
+                        m['max'] = max(int(m.get('max', 1)), total)
+            for rv in fl.get('rooms') or []:
+                room = world.rooms.get(int(rv))
+                if room is None:
+                    problems.append(f"zone {z}: no room {rv} to fill")
+                    continue
+                room.mob_resets.append({'vnum': vnum, 'max': total})
         # patrols: start at the route's first room and walk it (mobs.patrol_ai)
         for pt in d.get('patrols') or []:
             vnum, route = int(pt['vnum']), [int(r) for r in pt.get('route') or []]

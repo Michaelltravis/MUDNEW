@@ -153,5 +153,43 @@
     }
    ]
   }
- ]
+ ],
+ "fill": [
+  {
+   "vnum": 650700,
+   "rooms": [
+    24900,
+    24902,
+    24903,
+    24904,
+    24906
+   ],
+   "total": 12,
+   "why": "a gaunt crypt ghoul"
+  },
+  {
+   "vnum": 650701,
+   "rooms": [
+    24920,
+    24931,
+    24933,
+    24938
+   ],
+   "total": 9,
+   "why": "a pale vampire thrall"
+  },
+  {
+   "vnum": 650702,
+   "rooms": [
+    24953,
+    24955,
+    24968,
+    24970,
+    24972
+   ],
+   "total": 11,
+   "why": "an ember salamander"
+  }
+ ],
+ "_fill": "tools/audit/densify.py: 14 more of the zone's own ordinary creatures in its empty rooms, 0.45 hostile per walkable room as the aim"
 }

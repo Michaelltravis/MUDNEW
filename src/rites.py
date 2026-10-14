@@ -81,15 +81,30 @@ def apply(world, data=None):
             far['door'].update(state='closed', locked=True, key_vnum=kv, pickproof=True, warded=True)
             if g.get('name'):
                 far['door']['name'] = g['name']
-        keeper = world.mob_prototypes.get(int(g['keeper'])) if g.get('keeper') is not None else None
+        spec = g.get('keeper')
+        if isinstance(spec, dict):
+            keeper = make_keeper(world, spec, problems)
+        else:
+            keeper = world.mob_prototypes.get(int(spec)) if spec is not None else None
         if keeper is None:
-            problems.append(f"gate {g['room']} {g['dir']}: no keeper {g.get('keeper')}")
+            problems.append(f"gate {g['room']} {g['dir']}: no keeper {spec}")
             continue
         inv = keeper.setdefault('inventory', [])
         if kv not in [i['vnum'] if isinstance(i, dict) else i for i in inv]:
             inv.append(kv)
         keeper.setdefault('gate_keys', []).append(kv)
     for t in DATA['tolls']:
+        if isinstance(t.get('make'), dict):
+            # a toll-keeper made here (a bargeman at a quay): a plain proto, standing in its room
+            m = t['make']
+            world.mob_prototypes[int(t['npc'])] = {
+                'vnum': int(t['npc']), 'name': ' '.join(str(m['keywords']).split()), 'short_desc': m['short_desc'],
+                'long_desc': m['long_desc'], 'description': m.get('description', ''), 'level': int(m.get('level', 10)),
+                'alignment': 0, 'flags': ['sentinel', 'no_attack'], 'hp_dice': '10d10+100', 'damage_dice': '1d4',
+                'armor_class': 50, 'exp': 0, 'gold': 0, 'inventory': []}
+            room = world.rooms.get(int(t['room']))
+            if room is not None:
+                room.mob_resets = list(room.mob_resets or []) + [{'vnum': int(t['npc']), 'max': 1}]
         # the way a body cannot walk (the Styx): barred, the ferryman's words on the bar
         for bar in t.get('bars') or []:
             room = world.rooms.get(int(bar['room']))
@@ -117,6 +132,33 @@ def apply(world, data=None):
     for p in problems:
         logger.warning(f'rites: {p}')
     return problems
+
+
+def make_keeper(world, spec, problems):
+    """A gatekeeper made for its door: a named, sub-boss copy of one of the zone's own creatures
+    ({"from": vnum, "vnum": new, "keywords", "short_desc", "long_desc", "description"?, "level"?,
+    "room": where it stands}), standing in that room and nowhere else."""
+    import copy
+    import population
+    src = world.mob_prototypes.get(int(spec['from']))
+    room = world.rooms.get(int(spec['room']))
+    if src is None or room is None:
+        problems.append(f"keeper {spec.get('vnum')}: no creature {spec.get('from')} or room {spec.get('room')}")
+        return None
+    p = copy.deepcopy(src)
+    if spec.get('level'):
+        p['level'] = int(spec['level'])
+    p.update(population.ranked(p, 'sub-boss'))
+    p.update(vnum=int(spec['vnum']), name=' '.join(str(spec['keywords']).split()), short_desc=spec['short_desc'],
+             long_desc=spec['long_desc'], rank='sub-boss', inventory=[])
+    if spec.get('description'):
+        p['description'] = spec['description']
+    p['flags'] = [f for f in (p.get('flags') or []) if f not in ('boss', 'wimpy', 'helper')] + \
+        [f for f in ('aggressive', 'sentinel') if f not in (p.get('flags') or [])]
+    p.pop('special', None)
+    world.mob_prototypes[p['vnum']] = p
+    room.mob_resets = list(room.mob_resets or []) + [{'vnum': p['vnum'], 'max': 1}]
+    return p
 
 
 # ---------------------------------------------------------------- tolls

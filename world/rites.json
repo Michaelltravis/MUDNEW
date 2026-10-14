@@ -80,6 +80,134 @@
    "description": "A grey key that is solid only for now, its edges curling like fog. It opens the misty door.",
    "level": 26,
    "zone": 495
+  },
+  "z51-key": {
+   "vnum": 799051,
+   "keywords": "key spider silk lloth temple",
+   "short_desc": "a spider-silk key",
+   "description": "A key spun from hardened spider silk, black and faintly sticky. It opens the Grand Temple of Lloth.",
+   "level": 22,
+   "zone": 51
+  },
+  "z53-key": {
+   "vnum": 799053,
+   "keywords": "key scarab gold tomb ramses",
+   "short_desc": "a scarab-headed key",
+   "description": "A heavy gold key with a scarab for its head. It opens the way down into the tomb of Ramses.",
+   "level": 30,
+   "zone": 53
+  },
+  "z63-key": {
+   "vnum": 799063,
+   "keywords": "key chitin spider lair",
+   "short_desc": "a chitin key",
+   "description": "A key cut from a spider's black chitin, sharp at the edges. It opens the lair of Arachnos.",
+   "level": 22,
+   "zone": 63
+  },
+  "z90-key": {
+   "vnum": 799090,
+   "keywords": "key bone handle witch hut",
+   "short_desc": "a bone-handled key",
+   "description": "A rusty key with a handle of yellow bone. It opens the Bog Witch's hut.",
+   "level": 18,
+   "zone": 90
+  },
+  "z426-key": {
+   "vnum": 799426,
+   "keywords": "key iron giant lair",
+   "short_desc": "a giant's iron key",
+   "description": "A key as long as a forearm, forged for a giant's hand. It opens the giant's lair.",
+   "level": 15,
+   "zone": 426
+  },
+  "z447-key": {
+   "vnum": 799447,
+   "keywords": "key soot black cave",
+   "short_desc": "a soot-black key",
+   "description": "A heavy key black with soot. It opens the way to the caves below Mahn-Tor.",
+   "level": 22,
+   "zone": 447
+  },
+  "z470-key": {
+   "vnum": 799470,
+   "keywords": "key royal crowned chambers",
+   "short_desc": "a royal key",
+   "description": "A long key topped with a little crown. It opens the royal chambers.",
+   "level": 19,
+   "zone": 470
+  },
+  "z480-key": {
+   "vnum": 799480,
+   "keywords": "key cellar iron basement",
+   "short_desc": "a cellar key",
+   "description": "A plain iron cellar key, worn smooth. It opens the basement.",
+   "level": 21,
+   "zone": 480
+  },
+  "z491-key": {
+   "vnum": 799491,
+   "keywords": "key goblin crude iron hall",
+   "short_desc": "a goblin-forged key",
+   "description": "A crude, heavy key hammered out by goblin smiths. It opens the Guarded Hall.",
+   "level": 22,
+   "zone": 491
+  },
+  "z499-key": {
+   "vnum": 799499,
+   "keywords": "key bronze study",
+   "short_desc": "a bronze study key",
+   "description": "A small bronze key engraved with a star chart. It opens Phaeton's secret study.",
+   "level": 21,
+   "zone": 499
+  },
+  "z503-key": {
+   "vnum": 799503,
+   "keywords": "key rune dwarf stronghold",
+   "short_desc": "a dwarf-rune key",
+   "description": "A dwarf-forged key cut with runes of oath and stone. It opens the gate to the stronghold.",
+   "level": 42,
+   "zone": 503
+  },
+  "z507-key": {
+   "vnum": 799507,
+   "keywords": "key blood red den",
+   "short_desc": "a blood-red key",
+   "description": "A key of dark red metal, warm as skin. It opens the Vampire Lord's den.",
+   "level": 44,
+   "zone": 507
+  },
+  "z512-key": {
+   "vnum": 799512,
+   "keywords": "key bone crown throne",
+   "short_desc": "a bone-crowned key",
+   "description": "A key of black iron with a crown of little bones for its head. It opens the way to the throne room.",
+   "level": 66,
+   "zone": 512
+  },
+  "z522-key": {
+   "vnum": 799522,
+   "keywords": "key glacier ice hallway",
+   "short_desc": "a key of glacier ice",
+   "description": "A key of blue glacier ice that numbs the hand. It opens the frost giant's hall.",
+   "level": 20,
+   "zone": 522
+  },
+  "z64-key": {
+   "vnum": 799064,
+   "keywords": "key dream glass bedroom",
+   "short_desc": "a dream-glass key",
+   "description": "A key of cloudy glass that shows a different dream each time you look into it. It opens Rand's bedroom.",
+   "level": 10,
+   "zone": 64
+  },
+  "z62-key": {
+   "vnum": 799062,
+   "keywords": "key hunter bone orc tunnel",
+   "short_desc": "a hunter's key",
+   "description": "A crude key on a thong of hide. It opens the way to Elstar.",
+   "level": 12,
+   "zone": 62
   }
  },
  "gates": [
@@ -152,6 +280,242 @@
    "key": "mist-key",
    "keeper": 649521,
    "why": "Tisiphone keeps the misty door, before Hades' throne"
+  },
+  {
+   "room": 5140,
+   "dir": "north",
+   "key": "z51-key",
+   "keeper": {
+    "from": 5104,
+    "room": 5140,
+    "keywords": "matron temple warden drow priestess",
+    "short_desc": "the Temple Warden of Lloth",
+    "long_desc": "The Temple Warden of Lloth bars the temple doors, a silk key at her throat.",
+    "description": "A drow priestess in robes of black spider-silk, her face painted with the eight-legged sign. The Spider Queen's favour hangs on her like a perfume, and she guards the temple door against all who are not of the faith.",
+    "level": 22,
+    "vnum": 790051
+   },
+   "why": "Drow City: the Temple Warden keeps the Grand Temple of Lloth"
+  },
+  {
+   "room": 5331,
+   "dir": "down",
+   "key": "z53-key",
+   "keeper": {
+    "from": 5307,
+    "room": 5331,
+    "keywords": "guardian tomb mummy sealed",
+    "short_desc": "the Tomb Guardian",
+    "long_desc": "The Tomb Guardian stands over the sealed stair, a gold scarab key bound to its wrist.",
+    "description": "A tall mummy in bandages stiff with resin and gold leaf, a priest of the dead king buried alive to keep his tomb. A scarab-headed key is bound to its wrist with a strip of linen.",
+    "level": 30,
+    "vnum": 790053
+   },
+   "why": "Great Pyramid: the Tomb Guardian keeps Ramses' tomb"
+  },
+  {
+   "room": 6392,
+   "dir": "north",
+   "key": "z63-key",
+   "keeper": {
+    "from": 6313,
+    "room": 6392,
+    "keywords": "brood warden spider guardian",
+    "short_desc": "the Brood Warden",
+    "long_desc": "The Brood Warden crouches before the lair, a key of black chitin caught in its silk.",
+    "description": "An enormous grey spider, scarred and patient, that has fed on adventurers for a hundred years. A key of black chitin hangs in the silk across its back.",
+    "level": 22,
+    "vnum": 790063
+   },
+   "why": "Arachnos: the Brood Warden keeps the Spider Queen's lair"
+  },
+  {
+   "room": 9014,
+   "dir": "south",
+   "key": "z90-key",
+   "keeper": {
+    "from": 9008,
+    "room": 9014,
+    "keywords": "snapjaw alligator old familiar",
+    "short_desc": "Old Snapjaw",
+    "long_desc": "Old Snapjaw, the Bog Witch's familiar, lies before her door with a key in its teeth.",
+    "description": "A huge old alligator, grey with age and moss, that the Bog Witch keeps as her doorkeeper. It holds a bone-handled key in its jaws and does not let go of it while it lives.",
+    "level": 18,
+    "vnum": 790090
+   },
+   "why": "Haunted Swamp: Old Snapjaw keeps the Witch's hut"
+  },
+  {
+   "room": 20308,
+   "dir": "east",
+   "key": "z426-key",
+   "keeper": {
+    "from": 642603,
+    "room": 20308,
+    "keywords": "warden lair troglodyte",
+    "short_desc": "the Warden of the Lair",
+    "long_desc": "The Warden of the Lair stands before the giant's door, an iron key at its hip.",
+    "level": 15,
+    "vnum": 790426
+   },
+   "why": "Troglodyte Mines: the Warden keeps Hrungar's lair"
+  },
+  {
+   "room": 10177,
+   "dir": "east",
+   "key": "z447-key",
+   "keeper": {
+    "from": 644702,
+    "room": 10177,
+    "keywords": "gatewarden keep soldier",
+    "short_desc": "the Keep's Gatewarden",
+    "long_desc": "The Keep's Gatewarden stands before the cave gate, a soot-black key on a chain.",
+    "level": 22,
+    "vnum": 790447
+   },
+   "why": "Mahn-Tor Keep: the Gatewarden keeps the way to the caves"
+  },
+  {
+   "room": 8404,
+   "dir": "west",
+   "key": "z470-key",
+   "keeper": {
+    "from": 647002,
+    "room": 8404,
+    "keywords": "doorwarden royal skeleton",
+    "short_desc": "the Royal Doorwarden",
+    "long_desc": "The Royal Doorwarden stands before the royal chambers, a crowned key at its belt.",
+    "level": 19,
+    "vnum": 790470
+   },
+   "why": "Castle of Ostragoth: the Royal Doorwarden keeps the royal chambers"
+  },
+  {
+   "room": 6678,
+   "dir": "north",
+   "key": "z480-key",
+   "keeper": {
+    "from": 648005,
+    "room": 6678,
+    "keywords": "steward thrall vampire",
+    "short_desc": "the Thrall Steward",
+    "long_desc": "The Thrall Steward guards the cellar door, the cellar key on a ribbon round its neck.",
+    "level": 21,
+    "vnum": 790480
+   },
+   "why": "Salem's Lot: the Thrall Steward keeps the basement"
+  },
+  {
+   "room": 15150,
+   "dir": "east",
+   "key": "z491-key",
+   "keeper": {
+    "from": 649101,
+    "room": 15150,
+    "keywords": "sergeant hall goblin",
+    "short_desc": "the Hall Sergeant",
+    "long_desc": "The Hall Sergeant stands before the Guarded Hall, a crude iron key at his belt.",
+    "level": 22,
+    "vnum": 790491
+   },
+   "why": "Morvoct: the Hall Sergeant keeps the warlord's hall"
+  },
+  {
+   "room": 5760,
+   "dir": "east",
+   "key": "z499-key",
+   "keeper": {
+    "from": 649903,
+    "room": 5760,
+    "keywords": "warden bronze golem study",
+    "short_desc": "the Bronze Warden",
+    "long_desc": "The Bronze Warden stands before the study door, a bronze key set in its palm.",
+    "level": 21,
+    "vnum": 790499
+   },
+   "why": "Phaeton's Academy: the Bronze Warden keeps the secret study"
+  },
+  {
+   "room": 13024,
+   "dir": "east",
+   "key": "z503-key",
+   "keeper": {
+    "from": 650303,
+    "room": 13024,
+    "keywords": "gatestone golem stone",
+    "short_desc": "the Gatestone",
+    "long_desc": "The Gatestone stands before the stronghold gate, a rune key sunk in its brow.",
+    "level": 42,
+    "vnum": 790503
+   },
+   "why": "Durmandel I: the Gatestone keeps the stronghold"
+  },
+  {
+   "room": 24935,
+   "dir": "west",
+   "key": "z507-key",
+   "keeper": {
+    "from": 650701,
+    "room": 24935,
+    "keywords": "herald blood thrall",
+    "short_desc": "the Blood Herald",
+    "long_desc": "The Blood Herald waits before the den, a blood-red key at his throat.",
+    "level": 44,
+    "vnum": 790507
+   },
+   "why": "Lost Crypt II: the Blood Herald keeps the Vampire Lord's den"
+  },
+  {
+   "room": 13847,
+   "dir": "south",
+   "key": "z512-key",
+   "keeper": {
+    "from": 651213,
+    "room": 13847,
+    "keywords": "throne warden death knight",
+    "short_desc": "the Throne Warden of Morkai",
+    "long_desc": "The Throne Warden of Morkai bars the way to the throne room, a bone-crowned key at its belt.",
+    "level": 66,
+    "vnum": 790512
+   },
+   "why": "Morkai: the Throne Warden keeps the way to Gorbash"
+  },
+  {
+   "room": 3950,
+   "dir": "east",
+   "key": "z522-key",
+   "keeper": {
+    "from": 652204,
+    "room": 3950,
+    "keywords": "herald frost ghost",
+    "short_desc": "the Frost Herald",
+    "long_desc": "The Frost Herald drifts before the great hall, a key of glacier ice in its hand.",
+    "level": 20,
+    "vnum": 790522
+   },
+   "why": "The Winterlands: the Frost Herald keeps Hrimgar's hall"
+  },
+  {
+   "room": 6409,
+   "dir": "north",
+   "key": "z64-key",
+   "keeper": 6401,
+   "why": "Rand's Tower: the Demon of Decay keeps the master bedroom"
+  },
+  {
+   "room": 6255,
+   "dir": "west",
+   "key": "z62-key",
+   "keeper": {
+    "from": 6203,
+    "room": 6255,
+    "keywords": "hunter chief orc",
+    "short_desc": "the Orc Huntmaster",
+    "long_desc": "The Orc Huntmaster guards the tunnel door, a key on a hide thong round his neck.",
+    "level": 12,
+    "vnum": 790062
+   },
+   "why": "The Orc Enclave: the Huntmaster keeps the tunnel to Elstar"
   }
  ],
  "tolls": [
@@ -222,6 +586,75 @@
     "broke": "'One coin,' says the oarsman, and waits.",
     "arrive": "The boat grates against the wharf. The oarsman is already rowing away.",
     "short": "'One coin,' says the oarsman."
+   }
+  },
+  {
+   "id": "barge-up",
+   "npc": 790030,
+   "room": 3049,
+   "from_name": "the Quay",
+   "fare": 5,
+   "via": 3216,
+   "to": 5002,
+   "secs": 10,
+   "make": {
+    "keywords": "bargeman river barge old",
+    "short_desc": "an old river bargeman",
+    "level": 12,
+    "long_desc": "An old river bargeman waits by his flat barge at the edge of the Quay.",
+    "description": "He is brown and creased as a walnut, with forearms like ropes from a life of poling barges against the current. For a few coins he will take you up the river into the mountains, where no raft could fight the rapids."
+   },
+   "bars": [],
+   "journey": [
+    "The barge pushes off from the Quay into the brown current.",
+    "The city falls behind. Steep banks rise on either side, and the old man leans on his pole against the rapids.",
+    "The river narrows into a tunnel cut through the mountain, and the roar of water fills the dark."
+   ],
+   "say": {
+    "greet": "The old bargeman squints up at you. 'Upriver? Into the mountain? Five gold and I'll pole you there, rapids and all.'",
+    "pay": "Pay the bargeman five gold.",
+    "ask": "Where does the river go?",
+    "leave": "Not today.",
+    "lore": "'East, up through the levee and under the mountain. There's a landing in the tunnel, and past it the desert. No raft gets up those rapids. My barge does.'",
+    "bye": "'Suit yourself.'",
+    "paid": "The bargeman pockets the coins and waves you aboard.",
+    "broke": "'Five gold,' says the bargeman. 'I don't pole for free.'",
+    "short": "'Five gold,' says the bargeman.",
+    "arrive": "The barge bumps against a rock landing inside the mountain tunnel. 'Mind the step,' says the bargeman."
+   }
+  },
+  {
+   "id": "barge-down",
+   "npc": 790050,
+   "room": 5002,
+   "from_name": "the tunnel landing",
+   "fare": 5,
+   "via": 3216,
+   "to": 3049,
+   "secs": 8,
+   "make": {
+    "keywords": "bargewoman river barge",
+    "short_desc": "a river bargewoman",
+    "level": 12,
+    "long_desc": "A river bargewoman sits on her moored barge at the rock landing, mending a net.",
+    "description": "She is broad and weatherbeaten, with a pipe clamped in her teeth and a long pole across her knees. She takes travellers down the river to Garathorm's Quay, which is easy going with the current behind you."
+   },
+   "bars": [],
+   "journey": [
+    "The barge slides out of the tunnel and down the rapids, the current doing all the work.",
+    "The banks open out, and the walls and roofs of Garathorm rise ahead."
+   ],
+   "say": {
+    "greet": "The bargewoman takes the pipe from her mouth. 'Down to Garathorm? Five gold. It's a quick trip with the current.'",
+    "pay": "Pay the bargewoman five gold.",
+    "ask": "Is the river safe?",
+    "leave": "Not yet.",
+    "lore": "'Safe enough in a barge. In a raft you'd be matchwood on the rocks.'",
+    "bye": "She goes back to her net.",
+    "paid": "She takes the coins and casts off.",
+    "broke": "'Five gold, love.'",
+    "short": "'Five gold, love.'",
+    "arrive": "The barge noses in against the Quay. 'Here you are. Garathorm.'"
    }
   }
  ]
