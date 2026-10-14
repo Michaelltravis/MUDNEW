@@ -92,8 +92,11 @@ def apply(world, data=None) -> list:
                     problems.append(f"zone {z}: no creature {v} to give {sorted(proto)}")
                 else:       # an old creature given a rank or helpers (a rank lifts its numbers to fit)
                     old = world.mob_prototypes[v]
-                    world.mob_prototypes[v] = dict(old, **ranked(old, proto.get('rank')),
-                                                   **{k: x for k, x in proto.items() if k != 'why'})
+                    # (numbers the entry states win over the rank's: a zone tuned by hand)
+                    new = dict(old)
+                    new.update(ranked(old, proto.get('rank')))
+                    new.update({k: x for k, x in proto.items() if k != 'why'})
+                    world.mob_prototypes[v] = new
                 continue
             p = dict(proto)
             p['vnum'] = v

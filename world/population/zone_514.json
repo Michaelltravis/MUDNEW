@@ -1,6 +1,6 @@
 {
  "zone": 514,
- "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Moloch, the Ancient Demon Lord as the boss (re-themed for end-game Morkai: undead and aberrations).",
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Moloch, the Ancient Demon Lord as the boss (re-themed for end-game Morkai: undead and aberrations). Dead Morkai tuned against Crown of Bone at level 60 (tools/balance/zones.py, docs/balance/zones.md).",
  "creatures": {
   "651400": {
    "helpers": {
@@ -9,7 +9,10 @@
     "count": 2,
     "shout": "A wet chittering rises, and more of them come crawling!"
    },
-   "why": "a carrion crawler"
+   "why": "a carrion crawler",
+   "hp_dice": "62d8+2797",
+   "max_hp": 3076,
+   "hp": 3076
   },
   "651401": {
    "helpers": {
@@ -18,7 +21,10 @@
     "count": 2,
     "shout": "A wet chittering rises, and more of them come crawling!"
    },
-   "why": "a gibbering mouther"
+   "why": "a gibbering mouther",
+   "hp_dice": "63d8+2859",
+   "max_hp": 3143,
+   "hp": 3143
   },
   "651402": {
    "helpers": {
@@ -27,7 +33,10 @@
     "count": 2,
     "shout": "A cold wail rises, and the dead answer!"
    },
-   "why": "a mirror wraith"
+   "why": "a mirror wraith",
+   "hp_dice": "64d8+2657",
+   "max_hp": 2945,
+   "hp": 2945
   },
   "651403": {
    "helpers": {
@@ -36,7 +45,10 @@
     "count": 2,
     "shout": "A cold wail rises, and the dead answer!"
    },
-   "why": "a risen pale cultist"
+   "why": "a risen pale cultist",
+   "hp_dice": "62d8+2540",
+   "max_hp": 2819,
+   "hp": 2819
   },
   "651404": {
    "helpers": {
@@ -92,7 +104,7 @@
       "telegraph": "Moloch, the Ancient Demon Lord gathers itself for a sweeping assault!",
       "cast_time": 2,
       "cooldown": 12,
-      "damage_dice": "3d8+13",
+      "damage_dice": "3d8+18",
       "aoe": true,
       "radius": 4.5
      },
@@ -101,7 +113,7 @@
       "telegraph": "Moloch, the Ancient Demon Lord raises a killing blow at you!",
       "cast_time": 1,
       "cooldown": 7,
-      "damage_dice": "3d10+11",
+      "damage_dice": "3d10+16",
       "dodge": true
      },
      {
@@ -109,12 +121,14 @@
       "telegraph": "Moloch, the Ancient Demon Lord begins something terrible!",
       "cast_time": 2.5,
       "cooldown": 18,
-      "damage_dice": "4d8+18",
+      "damage_dice": "4d8+25",
       "interruptible": true,
       "min_phase": 1
      }
     ]
-   }
+   },
+   "max_hp": 22000,
+   "hp": 22000
   }
  },
  "patrols": [

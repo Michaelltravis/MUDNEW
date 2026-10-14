@@ -1,6 +1,6 @@
 {
  "zone": 512,
- "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Orschnag the orc king as the boss.",
+ "_about": "Built from its writer's creatures (world/buildout/parts): ranks, helpers, and Orschnag the orc king as the boss. Dead Morkai tuned against Crown of Bone at level 60 (tools/balance/zones.py, docs/balance/zones.md).",
  "creatures": {
   "651200": {
    "helpers": {
@@ -128,7 +128,10 @@
     "count": 2,
     "shout": "A cold wail rises, and the dead of Morkai answer!"
    },
-   "why": "a rotting orc ghoul"
+   "why": "a rotting orc ghoul",
+   "hp_dice": "60d8+2425",
+   "max_hp": 2695,
+   "hp": 2695
   },
   "651215": {
    "helpers": {
@@ -164,7 +167,7 @@
       "telegraph": "Gorbash the Bone King lifts his skull-faced maul for a sweeping blow!",
       "cast_time": 2,
       "cooldown": 12,
-      "damage_dice": "4d10+22",
+      "damage_dice": "4d10+31",
       "aoe": true,
       "radius": 4.5
      },
@@ -173,7 +176,7 @@
       "telegraph": "Gorbash the Bone King points at you, and the floor splits beneath your feet!",
       "cast_time": 1,
       "cooldown": 7,
-      "damage_dice": "4d10+18",
+      "damage_dice": "4d10+26",
       "dodge": true
      },
      {
@@ -181,12 +184,14 @@
       "telegraph": "Gorbash the Bone King begins to draw the souls out of the living!",
       "cast_time": 2.5,
       "cooldown": 18,
-      "damage_dice": "5d10+26",
+      "damage_dice": "5d10+37",
       "interruptible": true,
       "min_phase": 1
      }
     ]
-   }
+   },
+   "max_hp": 22000,
+   "hp": 22000
   },
   "651218": {
    "helpers": {
@@ -289,7 +294,10 @@
     "count": 2,
     "shout": "A cold wail rises, and the dead of Morkai answer!"
    },
-   "why": "a skeletal orc warrior"
+   "why": "a skeletal orc warrior",
+   "hp_dice": "60d8+2425",
+   "max_hp": 2695,
+   "hp": 2695
   },
   "651224": {
    "helpers": {
@@ -298,7 +306,10 @@
     "count": 2,
     "shout": "A cold wail rises, and the dead of Morkai answer!"
    },
-   "why": "a skeletal orc archer"
+   "why": "a skeletal orc archer",
+   "hp_dice": "61d8+2482",
+   "max_hp": 2757,
+   "hp": 2757
   },
   "651225": {
    "helpers": {
@@ -307,7 +318,10 @@
     "count": 2,
     "shout": "A cold wail rises, and the dead of Morkai answer!"
    },
-   "why": "an orc bone-shaman"
+   "why": "an orc bone-shaman",
+   "hp_dice": "63d8+2599",
+   "max_hp": 2883,
+   "hp": 2883
   },
   "651226": {
    "helpers": {
@@ -316,7 +330,10 @@
     "count": 2,
     "shout": "A cold wail rises, and the dead of Morkai answer!"
    },
-   "why": "a soul wraith"
+   "why": "a soul wraith",
+   "hp_dice": "62d8+2540",
+   "max_hp": 2819,
+   "hp": 2819
   },
   "651227": {
    "helpers": {
@@ -345,7 +362,10 @@
     "count": 2,
     "shout": "A wet chittering rises, and more of them come crawling!"
    },
-   "why": "a tentacled horror"
+   "why": "a tentacled horror",
+   "hp_dice": "63d8+2859",
+   "max_hp": 3143,
+   "hp": 3143
   }
  },
  "bosses": [
