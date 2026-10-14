@@ -795,6 +795,8 @@ class World:
             room_looks.classify(self)
             room_looks.strip_filler(self)     # no "stale air" under open sky or the sea
             room_looks.scrub_filler(self)     # nor "bird calls in the canopy" down a sewer pipe
+            import room_features
+            room_features.annotate(self)      # what its words say stands in it (standing stones, altars...)
         except Exception as e:
             logger.warning(f"Failed to work out room looks: {e}")
 

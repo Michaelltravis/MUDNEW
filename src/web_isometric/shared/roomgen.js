@@ -274,7 +274,7 @@
     // Two outdoor rooms side by side that open onto each other (exit kind 'open', no door) share
     // their whole side: no ring and no treeline band between them, so the country runs on
     // (the client passes each exit's kind and the neighbour's look)
-    const OUTDOOR_LOOKS = new Set(['forest', 'darkforest', 'web', 'field', 'hills', 'mountain', 'desert', 'snow', 'swamp', 'shore', 'volcanic',
+    const OUTDOOR_LOOKS = new Set(['forest', 'darkforest', 'web', 'field', 'hills', 'mountain', 'desert', 'snow', 'swamp', 'shore', 'volcanic', 'stones',
       'water_swim', 'water_noswim']);
     const WATERS = new Set(['water_swim', 'water_noswim']);
     const wide = {};
@@ -315,7 +315,7 @@
       organic.push([x, y]);
     };
     const SHAPE = {
-      forest: 3, darkforest: 3, web: 3, swamp: 3, hills: 2, field: 2, desert: 2, snow: 2, shore: 2, volcanic: 2,
+      forest: 3, darkforest: 3, web: 3, swamp: 3, hills: 2, field: 2, desert: 2, snow: 2, shore: 2, volcanic: 2, stones: 2,
       cave: 'cavern', mine: 'cavern', mountain: 'cavern', underground: 'cavern',
     }[sector];
     if (typeof SHAPE === 'number' && !swim) {
@@ -484,9 +484,73 @@
       for (let i = 0; i < grid.length; i++) if (grid[i] === WATER) grid[i] = FLOOR;
     }
 
-    // scattered obstacles, kept only when they don't break connectivity
+    // ---- what the room's words say stands in it (room_features.py): standing stones, altars,
+    // stakes, banners... each on open floor off the lanes, never on a way in or out; the big ones
+    // block (kept only while every way through stays reachable), the small lie where they fall.
+    // `edge` things stand by the walls, `centre` ones out in the open (a room's own centrepiece,
+    // the altar of "The First Altar", nearest the middle) ----
+    const FEAT = {
+      standing_stone: [1, 1, 'edge', true], altar: [2, 1, 'centre', true], statue: [1, 1, 'centre', true], obelisk: [1, 1, 'centre', true],
+      pillar: [1, 1, 'edge', true], well: [2, 2, 'centre', true], fountain: [2, 2, 'centre', true], brazier: [1, 1, 'centre', true],
+      tent: [2, 2, 'edge', true], cage: [1, 1, 'edge', true], stake: [1, 1, 'edge', true], pole: [1, 1, 'edge', true],
+      banner: [1, 1, 'edge', true], grave: [1, 1, 'edge', true], coffin: [1, 1, 'edge', true], drum: [1, 1, 'centre', true],
+      throne: [1, 1, 'centre', true], table: [2, 1, 'centre', true], bench: [1, 1, 'edge', true], shelf: [1, 1, 'edge', true],
+      bed: [1, 1, 'edge', true], chest: [1, 1, 'edge', true], barrel: [1, 1, 'edge', true], crate: [1, 1, 'edge', true],
+      weapons: [1, 1, 'edge', true], fence: [1, 1, 'edge', true], dead_tree: [1, 1, 'scatter', true], torch: [1, 1, 'edge', true],
+      lantern: [1, 1, 'edge', true], chains: [1, 1, 'edge', false], cairn: [1, 1, 'scatter', false], skull: [1, 1, 'scatter', false],
+      bones: [1, 1, 'scatter', false], candle: [1, 1, 'scatter', false], rubble: [1, 1, 'scatter', false],
+      mushroom: [1, 1, 'scatter', false], flowers: [1, 1, 'scatter', false], crystal: [1, 1, 'scatter', false],
+      rug: [2, 2, 'centre', false], blood: [1, 1, 'scatter', false], ash: [1, 1, 'scatter', false], stake_holes: [1, 1, 'scatter', false],
+    };
+    const features = [];
+    const featWanted = (roomData.features || []).filter(f => FEAT[f.k]);
+    if (featWanted.length && !swim) {
+      const taken = new Set();
+      const inLaneCell = (x, y) => ((gaps.east || gaps.west) && Math.abs(y - midY) <= 1) || ((gaps.north || gaps.south) && Math.abs(x - midX) <= 1);
+      const nearPoiCell = (x, y) => pois.some(([px, py]) => Math.abs(x - px) <= 1 && Math.abs(y - py) <= 1);
+      const nearWall = (x, y) => { for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) if (at(x + dx, y + dy) === BLOCK) return true; return false; };
+      const free = (x, y, w, h, block) => {
+        for (let dy = -(block ? 1 : 0); dy < h + (block ? 1 : 0); dy++) for (let dx = -(block ? 1 : 0); dx < w + (block ? 1 : 0); dx++) {
+          if (taken.has((y + dy) * W + x + dx)) return false;
+        }
+        for (let dy = 0; dy < h; dy++) for (let dx = 0; dx < w; dx++) {
+          const cx = x + dx, cy = y + dy;
+          if (cx < 2 || cy < 2 || cx > W - 3 || cy > H - 3 || at(cx, cy) !== FLOOR || inLaneCell(cx, cy) || nearPoiCell(cx, cy)) return false;
+        }
+        return true;
+      };
+      for (const f of featWanted) {
+        const [w, h, where0, block] = FEAT[f.k];
+        const where = f.main ? 'main' : where0;
+        const score = (x, y) => {
+          const dc = Math.hypot(x + w / 2 - midX, y + h / 2 - midY);
+          if (where === 'main') return Math.abs(dc - 3.5);
+          if (where === 'centre') return Math.abs(dc - 4.5) + rng() * 2;
+          if (where === 'edge') return (nearWall(x, y) ? 0 : 4) + rng() * 3;
+          return rng() * 6;
+        };
+        const cands = [];
+        for (let y = 2; y < H - 2; y++) for (let x = 2; x < W - 2; x++) if (free(x, y, w, h, block)) cands.push([score(x, y), x, y]);
+        cands.sort((a, b) => a[0] - b[0]);
+        let placed = 0;
+        for (const [, x, y] of cands) {
+          if (placed >= (f.n || 1)) break;
+          if (!free(x, y, w, h, block)) continue;
+          if (block) {
+            for (let dy = 0; dy < h; dy++) for (let dx = 0; dx < w; dx++) set(x + dx, y + dy, BLOCK);
+            if (!allReachable()) { for (let dy = 0; dy < h; dy++) for (let dx = 0; dx < w; dx++) set(x + dx, y + dy, FLOOR); continue; }
+          }
+          for (let dy = 0; dy < h; dy++) for (let dx = 0; dx < w; dx++) taken.add((y + dy) * W + x + dx);
+          features.push({ k: f.k, x, y, w, h, c: f.c || null, main: !!f.main && placed === 0, i: placed, block, yaw: Math.floor(rng() * 8) * Math.PI / 4, s: 0.85 + rng() * 0.3 });
+          placed++;
+        }
+      }
+    }
+
+    // scattered obstacles, kept only when they don't break connectivity (fewer where the words
+    // already furnish the room)
     const obstacles = [];
-    const tries = 8 + Math.floor(rng() * 8);
+    const tries = features.length ? 2 : 8 + Math.floor(rng() * 8);
     for (let i = 0; i < tries; i++) {
       const big = rng() < 0.35;
       const ox = 2 + Math.floor(rng() * (W - 5));
@@ -564,7 +628,7 @@
       name: roomData.name || '',
       gravestones: roomData.gravestones,
       W, H, T, grid, gaps,
-      stairsUp, stairsDown, portals, obstacles, props, spawnSlots, entries, wide,
+      stairsUp, stairsDown, portals, obstacles, props, spawnSlots, entries, wide, features,
       mossy: proseFx.mossy, snowy: proseFx.snowy,
       exits, swim,
       dark: flags.includes('dark'),
