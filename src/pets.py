@@ -137,7 +137,8 @@ class Pet(Mobile):
         # Find target in room
         target = None
         for char in self.room.characters:
-            if char != self and char.name.lower().startswith(target_name.lower()):
+            if char != self and (char.name.lower().startswith(target_name.lower())
+                                 or (getattr(char, 'keyword_name', '') or '').lower().startswith(target_name.lower())):
                 target = char
                 break
 

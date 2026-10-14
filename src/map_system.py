@@ -1092,6 +1092,7 @@ def build_combat_payload(player) -> dict:
                 'id': _mob_uid(entity),
                 **_pos_fields(entity),
                 'name': getattr(entity, 'name', 'Unknown'),
+                'kw': _kw(entity),   # its keywords when named by description (3D body)
                 'short': str(getattr(entity, 'short_desc', '') or ''),
                 'long': str(getattr(entity, 'long_desc', '') or '')[:80],
                 'pv': getattr(entity, 'vnum', None),
@@ -1504,6 +1505,12 @@ def _pos_fields(entity):
     return {}
 
 
+def _kw(entity):
+    """A creature's keywords, when it is called by its description instead (mobs.Mobile.said_name)."""
+    kw = getattr(entity, 'keyword_name', None)
+    return kw if kw and kw != getattr(entity, 'name', None) else None
+
+
 def _mob_uid(entity) -> int:
     """A stable id for one live mob, so clients can follow it across updates (mobs have
     no unique name: three "a rat" in one room are three ids)."""
@@ -1565,7 +1572,9 @@ def _room_entities(room, vnum, player):
                 'id': _mob_uid(entity),
                 **_pos_fields(entity),
                 'name': getattr(entity, 'name', 'Unknown'),
-                # what it is ("the green gelatinous blob") and its type, for the 3D body
+                # what it is ("the green gelatinous blob") and its type, for the 3D body; kw its
+                # keywords when it is named by its description (mobs.Mobile.said_name)
+                'kw': _kw(entity),
                 'short': str(getattr(entity, 'short_desc', '') or ''),
                 'long': str(getattr(entity, 'long_desc', '') or '')[:80],
                 'pv': getattr(entity, 'vnum', None),

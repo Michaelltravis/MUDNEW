@@ -11187,7 +11187,7 @@ class CommandHandler:
         target = None
         for char in player.room.characters:
             if char != player and hasattr(char, 'name'):
-                if char.name.lower().startswith(target_name):
+                if char.name.lower().startswith(target_name) or (getattr(char, 'keyword_name', '') or '').lower().startswith(target_name):
                     target = char
                     break
 
@@ -14961,7 +14961,7 @@ class CommandHandler:
             target = None
 
             for char in player.room.characters:
-                if char.name.lower().startswith(target_name):
+                if char.name.lower().startswith(target_name) or (getattr(char, 'keyword_name', '') or '').lower().startswith(target_name):
                     target = char
                     break
 

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from world import World, Room
 
 from config import Config
+import re as _re
 from player import Character
 from affects import AffectManager
 from regeneration import RegenerationCalculator
@@ -169,10 +170,25 @@ class Mobile(Character):
         self.damage_dice = '1d4'
         
     @staticmethod
+    def said_name(name: str, short: str) -> Optional[str]:
+        """What a creature is called in play when its name is a list of keywords ("ogre wandering
+        brute giant", the build-out's way): its description ("a wandering ogre"). None when the name
+        already reads as one: a single word ("rat") or the description itself."""
+        name, short = (name or '').strip(), (short or '').strip()
+        if len(name.split()) < 2 or not short or short.endswith(('.', '!')):
+            return None
+        bare = _re.sub(r'^(a|an|the|some)\s+', '', short, flags=_re.I)
+        return None if name.lower() in (short.lower(), bare.lower()) else short
+
+    @staticmethod
     def apply_prototype(mob: 'Mobile', proto: dict, world: 'World') -> 'Mobile':
         """Apply prototype data onto an existing mob instance."""
         mob.name = proto.get('name', 'a creature')
         mob.short_desc = proto.get('short_desc', mob.name)
+        # a name written as keywords is said as the description (chat, combat lines, corpses); the
+        # words stay its keywords, for targeting, reputation and the 3D body (keyword_name)
+        mob.keyword_name = mob.name
+        mob.name = Mobile.said_name(mob.name, mob.short_desc) or mob.name
         mob.long_desc = proto.get('long_desc', f"{mob.name} is here.")
         mob.description = proto.get('description', '')
         # a zone's population (population.py): its rank, the route it walks, who it calls when hit
@@ -190,7 +206,7 @@ class Mobile(Character):
                       'shall', 'can', 'stands', 'sitting', 'standing', 'drifts', 'lurks',
                       'walks', 'paces', 'hovers', 'floats', 'lies', 'rests'}
         keywords = set()
-        for text in [mob.name, mob.short_desc, mob.long_desc]:
+        for text in [mob.keyword_name, mob.short_desc, mob.long_desc]:
             words = text.lower().replace(',', '').replace('.', '').replace('!', '').replace("'", '').split()
             for word in words:
                 if word not in stop_words and len(word) > 2:
@@ -1457,7 +1473,7 @@ class Mobile(Character):
         c = self.config.COLORS
         if self.room:
             await self.room.send_to_room(
-                f"{c['red']}{self.name} is DEAD!{c['reset']}"
+                f"{c['red']}{self.name[:1].upper() + self.name[1:]} is DEAD!{c['reset']}"
             )
             
     async def regen_tick(self):

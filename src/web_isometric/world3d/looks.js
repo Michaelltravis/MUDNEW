@@ -83,7 +83,7 @@ const wordsOf = s => s.replace(/[^a-z\- ']/g, ' ').split(/\s+/).map(w => w.repla
 // leader" is read from the part after the comma.
 export function describe(m) {
   const short = String(m.short || '').trim();
-  const name = String(m.name || '').trim();
+  const name = String(m.kw || m.name || '').trim();     // kw: the keywords, when the server names it by description
   const sentence = /[.!]$/.test(short) || short.split(/\s+/).length > 7;
   let text = clean(sentence || !short ? name : short);
   const appos = text.match(/^[^,]+,\s+(?:the|a|an)\s+(.+)$/);
@@ -209,11 +209,11 @@ export function creatureLook(m) {
   let look = lookOf(m);
   // a female of a kind with its own female model (goblins)
   const b = look.beast;
-  if (b && b.alt && (m.sex === 'female' || /\b(woman|women|girl|wife|mother|maiden|queen|matron|crone|she)\b/.test(`${m.short || ''} ${m.name || ''}`.toLowerCase())))
+  if (b && b.alt && (m.sex === 'female' || /\b(woman|women|girl|wife|mother|maiden|queen|matron|crone|she)\b/.test(`${m.short || ''} ${m.kw || m.name || ''}`.toLowerCase())))
     look = { ...look, beast: { ...b, mob: b.alt } };
   // a colour the model can't wear: the body that can
   const c = look.beast;
-  const said = `${m.short || ''} ${m.name || ''}`.toLowerCase();
+  const said = `${m.short || ''} ${m.kw || m.name || ''}`.toLowerCase();
   if (c && c.orTinted && c.tint != null) {
     if (c.own && new RegExp(`\\b${c.own}\\b`).test(said)) look = { ...look, beast: { ...c, tint: undefined } };   // already that colour
     else {
