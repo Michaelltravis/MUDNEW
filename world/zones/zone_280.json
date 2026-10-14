@@ -328,6 +328,10 @@
     {
      "vnum": 28053,
      "chance": 35
+    },
+    {
+     "vnum": 28060,
+     "chance": 30
     }
    ],
    "boss_loot_chance": 100,
@@ -573,6 +577,35 @@
     "move_regen": 15
    },
    "armor": 14
+  },
+  "28060": {
+   "vnum": 28060,
+   "name": "spellwoven trousers",
+   "short_desc": "a pair of spellwoven trousers",
+   "room_desc": "A pair of loose trousers woven with faint glowing runes lies here.",
+   "description": "Loose trousers of ash-grey cloth, a thread of ember-red runes woven down each leg. They are warm, and they hum faintly.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 30000,
+   "wear_slot": "legs",
+   "armor_class": 4,
+   "affects": [
+    {
+     "type": "int",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 40
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 4,
+   "flags": [
+    "magic",
+    "glow"
+   ]
   }
  },
  "rooms": {

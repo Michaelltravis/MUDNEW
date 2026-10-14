@@ -282,6 +282,38 @@
     {
      "vnum": 29052,
      "chance": 35
+    },
+    {
+     "vnum": 29060,
+     "chance": 35
+    },
+    {
+     "vnum": 29061,
+     "chance": 35
+    },
+    {
+     "vnum": 29062,
+     "chance": 30
+    },
+    {
+     "vnum": 29063,
+     "chance": 30
+    },
+    {
+     "vnum": 29064,
+     "chance": 25
+    },
+    {
+     "vnum": 29065,
+     "chance": 25
+    },
+    {
+     "vnum": 29066,
+     "chance": 25
+    },
+    {
+     "vnum": 29067,
+     "chance": 25
     }
    ],
    "boss_loot_chance": 100,
@@ -524,6 +556,246 @@
     "hitroll": 12,
     "damroll": 14
    }
+  },
+  "29060": {
+   "vnum": 29060,
+   "name": "archmage starwoven robe",
+   "short_desc": "the Archmage's starwoven robe",
+   "room_desc": "A robe of deep indigo, stitched with moving stars, lies folded here.",
+   "description": "Midnight-blue silk falls to the ankles, its hem embroidered with constellations that turn slowly as you watch. The sleeves are wide enough to hide a spellbook.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 60000,
+   "wear_slot": "body",
+   "armor_class": 9,
+   "affects": [
+    {
+     "type": "int",
+     "value": 4
+    },
+    {
+     "type": "max_mana",
+     "value": 60
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 9,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "archmage_vestments"
+  },
+  "29061": {
+   "vnum": 29061,
+   "name": "archmage pointed wizard hat",
+   "short_desc": "the Archmage's pointed wizard hat",
+   "room_desc": "A tall, pointed wizard's hat sags against the floor here.",
+   "description": "A tall conical hat of the same starwoven silk, its brim wide and its tip bent with age. Silver sigils circle the band.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 50000,
+   "wear_slot": "head",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "int",
+     "value": 3
+    },
+    {
+     "type": "wis",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "archmage_vestments"
+  },
+  "29062": {
+   "vnum": 29062,
+   "name": "archmage silk gloves",
+   "short_desc": "a pair of the Archmage's silk gloves",
+   "room_desc": "A pair of fine silk gloves lies here.",
+   "description": "Thin gloves of grey silk, the fingertips worn shiny from turning pages and tracing sigils.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 40000,
+   "wear_slot": "hands",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "archmage_vestments"
+  },
+  "29063": {
+   "vnum": 29063,
+   "name": "archmage star-silk slippers",
+   "short_desc": "a pair of the Archmage's star-silk slippers",
+   "room_desc": "A pair of soft slippers lies here.",
+   "description": "Soft slippers of star-silk that make no sound at all on stone.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 40000,
+   "wear_slot": "feet",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "archmage_vestments"
+  },
+  "29064": {
+   "vnum": 29064,
+   "name": "archmage starfall mantle cloak",
+   "short_desc": "the Archmage's starfall mantle",
+   "room_desc": "A long mantle of deep indigo, shot through with falling stars, lies here.",
+   "description": "A mantle that sweeps the floor behind its wearer, its lining the colour of the sky an hour after sunset. Now and then one of the stars stitched into it falls, slowly, from shoulder to hem.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 55000,
+   "wear_slot": "about",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    },
+    {
+     "type": "spell_resist",
+     "value": 10
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 6,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "archmage_vestments"
+  },
+  "29065": {
+   "vnum": 29065,
+   "name": "archmage starwoven leggings",
+   "short_desc": "a pair of the Archmage's starwoven leggings",
+   "room_desc": "A pair of soft indigo leggings lies here.",
+   "description": "Close-fitting leggings of the same starwoven silk as the robe, worn beneath it.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 40000,
+   "wear_slot": "legs",
+   "armor_class": 4,
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 40
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 4,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "archmage_vestments"
+  },
+  "29066": {
+   "vnum": 29066,
+   "name": "archmage silk sleeves",
+   "short_desc": "a pair of the Archmage's silk sleeves",
+   "room_desc": "A pair of loose silk sleeves, embroidered with sigils, lies here.",
+   "description": "Loose over-sleeves of indigo silk, their cuffs worked with silver sigils that warm when a spell is near.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 35000,
+   "wear_slot": "arms",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    },
+    {
+     "type": "wis",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "archmage_vestments"
+  },
+  "29067": {
+   "vnum": 29067,
+   "name": "archmage star orb",
+   "short_desc": "the Archmage's star orb",
+   "room_desc": "A clear orb with a tiny star turning inside it rests here.",
+   "description": "A sphere of flawless crystal, cool and heavy in the palm. Deep inside it a single star turns slowly, and the room grows a little brighter around it.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 60000,
+   "wear_slot": "hold",
+   "armor_class": 0,
+   "affects": [
+    {
+     "type": "int",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 50
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 0,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "archmage_vestments"
   }
  },
  "rooms": {

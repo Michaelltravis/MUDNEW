@@ -71,6 +71,17 @@ export const PROC = { bow: 'bow', mace: 'mace', hammer: 'hammer', spear: 'spear'
   pick: 'pick', whip: 'whip', claw: 'claw', instrument: 'lute', orb: 'orb', relic: 'orb', skull: 'orb', censer: 'censer',
   lantern: 'lantern', torch: 'torch' };
 const INSTRUMENT_SHAPES = new Set(['lute', 'lyre', 'harp', 'flute', 'drum', 'horn']);
+// a staff by its head (gear_look.py STAFF_HEADS), else the class's own: a wizard's crystal, a
+// necromancer's skull, a plain pilgrim's staff for anyone else (procgear.js staff_*)
+export const STAFF_HEADS = new Set(['crystal', 'skull', 'gnarled', 'plain']);
+const STAFF_OF = { mage: 'crystal', necromancer: 'skull' };
+export const staffShape = (p, cls) => `staff_${STAFF_HEADS.has(p.v) ? p.v : STAFF_OF[String(cls || '').toLowerCase()] || 'plain'}`;
+// a hat by its shape (gear_look.py HATS), else the class's: casters the pack's wizard hat, the
+// rest a brimmed hat with a feather; brim, cap and mitre are built in code (procgear.js)
+const HAT_SHAPES = new Set(['wizard', 'brim', 'cap', 'mitre']);
+const CASTERS = new Set(['mage', 'necromancer']);
+export const hatShape = (p, cls) => (HAT_SHAPES.has(p.v) ? p.v : CASTERS.has(String(cls || '').toLowerCase()) ? 'wizard' : 'brim');
+const HAT_ADDON = { brim: 'brimhat', cap: 'cap', mitre: 'mitre' };
 export const procShape = p => (p.k === 'instrument' && INSTRUMENT_SHAPES.has(p.v) ? p.v : PROC[p.k]);
 // a helm's plume, unless the helm has a colour of its own: one that stands out on steel and gold
 const PLUME = { warrior: 'crimson', paladin: 'royal_blue', cleric: 'white', mage: 'violet', necromancer: 'black',
@@ -164,7 +175,11 @@ function shieldRoles(p, cls) {
   return withTrim(r, p);
 }
 function headRoles(p, cls) {
-  if (p.k === 'hat' || p.k === 'hood') { const c = clothOf(p, cls); return { cloth: worn(c, p), cloth_light: worn(c, p) }; }
+  if (p.k === 'hat' || p.k === 'hood') {
+    const c = clothOf(p, cls), r = { cloth: worn(c, p), cloth_light: worn(c, p) };
+    if (trimFor(p)) r.accent = trimFor(p);          // a finer hat's band in silver or gold
+    return r;
+  }
   if (p.m) return withTrim({ metal: worn(p.m, p), metal_dark: darkOf(p.m, p) }, p);
   return {};
 }
@@ -238,7 +253,8 @@ export function planLook(look, cls, kit) {
 
   // the main hand: a piece from the pack, or a shape built in code; finer ones get a pommel stone
   const m = look.main;
-  if (m) {
+  if (m && m.k === 'staff') procs.push({ shape: staffShape(m, cls), piece: 'knight-1H_Sword', look: m, roles: weaponRoles(m, cls) });
+  else if (m) {
     const shape = procShape(m);
     if (shape) procs.push({ shape, piece: m.k === 'bow' ? 'knight-1H_Sword_Offhand' : 'knight-1H_Sword', look: m, roles: weaponRoles(m, cls) });
     else if (MAIN[m.k]) {
@@ -262,7 +278,12 @@ export function planLook(look, cls, kit) {
   }
   // the head: a helm (a crest on a finer one), a hat, a hood, a crown
   const h = look.head;
-  if (h && HEAD[h.k]) {
+  const hat = h && h.k === 'hat' ? hatShape(h, cls) : null;
+  if (hat && HAT_ADDON[hat]) {
+    const c = clothOf(h, cls);
+    addons.push({ kind: HAT_ADDON[hat], on: headPart, bone: 'head', spot: 'crown', hat: true,
+      roles: { cloth: worn(c, h), trim: trimFor(h) || darkOf(c, h), accent: h.e ? gemFor(h, cls) : PLUME[cls] || 'white' } });
+  } else if (h && HEAD[h.k]) {
     const name = add(HEAD[h.k], headRoles(h, cls), FIT[`${HEAD[h.k]}@${headModel}`]);
     if (name && h.k === 'helm' && (h.t || 0) >= 2) addons.push({ kind: 'crest', on: name, spot: 'top', roles: { cloth: h.s || h.c ? clothOf(h, cls) : PLUME[cls] || 'crimson' } });
   }

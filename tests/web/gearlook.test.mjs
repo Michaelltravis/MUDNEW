@@ -74,7 +74,7 @@ test('the swing follows the hand: two hands, two blades, a bow, a staff, nothing
 
 // what a role of a built-in-code piece is painted with (as equip.js PROC_PAINT)
 const PAINT = { wood: 'wood', wood_dark: 'wood_dark', wood_pale: 'wood_pale', metal: 'steel', metal_dark: 'steel~dark', leather: 'leather',
-  string: 'white', hole: 'black', gem: 'gem_red', bone: 'bone', cloth: 'red', gold: 'gold' };
+  string: 'white', hole: 'black', gem: 'gem_red', bone: 'bone', cloth: 'red', gold: 'gold', trim: 'gold', accent: 'white' };
 const paint = role => { assert.ok(PAINT[role], `a role equip.js can paint: ${role}`); return (kit.col(PAINT[role]) + 0.5) / kit.N; };
 function whole(g, what) {
   const verts = g.position.length / 3;
@@ -267,4 +267,48 @@ test('the weapon decides the blow from afar: a bow shoots whoever holds it; a ca
   assert.equal(rangedBlow({}, 'necromancer').school, 'necrotic', 'a bolt with nothing in hand');
   assert.equal(rangedBlow({ main: { k: 'crossbow', h: 1 } }, 'mage').kind, 'shot', 'a mage with a crossbow shoots it');
   assert.equal(rangedBlow(null, 'thief'), null);
+});
+
+// ---- class-styled gear (class_gear.py): hats and staves built in code, and every class at the top ----
+test("a hat by its shape, else the class's: a caster's wizard hat, a bard's brim; brim, cap and mitre built in code", async () => {
+  const { hatShape } = await import('../../src/web_isometric/world3d/gearlook.js');
+  assert.equal(hatShape({ k: 'hat' }, 'mage'), 'wizard');
+  assert.equal(hatShape({ k: 'hat' }, 'bard'), 'brim');
+  assert.equal(hatShape({ k: 'hat', v: 'mitre' }, 'mage'), 'mitre');
+  const kinds = { brim: 'brimhat', cap: 'cap', mitre: 'mitre' };
+  for (const [v, kind] of Object.entries(kinds)) {
+    const plan = planLook({ v: 1, sig: `hat:${v}`, head: { k: 'hat', v, c: 'forest', t: 2 } }, 'bard', kit);
+    const ad = plan.addons.find(a => a.kind === kind);
+    assert.ok(ad && ad.spot === 'crown' && ad.hat, `${v}: an add-on round the head`);
+    assert.ok(!names(plan).includes('mage-Mage_Hat'), `${v}: not the wizard hat`);
+    assert.ok(ADDONS[kind], `${kind} can be built`);
+    whole(buildAddon(kind, { p: [0, 1, 0], r: 0.4, rz: 0.37 }, paint), kind);
+  }
+  assert.ok(names(planLook({ v: 1, sig: 'hat:w', head: { k: 'hat', v: 'wizard', t: 2 } }, 'bard', kit)).includes('mage-Mage_Hat'));
+});
+
+test("a staff by its head, else the class's: a mage's crystal, a necromancer's skull", async () => {
+  const { staffShape } = await import('../../src/web_isometric/world3d/gearlook.js');
+  assert.equal(staffShape({ k: 'staff' }, 'mage'), 'staff_crystal');
+  assert.equal(staffShape({ k: 'staff' }, 'necromancer'), 'staff_skull');
+  assert.equal(staffShape({ k: 'staff' }, 'cleric'), 'staff_plain');
+  assert.equal(staffShape({ k: 'staff', v: 'gnarled' }, 'mage'), 'staff_gnarled');
+  for (const head of ['crystal', 'skull', 'gnarled', 'plain']) {
+    const plan = planLook({ v: 1, sig: `staff:${head}`, main: { k: 'staff', h: 2, v: head, m: 'wood', t: 2 } }, 'mage', kit);
+    const pr = plan.procs.find(p => p.shape === `staff_${head}`);
+    assert.ok(pr && kit.pieces[pr.piece], `${head}: built in code on a sword's mount`);
+    const a = buildProc(pr.shape, pr.look, paint);
+    whole(a, pr.shape);
+    const ys = [...a.position].filter((_, i) => i % 3 === 1);
+    assert.ok(Math.max(...ys) - Math.min(...ys) > 1.5, `${head}: as long as a staff`);
+  }
+});
+
+test('every class as gearup dresses it (gallery ENDGAME, kept true by tests/test_class_gear.py) is drawn as its class', async () => {
+  const { ENDGAME } = await import('../../src/web_isometric/world3d/gallery.js').catch(() => ({}));
+  if (!ENDGAME) return;          // gallery.js needs three.js: the Python test checks the data instead
+  for (const [cls, look] of Object.entries(ENDGAME)) {
+    const plan = planLook({ ...look, sig: `endgame:${cls}` }, cls, kit);
+    assert.equal(torso(plan), `${CLASS_BASE[cls].model}-Body`, `${cls} keeps its own body`);
+  }
 });

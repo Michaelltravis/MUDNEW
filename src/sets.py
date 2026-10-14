@@ -222,9 +222,10 @@ NAMED_SETS = {
     "necromancers_regalia": {
         "name": "Necromancer's Regalia",
         "level_range": (35, 50),
+        "classes": ("necromancer",),
         "zone": 140,  # Necropolis
         "pieces": {
-            14001: "bone plate armor",
+            14001: "bone-stitched robes",
             14002: "skull-topped staff",
             14003: "death shroud cloak",
             14004: "ring of the lich",
@@ -285,6 +286,62 @@ NAMED_SETS = {
         },
         "procs": {4: [{"type": "on_defend", "effect": "frost_aura", "chance": 20}]},
     },
+
+    # ── Class sets (55-66): what a caster or a rogue wears at the top (class_gear.py) ──
+    "archmage_vestments": {
+        "name": "Archmage's Vestments",
+        "level_range": (60, 66),
+        "zone": 290,  # the Black Observatory: the Eclipse Regent
+        "classes": ("mage",),
+        "pieces": {
+            29060: "archmage starwoven robe",
+            29061: "archmage pointed wizard hat",
+            29062: "archmage silk gloves",
+            29063: "archmage star-silk slippers",
+            29064: "archmage starfall mantle",
+            29065: "archmage starwoven leggings",
+            29066: "archmage silk sleeves",
+            29067: "archmage star orb",
+        },
+        "bonuses": {
+            2: {"int": 3, "max_mana": 60},
+            4: {"damroll": 6, "spell_resist": 15, "max_hp": 60},
+            6: {"int": 2, "wis": 2, "max_mana": 80},
+            8: {"damroll": 6, "max_hp": 80, "spell_resist": 10},
+        },
+    },
+    "lichlord_shroud": {
+        "name": "Lich-Lord's Shroud",
+        "level_range": (60, 68),
+        "zone": 285,  # the Thalassine Lich and the Bone-Crowned Sovereign
+        "classes": ("necromancer",),
+        "pieces": {
+            28560: "lich-lord grave-silk robe",
+            28561: "lich-lord cowl",
+            29560: "lich-lord bone-knuckled wraps",
+            29561: "lich-lord grave-walker shoes",
+        },
+        "bonuses": {
+            2: {"int": 3, "shadow_resist": 15},
+            4: {"damroll": 6, "max_mana": 60, "max_hp": 60},
+        },
+    },
+    "nightblade_leathers": {
+        "name": "Nightblade's Leathers",
+        "level_range": (55, 60),
+        "zone": 245,  # Shadowspire Citadel: Shadow Lord Malachar
+        "classes": ("thief", "assassin", "bard"),
+        "pieces": {
+            24510: "nightblade leather jerkin",
+            24511: "nightblade hood",
+            24512: "nightblade leather gloves",
+            24513: "nightblade leather breeches",
+        },
+        "bonuses": {
+            2: {"dex": 3, "hitroll": 4},
+            4: {"damroll": 7, "max_hp": 70},
+        },
+    },
 }
 
 
@@ -294,8 +351,8 @@ def get_named_set_bonus(set_id: str, pieces: int) -> dict:
     if not config:
         return {}
     bonuses = {}
-    for threshold in (2, 4):
-        if pieces >= threshold and threshold in config.get('bonuses', {}):
+    for threshold in sorted(config.get('bonuses', {})):
+        if pieces >= threshold:
             for stat, val in config['bonuses'][threshold].items():
                 bonuses[stat] = bonuses.get(stat, 0) + val
     return bonuses

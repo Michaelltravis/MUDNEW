@@ -128,7 +128,10 @@
     "necromancers_regalia": ["#d8d2bc", "#7a7a5a", "#9adba0"],
     "chaos_weave":          ["#b06ce0", "#4a2a78", "#e08aff"],
     "apocalypse_raiment":   ["#5a2a2a", "#1c1014", "#e0402a"],
-    "frostlords_mantle":    ["#cfe8ff", "#5a82c0", "#bfe2ff"]
+    "frostlords_mantle":    ["#cfe8ff", "#5a82c0", "#bfe2ff"],
+    "archmage_vestments":   ["#4058b8", "#1a2050", "#cfe0ff"],
+    "lichlord_shroud":      ["#46464f", "#101016", "#7cf0c0"],
+    "nightblade_leathers":  ["#403238", "#141014", "#d03040"]
   },
   "roughness": {"skin": 0.65, "hair": 0.75, "eyes": 0.3, "metal": 0.32, "metal_dark": 0.4, "gold": 0.28, "trim": 0.3,
     "gem": 0.18, "crystal": 0.15, "bone": 0.55, "leather": 0.72, "leather_light": 0.72, "leather_dark": 0.75, "strap": 0.8,

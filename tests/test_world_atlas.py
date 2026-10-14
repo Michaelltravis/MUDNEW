@@ -125,10 +125,19 @@ async def main():
     open_rooms = all_open - gods
     deadly = {v for v in open_rooms if W[v].flags & {'deathtrap', 'death'}}
 
+    # a ferry or a barge (rites.py tolls) carries a body across a way it cannot walk: a way through
+    import rites
+    carried = collections.defaultdict(list)
+    for t in rites.DATA.get('tolls', []):
+        carried[t['room']].append(t['to'])
+        if t.get('via'):
+            carried[t['room']].append(t['via'])          # the boat, mid-crossing
+            carried[t['via']].append(t['to'])
+
     def walker(rooms):
         def fwd(v):
             return [ex['to_room'] for ex in W[v].exits.values() if isinstance(ex, dict) and ex.get('to_room') in rooms
-                    and not doors.is_seal(ex.get('door'))]
+                    and not doors.is_seal(ex.get('door'))] + [t for t in carried.get(v, ()) if t in rooms]
         rev = collections.defaultdict(set)
         for v in rooms:
             for t in fwd(v):

@@ -3497,7 +3497,12 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'syntax': "cast 'weaken' <target>",
             'title': 'Weaken'},
  'wear': {'category': 'command',
-          'description': "Wear an item or 'wear all' to wear everything you can.",
+          'description': "Wear an item or 'wear all' to wear everything you can. Each class wears only "
+                         "what it is trained in: a mage or necromancer cloth, a thief, assassin or bard "
+                         "leather, a ranger or cleric up to mail (and a shield), a warrior or paladin "
+                         "anything. Leather boots, gloves and bracers suit anyone; gauntlets and sabatons "
+                         "count as armour. Weapons too: a mage carries a staff, a wand or a dagger; a "
+                         "thief no two-handed sword. In /play what you can't use is greyed.",
           'syntax': 'wear',
           'title': 'Wear'},
  'weather': {'category': 'command',

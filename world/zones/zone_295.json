@@ -280,6 +280,18 @@
     {
      "vnum": 29552,
      "chance": 35
+    },
+    {
+     "vnum": 29560,
+     "chance": 35
+    },
+    {
+     "vnum": 29561,
+     "chance": 35
+    },
+    {
+     "vnum": 29562,
+     "chance": 30
     }
    ],
    "boss_loot_chance": 100,
@@ -522,6 +534,95 @@
     "hitroll": 13,
     "damroll": 15
    }
+  },
+  "29560": {
+   "vnum": 29560,
+   "name": "lich-lord bone-knuckled wraps",
+   "short_desc": "a pair of lich-lord's bone-knuckled wraps",
+   "room_desc": "A pair of grey hand wraps, knuckled with little bones, lies here.",
+   "description": "Grey linen wraps bound tight about the hands, a finger-bone sewn over every knuckle.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 40000,
+   "wear_slot": "hands",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    },
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "lichlord_shroud"
+  },
+  "29561": {
+   "vnum": 29561,
+   "name": "lich-lord grave-walker shoes",
+   "short_desc": "a pair of lich-lord's grave-walker shoes",
+   "room_desc": "A pair of soft black shoes, caked with grave dirt, lies here.",
+   "description": "Soft shoes of black cloth, the soles worn thin by long walks among the tombs.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 40000,
+   "wear_slot": "feet",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "lichlord_shroud"
+  },
+  "29562": {
+   "vnum": 29562,
+   "name": "grave-silk leggings",
+   "short_desc": "a pair of grave-silk leggings",
+   "room_desc": "A pair of black silk leggings lies here.",
+   "description": "Close-fitting leggings of black silk, cold to the touch, worn under a robe.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 30000,
+   "wear_slot": "legs",
+   "armor_class": 4,
+   "affects": [
+    {
+     "type": "int",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 40
+    }
+   ],
+   "type": "armor",
+   "min_level": 64,
+   "armor": 4,
+   "flags": [
+    "magic",
+    "glow"
+   ]
   }
  },
  "rooms": {

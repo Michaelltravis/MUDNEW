@@ -115,6 +115,24 @@
     24501,
     24503,
     24502
+   ],
+   "boss_loot_table": [
+    {
+     "vnum": 24510,
+     "chance": 35
+    },
+    {
+     "vnum": 24511,
+     "chance": 35
+    },
+    {
+     "vnum": 24512,
+     "chance": 30
+    },
+    {
+     "vnum": 24513,
+     "chance": 30
+    }
    ]
   }
  },
@@ -187,6 +205,126 @@
     "wisdom": 3,
     "corruption_immunity": true
    }
+  },
+  "24510": {
+   "vnum": 24510,
+   "name": "nightblade leather jerkin",
+   "short_desc": "a nightblade's leather jerkin",
+   "room_desc": "A supple black leather jerkin lies here.",
+   "description": "Black leather, oiled soft and silent, with a dozen hidden pockets and loops for knives along the ribs.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 50000,
+   "wear_slot": "body",
+   "armor_class": 11,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 4
+    },
+    {
+     "type": "hitroll",
+     "value": 3
+    }
+   ],
+   "type": "armor",
+   "min_level": 56,
+   "armor": 11,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "nightblade_leathers"
+  },
+  "24511": {
+   "vnum": 24511,
+   "name": "nightblade hood",
+   "short_desc": "a nightblade's hood",
+   "room_desc": "A deep black hood lies here.",
+   "description": "A close black hood that throws the face into shadow, cut so that it never catches on a branch or a blade.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 40000,
+   "wear_slot": "head",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 56,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "nightblade_leathers"
+  },
+  "24512": {
+   "vnum": 24512,
+   "name": "nightblade leather gloves",
+   "short_desc": "a pair of nightblade's leather gloves",
+   "room_desc": "A pair of thin black gloves lies here.",
+   "description": "Thin gloves of black kidskin, the fingertips cut away for a lock or a purse string.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 35000,
+   "wear_slot": "hands",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 56,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "nightblade_leathers"
+  },
+  "24513": {
+   "vnum": 24513,
+   "name": "nightblade leather breeches",
+   "short_desc": "a pair of nightblade's leather breeches",
+   "room_desc": "A pair of black leather breeches lies here.",
+   "description": "Breeches of soft black leather, reinforced at the knee and silent as a held breath.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 35000,
+   "wear_slot": "legs",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 56,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "nightblade_leathers"
   }
  },
  "rooms": {

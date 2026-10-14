@@ -265,7 +265,59 @@ function torch(m) {
   return m.done();
 }
 
-export const SHAPES = { bow, mace, lute, hammer, spear, polearm, scythe, pick, whip, claw, lyre, harp, flute, drum, horn, orb, censer, lantern, torch };
+// ---- staves, by their head (gearlook.js STAFF_HEADS). Built head down (-y) from the hand at the
+// origin; equip.js turns them over (as it does a lantern), so the head leads as a sword's point
+// does and the pack's own staff's crystal does ----
+const STAFF_TOP = -1.05, STAFF_FOOT = 0.62;
+function shaft(m, role, bend = 0) {
+  const pts = [];
+  for (let k = 0; k <= 6; k++) { const t = k / 6; pts.push([Math.sin(t * 9) * bend, STAFF_FOOT + (STAFF_TOP - STAFF_FOOT) * t, Math.cos(t * 7) * bend * 0.6, 0.046 - t * 0.006]); }
+  m.tube(pts, 6, role);
+  m.tube([[0, 0.12, 0, 0.056], [0, -0.14, 0, 0.056]], 6, 'leather');          // the grip
+  m.ball(0, STAFF_FOOT + 0.03, 0, 0.055, 0.06, 0.055, 'metal_dark');           // the iron foot
+}
+// a crystal held in three metal claws: the wizard's staff
+function staff_crystal(m) {
+  shaft(m, 'wood');
+  const y = STAFF_TOP;
+  m.tube([[0, y + 0.06, 0, 0.05], [0, y - 0.02, 0, 0.06]], 6, 'metal');
+  for (let k = 0; k < 3; k++) { const a = k / 3 * Math.PI * 2; m.tube([[Math.cos(a) * 0.04, y, Math.sin(a) * 0.04, 0.02], [Math.cos(a) * 0.1, y - 0.14, Math.sin(a) * 0.1, 0.016], [Math.cos(a) * 0.05, y - 0.28, Math.sin(a) * 0.05, 0.005]], 4, 'metal'); }
+  m.ball(0, y - 0.17, 0, 0.085, 0.15, 0.085, 'gem');
+  return m.done();
+}
+// a skull on a dark staff, a ring of bone below it: the necromancer's
+function staff_skull(m) {
+  shaft(m, 'wood_dark');
+  const y = STAFF_TOP;
+  m.tube([[0, y + 0.1, 0, 0.05], [0, y + 0.04, 0, 0.05]], 6, 'bone');
+  m.ball(0, y - 0.1, 0, 0.12, 0.13, 0.13, 'bone');                              // the cranium
+  m.box(0, y + 0.02, 0.05, 0.13, 0.07, 0.1, 'bone');                            // the jaw
+  for (const x of [-0.045, 0.045]) m.ball(x, y - 0.08, 0.11, 0.032, 0.035, 0.02, 'gem');   // eyes that glow
+  m.ball(0, y - 0.02, 0.125, 0.015, 0.025, 0.01, 'hole');                       // the nose
+  return m.done();
+}
+// a gnarled root of a staff, its head a knot of twisting wood round a stone: a druid's, a hedge wizard's
+function staff_gnarled(m) {
+  shaft(m, 'wood', 0.02);
+  const y = STAFF_TOP;
+  for (let k = 0; k < 4; k++) {
+    const a = k / 4 * Math.PI * 2, pts = [];
+    for (let j = 0; j <= 5; j++) { const t = j / 5; pts.push([Math.cos(a + t * 2.4) * (0.03 + 0.09 * Math.sin(t * Math.PI)), y + 0.05 - t * 0.3, Math.sin(a + t * 2.4) * (0.03 + 0.09 * Math.sin(t * Math.PI)), 0.028 - t * 0.02]); }
+    m.tube(pts, 5, 'wood');
+  }
+  m.ball(0, y - 0.12, 0, 0.06, 0.07, 0.06, 'gem');
+  return m.done();
+}
+// a plain staff with a capped head: a pilgrim's, a cleric's
+function staff_plain(m) {
+  shaft(m, 'wood');
+  m.ball(0, STAFF_TOP - 0.03, 0, 0.06, 0.07, 0.06, 'metal');
+  m.tube([[0, STAFF_TOP + 0.08, 0, 0.042], [0, STAFF_TOP + 0.02, 0, 0.042]], 6, 'metal');
+  return m.done();
+}
+
+export const SHAPES = { bow, mace, lute, hammer, spear, polearm, scythe, pick, whip, claw, lyre, harp, flute, drum, horn, orb, censer, lantern, torch,
+  staff_crystal, staff_skull, staff_gnarled, staff_plain };
 
 // ---- add-ons: small pieces that make finer gear finer ----
 // Each is built in the frame of the piece it sits on (equip.js passes where: a point and sizes
@@ -311,6 +363,38 @@ function crown(m, at) {
     m.tube([[x + Math.cos(a) * r, y, z + Math.sin(a) * rz, 0.05], [x + Math.cos(a) * r * 1.02, y + 0.16, z + Math.sin(a) * rz * 1.02, 0.004]], 4, 'metal');
   }
   m.ball(x, y + (circlet ? 0 : 0.03), z + rz + 0.01, 0.045, 0.06, 0.03, 'gem');
+  return m.done();
+}
+
+// ---- hats the pack doesn't have, sat round the head as a crown is (the 'crown' spot, brow
+// height): a wide brim with a feather, a soft cap, a bishop's mitre ----
+function brimhat(m, at) {
+  const [x, y, z] = at.p, r = (at.r || 0.42) * 1.06, rz = (at.rz || r * 0.92) * 1.06;
+  // the crown of the hat, tall enough to clear the hair, then a wide brim with a rolled edge
+  m.tube([[x, y - 0.02, z, r], [x, y + 0.3, z, r * 0.98], [x, y + 0.5, z, r * 0.78], [x, y + 0.56, z, r * 0.3]], 12, 'cloth');
+  m.tube([[x, y - 0.04, z, r * 1.6], [x, y + 0.01, z, r * 1.55]], 18, 'cloth');
+  const brim = [];
+  for (let k = 0; k <= 18; k++) { const a = k / 18 * Math.PI * 2; brim.push([x + Math.cos(a) * r * 1.58, y + 0.0 + 0.04 * Math.max(0, -Math.sin(a)), z + Math.sin(a) * rz * 1.58, 0.04]); }
+  m.tube(brim, 4, 'cloth');
+  m.tube([[x, y + 0.04, z, r * 1.02], [x, y + 0.12, z, r * 1.0]], 12, 'trim');         // the band
+  const fx = x + r * 0.8, fz = z - rz * 0.3, pts = [];
+  for (let k = 0; k <= 6; k++) { const t = k / 6; pts.push([fx + t * 0.2, y + 0.1 + t * 0.5 - t * t * 0.2, fz - t * 0.26, 0.05 * Math.sin(Math.PI * Math.min(1, t * 1.1)) + 0.008]); }
+  m.tube(pts, 4, 'accent');                                                             // the feather
+  return m.done();
+}
+function cap(m, at) {
+  const [x, y, z] = at.p, r = (at.r || 0.42) * 1.1, rz = (at.rz || r * 0.92) * 1.1;
+  m.ball(x, y + 0.08, z - rz * 0.06, r, 0.42, rz, 'cloth');
+  m.tube([[x, y - 0.03, z, r * 1.0], [x, y + 0.06, z, r * 1.0]], 12, 'trim');         // the band
+  m.ball(x, y + 0.5, z - rz * 0.06, 0.06, 0.05, 0.06, 'accent');                        // a button on top
+  return m.done();
+}
+function mitre(m, at) {
+  const [x, y, z] = at.p, r = (at.r || 0.42) * 1.06;
+  // a tall rounded mitre, a band at the brow and a gold strip up the front
+  m.tube([[x, y - 0.02, z, r], [x, y + 0.3, z, r * 0.98], [x, y + 0.62, z, r * 0.7], [x, y + 0.86, z, r * 0.25], [x, y + 0.92, z, 0.02]], 12, 'cloth');
+  m.tube([[x, y - 0.03, z, r * 1.03], [x, y + 0.08, z, r * 1.03]], 12, 'trim');
+  for (const s of [1, -1]) m.tube([[x, y + 0.06, z + s * r * 0.99, 0.035], [x, y + 0.3, z + s * r * 0.97, 0.035], [x, y + 0.6, z + s * r * 0.69, 0.03], [x, y + 0.82, z + s * r * 0.3, 0.02]], 4, 'trim');
   return m.done();
 }
 
@@ -372,7 +456,7 @@ function emblem(m, at) {
   return m.done();
 }
 
-export const ADDONS = { gem, boss, crest, pauldron, crown, emblem };
+export const ADDONS = { gem, boss, crest, pauldron, crown, emblem, brimhat, cap, mitre };
 
 // turned over along y (a lantern made to hang from a hip, carried in a hand instead)
 function flipY(a) {
