@@ -6,7 +6,7 @@
 - wear, wield, hold and 'wear all' refuse the rest with the reason; nothing moves;
 - logging in, an older character puts away what its class can't use;
 - every class's starting kit is its own; gearup dresses each class in its own kind (a mage in robes,
-  a hat and a staff; no two-handed weapon with a shield) and a set made for it where there is one;
+  a hat and a staff; no two-handed weapon with a shield) and in the whole eight-piece set made for it;
 - the new class sets and the ranger's longbow exist, and bosses drop them;
 - the /play payload carries the rules and each item's key; the gear gallery's ENDGAME is current.
 
@@ -134,13 +134,12 @@ async def main():
         looks[cls] = gear_look.look_of(p)
         sets = {getattr(i, 'set_id', None) for i in p.equipment.values() if i}
         want = {'mage': 'archmage_vestments', 'necromancer': 'lichlord_shroud', 'thief': 'nightblade_leathers',
-                'assassin': 'nightblade_leathers', 'bard': 'nightblade_leathers'}.get(cls)
-        if want:
-            check(want in sets, f'{cls}: wears its own set ({want})')
-        if cls in ('mage', 'necromancer'):
-            whole = {int(v) for v in NAMED_SETS[want]['pieces']}
-            worn = {getattr(i, 'vnum', None) for i in p.equipment.values() if i}
-            check(len(whole) == 8 and whole <= worn, f'{cls}: the whole eight-piece {NAMED_SETS[want]["name"]}, head to toe ({sorted(whole - worn)})')
+                'assassin': 'black_lotus_veil', 'bard': 'last_song_raiment', 'warrior': 'warlords_battleplate',
+                'paladin': 'dawnward_aegis', 'cleric': 'radiant_choir', 'ranger': 'wildwarden_garb'}[cls]
+        check(want in sets and cls in NAMED_SETS[want]['classes'], f'{cls}: wears its own set ({want})')
+        whole = {int(v) for v in NAMED_SETS[want]['pieces']}
+        worn = {getattr(i, 'vnum', None) for i in p.equipment.values() if i}
+        check(len(whole) == 8 and whole <= worn, f'{cls}: the whole eight-piece {NAMED_SETS[want]["name"]}, head to toe ({sorted(whole - worn)})')
     check(looks['mage']['main']['k'] == 'staff' and looks['mage']['body']['w'] == 0 and looks['mage']['head']['k'] == 'hat',
           'a mage at the top: a staff, robes and a hat')
     check(looks['necromancer']['main']['k'] in ('scythe', 'staff') and looks['necromancer']['head']['k'] == 'hood', 'a necromancer: a scythe or a staff, a cowl')

@@ -361,6 +361,38 @@
     {
      "vnum": 30064,
      "chance": 35
+    },
+    {
+     "vnum": 30070,
+     "chance": 25
+    },
+    {
+     "vnum": 30071,
+     "chance": 25
+    },
+    {
+     "vnum": 30072,
+     "chance": 25
+    },
+    {
+     "vnum": 30073,
+     "chance": 25
+    },
+    {
+     "vnum": 30074,
+     "chance": 25
+    },
+    {
+     "vnum": 30075,
+     "chance": 25
+    },
+    {
+     "vnum": 30076,
+     "chance": 25
+    },
+    {
+     "vnum": 30077,
+     "chance": 25
     }
    ],
    "boss_loot_chance": 100,
@@ -742,6 +774,246 @@
     "mana_regen": 20
    },
    "armor": 13
+  },
+  "30070": {
+   "vnum": 30070,
+   "name": "dawnward gilded great helm",
+   "short_desc": "the Dawnward gilded great helm",
+   "room_desc": "A gilded great helm with a white plume lies here.",
+   "description": "A great helm of gilded steel, its visor cut in the shape of a rising sun, a white plume springing from its crown.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 45000,
+   "wear_slot": "head",
+   "armor_class": 10,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "max_hp",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 10,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "dawnward_aegis"
+  },
+  "30071": {
+   "vnum": 30071,
+   "name": "dawnward gilded plate armor",
+   "short_desc": "the Dawnward gilded plate armor",
+   "room_desc": "A suit of gilded plate, bright as morning, stands here.",
+   "description": "Plate of gilded steel over a white surcoat, a sunburst worked across the breast in raised gold.",
+   "item_type": "armor",
+   "weight": 30,
+   "value": 45000,
+   "wear_slot": "body",
+   "armor_class": 17,
+   "affects": [
+    {
+     "type": "str",
+     "value": 2
+    },
+    {
+     "type": "wis",
+     "value": 3
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 17,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "dawnward_aegis"
+  },
+  "30072": {
+   "vnum": 30072,
+   "name": "dawnward gilded vambraces",
+   "short_desc": "a pair of the Dawnward gilded vambraces",
+   "room_desc": "A pair of gilded vambraces lies here.",
+   "description": "Vambraces of gilded steel, each engraved with a line of prayer that runs from wrist to elbow.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 45000,
+   "wear_slot": "arms",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 6,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "dawnward_aegis"
+  },
+  "30073": {
+   "vnum": 30073,
+   "name": "dawnward gilded gauntlets",
+   "short_desc": "a pair of the Dawnward gilded gauntlets",
+   "room_desc": "A pair of gilded gauntlets lies here.",
+   "description": "Gauntlets of gilded steel, the backs set with a small sun of white enamel.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 45000,
+   "wear_slot": "hands",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "str",
+     "value": 2
+    },
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 6,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "dawnward_aegis"
+  },
+  "30074": {
+   "vnum": 30074,
+   "name": "dawnward gilded greaves",
+   "short_desc": "a pair of the Dawnward gilded greaves",
+   "room_desc": "A pair of gilded greaves lies here.",
+   "description": "Greaves of gilded steel, their knees bossed with suns.",
+   "item_type": "armor",
+   "weight": 10,
+   "value": 45000,
+   "wear_slot": "legs",
+   "armor_class": 8,
+   "affects": [
+    {
+     "type": "con",
+     "value": 2
+    },
+    {
+     "type": "max_hp",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 8,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "dawnward_aegis"
+  },
+  "30075": {
+   "vnum": 30075,
+   "name": "dawnward gilded sabatons",
+   "short_desc": "a pair of the Dawnward gilded sabatons",
+   "room_desc": "A pair of gilded sabatons lies here.",
+   "description": "Sabatons of gilded steel that leave no mark on holy ground.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 45000,
+   "wear_slot": "feet",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "con",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "dawnward_aegis"
+  },
+  "30076": {
+   "vnum": 30076,
+   "name": "dawnward knight cape",
+   "short_desc": "the Dawnward knight's cape",
+   "room_desc": "A long white cape trimmed in gold lies here.",
+   "description": "A long cape of white wool trimmed in gold, the sunburst of the Dawnward order sewn across its back.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 45000,
+   "wear_slot": "about",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "holy_resist",
+     "value": 10
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 6,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "dawnward_aegis"
+  },
+  "30077": {
+   "vnum": 30077,
+   "name": "dawnward gilded heraldic shield",
+   "short_desc": "the Dawnward gilded heraldic shield",
+   "room_desc": "A tall gilded shield bearing a rising sun leans here.",
+   "description": "A heraldic shield of gilded steel, a rising sun across its face; light seems to gather on it even in the dark.",
+   "item_type": "armor",
+   "weight": 12,
+   "value": 45000,
+   "wear_slot": "shield",
+   "armor_class": 14,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "armor_class",
+     "value": 4
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 14,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "dawnward_aegis"
   }
  },
  "rooms": {

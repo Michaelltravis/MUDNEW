@@ -1332,6 +1332,38 @@
     {
      "vnum": 217,
      "chance": 5
+    },
+    {
+     "vnum": 751410,
+     "chance": 25
+    },
+    {
+     "vnum": 751411,
+     "chance": 25
+    },
+    {
+     "vnum": 751412,
+     "chance": 25
+    },
+    {
+     "vnum": 751413,
+     "chance": 25
+    },
+    {
+     "vnum": 751414,
+     "chance": 25
+    },
+    {
+     "vnum": 751415,
+     "chance": 25
+    },
+    {
+     "vnum": 751416,
+     "chance": 25
+    },
+    {
+     "vnum": 751417,
+     "chance": 25
     }
    ]
   }
@@ -1428,6 +1460,246 @@
      "value": 2
     }
    ]
+  },
+  "751410": {
+   "vnum": 751410,
+   "name": "radiant choir mitre",
+   "short_desc": "the Radiant Choir's mitre",
+   "room_desc": "A tall white mitre, edged in gold, rests here.",
+   "description": "A tall mitre of white silk edged in gold, taken back from the demon lord's hoard; it hums faintly, like a held note.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "head",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "radiant_choir"
+  },
+  "751411": {
+   "vnum": 751411,
+   "name": "radiant choir silvered chain hauberk",
+   "short_desc": "the Radiant Choir's silvered chain hauberk",
+   "room_desc": "A hauberk of silvered chain over white linen lies here.",
+   "description": "Fine silvered chain over a long robe of white linen, the hem stitched with the words of a hymn.",
+   "item_type": "armor",
+   "weight": 20,
+   "value": 45000,
+   "wear_slot": "body",
+   "armor_class": 13,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 3
+    },
+    {
+     "type": "max_hp",
+     "value": 40
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 13,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "radiant_choir"
+  },
+  "751412": {
+   "vnum": 751412,
+   "name": "radiant choir silvered chain sleeves",
+   "short_desc": "a pair of the Radiant Choir's silvered chain sleeves",
+   "room_desc": "A pair of silvered chain sleeves lies here.",
+   "description": "Sleeves of fine silvered chain, light as cloth and cold as running water.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 45000,
+   "wear_slot": "arms",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "con",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "radiant_choir"
+  },
+  "751413": {
+   "vnum": 751413,
+   "name": "radiant choir white gloves",
+   "short_desc": "a pair of the Radiant Choir's white gloves",
+   "room_desc": "A pair of white linen gloves lies here.",
+   "description": "Gloves of white linen, never stained, whatever the hands inside them have done.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "hands",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "radiant_choir"
+  },
+  "751414": {
+   "vnum": 751414,
+   "name": "radiant choir silvered chain leggings",
+   "short_desc": "a pair of the Radiant Choir's silvered chain leggings",
+   "room_desc": "A pair of silvered chain leggings lies here.",
+   "description": "Leggings of silvered chain beneath a white linen skirt.",
+   "item_type": "armor",
+   "weight": 8,
+   "value": 45000,
+   "wear_slot": "legs",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "con",
+     "value": 2
+    },
+    {
+     "type": "max_hp",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 6,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "radiant_choir"
+  },
+  "751415": {
+   "vnum": 751415,
+   "name": "radiant choir pilgrim boots",
+   "short_desc": "a pair of the Radiant Choir's pilgrim boots",
+   "room_desc": "A pair of soft white pilgrim boots lies here.",
+   "description": "Soft boots of white leather, worn thin at the heel by long walks between shrines.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "feet",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "radiant_choir"
+  },
+  "751416": {
+   "vnum": 751416,
+   "name": "radiant choir tabard",
+   "short_desc": "the Radiant Choir's tabard",
+   "room_desc": "A white tabard bearing a golden sun lies here.",
+   "description": "A long white tabard bearing the golden sun of the choir, worn over chain and hanging to the knees behind.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "about",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "holy_resist",
+     "value": 10
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "radiant_choir"
+  },
+  "751417": {
+   "vnum": 751417,
+   "name": "radiant choir sunburst reliquary relic",
+   "short_desc": "the Radiant Choir's sunburst reliquary",
+   "room_desc": "A small golden reliquary shaped like a sunburst glows here.",
+   "description": "A reliquary of gold shaped like the sun, a sliver of bone behind its crystal face; it is warm to hold and bright in the dark.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "hold",
+   "armor_class": 0,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 50
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 0,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "radiant_choir"
   }
  }
 }

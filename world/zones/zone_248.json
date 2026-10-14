@@ -124,6 +124,40 @@
    "inventory": [
     24801,
     24803
+   ],
+   "boss_loot_table": [
+    {
+     "vnum": 24810,
+     "chance": 25
+    },
+    {
+     "vnum": 24811,
+     "chance": 25
+    },
+    {
+     "vnum": 24812,
+     "chance": 25
+    },
+    {
+     "vnum": 24813,
+     "chance": 25
+    },
+    {
+     "vnum": 24814,
+     "chance": 25
+    },
+    {
+     "vnum": 24815,
+     "chance": 25
+    },
+    {
+     "vnum": 24816,
+     "chance": 25
+    },
+    {
+     "vnum": 24817,
+     "chance": 25
+    }
    ]
   }
  },
@@ -196,6 +230,246 @@
     "move_regen": 30,
     "haste": true
    }
+  },
+  "24810": {
+   "vnum": 24810,
+   "name": "last song feathered hat",
+   "short_desc": "the Last Song feathered hat",
+   "room_desc": "A wide crimson hat with a long golden feather lies here.",
+   "description": "A wide-brimmed hat of crimson felt, a golden feather as long as a forearm curling from its band.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "head",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 3
+    },
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "last_song_raiment"
+  },
+  "24811": {
+   "vnum": 24811,
+   "name": "last song leather doublet",
+   "short_desc": "the Last Song doublet",
+   "room_desc": "A crimson doublet slashed with gold lies here.",
+   "description": "A doublet of crimson leather slashed to show gold silk beneath, cut loose at the arms for the lute.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 45000,
+   "wear_slot": "body",
+   "armor_class": 10,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 3
+    },
+    {
+     "type": "dex",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 10,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "last_song_raiment"
+  },
+  "24812": {
+   "vnum": 24812,
+   "name": "last song slashed silk sleeves",
+   "short_desc": "a pair of the Last Song slashed silk sleeves",
+   "room_desc": "A pair of puffed crimson and gold sleeves lies here.",
+   "description": "Puffed sleeves of crimson silk slashed with gold, the height of a fashion no one living remembers.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "arms",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 20
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "last_song_raiment"
+  },
+  "24813": {
+   "vnum": 24813,
+   "name": "last song kid gloves",
+   "short_desc": "a pair of the Last Song kid gloves",
+   "room_desc": "A pair of fine kid gloves lies here.",
+   "description": "Gloves of the finest kid, thin enough to play in, their cuffs embroidered with notes of music.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 45000,
+   "wear_slot": "hands",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "cha",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "last_song_raiment"
+  },
+  "24814": {
+   "vnum": 24814,
+   "name": "last song breeches",
+   "short_desc": "a pair of the Last Song breeches",
+   "room_desc": "A pair of crimson breeches lies here.",
+   "description": "Breeches of crimson wool, buckled at the knee with gold.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "legs",
+   "armor_class": 4,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 4,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "last_song_raiment"
+  },
+  "24815": {
+   "vnum": 24815,
+   "name": "last song buckled boots leather",
+   "short_desc": "a pair of the Last Song buckled boots",
+   "room_desc": "A pair of tall buckled boots lies here.",
+   "description": "Tall boots of soft leather with gold buckles, made for walking from one town to the next.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "feet",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "max_move",
+     "value": 30
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 3,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "last_song_raiment"
+  },
+  "24816": {
+   "vnum": 24816,
+   "name": "last song cloak",
+   "short_desc": "the Last Song cloak",
+   "room_desc": "A crimson cloak lined with gold lies here.",
+   "description": "A short crimson cloak lined with gold, thrown back over one shoulder by habit.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 45000,
+   "wear_slot": "about",
+   "armor_class": 5,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 2
+    },
+    {
+     "type": "dex",
+     "value": 2
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 5,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "last_song_raiment"
+  },
+  "24817": {
+   "vnum": 24817,
+   "name": "last song lute",
+   "short_desc": "the Last Song lute",
+   "room_desc": "A lute of dark wood inlaid with gold lies here, its strings faintly humming.",
+   "description": "A lute of dark wood inlaid with gold, recovered from the heart of the clockwork Archon; its strings hum on their own, a song no one taught them.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 45000,
+   "wear_slot": "hold",
+   "armor_class": 0,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 40
+    }
+   ],
+   "type": "armor",
+   "min_level": 62,
+   "armor": 0,
+   "flags": [
+    "magic",
+    "glow"
+   ],
+   "set_id": "last_song_raiment"
   }
  },
  "rooms": {

@@ -41,17 +41,26 @@ To re-kit a character that already has the old kit, run `gearup <name>` again.
 
 **A whole necromancer, too:** the Lich-Lord's Shroud is also eight pieces, with bonuses at 2, 4, 6 and 8, and a gearup necromancer wears all of it, with the legendary scythe Famine's Needle in the hand. The skull phylactery is held up in the off hand, its eyes alight (`procgear.js skull`).
 
-## New gear
-| Set | For | Where | Pieces |
-|---|---|---|---|
-| Archmage's Vestments (60-66), head to toe | mage | the Eclipse Regent, the Black Observatory | starwoven robe, pointed wizard hat, silk gloves, star-silk slippers, starfall mantle, starwoven leggings, silk sleeves, star orb (held) |
-| Lich-Lord's Shroud (60-68), head to toe | necromancer | the Thalassine Lich (robe, cowl, shroud, sleeves); the Bone-Crowned Sovereign (wraps, shoes, leggings, phylactery) | grave-silk robe, cowl, bone-knuckled wraps, grave-walker shoes, shroud of the drowned, grave-silk sleeves, grave-silk leggings, skull phylactery (held) |
-| Nightblade's Leathers (55-60) | thief, assassin, bard | Shadow Lord Malachar, Shadowspire Citadel | leather jerkin, hood, gloves, breeches |
+## Every class's endgame set
+Each class has its own eight-piece set, head to toe. `gearup` dresses a class in all of it, with a legendary of its kind in the hand. Bonuses come at 2, 4, 6 and 8 pieces (`sets.py`), and each set has its own colours in the equipment kit's palette (`tools/art3d/ramps.json`).
+
+| Class | Set | Look | Where it drops | Weapon |
+|---|---|---|---|---|
+| Warrior | Warlord's Battleplate | blackened plate, bearskin war-helm, wolf-pelt cloak, blood red | War (helm to gauntlets); Kirgan the Destroyer (greaves to war-belt), Castle of the Apocalypse | Cataract (greatsword) |
+| Paladin | Dawnward Aegis | gilded plate, plumed great helm, white cape with a sunburst, heraldic shield | the Shattered Emperor | Requiem (one-handed crystal sword) |
+| Cleric | Vestments of the Radiant Choir | silvered chain over white linen, mitre, tabard with a cross, sunburst reliquary held | Moloch, Morkai | Pendulum (war hammer) |
+| Ranger | Wildwarden's Garb | green leather, hood, mottled cloak, quiver | the Ember Sovereign | Skyrend (longbow) |
+| Thief | Nightblade's Leathers | black leather, hood, cloak, a belt of hidden knives | Shadow Lord Malachar | the Unraveling (dagger) |
+| Assassin | Veil of the Black Lotus | purple-black leather, cowl, silk wraps, poisoner's belt | Death, Castle of the Apocalypse | the Unraveling (dagger) |
+| Bard | Raiment of the Last Song | crimson and gold doublet, wide feathered hat, slashed sleeves, lute held | Archon Prime, the Clockwork Foundry | Requiem (rapier-like crystal sword) |
+| Mage | Archmage's Vestments | indigo starwoven robe, pointed hat, starfall mantle, star orb held | the Eclipse Regent | Synapse (crystal staff) |
+| Necromancer | Lich-Lord's Shroud | black grave-silk robe, cowl, drowned shroud, skull phylactery held | the Thalassine Lich; the Bone-Crowned Sovereign | Famine's Needle (scythe) |
 
 Also:
-- caster leggings: spellwoven trousers (the Ember Sovereign) and grave-silk leggings (the Bone-Crowned Sovereign);
-- a legendary longbow for rangers, **Skyrend, the Sundering Longbow** (the Ember Sovereign, 4%);
-- the Necromancer's Regalia's "bone plate armor" is now **bone-stitched robes**, so a necromancer can wear its own set.
+- caster leggings: spellwoven trousers (the Ember Sovereign);
+- **Skyrend, the Sundering Longbow**, a legendary for rangers (the Ember Sovereign, 4%);
+- the Necromancer's Regalia's "bone plate armor" is now **bone-stitched robes**, so a necromancer can wear its own set;
+- a set made for one class is never given to another by gearup (`class_gear.set_for_others`), and a paladin prefers a one-handed sword so it keeps its shield.
 
 ## The look (`world3d/gearlook.js`, `procgear.js`)
 - **Staves are drawn by their head** (`gear_look.STAFF_HEADS` reads it from the item's words):

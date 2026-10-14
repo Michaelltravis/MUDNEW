@@ -43,7 +43,7 @@ RULES = {
 # the weapon each class is drawn with, first choice first (gearup, a legendary for the class)
 PREFERRED = {'mage': ['staff', 'wand'], 'necromancer': ['scythe', 'staff', 'wand'], 'thief': ['dagger', 'sword1'],
              'assassin': ['dagger', 'sword1'], 'bard': ['sword1', 'instrument'], 'ranger': ['bow', 'crossbow', 'sword'],
-             'cleric': ['mace', 'hammer'], 'warrior': ['sword', 'axe'], 'paladin': ['sword', 'hammer', 'mace']}
+             'cleric': ['mace', 'hammer'], 'warrior': ['sword', 'axe'], 'paladin': ['sword1', 'mace', 'hammer']}
 WEAPON_WORDS = {'sword': 'swords', 'sword1': 'one-handed swords', 'axe': 'axes', 'dagger': 'daggers', 'mace': 'maces and clubs',
                 'hammer': 'hammers', 'spear': 'spears', 'polearm': 'polearms', 'scythe': 'scythes', 'pick': 'picks',
                 'claw': 'claws', 'whip': 'whips', 'staff': 'staves', 'wand': 'wands', 'crossbow': 'crossbows',
