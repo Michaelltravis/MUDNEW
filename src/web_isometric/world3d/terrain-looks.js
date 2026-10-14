@@ -506,7 +506,8 @@ function webMaterial() {
   return webMat;
 }
 
-export function webDress(c) {
+// `indoor`: webs hung in a room or a cave (a spider queen's den, a cellar): no canopy overhead
+export function webDress(c, { indoor = false } = {}) {
   const { layout, ox, oz, kits, b, rng } = c;
   const { W, H, grid } = layout;
   const G = kits.graveyard;
@@ -520,7 +521,7 @@ export function webDress(c) {
   };
   // across each corner, high up, and between the trunks along the edges
   for (const [cx, cy, yaw] of [[2, 2, Math.PI / 4], [W - 3, 2, -Math.PI / 4], [2, H - 3, -Math.PI / 4], [W - 3, H - 3, Math.PI / 4]]) {
-    sheet(ox + cx + 0.5, 1.9 + rng() * 0.6, oz + cy + 0.5, 3.4 + rng(), 2.6 + rng(), yaw, (rng() - 0.5) * 0.4);
+    sheet(ox + cx + 0.5, (indoor ? 1.3 : 1.9) + rng() * 0.6, oz + cy + 0.5, 3.4 + rng(), 2.6 + rng(), yaw, (rng() - 0.5) * 0.4);
   }
   for (let x = 4; x < W - 4; x += 5 + Math.floor(rng() * 3)) {
     for (const y of [1, H - 2]) if (!ln(x, y) && rng() < 0.75) sheet(ox + x + 0.5, 1.4 + rng() * 0.8, oz + y + 0.5, 2.2 + rng() * 1.2, 1.6 + rng(), (rng() - 0.5) * 0.5);
@@ -529,7 +530,7 @@ export function webDress(c) {
     for (const x of [1, W - 2]) if (!ln(x, y) && rng() < 0.75) sheet(ox + x + 0.5, 1.4 + rng() * 0.8, oz + y + 0.5, 2.0 + rng(), 1.6 + rng(), Math.PI / 2 + (rng() - 0.5) * 0.5);
   }
   // overhead: a canopy sheet or two, and strands strung corner to corner
-  for (let i = 0; i < 2; i++) sheet(ox + W * (0.3 + 0.4 * rng()), 3.3 + rng() * 0.6, oz + H * (0.3 + 0.4 * rng()), 5 + rng() * 3, 4 + rng() * 2, rng() * Math.PI, -Math.PI / 2 + (rng() - 0.5) * 0.5);
+  for (let i = 0; i < (indoor ? 0 : 2); i++) sheet(ox + W * (0.3 + 0.4 * rng()), 3.3 + rng() * 0.6, oz + H * (0.3 + 0.4 * rng()), 5 + rng() * 3, 4 + rng() * 2, rng() * Math.PI, -Math.PI / 2 + (rng() - 0.5) * 0.5);
   const strand = (x1, y1, z1, x2, y2, z2, r = 0.012) => {
     const a = new THREE.Vector3(x1, y1, z1), bb = new THREE.Vector3(x2, y2, z2), len = a.distanceTo(bb);
     const g = new THREE.CylinderGeometry(r, r, len, 4);

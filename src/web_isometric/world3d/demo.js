@@ -138,6 +138,8 @@ export const LOOK_SAMPLES = [
   { look: 'field', key: 'gate', name: 'The Road North', description: 'The road runs on between the fields.', zoneExit: { side: 'north', zoneName: 'Elvandar' } },
   { look: 'city', key: 'gatecity', name: 'The North Gate', description: 'The street meets the town gate.', zoneExit: { side: 'north', zoneName: 'The Trade Road' } },
   { look: 'cave', sector: 'inside', key: 'gatecave', name: 'A Narrow Tunnel', description: 'The tunnel runs on through the rock.', zoneExit: { side: 'north', zoneName: 'Orc Tunnels' } },
+  { look: 'field', key: 'gateup', name: 'At The Foot Of The Long Stair', description: 'Worn steps climb the cliff toward the keep above.', zoneExit: { side: 'up', zoneName: 'Mahn-Tor Keep' } },
+  { look: 'inside', key: 'webroom', name: 'The Den Of The Queen Spider', description: 'Webs coat every wall; cocoons hang from the ceiling and egg sacs crowd the corners of the webbed chamber.' },
   { look: 'hills', key: 'gatesouth', name: 'The Border Hills', description: 'The hills fall away to the south.', zoneExit: { side: 'south', zoneName: 'The Eastern Highlands' } },
 ];
 export function buildLooksGallery(engine, kits) {
