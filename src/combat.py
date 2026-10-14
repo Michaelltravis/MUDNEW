@@ -2341,6 +2341,11 @@ class CombatHandler:
                     killer.gold += victim.gold
                     if hasattr(killer, 'send'):
                         await killer.send(f"{c['yellow']}You get {victim.gold} gold coins from the corpse.{c['reset']}")
+                    try:
+                        from combat_hooks import reward_event
+                        reward_event(killer, 'gold', amt=int(victim.gold), total=int(killer.gold))
+                    except Exception:
+                        pass
                     # Achievement: gold earned
                     try:
                         from achievements import AchievementManager

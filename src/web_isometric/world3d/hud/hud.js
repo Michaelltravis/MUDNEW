@@ -591,6 +591,57 @@ export function createHud() {
     const html = [...list.values()].slice(0, 6).map(a => `<span class="ail s-${esc(a.s || 'none')}" title="${esc(a.n)}${a.r ? ` · ${a.r} more ticks` : ''}">${esc((a.n || '?').trim().charAt(0).toUpperCase())}</span>`).join('');
     if (el.innerHTML !== html) el.innerHTML = html;
   }
+  // ---- a kill's reward, drawn (combat.js reward): the XP bar fills as its gain rises over it,
+  // with the bonuses as chips; coins fly from the fallen creature to the pack; a change in
+  // standing with a faction is a small card. The log keeps the words in its Combat tab ----
+  const rewardsEl = $('#rewards');
+  function floatOver(anchor, cls, html, life = 2200) {
+    const r = anchor.getBoundingClientRect();
+    const d = document.createElement('div');
+    d.className = `rw-float ${cls}`;
+    d.innerHTML = html;
+    d.style.left = `${r.left + r.width / 2}px`; d.style.top = `${r.top}px`;
+    document.body.appendChild(d);
+    setTimeout(() => d.remove(), life);
+  }
+  function reward(e, from) {
+    if (e.k === 'xp') {
+      const bar = $('#xpbar');
+      if (e.next > e.floor) bar.querySelector('b').style.width = pct((e.exp || 0) - e.floor, e.next - e.floor);
+      bar.classList.remove('gain'); void bar.offsetWidth; bar.classList.add('gain');
+      const chips = Object.entries(e.bonus || {}).map(([k, v]) => `<i>${esc(k[0].toUpperCase() + k.slice(1))} +${v}</i>`).join('');
+      floatOver(bar, 'rw-xp', `+${e.amt} XP${chips ? `<span>${chips}</span>` : ''}`);
+      if (st.player) st.player.exp = e.exp;
+    } else if (e.k === 'gold') {
+      const bag = els.menu.querySelector('[data-act="inventory"]');
+      const to = bag.getBoundingClientRect();
+      const start = from || { x: innerWidth / 2, y: innerHeight / 2 };
+      const n = Math.min(10, 3 + Math.floor(e.amt / 60));
+      for (let i = 0; i < n; i++) {
+        const c = document.createElement('div');
+        c.className = 'rw-coin';
+        document.body.appendChild(c);
+        const sx = start.x + (Math.random() - 0.5) * 40, sy = start.y + (Math.random() - 0.5) * 30;
+        const mx = (sx + to.left + to.width / 2) / 2 + (Math.random() - 0.5) * 160, my = Math.min(sy, to.top) - 80 - Math.random() * 80;
+        const a = c.animate([
+          { transform: `translate(${sx}px, ${sy}px) scale(.6)`, opacity: 0 },
+          { transform: `translate(${sx}px, ${sy - 30}px) scale(1)`, opacity: 1, offset: 0.15 },
+          { transform: `translate(${mx}px, ${my}px) scale(1.1)`, opacity: 1, offset: 0.55 },
+          { transform: `translate(${to.left + to.width / 2}px, ${to.top + to.height / 2}px) scale(.5)`, opacity: 0.9 },
+        ], { duration: 900 + i * 40, delay: i * 70, easing: 'cubic-bezier(.4,.1,.5,1)', fill: 'forwards' });
+        a.onfinish = () => c.remove();
+      }
+      setTimeout(() => { bag.classList.remove('rw-pop'); void bag.offsetWidth; bag.classList.add('rw-pop'); floatOver(bag, 'rw-gold', `+${e.amt}`, 1600); }, 900 + n * 70);
+      if (st.player && e.total != null) st.player.gold = e.total;
+    } else if (e.k === 'rep') {
+      const d = document.createElement('div');
+      d.className = `rw-rep${e.amt < 0 ? ' down' : ''}${e.changed ? ' changed' : ''}`;
+      d.innerHTML = `<b>${esc(e.faction)}</b> <em>${e.amt > 0 ? '+' : ''}${e.amt}</em><span>${e.changed ? 'now ' : ''}${esc(e.standing)}</span>`;
+      rewardsEl.appendChild(d);
+      while (rewardsEl.childElementCount > 4) rewardsEl.firstChild.remove();
+      setTimeout(() => d.remove(), e.changed ? 5200 : 3400);
+    }
+  }
   function setTarget(t) {
     st.target = t;
     els.tf.classList.toggle('hidden', !t);
@@ -986,6 +1037,6 @@ export function createHud() {
   // whisper someone: the chat input set to tell them
   function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
-  return { showGame, setPlayer, setTarget, setCharges, noteAilment, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, closeTalk, lootwin, giveTo, flashSlot,
+  return { showGame, setPlayer, setTarget, setCharges, noteAilment, reward, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, closeTalk, lootwin, giveTo, flashSlot,
     spellbook, unslot, party, quest, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

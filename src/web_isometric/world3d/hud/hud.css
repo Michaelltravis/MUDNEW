@@ -128,6 +128,30 @@ button { font: inherit; color: inherit; }
 #target-frame .ail.s-shadow { --ail: #7a3ac0; } #target-frame .ail.s-necrotic { --ail: #3a9a5a; } #target-frame .ail.s-arcane { --ail: #a050e0; }
 #target-frame .ail.s-holy { --ail: #d8b030; } #target-frame .ail.s-lightning { --ail: #6a8ae8; } #target-frame .ail.s-blood { --ail: #b02020; }
 #target-frame .ail.s-nature { --ail: #5aa02a; }
+/* a kill's reward, drawn: the gain over the XP bar, coins to the pack, standing cards */
+.rw-float { position: fixed; z-index: 60; pointer-events: none; transform: translate(-50%, -100%); white-space: nowrap;
+  font: 700 calc(17px * var(--ui)) var(--title); letter-spacing: .04em; text-shadow: 0 1px 0 #000, 0 0 10px rgba(0,0,0,.8);
+  animation: rw-rise 2.2s ease-out forwards; }
+.rw-float.rw-xp { color: #f3d27a; }
+.rw-float.rw-xp span { display: inline-flex; gap: 4px; margin-left: 8px; vertical-align: middle; }
+.rw-float.rw-xp i { font: 700 calc(11px * var(--ui)) var(--label); font-style: normal; color: #1a1206; padding: 1px 6px; border-radius: 8px;
+  background: linear-gradient(180deg, #c49af8, #8a5ad8); }
+.rw-float.rw-gold { color: #ffd65a; font-size: calc(15px * var(--ui)); animation-duration: 1.6s; }
+@keyframes rw-rise { 0% { opacity: 0; transform: translate(-50%, -60%) scale(.8); } 12% { opacity: 1; transform: translate(-50%, -110%) scale(1.08); }
+  70% { opacity: 1; transform: translate(-50%, -190%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -240%) scale(1); } }
+#xpbar.gain b { animation: xp-glow 1.2s ease-out; }
+@keyframes xp-glow { 0% { filter: brightness(2.2) drop-shadow(0 0 6px #f3d999); } 100% { filter: none; } }
+.rw-coin { position: fixed; left: 0; top: 0; z-index: 61; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle at 35% 30%, #fff6c8, #ffcf40 45%, #b07a10 80%); box-shadow: 0 0 6px rgba(255,200,60,.8), inset 0 -2px 0 rgba(120,70,0,.6); }
+#menu button.rw-pop { animation: rw-pop .5s ease-out; }
+@keyframes rw-pop { 0% { transform: scale(1); } 40% { transform: scale(1.25); filter: brightness(1.6); } 100% { transform: scale(1); } }
+#rewards { right: 14px; top: calc(290px * var(--ui)); display: flex; flex-direction: column; gap: 6px; align-items: flex-end; pointer-events: none; }
+.rw-rep { padding: 6px 12px; border-radius: 8px; font: 500 calc(13px * var(--ui)) var(--label); color: var(--ink);
+  background: linear-gradient(90deg, rgba(20,14,6,.2), rgba(20,14,6,.88)); border-right: 3px solid #7dd87a; animation: rw-card 3.4s ease-out forwards; }
+.rw-rep b { color: var(--gold-hi); } .rw-rep em { color: #7dd87a; font-style: normal; font-weight: 700; margin: 0 6px; } .rw-rep span { color: var(--ink-dim); }
+.rw-rep.down { border-right-color: #e0604a; } .rw-rep.down em { color: #e0604a; }
+.rw-rep.changed { border-right-color: var(--gold); animation-duration: 5.2s; } .rw-rep.changed span { color: var(--gold-hi); font-weight: 700; }
+@keyframes rw-card { 0% { opacity: 0; transform: translateX(30px); } 8% { opacity: 1; transform: none; } 85% { opacity: 1; } 100% { opacity: 0; } }
 /* charges a class builds beside its mana: pips under the bars */
 #player-frame .pips { display: flex; gap: 5px; margin-top: 5px; }
 #player-frame .pips.hidden { display: none; }
@@ -313,7 +337,7 @@ button { font: inherit; color: inherit; }
 #log[data-tab="group"] > div:not(.l-group), #log[data-tab="say"] > div:not(.l-say),
 #log[data-tab="tell"] > div:not(.l-tell) { display: none; }
 /* the blow-by-blow (msgkind.py) lives in the Combat tab; All shows it only when asked */
-#log[data-tab="all"]:not(.with-combat) > div.k-combat, #log[data-tab="combat"] > div:not(.k-combat):not(.k-reward) { display: none; }
+#log[data-tab="all"]:not(.with-combat) > div.k-combat, #log[data-tab="all"]:not(.with-combat) > div.k-reward, #log[data-tab="combat"] > div:not(.k-combat):not(.k-reward) { display: none; }
 #log .k-reward { color: #f3d27a; }
 #log .l-group { color: #8fe0ff; } #log .l-tell { color: #e8a8ff; } #log .l-say { color: #f6eed8; }
 .chat-row { display: flex; gap: 6px; margin: 2px 10px 10px; }

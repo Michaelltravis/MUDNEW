@@ -148,8 +148,8 @@ has its animation and its rising number (`combat_events.py`), so the chat log do
     creature's health bar);
   - **reward:** a kill's experience, streak and rested bonuses, reputation and gold.
 
-  Combat lines live in the chat's **Combat** tab and stay out of **All** unless *Settings → Combat
-  text* is on. Rewards show in both. Refusals ("You don't have enough mana."), speech and a room's
+  Combat and reward lines live in the chat's **Combat** tab and stay out of **All** unless
+  *Settings → Combat text* is on. Refusals ("You don't have enough mana."), speech and a room's
   description are never hidden. Telnet is unchanged.
 - **Commands from the bar.** A spell or attack sent from the bar echoes into the Combat tab, and
   a key held down casts once, not twice.
@@ -161,6 +161,14 @@ has its animation and its rising number (`combat_events.py`), so the chat log do
   Arcane Mastery (the spell's count and Arcane Blast's used to disagree).
 - **Effects ending.** When a shield or blessing wears off, its name fades over your head and its icon
   goes.
+- **A kill's rewards** (`combat_hooks`: `xp`, `gold`, `rep` events), drawn, and their lines are filed
+  with the fight's:
+  - **Experience:** "+209 XP" rises in gold over the fallen creature. The XP bar fills, and the gain
+    floats over it with its bonuses as chips (Streak +27, Rested +91). Quest experience fills the
+    bar the same way.
+  - **Gold:** coins fly from the creature to your pack, and "+330" pops on the pack button.
+  - **Reputation:** a small card per faction on the right ("Garathorm Guard +16 · Unfriendly"); a new
+    standing is shown in gold ("now Neutral").
 
 ### Mana Management
 
