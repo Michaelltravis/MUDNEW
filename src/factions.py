@@ -314,6 +314,9 @@ FACTION_REP_ACTIONS = {
     'shop_large_transaction': {'merchant_league': 10},
 }
 
+# kinds that end a compound name and still count ("the dracolich", "the hobgoblin")
+COMPOUND_KINDS = {'lich', 'goblin', 'demon', 'wraith', 'golem'}
+
 # Mob keyword -> faction rep mapping for auto-gain on kills
 # Maps keywords found in mob name/keywords to faction reputation changes
 MOB_KILL_FACTION_MAP = {
@@ -567,27 +570,38 @@ class FactionManager:
         return colors.get(level_name, '\033[37m')
 
     @staticmethod
+    def kill_words(victim):
+        """The words that say what a creature is: its keywords and its short name, never its room
+        line (a death knight that "stands guard" is no guard), matched whole ("guardian" is not a guard,
+        "torchbearer" no bear, "the grocer" no imp). A plural, an "-ly" ("a ghostly servant") and a
+        name ending in a kind ("the dracolich", "the hobgoblin") still count."""
+        import re
+        text = f"{getattr(victim, 'name', '') or ''} {getattr(victim, 'short_desc', '') or ''}".lower()
+        words = set(re.findall(r'[a-z]+', text))
+        found = set()
+        for keyword in MOB_KILL_FACTION_MAP:
+            if keyword in words or keyword + 's' in words or keyword + 'ly' in words:
+                found.add(keyword)
+            elif keyword in COMPOUND_KINDS and any(w.endswith(keyword) for w in words):
+                found.add(keyword)
+        # the dead by their nature, whatever they are called (a death knight, a revenant of the Pale)
+        if 'undead' in set(getattr(victim, 'flags', None) or []):
+            found.add('undead')
+        return found
+
+    @staticmethod
     async def on_mob_kill(player, victim):
         """Auto-gain faction reputation when killing a mob.
         Called from combat.handle_death after a player kills an NPC."""
         if not hasattr(player, 'connection') or hasattr(victim, 'connection'):
             return  # Only player-kills-NPC
 
-        victim_name = getattr(victim, 'name', '').lower()
-        victim_keywords = getattr(victim, 'keywords', [])
-
-        # Collect all matching rep changes
+        # Collect all matching rep changes (whole words of what the creature is: kill_words)
         changes: Dict[str, int] = {}
-        checked = set()
-        for keyword, rep_map in MOB_KILL_FACTION_MAP.items():
-            if keyword in checked:
-                continue
-            # Check if keyword appears in mob name or keywords
-            if keyword in victim_name or keyword in victim_keywords:
-                checked.add(keyword)
-                for faction_key, amount in rep_map.items():
-                    if faction_key in FACTIONS:
-                        changes[faction_key] = changes.get(faction_key, 0) + amount
+        for keyword in FactionManager.kill_words(victim):
+            for faction_key, amount in MOB_KILL_FACTION_MAP[keyword].items():
+                if faction_key in FACTIONS:
+                    changes[faction_key] = changes.get(faction_key, 0) + amount
 
         # Also check mob's explicit faction tag
         mob_faction = getattr(victim, 'faction', None)
