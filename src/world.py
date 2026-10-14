@@ -794,6 +794,7 @@ class World:
             import room_looks
             room_looks.classify(self)
             room_looks.strip_filler(self)     # no "stale air" under open sky or the sea
+            room_looks.scrub_filler(self)     # nor "bird calls in the canopy" down a sewer pipe
         except Exception as e:
             logger.warning(f"Failed to work out room looks: {e}")
 

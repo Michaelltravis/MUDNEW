@@ -5,7 +5,7 @@ import { isDeadly, deathTrap } from './deathtrap.js';
 import * as THREE from 'three';
 import { Batcher, trs } from './assets.js';
 import { cutout } from './cutout.js';
-import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard } from './terrain-town.js';
+import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard, townHouse } from './terrain-town.js';
 import { castleWalls, castleYard, zoneGates } from './terrain-castle.js';
 import { underground, dressHall, outdoorEdge, outdoorDress, mountainCliffs, sunkenRuins, webDress, tinted, RUIN_RE, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
 
@@ -286,6 +286,9 @@ export function buildRoom(layout, ox, oz, kits, room) {
 
   // the country beyond the room's edge where the zone map has no room: no void
   if (!PAVED.has(theme) && !UNDERGROUND.has(theme) && room && room.zoneRef) fillerLand(ctx(), theme);
+  // a town's empty cells: more town (cobbles and roofs), not the sky showing through (owner: "the
+  // town isn't seamless")
+  else if ((theme === 'city' || theme === 'castle') && room && room.zoneRef && kits.town) fillerLand(ctx(), 'town');
   if (!PAVED.has(theme) && kits.graveyard && isGraveyard(layout)) graveyard(ctx());
   // a death trap: a ledge round a burning abyss, bones, skulls on poles at the ways in (deathtrap.js)
   if (room && isDeadly(room.data ? room.data.flags : room.flags)) deathTrap(ctx());
@@ -387,6 +390,7 @@ const FILL = {
   water_swim: { water: true },
   water_noswim: { water: true },
   default: { trees: 0.03, bushes: 0.04, rocks: 0.01, grass: 0.08 },
+  town: { houses: true },
 };
 function fillerLand(c, theme) {
   const { layout, ox, oz, kits, b, rng, occ, owned, group, room } = c;
@@ -395,7 +399,7 @@ function fillerLand(c, theme) {
   const cells = room.zoneRef.cells;
   const empty = (dx, dy) => !cells.get(`${room.cx + dx},${room.cy + dy}`);
   const spec = FILL[theme] || FILL.default;
-  const pal = GROUND[theme] || GROUND.default;
+  const pal = GROUND[theme === 'town' ? 'city' : theme] || GROUND.default;
   const edge = outdoorEdge(theme, kits);
   const trees = (edge ? edge.trees : theme === 'swamp' ? ['DeadTree_1', 'DeadTree_2'].map(k => N.get(k))
     : ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'Pine_1', 'Pine_2'].map(k => N.get(k))).filter(Boolean);
@@ -440,6 +444,19 @@ function fillerLand(c, theme) {
     const ground = new THREE.Mesh(geo, GROUND_MAT);
     ground.receiveShadow = true;
     group.add(ground);
+    // a town: blocks of houses, roofs to the edge of sight, a tree here and there
+    if (spec.houses) {
+      for (let gz = z0 + 3.5; gz < z0 + d - 1; gz += 7) for (let gx = x0 + 3.5; gx < x0 + w - 1; gx += 7) {
+        if (rng() < 0.1) {
+          const tree = kits.town.get(rng() < 0.5 ? 'tree_single_A' : 'trees_A_medium');
+          if (tree) b.add(tree, trs(gx, 0, gz, rng() * 6.28, 2.8), { shadow: false });
+          continue;
+        }
+        const house = townHouse(kits, room, rng);
+        if (house) b.add(occ(house), trs(gx + (rng() - 0.5), 0, gz + (rng() - 0.5), Math.floor(rng() * 4) * Math.PI / 2, 5.2 + rng() * 0.8), { shadow: false });
+      }
+      continue;
+    }
     // what grows there, on a jittered grid so it doesn't clump
     const area = w * d, step = 1.0;
     for (let gz = z0 + 0.5; gz < z0 + d; gz += step) for (let gx = x0 + 0.5; gx < x0 + w; gx += step) {
@@ -496,14 +513,16 @@ function exitFeatures(group, layout, ox, oz, room, kits, owned) {
       if (e.kind !== 'open') {
         const zoneExit = e.kind === 'zone';
         const inward = horiz ? (dir === 'north' ? 0.35 : -0.35) : (dir === 'west' ? 0.35 : -0.35);
-        const m = new THREE.Mesh(CURTAIN_GEO, zoneExit ? CURTAIN_GOLD : CURTAIN_BLUE);
+        // into another region: a gold glow under its gateway. Within the zone the path simply runs
+        // on (owner: "some of the rooms are not seamless"): no sheet of mist, just its name
+        const m = zoneExit ? new THREE.Mesh(CURTAIN_GEO, CURTAIN_GOLD) : new THREE.Object3D();
         m.scale.set(span, 1, 1);
         m.position.set(horiz ? x : x + inward, 1.25, horiz ? z + inward : z);
         if (!horiz) m.rotation.y = Math.PI / 2;
         group.add(m);
-        const label = zoneExit ? `↗ ${where(e)}` : `↗ ${where(e)}`;
+        const label = `↗ ${where(e)}`;
         const sp = labelSprite(label, zoneExit ? '#ffd88a' : '#cfe6ff', owned);
-        sp.position.set(m.position.x, 2.9, m.position.z);
+        sp.position.set(m.position.x, zoneExit ? 2.9 : 1.6, m.position.z);
         group.add(sp);
         // a closed door hides the glow behind it
         if (doors[dir]) {
@@ -708,9 +727,8 @@ const CURTAIN_TEX = curtainTexture();
 const CURTAIN_GEO = new THREE.PlaneGeometry(1, 2.5);
 const curtain = color => new THREE.MeshBasicMaterial({ color, map: CURTAIN_TEX, transparent: true, depthWrite: false,
   blending: THREE.AdditiveBlending, side: THREE.DoubleSide });
-// a passage within the zone: a faint mist the path runs on into (it used to be an overbright sheet
-// that bloomed to a white void: the owner wants the rooms seamless); a zone's border stays gold
-const CURTAIN_BLUE = curtain(new THREE.Color(0.16, 0.2, 0.26));
+// a zone's border: a gold glow under its gateway (a passage within the zone has no sheet at all:
+// the owner wants the rooms seamless)
 const CURTAIN_GOLD = curtain(new THREE.Color(1.8, 1.25, 0.45));
 const PORTAL_GEO = new THREE.RingGeometry(0.55, 0.85, 32);
 const PORTAL_MAT = new THREE.MeshBasicMaterial({ color: new THREE.Color(1.6, 0.9, 2.4), transparent: true, opacity: 0.85,

@@ -431,6 +431,7 @@ async function runGame() {
     heroRoom = room;
     mm.setRoom(room);
     if (changed) {
+      if (hud.closeTalk) hud.closeTalk();
       heroSpots = zone.passageSpots(room);
       const p = hero.root.position;
       gate.enterRoom(heroSpots, { x: p.x - room.ox, z: p.z - room.oz });
@@ -452,7 +453,7 @@ async function runGame() {
     const dark = L.dark || ['dungeon', 'crypt', 'sewer'].includes(L.theme);
     const night = hour >= 20 || hour < 5, dusk = hour >= 18 || hour < 7;
     // (a spider's lair is dark by its flags, but its own gloom is dark enough: the webs must show)
-    const mood = rock ? 'cave' : L.theme === 'web' ? 'web' : L.theme === 'necropolis' ? 'necropolis' : dark ? 'crypt' : L.theme === 'inside' ? 'interior'
+    const mood = rock ? 'cave' : L.theme === 'web' ? 'web' : L.theme === 'necropolis' ? 'necropolis' : L.theme === 'sewer' ? 'sewer' : dark ? 'crypt' : L.theme === 'inside' ? 'interior'
       : L.theme === 'volcanic' ? 'volcanic' : L.theme === 'underwater' ? 'underwater' : night ? 'night' : dusk ? 'dusk'
       : L.theme === 'desert' ? 'desert' : L.theme === 'snow' ? 'snow' : L.theme === 'forest' ? 'forest' : 'day';
     engine.setMood(mood);

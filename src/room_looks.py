@@ -113,9 +113,10 @@ def load_overrides(path=OVERRIDES):
         with open(path, encoding='utf-8') as f:
             data = json.load(f)
     except FileNotFoundError:
-        return {'rooms': {}, 'zones': {}}
+        return {'rooms': {}, 'zones': {}, 'underground': {}}
     return {'rooms': {int(k): v for k, v in (data.get('rooms') or {}).items()},
-            'zones': {int(k): v for k, v in (data.get('zones') or {}).items()}}
+            'zones': {int(k): v for k, v in (data.get('zones') or {}).items()},
+            'underground': {int(k): v for k, v in (data.get('underground_zones') or {}).items()}}
 
 
 def _zone(room):
@@ -325,6 +326,76 @@ def _fits(room, look):
     return sector in OUTDOOR_FROM_DESC
 
 
+# ---------------------------------------------------------------- filler that contradicts the look
+# An old import gave short rooms a couple of sentences from their sector ("Bird calls echo through
+# the canopy." in a forest room, "The cobblestones are worn smooth by countless feet." in a city
+# one). Where the look disagrees with the sector (a sewer pipe typed 'city', a cave typed 'field')
+# they say the wrong thing: they go, and an underground room gets two lines of its own place.
+FILLER = {
+    'city': ('The smell of smoke and humanity hangs in the air.', 'Vendors and pedestrians bustle past.',
+             'The cobblestones are worn smooth by countless feet.', 'Buildings crowd together on all sides.',
+             'The sounds of city life echo around.', 'Worn flagstones run between weathered walls, swept by passing feet.',
+             'Voices and the clatter of carts carry from somewhere nearby.', 'Lantern hooks and faded signboards hang over the street.',
+             'Shuttered windows and old doorways crowd in on either hand.', 'The paving is uneven here, patched with newer stone.'),
+    'forest': ('The scent of pine and earth fills the air.', 'Branches intertwine overhead, filtering the light.',
+               'Bird calls echo through the canopy.', 'Ancient trees rise on all sides.',
+               'The forest floor is carpeted with fallen leaves.'),
+    'field': ('The air is fresh and clean.', 'The ground is soft underfoot.', 'Tall grass sways in a gentle breeze.',
+              'Wildflowers dot the landscape.', 'The open sky stretches overhead.'),
+    'mountain': ('Bare rock dominates the landscape.', 'Snow clings to shadowed crevices.', 'The path is steep and treacherous.',
+                 'The air is thin and cold at this altitude.', 'The wind howls around exposed peaks.'),
+    'hills': ('Rocks jut from the grassy slopes.',),
+    'water': ('Waves crash and foam relentlessly.', 'The depths are dark and unknowable.', 'The roar of water fills your ears.',
+              'Spray mists the air around.'),
+}
+FILLER_FITS = {'city': {'city', 'castle'}, 'forest': {'forest', 'darkforest', 'web', 'swamp'},
+               'field': {'field', 'hills', 'shore'}, 'mountain': {'mountain', 'hills', 'snow'},
+               'hills': {'hills', 'field', 'mountain'}, 'water': WATER_SECTORS | {'shore'}}
+OWN_LINES = {
+    'sewer': ('Foul water trickles along a channel down the middle of the floor.', 'Pipes sweat and drip somewhere in the dark.',
+              'The stench of rot and wet stone hangs heavy in the air.', 'Slime streaks the curved brick walls.',
+              'Puddles of black water gather in the cracked floor.', 'Rats scurry away from the light.'),
+    'cave': ('Water drips from the rock overhead.', 'The air is cold and smells of wet stone.',
+             'The rock walls glisten with damp.', 'Your footsteps echo away into the dark.'),
+    'mine': ('Old timbers prop up the rock overhead.', 'Rusted rails run along the floor.', 'Rock dust hangs in the still air.'),
+    'crypt': ('The air smells of dust and old death.', 'Niches in the walls hold crumbling bones.', 'The silence is deep and cold.'),
+    'dungeon': ('Iron rings are set into the damp walls.', 'The stone floor is slick and cold.', 'Somewhere a chain rattles.'),
+}
+
+
+def _norm(text):
+    return re.sub(r'\s+', ' ', text or '').strip()
+
+
+def scrub_filler(world):
+    """Take out the sector filler a room's look contradicts (see FILLER); returns how many rooms."""
+    import textwrap
+    n = 0
+    for room in (getattr(world, 'rooms', {}) or {}).values():
+        look = getattr(room, 'look', None)
+        text = _norm(getattr(room, 'description', ''))
+        if not look or not text:
+            continue
+        cut = 0
+        for kind, lines in FILLER.items():
+            if look in FILLER_FITS[kind]:
+                continue
+            for line in lines:
+                if line in text:
+                    text = _norm(text.replace(line, ''))
+                    cut += 1
+        if not cut:
+            continue
+        own = OWN_LINES.get(look)
+        if own:
+            k = int(getattr(room, 'vnum', 0) or 0)
+            text = f'{text} {own[k % len(own)]} {own[(k // len(own) + 1 + k) % len(own)] if len(own) > 1 else ""}'.strip()
+            text = _norm(text.replace(own[k % len(own)] + ' ' + own[k % len(own)], own[k % len(own)]))
+        room.description = textwrap.fill(text, 79)
+        n += 1
+    return n
+
+
 def classify(world, overrides=None):
     """Give every room its `look` (and `look_why`). Returns the counts per look."""
     rooms = getattr(world, 'rooms', {}) or {}
@@ -336,6 +407,13 @@ def classify(world, overrides=None):
             room.look, room.look_why = stated, 'stated'
             continue
         look, why = _own_look(room)
+        # a zone wholly underground (the sewers): every room is underground whatever its imported
+        # sector says (a pipe junction typed 'city', a ledge 'mountain'), but for one whose own name
+        # says another underground place (a cave in the sewers stays a cave) and the water in it
+        under = (ov.get('underground') or {}).get(_zone(room))
+        if under and (not look or look not in UNDERGROUND) and sector not in WATER_SECTORS:
+            room.look, room.look_why = under, 'stated'      # (world/looks.json states it)
+            continue
         if not look and _trees(room):
             look, why = 'forest', 'description'
         if not look and _zone(room) in ov['zones'] and _fits(room, ov['zones'][_zone(room)]):

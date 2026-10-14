@@ -145,15 +145,32 @@ export function setupLogin() {
     $('#choose-class').addEventListener('click', () => { if (pick) { send(pick); stage.stop(); wizard('', 'FORGE YOUR HERO', 'Rolling the dice of fate…', ''); } });
     focus('warrior');
   }
+  // the six rolled stats: drawn once, then each reroll changes only the numbers in place (the
+  // server's lines can arrive in pieces; a half roll is held until all six are in, so the panel
+  // never redraws smaller and jumps)
+  const STAT_KEYS = { Strength: 'STR', Intelligence: 'INT', Wisdom: 'WIS', Dexterity: 'DEX', Constitution: 'CON', Charisma: 'CHA' };
+  let rolled = {}, rollText = '';
   function stats(text) {
-    const map = { Strength: 'STR', Intelligence: 'INT', Wisdom: 'WIS', Dexterity: 'DEX', Constitution: 'CON', Charisma: 'CHA' };
+    rollText = (rollText + '\n' + text).slice(-2000);
     const re = /(Strength|Intelligence|Wisdom|Dexterity|Constitution|Charisma):\s*(\d+)/g;
-    let m, cells = '';
-    while ((m = re.exec(text))) cells += `<div class="${map[m[1]] === prime ? 'prime' : ''}"><div class="v">${m[2]}</div><div class="k">${map[m[1]]}</div></div>`;
+    const got = {};
+    let m;
+    while ((m = re.exec(rollText))) got[STAT_KEYS[m[1]]] = m[2];
+    if (Object.keys(got).length < 6) return;
+    rollText = '';
+    rolled = got;
+    const panel = create.querySelector('.stats');
+    if (panel && $('#reroll')) {
+      panel.classList.remove('rolling');
+      panel.querySelectorAll('[data-k]').forEach(el => { el.querySelector('.v').textContent = rolled[el.dataset.k]; });
+      return;
+    }
+    const cells = Object.values(STAT_KEYS).map(k =>
+      `<div data-k="${k}" class="${k === prime ? 'prime' : ''}"><div class="v">${rolled[k]}</div><div class="k">${k}</div></div>`).join('');
     wizard('STEP 4 OF 4', 'ROLL YOUR FATE', 'The dice favour the bold — keep them, or tempt fate again.',
       `<div class="stats">${cells}</div><div class="row2"><button class="btn" id="keep">Keep these</button><button class="btn alt" id="reroll">Reroll</button></div>`);
     $('#keep').addEventListener('click', () => { send('y'); wizard('', 'FORGE YOUR HERO', 'Your story begins…', ''); });
-    $('#reroll').addEventListener('click', () => send('n'));
+    $('#reroll').addEventListener('click', () => { create.querySelector('.stats').classList.add('rolling'); rollText = ''; send('n'); });
   }
   MH.bus.on('terminal.output', ({ text }) => {
     if (!creating || MH.state.isLoggedIn || !text) return;
