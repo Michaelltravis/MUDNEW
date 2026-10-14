@@ -189,7 +189,22 @@ export class CombatView {
 
   // a wound: the number rises when the blow that caused it lands (or now, for wounds
   // nothing announced: poison, fire, traps, a creature's special)
+  // a wound over time ticking (a burn, a poison: affects.py): a small number in its school's
+  // colour drifting off to the side, a wisp of it, and the target frame shows what is on it
+  tick(e) {
+    const dst = this.resolve(e.dst);
+    if (!dst) return;
+    if (dst.ent && dst.ent.data && e.left != null) { dst.ent.data.hp = e.left; if (this.onWound) this.onWound(dst.ent); }
+    const school = e.school && e.school !== 'physical' ? e.school : (e.k === 'heal' ? 'nature' : 'poison');
+    const color = '#' + this.colorOf(school).toString(16).padStart(6, '0');
+    const p = this.chest(dst);
+    this.fx.text(p, e.k === 'heal' ? `+${e.amt}` : `${e.amt}`, { color: e.k === 'heal' ? COLORS.heal : color, size: 13, rise: 0.9, life: 0.9, side: 0.6 });
+    this.fx.p.emit(p, { count: 6, color: this.colorOf(school), speed: 0.5, up: 0.9, life: 0.6, size: 0.18, drag: 1.4 });
+    if (this.onAilment && e.k !== 'heal' && dst.ent) this.onAilment(dst.ent, e.dot, school);
+  }
+
   wound(e) {
+    if (e.dot) return this.tick(e);
     const k = this.pairKey(e.src, e.dst);
     const imp = this.impacts.get(k);
     const now = performance.now();
@@ -234,6 +249,8 @@ export class CombatView {
       case 'oor': return this.isHero(e.src) && this.onOutOfRange && this.onOutOfRange(e);   // only our own
       case 'fizzle': return this.fizzle(e);
       case 'proc': return this.proc(e);
+      case 'fade': return this.fade(e);
+      case 'res': return this.onCharges && this.isHero(e.dst) && this.onCharges(e);
       default: return null;
     }
   }
@@ -355,11 +372,19 @@ export class CombatView {
       this.fx.text(p.clone().setY(p.y + 0.7), e.name || 'Proc', { color: '#' + color.toString(16).padStart(6, '0'), size: 14, rise: 0.8 });
     });
   }
+  // an effect on the hero has worn off (affects.py): its name, greyed, sinks away over them
+  fade(e) {
+    const dst = this.resolve(e.dst);
+    if (!dst || !dst.hero) return;
+    this.fx.text(this.chest(dst).setY(dst.root.position.y + 2.2), `${e.name} fades`, { color: '#a8a4b4', size: 12, rise: -0.4, life: 1.4 });
+    if (this.onFade) this.onFade(e.name);
+  }
   colorOf(school) { return ({ fire: 0xff7a2a, frost: 0x9fd8ff, lightning: 0xbfd8ff, arcane: 0xc87aff, holy: 0xffe8a0, shadow: 0x8a4ad0, necrotic: 0x7aff8a, nature: 0x9aff6a, poison: 0xb8ff5a, sound: 0xffb8ff, blood: 0xd02a2a })[school] || 0xffffff; }
 
   // a heal: the number rises when the spell that caused it arrives; a heal nothing announced
   // (a potion, regeneration, a drain) gets a soft glow of its own
   heal(e) {
+    if (e.dot) return this.tick(e);
     const k = this.pairKey(e.src, e.dst);
     const imp = this.impacts.get(k);
     const now = performance.now();

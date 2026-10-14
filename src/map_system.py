@@ -700,6 +700,46 @@ def _class_resource(player):
     return {'name': label, 'value': int(getattr(player, attr, 0) or 0), 'max': cap}
 
 
+def _charges(player):
+    """Charges a class builds and spends beside its mana (a mage's arcane charges), for the pips
+    by the portrait in /play; None for a class without."""
+    if str(getattr(player, 'char_class', '')).lower() != 'mage':
+        return None
+    try:
+        from spells import arcane_max
+        cap = arcane_max(player)
+    except Exception:
+        cap = getattr(player, 'max_arcane_charges', 5)
+    return {'name': 'arcane', 'label': 'Arcane Charges', 'value': int(getattr(player, 'arcane_charges', 0) or 0), 'max': cap}
+
+
+# what lingers on a creature that someone put there (its target frame shows them): a wound over
+# time, and the harms that hold it (slowed, rooted, silenced, blinded, cursed...)
+AILMENT_FLAGS = {'slow', 'slowed', 'entangled', 'rooted', 'silenced', 'stunned', 'blind', 'blinded', 'curse', 'cursed',
+                 'poison', 'poisoned', 'weakened', 'sleep', 'asleep', 'charmed', 'feared', 'frozen', 'burning', 'bleeding'}
+
+
+def _ailments(entity):
+    """[{n: name, s: school, r: ticks left}] for a creature's target frame (at most six)."""
+    out = []
+    for a in getattr(entity, 'affects', None) or ():
+        kind = str(getattr(a, 'type', '') or '')
+        applies = str(getattr(a, 'applies_to', '') or '').lower()
+        harmful = kind == 'dot' or applies in AILMENT_FLAGS or (kind == 'modify_stat' and (getattr(a, 'value', 0) or 0) < 0)
+        if not harmful:
+            continue
+        name = str(getattr(a, 'name', '') or '')
+        try:
+            from combat_hooks import _school_of_label
+            school = _school_of_label(name) if kind == 'dot' else None
+        except Exception:
+            school = None
+        out.append({'n': name, 's': school, 'r': int(getattr(a, 'remaining', 0) or 0), 'dot': kind == 'dot'})
+        if len(out) >= 6:
+            break
+    return out
+
+
 def _mount_info(player):
     """The mount the player is currently riding (for a 'riding X' HUD chip and
     in-world rider art), or None when on foot."""
@@ -1158,6 +1198,7 @@ def build_combat_payload(player) -> dict:
             'name': player.name,
             'momentum': getattr(player, 'momentum', 0),
             'resource': _class_resource(player),
+            'charges': _charges(player),
             'path': getattr(player, 'path', None),
             'path_active': _path_active(player),
             'stance': getattr(player, 'stance', getattr(player, 'combat_stance', getattr(player, 'mood', 'normal'))) or 'normal',
@@ -1615,6 +1656,7 @@ def _room_entities(room, vnum, player):
                 'fighting_name': getattr(getattr(entity, 'fighting', None), 'name', '') or '',
                 'special': str(getattr(entity, 'special', '') or ''),
                 'wards': _wards(entity),
+                'ails': _ailments(entity),
             }
             # Include HP if available
             hp = getattr(entity, 'hp', None)
@@ -1984,6 +2026,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'autoloot': bool(getattr(player, 'autoloot', False)),
             'autogold': bool(getattr(player, 'autogold', True)),
             'resource': _class_resource(player),
+            'charges': _charges(player),
             'cooldowns': _cooldowns(player),
             'reactions': _reaction_ready(player),
             'skills': dict(getattr(player, 'skills', {})),

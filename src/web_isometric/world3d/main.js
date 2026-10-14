@@ -149,6 +149,10 @@ async function runGame() {
   sound.listener = () => ({ x: engine.rig.target.x, z: engine.rig.target.z, yaw: engine.rig.yaw });
   MH.bus.on('combat.state', on => sound.setBattle(!!on));
   combat.onTelegraph = (k, d) => cues.telegraph(k, d);
+  // what used to be text only: charges gained and spent, a wound ticking on a foe, an effect gone
+  combat.onCharges = e => hud.setCharges(e);
+  combat.onAilment = (ent, name, school) => hud.noteAilment(ent, name, school);
+  combat.onFade = () => { if (MH.refreshState) setTimeout(() => MH.refreshState(), 200); };
   // stepping out of a marked blow's ground: the server hears where you stand at once
   cues.onLeave = () => { posClock = 0; };
   combat.onTelegraphEnd = k => cues.telegraphEnd(k);
@@ -736,6 +740,8 @@ async function runGame() {
   // the server fights within one room: be in the target's room and within the action's
   // reach, walking only as far as needed (an archer stops at bow range, not in its face)
   function inReach(t, range, then) {
+    // (the target fell, or its body was taken away, as the key went down: nothing to reach)
+    if (!t || !t.root || !hero || !hero.root) return hud.toast('No target — click a creature or press Tab.');
     const same = heroRoom && t.vnum === heroRoom.vnum;
     const p = hero.root.position, q = t.root.position;
     const d = Math.hypot(q.x - p.x, q.z - p.z);
@@ -770,7 +776,7 @@ async function runGame() {
         return;
       }
       // (the opening blow comes back at once as an attack event, with the class's swing)
-      if (!MH.state.inCombat) { const cmd = `kill ${refFor(t)}`; lastAction = { cmd, at: performance.now() }; MH.sendCommand(cmd); }
+      if (!MH.state.inCombat) { const cmd = `kill ${refFor(t)}`; lastAction = { cmd, at: performance.now() }; MH.sendCommand(cmd, 'combat'); }
     });
   }
   MH.bus.on('hud.attack', attack);
@@ -797,7 +803,7 @@ async function runGame() {
     if (lastAction && performance.now() - lastAction.at < 4000) {
       const retry = lastAction; lastAction = null;
       hud.toast(`Closing to ${e.need} m…`);
-      approach(t, e.need || 2.5, () => MH.sendCommand(retry.cmd));
+      approach(t, e.need || 2.5, () => MH.sendCommand(retry.cmd, 'combat'));
     } else hud.toast(`Too far — get within ${e.need} m`);
   }
   MH.bus.on('hud.flee', () => MH.sendCommand('flee'));
@@ -830,26 +836,26 @@ async function runGame() {
     // a heal or a blessing goes to the player you have targeted, else to yourself
     if (ab.ally) {
       begin(t && t.kind === 'player' ? t : null);
-      return MH.sendCommand(abilityCommand(ab, t && t.kind === 'player' ? refFor(t) : null));
+      return MH.sendCommand(abilityCommand(ab, t && t.kind === 'player' ? refFor(t) : null), 'combat');
     }
     // aimed: turn to the circle, cast with its centre in the room's own metres
     if (ab.at) {
       begin(null);
       if (ctl) ctl.face(ab.at.x, ab.at.z);
-      return MH.sendCommand(aimCommand(abilityCommand(ab, null), heroRoom, ab.at));
+      return MH.sendCommand(aimCommand(abilityCommand(ab, null), heroRoom, ab.at), 'combat');
     }
     if (ab.self || !t || t.kind !== 'mob') {
       if (!ab.self && !t) return hud.toast('No target — click a creature or press Tab.');
       // a self ability that throws something (a release of charges) throws it at your target
       begin(r.travel && t && t.kind === 'mob' ? t : null);
-      return MH.sendCommand(abilityCommand(ab, null));
+      return MH.sendCommand(abilityCommand(ab, null), 'combat');
     }
     inReach(t, rangeOf(ab.id, ab.spell), () => {
       begin(t);
       // the exact creature ('#12'): the server turns it into the keyword its commands know
       const cmd = abilityCommand(ab, refFor(t));
       lastAction = { cmd, at: performance.now() };
-      MH.sendCommand(cmd);
+      MH.sendCommand(cmd, 'combat');
     });
   });
   // ---- doors ----

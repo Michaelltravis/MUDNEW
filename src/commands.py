@@ -21630,13 +21630,8 @@ class CommandHandler:
             pass
 
         # Generate a charge
-        max_charges = getattr(player, 'max_arcane_charges', 5)
-        try:
-            from talents import TalentManager
-            if TalentManager.get_talent_rank(player, 'arcane_mastery') > 0:
-                max_charges = 6
-        except Exception:
-            pass
+        from spells import arcane_max
+        max_charges = arcane_max(player)
         if player.arcane_charges < max_charges:
             player.arcane_charges += 1
             await player.send(f"{c['bright_cyan']}[Arcane Charges: {player.arcane_charges}/{max_charges}]{c['reset']}")

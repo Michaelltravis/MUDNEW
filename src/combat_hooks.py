@@ -502,6 +502,47 @@ def fx_school(school):
     return {'disease': 'poison', 'cold': 'frost'}.get(school, school)
 
 
+def tick_event(character, affect, amount, heal=False):
+    """A wound (or a mending) over time as the 3D client draws it: the same event as a blow's,
+    with the name of what is doing it (`dot`), so the number rises small in its school's colour.
+    (A tick lowers health itself, past take_damage, so it would otherwise go unseen.)"""
+    room = getattr(character, 'room', None)
+    if room is None or amount <= 0:
+        return
+    name = getattr(affect, 'name', '') or ''
+    if heal:
+        ev.emit(room, 'heal', dst=character, amt=int(amount), school='nature', dot=name)
+    else:
+        ev.emit(room, 'dmg', dst=character, amt=int(amount), left=max(0, int(getattr(character, 'hp', 0))),
+                school=_school_of_label(name), dot=name)
+
+
+def wore_off(character, affect):
+    """An effect on a player has ended: their page fades it (a word over them, its icon gone)."""
+    name = getattr(affect, 'name', None) or str(affect or '')
+    if name and (hasattr(character, 'account_name') or getattr(character, 'is_player', False)):
+        ev.emit_private(character, 'fade', dst=character, name=name)
+
+
+def _watch_charges(klass):
+    """A mage's arcane charges, watched: every change (gained, spent, decayed) tells their page
+    at once ('res' event), so the pips by the portrait keep up without waiting for a refresh."""
+    def get(self):
+        return self.__dict__.get('_arcane_charges', 0)
+
+    def put(self, value):
+        old = self.__dict__.get('_arcane_charges', 0)
+        self.__dict__['_arcane_charges'] = value
+        if value != old and getattr(self, 'room', None) is not None:
+            try:
+                from spells import arcane_max
+                ev.emit_private(self, 'res', dst=self, name='arcane', v=int(value or 0), max=arcane_max(self),
+                                spent=bool(value < old))
+            except Exception:
+                pass
+    klass.arcane_charges = property(get, put)
+
+
 def _school_of_label(label):
     # the harm it deals (combat_range.harm_school); a summoning wind-up looks necrotic
     school = cr.harm_school(label)
@@ -701,7 +742,7 @@ def install():
     from mobs import Mobile
     for step in (_wrap_one_round, lambda: _wrap_take_damage(Player), lambda: _wrap_take_damage(Mobile),
                  _wrap_deaths, _wrap_execute, _wrap_mob_ai, _wrap_spells, lambda: _wrap_intent_cancel(Mobile),
-                 lambda: _wrap_stuns(Character)):
+                 lambda: _wrap_stuns(Character), lambda: _watch_charges(Player)):
         try:
             step()
         except Exception as e:

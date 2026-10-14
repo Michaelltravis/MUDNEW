@@ -81,6 +81,7 @@ def html_escape(text: str) -> str:
             .replace('"', '&quot;'))
 
 
+KIND_PATTERN = re.compile(r'\x1b\]K:([a-z]+)\x07')
 RESUME_PATTERN = re.compile(r'\x1b\]RESUME:([A-Za-z0-9_\-]+)\x07')
 
 
@@ -146,8 +147,9 @@ class TelnetBridge:
                 text = RESUME_PATTERN.sub('', text)
                 
                 # Only send output if there's remaining text
-                if text.strip():
-                    html = ansi_to_html(text)
+                if KIND_PATTERN.sub('', text).strip():
+                    # each line's kind (msgkind.py) as an empty mark the page reads
+                    html = KIND_PATTERN.sub(r'<i data-k="\1"></i>', ansi_to_html(text))
                     await self.ws.send_json({
                         'type': 'output',
                         'data': html

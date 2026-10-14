@@ -138,6 +138,30 @@ Two exceptions wait **three minutes**: the class ultimates earned from the marqu
 (Singularity, Unbroken Banner, Lich Ascension...) and the paladin's Divine Shield (full
 invulnerability). Anything already at two minutes or less is unchanged.
 
+### Fights on screen (/play)
+
+In the 3D client a fight is shown, not told. Every swing, spell, wound, stagger, fizzle and death
+has its animation and its rising number (`combat_events.py`), so the chat log doesn't repeat it:
+- **The log's kinds.** The server marks each line it sends to a web page (`msgkind.py`):
+  - **combat:** what is printed while a swing, a skill or a spell resolves, and the fight's own
+    lines outside one (a wound over time ticking, a charge gained, an effect wearing off, a
+    creature's health bar);
+  - **reward:** a kill's experience, streak and rested bonuses, reputation and gold.
+
+  Combat lines live in the chat's **Combat** tab and stay out of **All** unless *Settings → Combat
+  text* is on. Rewards show in both. Refusals ("You don't have enough mana."), speech and a room's
+  description are never hidden. Telnet is unchanged.
+- **Commands from the bar.** A spell or attack sent from the bar echoes into the Combat tab, and
+  a key held down casts once, not twice.
+- **Wounds over time.** A burn, a poison or any damage over time rises as a small number in its
+  school's colour each tick, and the target frame shows a chip for each thing lingering on the
+  creature (a burn, a poison, a slow...). Healing over time rises in green.
+- **Charges.** A mage's arcane charges are pips under the health and mana bars. They pop in as they
+  are gained and flare as they are spent. The cap is the same everywhere: five, or six with
+  Arcane Mastery (the spell's count and Arcane Blast's used to disagree).
+- **Effects ending.** When a shield or blessing wears off, its name fades over your head and its icon
+  goes.
+
 ### Mana Management
 
 - Spells cost mana

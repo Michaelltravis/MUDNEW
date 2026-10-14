@@ -30,6 +30,7 @@
     <div class="pf-top"><span class="name"></span><span class="cls"></span></div>
     <div class="vbar hp"><i></i><b></b><span></span></div>
     <div class="vbar mp"><b></b><span></span></div>
+    <div class="pips hidden"></div>
     <div id="buffs"></div>
     <button id="riding" class="hidden" data-tip-title="Riding" data-tip-sub="Click or press R to dismount"></button>
   </div>
@@ -49,6 +50,7 @@
     <div class="tname"></div>
     <div class="tsub"></div>
     <div class="vbar hp"><i></i><b></b><span></span></div>
+    <div class="tails"></div>
     <div class="tcast hidden"><b></b><span></span><em></em></div>
     <div class="tdist"></div>
   </div>
@@ -77,7 +79,7 @@
 <div id="amb-caption" class="hidden"></div>
 
 <div id="chat" class="hud panel ornate small hidden">
-  <div class="chat-tabs"><button data-tab="all" class="on">All</button><button data-tab="group">Group</button><button data-tab="say">Say</button><button data-tab="tell">Tells</button></div>
+  <div class="chat-tabs"><button data-tab="all" class="on">All</button><button data-tab="group">Group</button><button data-tab="say">Say</button><button data-tab="tell">Tells</button><button data-tab="combat" title="The blow-by-blow: every swing, spell and wound, as text">Combat</button></div>
   <div id="log" data-tab="all"></div>
   <div class="chat-row"><button id="chat-mode" title="What Enter does with plain text: a command, or say / group / tell it">Cmd</button>
   <input id="chat-input" placeholder="Press Enter to talk or type a command…" autocomplete="off" spellcheck="false"></div>
@@ -194,6 +196,7 @@
   <div class="row">Performance <span class="seg"><button data-act="perf">F3</button></span></div>
   <div class="row">Auto-loot <span class="seg" data-set="autoloot"><button data-v="on" title="Take what a kill drops, at once">On</button><button data-v="off">Off</button></span></div>
   <div class="row">Real-time combat <span class="seg" data-set="combat"><button data-v="action" title="Your blows land as you strike; creatures act on their own clocks">On</button><button data-v="rounds" title="Everyone strikes once a 3-second round">Off</button></span></div>
+  <div class="row">Combat text <span class="seg" data-set="combattext"><button data-v="on" title="The blow-by-blow in the All tab too (the Combat tab always has it)">On</button><button data-v="off" title="Fights are shown on screen; their text stays in the Combat tab">Off</button></span></div>
   <div class="row">Ambient captions <span class="seg" data-set="ambcap"><button data-v="on" title="Show the world's murmurs as a line of text too">On</button><button data-v="off">Off</button></span></div>
   <div class="row">Sound <span class="seg"><button data-act="mute" title="All sound on or off">On</button></span></div>
   <div class="row vol">Master <input type="range" min="0" max="100" data-vol="master" aria-label="Master volume"></div>
