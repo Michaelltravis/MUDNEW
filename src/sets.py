@@ -298,10 +298,16 @@ NAMED_SETS = {
             29061: "archmage pointed wizard hat",
             29062: "archmage silk gloves",
             29063: "archmage star-silk slippers",
+            29064: "archmage starfall mantle",
+            29065: "archmage starwoven leggings",
+            29066: "archmage silk sleeves",
+            29067: "archmage star orb",
         },
         "bonuses": {
             2: {"int": 3, "max_mana": 60},
             4: {"damroll": 6, "spell_resist": 15, "max_hp": 60},
+            6: {"int": 2, "wis": 2, "max_mana": 80},
+            8: {"damroll": 6, "max_hp": 80, "spell_resist": 10},
         },
     },
     "lichlord_shroud": {
@@ -345,8 +351,8 @@ def get_named_set_bonus(set_id: str, pieces: int) -> dict:
     if not config:
         return {}
     bonuses = {}
-    for threshold in (2, 4):
-        if pieces >= threshold and threshold in config.get('bonuses', {}):
+    for threshold in sorted(config.get('bonuses', {})):
+        if pieces >= threshold:
             for stat, val in config['bonuses'][threshold].items():
                 bonuses[stat] = bonuses.get(stat, 0) + val
     return bonuses

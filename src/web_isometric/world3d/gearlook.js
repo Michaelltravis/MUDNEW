@@ -175,7 +175,11 @@ function shieldRoles(p, cls) {
   return withTrim(r, p);
 }
 function headRoles(p, cls) {
-  if (p.k === 'hat' || p.k === 'hood') { const c = clothOf(p, cls); return { cloth: worn(c, p), cloth_light: worn(c, p) }; }
+  if (p.k === 'hat' || p.k === 'hood') {
+    const c = clothOf(p, cls), r = { cloth: worn(c, p), cloth_light: worn(c, p) };
+    if (trimFor(p)) r.accent = trimFor(p);          // a finer hat's band in silver or gold
+    return r;
+  }
   if (p.m) return withTrim({ metal: worn(p.m, p), metal_dark: darkOf(p.m, p) }, p);
   return {};
 }

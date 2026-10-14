@@ -37,10 +37,12 @@ D&D style: the heaviest armour a class is trained in, whether it takes a shield,
 
 To re-kit a character that already has the old kit, run `gearup <name>` again.
 
+**A whole mage, to see:** the Archmage's Vestments is a full eight-piece set, with bonuses at 2, 4, 6 and 8 pieces (`sets.py` counts any tier now, not only 2 and 4). With the legendary crystal staff Synapse in the hand, a gearup mage wears nothing outside it. Deckard has `"gearup": true` in `world/grants.json`, so their next login gives them the whole kit. Their class decides which kit; a mage gets the Archmage's.
+
 ## New gear
 | Set | For | Where | Pieces |
 |---|---|---|---|
-| Archmage's Vestments (60-66) | mage | the Eclipse Regent, the Black Observatory | starwoven robe, pointed wizard hat, silk gloves, star-silk slippers |
+| Archmage's Vestments (60-66), head to toe | mage | the Eclipse Regent, the Black Observatory | starwoven robe, pointed wizard hat, silk gloves, star-silk slippers, starfall mantle, starwoven leggings, silk sleeves, star orb (held) |
 | Lich-Lord's Shroud (60-68) | necromancer | the Thalassine Lich (robe, cowl); the Bone-Crowned Sovereign (wraps, shoes) | grave-silk robe, cowl, bone-knuckled wraps, grave-walker shoes |
 | Nightblade's Leathers (55-60) | thief, assassin, bard | Shadow Lord Malachar, Shadowspire Citadel | leather jerkin, hood, gloves, breeches |
 
