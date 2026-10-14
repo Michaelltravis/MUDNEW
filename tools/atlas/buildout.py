@@ -440,7 +440,9 @@ def apply(new_zones, new_rooms, write=False):
             new_zones[z].setdefault('mobs', {})[str(v)] = proto
             summary['creatures'] += 1
             # placed evenly over its rooms, the same way every build; a room already holding two
-            # creatures passes it on to the next of its rooms
+            # creatures passes it on to the next of its rooms. A reset's max counts the creature
+            # across the whole zone (world.reset_zone), so each placement carries the creature's
+            # total: with max 1 a creature written as "count 8" lived once per zone.
             count = min(int(c['count']), len(spots))
             step = len(spots) / count
             start = (_crc(c['id']) % 1000) / 1000 * step
@@ -450,7 +452,7 @@ def apply(new_zones, new_rooms, write=False):
                 for j in range(len(spots)):
                     resets = new_rooms[spots[(at + j) % len(spots)]].setdefault('mob_resets', [])
                     if len(resets) < 2:
-                        resets.append({'vnum': v, 'max': 1})
+                        resets.append({'vnum': v, 'max': count})
                         placed += 1
                         break
             summary['creatures placed'] += placed

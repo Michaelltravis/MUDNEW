@@ -1874,10 +1874,11 @@ Owner: "Morkai should be an end game area and themed dark, undead, skeletons, ab
   soul-glass amulet, a void-iron ring, Vrakk's blackplate and the crown of the Bone King.
 - **The look:** streets and squares are `necropolis`; halls, the church and the morgue are
   `crypt`; zone 514's zone key is `necropolis`, which sets dark music.
-- **Counts:** a reset counts its creature across the whole zone (`world.reset_zone`). A build-out
-  creature placed in many rooms with `max: 1` therefore spawns once per zone, whatever its count
-  says. Morkai's creatures use population `spawns`, which set the zone-wide total, so the counts
-  written hold. Other build-out zones still have the one-per-zone cap.
+- **Counts:** a reset counts its creature across the whole zone (`world.reset_zone`).
+  - The build-out used to give every placement `max: 1`, so each build-out creature lived only
+    once per zone, whatever count its writer gave.
+  - Each placement now carries the creature's count, which lifts the cap in every build-out zone:
+    about 834 more creatures in the world at load (2,387 to 3,221).
 - `buildout.py`: a creature's `"avoid": [room names]` keeps it out of rooms; the tunnel orcs avoid
   dead Morkai.
 
