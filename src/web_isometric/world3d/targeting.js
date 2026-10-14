@@ -64,6 +64,15 @@ export function refFor(e) {
   return String((e.data && e.data.name) || '').split(/\s+/)[0].toLowerCase();
 }
 
+// the name a nameplate or the target frame shows: a creature's description without its article
+// ("a wandering ogre" -> "Wandering ogre", "Gorak the Drillmaster"), not its keyword list
+// ("ogre wandering brute giant"); a player's own name
+export function shownName(d, kind) {
+  if (!d) return '';
+  const s = kind !== 'player' && d.short ? String(d.short).trim().replace(/^(a|an|the|some)\s+/i, '') : '';
+  return s ? s[0].toUpperCase() + s.slice(1) : String(d.name || '');
+}
+
 // the command an action-bar ability sends: spells by their spoken name, skills by their id
 // with underscores ("order verdict" would reach the pet-order command, "holy smite" the
 // cleric's holy fire)

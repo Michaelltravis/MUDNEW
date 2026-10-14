@@ -83,10 +83,10 @@ goes into the game.
 | snake.py | snake, serpent (also worms and centipedes) |
 | brute.py | ogre, troll, yeti, minotaur (also **King Minos**) |
 | demon.py | demon, **fiend** (balor, pit fiend, Cinder Tyrant), imp, kobold |
-| beast.py | cat, lion, bear, rat, **rat_king** (Sewer King), deer, horse, unicorn, lizard, crocodile, rabbit, pig, sheep, cow |
+| beast.py | cat, lion, bear, rat, **rat_king** (Sewer King), deer, horse, unicorn, lizard, crocodile, rabbit, pig, sheep, cow, camel, frog |
 | bird.py | bird, eagle, **roc** (Roc Matriarch) |
-| shell.py | crab, scorpion, turtle |
-| fish.py | fish, shark, whale |
+| shell.py | crab, scorpion, turtle, clam (also oysters and mussels) |
+| fish.py | fish, shark, whale, ray (manta rays, the ixitxachitl) |
 | insect.py | beetle, wasp, **stick_mother** |
 | tentacle.py | mindflayer, **overmind** (Master Mindflayer), horror |
 | growth.py | treant, myconid, beholder |
@@ -95,3 +95,7 @@ Shared pieces live in `mhb/forms.py` (humanoid and quadruped frames with their c
 `mhb/gaits.py` (walks, many-legged gaits, slither, wing beats, deaths). A bestiary entry picks a
 body with `body:`; an index `look` gives opacity or glow, and `ref` sizes a long, low body by its
 length. To compare old and new, use `/play?demo&gallery=kin&add=...` with and without `&nobodies`.
+
+Only a few creatures stay on bodies built in code (kin.js), on purpose: true slimes and oozes (gray ooze,
+ochre jello, gelatinous blob, Mudmonster, lemure, yochlol, pit beast, dustdigger, moon jellyfish) and the
+hands, arms and feet that reach out of walls. Ducklings and penguins keep their pack models (`prefer: true`).

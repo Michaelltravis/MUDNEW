@@ -542,9 +542,11 @@ function exitFeatures(group, layout, ox, oz, room, kits, owned) {
       const info = room.doors[key];
       if (info) { h.userData.setOpen(!info.closed); h.userData.setLocked(!!(info.closed && info.locked)); }
     }
+    // into another region the arch over the stairs carries its name (terrain-castle zoneGates):
+    // the label just says which way, low in the arch's mouth, clear of the plaque
     const zoneExit = e && e.kind === 'zone';
-    const sp = labelSprite(`${key === 'up' ? '▲ Up' : '▼ Down'} · ${e ? where(e) : ''}`, zoneExit ? '#ffd88a' : '#e8e2c8', owned);
-    sp.position.set(cx, key === 'up' ? 2.9 : 2.2, cz);
+    const sp = labelSprite(`${key === 'up' ? '▲ Up' : '▼ Down'}${e && !zoneExit ? ` · ${where(e)}` : ''}`, zoneExit ? '#ffd88a' : '#e8e2c8', owned);
+    sp.position.set(cx, zoneExit ? 1.8 : key === 'up' ? 2.9 : 2.2, cz);
     group.add(sp);
   }
   for (const pt of layout.portals || []) {
