@@ -10,6 +10,9 @@ import { castleWalls, castleYard, zoneGates } from './terrain-castle.js';
 import { underground, dressHall, outdoorEdge, outdoorDress, mountainCliffs, sunkenRuins, webDress, tinted, RUIN_RE, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
 
 export const ROOM_W = 24, ROOM_H = 15;
+// the web words (room_looks.py LOOK_WORDS 'web'): two or more hang webs in a room of any look
+const WEB_WORDS = /\b(webs?|webbed|webby|webbing|cobwebs?|cocoon\w*|egg ?sacs?|spider ?silk)\b/gi;
+const webbed = layout => (`${layout.name || ''} ${layout.description || ''}`.match(WEB_WORDS) || []).length >= 2;
 const FLOOR = 0, BLOCK = 1, WATER = 4;
 
 const INDOOR = new Set(['inside', 'dungeon', 'cave', 'mine', 'crypt', 'sewer']);
@@ -286,6 +289,8 @@ export function buildRoom(layout, ox, oz, kits, room) {
   if (!PAVED.has(theme) && kits.graveyard && isGraveyard(layout)) graveyard(ctx());
   // a death trap: a ledge round a burning abyss, bones, skulls on poles at the ways in (deathtrap.js)
   if (room && isDeadly(room.data ? room.data.flags : room.flags)) deathTrap(ctx());
+  // a webbed room or cave (the spider queens' dens, a cellar thick with cobweb): its webs hung in it
+  if (theme !== 'web' && webbed(layout)) webDress(ctx(), { indoor: true });
   // a way into another region: a named stone gateway (terrain-castle.js)
   if (room) zoneGates(ctx(), theme);
   b.build(group);

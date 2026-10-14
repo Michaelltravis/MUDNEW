@@ -23,9 +23,32 @@ CUES = {
 }
 CUE_RES = {k: re.compile(v, re.I) for k, v in CUES.items()}
 # a look and the cues that contradict it when strong
+WEB_OVER = {'inside', 'dungeon', 'cave', 'crypt', 'mine', 'sewer'}
 CONFLICT = {
     'city': ('web', 'forest', 'cave'), 'field': ('web', 'forest', 'cave', 'indoor'),
     'hills': ('web', 'cave', 'indoor'), 'inside': ('web', 'forest'), 'forest': ('web', 'cave'),
+}
+
+
+# rooms read and judged right as they are drawn, though their words trip a cue (why)
+ACCEPT = {
+    2315: 'a walled vegetable garden: walls, open sky',
+    8167: "grass behind the inn; the inn's doors and wall are beside it",
+    9117: 'a hill pasture crossed by an old field wall',
+    201503: "outside Eden's gate, in a wall",
+    16200: 'outside a cabin on a hillside',
+    8041: 'a town wall road with one tree in its paving',
+    13026: "a road between walled gardens in a dwarven hold",
+    13038: 'a cobbled yard before a watchtower, its walls rising to the roof of the mountain',
+    4507: 'a garden path outside the greenhouse', 4510: 'a garden path round the greenhouse',
+    4512: 'a garden path round the greenhouse', 4528: 'inside the glasshouse: a garden under glass',
+    4529: 'inside the glasshouse: a garden under glass', 4533: 'an open pavilion in the garden',
+    1407: "Elvandar's halls are rooms built in the trees", 1413: "Elvandar's halls are rooms built in the trees",
+    1448: "Elvandar's halls are rooms built in the trees", 1456: "Elvandar's halls are rooms built in the trees",
+    1458: "Elvandar's halls are rooms built in the trees", 11012: 'a guard room (its text is of the blighted wood outside)',
+    11013: 'a guards\' bedroom', 6623: 'a treehouse: a room in the branches',
+    20629: 'a cavern town: its streets drawn as streets',
+    106284: 'a room inside a hollow tree',
 }
 
 
@@ -46,13 +69,18 @@ async def main():
     world = World(Config())
     await world.load()
     zone = int(sys.argv[sys.argv.index('--zone') + 1]) if '--zone' in sys.argv else None
+    import room_looks
+    pinned = room_looks.load_overrides()['rooms']
     per_zone = collections.defaultdict(list)
     for r in world.rooms.values():
         zn = getattr(getattr(r, 'zone', None), 'number', None)
         if zone is not None and zn != zone:
             continue
+        if r.vnum in ACCEPT or r.vnum in pinned or getattr(r, 'look_why', None) == 'stated':
+            continue
         cues = strong(f'{r.name} {r.description}')
-        bad = [c for c in CONFLICT.get(r.look, ()) if c in cues]
+        # (a room whose webs are hung in it by the client: the web dressing over a room's own look)
+        bad = [c for c in CONFLICT.get(r.look, ()) if c in cues and not (c == 'web' and r.look in WEB_OVER)]
         if bad:
             per_zone[(zn, getattr(r.zone, 'name', '?'))].append((r.vnum, r.name, r.look, r.look_why, bad))
     total = sum(len(v) for v in per_zone.values())

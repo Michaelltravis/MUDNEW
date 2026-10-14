@@ -51,7 +51,7 @@ async def main():
 
     # ---- the overrides file
     zones = {getattr(getattr(r, 'zone', None), 'number', None) for r in rooms.values()}
-    bad = [(k, v) for k, v in ov['rooms'].items() if k not in rooms or v not in rl.LOOKS]
+    bad = [(k, v) for k, v in ov['rooms'].items() if k not in rooms or v not in rl.OVERRIDE_LOOKS]
     bad += [(k, v) for k, v in ov['zones'].items() if k not in zones or v not in rl.LOOKS]
     check(not bad, f'every override names a real room or zone and a known look ({bad[:4]})')
     why = raw.get('_why') or {}
@@ -72,8 +72,15 @@ async def main():
     taverns = [r for r in rooms.values() if r.sector_type == 'inside' and 'tavern' in r.name.lower()
                and not r.name.lower().startswith(('below', 'under', 'beneath'))]   # a mine under a tavern is a mine
     check(taverns and all(r.look not in rl.UNDERGROUND for r in taverns), 'no tavern turns into a cave')
-    plains = [r for r in rooms.values() if r.name == 'The Plains']
+    # (unless its own description is plainly a building's: Townsbridge's alehouse and chapel)
+    plains = [r for r in rooms.values() if r.name == 'The Plains' and not rl.reads_indoors(r.description)]
     check(plains and all(r.look not in ('inside', 'dungeon') for r in plains), 'no room called The Plains is drawn as a building')
+    # the room audit's cases (tools/qc_room_looks.py)
+    check(rooms[8151].look == 'inside', 'the village alehouse called The Plains is a building')
+    check(rooms[4105].look == 'cave' and rooms[4066].look == 'cave', "the Mountain Range's Golden Cave and Maze are caves")
+    check(rooms[14648].look == 'web' and rooms[6132].look == 'web', 'webbed woods are spider lairs')
+    check(rooms[16126].look == 'forest', 'the edge of a Forrest is a forest')
+    check(rooms[8387].look == 'inside', "a castle's guest room with a bed is a room, not a cave")
     indoor_country = [(r.vnum, r.name) for r in rooms.values() if r.look == 'inside' and rl.open_country(r)]
     check(not indoor_country, f'no room named as open country is drawn indoors ({indoor_country[:4]})')
     mtn = [(r.vnum, r.name, r.look) for r in rooms.values() if r.sector_type in ('field', 'hills', 'forest')

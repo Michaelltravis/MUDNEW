@@ -1719,10 +1719,14 @@ says a cave, the room should look like a cave. Let's think how to fix this going
   - **dead cities (`necropolis`):** a town's streets in black stone, with crypts, shrines, dead
     trees, graves, bones and skulls in place of street furniture, braziers of cold green
     ghost-fire, and a grave-green mood (`terrain-town.js`, `engine.js`). Morkai's streets use it.
+  - **webs in a room or a cave:** a room whose words name webs twice (the spider queens' dens, a
+    cellar thick with cobweb) keeps its own look, with the web dressing hung in it and no
+    canopy.
   - **ways into another region (any room):** a stone gateway over every cardinal exit of kind
     `zone`. It has two great pillars, a lintel carrying the region's name on a carved plaque,
     banners, and a fire either side. Indoors and underground it is lower and plainer. On the
-    side nearest the camera it stays low, with the name turned to the camera.
+    side nearest the camera it stays low, with the name turned to the camera. Stairs up or down
+    into another region get a free-standing arch over them (`standingGate`).
     - The owner: "castle and main zone entrances should look interesting too. Everything is too
       generic."
   - **Moods** (`engine.js`): cave, desert, snow and volcanic, plus footsteps, ambience, music and
@@ -1730,7 +1734,26 @@ says a cave, the room should look like a cave. Let's think how to fix this going
   - `/play?demo&gallery=rooms` shows one room of each look, plus castles and gateways
     (`&only=castle,blackcastle,gate,gatecity,gatecave,gatesouth`).
   - `tools/qc_room_looks.py [--zone N]` lists rooms whose look conflicts with strong words in
-    their description (webs, trees, caves, streets).
+    their description (webs, trees, caves, streets). It reports 0.
+    - Rooms judged right as drawn are in its `ACCEPT` list, with why. Rooms pinned in
+      looks.json (which may now pin a plain field, forest, hills, mountain, city or inside) are
+      skipped.
+  - **Rules from its findings (`room_looks.py`):**
+    - an indoor room named as open country but described as a building (≥3 indoor words)
+      stays a building; a road needs a roof, a vault or a building it runs through. Examples:
+      Townsbridge's alehouse, chapel and barns, all called "The Plains"; the customs hall the
+      Trade Road runs through.
+    - a road through a tunnel is a cave;
+    - a field room named for a building and described as one is a room (a guardhouse, the
+      guards' quarters), unless its name puts it outside;
+    - a tunnel is a cave even without rock words;
+    - a room typed as open country but described all in tunnels is a cave (the Mountain
+      Range's Maze and Hole);
+    - a city-typed room named a cave is one (the Golden Cave);
+    - "Forrest" is a forest;
+    - a wood hung with webs is a spider lair;
+    - a furnished room (≥2 of hearth, table, bed, shelves, rafters, windows...) never takes its
+      zone's underground look. Castle bedrooms had been drawn as caves.
 - **Keeping it true:**
   - `tests/test_room_looks.py` (the world check): every room looks like what its name says
     unless pinned, stated looks never contradict names, overrides are valid, plus known rooms

@@ -31,6 +31,8 @@ logger = logging.getLogger('Misthollow')
 LOOKS = ('cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'castle',
          'necropolis')
 UNDERGROUND = {'cave', 'mine', 'crypt', 'sewer', 'dungeon'}
+# a hand override (world/looks.json) may also keep a room as plain country or a plain room
+OVERRIDE_LOOKS = LOOKS + ('field', 'forest', 'hills', 'mountain', 'city', 'inside')
 OUTDOOR = {'desert', 'snow', 'volcanic', 'swamp', 'web'}   # (a shore is an edge: it doesn't spread)
 
 # first match wins: the specific before the general
@@ -131,12 +133,41 @@ def _neighbours(room, rooms):
             yield other
 
 
-FOREST_WORDS = r'\b(forests?|woods|woodlands?|groves?|copse|thickets?|jungle|wildwood|greenwood|glades?|clearing|trees?|treetops?|branch(?:es)?)\b'
+FOREST_WORDS = r'\b(forests?|forrests?|woods|woodlands?|groves?|copse|thickets?|jungle|wildwood|greenwood|glades?|clearing|trees?|treetops?|branch(?:es)?)\b'
 FOREST_RE = re.compile(FOREST_WORDS, re.I)
 # a description plainly among trees: three or more of these (a field or a road through woods)
 TREE_CUES = re.compile(r'\b(trees?|branch(?:es)?|boughs?|limbs?|canopy|foliage|trunks?|undergrowth|forest|woods|leaves|treetops?)\b', re.I)
 CITY_CUES = re.compile(r'\b(streets?|shops?|buildings?|houses?|market|plaza|alley|cobble\w*|town|city)\b', re.I)
 TUNNEL_RE = re.compile(r'\b(tunnels?|burrows?)\b', re.I)
+TUNNEL_WORDS = re.compile(r'\b(tunnels?|passages?)\b', re.I)
+# a description plainly underground (The Maze, The Hole in the Mountain Range's tunnels, typed forest)
+CAVE_CUES = re.compile(r'\b(tunnels?|passages?|caverns?|caves?|alcoves?|ceiling)\b', re.I)
+# a description plainly inside a building: three or more of these (the build-out wrote rooms an
+# atlas called "The Plains" as a village's alehouse and chapel)
+INDOOR_CUES = re.compile(r'\b(walls?|ceiling|floor(?:boards?)?|doors?|doorways?|hearth|tables?|benches|chambers?|halls?|roof|'
+                         r'beams|rafters|shel(?:f|ves)|altar|pews?|windows?|vault(?:ed)?|furniture|counters?|bunks?)\b', re.I)
+# a road through a building says so: under a roof, a vault, a gallery (not a road between houses)
+ROOFED = re.compile(r'\b(roof(?:ed)?|ceiling|vault(?:ed)?|gallery|covered|beneath (?:the|a|its)|undercroft|'
+                    r'through (?:a|an|the) (?:[\w-]+ ){0,3}(?:barn|hall|house|inn|waystation|tollhouse))\b', re.I)
+# a name that puts the room outside a building ("In Front Of The Stable", "Before The Watchtower")
+OUTSIDE_RE = re.compile(r'^\s*(in front of|before|outside|near|beside|behind|by)\b', re.I)
+# a field-typed room whose name is a building's (a guardhouse, the Ambassadors Halls)
+BUILDING_RE = re.compile(r'\b(guardhouse|guard ?rooms?|halls|quarters)\b', re.I)
+
+
+# furniture and fittings only a building has (caves have walls, ceilings and floors too)
+BUILDING_CUES = re.compile(r'\b(hearths?|tables?|benches|beds?|bunks?|shel(?:f|ves)|counters?|rafters|thatch|windows?|'
+                           r'furniture|pews?|chimney|plaster|carpets?|rugs?|stalls?|mangers?|cupboards?|kitchen)\b', re.I)
+
+
+def reads_building(text):
+    """Whether a description is furnished like a building (a lodge, a watchtower's chamber)."""
+    return len(BUILDING_CUES.findall(text or '')) >= 2
+
+
+def reads_indoors(text):
+    """Whether a description plainly puts its room inside a building."""
+    return len(INDOOR_CUES.findall(text or '')) >= 3
 # a castle's outside (its yard, walls and gate) is drawn as one: curtain walls with merlons, towers
 # at the corners, banners; its halls and chambers stay rooms (INTERIOR_RE)
 CASTLE_RE = re.compile(r'\b(castle|keep|fortress|citadel|stronghold|bailey|battlements?|ramparts?|gatehouse|'
@@ -187,6 +218,15 @@ def open_country(room):
     # an indoor room whose own description is underground (a ledge in a cavern) is underground
     if description_look(room.description) in UNDERGROUND:
         return None
+    # and one whose description is plainly a building's (the village alehouse the atlas called
+    # "The Plains", the customs hall the Trade Road runs through) is that building; a road through
+    # one only when it runs under a roof, and through a tunnel it is a cave; a street stays a street
+    desc = room.description or ''
+    road_name = dict(OPEN_RES)['road'].search(name)
+    if road_name and len(TUNNEL_WORDS.findall(desc)) >= 2 and not STREET_RE.search(name):
+        return 'cave'
+    if reads_indoors(desc) and not STREET_RE.search(name) and (not road_name or ROOFED.search(desc)):
+        return None
     # a road names where it goes ("The Path By The Cathedral"): still a road (through a forest, a
     # forest); anything else that names a building is that building
     road = dict(OPEN_RES)['road'].search(name)
@@ -221,8 +261,18 @@ def _own_look(room):
         return None, None
     name, desc = room.name or '', room.description or ''
     # a tunnel through rock is a cave, whatever it was typed (the Mountain Range's were 'forest')
-    if TUNNEL_RE.search(name) and ROCK_CUES.search(desc) and sector != 'city' and not INTERIOR_RE.search(name):
+    if (TUNNEL_RE.search(name) and (ROCK_CUES.search(desc) or len(TUNNEL_WORDS.findall(desc)) >= 2)
+            and sector != 'city' and not INTERIOR_RE.search(name)):
         return 'cave', 'name'
+    # and so is a room typed as open country whose description is all tunnel and cavern
+    if (sector in ('forest', 'hills', 'field') and len(CAVE_CUES.findall(desc)) >= 3
+            and re.search(r'\b(tunnels?|caverns?|caves?)\b', desc, re.I) and not FOREST_RE.search(name)
+            and not reads_building(desc)):
+        return 'cave', 'description'
+    # a building typed as open country (a guardhouse, the guards' quarters) is a building
+    if (sector in ('field', 'hills') and (INTERIOR_RE.search(name) or BUILDING_RE.search(name))
+            and not OUTSIDE_RE.search(name) and reads_indoors(desc)):
+        return 'inside', 'name'
     look = words_look(room.name)
     why = 'name'
     if not look and _castle(room, sector, name, desc):
@@ -232,6 +282,9 @@ def _own_look(room):
         # a forest or a mountain stays one whatever its description says, unless it is snowbound
         if look in ('forest', 'mountain') and description_look(room.description) == 'snow':
             look = 'snow'          # (still read from its name: a snowbound wood)
+    # a wood hung with webs (the Great Forest of MiNar, the trees of Haon-Dor's spiders)
+    if look in ('forest', 'field', None) and len(dict(LOOK_RES)['web'].findall(desc)) >= 2 and sector not in INDOOR_SECTORS:
+        return 'web', 'description'
     if not look and sector == 'forest' and FOREST_RE.search(room.name or ''):
         # a forest typed as one and named as one: no description turns it into a swamp or a shore
         d = description_look(room.description)
@@ -240,7 +293,8 @@ def _own_look(room):
         look, why = description_look(room.description), 'description'
     if not look:
         return None, None
-    if sector == 'city' and look not in ('sewer', 'forest', 'web'):
+    # (a city-typed room named a cave is a cave: the Golden Cave of the Mountain Range)
+    if sector == 'city' and look not in ('sewer', 'forest', 'web') and not (look == 'cave' and why == 'name'):
         return None, None
     # an outdoor look found only in a description keeps an enclosed room enclosed
     if look in OUTDOOR | {'shore'} and why == 'description' and sector not in OUTDOOR_FROM_DESC:
@@ -321,7 +375,8 @@ def classify(world, overrides=None):
         if n < ZONE_MIN or sum(named.values()) * 3 < len(enclosed):
             continue
         for r in enclosed:
-            if r.look_why is None and not INTERIOR_RE.search(f'{r.name} {r.description}'):
+            # (never a room plainly a building's: a watchtower's chamber, a lodge, a cellar)
+            if r.look_why is None and not INTERIOR_RE.search(f'{r.name} {r.description}') and not reads_building(r.description):
                 r.look, r.look_why = look, 'zone'
     return Counter(r.look for r in rooms.values())
 

@@ -272,6 +272,38 @@ export function castleYard(c) {
   }
 }
 
+// ---- a free-standing arch over stairs into another region, facing the camera ----
+function standingGate(c, cx, cz, opts = {}) {
+  const { kits, b, occ, torches, group, owned } = c;
+  const D = kits.dungeon;
+  const height = opts.height || 3.8, LT = 0.8, half = 2.7;
+  const stone = m => (opts.stone && m ? tinted(m, opts.stone[0], opts.stone[1]) : m);
+  const pillar = stone(D.get('pillar_decorated'));
+  const ps = sizeOf(pillar);
+  for (const x of [cx - half, cx + half]) stand(b, occ(pillar), x, 0, cz, 0, 1.2 / (ps.x || 2.2), height / (ps.y || 4), 1.1 / (ps.z || 1.7));
+  stand(b, occ(stone(D.get('wall'))), cx, height - LT, cz, 0, (2 * half + 1.3) / 4, LT / 4, 1.1);
+  if (opts.banners) {
+    for (const [i, x] of [[0, cx - half], [1, cx + half]]) {
+      stand(b, D.get(opts.banners[i % opts.banners.length]), x, height - LT - 2.2, cz + 0.62, 0, 0.55, 0.65, 0.55, { shadow: false });
+    }
+  }
+  if (opts.fires) {
+    for (const x of [cx - half - 0.9, cx + half + 0.9]) {
+      stand(b, D.get('torch_lit'), x, 0, cz + 1.0, 0, 1.3, 1.3, 1.3, { shadow: false });
+      torches.push(new THREE.Vector3(x, 1.35, cz + 1.0));
+    }
+  }
+  if (opts.plaque) {
+    const w = Math.min(2 * half - 0.4, 4.6), h = Math.min(w / opts.plaque.aspect, LT * 0.86);
+    const geo = new THREE.PlaneGeometry(w, h);
+    const mat = new THREE.MeshStandardMaterial({ map: opts.plaque.tex, roughness: 0.8, emissive: 0xffffff, emissiveMap: opts.plaque.tex, emissiveIntensity: 0.35 });
+    owned.push(geo, mat);
+    const m = new THREE.Mesh(geo, mat);
+    m.position.set(cx, height - LT / 2, cz + 0.57);
+    group.add(m);
+  }
+}
+
 // ---- the ways into other regions: a gateway with the region's name over it ----
 export function zoneGates(c, theme) {
   const { layout, room } = c;
@@ -280,7 +312,22 @@ export function zoneGates(c, theme) {
   const underground = theme === 'cave' || theme === 'mine';
   const indoor = theme === 'inside' || theme === 'dungeon' || theme === 'crypt' || theme === 'sewer';
   for (const [side, e] of Object.entries(room.data.exits)) {
-    if (!e || e.kind !== 'zone' || !gaps[side]) continue;
+    if (!e || e.kind !== 'zone') continue;
+    // stairs up or down into another region: an arch over them, its name toward the camera
+    const st = side === 'up' ? layout.stairsUp : side === 'down' ? layout.stairsDown : null;
+    if (st) {
+      const name = e.zoneName || e.toName || '';
+      const seed = MH.hashStr(name);
+      standingGate(c, c.ox + st.x + 0.5, c.oz + st.y - 0.6, {
+        height: indoor || underground ? 3.2 : 3.8,
+        stone: underground ? [0x8a7a68, 'gate_rock'] : null,
+        banners: indoor || underground ? null : [BANNERS[seed % 3], BANNERS[(seed + 1) % 3]],
+        fires: true,
+        plaque: name ? plaqueTexture(name, c.owned) : null,
+      });
+      continue;
+    }
+    if (!gaps[side]) continue;
     if (theme === 'castle') continue;                       // a castle's gatehouse is already there
     let gap = gaps[side];
     // a whole open side: the gate stands over its middle

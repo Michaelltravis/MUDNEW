@@ -1,6 +1,24 @@
 {
  "_about": "How rooms look in 3D, by hand, where room_looks.py's reading of their words falls short (src/room_looks.py). 'rooms' pins one room's look; 'zones' gives a zone's look to its rooms that have none of their own (underground looks only to enclosed rooms that don't read as a building's, outdoor looks only to open country). Looks: cave, mine, crypt, sewer, dungeon, desert, snow, shore, volcanic, swamp. Give each entry its reason in '_why'.",
- "rooms": {},
+ "rooms": {
+  "6092": "field",
+  "101000": "field",
+  "101023": "field",
+  "101035": "field",
+  "101042": "field",
+  "101044": "field",
+  "101073": "field",
+  "101083": "field",
+  "101012": "field",
+  "101014": "field",
+  "101017": "field",
+  "101021": "field",
+  "101064": "field",
+  "101071": "field",
+  "101084": "field",
+  "101090": "field",
+  "5503": "inside"
+ },
  "zones": {
   "465": "cave",
   "424": "crypt"
@@ -8,6 +26,23 @@
  "_why": {
   "465": "Below Moria: crawlways, chimneys and junctions under the mountain, a third short of the automatic zone rule",
   "424": "Castle Catacombs: corridors and rooms among the tombs",
-  "20719": "Dashuk's Web: a spider's den inside a cave; a cave, not a webbed wood"
+  "20719": "Dashuk's Web: a spider's den inside a cave; a cave, not a webbed wood",
+  "6092": "A Road Through The Plains: a road across grassy plains, typed city; its 'buildings crowd' line is the city sector's filler",
+  "101000": "MiNar's Grasslands: a maze of giant grass whose 'halls' and 'walls' are grass stems; open country",
+  "101023": "MiNar's Grasslands: a maze of giant grass whose 'halls' and 'walls' are grass stems; open country",
+  "101035": "MiNar's Grasslands: a maze of giant grass whose 'halls' and 'walls' are grass stems; open country",
+  "101042": "MiNar's Grasslands: a maze of giant grass whose 'halls' and 'walls' are grass stems; open country",
+  "101044": "MiNar's Grasslands: a maze of giant grass whose 'halls' and 'walls' are grass stems; open country",
+  "101073": "MiNar's Grasslands: a maze of giant grass whose 'halls' and 'walls' are grass stems; open country",
+  "101083": "MiNar's Grasslands: a maze of giant grass whose 'halls' and 'walls' are grass stems; open country",
+  "101012": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
+  "101014": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
+  "101017": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
+  "101021": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
+  "101064": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
+  "101071": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
+  "101084": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
+  "101090": "MiNar's Grasslands: a maze of giant grass whose 'halls', 'walls' and 'roof' are grass stems; open country",
+  "5503": "Clerics' Sanctum: the clerics' guild room under New Thalos, a room, not a cave"
  }
 }
