@@ -349,7 +349,7 @@
     frostlords_mantle:    { pal: { a: '#cfe8ff', b: '#5a82c0', shine: 0.85 }, accent: '#bfe2ff', emblem: 'snowflake' },
     archmage_vestments:   { pal: { a: '#4058b8', b: '#1a2050', shine: 0.45 }, accent: '#cfe0ff', emblem: 'chaosstar' },
     lichlord_shroud:      { pal: { a: '#46464f', b: '#101016', shine: 0.3 }, accent: '#7cf0c0', emblem: 'skull' },
-    nightblade_leathers:  { pal: { a: '#403238', b: '#141014', shine: 0.3 }, accent: '#d03040', emblem: 'claw' },
+    nightblade_leathers:  { pal: { a: '#7a6c5e', b: '#4a3e32', shine: 0.3 }, accent: '#e0b84a', emblem: 'claw' },
     warlords_battleplate: { pal: { a: '#8a2a1e', b: '#3a1210', shine: 0.4 }, accent: '#e8a040', emblem: 'horsemen' },
     dawnward_aegis:       { pal: { a: '#f2ead2', b: '#b89a4a', shine: 0.4 }, accent: '#ffe08a', emblem: 'ankh' },
     radiant_choir:        { pal: { a: '#e8eef8', b: '#6a88c0', shine: 0.4 }, accent: '#fff2a0', emblem: 'ankh' },

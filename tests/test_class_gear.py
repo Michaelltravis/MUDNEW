@@ -144,6 +144,9 @@ async def main():
           'a mage at the top: a staff, robes and a hat')
     check(looks['necromancer']['main']['k'] in ('scythe', 'staff') and looks['necromancer']['head']['k'] == 'hood', 'a necromancer: a scythe or a staff, a cowl')
     check(looks['ranger']['main']['k'] == 'bow', 'a ranger: a bow (Skyrend)')
+    check(looks['thief']['head'].get('v') == 'cap' and looks['thief']['body'].get('m') == 'leather_tan'
+          and looks['assassin']['head'].get('v') == 'masked' and looks['assassin']['back'].get('v') == 'mage',
+          "the thief (a cap, tan leather) and the assassin (a masked cowl, a long shroud) look different")
     check(looks['warrior']['body']['w'] >= 2, 'a warrior: mail or plate')
 
     # ---- the new gear exists and drops

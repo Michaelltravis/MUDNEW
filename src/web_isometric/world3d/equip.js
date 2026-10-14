@@ -191,6 +191,7 @@ export function cast(s, o, d) {
 }
 
 const FAR = 6;
+export const MASK_AT = 0.3;
 const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
 const mid = (box, k) => (box.min[k] + box.max[k]) / 2;
 // each spot from the piece's shape, in its frame: what the builder needs (procgear.js ADDONS)
@@ -215,7 +216,8 @@ export const SPOTS = {
   crown(s, ad) {
     // a crown on top, a circlet lower, round the brow
     // a hat (gearlook.js HATS) sits at the brow, as a circlet does
-    const y = s.box.max.y - (ad.variant === 'circlet' || ad.hat ? 0.36 : 0.27), z = mid(s.box, 'z'), x = mid(s.box, 'x');
+    // a face mask sits across the mouth, a third of the way up the head
+    const y = ad.mask ? s.box.min.y + (s.box.max.y - s.box.min.y) * MASK_AT : s.box.max.y - (ad.variant === 'circlet' || ad.hat ? 0.36 : 0.27), z = mid(s.box, 'z'), x = mid(s.box, 'x');
     const across = (o, d, fallback) => { const h = cast(s, o, d); return h == null ? fallback : h; };
     const x1 = FAR - across([FAR, y, z], [-1, 0, 0], FAR - s.box.max.x), x0 = across([-FAR, y, z], [1, 0, 0], FAR + s.box.min.x) - FAR;
     const z1 = FAR - across([x, y, FAR], [0, 0, -1], FAR - s.box.max.z), z0 = across([x, y, -FAR], [0, 0, 1], FAR + s.box.min.z) - FAR;

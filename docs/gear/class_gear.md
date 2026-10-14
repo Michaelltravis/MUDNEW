@@ -50,8 +50,8 @@ Each class has its own eight-piece set, head to toe. `gearup` dresses a class in
 | Paladin | Dawnward Aegis | gilded plate, plumed great helm, white cape with a sunburst, heraldic shield | the Shattered Emperor | Requiem (one-handed crystal sword) |
 | Cleric | Vestments of the Radiant Choir | silvered chain over white linen, mitre, tabard with a cross, sunburst reliquary held | Moloch, Morkai | Pendulum (war hammer) |
 | Ranger | Wildwarden's Garb | green leather, hood, mottled cloak, quiver | the Ember Sovereign | Skyrend (longbow) |
-| Thief | Nightblade's Leathers | black leather, hood, cloak, a belt of hidden knives | Shadow Lord Malachar | the Unraveling (dagger) |
-| Assassin | Veil of the Black Lotus | purple-black leather, cowl, silk wraps, poisoner's belt | Death, Castle of the Apocalypse | the Unraveling (dagger) |
+| Thief | Guildmaster's Leathers | tan leather, a grey thieving cap with a gold band, short grey cloak, a belt of hidden knives | Shadow Lord Malachar | the Unraveling (dagger) |
+| Assassin | Veil of the Black Lotus | black leather, a masked purple cowl (a cloth over the face below the eyes), a long shroud, poisoner's belt | Death, Castle of the Apocalypse | the Unraveling (dagger) |
 | Bard | Raiment of the Last Song | crimson and gold doublet, wide feathered hat, slashed sleeves, lute held | Archon Prime, the Clockwork Foundry | Requiem (rapier-like crystal sword) |
 | Mage | Archmage's Vestments | indigo starwoven robe, pointed hat, starfall mantle, star orb held | the Eclipse Regent | Synapse (crystal staff) |
 | Necromancer | Lich-Lord's Shroud | black grave-silk robe, cowl, drowned shroud, skull phylactery held | the Thalassine Lich; the Bone-Crowned Sovereign | Famine's Needle (scythe) |
@@ -70,6 +70,7 @@ Also:
   - plain: a pilgrim's.
 
   With no head named, a mage's staff is crystal, a necromancer's a skull, anyone else's plain.
+- **A masked cowl** (an item whose words say mask, masked or veiled) draws a cloth over the face below the eyes (`procgear.js facemask`): the assassin's.
 - **Hats by their shape** (`gear_look.HATS`):
   - the pack's wizard hat;
   - a wide brim with a feather in the class's colour;

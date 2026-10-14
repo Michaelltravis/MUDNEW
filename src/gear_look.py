@@ -421,6 +421,8 @@ def head_piece(item):
         v = _first(HATS, text)
         if v:
             p['v'] = v
+    if kind == 'hood' and re.search(r'\bmask|\bmasked\b|\bveiled?\b|face-?wrap', text):
+        p['v'] = 'masked'               # a cloth over the face below the eyes (procgear.js facemask)
     if kind in ('helm', 'crown', 'horned'):
         p['m'] = _material(text, 'gold' if kind == 'crown' else 'iron')
     else:

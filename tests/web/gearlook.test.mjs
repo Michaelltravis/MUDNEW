@@ -312,3 +312,11 @@ test('every class as gearup dresses it (gallery ENDGAME, kept true by tests/test
     assert.equal(torso(plan), `${CLASS_BASE[cls].model}-Body`, `${cls} keeps its own body`);
   }
 });
+
+test("a masked cowl draws a cloth over the face below the eyes (the assassin's), whole", () => {
+  const plan = planLook({ v: 1, sig: 'mask', head: { k: 'hood', v: 'masked', c: 'purple', t: 3 } }, 'assassin', kit);
+  const ad = plan.addons.find(a => a.kind === 'facemask');
+  assert.ok(ad && ad.mask && ad.on === 'rogue-HeadHooded', 'a face mask on the hooded head');
+  whole(buildAddon('facemask', { p: [0, 1, 0], r: 0.45, rz: 0.4 }, paint), 'facemask');
+  assert.ok(!planLook({ v: 1, sig: 'nomask', head: { k: 'hood', c: 'purple', t: 3 } }, 'assassin', kit).addons.some(a => a.kind === 'facemask'), 'a plain hood has none');
+});
