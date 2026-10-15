@@ -1327,6 +1327,8 @@ def build_zonemap(world, zone_num: int) -> Optional[dict]:
                 continue
             tz = target.zone.number if target.zone else None
             entry = {'to': to, 'kind': 'zone' if tz != zone_num else 'passage'}
+            if 'imm_only' in (target.flags or []) and 'imm_only' not in (room.flags or []):
+                entry['imm'] = True        # into the God Rooms: /play draws no way a mortal can't take
             if tz != zone_num:
                 entry['zone'] = tz
                 entry['toName'] = target.name

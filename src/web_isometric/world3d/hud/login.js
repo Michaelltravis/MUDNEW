@@ -72,6 +72,14 @@ export function setupLogin() {
     name.value = r.name;
     MH.connect(r.name, '', false, r.token);
   });
+  // back after the server went away mid-play (net.js MH.awaitServer): straight back in
+  let again = false;
+  try { again = sessionStorage.getItem(MH.RESUME_FLAG) === '1'; sessionStorage.removeItem(MH.RESUME_FLAG); } catch (_) {}
+  // (once the title is up: the world listens for the first map only from then on, main.js)
+  if (again && rec) {
+    const go = () => ($('#loading').classList.contains('done') ? $('#resume-btn').click() : setTimeout(go, 250));
+    go();
+  }
   $('#switch-btn').addEventListener('click', () => { showForm(); name.value = ''; pass.value = ''; name.focus(); say(''); });
   MH.bus.on('login.expired', who => { showForm(); if (who) name.value = who; pass.focus(); });
   // a line of lore, changing every few seconds while the title screen stands

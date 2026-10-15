@@ -30,6 +30,8 @@ export class Zone {
     this.dared = new Set();     // death traps the hero chose to walk into anyway (E at the edge)
     this.cells = new Map();
     for (const r of zm.rooms) {
+      // a way only immortals may take (into the God Rooms) is not drawn: no stairs, no sign
+      for (const [d, e] of Object.entries(r.exits)) if (e.imm) delete r.exits[d];
       const room = {
         data: r, vnum: r.vnum, name: r.name, cx: r.cell[0], cy: r.cell[1],
         ox: r.cell[0] * ROOM_W, oz: r.cell[1] * ROOM_H, layout: null, built: null, doors: {},

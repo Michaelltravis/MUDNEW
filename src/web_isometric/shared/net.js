@@ -356,7 +356,7 @@
         else if (payload.type === 'group_invite') MH.bus.emit('group.invite', payload);
         // the server wants this session's token (subscribe) / another login took the character
         else if (payload.type === 'auth' && !payload.ok) MH.bus.emit('session.denied', payload);
-        else if (payload.type === 'revoked') MH.bus.emit('session.revoked', payload);
+        else if (payload.type === 'revoked') { MH.state.leaving = true; MH.bus.emit('session.revoked', payload); }
         // the marquee quest (marquee.py): quest_offer / quest_embark / quest_stage / quest_done
         else if (typeof payload.type === 'string' && payload.type.startsWith('quest_')) MH.bus.emit(`quest.${payload.type.slice(6)}`, payload);
       } catch (err) {
@@ -444,11 +444,39 @@
     st._lastPromptKey = null;
     if (st.mudSocket) { try { st.mudSocket.close(); } catch (_) {} }
     MH.bus.emit('login.status', `Connecting to ${MH.urls.mudWs}…`);
-    st.mudSocket = new WebSocket(MH.urls.mudWs);
+    const sock = st.mudSocket = new WebSocket(MH.urls.mudWs);
     st.mudSocket.addEventListener('open', () => runLoginSequence());
     st.mudSocket.addEventListener('message', e => handleMudMessage(e.data));
-    st.mudSocket.addEventListener('close', () => MH.bus.emit('login.status', 'World socket closed.'));
+    st.mudSocket.addEventListener('close', () => {
+      MH.bus.emit('login.status', 'World socket closed.');
+      // dropped mid-play (the server restarted, the network blinked), not a quit or a takeover:
+      // the page waits for the server and signs back in (world3d/main.js)
+      if (sock === st.mudSocket && st.isLoggedIn && !st.leaving) MH.bus.emit('connection.lost');
+    });
     st.mudSocket.addEventListener('error', () => MH.bus.emit('login.error', 'Could not reach the gate. Is the server up?'));
+  };
+
+  // the server went away mid-play: try its socket every few seconds (backing off to 10 s); once
+  // it answers, reload and sign straight back in with this browser's stored sign-in (login.js
+  // reads the flag). A fresh page rebuilds the world rather than patching a stale one.
+  MH.RESUME_FLAG = 'misthollow_autoresume';
+  MH.awaitServer = function awaitServer(onTry) {
+    let wait = 1500, tries = 0;
+    const attempt = () => {
+      tries++;
+      if (onTry) onTry(tries);
+      let ws;
+      try { ws = new WebSocket(MH.urls.mudWs); } catch (_) { return later(); }
+      ws.addEventListener('open', () => {
+        try { ws.close(); } catch (_) {}
+        try { sessionStorage.setItem(MH.RESUME_FLAG, '1'); } catch (_) {}
+        location.reload();
+      });
+      ws.addEventListener('error', () => later());
+    };
+    let pending = false;
+    const later = () => { if (pending) return; pending = true; setTimeout(() => { pending = false; attempt(); }, wait); wait = Math.min(10000, wait * 1.5); };
+    later();
   };
 
   // sign out: the server forgets this browser's token, the character leaves the world
@@ -459,6 +487,7 @@
     if (rec && rec.token) MH.sendCommand(`forget ${rec.token}`, false);
     MH.auth.clear();
     st.resumeToken = '';
+    st.leaving = true;
     MH.sendCommand('quit', false);
     setTimeout(() => location.reload(), 700);
     return true;

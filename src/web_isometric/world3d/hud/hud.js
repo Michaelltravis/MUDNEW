@@ -84,8 +84,8 @@ export function createHud() {
       const i = st.bar.findIndex((x, k) => x === null && (k < MAIN || k - MAIN < 8 * bars.count));
       if (i < 0) toast('Your bars are full: drag the ability onto a slot (more bars: Settings, O)'); else editBar(putOnBar(st.bar, id, i));
     },
-    onDragStart: () => els.ab.classList.add('dragging'),
-    onDragEnd: () => els.ab.classList.remove('dragging'),
+    onDragStart: () => { els.ab.classList.add('dragging'); if (els.xbars) els.xbars.classList.add('dragging'); },
+    onDragEnd: () => { els.ab.classList.remove('dragging'); if (els.xbars) els.xbars.classList.remove('dragging'); },
   });
   const trainer = createTrainer($('#trainer'), { icon: id => ICON(id), onTrain: id => MH.sendCommand(`practice ${id}`) });
   // the everyday windows: a shopkeeper's wares, a conversation, who is about, help
@@ -393,7 +393,11 @@ export function createHud() {
     els.slots.innerHTML = `<div class="bar-row shift${st.bar.slice(8).some(Boolean) ? '' : ' unused'}">${row(8, 16)}</div>`
       + `<div class="bar-row main"><div class="slot fixed attack" data-act="attack" data-tip-title="Attack" data-tip-sub="Swing at your target — or press F (or Space)"><img class="ic" alt="" src="${uiIcon('sword', { size: 96 })}"><span class="key">F</span><i class="swing"></i></div>`
       + `${row(0, 8)}<div class="slot fixed flee" data-act="flee" data-tip-title="Flee" data-tip-sub="Break off the fight and run"><img class="ic" alt="" src="${uiIcon('flee', { size: 96, color: '#d8e6f0', glow: 'rgba(160,200,240,.6)' })}"></div></div>`;
-    for (const r of bars.rows()) r.el.innerHTML = r.on ? row(r.from, r.to) : '';
+    for (const r of bars.rows()) {
+      r.el.innerHTML = r.on ? row(r.from, r.to) : '';
+      // nothing on it yet: faded back, out of the way, until hovered or something is dragged
+      r.el.parentElement.classList.toggle('unused', !st.bar.slice(r.from, r.to).some(Boolean));
+    }
     slotQA('.slot').forEach(el => {
       const i = el.dataset.i != null ? +el.dataset.i : -1;
       el.addEventListener('click', () => use(el.dataset.act || st.bar[i]));
@@ -831,6 +835,11 @@ export function createHud() {
     b.dataset.tipTitle = b.dataset.tip; b.dataset.tipSub = b.dataset.key ? `Key: ${b.dataset.key}` : '';
   });
   els.menu.querySelector('[data-act="settings"]').addEventListener('click', () => els.settings.classList.toggle('hidden'));
+  // a window opened tells the server (`uiseen`): the tutorial's "type score" steps count it
+  for (const [w, name] of [[inventory, 'inventory'], [character, 'character'], [spellbook, 'spellbook'], [journal, 'journal'], [who, 'who'], [shop, 'shop']]) {
+    const toggle = w.toggle.bind(w);
+    w.toggle = (...a) => { const was = w.open; const r = toggle(...a); if (w.open && !was) MH.sendCommand(`uiseen ${name}`, false); return r; };
+  }
   els.menu.querySelector('[data-act="inventory"]').addEventListener('click', () => inventory.toggle());
   els.menu.querySelector('[data-act="character"]').addEventListener('click', () => character.toggle());
   els.menu.querySelector('[data-act="abilities"]').addEventListener('click', () => spellbook.toggle());

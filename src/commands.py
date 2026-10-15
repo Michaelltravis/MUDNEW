@@ -1045,6 +1045,22 @@ class CommandHandler:
         import action_combat
         await action_combat.webattack(player, args)
 
+    # a /play window, opened: the commands a telnet player types to see the same thing
+    UI_SEEN = {'character': ('score', 'equipment'), 'inventory': ('inventory', 'equipment'),
+               'spellbook': ('skills', 'spells'), 'journal': ('quests',), 'who': ('who', 'group'),
+               'shop': ('list',)}
+
+    @classmethod
+    async def cmd_uiseen(cls, player: 'Player', args: List[str]):
+        """Internal, for the 3D web client (/play): "uiseen <window>" when a window opens.
+
+        The tutorial asks for `score`, `inventory`, `skills`... which a /play player sees by
+        opening a window instead (quest_guide.py words those steps for /play); this counts the
+        opening as the command. Says nothing itself."""
+        from quests import QuestManager
+        for c in cls.UI_SEEN.get((args or [''])[0].lower(), ()):
+            await QuestManager.check_tutorial_progress(player, c)
+
     @classmethod
     async def cmd_webmove(cls, player: 'Player', args: List[str]):
         """Internal, for the 3D web client (/play): "webmove <from> <to>".
