@@ -22,14 +22,14 @@ export const QUALITY = {
 export const MOODS = {
   day: { sky: 0xcfe2ff, ground: 0x5a4a32, hemi: 1.15, sun: 0xfff1d6, sunI: 2.6, fog: 0xa9bfd0, near: 34, far: 90, exposure: 1.0, bg: 1.0 },
   forest: { sky: 0xbfe0c8, ground: 0x3a3424, hemi: 1.0, sun: 0xffe6b8, sunI: 2.3, fog: 0x8fae9a, near: 30, far: 80, exposure: 1.0, bg: 1.0 },
-  crypt: { sky: 0x5a6a8a, ground: 0x1a140e, hemi: 0.32, sun: 0x8090c0, sunI: 0.25, fog: 0x0d0f16, near: 18, far: 52, exposure: 1.15, bg: 0.35 },
+  crypt: { sky: 0x6a7a9a, ground: 0x2a221a, hemi: 0.65, sun: 0x8c9cc8, sunI: 0.5, fog: 0x12141c, near: 20, far: 56, exposure: 1.25, bg: 0.35 },
   // a lit interior (temple, shop, inn): warm and readable, no strong sun
-  interior: { sky: 0xffe6c4, ground: 0x3a2c1e, hemi: 0.85, sun: 0xffe2b8, sunI: 0.9, fog: 0x1c1712, near: 26, far: 70, exposure: 1.05, bg: 0.35 },
-  dusk: { sky: 0xf0b890, ground: 0x3a2a24, hemi: 0.7, sun: 0xff9a5a, sunI: 1.5, fog: 0x6a5060, near: 30, far: 80, exposure: 1.05, bg: 0.9 },
-  night: { sky: 0x5a6a9a, ground: 0x1a1a22, hemi: 0.58, sun: 0xa8bcff, sunI: 0.75, fog: 0x121a2c, near: 26, far: 70, exposure: 1.25, bg: 0.85 },
+  interior: { sky: 0xffe6c4, ground: 0x4a3a28, hemi: 1.0, sun: 0xffe2b8, sunI: 1.05, fog: 0x1c1712, near: 28, far: 72, exposure: 1.1, bg: 0.35 },
+  dusk: { sky: 0xf0b890, ground: 0x3a2a24, hemi: 0.85, sun: 0xff9a5a, sunI: 1.6, fog: 0x6a5060, near: 30, far: 80, exposure: 1.05, bg: 0.9 },
+  night: { sky: 0x6a7aaa, ground: 0x22222c, hemi: 0.8, sun: 0xa8bcff, sunI: 0.95, fog: 0x141c30, near: 28, far: 72, exposure: 1.3, bg: 0.85 },
   // the room looks (room_looks.py): rock close and cold, sand hot and hazy, snow bright, ash red
   ice_cave: { sky: 0xb4cce6, ground: 0x4a5a6c, hemi: 1.2, sun: 0xcfe4ff, sunI: 0.6, fog: 0x1a2634, near: 20, far: 58, exposure: 1.15, bg: 0.4 },
-  lava_cave: { sky: 0xb8644a, ground: 0x4a1a0a, hemi: 1.15, sun: 0xff8a50, sunI: 1.2, fog: 0x2a120a, near: 18, far: 54, exposure: 1.3, bg: 0.6 },
+  lava_cave: { sky: 0xc87458, ground: 0x5a2410, hemi: 1.35, sun: 0xff8a50, sunI: 1.2, fog: 0x2a120a, near: 18, far: 54, exposure: 1.3, bg: 0.6 },
   cave: { sky: 0xa8b4cc, ground: 0x5a4a3c, hemi: 1.45, sun: 0xb8c4e0, sunI: 0.85, fog: 0x161a22, near: 20, far: 60, exposure: 1.35, bg: 0.35 },
   desert: { sky: 0xfff0d0, ground: 0x8a6a40, hemi: 1.2, sun: 0xffe8b8, sunI: 2.9, fog: 0xe8d4b0, near: 30, far: 85, exposure: 1.0, bg: 1.0 },
   snow: { sky: 0xe4eeff, ground: 0x8a96a8, hemi: 1.15, sun: 0xf4f8ff, sunI: 2.2, fog: 0xd8e4f0, near: 26, far: 75, exposure: 0.95, bg: 1.0 },
@@ -40,8 +40,8 @@ export const MOODS = {
   // a dead city (Morkai): grave-green ghost-light in a cavern, dark but readable
   necropolis: { sky: 0x8a9c98, ground: 0x262a24, hemi: 1.15, sun: 0xb4d4c0, sunI: 0.95, fog: 0x1a2622, near: 20, far: 60, exposure: 1.4, bg: 0.4 },
   // a sewer: sickly green-brown gloom off the water, close and dank, the lamps the only warmth
-  sewer: { sky: 0x7a8a6a, ground: 0x1e2014, hemi: 0.7, sun: 0x9aa880, sunI: 0.45, fog: 0x10140c, near: 16, far: 48, exposure: 1.25, bg: 0.3 },
-  volcanic: { sky: 0x8a4a3a, ground: 0x2a0e06, hemi: 0.6, sun: 0xff8a50, sunI: 1.3, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1, bg: 0.75 },
+  sewer: { sky: 0x8a9a7a, ground: 0x2a2c1e, hemi: 0.95, sun: 0x9aa880, sunI: 0.65, fog: 0x12160e, near: 18, far: 52, exposure: 1.3, bg: 0.3 },
+  volcanic: { sky: 0x9a5a48, ground: 0x3a160a, hemi: 0.85, sun: 0xff8a50, sunI: 1.4, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1, bg: 0.75 },
 };
 
 export function createEngine(container, opts = {}) {
@@ -199,15 +199,16 @@ export function createEngine(container, opts = {}) {
     gloomNow += ((api.gloom || 0) - gloomNow) * (1 - Math.exp(-dt * 1.5));
     // a dark room (main.js sight): the light of the world goes, the hero's own light stays
     darkNow += ((api.darkness || 0) - darkNow) * (1 - Math.exp(-dt * 2.5));
-    const dim = (1 - 0.85 * gloomNow) * (1 - 0.9 * darkNow);
+    const dim = (1 - 0.85 * gloomNow) * (1 - 0.75 * darkNow);
     hemi.color.set(cur.sky); hemi.groundColor.set(cur.ground); hemi.intensity = cur.hemi * dim;
     sun.color.set(cur.sun); sun.intensity = cur.sunI * dim;
     scene.fog.color.set(cur.fog).multiplyScalar(1 - 0.85 * darkNow);
-    scene.fog.near = cur.near * (1 - 0.4 * gloomNow) * (1 - 0.75 * darkNow); scene.fog.far = cur.far * (1 - 0.5 * gloomNow) * (1 - 0.7 * darkNow);
+    scene.fog.near = cur.near * (1 - 0.4 * gloomNow) * (1 - 0.5 * darkNow); scene.fog.far = cur.far * (1 - 0.5 * gloomNow) * (1 - 0.45 * darkNow);
     // under open sky the distance fades into the haze itself; enclosed, into the dark
     scene.background.set(cur.fog).multiplyScalar(cur.bg ?? 0.35);
     if (darkNow > 0.01) scene.background.multiplyScalar(1 - 0.9 * darkNow);
-    renderer.toneMappingExposure = cur.exposure * (1 - 0.45 * gloomNow) * (1 - 0.25 * darkNow);
+    // (the player's own Brightness setting on top: Settings, main.js)
+    renderer.toneMappingExposure = cur.exposure * (1 - 0.45 * gloomNow) * (1 - 0.15 * darkNow) * (api.brightness || 1);
   }
 
   // ---- loop ----
@@ -271,6 +272,7 @@ export function createEngine(container, opts = {}) {
     THREE, renderer, scene, camera, rig, sun, hemi, quality: q,
     timeScale: 1,                      // slow motion for the effects gallery
     darkness: 0,                       // 0..1: a dark room (main.js sight)
+    brightness: 1,                     // the player's Brightness setting (exposure × this)
     heroLight,                         // the light the hero carries (main.js moves it)
     onTick: fn => ticks.push(fn),
     onLateTick: fn => lateTicks.push(fn),

@@ -165,6 +165,9 @@ async function runGame() {
   combat.onFallen = e => hud.fallen(e);
   // the player's combat-number settings (hud settings)
   MH.bus.on('settings.sct', o => { fx.opts = o; });
+  // Settings -> Brightness: the whole picture lighter (engine exposure)
+  MH.bus.on('settings.brightness', v => { engine.brightness = v; });
+  try { engine.brightness = +(localStorage.getItem('mh3d_bright') || 1) || 1; } catch (_) {}
   try { fx.opts = { sct: localStorage.getItem('mh3d_sct') || 'all', size: +(localStorage.getItem('mh3d_sctsize') || 1) || 1, shake: localStorage.getItem('mh3d_shake') !== 'off' }; } catch (_) {}
   // ---- the way to the quest (quest_guide.py `where`): a gold chevron on the ground by the hero,
   // pointing at the exit the way goes out of this room (or its stairs); gone once you are there ----
@@ -206,13 +209,13 @@ async function runGame() {
     LABEL_FADE.combat = !!MH.state.inCombat;
     const s = (MH.state.player && MH.state.player.sight) || {};
     const lit = s.dark && s.light, eyes = s.dark && !s.light && s.see, blind = s.dark && !s.see;
-    engine.darkness = !s.dark ? 0 : lit ? 0.6 : eyes ? 0.5 : 0.82;
-    ents.sightRadius = !s.dark ? 0 : lit ? 14 : eyes ? 12 : 5;
+    engine.darkness = !s.dark ? 0 : lit ? 0.35 : eyes ? 0.35 : 0.6;
+    ents.sightRadius = !s.dark ? 0 : lit ? 16 : eyes ? 14 : 7;
     const L = engine.heroLight;
     if (!L) return;
-    const want = lit ? 48 : blind ? 14 : 0;
+    const want = lit ? 64 : blind ? 22 : 0;
     L.color.setHex(lit ? 0xffb36a : 0x8a9ac8);
-    L.distance = lit ? 13 : 5;
+    L.distance = lit ? 17 : 7;
     L.intensity += (want - L.intensity) * Math.min(1, dt * 4);
     if (hero && hero.root) L.position.set(hero.root.position.x, hero.root.position.y + 1.7, hero.root.position.z);
   });

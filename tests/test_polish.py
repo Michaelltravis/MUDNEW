@@ -228,6 +228,15 @@ async def main():
     ids = [q.quest_id for q in g.active_quests]
     check('tutorial_5_combat' not in ids and 'tutorial_6_healing' in ids, f'a tutorial kill completes the step at once ({ids})')
 
+    # lighter dark rooms and dim moods (the owner: "too dark in some of the rooms"), and a
+    # Brightness setting on top
+    eng = src('engine.js')
+    check("lit ? 0.35 : eyes ? 0.35 : 0.6" in src('main.js') and '(1 - 0.75 * darkNow)' in eng,
+          'a dark room keeps most of its light with a lantern, and some without')
+    check("data-set=\"bright\"" in open(os.path.join(WEB, 'play.html'), encoding='utf-8').read()
+          and "settings.brightness" in src('main.js') and '(api.brightness || 1)' in eng,
+          'Settings -> Brightness lightens the whole picture')
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 
