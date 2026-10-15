@@ -2443,8 +2443,15 @@ class SpellHandler:
             if (getattr(ch, 'marquee_tag', None) or {}).get('kind') == 'npc':
                 return False
             return touch(ch)
-        here = [ch for ch in list(room.characters) if foe(ch)]
         aim = aim or getattr(caster, '_aim', None)
+        if aim:
+            # (an aimed circle that crosses an open edge catches those just next door too: reach.py)
+            try:
+                import reach
+                reach.pull_area(caster, (aim[0], aim[1]), aim[2])
+            except Exception:
+                pass
+        here = [ch for ch in list(room.characters) if foe(ch)]
         if aim:
             import combat_range as cr
             return cr.within((aim[0], aim[1]), here, aim[2])

@@ -1,0 +1,237 @@
+"""Reaching into the next room (the 3D client, /play).
+
+A MUD fights room by room, but /play draws the rooms of a zone as one place: a creature a few
+metres past the room's edge is plainly in bow shot. So, for players with a position (the 3D
+client; telnet players have none, and keep the old rules):
+
+  - a shot, a bolt or an aimed spell (combat_range shapes 'ranged' and 'blast') can strike a
+    creature in a room next door, measured in metres across the edge, when the two rooms are
+    joined by an open way (side by side on the zone map, no closed door). The creature is
+    *pulled*: struck, it charges into the hero's room, stepping in at the nearest point, and the
+    fight goes on there as any other (the client sends `webpull #id <ability>` first, then the
+    ordinary command);
+  - an aimed area spell (a circle on the ground) also catches creatures just across the edge
+    inside its circle, and pulls them in (Spells.foes_in_room).
+
+Never through a closed door, into or out of a peaceful room, across a zone's border, into a room
+the hero may not enter; never a shopkeeper, trainer or other servant, anyone's pet, a quest's
+figure, or a creature that does not leave its post (sentinels and bosses: struck from safety,
+they could not answer). Melee, touch and cone abilities and charges still need the hero in the
+creature's room (the client walks there).
+"""
+import math
+
+import combat_range as cr
+
+SERVICE = ('guildmaster', 'trainer', 'shopkeeper', 'healer', 'banker', 'postmaster', 'innkeeper')
+PULL_SHAPES = ('ranged', 'blast')
+MARGIN = 0.6            # metres of slack on a range measured across an edge
+_ROOM_EXITS = {}        # zone -> {vnum: {dir: zonemap exit}}
+
+
+def _zone_exits(world, zone_num):
+    idx = _ROOM_EXITS.get(zone_num)
+    if idx is None:
+        import map_system
+        zm = map_system.build_zonemap(world, zone_num) or {'rooms': []}
+        idx = _ROOM_EXITS[zone_num] = {r['vnum']: r.get('exits') or {} for r in zm['rooms']}
+    return idx
+
+
+def world_pos(world, ch):
+    """(zone, x, z) of a character on its zone's map, in metres; None when unknown."""
+    room = getattr(ch, 'room', None)
+    if room is None:
+        return None
+    import map_system
+    c = map_system.zone_cell(world, room.vnum)
+    if c is None:
+        return None
+    p = cr.pos_of(ch) or (cr.ROOM_W / 2, cr.ROOM_H / 2)
+    return (c[0], c[1] * cr.ROOM_W + p[0], c[2] * cr.ROOM_H + p[1])
+
+
+def distance(world, a, b):
+    pa, pb = world_pos(world, a), world_pos(world, b)
+    if pa is None or pb is None or pa[0] != pb[0]:
+        return None
+    return math.hypot(pa[1] - pb[1], pa[2] - pb[2])
+
+
+def joined(world, room, other):
+    """The direction from `room` to `other` along an open way (the two side by side on the
+    zone map, an open door or none), else None."""
+    zone = getattr(getattr(room, 'zone', None), 'number', None)
+    if zone is None or getattr(getattr(other, 'zone', None), 'number', None) != zone:
+        return None
+    for d, e in (_zone_exits(world, zone).get(room.vnum) or {}).items():
+        if e.get('to') != other.vnum or e.get('kind') != 'open':
+            continue
+        door = ((room.exits or {}).get(d) or {}).get('door')
+        if isinstance(door, dict) and door.get('state') == 'closed':
+            continue
+        return d
+    return None
+
+
+def neighbours(world, room):
+    """[(direction, room)] of the rooms joined to `room` by an open way."""
+    out = []
+    zone = getattr(getattr(room, 'zone', None), 'number', None)
+    if zone is None:
+        return out
+    for d, e in (_zone_exits(world, zone).get(room.vnum) or {}).items():
+        other = world.rooms.get(e.get('to'))
+        if other is not None and joined(world, room, other) == d:
+            out.append((d, other))
+    return out
+
+
+def why_not(world, player, mob):
+    """Why `player` may not reach `mob` in the next room (a short reason), else None."""
+    if not hasattr(player, 'connection'):
+        return 'not a player'                        # a creature's spell pulls no one
+    if cr.pos_of(player) is None:
+        return 'no position'                         # telnet: the old rules
+    here, there = getattr(player, 'room', None), getattr(mob, 'room', None)
+    if here is None or there is None or here is there:
+        return 'not next door'
+    if hasattr(mob, 'connection') or getattr(mob, 'hp', 0) <= 0:
+        return 'not a creature'
+    if joined(world, here, there) is None:
+        return 'no open way'
+    if 'peaceful' in (here.flags or ()) or 'peaceful' in (there.flags or ()):
+        return 'a place of peace'
+    try:
+        if not there.admits(player):
+            return 'a place you may not go'
+    except Exception:
+        pass
+    flags = set(getattr(mob, 'flags', ()) or ())
+    if getattr(mob, 'special', None) in SERVICE or getattr(mob, 'owner', None) is not None:
+        return 'not a foe'
+    if (getattr(mob, 'marquee_tag', None) or {}).get('kind') == 'npc':
+        return 'not a foe'
+    try:
+        import marquee
+        if not marquee.can_touch(player, mob):
+            return 'not yours to fight'
+    except Exception:
+        pass
+    boss = 'boss' in flags or getattr(mob, 'is_boss', False)
+    if 'sentinel' in flags or boss:
+        return 'it will not leave its post'
+    return None
+
+
+def action_range(player, ability):
+    """(metres, pulls?) of what the hero is about to do: an ability by name, else the
+    ordinary blow."""
+    if not ability or ability in ('attack', 'kill'):
+        rng, ranged = cr.auto_range(player)
+        return rng, bool(ranged)
+    try:
+        from spells import SPELLS
+        is_spell = cr.key(ability) in SPELLS
+    except Exception:
+        is_spell = False
+    rng, shape = cr.ability_range(ability, is_spell)
+    return rng, str(shape).split(':')[0] in PULL_SHAPES
+
+
+def _clamp_into(world, room, wpos):
+    """A zone-map point (zone, x, z), brought inside `room` (1 m in from its walls)."""
+    import map_system
+    c = map_system.zone_cell(world, room.vnum)
+    x = wpos[1] - c[1] * cr.ROOM_W
+    z = wpos[2] - c[2] * cr.ROOM_H
+    return (max(1.0, min(cr.ROOM_W - 1.0, x)), max(1.0, min(cr.ROOM_H - 1.0, z)))
+
+
+def pull(world, player, mob):
+    """Bring a creature struck from the next room into the hero's room, where it steps in at
+    the point nearest where it stood (a point inside the room is never further from anything
+    in it than the creature was). The move is made at once (the blow that follows finds it
+    here); the rooms are told, and the 3D clients shown, a moment later. True when it came."""
+    here, there = player.room, mob.room
+    d = joined(world, here, there)
+    if d is None:
+        return False
+    wpos = world_pos(world, mob)
+    import map_system
+    back = map_system.REVERSE_DIR.get(d, d)
+    if mob in there.characters:
+        there.characters.remove(mob)
+    mob.room = here
+    here.characters.append(mob)
+    if wpos is not None:
+        x, z = _clamp_into(world, here, wpos)
+        cr.set_pos(mob, x, z)
+    async def tell():
+        try:
+            await there.send_to_room(f"{mob.name} is struck from afar and charges off {back}!")
+            await here.send_to_room(f"{mob.name} charges in from the {d}!")
+            await mob._notify_move(there, here, back, d)
+        except Exception:
+            pass
+    try:
+        import asyncio
+        asyncio.get_running_loop().create_task(tell())
+    except RuntimeError:
+        pass                                        # no loop (a test): the move stands
+    return True
+
+
+async def webpull(player, args):
+    """`webpull #id [ability]`: before an attack or an aimed ability at a creature in the next
+    room, bring it in if the hero can reach it from where they stand. Says why not, else
+    nothing (the ordinary command follows and strikes it in the hero's room)."""
+    world = getattr(player, 'world', None)
+    if world is None or not args or not args[0].startswith('#') or not args[0][1:].isdigit():
+        return
+    uid = int(args[0][1:])
+    if any(getattr(ch, '_web_uid', None) == uid for ch in (player.room.characters if player.room else ())):
+        return                                      # already here: nothing to do
+    mob = None
+    for _d, room in neighbours(world, player.room):
+        mob = next((ch for ch in room.characters if getattr(ch, '_web_uid', None) == uid), None)
+        if mob is not None:
+            break
+    if mob is None:
+        return
+    c = player.config.COLORS
+    reason = why_not(world, player, mob)
+    if reason:
+        await player.send(f"{c['yellow']}You can't reach {mob.name} from here ({reason}).{c['reset']}")
+        return
+    rng, pulls = action_range(player, ' '.join(args[1:]).strip().strip("'\""))
+    if not pulls:
+        return                                      # melee or touch: the hero walks in
+    dist = distance(world, player, mob)
+    if dist is None or dist > rng + MARGIN:
+        await player.send(f"{c['yellow']}{mob.name} is out of reach ({dist or 0:.0f} m; it reaches {rng:g} m).{c['reset']}")
+        return
+    pull(world, player, mob)
+
+
+def pull_area(player, centre, radius):
+    """An aimed area (centre x, z in the hero's room, radius) that crosses an open edge: the
+    creatures inside it next door are pulled in (Spells.foes_in_room then counts them)."""
+    world = getattr(player, 'world', None)
+    here = getattr(player, 'room', None)
+    if world is None or here is None or not hasattr(player, 'connection') or cr.pos_of(player) is None:
+        return []
+    import map_system
+    c = map_system.zone_cell(world, here.vnum)
+    if c is None:
+        return []
+    cx, cz = c[1] * cr.ROOM_W + centre[0], c[2] * cr.ROOM_H + centre[1]
+    came = []
+    for _d, room in neighbours(world, here):
+        for mob in list(room.characters):
+            if why_not(world, player, mob):
+                continue
+            w = world_pos(world, mob)
+            if w is not None and math.hypot(w[1] - cx, w[2] - cz) <= radius and pull(world, player, mob):
+                came.append(mob)
+    return came

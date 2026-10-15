@@ -556,20 +556,31 @@ export function createHud() {
     if (info && info.target === 'self') return null;
     return info && info.type === 'spell' ? ranges.spellDefault : ranges.melee;
   }
-  function setDistance(d, sameRoom) {
+  // what can strike from where the hero stands: anything in the same room; across an open way
+  // into the next room (opt.across), only what strikes from afar (a bow, a bolt, a ranged or aimed
+  // ability: reach.py pulls the creature in)
+  function strikesFrom(id, sameRoom, opt) {
+    if (sameRoom) return true;
+    if (!opt || !opt.across) return false;
+    if (id === 'attack') return !!opt.ranged;
+    const ab = ranges && ranges.abilities[id];
+    return ab ? /^(ranged|blast)/.test(ab.shape) : (st.byId.get(id) || {}).type === 'spell';
+  }
+  function setDistance(d, sameRoom, opt = {}) {
     const sub = els.tf.querySelector('.tdist') || (() => { const x = document.createElement('div'); x.className = 'tdist'; els.tf.appendChild(x); return x; })();
     if (d == null || els.tf.classList.contains('hidden')) { sub.textContent = ''; lastDist = null; return; }
-    const r = Math.round(d * 2) / 2;
-    if (r === lastDist) return;
-    lastDist = r;
+    const r = Math.round(d * 2) / 2, sig = `${r}|${sameRoom}|${!!opt.across}`;
+    if (sig === lastDist) return;
+    lastDist = sig;
     const reach = abilityRange('attack');
-    const near = reach != null && d <= reach + 0.3 && sameRoom;
+    const near = reach != null && d <= reach + 0.3 && strikesFrom('attack', sameRoom, opt);
     const hostile = st.target && st.target.hostile;
-    sub.textContent = `${r.toFixed(r < 10 ? 1 : 0)} m${reach != null ? (near ? (hostile && !MH.state.inCombat ? ' · in reach — press F to attack' : ' · in reach') : ` · reach ${reach} m`) : ''}`;
-    sub.className = 'tdist' + (reach != null && d <= reach + 0.3 && sameRoom ? ' ok' : '');
+    const where = sameRoom ? '' : opt.across ? ' · next room' : ' · another room';
+    sub.textContent = `${r.toFixed(r < 10 ? 1 : 0)} m${where}${reach != null ? (near ? (hostile && !MH.state.inCombat ? ' · in reach — press F to attack' : ' · in reach') : ` · reach ${reach} m`) : ''}`;
+    sub.className = 'tdist' + (near ? ' ok' : '');
     slotQA('.slot[data-id], .slot[data-act="attack"]').forEach(el => {
-      const rng = abilityRange(el.dataset.id || 'attack');
-      el.classList.toggle('far', rng != null && (d > rng + 0.3 || !sameRoom));
+      const id = el.dataset.id || 'attack', rng = abilityRange(id);
+      el.classList.toggle('far', rng != null && (d > rng + 0.3 || !strikesFrom(id, sameRoom, opt)));
     });
   }
 
