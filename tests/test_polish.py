@@ -268,6 +268,14 @@ async def main():
     took = _t.perf_counter() - t0
     check(took < 3, f'a reset of every zone takes a moment, not seconds of a frozen server ({took:.2f}s; was ~8s)')
 
+    # the owner's machine drew in software ("Microsoft Basic Render Driver", 3 fps): /play notices,
+    # drops to Low and says why; far rooms are kept but not drawn; exit signs no longer overlap
+    main_js = src('main.js')
+    check('basic render driver|swiftshader|llvmpipe' in main_js and "engine.setQuality('low')" in main_js,
+          'a browser drawing without a graphics card gets Low quality and a word on why')
+    check('r.built.group.visible = far <= 3' in src('zone.js'), 'rooms kept for the way back are not drawn past the fog')
+    check('x + inward * 4' in src('terrain.js'), "an exit's sign stands inside its own room, clear of the one across the edge")
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 

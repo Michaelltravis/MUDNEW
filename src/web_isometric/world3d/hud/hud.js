@@ -744,7 +744,7 @@ export function createHud() {
     clearTimeout(bannerTimer);
     bannerTimer = setTimeout(() => { els.banner.style.opacity = 0; }, zone ? 3200 : 1800);
   }
-  function toast(msg) {
+  function toast(msg, ms = 2900) {
     if (!msg) return;
     sound.play('toast');
     const d = document.createElement('div');
@@ -752,7 +752,7 @@ export function createHud() {
     d.textContent = msg;
     els.toasts.appendChild(d);
     while (els.toasts.children.length > 3) els.toasts.firstChild.remove();
-    setTimeout(() => d.remove(), 2900);
+    setTimeout(() => d.remove(), ms);
   }
 
   // ---- chat log + command line ----
