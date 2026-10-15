@@ -181,7 +181,7 @@ async function runGame() {
   // Settings -> Brightness: the whole picture lighter (engine exposure)
   MH.bus.on('settings.brightness', v => { engine.brightness = v; });
   try { engine.brightness = +(localStorage.getItem('mh3d_bright') || 1) || 1; } catch (_) {}
-  try { fx.opts = { sct: localStorage.getItem('mh3d_sct') || 'all', size: +(localStorage.getItem('mh3d_sctsize') || 1) || 1, shake: localStorage.getItem('mh3d_shake') !== 'off' }; } catch (_) {}
+  try { fx.opts = { sct: localStorage.getItem('mh3d_sct') || 'all', size: +(localStorage.getItem('mh3d_sctsize') || 1) || 1, shake: localStorage.getItem('mh3d_shake') !== 'off', life: +(localStorage.getItem('mh3d_sctlife') || 1) || 1 }; } catch (_) {}
   // ---- the way to the quest (quest_guide.py `where`): a gold chevron on the ground by the hero,
   // pointing at the exit the way goes out of this room (or its stairs); gone once you are there ----
   const guide = (() => {

@@ -276,6 +276,11 @@ async def main():
     check('r.built.group.visible = far <= 3' in src('zone.js'), 'rooms kept for the way back are not drawn past the fog')
     check('x + inward * 4' in src('terrain.js'), "an exit's sign stands inside its own room, clear of the one across the edge")
 
+    # combat numbers stay longer (the owner: "fades pretty fast"), weighted, with a setting and a cap
+    fxs = src('fx.js')
+    check('TEXT_LIFE = 1.45' in fxs and 'LANE_MAX = 7' in fxs and 'data-set="sctlife"' in open(os.path.join(WEB, 'play.html'), encoding='utf-8').read(),
+          'combat numbers stay up longer, crits longest, with a Number duration setting and a cap on the crowd')
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 

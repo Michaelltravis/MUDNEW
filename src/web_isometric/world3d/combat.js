@@ -508,7 +508,7 @@ export class CombatView {
     if (this.telegraphs.get(key)) this.telegraphs.get(key).cancel();
     this.telegraphs.set(key, t);
     if (src.actor) src.actor.once(src.mob ? 'Block' : 'Spellcast_Long', 0.1, 0.8);
-    this.fx.text(this.chest(src).setY(src.root.position.y + 2.6), e.label || 'Winding up!', { color: '#ff8a5a', size: 14, rise: 0.5, life: Math.min(1.6, secs) });
+    this.fx.text(this.chest(src).setY(src.root.position.y + 2.6), e.label || 'Winding up!', { color: '#ff8a5a', size: 14, rise: 0.5, life: Math.min(1.6, secs), exact: true });
     // the cues (combatcues.js): step out if you stand where it will land
     if (this.onTelegraph) this.onTelegraph(key, { center: a.x != null ? center : null, follow: t.follow || null, shape: a.shape || 'circle',
       r: a.r || 2.6, angle: a.angle || Math.PI / 2, facing, until: performance.now() + secs * 1000 + 300, label: e.label, src });
