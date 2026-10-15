@@ -48,6 +48,17 @@ const params = new URLSearchParams(location.search);
 const pref = k => { try { return localStorage.getItem(k); } catch (_) { return null; } };
 const engine = createEngine($('#stage'), { quality: params.get('q') || pref('mh3d_quality') || 'high' });
 attachPerf(engine, $('#perf'));
+// no graphics card in use (Windows' Basic Render Driver, SwiftShader, llvmpipe): the browser draws
+// the 3D on the CPU, a few frames a second at best. Low quality for this visit (not saved: a
+// machine that gets its graphics back gets its quality back), and a word on why (runGame)
+const softGPU = (() => {
+  try {
+    const gl = engine.renderer.getContext(), d = gl.getExtension('WEBGL_debug_renderer_info');
+    const g = String(d ? gl.getParameter(d.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER));
+    return /basic render driver|swiftshader|llvmpipe|software rasterizer/i.test(g) ? g : null;
+  } catch (_) { return null; }
+})();
+if (softGPU && !params.get('q')) engine.setQuality('low');
 // how long the start takes, by stage (ms from the page's start; the perf overlay and probes
 // read MH.bootTimes): the art kits fetched and parsed, the title backdrop built, in the world
 const bootTimes = (window.MH = window.MH || {}).bootTimes = {};
@@ -103,6 +114,8 @@ async function runGame() {
   mark('title');
   $('#loading').classList.add('done');
   MH.bus.on('login.success', () => mark('login'));
+  if (softGPU) MH.bus.on('login.success', () => setTimeout(() => hud.toast(
+    'Your browser is drawing the game without a graphics card, so it will be slow. Turn on hardware acceleration in the browser\'s settings (Chrome: Settings → System), or play in a browser on a computer with graphics.', 12000), 3000));
 
   // ranges and round timing, one source of truth on the server (combat_range.py)
   let ranges = { melee: 2.5, auto: {}, abilities: {}, spellDefault: 14 };

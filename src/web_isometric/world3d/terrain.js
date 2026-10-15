@@ -553,7 +553,9 @@ function exitFeatures(group, layout, ox, oz, room, kits, owned) {
         group.add(m);
         const label = `↗ ${where(e)}`;
         const sp = labelSprite(label, zoneExit ? '#ffd88a' : '#cfe6ff', owned);
-        sp.position.set(m.position.x, zoneExit ? 2.9 : 1.6, m.position.z);
+        // well inside its own room: the room across the edge may sign its way back on the same
+        // edge, and the two signs must not lie on top of each other
+        sp.position.set(horiz ? x : x + inward * 4, zoneExit ? 2.9 : 1.6, horiz ? z + inward * 4 : z);
         group.add(sp);
         // a closed door hides the glow behind it
         if (doors[dir]) {

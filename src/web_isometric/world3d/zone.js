@@ -218,7 +218,14 @@ export class Zone {
     if (best) this.build(best);
     if ((this._releaseClock -= dt) <= 0) {
       this._releaseClock = 1;
-      for (const r of this.rooms.values()) if (r.built && (Math.abs(r.cx - cx) > 4 || Math.abs(r.cy - cy) > 4)) this.release(r);
+      for (const r of this.rooms.values()) {
+        if (!r.built) continue;
+        const far = Math.max(Math.abs(r.cx - cx), Math.abs(r.cy - cy));
+        if (far > 4) this.release(r);
+        // kept built for the way back, but not drawn (nor their shadows) past the fog: up to 81
+        // rooms were drawn every frame for the few the camera shows
+        else r.built.group.visible = far <= 3;
+      }
     }
     this.updateLights(dt, t, hero);
   }
