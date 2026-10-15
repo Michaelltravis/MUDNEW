@@ -113,6 +113,7 @@ export class Entities {
     if (known && joined && e.kind === 'mob' && now < this.pullWindow) {
       if (e.landAt && e.landAt > now - 250) { e.holdUntil = e.landAt; e.holdGuess = false; }
       else { e.holdUntil = now + 1800; e.holdGuess = true; }
+      e.pulledAt = now;
     }
     if (e.root && e.goal && (!joined || e.root.position.distanceTo(e.goal) > 60)) {
       if (this.onSnap) this.onSnap(e.root.position.clone(), e.goal.clone());
@@ -127,8 +128,12 @@ export class Entities {
   landing(key, at) {
     const e = this.list.get(key);
     if (!e) return;
+    const now = performance.now();
     e.landAt = at;
-    if (e.holdGuess && e.holdUntil > performance.now()) { e.holdUntil = at; e.holdGuess = false; }
+    if (!(e.holdUntil > now)) return;
+    // (the first blow to land on it frees it: two in flight, the sooner wins)
+    e.holdUntil = e.holdGuess ? at : Math.min(e.holdUntil, at);
+    e.holdGuess = false;
   }
 
   // another web player's position, relayed by the server: their hero follows it
@@ -179,7 +184,17 @@ export class Entities {
       for (const m of r.mobs || []) want.set(`m${m.id}`, { kind: 'mob', data: m, vnum: r.vnum });
       for (const p of r.players || []) if (p.name !== selfName) want.set(`p${p.name}`, { kind: 'player', data: p, vnum: r.vnum });
     }
-    for (const [key, e] of this.list) if (!want.has(key)) this.remove(e);
+    // (one just pulled in from next door that a single payload leaves out, alive as far as we
+    // know, is kept a moment: dropping it would make it fall, then rebuild it at its new spot)
+    const now = performance.now();
+    for (const [key, e] of this.list) {
+      if (want.has(key)) { e.missing = 0; continue; }
+      if (e.pulledAt && now - e.pulledAt < 4000 && !(e.data.maxHp && e.data.hp <= 0)) {
+        e.missing = e.missing || now;
+        if (now - e.missing < 1500) continue;
+      }
+      this.remove(e);
+    }
     for (const [key, w] of want) {
       const e = this.list.get(key);
       if (!e) { this.create(key, w); continue; }
