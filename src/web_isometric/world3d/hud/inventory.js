@@ -6,6 +6,7 @@
 // pack), from a slot onto the pack takes it off, a ring from one finger to the other moves it.
 // The slots an item fits light up as you drag it (a ring: both fingers; equip.py on the server).
 // A search box above the bag shows only what matches every word typed (name, type, slot, rarity).
+import { compare } from '../gearcompare.js';
 import { sound } from '../audio.js';
 
 const $ = s => document.querySelector(s);
@@ -114,7 +115,24 @@ function actionsFor(item, worn) {
   return a;
 }
 
-export function tooltip(item) {
+// what a piece in the pack (or on a corpse) would change against what you wear: each stat up or
+// down, and a verdict (gearcompare.js weighs them for your class)
+const STAT_NAME = { damage: 'damage', armour: 'armour', hp: 'health', mana: 'mana', move: 'moves', str: 'strength', dex: 'dexterity',
+  con: 'constitution', int: 'intelligence', wis: 'wisdom', cha: 'charisma', damroll: 'damage bonus', hitroll: 'to hit' };
+export function upgradeOf(item, player) {
+  if (!player || !item || !(item.slot || item.type === 'weapon') || barredBy(item)) return null;
+  return compare(item, player.equipment || {}, String(player.char_class || '').toLowerCase());
+}
+function comparison(item, player) {
+  const c = upgradeOf(item, player);
+  if (!c) return '';
+  const head = c.worn ? `Against ${esc(c.worn.short || c.worn.name)}` : 'Fills an empty slot';
+  const verdict = c.better ? '<b class="up">Upgrade</b>' : c.worn && c.diff < -0.5 ? '<b class="down">Worse</b>' : '';
+  const rows = c.rows.slice(0, 6).map(r => `<div class="${r.delta > 0 ? 'up' : 'down'}">${r.delta > 0 ? '▲ +' : '▼ '}${esc(r.delta)} ${esc(STAT_NAME[r.k] || String(r.k).replace(/_/g, ' '))}</div>`).join('');
+  return `<div class="tt-cmp"><div class="tt-cmp-h">${head} ${verdict}</div>${rows}</div>`;
+}
+
+export function tooltip(item, player) {
   const r = item.set_id ? 'set' : (item.rarity || 'common');
   const rows = [];
   rows.push(`<div class="tt-name" style="color:${RARITY[r] || RARITY.common}">${esc(item.short || item.name)}</div>`);
@@ -128,6 +146,7 @@ export function tooltip(item) {
   for (const p of item.procs || []) rows.push(`<div class="tt-proc">${esc(p)}</div>`);
   const bar = barredBy(item);
   if (bar) rows.push(`<div class="tt-bar">Not for your class: no ${esc(bar)}</div>`);
+  if (player) rows.push(comparison(item, player));
   const foot = [item.weight ? `${item.weight} lb` : '', item.cost ? `${item.cost} gold` : ''].filter(Boolean).join(' · ');
   if (foot) rows.push(`<div class="tt-foot">${esc(foot)}</div>`);
   return rows.join('');
@@ -188,7 +207,9 @@ export function createInventory() {
     const r = item.set_id ? 'set' : (item.rarity || 'common');
     d.style.borderColor = RARITY[r] || RARITY.common;
     d.appendChild(icon(item));
-    d.addEventListener('mouseenter', e => { tip.innerHTML = tooltip(item); tip.classList.remove('hidden'); place(e); });
+    // a piece in the pack better than what you wear: a green arrow on it
+    if (!worn) { const up = upgradeOf(item, player); if (up && up.better) { const b = document.createElement('b'); b.className = 'up-badge'; b.title = 'Better than what you wear'; b.textContent = '▲'; d.appendChild(b); } }
+    d.addEventListener('mouseenter', e => { tip.innerHTML = tooltip(item, worn ? null : player); tip.classList.remove('hidden'); place(e); });
     d.addEventListener('mousemove', place);
     d.addEventListener('mouseleave', () => tip.classList.add('hidden'));
     d.addEventListener('click', e => { e.stopPropagation(); showMenu(e, item, worn, list); });

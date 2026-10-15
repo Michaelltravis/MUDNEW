@@ -45,7 +45,7 @@ export function createLootWindow(root, { send, icon, sound, toast }) {
       const r = rows[+el.dataset.i];
       if (!r.item) return;
       el.querySelector('.sh-ic').appendChild(icon(r.item));
-      el.addEventListener('mouseenter', e => { tip.innerHTML = tooltip(r.item); tip.classList.remove('hidden'); place(e); });
+      el.addEventListener('mouseenter', e => { tip.innerHTML = tooltip(r.item, MH.state && MH.state.player); tip.classList.remove('hidden'); place(e); });
       el.addEventListener('mousemove', place);
       el.addEventListener('mouseleave', () => tip.classList.add('hidden'));
       el.addEventListener('dblclick', () => take(r.cmd));

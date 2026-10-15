@@ -18,6 +18,28 @@ function groundRing(color, inner, outer, opacity) {
   return m;
 }
 
+// a beam of light over loot worth seeing from afar: taller the rarer (uncommon and up)
+const BEAM_H = { uncommon: 1.2, rare: 1.9, epic: 2.6, legendary: 3.4, set: 2.6 };
+const BEAM_GEO = new THREE.CylinderGeometry(0.05, 0.16, 1, 10, 1, true).translate(0, 0.5, 0);
+const beamMats = new Map();
+export function rarityBeam(rarity) {
+  const h = BEAM_H[rarity];
+  if (!h) return null;
+  let m = beamMats.get(rarity);
+  if (!m) { m = new THREE.MeshBasicMaterial({ color: RARITY[rarity], transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }); beamMats.set(rarity, m); }
+  const b = new THREE.Mesh(BEAM_GEO, m);
+  b.scale.set(1, h, 1);
+  b.renderOrder = 3;
+  return b;
+}
+const RANK = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+// the finest thing a corpse holds (its beam shows when that is rare or better)
+export function bestRarity(items) {
+  let best = -1, set = false;
+  for (const it of items || []) { if (it.set_id) set = true; best = Math.max(best, RANK.indexOf(it.rarity || 'common')); }
+  return set ? 'set' : best >= 2 ? RANK[best] : null;
+}
+
 export class GroundLoot {
   // slot(vnum, key) -> a free spot in that room (Entities.slot); icon(item) -> a canvas;
   // claim(name) -> the body of a creature that just fell (Entities.claimFallen); body(name, key)
@@ -52,6 +74,9 @@ export class GroundLoot {
     bob.scale.set(0.55, 0.55, 1);
     bob.position.y = 0.6;
     root.add(bob, groundRing(RARITY[g.item.rarity] || RARITY.common, 0.32, 0.42, 0.7));
+    // something worth stooping for shows from across the room: a beam of its rarity's light
+    const beam = rarityBeam(g.item.set_id ? 'set' : g.item.rarity);
+    if (beam) root.add(beam);
     root.userData.loot = g.key;
     this.engine.scene.add(root);
     this.list.set(g.key, { ...g, root, bob, phase: Math.random() * 6.28 });
@@ -64,6 +89,9 @@ export class GroundLoot {
     const l = { ...g, root, bob: null, phase: Math.random() * 6.28, body: null, fall: null, mats: [] };
     root.userData.loot = g.key;
     this.list.set(g.key, l);
+    // a corpse holding something rare or better: its beam (before the ring, which stays last)
+    const best = bestRarity(g.item.contents);
+    if (best) root.add(rarityBeam(best));
     const lay = (body, fall) => {
       l.body = body; l.fall = fall;
       l.mats = deaden(body);
