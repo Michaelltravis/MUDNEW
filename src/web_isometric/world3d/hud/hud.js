@@ -4,6 +4,7 @@
 // Actions go out as bus events ('hud.attack', 'hud.ability', 'hud.flee') for main.js,
 // which knows the target and plays the hero's animation.
 import { splitByKind } from './logkinds.js';
+import { SCHOOL_CSS } from '../sctlogic.js';
 import { createInventory } from './inventory.js';
 import { createCharacter } from './character.js';
 import { createSpellbook } from './spellbook.js';
@@ -186,9 +187,19 @@ export function createHud() {
     clearTimeout(momentTimer);
     momentTimer = setTimeout(() => m.classList.add('hidden'), 4300);
   }
-  function fallen() {
+  // the death card: who did it, what it cost, where you wake (player.py sends a 'fallen' event
+  // with them; the death event alone shows the card at once, the details fill it in)
+  let fallenAt = 0;
+  function fallen(d) {
+    const now = performance.now();
+    if (!d && now - fallenAt < 3000) return;
+    fallenAt = now;
     document.documentElement.classList.add('fallen');
-    moment({ kicker: 'the mist takes you', title: 'You have fallen', sub: 'You wake where your journey last found shelter…', tone: 'fall' });
+    const cost = d ? [d.exp ? `−${d.exp.toLocaleString()} experience` : '', d.gold ? `−${d.gold.toLocaleString()} gold` : ''].filter(Boolean).join(' · ') : '';
+    const sub = d ? `${d.killer ? `Slain by ${d.killer}. ` : ''}${cost ? `${cost}. ` : ''}You wake at ${d.wake || 'your shelter'}, weakened.`
+      : 'You wake where your journey last found shelter…';
+    if (d && $('#moment').classList.contains('in') && !$('#moment').classList.contains('hidden')) $('#moment .mo-sub').textContent = sub;
+    else moment({ kicker: 'the mist takes you', title: 'You have fallen', sub, tone: 'fall' });
     setTimeout(() => document.documentElement.classList.remove('fallen'), 4200);
   }
   function setPlayer(p) {
@@ -836,12 +847,23 @@ export function createHud() {
     const kb = ls.get('mh3d_bodies') === 'classic' ? 'classic' : 'kin';
     els.settings.querySelectorAll('[data-set="bodies"] button').forEach(b => b.classList.toggle('on', b.dataset.v === kb));
     els.settings.querySelectorAll('[data-set="xbars"] button').forEach(b => b.classList.toggle('on', +b.dataset.v === bars.count));
+    // combat numbers (fx.js opts): where they show, how big, whether the view shakes
+    const sct = ls.get('mh3d_sct') || 'all', ssz = ls.get('mh3d_sctsize') || '1', shk = ls.get('mh3d_shake') === 'off' ? 'off' : 'on';
+    els.settings.querySelectorAll('[data-set="sct"] button').forEach(b => b.classList.toggle('on', b.dataset.v === sct));
+    els.settings.querySelectorAll('[data-set="sctsize"] button').forEach(b => b.classList.toggle('on', b.dataset.v === ssz));
+    els.settings.querySelectorAll('[data-set="shake"] button').forEach(b => b.classList.toggle('on', b.dataset.v === shk));
+    MH.bus.emit('settings.sct', { sct, size: +ssz || 1, shake: shk === 'on' });
     const ct = ls.get('mh3d_combattext') === 'on' ? 'on' : 'off';
     els.settings.querySelectorAll('[data-set="combattext"] button').forEach(b => b.classList.toggle('on', b.dataset.v === ct));
     els.log.classList.toggle('with-combat', ct === 'on');
     const cap = ls.get('mh3d_ambcap') === 'on' ? 'on' : 'off';
     els.settings.querySelectorAll('[data-set="ambcap"] button').forEach(b => b.classList.toggle('on', b.dataset.v === cap));
   };
+  for (const [key, store] of [['sct', 'mh3d_sct'], ['sctsize', 'mh3d_sctsize'], ['shake', 'mh3d_shake']]) {
+    els.settings.querySelectorAll(`[data-set="${key}"] button`).forEach(b => b.addEventListener('click', () => { ls.set(store, b.dataset.v); syncSettings(); }));
+  }
+  // what each colour of number means
+  $('#sct-key').innerHTML = Object.entries(SCHOOL_CSS).map(([k, c]) => `<i style="background:${c}" title="${k[0].toUpperCase() + k.slice(1)}"></i>`).join('');
   // the blow-by-blow in the All tab too (it is drawn; the Combat tab always has it)
   els.settings.querySelectorAll('[data-set="combattext"] button').forEach(b => b.addEventListener('click', () => {
     ls.set('mh3d_combattext', b.dataset.v); syncSettings(); els.log.scrollTop = els.log.scrollHeight;

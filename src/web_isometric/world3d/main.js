@@ -154,6 +154,10 @@ async function runGame() {
   combat.onAilment = (ent, name, school) => hud.noteAilment(ent, name, school);
   combat.onFade = () => { if (MH.refreshState) setTimeout(() => MH.refreshState(), 200); };
   combat.onReward = (e, from) => hud.reward(e, from);
+  combat.onFallen = e => hud.fallen(e);
+  // the player's combat-number settings (hud settings)
+  MH.bus.on('settings.sct', o => { fx.opts = o; });
+  try { fx.opts = { sct: localStorage.getItem('mh3d_sct') || 'all', size: +(localStorage.getItem('mh3d_sctsize') || 1) || 1, shake: localStorage.getItem('mh3d_shake') !== 'off' }; } catch (_) {}
   // ---- seeing in the dark (map_system._sight): a dark room is dark; a carried light makes a warm
   // circle round the hero, infravision a dim grey sight, nothing at all a glimmer to feel by ----
   engine.onTick(dt => {

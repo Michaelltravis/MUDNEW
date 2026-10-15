@@ -62,6 +62,8 @@ export class CombatView {
     // the hero's column of scrolling combat text rises from the hero (fx.lane)
     this.fx.laneAnchor = () => { const h = this.getHero(); return h && h.actor && h.actor.root ? h.actor.root.position : null; };
   }
+  // the player's setting: numbers over what is struck ('all' or 'foes')
+  showsFoes() { const s = this.fx.opts.sct; return s === 'all' || s === 'foes'; }
   harmColour(e, src) { return harmColour(e.school, src && src.look); }
   // a sound where something happens (soundtable.js names)
   sfx(name, at, opts) { if (this.onSound && name) this.onSound(name, at && at.root ? at.root.position : at, opts); }
@@ -203,7 +205,7 @@ export class CombatView {
     const color = '#' + this.colorOf(school).toString(16).padStart(6, '0');
     const p = this.chest(dst);
     if (dst.hero) this.fx.lane(e.k === 'heal' ? `+${e.amt}` : `-${e.amt}`, { color: e.k === 'heal' ? COLORS.heal : COLORS.dmgIn, edge: e.k === 'heal' ? '' : color, size: 13, life: 1.5 });
-    else this.fx.text(p, e.k === 'heal' ? `+${e.amt}` : `${e.amt}`, { color: e.k === 'heal' ? COLORS.heal : color, size: 13, rise: 0.9, life: 0.9, side: 0.6 });
+    else if (this.showsFoes()) this.fx.text(p, e.k === 'heal' ? `+${e.amt}` : `${e.amt}`, { color: e.k === 'heal' ? COLORS.heal : color, size: 13, rise: 0.9, life: 0.9, side: 0.6 });
     this.fx.p.emit(p, { count: 6, color: this.colorOf(school), speed: 0.5, up: 0.9, life: 0.6, size: 0.18, drag: 1.4 });
     if (this.onAilment && e.k !== 'heal' && dst.ent) this.onAilment(dst.ent, e.dot, school);
   }
@@ -234,12 +236,26 @@ export class CombatView {
       // what hurts the hero rises in its column, red edged with the harm's colour; the hero's (and
       // everyone's) blows rise over what they struck, in the harm's colour, the spell named above
       if (dst.hero) this.fx.lane(crit ? `-${e.amt}!` : `-${e.amt}`, { color: '#ff3d2e', edge: hue !== SCHOOL_CSS.physical ? hue : '', crit, size: 21 });
-      else this.fx.text(p, crit ? `${e.amt}!` : `${e.amt}`, { color: crit && hue === SCHOOL_CSS.physical ? COLORS.crit : hue, crit, size: 19,
-        label: src && !src.mob && label ? label : '' });
+      else if (this.fx.opts.sct === 'all' || this.fx.opts.sct === 'foes') {
+        // a burst of small hits on one creature (an area spell's ticks, a flurry) adds up in one
+        // number ("1,204 ×3") instead of a cloud of them
+        const key = keyOf(e.dst), last = this.lastNum && this.lastNum.get(key), now = performance.now();
+        if (!crit && !label && last && now - last.at < 220 && last.entry.t < 0.5 && !last.crit) {
+          last.sum += e.amt; last.n++; last.at = now; last.entry.t = Math.min(last.entry.t, 0.15);
+          last.entry.d.textContent = `${last.sum.toLocaleString()} ×${last.n}`;
+        } else {
+          const entry = this.fx.text(p, crit ? `${e.amt}!` : `${e.amt}`, { color: crit && hue === SCHOOL_CSS.physical ? COLORS.crit : hue, crit, size: 19,
+            label: src && !src.mob && label ? label : '' });
+          (this.lastNum || (this.lastNum = new Map())).set(key, { entry, sum: e.amt, n: 1, at: now, crit });
+        }
+      }
       if (!imp || imp.n > 1) { this.fx.flash(dst.root, dst.hero ? 0xff2a1a : 0xffe0c0, 0.12); if (e.school) this.fx.impact(p, e.school); }
-      if (crit || (dst.hero && e.amt >= 15)) this.fx.shake(crit ? 0.22 : 0.14, 0.2);
+      // the view shakes with the size of the blow: a crit, a killing blow, a hit that takes a big
+      // bite of the hero's health
+      const bite = dst.hero && MH.state && MH.state.player && MH.state.player.max_hp ? e.amt / MH.state.player.max_hp : 0;
+      if (crit || killing || bite > 0.04) this.fx.shake(Math.min(0.42, (killing ? 0.26 : crit ? 0.22 : 0.12) + bite * 1.6), killing ? 0.3 : 0.2);
       if (crit) { const src = this.resolve(e.src); if (src && !src.mob) this.director.react('crit', { ...dst, cls: src.cls }); }
-      if ((crit || killing) && this.engine.hitStop) this.engine.hitStop(killing ? 90 : 70);
+      if ((crit || killing || bite > 0.15) && this.engine.hitStop) this.engine.hitStop(killing ? 110 : bite > 0.15 ? 80 : 70);
       // a second or third blow in the same round gets its own swing
       if (imp && imp.n > 1) { const src = this.resolve(e.src); if (src && !src.hero) this.play(src, '1H_Melee_Attack_Slice_Diagonal', 1.3); }
     };
@@ -264,6 +280,7 @@ export class CombatView {
       case 'proc': return this.proc(e);
       case 'fade': return this.fade(e);
       case 'xp': case 'gold': case 'rep': return this.reward(e);
+      case 'fallen': return this.onFallen && this.onFallen(e);
       case 'res':
         if (!this.isHero(e.dst)) return;
         if (!e.spent && e.v > 0) this.fx.lane(`+1 ${e.name === 'arcane' ? 'Arcane Charge' : titleOf(e.name)}`, { color: SCHOOL_CSS.arcane, size: 13 });
@@ -437,7 +454,7 @@ export class CombatView {
         this.fx.p.emit(this.chest(dst), { count: 10, color: 0x8dffa0, speed: 0.6, up: 1.4, life: 0.8, size: 0.2, drag: 1.2 });
       }
       if (e.amt && dst.hero) this.fx.lane(`+${e.amt}`, { color: COLORS.heal, size: 18 });
-      else if (e.amt) this.fx.text(this.chest(dst), `+${e.amt}`, { color: COLORS.heal, size: 18 });
+      else if (e.amt && this.showsFoes()) this.fx.text(this.chest(dst), `+${e.amt}`, { color: COLORS.heal, size: 18 });
     });
   }
   buff(e) {

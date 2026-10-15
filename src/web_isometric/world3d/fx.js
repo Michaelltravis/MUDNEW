@@ -282,7 +282,11 @@ export class FX {
   }
 
   // ---- screen feedback ----
-  shake(mag = 0.15, time = 0.22) { this.shakeMag = Math.max(this.shakeMag * (this.shakeT > 0 ? 1 : 0), mag); this.shakeT = Math.max(this.shakeT, time); }
+  // the player's settings (hud settings -> main.js): numbers 'all' | 'you' | 'foes' | 'off', their size, shake
+  get opts() { return this._opts || (this._opts = { sct: 'all', size: 1, shake: true }); }
+  set opts(o) { this._opts = { ...this.opts, ...o }; }
+  shake(mag = 0.15, time = 0.22) {
+    if (!this.opts.shake) return; this.shakeMag = Math.max(this.shakeMag * (this.shakeT > 0 ? 1 : 0), mag); this.shakeT = Math.max(this.shakeT, time); }
   shakeOffset() {
     if (this.shakeT <= 0) return null;
     const m = this.shakeMag * Math.min(1, this.shakeT / 0.12);
@@ -308,7 +312,7 @@ export class FX {
     else d.textContent = str;
     if (edge) d.style.setProperty('--edge', edge);
     d.style.color = color;
-    d.style.fontSize = `${crit ? size * 1.45 : size}px`;
+    d.style.fontSize = `${(crit ? size * 1.45 : size) * this.opts.size}px`;
     this.overlay.appendChild(d);
     // words born together over the same head (a flurry, a crit and a stun) fan out instead
     // of printing on top of each other
@@ -319,13 +323,16 @@ export class FX {
     const right = new THREE.Vector3(1, 0, 0).applyQuaternion(this.engine.camera.quaternion).setY(0).normalize();
     const p = pos.clone().addScaledVector(right, side + fan + (Math.random() - 0.5) * 0.3)
       .add(new THREE.Vector3(0, stack * 0.3, 0));
-    this.texts.push({ d, p0: pos.clone(), p, t: 0, life, rise, crit });
+    const entry = { d, p0: pos.clone(), p, t: 0, life, rise, crit };
+    this.texts.push(entry);
+    return entry;
   }
   // ---- the hero's column (scrolling combat text): what happens to the hero rises over its head
   // in the order it happens, each new line pushing the older ones up so nothing overlaps.
   // laneAnchor() gives the hero's position (combat.js sets it) ----
   lane(str, { color = '#ffffff', size = 17, crit = false, edge = '', life = 1.9 } = {}) {
-    if (!this.laneAnchor) return;
+    if (!this.laneAnchor || this.opts.sct === 'off' || this.opts.sct === 'foes') return;
+    size *= this.opts.size;
     const d = document.createElement('div');
     d.className = 'fct lane' + (crit ? ' crit' : '');
     d.textContent = str;
