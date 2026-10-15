@@ -61,8 +61,8 @@ export function createQuest({ card, embark, tracker, toast, onMark }) {
       <div class="qt-title">${esc(b.title || '')}</div>
       ${b.text ? `<div class="qt-text">${esc(b.text)}</div>` : ''}
       ${objs ? `<ul class="qt-obj">${objs}</ul>` : ''}${trial}${hold}${act}
-      <div class="qt-foot">${b.where && b.where.name ? `<span title="Marked on your minimap">◆ ${esc(b.where.name)}</span>` : ''}
-        ${b.party && b.party.length > 1 ? `<span title="It was made harder for each who embarked">⚔ ${b.party.length} embarked</span>` : '<span>alone</span>'}
+      <div class="qt-foot">${b.where && b.where.name ? `<span title="Marked on your minimap; the gold arrow by your feet points the way">◆ ${esc(b.where.name)}${b.where.steps ? ` · ${b.where.steps} room${b.where.steps > 1 ? 's' : ''}${b.where.dir ? ` ${esc(b.where.dir)}` : ''}` : b.where.steps === 0 ? ' · here' : ''}</span>` : ''}
+        ${b.kind === 'quest' ? '' : b.party && b.party.length > 1 ? `<span title="It was made harder for each who embarked">⚔ ${b.party.length} embarked</span>` : '<span>alone</span>'}
         ${b.role === 'helper' ? `<span>helping ${esc(b.owner)}</span>` : ''}</div>`;
     const btn = tracker.querySelector('.qt-act');
     if (btn) btn.addEventListener('click', () => { MH.sendCommand(btn.dataset.cmd); btn.disabled = true; });
