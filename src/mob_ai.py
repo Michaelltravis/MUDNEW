@@ -508,6 +508,9 @@ async def _pack_tick(mob, target):
 
     if not mob.room:
         return False
+    import reach
+    if reach.pulled(mob):
+        return False       # struck from the next room (reach.py): only the one aimed at comes
 
     c = mob.config.COLORS
     called = 0

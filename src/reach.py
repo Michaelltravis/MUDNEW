@@ -160,6 +160,12 @@ def _clamp_into(world, room, wpos):
     return (max(1.0, min(cr.ROOM_W - 1.0, x)), max(1.0, min(cr.ROOM_H - 1.0, z)))
 
 
+def pulled(mob, within=60.0):
+    """Whether this creature was pulled from afar lately (it calls no friends to the fight)."""
+    import time as _time
+    return _time.time() - (getattr(mob, 'pulled_at', 0) or 0) < within
+
+
 def pull(world, player, mob):
     """Bring a creature struck from the next room into the hero's room, where it steps in at
     the point nearest where it stood (a point inside the room is never further from anything
@@ -172,6 +178,8 @@ def pull(world, player, mob):
     wpos = world_pos(world, mob)
     import map_system
     back = map_system.REVERSE_DIR.get(d, d)
+    import time as _time
+    mob.pulled_at = _time.time()      # struck from afar: its friends saw nothing (no call for help)
     if mob in there.characters:
         there.characters.remove(mob)
     mob.room = here
@@ -216,7 +224,17 @@ async def webpull(player, args):
     if reason:
         await player.send(f"{c['yellow']}You can't reach {mob.name} from here ({reason}).{c['reset']}")
         return
-    rng, pulls = action_range(player, ' '.join(args[1:]).strip().strip("'\""))
+    # where the hero's screen shows it ("@x,z", its room's metres): a creature the server has
+    # no place for (it has not fought yet) is measured from there, not from its room's middle
+    rest = list(args[1:])
+    if rest and rest[-1].startswith('@'):
+        try:
+            x, z = (float(v) for v in rest.pop()[1:].split(','))
+            if cr.pos_of(mob) is None:
+                cr.set_pos(mob, x, z)
+        except ValueError:
+            pass
+    rng, pulls = action_range(player, ' '.join(rest).strip().strip("'\""))
     if not pulls:
         return                                      # melee or touch: the hero walks in
     dist = distance(world, player, mob)

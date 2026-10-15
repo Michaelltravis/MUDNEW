@@ -313,9 +313,18 @@ async def main():
     check(abs(reach.distance(world, mage, beast) - 4.0) < 0.01, 'distance is measured across the edge (4 m)')
     await reach.webpull(mage, ['#990001', 'attack'])
     check(beast.room is here and cr.pos_of(beast) == (23.0, 7.5), f"a mage's bolt pulls it in to the nearest point ({cr.pos_of(beast)})")
+    import allies
+    check(reach.pulled(beast), 'a creature pulled from afar is marked so')
+    import asyncio as _aio
+    check(_aio.get_event_loop() and (await allies.rally(beast, mage)) == [], 'and calls no friends to the fight (only the one aimed at comes)')
+    beast.pulled_at = 0
     put(20.0)
     await reach.webpull(mage, ['#990001', 'attack'])
     check(beast.room is there and 'out of reach' in told[-1], "beyond the bolt's 10 m it stays")
+    beast.web_pos = None          # a creature the server has no place for: measured where the screen shows it
+    await reach.webpull(mage, ['#990001', 'attack', '@3.0,7.5'])
+    check(beast.room is here, f"measured where the screen draws it (5 m), not its room's middle ({told[-1][:60]})")
+    beast.pulled_at = 0
     put(2.0)
     await reach.webpull(mage, ['#990001', 'bash'])
     check(beast.room is there, 'a melee skill pulls nothing (the hero walks in)')
@@ -417,6 +426,8 @@ async def main():
     check('moveTo(e, vnum, at = null)' in ents_src and 'this.moveTo(e, w.vnum, w.data)' in ents_src
           and 'this.moveTo(e, payload.vnum, m)' in ents_src and 'e.rush' in ents_src,
           '/play: a creature pulled in from next door runs across to where the server put it (no snap to a spawn spot)')
+    check('expectPull(' in src('main.js') and 'this.ents.landing(' in src('combat.js') and 'holdUntil' in ents_src,
+          '/play: a pulled creature stays put until the shot or spell reaches it, then charges')
     check('leapAcross(t, then)' in src('main.js') and "ab.shape === 'dash'" in src('hud/hud.js'),
           '/play leaps across an open way, and lights the leaps that reach')
 

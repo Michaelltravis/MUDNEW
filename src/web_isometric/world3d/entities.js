@@ -58,6 +58,7 @@ function plateHeight(e) {
 
 export class Entities {
   constructor(engine, plates, kits = null) {
+    this.pullWindow = 0;         // until when a creature changing rooms may be one the hero pulled
     this.engine = engine;
     this.plates = plates;          // DOM container for nameplates
     this.kits = kits;              // static models, for creatures that are props (a mimic)
@@ -106,11 +107,33 @@ export class Entities {
     e.goal = known ? new THREE.Vector3(to.ox + at.x, 0, to.oz + at.z) : this.slot(vnum, e.key);
     e.rush = !!known;
     const joined = from && to && this.zone.openDir(from, to);
+    // pulled in by the hero's shot or spell (reach.py): it stays where it stood until the blow
+    // lands on it (combat.js knows when: the projectile's flight to its body), then charges
+    const now = performance.now();
+    if (known && joined && e.kind === 'mob' && now < this.pullWindow) {
+      if (e.landAt && e.landAt > now - 250) { e.holdUntil = e.landAt; e.holdGuess = false; }
+      else { e.holdUntil = now + 1800; e.holdGuess = true; }
+      e.pulledAt = now;
+    }
     if (e.root && e.goal && (!joined || e.root.position.distanceTo(e.goal) > 60)) {
       if (this.onSnap) this.onSnap(e.root.position.clone(), e.goal.clone());
       e.root.position.copy(e.goal).setY(e.root.position.y);
       e.goal = null;
     }
+  }
+
+  // the hero just loosed something that may pull a creature over from next door
+  expectPull(ms = 2500) { this.pullWindow = performance.now() + ms; }
+  // when a blow aimed at this creature lands (combat.js): one waiting to be pulled waits for it
+  landing(key, at) {
+    const e = this.list.get(key);
+    if (!e) return;
+    const now = performance.now();
+    e.landAt = at;
+    if (!(e.holdUntil > now)) return;
+    // (the first blow to land on it frees it: two in flight, the sooner wins)
+    e.holdUntil = e.holdGuess ? at : Math.min(e.holdUntil, at);
+    e.holdGuess = false;
   }
 
   // another web player's position, relayed by the server: their hero follows it
@@ -161,7 +184,17 @@ export class Entities {
       for (const m of r.mobs || []) want.set(`m${m.id}`, { kind: 'mob', data: m, vnum: r.vnum });
       for (const p of r.players || []) if (p.name !== selfName) want.set(`p${p.name}`, { kind: 'player', data: p, vnum: r.vnum });
     }
-    for (const [key, e] of this.list) if (!want.has(key)) this.remove(e);
+    // (one just pulled in from next door that a single payload leaves out, alive as far as we
+    // know, is kept a moment: dropping it would make it fall, then rebuild it at its new spot)
+    const now = performance.now();
+    for (const [key, e] of this.list) {
+      if (want.has(key)) { e.missing = 0; continue; }
+      if (e.pulledAt && now - e.pulledAt < 4000 && !(e.data.maxHp && e.data.hp <= 0)) {
+        e.missing = e.missing || now;
+        if (now - e.missing < 1500) continue;
+      }
+      this.remove(e);
+    }
     for (const [key, w] of want) {
       const e = this.list.get(key);
       if (!e) { this.create(key, w); continue; }
@@ -320,7 +353,9 @@ export class Entities {
       if (!e.root) continue;
       // walking to a new room's spot (other players keep up with where they really are:
       // the further behind, the faster they run)
-      if (e.goal) {
+      const held = e.holdUntil && performance.now() < e.holdUntil;
+      if (!held && e.holdUntil) e.holdUntil = 0;
+      if (e.goal && !held) {
         const p = e.root.position, dx = e.goal.x - p.x, dz = e.goal.z - p.z, d = Math.hypot(dx, dz);
         if (d < 0.1) { e.goal = null; e.rush = false; if (e.actor) e.actor.play(e.riding ? 'Idle' : isHostile(e) ? 'Idle_Combat' : e.actor.idle || 'Idle', 0.18, e.still ? 0 : 1); }
         else {
