@@ -777,6 +777,7 @@ async function runGame() {
     if (!aiming) return;
     const ab = aiming.ab, at = aimPoint();
     stopAim();
+    ents.expectPull(3500);       // (what the circle catches next door waits for it to land)
     MH.bus.emit('hud.ability', { ...ab, at });
   }
   canvas.addEventListener('pointermove', e => { mouse = { x: e.clientX, y: e.clientY }; });
@@ -909,7 +910,7 @@ async function runGame() {
     const d = Math.hypot(q.x - p.x, q.z - p.z);
     if (range == null || (same && d <= range + 0.3)) return then();
     if (!same && leap && reachAcross(t, range, false, true)) return leapAcross(t, then);
-    if (!same && reachAcross(t, range, pulls)) { MH.sendCommand(`webpull ${refFor(t)} ${ability}`, false); return then(); }
+    if (!same && reachAcross(t, range, pulls)) { ents.expectPull(); MH.sendCommand(`webpull ${refFor(t)} ${ability}`, false); return then(); }
     if (same) return approach(t, range, then);
     // another room (the server fights room by room): stop just inside the target's room,
     // at the action's reach if the room is big enough for it

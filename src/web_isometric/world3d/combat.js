@@ -72,6 +72,8 @@ export class CombatView {
   expect(e, delayMs) {
     const k = this.pairKey(e.src, e.dst);
     this.impacts.set(k, { at: performance.now() + delayMs, crit: e.res === 'crit' || e.crit, n: 0, label: e.label || '', school: e.school || null });
+    // (a creature pulled in from next door waits for this blow before it charges: entities.js)
+    if (e.dst && e.dst.m != null && this.ents.landing) this.ents.landing(`m${e.dst.m}`, performance.now() + delayMs);
   }
   // real-time combat: the hero's blow, shown the moment the key is pressed (the server's attack
   // event then finds it already swinging and doesn't swing twice)

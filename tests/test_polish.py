@@ -417,6 +417,8 @@ async def main():
     check('moveTo(e, vnum, at = null)' in ents_src and 'this.moveTo(e, w.vnum, w.data)' in ents_src
           and 'this.moveTo(e, payload.vnum, m)' in ents_src and 'e.rush' in ents_src,
           '/play: a creature pulled in from next door runs across to where the server put it (no snap to a spawn spot)')
+    check('expectPull(' in src('main.js') and 'this.ents.landing(' in src('combat.js') and 'holdUntil' in ents_src,
+          '/play: a pulled creature stays put until the shot or spell reaches it, then charges')
     check('leapAcross(t, then)' in src('main.js') and "ab.shape === 'dash'" in src('hud/hud.js'),
           '/play leaps across an open way, and lights the leaps that reach')
 
