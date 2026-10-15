@@ -139,9 +139,9 @@ export const schoolOf = s => (SCHOOLS[s] ? s : s === 'necrotic' ? 'shadow' : 'ar
 
 // footsteps by what is underfoot
 export function surfaceFor({ theme, zoneKey, snowy, icy, interior } = {}) {
-  if (snowy || icy || theme === 'snow' || zoneKey === 'frozen') return 'step_snow';
+  if (snowy || icy || theme === 'snow' || theme === 'ice_cave' || zoneKey === 'frozen') return 'step_snow';
   // a room's look (room_looks.py) before its zone's
-  if (['cave', 'mine', 'crypt', 'sewer', 'volcanic'].includes(theme)) return 'step_stone';
+  if (['cave', 'mine', 'crypt', 'sewer', 'volcanic', 'lava_cave'].includes(theme)) return 'step_stone';
   if (theme === 'desert' || theme === 'shore') return 'step_dirt';
   if (theme === 'inside') return interior === 'tavern' || interior === 'house' || interior === 'bedroom' || interior === 'library' ? 'step_wood'
     : interior === 'throne' || interior === 'temple' ? 'step_carpet' : 'step_stone';
@@ -201,7 +201,7 @@ const BED_OF_THEME = { forest: 'forest', field: 'meadow', hills: 'meadow', swamp
   water_noswim: 'sunken', underwater: 'sunken' };
 // a room's look (room_looks.py) says more than its zone's old theme
 export const LOOK_BED = { cave: 'mines', mine: 'mines', sewer: 'sewer', crypt: 'necropolis', dungeon: 'sewer',
-  snow: 'frozen', desert: 'desert', volcanic: 'volcanic', shore: 'sunken', stones: 'meadow', village: 'meadow', camp: 'meadow', garden: 'meadow', ruins: 'desert', terrace: 'castle', swamp: 'swamp', web: 'darkforest', castle: 'castle', necropolis: 'necropolis' };
+  snow: 'frozen', desert: 'desert', volcanic: 'volcanic', shore: 'sunken', stones: 'meadow', village: 'meadow', camp: 'meadow', garden: 'meadow', ruins: 'desert', terrace: 'castle', ice_cave: 'frozen', lava_cave: 'volcanic', swamp: 'swamp', web: 'darkforest', castle: 'castle', necropolis: 'necropolis' };
 export function bedFor({ theme, zoneKey } = {}) {
   if (LOOK_BED[theme]) return LOOK_BED[theme];
   if (theme === 'inside') return 'castle';                     // indoors: a quiet room tone

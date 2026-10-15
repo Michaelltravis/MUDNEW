@@ -78,7 +78,7 @@ async def main():
     await world.load()
     r = world.rooms.get(24641)
     check(r is not None and r.look == 'stones', f'24641 draws as a stone circle ({getattr(r, "look", None)})')
-    check(r is not None and by_key(r.features).get('standing_stone', {}).get('c') == 'red', 'its features are read at load')
+    check(r is not None and any(f['k'] == 'standing_stone' and f.get('c') == 'red' for f in r.features), 'its features are read at load')
     zone476 = [x for x in world.rooms.values() if getattr(x, 'zone', None) == 476 or 24600 <= x.vnum < 24700]
     stones = sum(x.look == 'stones' for x in zone476)
     check(stones >= len(zone476) * 0.5, f'most of the Stone Circle draws as one ({stones} of {len(zone476)})')

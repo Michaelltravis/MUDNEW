@@ -2,6 +2,8 @@
 // builds the hero's zone as one continuous world and keeps it in step with the server:
 // the hero walks freely and the server is told which room they entered (sync.js).
 import * as THREE from 'three';
+// a zone's light, read from its rooms' words (zone_tone.py)
+const TONE_LIGHT = { ghost: 0x9affb0, moon: 0xa8bcff, fire: 0xffb070 };
 import { createEngine } from './engine.js';
 import { loadKit } from './assets.js';
 import { Zone, fetchZonemap, REV } from './zone.js';
@@ -512,6 +514,7 @@ async function runGame() {
     // the room's look (room_looks.py): rock is darkest, then crypts and sewers; sand, snow and ash
     // colour the day
     const rock = L.theme === 'cave' || L.theme === 'mine';
+    if (L.theme === 'ice_cave' || L.theme === 'lava_cave') { engine.setMood(L.theme); return; }
     const dark = L.dark || ['dungeon', 'crypt', 'sewer'].includes(L.theme);
     const night = hour >= 20 || hour < 5, dusk = hour >= 18 || hour < 7;
     // (a spider's lair is dark by its flags, but its own gloom is dark enough: the webs must show)
@@ -519,6 +522,13 @@ async function runGame() {
       : L.theme === 'volcanic' ? 'volcanic' : L.theme === 'underwater' ? 'underwater' : night ? 'night' : dusk ? 'dusk'
       : L.theme === 'desert' ? 'desert' : L.theme === 'snow' ? 'snow' : L.theme === 'forest' ? 'forest' : 'day';
     engine.setMood(mood);
+    // a zone's light (zone_tone.py): green ghost-fire, cold moonlight, the warmth of torches
+    const light = L.tone && TONE_LIGHT[L.tone.light];
+    if (light) {
+      const m = engine.MOODS ? engine.MOODS[mood] : null;
+      const mix = (a, b, k) => new THREE.Color(a).lerp(new THREE.Color(b), k).getHex();
+      if (m) engine.setMood({ sun: mix(m.sun, light, 0.55), sky: mix(m.sky, light, 0.3), fog: mix(m.fog, light, 0.12) });
+    }
   }
 
   // ---- walking between rooms ----

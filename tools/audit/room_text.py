@@ -39,8 +39,8 @@ NAMED_ROOFED = re.compile(r'\b(tunnels?|caves?|caverns?|sewers?|pipes?|mines?|sh
                           r'chambers?|halls?|rooms?|corridors?|passages?|labyrinth|freezer|quarters|stacks|huts?|houses?|inn|tavern|shop)\b', re.I)
 NAMED_OPEN = re.compile(r'\b(forest|woods?|clearing|field|meadow|plains?|hills?|road|path|trail|garden|yard|court(?:yard)?|'
                         r'beach|shore|desert|dunes?|mountain|peak|pass|cliffs?|valley|glade|grove|swamp|marsh|moor)\b', re.I)
-ROOFED_LOOKS = {'inside', 'dungeon', 'crypt', 'cave', 'mine', 'sewer'}
-OPEN_LOOKS = {'field', 'forest', 'hills', 'mountain', 'desert', 'snow', 'swamp', 'shore', 'volcanic', 'web', 'stones'}
+ROOFED_LOOKS = {'inside', 'dungeon', 'crypt', 'cave', 'mine', 'sewer', 'ice_cave', 'lava_cave'}
+OPEN_LOOKS = {'field', 'forest', 'hills', 'mountain', 'desert', 'snow', 'swamp', 'shore', 'volcanic', 'web', 'stones', 'garden', 'ruins', 'terrace', 'camp'}
 
 
 def judge(room):

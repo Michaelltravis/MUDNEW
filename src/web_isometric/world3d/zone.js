@@ -67,7 +67,7 @@ export class Zone {
         exits[d] = { to_room: e.to, kind: e.kind, door: !!e.door, nlook: nb ? (nb.data.look || nb.data.sector) : null };
       }
       room.layout = MH.generateRoomTopDown({
-        vnum: r.vnum, name: r.name, description: r.description, sector: r.sector, look: r.look, features: r.features,
+        vnum: r.vnum, name: r.name, description: r.description, sector: r.sector, look: r.look, features: r.features, tone: r.tone, setpiece: r.setpiece,
         flags: r.flags, zone: this.num, exits,
       });
     }

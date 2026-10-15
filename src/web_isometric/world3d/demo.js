@@ -116,6 +116,8 @@ export async function buildDemo(engine, kits, { interactive = false, banner = nu
 // owner's checks).
 export const LOOK_SAMPLES = [
   { look: 'cave', sector: 'inside', name: 'The Dripping Cavern', description: 'Water drips from the stalactites into still pools. The cave walls glitter.' },
+  { look: 'ice_cave', sector: 'inside', name: 'The Freezer', description: 'The walls are sheathed in ice and icicles hang from the roof; the floor is a frozen sheet.' },
+  { look: 'lava_cave', sector: 'inside', name: 'The Tunnel To Hell', description: 'Molten rock seeps through cracks in the floor of this sweltering tunnel.' },
   { look: 'mine', sector: 'inside', name: 'The Old Mine Shaft', description: 'Timber props hold up the shaft. Ore glints in the rock where the miners left off.' },
   { look: 'crypt', sector: 'inside', name: 'The Forgotten Crypt', description: 'Coffins line the walls of the crypt, and the dead lie unquiet.' },
   { look: 'sewer', sector: 'inside', name: 'The Muddy Sewer', description: 'A channel of foul water runs down the middle of the sewer.' },
@@ -160,6 +162,9 @@ export const LOOK_SAMPLES = [
     features: [{k: "rubble", n: 1}] },
   { look: "terrace", sector: 'city', key: "olympus", name: "Crossing The Gods' Table", description: "The Gods' Table narrows here to a stately ribbon of marble, wide enough for six to walk abreast. Its surface is scored with the long-dried stains of spilled wine.",
     features: [{k: "throne", n: 1}, {k: "table", n: 2, main: true}] },
+  // a set piece (world/setpieces.json): the Throne of Shadows as laid out by hand
+  { look: 'inside', sector: 'inside', key: 'throneshadows', name: 'The Throne of Shadows', description: 'A black throne.', exits: { south: { to_room: 0 } },
+    setpiece: { light: '#8a5cff' }, features: [{k: "throne", x: 12, y: 2, main: true, c: "black"}, {k: "pillar", x: 8, y: 3}, {k: "pillar", x: 16, y: 3}, {k: "pillar", x: 8, y: 9}, {k: "pillar", x: 16, y: 9}, {k: "crystal", x: 5, y: 5, c: "purple"}, {k: "crystal", x: 19, y: 5, c: "purple"}, {k: "crystal", x: 6, y: 11, c: "purple"}, {k: "crystal", x: 18, y: 11, c: "purple"}, {k: "banner", x: 9, y: 1}, {k: "banner", x: 15, y: 1}] },
   { look: 'hills', key: 'gatesouth', name: 'The Border Hills', description: 'The hills fall away to the south.', zoneExit: { side: 'south', zoneName: 'The Eastern Highlands' } },
 ];
 export function buildLooksGallery(engine, kits) {

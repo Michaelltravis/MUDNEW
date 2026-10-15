@@ -250,7 +250,7 @@ class AtmosphereManager:
         look = getattr(room, 'look', None)
         if look in ('stones', 'village', 'camp', 'garden', 'ruins', 'terrace', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'field', 'forest', 'hills', 'mountain'):
             sector = look if look in outdoor_sectors else 'field'
-        elif look in ('cave', 'mine', 'crypt', 'sewer'):
+        elif look in ('cave', 'mine', 'crypt', 'sewer', 'ice_cave', 'lava_cave'):
             sector = 'cave'
         elif look in ('inside', 'dungeon') and sector == 'city':
             sector = 'inside'           # (a town's classroom or quarters typed as its street)

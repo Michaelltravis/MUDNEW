@@ -29,8 +29,8 @@ from collections import Counter
 logger = logging.getLogger('Misthollow')
 
 LOOKS = ('cave', 'mine', 'crypt', 'sewer', 'dungeon', 'desert', 'snow', 'shore', 'volcanic', 'swamp', 'web', 'castle',
-         'necropolis', 'stones', 'village', 'camp', 'garden', 'ruins', 'terrace')
-UNDERGROUND = {'cave', 'mine', 'crypt', 'sewer', 'dungeon'}
+         'necropolis', 'stones', 'village', 'camp', 'garden', 'ruins', 'terrace', 'ice_cave', 'lava_cave')
+UNDERGROUND = {'cave', 'mine', 'crypt', 'sewer', 'dungeon', 'ice_cave', 'lava_cave'}
 # a hand override (world/looks.json) may also keep a room as plain country or a plain room
 OVERRIDE_LOOKS = LOOKS + ('field', 'forest', 'hills', 'mountain', 'city', 'inside')
 OUTDOOR = {'desert', 'snow', 'volcanic', 'swamp', 'web', 'stones', 'village', 'camp', 'garden', 'ruins', 'terrace'}   # (a shore is an edge: it doesn't spread)
@@ -478,7 +478,8 @@ def classify(world, overrides=None):
     ov = overrides if overrides is not None else load_overrides()
     for room in rooms.values():
         sector = getattr(room, 'sector_type', '') or 'inside'
-        stated = getattr(room, 'stated_look', None) or ov['rooms'].get(room.vnum)
+        # a room pinned by hand (world/looks.json) over the look its zone states for all its rooms
+        stated = ov['rooms'].get(room.vnum) or getattr(room, 'stated_look', None)
         if stated:
             room.look, room.look_why = stated, 'stated'
             continue

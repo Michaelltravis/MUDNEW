@@ -316,7 +316,7 @@
     };
     const SHAPE = {
       forest: 3, darkforest: 3, web: 3, swamp: 3, hills: 2, field: 2, desert: 2, snow: 2, shore: 2, volcanic: 2, stones: 2, village: 2, camp: 2, garden: 2, ruins: 2,
-      cave: 'cavern', mine: 'cavern', mountain: 'cavern', underground: 'cavern',
+      cave: 'cavern', mine: 'cavern', ice_cave: 'cavern', lava_cave: 'cavern', mountain: 'cavern', underground: 'cavern',
     }[sector];
     if (typeof SHAPE === 'number' && !swim) {
       // organic border: each side's thickness wanders 0..maxD like a treeline
@@ -519,7 +519,34 @@
         }
         return true;
       };
-      for (const f of featWanted) {
+      // a set piece (setpieces.py): its things where its maker put them, facing the room's middle
+      // (thrones, altars, statues); kept only on open floor that keeps every way out reachable
+      // (only what is really used stays clear: the entries of the ways this room has, its stairs
+      // and portals, its middle; not the entry of a north wall with no way through it)
+      const keepClear = [[midX, midY]];
+      for (const d of ['north', 'south', 'west', 'east']) if (gaps[d]) keepClear.push([Math.floor(entries[d].x / T), Math.floor(entries[d].y / T)]);
+      if (stairsUp) keepClear.push([stairsUp.x, stairsUp.y]);
+      if (stairsDown) keepClear.push([stairsDown.x, stairsDown.y]);
+      portals.forEach(p => keepClear.push([p.x, p.y]));
+      const nearKept = (x, y) => keepClear.some(([px, py]) => Math.abs(x - px) <= 1 && Math.abs(y - py) <= 1);
+      const keptReachable = () => { const seen = floodReachable(grid, midX, midY, swim); return keepClear.every(([x, y]) => seen[y * W + x]); };
+      for (const f of featWanted.filter(f => f.x != null && f.y != null)) {
+        const [w, h, , block] = FEAT[f.k];
+        let ok = true;
+        for (let dy = 0; dy < h && ok; dy++) for (let dx = 0; dx < w; dx++) {
+          const cx = f.x + dx, cy = f.y + dy;
+          if (cx < 1 || cy < 1 || cx > W - 2 || cy > H - 2 || at(cx, cy) !== FLOOR || nearKept(cx, cy) || taken.has(cy * W + cx)) { ok = false; break; }
+        }
+        if (!ok) continue;
+        if (block) {
+          for (let dy = 0; dy < h; dy++) for (let dx = 0; dx < w; dx++) set(f.x + dx, f.y + dy, BLOCK);
+          if (!keptReachable()) { for (let dy = 0; dy < h; dy++) for (let dx = 0; dx < w; dx++) set(f.x + dx, f.y + dy, FLOOR); continue; }
+        }
+        for (let dy = 0; dy < h; dy++) for (let dx = 0; dx < w; dx++) taken.add((f.y + dy) * W + f.x + dx);
+        const yaw = f.yaw != null ? f.yaw : Math.atan2(midX - (f.x + w / 2), midY - (f.y + h / 2));
+        features.push({ k: f.k, x: f.x, y: f.y, w, h, c: f.c || null, main: !!f.main, i: 0, block, yaw, s: f.s || 1 });
+      }
+      for (const f of featWanted.filter(f => f.x == null || f.y == null)) {
         const [w, h, where0, block] = FEAT[f.k];
         const where = f.main ? 'main' : where0;
         const score = (x, y) => {
@@ -629,6 +656,8 @@
       gravestones: roomData.gravestones,
       W, H, T, grid, gaps,
       stairsUp, stairsDown, portals, obstacles, props, spawnSlots, entries, wide, features,
+      tone: roomData.tone || null,     // the zone's stone and light, from its rooms' words (zone_tone.py)
+      setpiece: roomData.setpiece || null,   // a landmark's own light (setpieces.py)
       mossy: proseFx.mossy, snowy: proseFx.snowy,
       exits, swim,
       dark: flags.includes('dark'),

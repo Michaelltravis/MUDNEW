@@ -20,6 +20,13 @@ const INDOOR = new Set(['inside', 'dungeon', 'cave', 'mine', 'crypt', 'sewer']);
 export const isIndoor = theme => INDOOR.has(theme);
 // stone floor and walls: interiors and dungeons, and town streets (walled, open sky)
 // (caves and mines are rock, terrain-looks.js)
+// a zone's stone (zone_tone.py) as a tint on the kit's grey: black basalt, white marble, red
+// sandstone...
+const TONE_STONE = {
+  black: new THREE.Color(0.5, 0.5, 0.56), white: new THREE.Color(1.5, 1.47, 1.42), red: new THREE.Color(1.4, 0.92, 0.76),
+  green: new THREE.Color(0.82, 1.12, 0.86), blue: new THREE.Color(0.86, 0.96, 1.32), gold: new THREE.Color(1.45, 1.22, 0.82),
+  brown: new THREE.Color(1.08, 0.9, 0.74),
+};
 const PAVED = new Set(['inside', 'dungeon', 'crypt', 'sewer', 'city', 'castle', 'necropolis']);
 const CARD = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
 
@@ -114,6 +121,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
   } else if (PAVED.has(theme)) {
     // (a dead city is a town's streets in black stone, terrain-town.js)
     const town = theme === 'city' || theme === 'necropolis', castle = theme === 'castle';
+    const toneStone = layout.tone && TONE_STONE[layout.tone.stone];
     const kind = theme === 'inside' ? interiorKind(layout) : null;
     // ---- floor: KayKit stone tiles at 1 m ----
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
@@ -126,12 +134,13 @@ export function buildRoom(layout, ox, oz, kits, room) {
         : theme === 'sewer' ? (r < 0.35 ? 'floor_tile_small_weeds_A' : r < 0.55 ? 'floor_tile_small_broken_A' : 'floor_tile_small')
         : (kind && interiorFloorKey(kind, r, layout.vnum))
         || (r < 0.07 ? 'floor_tile_small_broken_A' : r < 0.13 ? 'floor_tile_small_weeds_A' : 'floor_tile_small');
-      // a dead city's paving is dark and grave-cold
-      const tile = theme === 'necropolis' ? tinted(D.get(key), 0x6a6872, 'necro') : D.get(key);
+      // a dead city's paving is dark and grave-cold; a zone whose words say its stone is black,
+      // white marble, red sandstone... has its floors in that stone (zone_tone.py)
+      const tile = theme === 'necropolis' ? tinted(D.get(key), 0x6a6872, 'necro') : toneStone ? tinted(D.get(key), toneStone, `tone_${layout.tone.stone}`) : D.get(key);
       b.add(tile, trs(ox + x + 0.5, -0.05, oz + y + 0.5, Math.floor(rng() * 4) * Math.PI / 2, 0.5, 0.5, 0.5), { shadow: false });
     }
-    // ---- walls: border runs as stretched KayKit wall pieces ----
-    const wall = asOccluder(D.get('wall'));
+    // ---- walls: border runs as stretched KayKit wall pieces (in the zone's stone) ----
+    const wall = asOccluder(toneStone ? tinted(D.get('wall'), toneStone, `tone_${layout.tone.stone}`) : D.get('wall'));
     const WALL_H = 2.6;
     if (town && kits.town) townStreet(ctx());
     // a castle: tall walls with merlons, corner towers, gatehouses (terrain-castle.js)
@@ -305,6 +314,12 @@ export function buildRoom(layout, ox, oz, kits, room) {
   // a way into another region: a named stone gateway (terrain-castle.js)
   if (room) zoneGates(ctx(), theme);
   drawFeatures(ctx());
+  // a set piece's own light (setpieces.py): a glow of its colour over the room
+  if (layout.setpiece && layout.setpiece.light) {
+    const l = new THREE.PointLight(new THREE.Color(layout.setpiece.light), 34, 18, 1.4);
+    l.position.set(ox + W / 2, 3.4, oz + H / 2);
+    group.add(l);
+  }
   for (const i of featCells) grid[i] = BLOCK;
   b.build(group);
   const doors = room ? exitFeatures(group, layout, ox, oz, room, kits, owned) : {};
