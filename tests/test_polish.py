@@ -281,6 +281,74 @@ async def main():
     check('TEXT_LIFE = 1.45' in fxs and 'LANE_MAX = 7' in fxs and 'data-set="sctlife"' in open(os.path.join(WEB, 'play.html'), encoding='utf-8').read(),
           'combat numbers stay up longer, crits longest, with a Number duration setting and a cap on the crowd')
 
+    # reaching into the next room (reach.py): a shot or a bolt across an open way pulls the
+    # creature in; never melee, a sentinel, a closed door, a peaceful room, nor for telnet
+    import reach
+    import combat_range as cr
+    from bosses import create_mob_from_prototype
+    here, there = world.rooms[3002], world.rooms[3003]
+    check(reach.joined(world, here, there) == 'east', 'the Temple Square and the market street are joined by an open way')
+    mage = Player.create_new(name='Reacher', password=None, race='human', char_class='mage',
+                             stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    mage.world, mage.room, mage.connection = world, here, object()
+    here.characters.append(mage)
+    told = []
+
+    async def note(m, *a, **k):
+        told.append(m)
+    mage.send = note
+    beast = create_mob_from_prototype(next(iter(world.mob_prototypes.values())), world)
+    beast.flags = set(f for f in (beast.flags or ()) if f not in ('sentinel', 'boss'))
+    beast.special, beast._web_uid, beast.owner = None, 990001, None
+
+    def put(x):
+        if beast.room is not None and beast in beast.room.characters:
+            beast.room.characters.remove(beast)
+        beast.room = there
+        there.characters.append(beast)
+        cr.set_pos(beast, x, 7.5)
+    world.npcs.append(beast)
+    put(2.0)
+    mage.web_pos = (here.vnum, 22.0, 7.5)
+    check(abs(reach.distance(world, mage, beast) - 4.0) < 0.01, 'distance is measured across the edge (4 m)')
+    await reach.webpull(mage, ['#990001', 'attack'])
+    check(beast.room is here and cr.pos_of(beast) == (23.0, 7.5), f"a mage's bolt pulls it in to the nearest point ({cr.pos_of(beast)})")
+    put(20.0)
+    await reach.webpull(mage, ['#990001', 'attack'])
+    check(beast.room is there and 'out of reach' in told[-1], "beyond the bolt's 10 m it stays")
+    put(2.0)
+    await reach.webpull(mage, ['#990001', 'bash'])
+    check(beast.room is there, 'a melee skill pulls nothing (the hero walks in)')
+    beast.flags.add('sentinel')
+    await reach.webpull(mage, ['#990001', 'attack'])
+    check(beast.room is there and 'post' in told[-1], 'a creature that keeps its post is not pulled')
+    beast.flags.discard('sentinel')
+    ex = here.exits['east']
+    had = ex.get('door')
+    ex['door'] = {'name': 'door', 'state': 'closed'}
+    await reach.webpull(mage, ['#990001', 'attack'])
+    check(beast.room is there, 'not through a closed door')
+    if had is None:
+        ex.pop('door')
+    else:
+        ex['door'] = had
+    there.flags.add('peaceful')
+    await reach.webpull(mage, ['#990001', 'attack'])
+    check(beast.room is there, 'not into a peaceful room')
+    there.flags.discard('peaceful')
+    came = reach.pull_area(mage, (23.5, 7.5), 4.0)
+    check(beast in came and beast.room is here, 'an aimed circle across the edge catches it')
+    put(2.0)
+    check(reach.pull_area(beast, (2.0, 7.5), 30.0) == [], "a creature's own spell pulls no one")
+    mage.web_pos = None
+    await reach.webpull(mage, ['#990001', 'attack'])
+    check(beast.room is there, 'a player with no position (telnet) keeps the old rules')
+    there.characters.remove(beast)
+    world.npcs.remove(beast)
+    here.characters.remove(mage)
+    check('reachAcross(t, range, pulls)' in src('main.js') and 'webpull ${refFor(t)}' in src('main.js') and 'strikesFrom(' in src('hud/hud.js'),
+          '/play strikes across an open way from where the hero stands, and shows what reaches')
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 

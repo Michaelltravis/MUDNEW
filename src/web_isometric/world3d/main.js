@@ -833,6 +833,11 @@ async function runGame() {
   });
   // how far from its target an action reaches (combat_range.py via /combatdata);
   // null for actions centred on the hero (rally, fade, crescendo...)
+  // whether an ability strikes from afar (reach.py pulls across an edge only for these)
+  function pullsOf(id, spell) {
+    const ab = ranges.abilities && ranges.abilities[id];
+    return ab ? /^(ranged|blast)/.test(ab.shape) : !!spell;
+  }
   function rangeOf(id, spell) {
     if (id === 'attack') return reachOf();
     const ab = ranges.abilities && ranges.abilities[id];
@@ -841,13 +846,29 @@ async function runGame() {
   }
   // the server fights within one room: be in the target's room and within the action's
   // reach, walking only as far as needed (an archer stops at bow range, not in its face)
-  function inReach(t, range, then) {
+  // a shot, a bolt or an aimed spell at a creature in the next room, from where the hero stands
+  // (reach.py): the two rooms joined by an open way (no closed door, neither peaceful), the
+  // creature one that would come (no servant, sentinel or boss) and within the action's range;
+  // the server pulls it in, then the ordinary command strikes it in the hero's room
+  function reachAcross(t, range, pulls) {
+    if (!pulls || range == null || !heroRoom || !zone || !t || t.kind !== 'mob' || t.vnum === heroRoom.vnum) return false;
+    const there = zone.rooms.get(t.vnum);
+    const way = there && Object.entries(heroRoom.data.exits || {}).find(([, x]) => x.to === t.vnum && x.kind === 'open');
+    if (!way || zone.doorClosed(heroRoom, way[0])) return false;
+    if ((heroRoom.data.flags || []).includes('peaceful') || (there.data.flags || []).includes('peaceful')) return false;
+    const m = t.data || {};
+    if (m.shopkeeper || m.trainer || m.boss || (m.flags || []).includes('sentinel') || (m.flags || []).includes('boss')) return false;
+    const p = hero.root.position, q = t.root.position;
+    return Math.hypot(q.x - p.x, q.z - p.z) <= range + 0.5;
+  }
+  function inReach(t, range, then, { pulls = false, ability = 'attack' } = {}) {
     // (the target fell, or its body was taken away, as the key went down: nothing to reach)
     if (!t || !t.root || !hero || !hero.root) return hud.toast('No target — click a creature or press Tab.');
     const same = heroRoom && t.vnum === heroRoom.vnum;
     const p = hero.root.position, q = t.root.position;
     const d = Math.hypot(q.x - p.x, q.z - p.z);
     if (range == null || (same && d <= range + 0.3)) return then();
+    if (!same && reachAcross(t, range, pulls)) { MH.sendCommand(`webpull ${refFor(t)} ${ability}`, false); return then(); }
     if (same) return approach(t, range, then);
     // another room (the server fights room by room): stop just inside the target's room,
     // at the action's reach if the room is big enough for it
@@ -879,7 +900,7 @@ async function runGame() {
       }
       // (the opening blow comes back at once as an attack event, with the class's swing)
       if (!MH.state.inCombat) { const cmd = `kill ${refFor(t)}`; lastAction = { cmd, at: performance.now() }; MH.sendCommand(cmd, 'combat'); }
-    });
+    }, { pulls: !!heroAuto().ranged, ability: 'attack' });
   }
   MH.bus.on('hud.attack', attack);
   // the server refused an action for distance: close in (or step back) and retry once
@@ -958,7 +979,7 @@ async function runGame() {
       const cmd = abilityCommand(ab, refFor(t));
       lastAction = { cmd, at: performance.now() };
       MH.sendCommand(cmd, 'combat');
-    });
+    }, { pulls: pullsOf(ab.id, ab.spell), ability: ab.id });
   });
   // ---- doors ----
   // Every door of the hero's room has a prompt spot (the middle of its doorway, or the
@@ -1274,7 +1295,9 @@ async function runGame() {
       if (foe) { ents.setTarget(foe.key); t = foe; }
     }
     const dist = t && t.root ? Math.hypot(t.root.position.x - p.x, t.root.position.z - p.z) : null;
-    hud.setDistance(dist, t && t.vnum === (heroRoom && heroRoom.vnum));
+    const sameRoom = !!(t && t.vnum === (heroRoom && heroRoom.vnum));
+    // (in the next room across an open way: what strikes from afar reaches it from here, reach.py)
+    hud.setDistance(dist, sameRoom, { across: !!(t && !sameRoom && reachAcross(t, 1e9, true)), ranged: !!heroAuto().ranged });
     if ((chaseClock -= dt) > 0 || !MH.state.inCombat || !t || !t.root || t.kind !== 'mob') return;
     chaseClock = 0.4;
     const reach = reachOf();

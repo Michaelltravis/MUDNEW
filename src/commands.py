@@ -1062,6 +1062,14 @@ class CommandHandler:
             await QuestManager.check_tutorial_progress(player, c)
 
     @classmethod
+    async def cmd_webpull(cls, player: 'Player', args: List[str]):
+        """Internal, for the 3D web client (/play): "webpull #id [ability]" before an attack or
+        an aimed ability at a creature in the next room. When the hero can reach it from where
+        they stand (reach.py), it is pulled into their room and the ordinary command follows."""
+        import reach
+        await reach.webpull(player, args)
+
+    @classmethod
     async def cmd_webmove(cls, player: 'Player', args: List[str]):
         """Internal, for the 3D web client (/play): "webmove <from> <to>".
 
@@ -19584,6 +19592,14 @@ class CommandHandler:
         if left > 0:
             await player.send(f"{c['yellow']}Divine Storm is not ready yet ({int(left) + 1}s).{c['reset']}")
             return
+        # (its whirl reaches 5 m past the room's edge too, when the way is open: reach.py)
+        try:
+            import reach, combat_range as cr
+            me = cr.pos_of(player)
+            if me is not None:
+                reach.pull_area(player, me, 5.0)
+        except Exception:
+            pass
         targets = SpellHandler.foes_in_room(player)
         if not targets:
             await player.send(f"{c['yellow']}There is no foe here for the storm to strike.{c['reset']}")
