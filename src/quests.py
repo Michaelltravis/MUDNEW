@@ -14,6 +14,21 @@ from datetime import datetime
 from typing import Dict, List, Optional, TYPE_CHECKING, Any
 from dataclasses import dataclass, field
 
+
+def _push(player):
+    """/play's quest tracker follows a quest at once: a talk, a kill or a window opened moves
+    no one, and the map payload (which carries the tracker) otherwise comes only with a move."""
+    wm = getattr(getattr(player, 'world', None), 'web_map', None)
+    if wm is None or not hasattr(wm, 'notify_player'):
+        return
+    try:
+        import asyncio
+        if hasattr(wm, 'has_play') and not wm.has_play(player):
+            return
+        asyncio.get_running_loop().create_task(wm.notify_player(player))
+    except Exception:
+        pass
+
 if TYPE_CHECKING:
     from player import Player
     from mobs import Mobile
@@ -2302,6 +2317,7 @@ class QuestManager:
         if not hasattr(player, 'active_quests'):
             player.active_quests = []
         player.active_quests.append(active_quest)
+        _push(player)
 
         c = player.config.COLORS
         await player.send(f"{c['bright_green']}Quest accepted: {quest_def['name']}{c['reset']}")
@@ -2310,7 +2326,8 @@ class QuestManager:
             first_obj = quest_def.get('objectives', [{}])[0]
             step_desc = first_obj.get('description')
             if step_desc:
-                await player.send(f"{c['bright_cyan']}Tutorial step:{c['reset']} {step_desc}")
+                from quest_guide import for_player
+                await player.send(f"{c['bright_cyan']}Tutorial step:{c['reset']} {for_player(player, step_desc)}")
         try:
             from tips import TipManager
             await TipManager.show_tutorial_hint(player, 'tutorial_quest_accept')
@@ -2325,7 +2342,8 @@ class QuestManager:
         next_obj = next((obj for obj in quest.objectives if not obj.completed), None)
         c = player.config.COLORS
         if next_obj:
-            await player.send(f"{c['bright_cyan']}Next step:{c['reset']} {next_obj.description}")
+            from quest_guide import for_player
+            await player.send(f"{c['bright_cyan']}Next step:{c['reset']} {for_player(player, next_obj.description)}")
         else:
             await player.send(f"{c['bright_green']}Tutorial step complete!{c['reset']}")
 
@@ -2356,6 +2374,7 @@ class QuestManager:
                         obj.check_progress()
 
                         c = player.config.COLORS
+                        _push(player)
                         await player.send(f"{c['yellow']}Quest Progress: {obj.description} ({obj.current}/{obj.required}){c['reset']}")
 
                         if obj.completed:
@@ -2372,6 +2391,7 @@ class QuestManager:
                         obj.check_progress()
 
                         c = player.config.COLORS
+                        _push(player)
                         await player.send(f"{c['yellow']}Quest Progress: {obj.description} ({obj.current}/{obj.required}){c['reset']}")
 
                         if obj.completed:
@@ -2387,6 +2407,7 @@ class QuestManager:
                         obj.check_progress()
 
                         c = player.config.COLORS
+                        _push(player)
                         await player.send(f"{c['yellow']}Quest Progress: {obj.description} ({obj.current}/{obj.required}){c['reset']}")
 
                         if obj.completed:
@@ -2400,6 +2421,7 @@ class QuestManager:
                         obj.check_progress()
 
                         c = player.config.COLORS
+                        _push(player)
                         await player.send(f"{c['yellow']}Quest Progress: {obj.description} ({obj.current}/{obj.required}){c['reset']}")
 
                         if obj.completed:
@@ -2416,6 +2438,7 @@ class QuestManager:
                         obj.check_progress()
 
                         c = player.config.COLORS
+                        _push(player)
                         await player.send(f"{c['yellow']}Quest Progress: {obj.description} ({obj.current}/{obj.required}){c['reset']}")
 
                         if obj.completed:
@@ -2429,6 +2452,11 @@ class QuestManager:
                 # Skip generic banner for tutorials (they auto-complete with their own banner)
                 if not quest.quest_id.startswith('tutorial_'):
                     await QuestManager._notify_quest_complete(player, quest)
+
+        # a tutorial step done in a fight (the training dummy) completes now, not at the
+        # player's next command: the next step shows at once instead of "Return to Sage Aldric"
+        for quest in [q for q in player.active_quests if q.quest_id.startswith('tutorial_') and q.is_complete()]:
+            await QuestManager.auto_complete_tutorial_quest(player, quest)
 
     @staticmethod
     async def _notify_quest_complete(player: 'Player', quest: ActiveQuest):
@@ -2529,6 +2557,7 @@ class QuestManager:
             player.quests_completed = []
         player.quests_completed.append(quest_id)
         player.active_quests.remove(quest)
+        _push(player)
 
         # Record daily quest completion
         quest_def = QUEST_DEFINITIONS.get(quest_id, {})
@@ -2579,6 +2608,7 @@ class QuestManager:
             return
 
         player.active_quests.remove(quest)
+        _push(player)
 
         c = player.config.COLORS
         await player.send(f"{c['red']}Quest abandoned: {quest.name}{c['reset']}")
@@ -2757,6 +2787,7 @@ class QuestManager:
             player.quests_completed = []
         player.quests_completed.append(quest.quest_id)
         player.active_quests.remove(quest)
+        _push(player)
         
         # Start next tutorial quest
         quest_def = QUEST_DEFINITIONS.get(quest.quest_id, {})

@@ -116,7 +116,7 @@ async def main():
     def give(qid):
         d = Q[qid]
         return ActiveQuest(quest_id=qid, name=d['name'], description=d['description'], quest_type=d['type'],
-                           objectives=[QuestObjective(**o) for o in d['objectives']], rewards=d['rewards'],
+                           objectives=[QuestObjective(**{k: v for k, v in o.items() if not k.startswith('_')}) for o in d['objectives']], rewards=d['rewards'],
                            started_at=datetime.datetime.now())
     g = Player.create_new(name='Wayfarer', password=None, race='human', char_class='warrior',
                           stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
@@ -157,6 +157,76 @@ async def main():
     room = next((r for r in zm['rooms'] if r.get('vnum') == 24527), None)
     check(room and room.get('setpiece') and room.get('features') and 'tone' in room, 'the zone map carries set pieces and tones')
     check('TONE_STONE[layout.tone.stone]' in src('terrain.js') and 'TONE_LIGHT[L.tone.light]' in src('main.js'), "/play tints a zone's stone and light")
+
+    # ---- batch 6: the tutorial in /play (found playing it as a newcomer)
+    check(quest_guide.web_text('Check your score (type "score")') == 'Check your score: open your Character sheet (C)',
+          'a "type score" step says which window to open')
+    g.room = world.rooms[3001]
+    g.active_quests = [give('tutorial_3_know_thyself')]
+    b = map_system._quest_block(g)
+    check('(C)' in b['title'] and 'where' not in b, f"a step done where you stand: how, and no arrow ({b['title']})")
+    from commands import CommandHandler
+    sent = []
+    g.send = lambda *a, **k: asyncio.sleep(0, sent.append(a))
+    await CommandHandler.cmd_uiseen(g, ['character'])
+    q = g.active_quests[0]
+    check(all(o.completed for o in q.objectives if o.target in ('score', 'equipment')), 'opening the Character sheet counts as score and equipment')
+    await CommandHandler.cmd_uiseen(g, ['spellbook'])
+    check(all(o.completed for o in q.objectives if o.target in ('skills', 'spells')), 'opening the Spellbook counts as skills and spells')
+    g.active_quests = [give('tutorial_9_newbie_zone')]
+    for o in g.active_quests[0].objectives[:2]:
+        o.completed = True
+    g.room = world.rooms[18600]
+    b = map_system._quest_block(g)
+    check(b.get('where') and b['where']['steps'] >= 0, f'"defeat any 3 creatures": the way to the nearest fair fight ({b.get("where")})')
+    hud = src('hud/hud.js')
+    check('uiseen ${name}' in hud, 'the HUD tells the server when a window opens')
+    net = open(os.path.join(WEB, '..', 'shared', 'net.js'), encoding='utf-8').read()
+    check("MH.bus.emit('connection.lost')" in net and 'MH.awaitServer' in net and 'connection.lost' in src('main.js') and "classList.contains('done') ? $('#resume-btn').click()" in src('hud/login.js'),
+          'a dropped connection waits for the server and signs back in')
+
+    zm = map_system.build_zonemap(world, world.rooms[3001].zone.number)
+    temple = next(r for r in zm['rooms'] if r['vnum'] == 3001)
+    up = temple['exits'].get('up') or {}
+    check(up.get('imm') is True and 'if (e.imm) delete r.exits[d]' in src('zone.js'),
+          "the Temple's stairs to the God Rooms are not drawn for players who can't take them")
+    check('.xbar.unused' in src('hud/hud.css') and "classList.toggle('unused'" in src('hud/hud.js'),
+          'an extra action bar with nothing on it stays faded until used')
+    msgs = []
+    class Conn:
+        is_web = True
+    g.connection = Conn()
+    check(quest_guide.for_player(g, 'Rest to recover (type "rest")') == 'Rest to recover: right-click yourself, then Rest',
+          'the chat log words tutorial steps for /play too')
+    g.connection = None
+
+    # a quest that moves on where you stand (a talk, a window, a kill) refreshes the tracker now
+    pushed = []
+
+    class WM:
+        def has_play(self, pl):
+            return True
+
+        async def notify_player(self, pl):
+            pushed.append(pl.name)
+    real_wm = getattr(world, 'web_map', None)
+    world.web_map = WM()
+    try:
+        g.active_quests = [give('tutorial_3_know_thyself')]
+        await CommandHandler.cmd_uiseen(g, ['inventory'])
+        await asyncio.sleep(0)
+        check(pushed, f'a step done in place sends the tracker at once ({pushed})')
+    finally:
+        world.web_map = real_wm
+
+    # the training dummy falls: the tutorial step completes there and then, the next one begins
+    from quests import QuestManager
+    g.active_quests = [give('tutorial_5_combat')]
+    g.active_quests[0].objectives[0].completed = True
+    g.active_quests[0].objectives[0].current = 1
+    await QuestManager.check_quest_progress(g, 'kill', {'mob_vnum': 3078, 'mob_name': 'a training dummy', 'mob_keywords': 'dummy training'})
+    ids = [q.quest_id for q in g.active_quests]
+    check('tutorial_5_combat' not in ids and 'tutorial_6_healing' in ids, f'a tutorial kill completes the step at once ({ids})')
 
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)

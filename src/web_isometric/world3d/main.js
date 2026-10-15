@@ -48,8 +48,12 @@ const params = new URLSearchParams(location.search);
 const pref = k => { try { return localStorage.getItem(k); } catch (_) { return null; } };
 const engine = createEngine($('#stage'), { quality: params.get('q') || pref('mh3d_quality') || 'high' });
 attachPerf(engine, $('#perf'));
+// how long the start takes, by stage (ms from the page's start; the perf overlay and probes
+// read MH.bootTimes): the art kits fetched and parsed, the title backdrop built, in the world
+const bootTimes = (window.MH = window.MH || {}).bootTimes = {};
+const mark = k => { bootTimes[k] = Math.round(performance.now()); };
 const loaded = Promise.all(['dungeon', 'nature', 'town', 'furniture', 'graveyard'].map(k => loadKit(k)))
-  .then(([dungeon, nature, town, furniture, graveyard]) => ({ dungeon, nature, town, furniture, graveyard }));
+  .then(([dungeon, nature, town, furniture, graveyard]) => { mark('kits'); return { dungeon, nature, town, furniture, graveyard }; });
 
 if (params.has('demo')) runDemo(); else runGame();
 
@@ -96,7 +100,9 @@ async function runGame() {
   const hud = createHud();
   setupLogin();
   let backdrop = await buildDemo(engine, kits, { interactive: false });
+  mark('title');
   $('#loading').classList.add('done');
+  MH.bus.on('login.success', () => mark('login'));
 
   // ranges and round timing, one source of truth on the server (combat_range.py)
   let ranges = { melee: 2.5, auto: {}, abilities: {}, spellDefault: 14 };
@@ -290,6 +296,17 @@ async function runGame() {
   MH.bus.on('session.revoked', () => {
     hud.toast('This character was just logged in somewhere else.');
     setTimeout(() => location.reload(), 2600);
+  });
+  // the server went away mid-play (restarted, the network blinked): say so over the world, wait
+  // for it, then reload and sign back in (shared/net.js MH.awaitServer)
+  MH.bus.on('connection.lost', () => {
+    if ($('#reconnect')) return;
+    const v = document.createElement('div');
+    v.id = 'reconnect';
+    v.innerHTML = '<div class="ld-ring"></div><b>The mist thickens…</b><span>Lost touch with the world. Reconnecting…</span>';
+    document.body.appendChild(v);
+    if (MH.setCombat) MH.setCombat(false);
+    MH.awaitServer(n => { if (n > 3) v.querySelector('span').textContent = `The world is away. Still trying (attempt ${n})…`; });
   });
   // creatures that take the stairs or a far passage leave and arrive in a puff of dust
   ents.onSnap = (from, to) => {

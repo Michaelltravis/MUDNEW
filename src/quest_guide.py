@@ -12,17 +12,58 @@ objective wants: a creature of that name to kill, the person to talk to, the roo
 thing to collect lying there or carried by someone there. When every objective is done it is the
 quest's giver, to turn it in. `dir` is the first step of the way there (None when already there).
 """
+import re
 from collections import deque
 
 MAX_ROOMS = 600          # how far the search walks (a zone or two around the player)
+
+# the tutorial is written for telnet ('Check your score (type "score")'); /play does the same
+# things with windows and menus, so the tracker says that instead (the window's opening counts:
+# commands.py cmd_uiseen)
+WEB_HOW = {
+    'score': 'open your Character sheet (C)', 'equipment': 'open your Character sheet (C)',
+    'inventory': 'open your Bags (I)', 'skills': 'open your Spellbook (K)', 'spells': 'open your Spellbook (K)',
+    'quests': 'open your Journal (L)', 'who': 'open the Players list (P)', 'group': 'open the Players list (P)',
+    'list': 'right-click the shopkeeper, then Shop', 'buy': 'buy anything in the shop window',
+    'rest': 'right-click yourself, then Rest', 'stand': 'right-click yourself, then Stand up',
+    'eat': 'open your Bags (I), pick some food, then Eat', 'talk': 'right-click them, then Talk',
+    'kill': 'Tab to target it, F to attack', 'channel': 'type "channel list" in the chat box',
+}
+TYPED = re.compile(r'\s*\((?:type|try) "(\w+)[^)]*\)')
+
+
+def for_player(player, text):
+    """An objective's words as this player plays: the /play wording on the web bridge."""
+    conn = getattr(player, 'connection', None)
+    return web_text(text) if getattr(conn, 'is_web', False) else text
+
+
+def web_text(text):
+    """An objective's words for /play: '(type "score")' becomes how to do it with the HUD."""
+    m = TYPED.search(text or '')
+    if not m or m.group(1).lower() not in WEB_HOW:
+        return text
+    return f"{text[:m.start()]}: {WEB_HOW[m.group(1).lower()]}{text[m.end():]}"
 
 
 def _words(s):
     return set(str(s or '').lower().replace(',', ' ').split())
 
 
-def _mob_matches(ch, target):
-    """A creature that answers to `target`: its vnum, or a word of its name."""
+def _fair_game(ch, level):
+    """A creature a player of `level` can fight for a "defeat any creature" step: not a
+    shopkeeper, trainer or other peaceful sort, and not far above them."""
+    flags = set(str(f).lower() for f in (getattr(ch, 'flags', None) or []))
+    if flags & {'shopkeeper', 'peaceful', 'nokill', 'no_kill', 'sentinel_guard', 'trainer', 'healer', 'banker', 'innkeeper'}:
+        return False
+    if getattr(ch, 'special', None) in ('shopkeeper', 'trainer', 'guildmaster', 'banker', 'healer'):
+        return False
+    return getattr(ch, 'level', 1) <= max(3, level + 2)
+
+
+def _mob_matches(ch, target, level=1):
+    """A creature that answers to `target`: its vnum, or a word of its name ('any': one a
+    player of `level` can fight)."""
     if getattr(ch, 'is_player', False) or hasattr(ch, 'account_name'):
         return False
     if getattr(ch, 'hp', 1) <= 0:
@@ -30,6 +71,8 @@ def _mob_matches(ch, target):
     t = str(target or '').strip().lower()
     if not t:
         return False
+    if t == 'any':
+        return _fair_game(ch, level)
     if t.isdigit():
         return str(getattr(ch, 'vnum', '')) == t
     names = _words(getattr(ch, 'name', '')) | _words(getattr(ch, 'short_desc', '')) | _words(getattr(ch, 'keywords', ''))
@@ -49,13 +92,15 @@ def _item_here(room, vnum):
     return False
 
 
-def _wanted(room, kind, target):
+def _wanted(room, kind, target, level=1):
     """Whether `room` holds what an objective of `kind` wants."""
     t = str(target or '').strip()
     if kind in ('visit', 'explore'):
         return t.isdigit() and getattr(room, 'vnum', None) == int(t)
     if kind in ('kill', 'talk', 'escort'):
-        return any(_mob_matches(ch, t) for ch in getattr(room, 'characters', None) or [])
+        if kind == 'kill' and t == 'any' and 'peaceful' in [str(f).lower() for f in getattr(room, 'flags', None) or []]:
+            return False
+        return any(_mob_matches(ch, t, level) for ch in getattr(room, 'characters', None) or [])
     if kind == 'collect':
         return t.isdigit() and _item_here(room, t)
     return False
@@ -129,11 +174,14 @@ def guide_block(player):
     current = next((o for o in objs if not o.completed), None)
     b = {'id': q.quest_id, 'name': q.name, 'kind': 'quest',
          'stage': (objs.index(current) + 1) if current else len(objs), 'of': len(objs),
-         'title': current.description if current else 'Return to the one who gave you this quest',
-         'objectives': [{'text': o.description, 'have': o.current, 'need': o.required, 'done': bool(o.completed)} for o in objs],
+         'title': web_text(current.description) if current else 'Return to the one who gave you this quest',
+         'objectives': [{'text': web_text(o.description), 'have': o.current, 'need': o.required, 'done': bool(o.completed)} for o in objs],
          'party': []}
-    if current is not None:
-        hit = find(player, lambda r: _wanted(r, current.type, current.target))
+    if current is not None and current.type == 'command':
+        hit = None                    # done where you stand: the title says how
+    elif current is not None:
+        lvl = getattr(player, 'level', 1) or 1
+        hit = find(player, lambda r: _wanted(r, current.type, current.target, lvl))
     else:
         giver = _giver(q.quest_id)
         hit = find(player, lambda r: _wanted(r, 'talk', giver)) if giver else None
