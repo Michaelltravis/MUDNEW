@@ -16,9 +16,15 @@ telnet players have none and keep the classic rules):
 2. **Area spells spill over.** An aimed circle on the ground that crosses the edge also catches
    the creatures inside it next door, and pulls them in (`Spells.foes_in_room`). So does the
    paladin's Halo of Reckoning, within 5 m.
-3. **What reaches shows.** With a creature targeted next door, the target panel says "next room".
-   The action-bar slots that can strike it from where you stand stay lit; melee ones dim (your hero
-   walks in for those, as before).
+3. **Leaps and charges carry you over.** Heroic Leap and Charge (warrior, 15 m), Shadowstrike
+   (12 m) and Death from Above (10 m, assassin) don't pull: the hero leaps across the edge onto
+   the creature. The client tells the server of the room first (`webmove`, so every rule of
+   moving applies: doors, class rooms, a fight), then the ability lands in the creature's room.
+   Out of a fight only (a fight is left by fleeing). Any creature may be leapt at, a boss or a
+   sentinel too: it answers where it stands.
+4. **What reaches shows.** With a creature targeted next door, the target panel says "next room".
+   The action-bar slots that can strike it from where you stand stay lit, the leaps among them;
+   melee ones dim (your hero walks in for those, as before).
 
 The rules: only rooms joined by an open way (side by side on the zone map, no closed door); never
 into or out of a peaceful room, across a zone's border, or into a room you may not enter; never a
@@ -34,14 +40,14 @@ necromancers, 10 m) or a bow (16 m, any class), crossbow (14) or thrown weapon (
 
 | Class | Abilities that reach the next room |
 |---|---|
-| Warrior | none (Charge closes in; it does not fire) |
+| Warrior | none that pull; Charge and Heroic Leap (15 m) leap across |
 | Paladin | Dawnhammer, Verdict of the Order, Holy Shock (14 m) |
 | Cleric | Holy Smite, Harm, Dispel Evil, Flamestrike, Shadow Word: Pain, Mind Flay (14 m) |
 | Ranger | Truesight Shot, Black Arrow (18), Quarry Mark, Heartseeker (20), Loosing Storm, Volley, Serpent Sting, Call Lightning, Wyvern Sting (16), Faerie Fire, Entangle (14) |
 | Mage | Towerbolt (20), Magic Missile, Lightning Bolt (18), Singularity, Fireball (16), Sleep (12), and 10 more at 14 m |
 | Necromancer | Soul Bolt (16), Soul Siphon (10), and 20 more at 14 m |
 | Thief | Pocket Sand (5 m) |
-| Assassin | Mark (15), Wound Poison (14) |
+| Assassin | Mark (15), Wound Poison (14); Shadowstrike (12) and Death from Above (10) leap across |
 | Bard | Mockery, Charm Person, Slow, Fear, Finale, Polymorph, Mesmerize, Discordant Chord (14), Fascinate, Sleep (12) |
 
 Checks: `python3 tests/test_polish.py` (the reach section).

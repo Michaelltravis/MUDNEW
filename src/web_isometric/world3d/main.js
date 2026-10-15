@@ -511,7 +511,8 @@ async function runGame() {
   function blockedFor(x, z, fx, fz) {
     const from = zone.roomAt(fx, fz);
     const to = zone.roomAt(x, z);
-    if (from && to !== from && MH.state.inCombat) {
+    // (into the room the server has the hero in already is never a crossing: a leap's landing)
+    if (from && to !== from && to !== heroRoom && MH.state.inCombat) {
       if (performance.now() - leashToast > 2500) { leashToast = performance.now(); hud.toast("You're fighting! Flee to escape."); }
       return true;
     }
@@ -834,9 +835,14 @@ async function runGame() {
   // how far from its target an action reaches (combat_range.py via /combatdata);
   // null for actions centred on the hero (rally, fade, crescendo...)
   // whether an ability strikes from afar (reach.py pulls across an edge only for these)
+  // ...and the leaps and charges carry the hero across to it instead
   function pullsOf(id, spell) {
     const ab = ranges.abilities && ranges.abilities[id];
     return ab ? /^(ranged|blast)/.test(ab.shape) : !!spell;
+  }
+  function leapsOf(id) {
+    const ab = ranges.abilities && ranges.abilities[id];
+    return !!(ab && ab.shape === 'dash');
   }
   function rangeOf(id, spell) {
     if (id === 'attack') return reachOf();
@@ -850,24 +856,50 @@ async function runGame() {
   // (reach.py): the two rooms joined by an open way (no closed door, neither peaceful), the
   // creature one that would come (no servant, sentinel or boss) and within the action's range;
   // the server pulls it in, then the ordinary command strikes it in the hero's room
-  function reachAcross(t, range, pulls) {
-    if (!pulls || range == null || !heroRoom || !zone || !t || t.kind !== 'mob' || t.vnum === heroRoom.vnum) return false;
+  // A leap or a charge (`leap`) carries the hero over instead: the hero moves into the
+  // creature's room as by walking (webmove, so every rule of moving applies), out of a fight
+  // only, and any creature may be leapt at (a boss or a sentinel answers where it stands)
+  function openWayTo(t) {
     const there = zone.rooms.get(t.vnum);
     const way = there && Object.entries(heroRoom.data.exits || {}).find(([, x]) => x.to === t.vnum && x.kind === 'open');
-    if (!way || zone.doorClosed(heroRoom, way[0])) return false;
-    if ((heroRoom.data.flags || []).includes('peaceful') || (there.data.flags || []).includes('peaceful')) return false;
+    if (!way || zone.doorClosed(heroRoom, way[0])) return null;
+    if ((heroRoom.data.flags || []).includes('peaceful') || (there.data.flags || []).includes('peaceful')) return null;
+    return { there, dir: way[0] };
+  }
+  function reachAcross(t, range, pulls, leap = false) {
+    if (!(pulls || leap) || range == null || !heroRoom || !zone || !t || !t.root || t.kind !== 'mob' || t.vnum === heroRoom.vnum) return false;
+    if (leap && MH.state.inCombat) return false;
+    if (!openWayTo(t)) return false;
     const m = t.data || {};
-    if (m.shopkeeper || m.trainer || m.boss || (m.flags || []).includes('sentinel') || (m.flags || []).includes('boss')) return false;
+    if (m.shopkeeper || m.trainer) return false;
+    if (!leap && (m.boss || (m.flags || []).includes('sentinel') || (m.flags || []).includes('boss'))) return false;
     const p = hero.root.position, q = t.root.position;
     return Math.hypot(q.x - p.x, q.z - p.z) <= range + 0.5;
   }
-  function inReach(t, range, then, { pulls = false, ability = 'attack' } = {}) {
+  // over the edge onto the creature: the server is told of the room first (the ability that
+  // follows finds the creature beside the hero), then the ability's own leap, dash or blink
+  // carries the hero there, landing inside the creature's room
+  function leapAcross(t, then) {
+    const { there, dir } = openWayTo(t);
+    const from = heroRoom;
+    setHeroRoom(there);
+    sync.walked(from.vnum, there.vnum, dir);
+    then();
+    const p = hero.root.position, q = t.root.position;
+    const d = Math.hypot(q.x - p.x, q.z - p.z) || 1, k = Math.max(0, d - 1.3) / d;
+    const x = Math.min(there.ox + ROOM_W - 1, Math.max(there.ox + 1, p.x + (q.x - p.x) * k));
+    const z = Math.min(there.oz + ROOM_H - 1, Math.max(there.oz + 1, p.z + (q.z - p.z) * k));
+    if (ctl.dashing) { ctl.dashing.tx = x; ctl.dashing.tz = z; }
+    else if (zone.roomAt(p.x, p.z) !== there) ctl.dash(x, z, 0.45, { height: 1.6 });
+  }
+  function inReach(t, range, then, { pulls = false, leap = false, ability = 'attack' } = {}) {
     // (the target fell, or its body was taken away, as the key went down: nothing to reach)
     if (!t || !t.root || !hero || !hero.root) return hud.toast('No target — click a creature or press Tab.');
     const same = heroRoom && t.vnum === heroRoom.vnum;
     const p = hero.root.position, q = t.root.position;
     const d = Math.hypot(q.x - p.x, q.z - p.z);
     if (range == null || (same && d <= range + 0.3)) return then();
+    if (!same && leap && reachAcross(t, range, false, true)) return leapAcross(t, then);
     if (!same && reachAcross(t, range, pulls)) { MH.sendCommand(`webpull ${refFor(t)} ${ability}`, false); return then(); }
     if (same) return approach(t, range, then);
     // another room (the server fights room by room): stop just inside the target's room,
@@ -979,7 +1011,7 @@ async function runGame() {
       const cmd = abilityCommand(ab, refFor(t));
       lastAction = { cmd, at: performance.now() };
       MH.sendCommand(cmd, 'combat');
-    }, { pulls: pullsOf(ab.id, ab.spell), ability: ab.id });
+    }, { pulls: pullsOf(ab.id, ab.spell), leap: leapsOf(ab.id), ability: ab.id });
   });
   // ---- doors ----
   // Every door of the hero's room has a prompt spot (the middle of its doorway, or the
@@ -1297,7 +1329,8 @@ async function runGame() {
     const dist = t && t.root ? Math.hypot(t.root.position.x - p.x, t.root.position.z - p.z) : null;
     const sameRoom = !!(t && t.vnum === (heroRoom && heroRoom.vnum));
     // (in the next room across an open way: what strikes from afar reaches it from here, reach.py)
-    hud.setDistance(dist, sameRoom, { across: !!(t && !sameRoom && reachAcross(t, 1e9, true)), ranged: !!heroAuto().ranged });
+    hud.setDistance(dist, sameRoom, { across: !!(t && !sameRoom && reachAcross(t, 1e9, true)),
+      leap: !!(t && !sameRoom && reachAcross(t, 1e9, false, true)), ranged: !!heroAuto().ranged });
     if ((chaseClock -= dt) > 0 || !MH.state.inCombat || !t || !t.root || t.kind !== 'mob') return;
     chaseClock = 0.4;
     const reach = reachOf();
@@ -1368,7 +1401,8 @@ async function runGame() {
     // after you have arrived wakes the stairs beside you
     if (climb || slide || hop || ctl.keys.size || ctl.path || ctl.vel.lengthSq() > 0.04) lastActive = now;
     if (!slide && !hop && !climb && heroRoom) {
-      const r = zone.roomAt(p.x, p.z);
+      // (mid-leap the server already has the hero in the room being leapt into)
+      const r = ctl.dashing ? heroRoom : zone.roomAt(p.x, p.z);
       if (r && r !== heroRoom) heroWalkedInto(heroRoom, r);
       // a click path's passage counts only in the room it belongs to
       const goal = ctl.goal && ctl.goal.room === heroRoom.vnum ? ctl.goal.dir : null;
