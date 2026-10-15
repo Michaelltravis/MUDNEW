@@ -28,6 +28,11 @@ telnet players have none and keep the classic rules):
    The action-bar slots that can strike it from where you stand stay lit, the leaps among them;
    melee ones dim (your hero walks in for those, as before).
 
+What you see: a pulled creature stays where it stood until the shot or spell reaches it (the same
+moment its damage number shows, combat.js), then runs in. It comes alone: struck from afar, it
+calls no pack or friends to the fight (`reach.pulled`). Range is measured to where your screen
+draws it (`webpull #id ability @x,z`) when the server has no place for it yet.
+
 The rules: only rooms joined by an open way (side by side on the zone map, no closed door); never
 into or out of a peaceful room, across a zone's border, or into a room you may not enter; never a
 shopkeeper, trainer or other servant, anyone's pet, or a quest's figure. A creature that keeps its
