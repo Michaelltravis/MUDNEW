@@ -380,6 +380,8 @@ SKILL_PROSE = {
              "their action. Great for stopping a caster.", "bash <target>"),
     'cleave': ("A sweeping blow that strikes your target and others fighting you. "
                "Your main multi-target Momentum builder.", "cleave"),
+    'heroic_throw': ("Hurl a throwing axe at a foe up to 15 m away: a little damage and the fight "
+                     "is on. In /play it reaches into the next room and draws the foe to you.", "heroic_throw <target>"),
     'charge': ("Rush a distant enemy, closing the gap and stunning on impact. A "
                "classic opener — starts the fight on your terms.", "charge <target>"),
     'rally': ("A battle-shout that bolsters you and your group. Pop it before a tough "
@@ -438,6 +440,8 @@ SKILL_PROSE = {
                   "for tougher locks.", "pick <direction|container>"),
     'detect_traps': ("Spot traps on doors, chests, and floors before they spring on "
                      "you. Keep it practiced when delving dungeons.", "detect_traps"),
+    'knife_toss': ("Flick a knife at a foe up to 14 m away: a little damage and the fight is "
+                   "on. In /play it reaches into the next room and draws the foe to you.", "knife_toss <target>"),
     'pocket_sand': ("Cheap Trick (was Pocket Sand): fling grit to blind a foe and buy "
                     "yourself an escape or a free backstab.", "pocket_sand <target>"),
     'low_blow': ("A dirty strike below the belt that staggers and debilitates the "

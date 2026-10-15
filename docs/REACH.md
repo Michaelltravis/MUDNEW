@@ -13,8 +13,10 @@ telnet players have none and keep the classic rules):
    stepping in at the nearest point, and the fight goes on there as any other. The client sends
    `webpull #id <ability>` and then the ordinary command; the server (`reach.py`) checks every
    rule itself.
-2. **Area spells spill over.** An aimed circle on the ground that crosses the edge also catches
-   the creatures inside it next door, and pulls them in (`Spells.foes_in_room`). So does the
+2. **Area spells land next door.** The aimed circle may be placed in a room joined by an open
+   way, as deep as the spell's range allows (no need to step in first; `Commands._aim_for`). A
+   circle there, or one that crosses the edge, catches the creatures inside it next door, and
+   they charge in and are struck (`Spells.foes_in_room`). So does the
    paladin's Halo of Reckoning, within 5 m.
 3. **Leaps and charges carry you over.** Heroic Leap and Charge (warrior, 15 m), Shadowstrike
    (12 m) and Death from Above (10 m, assassin) don't pull: the hero leaps across the edge onto
@@ -40,13 +42,13 @@ necromancers, 10 m) or a bow (16 m, any class), crossbow (14) or thrown weapon (
 
 | Class | Abilities that reach the next room |
 |---|---|
-| Warrior | none that pull; Charge and Heroic Leap (15 m) leap across |
+| Warrior | Heroic Throw (15 m, level 3); Charge and Heroic Leap (15 m) leap across |
 | Paladin | Dawnhammer, Verdict of the Order, Holy Shock (14 m) |
 | Cleric | Holy Smite, Harm, Dispel Evil, Flamestrike, Shadow Word: Pain, Mind Flay (14 m) |
 | Ranger | Truesight Shot, Black Arrow (18), Quarry Mark, Heartseeker (20), Loosing Storm, Volley, Serpent Sting, Call Lightning, Wyvern Sting (16), Faerie Fire, Entangle (14) |
 | Mage | Towerbolt (20), Magic Missile, Lightning Bolt (18), Singularity, Fireball (16), Sleep (12), and 10 more at 14 m |
 | Necromancer | Soul Bolt (16), Soul Siphon (10), and 20 more at 14 m |
-| Thief | Pocket Sand (5 m) |
+| Thief | Knife Toss (14 m, level 3), Pocket Sand (5 m, once fighting) |
 | Assassin | Mark (15), Wound Poison (14); Shadowstrike (12) and Death from Above (10) leap across |
 | Bard | Mockery, Charm Person, Slow, Fear, Finale, Polymorph, Mesmerize, Discordant Chord (14), Fascinate, Sleep (12) |
 

@@ -42,7 +42,7 @@ QUEST_ABILITIES = {'unbroken_banner': 'The Unbroken Banner', 'singularity': 'The
 
 # the level each ability comes at, per class (spells with a level_required keep it)
 UNLOCK = {
-    'warrior': dict(strike=1, bash=1, kick=2, cleave=4, rally=6, parry=8, charge=10, second_attack=12,
+    'warrior': dict(strike=1, bash=1, kick=2, heroic_throw=3, cleave=4, rally=6, parry=8, charge=10, second_attack=12,
                     execute=14, rescue=16, shield_block=18, dodge=20, third_attack=26,
                     rallying_cry=32, shattering_blow=38, commanding_shout=44, heroic_leap=50, warpath=56,
                     titans_wrath=60, unbroken_banner=45),
@@ -60,7 +60,7 @@ UNLOCK = {
                    aegis=25, flamestrike=26, divine_shield=27, group_heal=28, holy_aura=29, earthquake=30,
                    travelling_grace=32, divine_protection=34, resurrect=36, shared_burden=38, cleansing_rite=44,
                    font_of_the_vigil=50, serenity=56, divine_intervention=60, seraphs_vigil=45),
-    'thief': dict(backstab=1, sneak=1, hide=2, pick_lock=3, steal=4, trip=5, dodge=6, circle=8, pocket_sand=10,
+    'thief': dict(backstab=1, sneak=1, hide=2, pick_lock=3, knife_toss=3, steal=4, trip=5, dodge=6, circle=8, pocket_sand=10,
                   detect_traps=11, low_blow=12, second_attack=14, evasion=16, caltrops=18, rigged_dice=20,
                   jackpot=24, nerve_strike=32, garrote=44, marked_for_death_thief=56, perfect_crime=60, heist=45),
     'ranger': dict(truesight_shot=1, track=1, scan=2, cure_light=3, sneak=4, quarry_mark=5, hide=6, faerie_fire=7,

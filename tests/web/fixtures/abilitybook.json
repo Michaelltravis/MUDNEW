@@ -2229,6 +2229,13 @@
     "type": "skill"
    },
    {
+    "id": "knife_toss",
+    "level": 3,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
     "id": "rigged_dice",
     "level": 20,
     "shape": "self",
@@ -2355,6 +2362,13 @@
     "id": "execute",
     "level": 14,
     "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "heroic_throw",
+    "level": 3,
+    "shape": "ranged",
     "target": "enemy",
     "type": "skill"
    },

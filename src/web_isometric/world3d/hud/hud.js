@@ -38,10 +38,10 @@ const ls = { get(k) { try { return localStorage.getItem(k); } catch (_) { return
 
 // class kits in the order they unlock (same order as the 2D client's action bar)
 export const KIT = {
-  warrior: ['bash', 'cleave', 'kick', 'execute', 'rally', 'rescue', 'charge'],
+  warrior: ['bash', 'cleave', 'kick', 'execute', 'rally', 'rescue', 'charge', 'heroic_throw'],
   paladin: ['censure', 'order_verdict', 'holy_smite', 'absolution', 'halo_of_reckoning', 'turn_undead', 'rescue', 'bash'],
   ranger: ['truesight_shot', 'wildbond_strike', 'loosing_storm', 'quarry_mark', 'call_lightning'],
-  thief: ['backstab', 'circle', 'trip', 'low_blow', 'pocket_sand', 'jackpot'],
+  thief: ['backstab', 'circle', 'trip', 'low_blow', 'pocket_sand', 'jackpot', 'knife_toss'],
   assassin: ['backstab', 'mark', 'expose', 'vital', 'feint', 'execute_contract', 'fade'],
   mage: ['magic_missile', 'fireball', 'lightning_bolt', 'chill_touch', 'sleep', 'towerbolt'],
   necromancer: ['soul_bolt', 'chill_touch', 'soul_siphon', 'animate_dead', 'soul_reap'],

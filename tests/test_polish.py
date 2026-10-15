@@ -374,9 +374,41 @@ async def main():
           'the leaps and charges are dashes (the client carries the hero over for them)')
     for ch in (war, beast):
         ch.fighting = None
-    if war in there.characters:
-        there.characters.remove(war)
-    there.characters.remove(beast)
+    # warriors and thieves throw: Heroic Throw and Knife Toss reach the next room and pull
+    for who, ab in (('warrior', 'heroic_throw'), ('thief', 'knife_toss')):
+        hero = Player.create_new(name='Thrower' + who[:3].title(), password=None, race='human', char_class=who,
+                                 stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+        hero.level = 3
+        mastery.grant_now(hero)
+        check(ab in hero.skills and reach.action_range(hero, ab)[1] and reach.action_range(hero, ab)[0] >= 14,
+              f'a {who} has {ab} at level 3, and it reaches the next room')
+    war.fighting = None
+    if beast.room is not there:
+        put(2.0)
+    war.room.characters.remove(war)
+    war.room, war.web_pos = here, (here.vnum, 22.0, 7.5)
+    here.characters.append(war)
+    war.skills['heroic_throw'] = 50
+    war.heroic_throw_cooldown = 0
+    hp0 = beast.hp
+    await reach.webpull(war, ['#990001', 'heroic_throw'])
+    await CommandHandler.execute(war, 'heroic_throw', ['#990001'])
+    check(beast.room is here and beast.hp < hp0, f'Heroic Throw pulls it in and wounds it ({hp0} -> {beast.hp})')
+    for ch in (war, beast):
+        ch.fighting = None
+    # an aimed circle may land deep in the next room (no need to step in first)
+    put(10.0)
+    mage.web_pos = (here.vnum, 22.0, 7.5)
+    aim = CommandHandler._aim_for(mage, 'meteor_storm', (34.0, 7.5))
+    check(aim and aim[0] == 34.0, f'a meteor aimed 12 m away, 10 m into the next room, lands there ({aim})')
+    from spells import SpellHandler
+    caught = SpellHandler.foes_in_room(mage, aim)
+    check(beast in caught and beast.room is here, 'what it catches there charges in and is struck')
+    mage.web_pos = None
+    check(CommandHandler._aim_for(mage, 'meteor_storm', (34.0, 7.5))[0] == 24.0, 'without a position the circle stays in the room')
+    mage.web_pos = (here.vnum, 22.0, 7.5)
+    war.room.characters.remove(war)
+    beast.room.characters.remove(beast)
     world.npcs.remove(beast)
     here.characters.remove(mage)
     check('reachAcross(t, range, pulls)' in src('main.js') and 'webpull ${refFor(t)}' in src('main.js') and 'strikesFrom(' in src('hud/hud.js'),

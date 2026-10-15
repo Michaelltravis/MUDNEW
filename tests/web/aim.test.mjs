@@ -21,3 +21,10 @@ test("a point outside the hero's room is kept inside it", () => {
 test("the command carries the point in the room's own metres", () => {
   assert.equal(aimCommand("cast 'meteor storm'", room, { x: 112.5, z: 47 }), "cast 'meteor storm' @12.5,7.0");
 });
+test('with the rooms joined by an open way, the circle may land next door (the nearest room wins)', () => {
+  const east = { ox: 124, oz: 40 };
+  const at = clampAim({ x: 120, z: 47 }, { x: 132, z: 47 }, 16, [room, east], 24, 15);
+  assert.deepEqual([at.x, at.z, at.clamped], [132, 47, false]);
+  const north = clampAim({ x: 120, z: 47 }, { x: 120, z: 30 }, 16, [room, east], 24, 15);
+  assert.equal(north.z, 40);
+});

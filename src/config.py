@@ -300,7 +300,7 @@ class Config:
             'move_dice': 6,
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
-            'skills': ['strike', 'bash', 'cleave', 'charge', 'rally', 'execute',
+            'skills': ['strike', 'bash', 'cleave', 'charge', 'rally', 'execute', 'heroic_throw',
                       'doctrine', 'swear', 'evolve',
                       'kick', 'rescue', 'second_attack', 'third_attack', 'parry', 'shield_block', 'dodge',
                       # level 31-60 (56 and 60 are reached through prestige)
@@ -370,7 +370,7 @@ class Config:
             'thac0_progression': 'medium',
             'save_progression': 'thief',
             'skills': ['backstab', 'sneak', 'hide', 'steal', 'pick_lock', 'detect_traps',
-                      'second_attack', 'dodge', 'evasion', 'pocket_sand', 'low_blow',
+                      'second_attack', 'dodge', 'evasion', 'pocket_sand', 'low_blow', 'knife_toss',
                       'rigged_dice', 'jackpot', 'circle', 'trip', 'caltrops',
                       # level 31-60 (56 and 60 are reached through prestige)
                       'nerve_strike', 'garrote', 'marked_for_death_thief', 'perfect_crime', 'heist'],

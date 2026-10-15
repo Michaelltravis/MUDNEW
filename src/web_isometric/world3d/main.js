@@ -752,7 +752,16 @@ async function runGame() {
     let g = mouse && ctl.groundAt(mouse.x, mouse.y);
     if (!g && ents.targeted && ents.targeted.root) g = ents.targeted.root.position;
     if (!g) g = p;
-    return clampAim(p, g, aiming.ab.range, heroRoom, ROOM_W, ROOM_H);
+    return clampAim(p, g, aiming.ab.range, [heroRoom, ...openNeighbours()], ROOM_W, ROOM_H);
+  }
+  // the rooms an aimed circle may land in besides the hero's: joined by an open way, no closed
+  // door, neither room peaceful (reach.py: what it catches there charges in)
+  function openNeighbours() {
+    if (!heroRoom || !zone || (heroRoom.data.flags || []).includes('peaceful')) return [];
+    return Object.entries(heroRoom.data.exits || {})
+      .filter(([d, x]) => x.kind === 'open' && !zone.doorClosed(heroRoom, d))
+      .map(([, x]) => zone.rooms.get(x.to))
+      .filter(r => r && !(r.data.flags || []).includes('peaceful'));
   }
   function startAim(ab) {
     if (!hero || !heroRoom || !ctl) return false;
