@@ -2444,17 +2444,20 @@ class SpellHandler:
                 return False
             return touch(ch)
         aim = aim or getattr(caster, '_aim', None)
+        came = []
         if aim:
-            # (an aimed circle that crosses an open edge catches those just next door too: reach.py)
+            # (an aimed circle that crosses an open edge, or lands next door, catches those
+            # inside it there too, who charge in: reach.py)
             try:
                 import reach
-                reach.pull_area(caster, (aim[0], aim[1]), aim[2])
+                came = reach.pull_area(caster, (aim[0], aim[1]), aim[2])
             except Exception:
                 pass
         here = [ch for ch in list(room.characters) if foe(ch)]
         if aim:
             import combat_range as cr
-            return cr.within((aim[0], aim[1]), here, aim[2])
+            hit = cr.within((aim[0], aim[1]), here, aim[2])
+            return hit + [ch for ch in came if ch not in hit and foe(ch)]
         fighting = [ch for ch in here if getattr(ch, 'fighting', None) in friends or any(getattr(f, 'fighting', None) is ch for f in friends)]
         return fighting or here
 

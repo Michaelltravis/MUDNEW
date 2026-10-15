@@ -256,7 +256,7 @@ export const PICTO = {
 // ({picto: PICTO name} or {glyph: glyphs.js name})
 export const ICON_OVERRIDE = {
   warrior: {
-    cleave: {picto: 'sword'}, heroic_leap: {picto: 'arrowUp'}, rallying_cry: {picto: 'banner'},
+    cleave: {picto: 'sword'}, heroic_leap: {picto: 'arrowUp'}, heroic_throw: {picto: 'tether'}, rallying_cry: {picto: 'banner'},
     mortal_strike: {picto: 'sword'}, protect: {picto: 'shield'},
   },
   paladin: {
@@ -293,7 +293,7 @@ export const ICON_OVERRIDE = {
   },
   thief: {
     jackpot: {picto: 'crosshair'}, circle: {picto: 'sword'}, eviscerate: {picto: 'axe'},
-    kidneyshot: {picto: 'crack'}, fade: {glyph: 'wisp'}, marked_for_death_thief: {glyph: 'skull'},
+    knife_toss: {glyph: 'dagger'}, kidneyshot: {picto: 'crack'}, fade: {glyph: 'wisp'}, marked_for_death_thief: {glyph: 'skull'},
     shadow_step: {picto: 'boot'},
   },
   assassin: {

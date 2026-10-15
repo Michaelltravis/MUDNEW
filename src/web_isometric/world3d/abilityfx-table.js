@@ -18,6 +18,7 @@ export const RECIPES = {
   warrior: {
     strike: 'slice2*1.2 | - | slash | sparks | - | ',
     bash: 'blockhit lunge | - | - | burst:star | - | heavy shake',
+    heroic_throw: 'throw | - | blade | sparks | - | shake',
     cleave: 'spin2 | - | slash:wide | sparks | - | wide',
     charge: 'leapchop dash | dust | - | crack | - | heavy shake',
     rally: 'cheer | rings | - | nova | motes | r=8',
@@ -236,6 +237,7 @@ export const RECIPES = {
     pick_lock: 'interact | glyphs | - | - | - | ',
     detect_traps: 'interact | sigil | - | - | orbit:eye | ',
     pocket_sand: 'throw | - | cone | smoke | - | physical',
+    knife_toss: 'throw | - | blade | hit | - | ',
     low_blow: 'punch | - | - | burst:star | - | ',
     rigged_dice: 'use | - | - | fountain:die | orbit:die | ',
     jackpot: 'dchop | - | slash:x | fountain | - | heavy shake',

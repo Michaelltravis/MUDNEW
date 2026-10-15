@@ -5722,7 +5722,25 @@ class CommandHandler:
     # ==================== MAGIC ====================
     
     @staticmethod
-    def _aim_for(player, spell_key, at):
+    def _aim_next_door(player, x, z):
+        """Whether (x, z), in the metres of the player's room, lies in a room joined to it by an
+        open way (reach.py), peaceful rooms aside."""
+        import reach, map_system
+        import combat_range as cr
+        world, here = getattr(player, 'world', None), player.room
+        c = map_system.zone_cell(world, here.vnum) if world else None
+        if c is None or 'peaceful' in (here.flags or ()):
+            return False
+        wx, wz = c[1] * cr.ROOM_W + x, c[2] * cr.ROOM_H + z
+        for _d, room in reach.neighbours(world, here):
+            o = map_system.zone_cell(world, room.vnum)
+            if (o and 'peaceful' not in (room.flags or ()) and o[1] * cr.ROOM_W <= wx <= (o[1] + 1) * cr.ROOM_W
+                    and o[2] * cr.ROOM_H <= wz <= (o[2] + 1) * cr.ROOM_H):
+                return True
+        return False
+
+    @classmethod
+    def _aim_for(cls, player, spell_key, at):
         """Where an aimed area spell lands (x, z, radius), or None: the point kept inside the
         room and no farther from the caster than spells.AIM_RANGE (a point beyond is drawn in
         along the line toward it). Only the spells in spells.AIM_RADIUS take aim."""
@@ -5732,9 +5750,13 @@ class CommandHandler:
         import combat_range as cr
         if spell_key not in AIM_RADIUS:
             return None
-        x = max(0.0, min(cr.ROOM_W, at[0]))
-        z = max(0.0, min(cr.ROOM_H, at[1]))
         me = cr.pos_of(player)
+        x, z = at
+        # a point next door, in a room joined by an open way, stands (reach.py: a /play player
+        # with a position; what the circle catches there charges in); else it is kept here
+        if not (0 <= x <= cr.ROOM_W and 0 <= z <= cr.ROOM_H) and not (me is not None and cls._aim_next_door(player, x, z)):
+            x = max(0.0, min(cr.ROOM_W, x))
+            z = max(0.0, min(cr.ROOM_H, z))
         if me is not None:
             d = ((x - me[0]) ** 2 + (z - me[1]) ** 2) ** 0.5
             if d > AIM_RANGE:
@@ -20006,6 +20028,48 @@ class CommandHandler:
         await player.send(f"{c['bright_yellow']}You HEROICALLY LEAP onto {target.name}, stunning them! [{damage}]{c['reset']}")
         if player.room:
             await player.room.send_to_room(f"{player.name} leaps through the air and SLAMS into {target.name}!", exclude=[player])
+
+    @classmethod
+    async def _thrown(cls, player, args, skill, label, cls_name, cooldown, dmg, verb, room_verb):
+        """A weapon thrown at a foe (Heroic Throw, Knife Toss): the opener for classes with no
+        bow or bolt. From /play it reaches a creature in the next room (reach.py pulls it in)."""
+        import time, random
+        c = player.config.COLORS
+        if player.char_class.lower() != cls_name or skill not in player.skills:
+            await player.send(f"{c['red']}You don't know how to {label.lower()}!{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args)) if args else getattr(player, 'fighting', None)
+        if target is None or target is player:
+            await player.send(f"{c['yellow']}{label} at whom?{c['reset']}" if not args else f"{c['red']}You don't see '{args[0]}' here.{c['reset']}")
+            return
+        if 'peaceful' in (player.room.flags or ()):
+            await player.send(f"{c['yellow']}You can't do that here.{c['reset']}")
+            return
+        now = time.time()
+        attr = f'{skill}_cooldown'
+        if now < getattr(player, attr, 0):
+            await player.send(f"{c['yellow']}{label} on cooldown ({int(getattr(player, attr) - now) + 1}s).{c['reset']}")
+            return
+        setattr(player, attr, now + cooldown)
+        from combat import CombatHandler
+        damage = random.randint(*dmg) + player.level // 2
+        await player.send(f"{c['bright_yellow']}You {verb} {target.name}! [{damage}]{c['reset']}")
+        await player.room.send_to_room(f"{player.name} {room_verb} {target.name}!", exclude=[player])
+        await target.take_damage(damage, player)
+        if getattr(target, 'hp', 0) > 0 and target.room is player.room:
+            await CombatHandler.start_combat(player, target)
+
+    @classmethod
+    async def cmd_heroic_throw(cls, player: 'Player', args: List[str]):
+        """Hurl a throwing axe at a foe up to 15 m away: the warrior's opener from range."""
+        await cls._thrown(player, args, 'heroic_throw', 'Heroic Throw', 'warrior', 8, (5, 10),
+                          'hurl a throwing axe at', 'hurls a throwing axe at')
+
+    @classmethod
+    async def cmd_knife_toss(cls, player: 'Player', args: List[str]):
+        """Flick a knife at a foe up to 14 m away: the thief's opener from range."""
+        await cls._thrown(player, args, 'knife_toss', 'Knife Toss', 'thief', 6, (4, 8),
+                          'flick a knife at', 'flicks a knife at')
 
     @classmethod
     async def cmd_warpath(cls, player: 'Player', args: List[str]):

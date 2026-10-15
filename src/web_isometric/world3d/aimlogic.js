@@ -1,14 +1,22 @@
 // Aiming an area spell, the pure parts (aim.js draws the circle; tests/web/aim.test.mjs).
 
 // a point the spell may land on: no farther than `range` from the hero (drawn in along the line
-// toward it, as the server does), and inside the hero's room. All in world metres.
+// toward it, as the server does), and inside the hero's room, or one of `room` when it is a
+// list (the hero's room and those joined to it by an open way: the circle may land next door,
+// reach.py). All in world metres.
 export function clampAim(hero, point, range, room, roomW, roomH) {
   let x = point.x, z = point.z;
   const d = Math.hypot(x - hero.x, z - hero.z);
   if (range && d > range) { x = hero.x + (x - hero.x) * range / d; z = hero.z + (z - hero.z) * range / d; }
-  if (room) {
-    x = Math.max(room.ox, Math.min(room.ox + roomW, x));
-    z = Math.max(room.oz, Math.min(room.oz + roomH, z));
+  const rooms = (Array.isArray(room) ? room : [room]).filter(Boolean);
+  if (rooms.length) {
+    let best = null;
+    for (const r of rooms) {
+      const cx = Math.max(r.ox, Math.min(r.ox + roomW, x)), cz = Math.max(r.oz, Math.min(r.oz + roomH, z));
+      const off = Math.hypot(cx - x, cz - z);
+      if (!best || off < best.off) best = { x: cx, z: cz, off };
+    }
+    x = best.x; z = best.z;
   }
   return { x, z, clamped: Math.hypot(x - point.x, z - point.z) > 0.05 };
 }
