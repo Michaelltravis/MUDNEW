@@ -181,7 +181,7 @@ export function createEngine(container, opts = {}) {
   // ---- mood blending ----
   const cur = { ...MOODS.day }, want = { ...MOODS.day };
   const colors = { sky: new THREE.Color(), ground: new THREE.Color(), sun: new THREE.Color(), fog: new THREE.Color() };
-  let gloomNow = 0;
+  let gloomNow = 0, darkNow = 0;
   function setMood(m, instant) {
     Object.assign(want, typeof m === 'string' ? MOODS[m] : m);
     if (instant) Object.assign(cur, want);
@@ -195,13 +195,17 @@ export function createEngine(container, opts = {}) {
     }
     // a boss's gloom (combat.js gloom): the light dies as it weakens
     gloomNow += ((api.gloom || 0) - gloomNow) * (1 - Math.exp(-dt * 1.5));
-    const dim = 1 - 0.85 * gloomNow;
+    // a dark room (main.js sight): the light of the world goes, the hero's own light stays
+    darkNow += ((api.darkness || 0) - darkNow) * (1 - Math.exp(-dt * 2.5));
+    const dim = (1 - 0.85 * gloomNow) * (1 - 0.9 * darkNow);
     hemi.color.set(cur.sky); hemi.groundColor.set(cur.ground); hemi.intensity = cur.hemi * dim;
     sun.color.set(cur.sun); sun.intensity = cur.sunI * dim;
-    scene.fog.color.set(cur.fog); scene.fog.near = cur.near * (1 - 0.4 * gloomNow); scene.fog.far = cur.far * (1 - 0.5 * gloomNow);
+    scene.fog.color.set(cur.fog).multiplyScalar(1 - 0.85 * darkNow);
+    scene.fog.near = cur.near * (1 - 0.4 * gloomNow) * (1 - 0.75 * darkNow); scene.fog.far = cur.far * (1 - 0.5 * gloomNow) * (1 - 0.7 * darkNow);
     // under open sky the distance fades into the haze itself; enclosed, into the dark
     scene.background.set(cur.fog).multiplyScalar(cur.bg ?? 0.35);
-    renderer.toneMappingExposure = cur.exposure * (1 - 0.45 * gloomNow);
+    if (darkNow > 0.01) scene.background.multiplyScalar(1 - 0.9 * darkNow);
+    renderer.toneMappingExposure = cur.exposure * (1 - 0.45 * gloomNow) * (1 - 0.25 * darkNow);
   }
 
   // ---- loop ----
@@ -257,9 +261,15 @@ export function createEngine(container, opts = {}) {
     return nq.antialias !== q.antialias;
   }
 
+  // the light the hero carries in the dark: a torch's warm circle, or (none) a faint glimmer to
+  // feel by (main.js sets its strength and keeps it with the hero)
+  const heroLight = new THREE.PointLight(0xffb36a, 0, 10, 1.6);
+  scene.add(heroLight);
   const api = {
     THREE, renderer, scene, camera, rig, sun, hemi, quality: q,
     timeScale: 1,                      // slow motion for the effects gallery
+    darkness: 0,                       // 0..1: a dark room (main.js sight)
+    heroLight,                         // the light the hero carries (main.js moves it)
     onTick: fn => ticks.push(fn),
     onLateTick: fn => lateTicks.push(fn),
     orbit, snapNorth, setQuality,

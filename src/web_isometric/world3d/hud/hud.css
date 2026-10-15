@@ -155,6 +155,11 @@ button { font: inherit; color: inherit; }
 /* charges a class builds beside its mana: pips under the bars */
 #player-frame .pips { display: flex; gap: 5px; margin-top: 5px; }
 #player-frame .pips.hidden { display: none; }
+/* a class's own resource as pips (hud.js setPlayer): its colour */
+#player-frame .pips[data-res="faith"] i.on { background: radial-gradient(circle at 35% 30%, #fff, #ffe27a 55%, #a07a10); box-shadow: 0 0 8px #ffe27a; border-color: #fff0b0; }
+#player-frame .pips[data-res="holy_power"] i.on { background: radial-gradient(circle at 35% 30%, #fff, #ffd040 55%, #c08010); box-shadow: 0 0 8px #ffd040; border-color: #fff0b0; }
+#player-frame .pips[data-res="soul_shards"] i.on { background: radial-gradient(circle at 35% 30%, #fff, #7ef0a0 55%, #1a7a40); box-shadow: 0 0 8px #7ef0a0; border-color: #c8ffd8; }
+#player-frame .pips[data-res="inspiration"] i.on { background: radial-gradient(circle at 35% 30%, #fff, #ffb8ff 55%, #a04aa8); box-shadow: 0 0 8px #ffb8ff; border-color: #ffe0ff; }
 #player-frame .pips i { width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid rgba(200,122,255,.55); background: rgba(40,16,60,.6); transition: background .2s, box-shadow .2s; }
 #player-frame .pips i.on { background: radial-gradient(circle at 35% 30%, #fff, #c87aff 55%, #6a2aa8); box-shadow: 0 0 8px #c87aff; border-color: #e8c8ff; }
 #player-frame .pips i.pop { animation: pip-pop .45s ease-out; }

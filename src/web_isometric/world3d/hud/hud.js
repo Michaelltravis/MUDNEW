@@ -52,6 +52,11 @@ const SELF = new Set(['rally', 'cure_light', 'heal', 'bless', 'fade', 'absolutio
 let iconClass = '';
 const iconTypes = new Map();
 export const ICON = id => `<img class="ic" alt="" draggable="false" src="${abilityIcon(id, iconClass, { type: iconTypes.get(id) || 'skill' })}">`;
+// classes that spend mana on their spells: their orb stays mana (setPlayer)
+const CASTERS = new Set(['mage', 'necromancer', 'cleric', 'paladin', 'bard']);
+// a big number made short for an orb: 200000 -> 200k, 12500 -> 12.5k
+const compact = n => { n = Number(n) || 0; const a = Math.abs(n);
+  return a >= 1e6 ? `${(n / 1e6).toFixed(a >= 1e7 ? 0 : 1)}m` : a >= 1e5 ? `${Math.round(n / 1e3)}k` : a >= 1e4 ? `${(n / 1e3).toFixed(1)}k` : String(n); };
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 export function createHud() {
@@ -209,18 +214,22 @@ export function createHud() {
       lookPortrait(p.look, cls).then(url => { if (url && portraitFor === pkey) { const img = els.pf.querySelector('.face'); img.src = url; img.classList.add('on'); } });
     }
     vbar(els.pf.querySelector('.vbar.hp'), p.hp, p.max_hp);
-    const res = p.resource && p.resource.max ? { cur: p.resource.value, max: p.resource.max, name: p.resource.name }
+    // a caster's orb is its mana, and its class's own resource (Faith, Holy Power, Soul Shards,
+    // Inspiration) the pips under the bars; a fighter's orb is its resource (Momentum, Focus...)
+    const caster = CASTERS.has(cls);
+    const classRes = p.resource && p.resource.max ? p.resource : null;
+    const res = classRes && !caster ? { cur: classRes.value, max: classRes.max, name: classRes.name }
       : { cur: p.mana, max: p.max_mana, name: 'Mana' };
     vbar(els.pf.querySelector('.vbar.mp'), res.cur, res.max);
     els.pf.querySelector('.vbar.mp').dataset.res = String(res.name || 'mana').toLowerCase();
     document.documentElement.classList.toggle('hp-low', !!p.max_hp && p.hp / p.max_hp <= 0.3 && p.hp > 0);
     const hpOrb = els.ab.querySelector('.orb.hp'), mpOrb = els.ab.querySelector('.orb.mp');
     hpOrb.querySelector('.fill').style.height = pct(p.hp, p.max_hp);
-    hpOrb.querySelector('.val').textContent = `${p.hp}/${p.max_hp}`;
+    hpOrb.querySelector('.val').textContent = `${compact(p.hp)}/${compact(p.max_hp)}`;
     mpOrb.querySelector('.fill').style.height = pct(res.cur, res.max);
-    mpOrb.querySelector('.val').textContent = `${res.cur}/${res.max}`;
+    mpOrb.querySelector('.val').textContent = `${compact(res.cur)}/${compact(res.max)}`;
     mpOrb.querySelector('.lab').textContent = res.name;
-    mpOrb.classList.toggle('full', !!(p.resource && p.resource.max) && res.cur >= res.max);
+    mpOrb.classList.toggle('full', !!(classRes && !caster) && res.cur >= res.max);
     mpOrb.dataset.res = String(res.name || 'mana').toLowerCase();
     const floor = p.exp_floor || 0, next = p.exp_to_level || 0;
     const capped = !next || next - floor > 1e9;
@@ -228,7 +237,7 @@ export function createHud() {
     $('#xpbar').title = capped ? 'Max level' : `Experience: ${p.exp || 0} / ${next}`;
     // buffs and debuffs: an icon each, a ring that empties as it wears off
     renderBuffs(Array.isArray(p.affects) ? p.affects : []);
-    paintPips(p.charges);
+    paintPips(p.charges || (caster && classRes ? { name: String(classRes.name).toLowerCase().replace(/\s+/g, '_'), label: classRes.name, value: classRes.value, max: classRes.max } : null));
     inventory.update(p);
     character.update(p);
     paintRiding(p);
@@ -509,7 +518,8 @@ export function createHud() {
       }
       // a spell you haven't the mana for
       const a = st.byId.get(id);
-      const short = !!(a && a.type === 'spell' && a.cost && p && !(p.resource && p.resource.max) && (p.mana || 0) < a.cost);
+      const usesMana = !(p && p.resource && p.resource.max) || CASTERS.has(String((p && p.char_class) || '').toLowerCase());
+      const short = !!(a && a.type === 'spell' && a.cost && p && usesMana && (p.mana || 0) < a.cost);
       slot.classList.toggle('nores', short);
     });
   }
@@ -711,6 +721,8 @@ export function createHud() {
   // ---- banner + toasts ----
   let bannerTimer = 0;
   function banner(room, zone) {
+    // mid-fight a room's name would sit on the fight; a new region still announces itself
+    if (MH.state.inCombat && !zone) return;
     els.banner.querySelector('.zone').textContent = zone || '';
     els.banner.querySelector('.room').textContent = room || '';
     els.banner.style.opacity = 1;
