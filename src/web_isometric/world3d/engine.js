@@ -28,6 +28,8 @@ export const MOODS = {
   dusk: { sky: 0xf0b890, ground: 0x3a2a24, hemi: 0.7, sun: 0xff9a5a, sunI: 1.5, fog: 0x6a5060, near: 30, far: 80, exposure: 1.05, bg: 0.9 },
   night: { sky: 0x5a6a9a, ground: 0x1a1a22, hemi: 0.58, sun: 0xa8bcff, sunI: 0.75, fog: 0x121a2c, near: 26, far: 70, exposure: 1.25, bg: 0.85 },
   // the room looks (room_looks.py): rock close and cold, sand hot and hazy, snow bright, ash red
+  ice_cave: { sky: 0xb4cce6, ground: 0x4a5a6c, hemi: 1.2, sun: 0xcfe4ff, sunI: 0.6, fog: 0x1a2634, near: 20, far: 58, exposure: 1.15, bg: 0.4 },
+  lava_cave: { sky: 0xb8644a, ground: 0x4a1a0a, hemi: 1.15, sun: 0xff8a50, sunI: 1.2, fog: 0x2a120a, near: 18, far: 54, exposure: 1.3, bg: 0.6 },
   cave: { sky: 0xa8b4cc, ground: 0x5a4a3c, hemi: 1.45, sun: 0xb8c4e0, sunI: 0.85, fog: 0x161a22, near: 20, far: 60, exposure: 1.35, bg: 0.35 },
   desert: { sky: 0xfff0d0, ground: 0x8a6a40, hemi: 1.2, sun: 0xffe8b8, sunI: 2.9, fog: 0xe8d4b0, near: 30, far: 85, exposure: 1.0, bg: 1.0 },
   snow: { sky: 0xe4eeff, ground: 0x8a96a8, hemi: 1.15, sun: 0xf4f8ff, sunI: 2.2, fog: 0xd8e4f0, near: 26, far: 75, exposure: 0.95, bg: 1.0 },
@@ -274,7 +276,7 @@ export function createEngine(container, opts = {}) {
     onLateTick: fn => lateTicks.push(fn),
     orbit, snapNorth, setQuality,
     hitStop: ms => { stopUntil = Math.max(stopUntil, performance.now() + ms); },
-    setMood, placeCamera,
+    setMood, placeCamera, MOODS,
     // stop the loop and advance by hand, `n` frames of `dt` each (a slow machine still shows
     // every moment of an effect); setManual(false) starts the loop again
     setManual(on) { renderer.setAnimationLoop(on ? null : () => frame()); clock.getDelta(); },

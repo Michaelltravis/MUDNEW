@@ -8,7 +8,9 @@
 - exit signs fade with distance and in a fight (terrain.js LABEL_FADE), and Tab keeps to the
   hero's own room first (main.js);
 - combat numbers: where they show, their size and screen shake are settings, with a colour key;
-  bursts of small hits add up; the shake grows with the blow.
+  bursts of small hits add up; the shake grows with the blow;
+- rooms: ice and lava caves, a zone's own stone and light (zone_tone.py), set pieces laid out by
+  hand (setpieces.py, world/setpieces.json).
 
     python3 tests/test_polish.py
 """
@@ -135,6 +137,26 @@ async def main():
     g.active_quests = []
     check(map_system._quest_block(g) is None, 'no quest, no tracker')
     check('zone.passageWorld(heroRoom, w.dir)' in src('main.js'), 'a gold arrow by the hero points the way out of the room')
+
+    # ---- batch 5: rooms drawn as their words say: ice and fire caves, a zone's own stone and
+    # light, set pieces laid out by hand
+    import room_looks
+    import zone_tone
+    import setpieces
+    check({'ice_cave', 'lava_cave'} <= room_looks.UNDERGROUND, 'ice and lava caves are roofed, underground looks')
+    check(world.rooms[20572].look == 'ice_cave' and world.rooms[20597].look == 'lava_cave', 'an ice cave and a lava cave drawn so')
+    check(zone_tone.read(['A hall of black stone.'] * 8) == {'stone': 'black'}, 'a zone of black stone is black')
+    check(zone_tone.read(['A dark room.'] * 8 + ['White marble.']) is None, 'a stray mention is no tone')
+    check(zone_tone.read(['Green ghost-fire burns.'] * 6) == {'light': 'ghost'}, 'ghost-fire is a ghost light')
+    toned = [r for r in world.rooms.values() if getattr(r, 'tone', None)]
+    check(0 < len(toned) < len(world.rooms) / 4, f'some zones have a tone, most none ({len(toned)} rooms)')
+    sp = setpieces.load()
+    throne = world.rooms[24527]
+    check(throne.setpiece == {'light': sp['24527']['light']} and throne.features[0]['x'] == 12, 'the Throne of Shadows is laid out by hand, with its light')
+    zm = map_system.build_zonemap(world, throne.zone.number)
+    room = next((r for r in zm['rooms'] if r.get('vnum') == 24527), None)
+    check(room and room.get('setpiece') and room.get('features') and 'tone' in room, 'the zone map carries set pieces and tones')
+    check('TONE_STONE[layout.tone.stone]' in src('terrain.js') and 'TONE_LIGHT[L.tone.light]' in src('main.js'), "/play tints a zone's stone and light")
 
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)

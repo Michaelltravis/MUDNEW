@@ -1349,6 +1349,8 @@ def build_zonemap(world, zone_num: int) -> Optional[dict]:
             'description': getattr(room, 'description', '') or '',
             # what its words say stands in it (room_features.py): the client draws them
             'features': getattr(room, 'features', None) or [],
+            'tone': getattr(room, 'tone', None),
+            'setpiece': getattr(room, 'setpiece', None),
             'cell': [cx, cy], 'level': coords[v][2], 'exits': exits,
         })
     w = max(c[0] for c in cells.values()) + 1

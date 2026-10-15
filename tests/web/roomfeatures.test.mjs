@@ -102,3 +102,16 @@ test('the colour said of a feature comes with it; a room without features has no
   assert.deepEqual(bare.features, []);
   assert.equal(MH.generateRoomTopDown({ ...SETS[0], vnum: 990003, exits: ALL_WAYS, zone: 476 }).theme, 'stones', 'the stone circle has its own look');
 });
+
+test('a set piece is placed where its maker put it, facing the middle, never shutting a way out', () => {
+  const layout = [{ k: 'throne', x: 12, y: 2, main: true, c: 'black' }, { k: 'pillar', x: 8, y: 3 }, { k: 'pillar', x: 16, y: 3 },
+    { k: 'pillar', x: 12, y: 13 }, { k: 'brazier', x: 11, y: 7 }];   // the last two would sit on the way out and the middle
+  const L = MH.generateRoomTopDown({ look: 'inside', sector: 'inside', name: 'The Throne of Shadows', description: '', vnum: 990500,
+    exits: { south: { to_room: 1 } }, zone: 245, features: layout, setpiece: { light: '#8a5cff' } });
+  const t = L.features.find(f => f.k === 'throne');
+  assert.ok(t && t.x === 12 && t.y === 2 && t.main, 'the throne where it was put');
+  assert.ok(Math.abs(t.yaw) < 0.3, `the throne faces the room's middle (yaw ${t.yaw})`);
+  assert.equal(L.features.filter(f => f.k === 'pillar' && f.y === 3).length, 2, 'the pillars where they were put');
+  assert.ok(reach(L)[(H - 1) * W + 12], 'the way south stays open');
+  assert.equal(L.setpiece.light, '#8a5cff', 'its light comes with it');
+});

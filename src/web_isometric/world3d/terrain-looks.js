@@ -21,7 +21,8 @@ import { PLACES, placeEdge, dressPlace } from './terrain-places.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 const FLOOR = 0, BLOCK = 1, WATER = 4;
-export const UNDERGROUND = new Set(['cave', 'mine']);
+// (an ice cave and a lava cave are caves: Below Moria's Freezer, the Tunnel to Hell, a glacier's crack)
+export const UNDERGROUND = new Set(['cave', 'mine', 'ice_cave', 'lava_cave']);
 
 // a model with its materials darkened or tinted (cached by name+tint)
 const tintCache = new Map();
@@ -116,7 +117,9 @@ export function underground(c, look) {
   const N = kits.nature, D = kits.dungeon;
   const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
   // the kit's rock is dark and mossy: lifted (a tint above 1) to a pale grey stone, warmer in a mine
-  const rockTint = look === 'mine' ? new THREE.Color(1.55, 1.35, 1.15) : new THREE.Color(1.5, 1.48, 1.62);
+  const rockTint = look === 'mine' ? new THREE.Color(1.55, 1.35, 1.15) : look === 'ice_cave' ? new THREE.Color(1.45, 1.62, 1.95)
+    : look === 'lava_cave' ? new THREE.Color(0.62, 0.5, 0.46) : new THREE.Color(1.5, 1.48, 1.62);
+  const ice = look === 'ice_cave', fire = look === 'lava_cave';
   const rocks = [1, 2, 3].map(i => tinted(N.get(`Rock_Medium_${i}`), rockTint, `${look}rock`)).filter(Boolean);
   // the walls: a boulder pile on every BLOCK cell, tall on the room's edge, lower inside
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
@@ -131,13 +134,13 @@ export function underground(c, look) {
   const stone = [];
   // stalagmites at the rock's foot (they stand in the rock's cell, so the floor stays clear)
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-    if (at(x, y) !== BLOCK || rng() > (look === 'cave' ? 0.3 : 0.12)) continue;
+    if (at(x, y) !== BLOCK || rng() > (look === 'cave' || ice ? 0.3 : 0.12)) continue;
     const near = [[1, 0], [-1, 0], [0, 1], [0, -1]].find(([dx, dy]) => at(x + dx, y + dy) === FLOOR);
     if (!near) continue;
     const h = 0.6 + rng() * 1.3, r = 0.12 + rng() * 0.16;
     const g = new THREE.ConeGeometry(r, h, 6);
     g.translate(ox + x + 0.5 + near[0] * 0.45, h / 2, oz + y + 0.5 + near[1] * 0.45);
-    stone.push(colored(g, rng() < 0.5 ? 0x6a6258 : 0x585058));
+    stone.push(colored(g, ice ? (rng() < 0.5 ? 0xd6ecf8 : 0xb8d8ec) : fire ? 0x2a2220 : rng() < 0.5 ? 0x6a6258 : 0x585058));
   }
   // stalactites: a fringe hanging from the tops of the walls, leaning into the room
   for (const run of c.runs) {
@@ -151,7 +154,7 @@ export function underground(c, look) {
         ? [ox + i + 0.5, oz + run.line + 0.5 + (run.line === 0 ? inset : -inset)]
         : [ox + run.line + 0.5 + (run.line === 0 ? inset : -inset), oz + i + 0.5];
       g.translate(x, 2.9 - h / 2, z);
-      stone.push(colored(g, 0x5c5650));
+      stone.push(colored(g, ice ? 0xe4f2fc : fire ? 0x241c18 : 0x5c5650));     // icicles in an ice cave
     }
   }
   addMerged(c, stone, STONE_MAT);
@@ -174,7 +177,35 @@ export function underground(c, look) {
       b.add(tinted(N.get('Pebble_Round_1'), rockTint, `${look}peb`), trs(ox + x + 0.3 + rng() * 0.4, 0, oz + y + 0.3 + rng() * 0.4, rng() * 6.28, 1.2 + rng()), { shadow: false });
     }
   }
-  addMerged(c, glow, CRYSTAL_MATS[look] || CRYSTAL_MATS.cave, { shadow: false });
+  // a lava cave: glowing cracks across its floor (merged on their own: boxes are indexed, the
+  // crystals not)
+  const cracks = [];
+  if (fire) {
+    for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) {
+      if (at(x, y) !== FLOOR || rng() > 0.08) continue;
+      let cx = ox + x + 0.2 + rng() * 0.6, cz = oz + y + 0.2 + rng() * 0.6, a = rng() * 6.28;
+      for (let k = 0; k < 3 + Math.floor(rng() * 3); k++) {
+        const len = 0.35 + rng() * 0.5;
+        const g = new THREE.BoxGeometry(len, 0.03, 0.08 + rng() * 0.07);
+        g.rotateY(-a); g.translate(cx + Math.cos(a) * len / 2, 0.02, cz + Math.sin(a) * len / 2); cracks.push(g);
+        cx += Math.cos(a) * len; cz += Math.sin(a) * len; a += (rng() - 0.5) * 1.6;
+      }
+    }
+  }
+  // an ice cave: the floor glazed in sheets of ice
+  if (ice) {
+    const sheets = [];
+    for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) if (at(x, y) === FLOOR && rng() < 0.18) sheets.push([x, y]);
+    if (sheets.length) {
+      const geo = new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2);
+      c.owned.push(geo);
+      const im = new THREE.InstancedMesh(geo, ICE_MAT, sheets.length);
+      sheets.forEach(([x, y], i) => im.setMatrixAt(i, trs(ox + x + 0.5, 0.02, oz + y + 0.5, 0, 1)));
+      c.group.add(im);
+    }
+  }
+  addMerged(c, glow, CRYSTAL_MATS[ice ? 'cave' : fire ? 'lava' : look] || CRYSTAL_MATS.cave, { shadow: false });
+  if (cracks.length) addMerged(c, cracks, CRYSTAL_MATS.lava, { shadow: false });
   if (look === 'mine') mineWorks(c);
   else if (D) {
     // torches along the rock where others have passed, spread out (four, to keep it readable)
@@ -513,6 +544,9 @@ export const LOOK_GROUND = {
   terrace: { a: 0xd8d2c4, b: 0xe8e2d6, path: 0xc4bcaa, wet: 0x8aa0aa },
   ruins: { a: 0x6f8048, b: 0x8a8c5e, path: 0xa49c88, wet: 0x3c4a3a },
   stones: { a: 0x5f7448, b: 0x7c8a58, path: 0x8a8678, wet: 0x3c4a3a },
+  // an ice cave's frosted rock floor; a lava cave's black glass and ash
+  ice_cave: { a: 0x7e92a8, b: 0x96aac0, path: 0x8698ac, wet: 0x6a90b4 },
+  lava_cave: { a: 0x3a2a24, b: 0x4a342c, path: 0x56382a, wet: 0x7a2208 },
   snow: { a: 0xd8e2ec, b: 0xf2f6fa, path: 0xb4c0ca, wet: 0x9cc4dc },
   shore: { a: 0xd4c08a, b: 0xe6d6a6, path: 0xc0a874, wet: 0x5a8a98 },
   volcanic: { a: 0x2a2422, b: 0x40342c, path: 0x56443a, wet: 0x4a1a08 },

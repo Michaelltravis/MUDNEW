@@ -112,26 +112,25 @@ Each look has its ground colours, minimap colour, footsteps, ambient sound and t
 
 Screenshots: `/play?demo&gallery=rooms&only=village,camp,garden,ruins,olympus`.
 
-## Phase 3: roofed and open, the wrong way round
+## Phase 3 (done): roofed and open, the wrong way round
 
-Each mismatch needs a look by eye, because the words can mislead: "Skyless Court" in the Black Observatory names the sky to say there is none. Cases that are wrong as drawn:
-- **Underground rooms drawn under open sky.** In Below Moria (zone 465) the Freezer and the Labyrinth have the `snow` look, and the Fire Guardian's Chamber and the Tunnel To Hell have the `volcanic` look. All of them should be a cave, with ice or with lava. That needs underground forms of `snow` and `volcanic`: cave walls with a frozen or a burning floor.
-- **A room inside a stone in the Stone Circle.** Inside The Great Stone [24671] is drawn as open turf. It should be `cave`.
-- **Gullies and weed-grown ways on Leper Island (zone 449)** are drawn `inside`. They should be open.
+Each mismatch needed a look by eye, because the words can mislead: "Skyless Court" in the Black Observatory names the sky to say there is none. Fixed:
+- **Underground rooms drawn under open sky.** Two new underground looks, `ice_cave` and `lava_cave` (`room_looks.py` UNDERGROUND): cave walls and roof with a frozen floor (ice sheets, icicles, pale blue crystals, a cold mood) or a burning one (black rock, glowing cracks in the floor, fire crystals, a red mood). Below Moria's Freezer, Labyrinth, Fire Guardian's Chamber and Tunnel To Hell, the Cold Tunnels, the Room Of Fire and the Natural Lava-Chamber take them. A room pinned in `looks.json` now wins over the look its zone states for all its rooms (those rooms were stated `snow` and `volcanic`).
+- **A room inside a stone in the Stone Circle.** Inside The Great Stone [24671] is a `cave`.
+- **Leper Island (zone 449):** the village footpaths, pens and yards are `village`, its garden a `garden`, the encampment a `camp`, the ponds and gullies open ground and hills.
+- **Pins elsewhere:** caves in Durmandel and the Orc Tunnels drawn open, halls drawn as fields, gardens, ruins.
 
-The audit names each room. Most are fixed with a pin in `looks.json`. Rules in `room_looks.py` are added only where a word decides it for every zone; for example, "courtyard" or "clearing" in a room's name overrules a roofed zone default.
+`tools/audit/room_text.py` counts the new looks (roofed: the caves; open: garden, ruins, terrace, camp). After this pass it counts 138 rooms drawn against their text; what is left is mostly words that mislead the reader (a "sky" painted on a ceiling, a "roof" of leaves).
 
-## Phase 4: each zone's colours and mood from its text
+## Phase 4 (done): each zone's colours and light from its text
 
-Zone text names its stone and light: black stone in Morkai, white marble on Olympus, red sandstone, green ghost-fire.
-- Read them per zone: wall and floor tint, light colour, fog.
-- Use them in place of one palette per look.
+`src/zone_tone.py` reads each zone's rooms for the colour of their stone ("black stone", "red sandstone", marble, obsidian) and of their light (ghost-fire, moonlight, torchlight). A zone gets a tone only where the words agree: mentions in proportion to its size (one room in eight, at least four) and most of the colours named. 20 zones have one, among them Olympus and the White Gold Cathedral (white), the Orcus Temple (black) and the Necromancer Mines (ghost light). Each room carries it in the zone map (`tone`); `/play` tints the paving and walls by the stone (`terrain.js` TONE_STONE) and blends the light into the room's mood (`main.js` TONE_LIGHT).
 
-Features already read colours this way.
+## Phase 5 (done): landmark and boss rooms
 
-## Phase 5: landmark and boss rooms
+`world/setpieces.json` lays out twelve rooms by hand, among them the Throne of Shadows [24527], the Throne Room of Hades [3797], Moloch's Repose [13859], the Bone Throne [14027], the Slaughter Stone [24614], the Sharp Bend in the Stone Circle [24641], the Satanic Chamber [20597], the White Gold Altar [3409] and The Temple [13685]. Each says what stands where (a feature with an `x`, `y` on the room's 24 x 15 grid, a colour, which one is the centrepiece) and the room's light. `src/setpieces.py` puts them in place of the features read from the words; `shared/roomgen.js` places them where they were put, turns thrones, altars and statues to face the middle, and drops any piece that would sit on a way in or out, the stairs, a portal or the middle, or shut a way out. `terrain.js` hangs a light of the set piece's colour over the room.
 
-The places players remember: boss lairs, the altars of the Stone Circle, throne rooms, The Temple [13685] with its great altar and painted red eye. A list of them, drawn up zone by zone, gets hand-placed set pieces in `world/setpieces.json`: what stands where, the light and any special effect. Each set piece takes over from the generated layout.
+Screenshots: `/play?demo&gallery=rooms&only=throneshadows`.
 
 ## Checks
 
@@ -147,7 +146,8 @@ The places players remember: boss lairs, the altars of the Stone Circle, throne 
   - a classroom gets no street ambient lines;
   - the reader's garden fixes.
 - `tests/web/roomlooks.test.mjs` walks every look, the new ones included.
-- `node --test tests/web/roomfeatures.test.mjs` checks placement:
+- `python3 tests/test_polish.py` checks the cave looks, zone tones and set pieces at load and in the zone map.
+- `node --test tests/web/roomfeatures.test.mjs` checks placement (a set piece where it was put, facing the middle, never shutting a way out):
   - no way out is ever shut;
   - solid features are walls to the walker;
   - most of what the words name is drawn;
