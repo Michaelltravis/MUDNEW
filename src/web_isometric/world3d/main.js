@@ -158,6 +158,38 @@ async function runGame() {
   // the player's combat-number settings (hud settings)
   MH.bus.on('settings.sct', o => { fx.opts = o; });
   try { fx.opts = { sct: localStorage.getItem('mh3d_sct') || 'all', size: +(localStorage.getItem('mh3d_sctsize') || 1) || 1, shake: localStorage.getItem('mh3d_shake') !== 'off' }; } catch (_) {}
+  // ---- the way to the quest (quest_guide.py `where`): a gold chevron on the ground by the hero,
+  // pointing at the exit the way goes out of this room (or its stairs); gone once you are there ----
+  const guide = (() => {
+    const g = new THREE.Group();
+    const shape = new THREE.Shape();
+    shape.moveTo(0, 0.42); shape.lineTo(0.34, -0.18); shape.lineTo(0, -0.02); shape.lineTo(-0.34, -0.18); shape.closePath();
+    const mat = new THREE.MeshBasicMaterial({ color: 0xfff0a0, transparent: true, opacity: 0.9, depthWrite: false, depthTest: false, side: THREE.DoubleSide });
+    const edge = new THREE.MeshBasicMaterial({ color: 0x1a1006, transparent: true, opacity: 0.7, depthWrite: false, depthTest: false, side: THREE.DoubleSide });
+    const geo = new THREE.ShapeGeometry(shape);
+    for (let i = 0; i < 3; i++) {
+      // a dark rim under each chevron, so it reads on gold rugs and pale stone alike
+      const rim = new THREE.Mesh(geo, edge);
+      rim.rotation.x = -Math.PI / 2; rim.position.set(0, -0.005, i * 0.5); rim.scale.setScalar(1.75); rim.renderOrder = 9;
+      const m = new THREE.Mesh(geo, mat);
+      m.rotation.x = -Math.PI / 2; m.position.z = i * 0.5; m.scale.setScalar(1.45); m.renderOrder = 10;      // (the tip leads, toward local -z)
+      g.add(rim, m);
+    }
+    g.visible = false;
+    engine.scene.add(g);
+    return { g, mat };
+  })();
+  engine.onTick((dt, t) => {
+    const w = MH.state.player && MH.state.player.quest && MH.state.player.quest.where;
+    const on = !!(w && w.dir && hero && hero.root && heroRoom && zone && w.vnum !== heroRoom.vnum);
+    guide.g.visible = on;
+    if (!on) return;
+    const to = zone.passageWorld(heroRoom, w.dir), p = hero.root.position;
+    const dx = to.x - p.x, dz = to.z - p.z, d = Math.hypot(dx, dz) || 1;
+    guide.g.position.set(p.x + dx / d * 1.9, 0.08, p.z + dz / d * 1.9);
+    guide.g.rotation.y = Math.atan2(-dx, -dz);
+    guide.mat.opacity = 0.55 + 0.35 * Math.sin(t * 4);
+  });
   // ---- seeing in the dark (map_system._sight): a dark room is dark; a carried light makes a warm
   // circle round the hero, infravision a dim grey sight, nothing at all a glimmer to feel by ----
   engine.onTick(dt => {

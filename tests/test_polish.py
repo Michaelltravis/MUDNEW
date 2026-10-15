@@ -106,6 +106,36 @@ async def main():
     loot = src('loot.js')
     check('rarityBeam(' in loot and 'bestRarity(g.item.contents)' in loot, 'drops and rich corpses show a beam of their rarity')
 
+    # ---- batch 4: where to go for an ordinary quest
+    import datetime
+    import quest_guide
+    from quests import ActiveQuest, QuestObjective, QUEST_DEFINITIONS as Q
+
+    def give(qid):
+        d = Q[qid]
+        return ActiveQuest(quest_id=qid, name=d['name'], description=d['description'], quest_type=d['type'],
+                           objectives=[QuestObjective(**o) for o in d['objectives']], rewards=d['rewards'],
+                           started_at=datetime.datetime.now())
+    g = Player.create_new(name='Wayfarer', password=None, race='human', char_class='warrior',
+                          stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    g.world, g.room = world, world.rooms[3001]
+    visit = next(k for k, q in Q.items() if q.get('objectives') and q['objectives'][0]['type'] == 'visit' and str(q['objectives'][0]['target']) == '3054')
+    g.active_quests = [give(visit)]
+    b = map_system._quest_block(g)
+    check(b and b['kind'] == 'quest' and b['where']['vnum'] == 3054 and b['where']['dir'], f'a visit quest: the room, and the first step there ({b and b.get("where")})')
+    g.active_quests = [give('message_for_mayor')]
+    w = map_system._quest_block(g)['where']
+    check(w and w['steps'] > 0 and w['dir'], f'a talk quest: the way to the one to speak with ({w})')
+    q = give('message_for_mayor')
+    for o in q.objectives:
+        o.completed = True
+    g.active_quests = [q]
+    b = map_system._quest_block(g)
+    check(b['title'].startswith('Return to ') and b.get('where'), f"done: back to the quest's giver ({b['title']})")
+    g.active_quests = []
+    check(map_system._quest_block(g) is None, 'no quest, no tracker')
+    check('zone.passageWorld(heroRoom, w.dir)' in src('main.js'), 'a gold arrow by the hero points the way out of the room')
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 

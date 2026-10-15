@@ -1268,6 +1268,19 @@ def _door_info(exit_data, init=None) -> Optional[dict]:
     return None
 
 
+def _quest_block(player):
+    """The tracker's quest: the marquee quest (marquee.py), else the first unfinished ordinary
+    one with where to go next (quest_guide.py)."""
+    b = _marquee_block(player)
+    if b:
+        return b
+    try:
+        import quest_guide
+        return quest_guide.guide_block(player)
+    except Exception:
+        return None
+
+
 def _marquee_block(player):
     try:
         import marquee
@@ -2058,7 +2071,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'guild': _guild_block(player),                    # where the class's trainer stands
             'affects': AffectManager.save_affects(player),
             'wards': _wards(player),                          # the spells shown on the body (wards.js)
-            'quest': _marquee_block(player),                  # the marquee quest's tracker (marquee.py)
+            'quest': _quest_block(player),                    # the tracker: a marquee quest, else an ordinary one
         },
         'group': build_group_block(player),
     }
