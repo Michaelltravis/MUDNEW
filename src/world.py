@@ -913,15 +913,46 @@ class World:
         await builder.build_default_world()
         
     async def reset_all_zones(self):
-        """Reset all zones (spawn mobs/objects)."""
+        """Reset all zones (spawn mobs/objects), the world's creatures counted once for them all."""
+        counts = self._creature_counts()
         for zone in self.zones.values():
-            await self.reset_zone(zone)
+            await self.reset_zone(zone, counts)
             
-    async def reset_zone(self, zone: Zone):
-        """Reset a single zone."""
+    def _creature_counts(self):
+        """Every zone's creatures by vnum (a creature counts for its home zone and the zone it
+        stands in), and the patrols walking each route: for resetting many zones at once."""
+        from collections import Counter, defaultdict
+        by_zone = defaultdict(Counter)
+        patrols = Counter()
+        for npc in self.npcs:
+            v = getattr(npc, 'vnum', None)
+            if v is None:
+                continue
+            here = getattr(getattr(getattr(npc, 'room', None), 'zone', None), 'number', None)
+            home = getattr(npc, 'home_zone', None)
+            for z in {home, here} - {None}:
+                by_zone[z][v] += 1
+            if getattr(npc, 'patrol_route', None):
+                patrols[(v, repr(list(npc.patrol_route)))] += 1
+        return by_zone, patrols
+
+    async def reset_zone(self, zone: Zone, counts=None):
+        """Reset a single zone (`counts`: _creature_counts() when resetting many at once)."""
         from bosses import create_mob_from_prototype
         from objects import create_object
-        
+        from collections import Counter
+
+        # the zone's creatures by vnum, counted once (not the whole world rescanned for every
+        # reset line: ~27,000 lines x ~4,500 creatures froze the server for seconds at each reset)
+        if counts is not None:
+            in_zone, patrols = counts[0][zone.number], counts[1]
+        else:
+            in_zone = Counter(npc.vnum for npc in self.npcs
+                              if getattr(npc, 'vnum', None) is not None
+                              and (getattr(npc, 'home_zone', None) == zone.number
+                                   or (npc.room and npc.room.zone == zone)))
+            patrols = None
+
         for room in zone.rooms.values():
             # Spawn mobs
             for mob_reset in room.mob_resets:
@@ -929,35 +960,18 @@ class World:
                 max_count = mob_reset.get('max', 1)
                 max_existing = mob_reset.get('max_existing')
                 
-                # Count existing mobs for this vnum in the zone (prevents dupes when they wander)
-                current = sum(
-                    1 for npc in self.npcs
-                    if hasattr(npc, 'vnum')
-                    and npc.vnum == mob_vnum
-                    and (
-                        getattr(npc, 'home_zone', None) == zone.number
-                        or (npc.room and npc.room.zone == zone)
-                    )
-                )
+                # existing mobs of this vnum in the zone (prevents dupes when they wander)
+                current = in_zone[mob_vnum]
+                if max_existing is not None and in_zone[mob_vnum] >= max_existing:
+                    continue
 
-                if max_existing is not None:
-                    existing_in_zone = sum(
-                        1 for npc in self.npcs
-                        if hasattr(npc, 'vnum')
-                        and npc.vnum == mob_vnum
-                        and (
-                            getattr(npc, 'home_zone', None) == zone.number
-                            or (npc.room and npc.room.zone == zone)
-                        )
-                    )
-                    if existing_in_zone >= max_existing:
-                        continue
-                
                 route = mob_reset.get('route')
                 if route:       # a patrol (population.py): one walks each route
                     max_count = 1
-                    current = sum(1 for npc in self.npcs
-                                  if getattr(npc, 'vnum', None) == mob_vnum and getattr(npc, 'patrol_route', None) == route)
+                    if patrols is None:
+                        patrols = Counter((getattr(n, 'vnum', None), repr(list(n.patrol_route))) for n in self.npcs
+                                          if getattr(n, 'patrol_route', None))
+                    current = patrols[(mob_vnum, repr(list(route)))]
 
                 if current < max_count:
                     proto = self.mob_prototypes.get(mob_vnum)
@@ -970,6 +984,9 @@ class World:
                         mob.home_zone = zone.number  # Set home zone for movement restrictions
                         room.characters.append(mob)
                         self.npcs.append(mob)
+                        in_zone[mob_vnum] += 1
+                        if route:
+                            patrols[(mob_vnum, repr(list(route)))] += 1
                         self._ensure_shop(mob)  # stock shopkeepers with role-appropriate goods
                         
             # Spawn objects
@@ -1346,19 +1363,17 @@ class World:
                 await player.minor_regen_tick()
 
     async def zone_reset_tick(self):
-        """Check and reset zones as needed."""
+        """Check and reset zones as needed (the world's creatures counted once for them all)."""
+        counts = None
         for zone in self.zones.values():
             zone.age += 1
             if zone.age >= zone.lifespan:
-                if zone.reset_mode == 2:  # Always reset
-                    await self.reset_zone(zone)
-                elif zone.reset_mode == 1:  # Reset if empty
-                    players_in_zone = any(
-                        p.room and p.room.zone == zone 
-                        for p in self.players.values()
-                    )
-                    if not players_in_zone:
-                        await self.reset_zone(zone)
+                if zone.reset_mode == 1 and any(p.room and p.room.zone == zone for p in self.players.values()):
+                    continue        # reset only when empty
+                if zone.reset_mode in (1, 2):
+                    if counts is None:
+                        counts = self._creature_counts()
+                    await self.reset_zone(zone, counts)
 
     async def time_tick(self):
         """Process game time advancement."""
@@ -1495,10 +1510,35 @@ class World:
             for item in items_to_add:
                 room.items.append(item)
 
+    # creatures where no player is (nor in the next room) think this many times more slowly:
+    # running every creature in the world ten times a second was most of an idle server's CPU
+    NPC_SLEEP_EVERY = 10
+
+    def _awake_zones(self):
+        """The zones a player is in or looks into (the rooms next to theirs)."""
+        zones = set()
+        for pl in self.players.values():
+            room = getattr(pl, 'room', None)
+            if room is None:
+                continue
+            zones.add(getattr(room.zone, 'number', None))
+            for ed in (room.exits or {}).values():
+                nxt = ed.get('room') if isinstance(ed, dict) else None
+                if nxt is not None:
+                    zones.add(getattr(getattr(nxt, 'zone', None), 'number', None))
+        return zones
+
     async def process_npcs(self):
         """Process NPC AI. One creature's error is logged and the rest go on: before, one (a
-        creature attacking a rider) took the whole server down."""
-        for npc in list(self.npcs):
+        creature attacking a rider) took the whole server down. Creatures in zones no player is
+        in (or next to) run one tick in NPC_SLEEP_EVERY, each on its own turn."""
+        self._npc_tick = (getattr(self, '_npc_tick', 0) + 1) % self.NPC_SLEEP_EVERY
+        awake = self._awake_zones()
+        for i, npc in enumerate(list(self.npcs)):
+            room = getattr(npc, 'room', None)
+            if (i + self._npc_tick) % self.NPC_SLEEP_EVERY and getattr(getattr(room, 'zone', None), 'number', None) not in awake \
+                    and not getattr(npc, 'fighting', None):
+                continue
             if hasattr(npc, 'process_ai'):
                 try:
                     await npc.process_ai()
