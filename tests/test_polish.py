@@ -98,6 +98,14 @@ async def main():
     check(f is not None and f['exp'] > 0 and f['gold'] == 50 and f['wake'], f'the death card is told the cost and where you wake ({f})')
     check("Slain by ${d.killer}" in src('hud/hud.js'), 'the death card shows them')
 
+    # ---- batch 3: gear and loot
+    inv = src('hud/inventory.js')
+    check("import { compare } from '../gearcompare.js'" in inv and 'up-badge' in inv and 'tt-cmp' in inv,
+          'tooltips compare with what you wear; better pieces carry a green arrow')
+    check('tooltip(r.item, MH.state && MH.state.player)' in src('hud/lootwin.js'), "a corpse's loot window compares too")
+    loot = src('loot.js')
+    check('rarityBeam(' in loot and 'bestRarity(g.item.contents)' in loot, 'drops and rich corpses show a beam of their rarity')
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 

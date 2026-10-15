@@ -521,6 +521,13 @@ html.fallen #vignette { background: radial-gradient(ellipse at 50% 46%, rgba(30,
 #item-tip .tt-name { font: 700 15px var(--title); letter-spacing: .02em; }
 #item-tip .tt-sub { font: 500 12px var(--label); color: var(--ink-dim); text-transform: lowercase; margin-bottom: 5px; letter-spacing: .04em; }
 #item-tip .tt-aff { color: #8fe0a0; }
+/* against what you wear (inventory.js comparison) */
+#item-tip .tt-cmp { margin-top: 6px; padding-top: 5px; border-top: 1px solid rgba(216,180,106,.3); font-size: 12.5px; }
+#item-tip .tt-cmp-h { color: var(--ink-dim); margin-bottom: 2px; }
+#item-tip .tt-cmp .up, #item-tip .tt-cmp-h b.up { color: #7ee07e; } #item-tip .tt-cmp .down, #item-tip .tt-cmp-h b.down { color: #ff7a6a; }
+#item-tip .tt-cmp-h b { margin-left: 4px; text-transform: uppercase; font: 700 10.5px var(--label); letter-spacing: .06em; }
+.inv-cell { position: relative; }
+.inv-cell .up-badge { position: absolute; right: 2px; top: 1px; font-size: 11px; color: #7ee07e; text-shadow: 0 0 4px #000, 0 1px 0 #000; pointer-events: none; }
 #item-tip .tt-proc { color: #c8a8ff; font-family: var(--lore); font-style: italic; }
 #item-tip .tt-bar { color: #ff7a6a; font-weight: 700; margin-top: 4px; }
 #item-tip .tt-foot { color: var(--ink-faint); margin-top: 5px; font-style: italic; }
