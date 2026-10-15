@@ -354,11 +354,35 @@ async def main():
                             stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
     check(not reach.action_range(sin, 'poison')[1] and reach.action_range(mage, 'magic_missile')[1],
           "an assassin's weapon poison pulls nothing; a mage's magic missile does")
+    # a leap or a charge carries the hero over instead (the client sends the room move first,
+    # then the ability: commands from one connection run in order)
+    from commands import CommandHandler
+    war = Player.create_new(name='Leaper', password=None, race='human', char_class='warrior',
+                            stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    war.world, war.room, war.connection, war.level = world, here, object(), 50
+    war.send = note
+    here.characters.append(war)
+    war.web_pos = (here.vnum, 22.0, 7.5)
+    if beast.room is not there:
+        put(2.0)
+    hp0 = beast.hp
+    await CommandHandler.execute(war, 'webmove', ['3002', '3003', 'east'])
+    await CommandHandler.execute(war, 'heroic_leap', ['#990001'])
+    check(war.room is there and beast.room is there and beast.hp < hp0,
+          f'Heroic Leap from the next room lands on it ({war.room.vnum}, {hp0} -> {beast.hp})')
+    check(all(cr.ABILITY_RANGE[k][1] == 'dash' for k in ('heroic_leap', 'charge', 'shadowstrike', 'death_from_above')),
+          'the leaps and charges are dashes (the client carries the hero over for them)')
+    for ch in (war, beast):
+        ch.fighting = None
+    if war in there.characters:
+        there.characters.remove(war)
     there.characters.remove(beast)
     world.npcs.remove(beast)
     here.characters.remove(mage)
     check('reachAcross(t, range, pulls)' in src('main.js') and 'webpull ${refFor(t)}' in src('main.js') and 'strikesFrom(' in src('hud/hud.js'),
           '/play strikes across an open way from where the hero stands, and shows what reaches')
+    check('leapAcross(t, then)' in src('main.js') and "ab.shape === 'dash'" in src('hud/hud.js'),
+          '/play leaps across an open way, and lights the leaps that reach')
 
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
