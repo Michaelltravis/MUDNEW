@@ -862,13 +862,16 @@ export function createHud() {
     els.settings.querySelectorAll('[data-set="sctsize"] button').forEach(b => b.classList.toggle('on', b.dataset.v === ssz));
     els.settings.querySelectorAll('[data-set="shake"] button').forEach(b => b.classList.toggle('on', b.dataset.v === shk));
     MH.bus.emit('settings.sct', { sct, size: +ssz || 1, shake: shk === 'on' });
+    const br = ls.get('mh3d_bright') || '1';
+    els.settings.querySelectorAll('[data-set="bright"] button').forEach(b => b.classList.toggle('on', b.dataset.v === br));
+    MH.bus.emit('settings.brightness', +br || 1);
     const ct = ls.get('mh3d_combattext') === 'on' ? 'on' : 'off';
     els.settings.querySelectorAll('[data-set="combattext"] button').forEach(b => b.classList.toggle('on', b.dataset.v === ct));
     els.log.classList.toggle('with-combat', ct === 'on');
     const cap = ls.get('mh3d_ambcap') === 'on' ? 'on' : 'off';
     els.settings.querySelectorAll('[data-set="ambcap"] button').forEach(b => b.classList.toggle('on', b.dataset.v === cap));
   };
-  for (const [key, store] of [['sct', 'mh3d_sct'], ['sctsize', 'mh3d_sctsize'], ['shake', 'mh3d_shake']]) {
+  for (const [key, store] of [['sct', 'mh3d_sct'], ['sctsize', 'mh3d_sctsize'], ['shake', 'mh3d_shake'], ['bright', 'mh3d_bright']]) {
     els.settings.querySelectorAll(`[data-set="${key}"] button`).forEach(b => b.addEventListener('click', () => { ls.set(store, b.dataset.v); syncSettings(); }));
   }
   // what each colour of number means
