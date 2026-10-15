@@ -413,6 +413,10 @@ async def main():
     here.characters.remove(mage)
     check('reachAcross(t, range, pulls)' in src('main.js') and 'webpull ${refFor(t)}' in src('main.js') and 'strikesFrom(' in src('hud/hud.js'),
           '/play strikes across an open way from where the hero stands, and shows what reaches')
+    ents_src = src('entities.js')
+    check('moveTo(e, vnum, at = null)' in ents_src and 'this.moveTo(e, w.vnum, w.data)' in ents_src
+          and 'this.moveTo(e, payload.vnum, m)' in ents_src and 'e.rush' in ents_src,
+          '/play: a creature pulled in from next door runs across to where the server put it (no snap to a spawn spot)')
     check('leapAcross(t, then)' in src('main.js') and "ab.shape === 'dash'" in src('hud/hud.js'),
           '/play leaps across an open way, and lights the leaps that reach')
 

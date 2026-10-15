@@ -96,13 +96,17 @@ export class Entities {
   }
 
   // a creature or player changed rooms: walk there if the rooms open onto each other, else
-  // snap there (stairs, a far passage, recall, a portal) with a puff of dust
-  moveTo(e, vnum) {
+  // snap there (stairs, a far passage, recall, a portal) with a puff of dust. `at` (room metres
+  // the server gave: a creature in a fight, one pulled in from next door, reach.py) is where it
+  // goes; it runs there, across the edge, never appearing at a spawn spot first
+  moveTo(e, vnum, at = null) {
     const from = this.zone.rooms.get(e.vnum), to = this.zone.rooms.get(vnum);
     e.vnum = vnum;
-    e.goal = this.slot(vnum, e.key);
+    const known = to && at && at.x != null && at.z != null;
+    e.goal = known ? new THREE.Vector3(to.ox + at.x, 0, to.oz + at.z) : this.slot(vnum, e.key);
+    e.rush = !!known;
     const joined = from && to && this.zone.openDir(from, to);
-    if (e.root && e.goal && (!joined || e.root.position.distanceTo(e.goal) > 30)) {
+    if (e.root && e.goal && (!joined || e.root.position.distanceTo(e.goal) > 60)) {
       if (this.onSnap) this.onSnap(e.root.position.clone(), e.goal.clone());
       e.root.position.copy(e.goal).setY(e.root.position.y);
       e.goal = null;
@@ -171,10 +175,8 @@ export class Entities {
         if (npc) dress(e.actor, npc.look, npc.cls);
       }
       this.markHostile(e);
-      if (e.vnum !== w.vnum) {
-        this.moveTo(e, w.vnum);
-        if (w.data.x != null) this.place(e, w.data);
-      } else this.place(e, w.data);
+      if (e.vnum !== w.vnum) this.moveTo(e, w.vnum, w.data);
+      else this.place(e, w.data);
     }
   }
 
@@ -184,7 +186,9 @@ export class Entities {
       const e = m.id != null ? this.list.get(`m${m.id}`) : null;
       if (!e) continue;
       Object.assign(e.data, m);
-      this.place(e, m);
+      // (one that came in from next door this round: its room changes here, before the map does)
+      if (payload.vnum != null && e.vnum !== payload.vnum && this.zone && this.zone.rooms.get(payload.vnum)) this.moveTo(e, payload.vnum, m);
+      else this.place(e, m);
       if (m.fighting && e.actor && e.root && this.hero) {
         e.root.rotation.y = Math.atan2(this.hero.x - e.root.position.x, this.hero.z - e.root.position.z);
         e.actor.once(['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Stab'][(hashStr(e.key) + Date.now()) % 3], 0.08, 1.1);
@@ -318,9 +322,10 @@ export class Entities {
       // the further behind, the faster they run)
       if (e.goal) {
         const p = e.root.position, dx = e.goal.x - p.x, dz = e.goal.z - p.z, d = Math.hypot(dx, dz);
-        if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(e.riding ? 'Idle' : isHostile(e) ? 'Idle_Combat' : e.actor.idle || 'Idle', 0.18, e.still ? 0 : 1); }
+        if (d < 0.1) { e.goal = null; e.rush = false; if (e.actor) e.actor.play(e.riding ? 'Idle' : isHostile(e) ? 'Idle_Combat' : e.actor.idle || 'Idle', 0.18, e.still ? 0 : 1); }
         else {
-          const speed = e.kind === 'player' ? Math.min(9 * (e.data.speed || 1), Math.max(3.2, d * 4)) : 3.2;
+          // (a creature charging over from next door runs)
+          const speed = e.kind === 'player' ? Math.min(9 * (e.data.speed || 1), Math.max(3.2, d * 4)) : e.rush ? Math.min(7, Math.max(3.2, d * 1.6)) : 3.2;
           const step = Math.min(d, speed * dt);
           p.x += dx / d * step; p.z += dz / d * step;
           e.root.rotation.y = Math.atan2(dx, dz);
