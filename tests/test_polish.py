@@ -6,7 +6,9 @@
 - a caster's mana stays in its orb, its class resource as pips (hud.js CASTERS), and big numbers
   are shortened on the orbs (200000 -> 200k);
 - exit signs fade with distance and in a fight (terrain.js LABEL_FADE), and Tab keeps to the
-  hero's own room first (main.js).
+  hero's own room first (main.js);
+- combat numbers: where they show, their size and screen shake are settings, with a colour key;
+  bursts of small hits add up; the shake grows with the blow.
 
     python3 tests/test_polish.py
 """
@@ -68,6 +70,33 @@ async def main():
     check('LABEL_FADE.combat' in src('main.js') and 'export const LABEL_FADE' in src('terrain.js'), 'exit signs fade with distance and in a fight')
     check('e.vnum === heroRoom.vnum' in src('main.js'), "Tab keeps to the hero's own room first")
     check('engine.darkness' in src('main.js') and 'darkness: 0' in src('engine.js'), 'the engine darkens a dark room')
+
+    # ---- batch 2: combat numbers and feel
+    html = src('play.html')
+    check(all(f'data-set="{k}"' in html for k in ('sct', 'sctsize', 'shake')) and 'id="sct-key"' in html,
+          'settings: combat numbers, their size, screen shake, the colour key')
+    fx, combat = src('fx.js'), src('combat.js')
+    check("this.opts.sct === 'off'" in fx and 'if (!this.opts.shake) return;' in fx and '* this.opts.size' in fx, 'fx obeys the settings')
+    check('×${last.n}' in combat, 'a burst of small hits adds up in one number')
+    check('bite * 1.6' in combat and 'killing ? 110' in combat, 'the shake and the pause grow with the blow')
+
+    # ---- dying says what it cost and where you wake
+    import combat_events as ev
+    sent = []
+    real = ev.emit_private
+    ev.emit_private = lambda ch, k, src=None, dst=None, **f: sent.append(dict(k=k, **f))
+    try:
+        v = Player.create_new(name='Mortis', password=None, race='human', char_class='warrior',
+                              stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+        v.world, v.room = world, world.rooms[3001]
+        world.rooms[3001].characters.append(v)
+        v.exp, v.gold = 10000, 1000
+        await v.die(None) if hasattr(v, 'die') else None
+    finally:
+        ev.emit_private = real
+    f = next((e for e in sent if e['k'] == 'fallen'), None)
+    check(f is not None and f['exp'] > 0 and f['gold'] == 50 and f['wake'], f'the death card is told the cost and where you wake ({f})')
+    check("Slain by ${d.killer}" in src('hud/hud.js'), 'the death card shows them')
 
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)

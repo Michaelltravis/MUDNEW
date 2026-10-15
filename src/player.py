@@ -3165,6 +3165,13 @@ class Player(Character):
             self.room = temple
             temple.characters.append(self)
             
+        # the 3D client's death card says what it cost and where you wake (combat_hooks.reward_event)
+        try:
+            from combat_hooks import reward_event
+            reward_event(self, 'fallen', killer=(killer.name if killer else None), exp=int(exp_loss), gold=int(gold_drop),
+                         wake=(temple.name if temple else None))
+        except Exception:
+            pass
         await self.send(f"\r\n{c['white']}You feel yourself being pulled back to the material plane...{c['reset']}")
         await self.send(f"{c['cyan']}The gods have granted you another chance.{c['reset']}\r\n")
         

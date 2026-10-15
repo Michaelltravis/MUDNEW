@@ -152,6 +152,9 @@ button { font: inherit; color: inherit; }
 .rw-rep.down { border-right-color: #e0604a; } .rw-rep.down em { color: #e0604a; }
 .rw-rep.changed { border-right-color: var(--gold); animation-duration: 5.2s; } .rw-rep.changed span { color: var(--gold-hi); font-weight: 700; }
 @keyframes rw-card { 0% { opacity: 0; transform: translateX(30px); } 8% { opacity: 1; transform: none; } 85% { opacity: 1; } 100% { opacity: 0; } }
+/* the damage colour key (settings) */
+#sct-key { display: inline-flex; gap: 3px; flex-wrap: wrap; max-width: 190px; justify-content: flex-end; }
+#sct-key i { width: 13px; height: 13px; border-radius: 3px; box-shadow: 0 0 0 1px #000; cursor: help; }
 /* charges a class builds beside its mana: pips under the bars */
 #player-frame .pips { display: flex; gap: 5px; margin-top: 5px; }
 #player-frame .pips.hidden { display: none; }
