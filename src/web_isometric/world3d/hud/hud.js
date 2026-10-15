@@ -563,6 +563,8 @@ export function createHud() {
     if (sameRoom) return true;
     if (!opt || !opt.across) return false;
     if (id === 'attack') return !!opt.ranged;
+    const info = st.byId.get(id) || {};
+    if (info.target && info.target !== 'enemy') return false;   // a heal, a blessing, on oneself: never
     const ab = ranges && ranges.abilities[id];
     return ab ? /^(ranged|blast)/.test(ab.shape) : (st.byId.get(id) || {}).type === 'spell';
   }

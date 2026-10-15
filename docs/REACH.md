@@ -26,4 +26,22 @@ shopkeeper, trainer or other servant, anyone's pet, or a quest's figure. A creat
 post (sentinels, bosses) is never pulled: struck from safety it could not answer. A creature's
 own spells pull no one.
 
+## By class
+
+Only what is aimed at a foe reaches (heals, blessings, rescues and anything on oneself never
+pull), as the hero's own class book says. The ordinary blow reaches when it is a bolt (mages and
+necromancers, 10 m) or a bow (16 m, any class), crossbow (14) or thrown weapon (10).
+
+| Class | Abilities that reach the next room |
+|---|---|
+| Warrior | none (Charge closes in; it does not fire) |
+| Paladin | Dawnhammer, Verdict of the Order, Holy Shock (14 m) |
+| Cleric | Holy Smite, Harm, Dispel Evil, Flamestrike, Shadow Word: Pain, Mind Flay (14 m) |
+| Ranger | Truesight Shot, Black Arrow (18), Quarry Mark, Heartseeker (20), Loosing Storm, Volley, Serpent Sting, Call Lightning, Wyvern Sting (16), Faerie Fire, Entangle (14) |
+| Mage | Towerbolt (20), Magic Missile, Lightning Bolt (18), Singularity, Fireball (16), Sleep (12), and 10 more at 14 m |
+| Necromancer | Soul Bolt (16), Soul Siphon (10), and 20 more at 14 m |
+| Thief | Pocket Sand (5 m) |
+| Assassin | Mark (15), Wound Poison (14) |
+| Bard | Mockery, Charm Person, Slow, Fear, Finale, Polymorph, Mesmerize, Discordant Chord (14), Fascinate, Sleep (12) |
+
 Checks: `python3 tests/test_polish.py` (the reach section).

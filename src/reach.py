@@ -126,17 +126,29 @@ def why_not(world, player, mob):
 
 def action_range(player, ability):
     """(metres, pulls?) of what the hero is about to do: an ability by name, else the
-    ordinary blow."""
+    ordinary blow. Only what is aimed at a foe pulls (a heal, a blessing, a rescue, anything on
+    oneself never does), as the hero's own class book says it (an assassin's weapon poison is
+    not the necromancer's spell of the same name)."""
     if not ability or ability in ('attack', 'kill'):
         rng, ranged = cr.auto_range(player)
         return rng, bool(ranged)
+    k = cr.key(ability)
+    try:
+        import mastery
+        entry = next((e for e in mastery.book(getattr(player, 'char_class', '')) if e.get('id') == k), None)
+    except Exception:
+        entry = None
     try:
         from spells import SPELLS
-        is_spell = cr.key(ability) in SPELLS
     except Exception:
-        is_spell = False
-    rng, shape = cr.ability_range(ability, is_spell)
-    return rng, str(shape).split(':')[0] in PULL_SHAPES
+        SPELLS = {}
+    is_spell = entry.get('type') == 'spell' if entry else k in SPELLS
+    target = entry.get('target') if entry else None
+    if target is None and is_spell and k in SPELLS:
+        target = 'enemy' if SPELLS[k].get('target') == 'offensive' else SPELLS[k].get('target')
+    rng, shape = cr.ability_range(k, is_spell)
+    foe = target in (None, 'enemy')
+    return rng, foe and str(shape).split(':')[0] in PULL_SHAPES
 
 
 def _clamp_into(world, room, wpos):

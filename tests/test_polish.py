@@ -343,6 +343,17 @@ async def main():
     mage.web_pos = None
     await reach.webpull(mage, ['#990001', 'attack'])
     check(beast.room is there, 'a player with no position (telnet) keeps the old rules')
+    # only what is aimed at a foe pulls, as the hero's own class book says
+    import mastery
+    for cls in ('warrior', 'paladin', 'cleric', 'ranger', 'mage', 'necromancer', 'thief', 'assassin', 'bard'):
+        hero = Player.create_new(name='Probe' + cls[:3].title(), password=None, race='human', char_class=cls,
+                                 stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+        wrong = [e['id'] for e in mastery.book(cls) if reach.action_range(hero, e['id'])[1] and e.get('target') not in (None, 'enemy')]
+        check(not wrong, f'{cls}: no heal, blessing or self ability pulls ({wrong})')
+    sin = Player.create_new(name='Probesin', password=None, race='human', char_class='assassin',
+                            stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    check(not reach.action_range(sin, 'poison')[1] and reach.action_range(mage, 'magic_missile')[1],
+          "an assassin's weapon poison pulls nothing; a mage's magic missile does")
     there.characters.remove(beast)
     world.npcs.remove(beast)
     here.characters.remove(mage)
