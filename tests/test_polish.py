@@ -313,9 +313,18 @@ async def main():
     check(abs(reach.distance(world, mage, beast) - 4.0) < 0.01, 'distance is measured across the edge (4 m)')
     await reach.webpull(mage, ['#990001', 'attack'])
     check(beast.room is here and cr.pos_of(beast) == (23.0, 7.5), f"a mage's bolt pulls it in to the nearest point ({cr.pos_of(beast)})")
+    import allies
+    check(reach.pulled(beast), 'a creature pulled from afar is marked so')
+    import asyncio as _aio
+    check(_aio.get_event_loop() and (await allies.rally(beast, mage)) == [], 'and calls no friends to the fight (only the one aimed at comes)')
+    beast.pulled_at = 0
     put(20.0)
     await reach.webpull(mage, ['#990001', 'attack'])
     check(beast.room is there and 'out of reach' in told[-1], "beyond the bolt's 10 m it stays")
+    beast.web_pos = None          # a creature the server has no place for: measured where the screen shows it
+    await reach.webpull(mage, ['#990001', 'attack', '@3.0,7.5'])
+    check(beast.room is here, f"measured where the screen draws it (5 m), not its room's middle ({told[-1][:60]})")
+    beast.pulled_at = 0
     put(2.0)
     await reach.webpull(mage, ['#990001', 'bash'])
     check(beast.room is there, 'a melee skill pulls nothing (the hero walks in)')

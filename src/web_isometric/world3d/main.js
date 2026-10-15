@@ -910,7 +910,13 @@ async function runGame() {
     const d = Math.hypot(q.x - p.x, q.z - p.z);
     if (range == null || (same && d <= range + 0.3)) return then();
     if (!same && leap && reachAcross(t, range, false, true)) return leapAcross(t, then);
-    if (!same && reachAcross(t, range, pulls)) { ents.expectPull(); MH.sendCommand(`webpull ${refFor(t)} ${ability}`, false); return then(); }
+    if (!same && reachAcross(t, range, pulls)) {
+      // (where it is drawn, in its room's metres: the server measures from there)
+      const tr = zone && zone.rooms.get(t.vnum), at = tr ? ` @${(q.x - tr.ox).toFixed(1)},${(q.z - tr.oz).toFixed(1)}` : '';
+      ents.expectPull();
+      MH.sendCommand(`webpull ${refFor(t)} ${ability}${at}`, false);
+      return then();
+    }
     if (same) return approach(t, range, then);
     // another room (the server fights room by room): stop just inside the target's room,
     // at the action's reach if the room is big enough for it

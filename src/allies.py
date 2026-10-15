@@ -41,6 +41,9 @@ def nearby_allies(mob, rooms=2, want=3):
 
 
 async def rally(mob, attacker):
+    import reach
+    if reach.pulled(mob):
+        return []          # struck from the next room (reach.py): only the one aimed at comes
     h = getattr(mob, 'helpers', None) or {}
     came = nearby_allies(mob, int(h.get('rooms', 2)), int(h.get('count', 2)))
     if not came:
