@@ -237,6 +237,37 @@ async def main():
           and "settings.brightness" in src('main.js') and '(api.brightness || 1)' in eng,
           'Settings -> Brightness lightens the whole picture')
 
+    # the server on a laptop (the owner: "super laggy"): creatures where no player is think one
+    # tick in ten, and a zone reset counts the world's creatures once, not once per reset line
+    near = next(n for n in world.npcs if n.room and n.room.zone is world.rooms[3001].zone)
+    far = next(n for n in world.npcs if n.room and n.room.zone is not world.rooms[3001].zone
+               and all(getattr(getattr(e.get('room') if isinstance(e, dict) else None, 'zone', None), 'number', None)
+                       != world.rooms[3001].zone.number for e in (n.room.exits or {}).values()))
+    calls = {'near': 0, 'far': 0}
+
+    async def count_near():
+        calls['near'] += 1
+
+    async def count_far():
+        calls['far'] += 1
+    near.process_ai, far.process_ai = count_near, count_far
+    world.players['wayfarer'] = g
+    g.room = world.rooms[3001]
+    try:
+        for _ in range(world.NPC_SLEEP_EVERY):
+            await world.process_npcs()
+    finally:
+        world.players.pop('wayfarer', None)
+        del near.process_ai, far.process_ai
+    check(calls == {'near': world.NPC_SLEEP_EVERY, 'far': 1}, f'creatures by a player think every tick, the rest one in ten ({calls})')
+    import time as _t
+    for z in world.zones.values():
+        z.age = z.lifespan
+    t0 = _t.perf_counter()
+    await world.zone_reset_tick()
+    took = _t.perf_counter() - t0
+    check(took < 3, f'a reset of every zone takes a moment, not seconds of a frozen server ({took:.2f}s; was ~8s)')
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 

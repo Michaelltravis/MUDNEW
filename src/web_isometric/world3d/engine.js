@@ -238,7 +238,24 @@ export function createEngine(container, opts = {}) {
     if (composer) composer.render(dt); else renderer.render(scene, camera);
     frames++;
   }
-  renderer.setAnimationLoop(() => frame());
+  // the picture's sharpness follows the machine: when frames come slower than ~42 a second the
+  // pixel density steps down (never below 1: the screen's own pixels), and back up after a steady
+  // stretch at ~55+ a second, never above the chosen quality's (Settings -> Graphics)
+  const fit = { ema: 16.7, last: 0, at: 0, good: 0, pr: renderer.getPixelRatio() };
+  function fitResolution() {
+    const now = performance.now(), gap = now - fit.last;
+    fit.last = now;
+    if (gap <= 0 || gap > 250) return;               // a hidden tab, a hitch, a reload: not a trend
+    fit.ema += (gap - fit.ema) * 0.05;
+    if (now - fit.at < 2000) return;
+    fit.at = now;
+    const cap = Math.min(window.devicePixelRatio || 1, api.quality.dpr);
+    if (fit.ema > 24 && fit.pr > 1) { fit.pr = Math.max(1, fit.pr - 0.25); fit.good = 0; }
+    else if (fit.ema < 18 && fit.pr < cap) { if (++fit.good >= 4) { fit.pr = Math.min(cap, fit.pr + 0.25); fit.good = 0; } }
+    else { fit.good = 0; return; }
+    if (Math.abs(renderer.getPixelRatio() - fit.pr) > 0.01) { renderer.setPixelRatio(fit.pr); resize(); }
+  }
+  renderer.setAnimationLoop(() => { frame(); fitResolution(); });
 
   // a graphics quality chosen in Settings, at once: the pixel ratio, shadows and bloom change
   // now; smoothed edges (antialias) are fixed when the page starts. Returns whether a reload
@@ -246,7 +263,7 @@ export function createEngine(container, opts = {}) {
   function setQuality(name) {
     const nq = QUALITY[name] || QUALITY.high;
     if (nq === api.quality) return false;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, nq.dpr));
+    renderer.setPixelRatio(fit.pr = Math.min(window.devicePixelRatio || 1, nq.dpr));
     if (renderer.shadowMap.enabled !== nq.shadows) {
       renderer.shadowMap.enabled = nq.shadows;
       sun.castShadow = nq.shadows;
@@ -281,7 +298,8 @@ export function createEngine(container, opts = {}) {
     setMood, placeCamera, MOODS,
     // stop the loop and advance by hand, `n` frames of `dt` each (a slow machine still shows
     // every moment of an effect); setManual(false) starts the loop again
-    setManual(on) { renderer.setAnimationLoop(on ? null : () => frame()); clock.getDelta(); },
+    setManual(on) { renderer.setAnimationLoop(on ? null : () => { frame(); fitResolution(); }); clock.getDelta(); },
+    get pixelRatio() { return renderer.getPixelRatio(); },
     step(dt = 1 / 30, n = 1) { for (let i = 0; i < n; i++) frame(dt); },
     get frames() { return frames; },
   };
