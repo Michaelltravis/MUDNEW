@@ -700,6 +700,25 @@ def _class_resource(player):
     return {'name': label, 'value': int(getattr(player, attr, 0) or 0), 'max': cap}
 
 
+def _sight(player):
+    """How the player sees the room they stand in, for /play to light it as the text tells it: a
+    dark room ("It is pitch black") is dark, a carried light lights a circle round the hero, and
+    infravision or a rogue's eyes see it dimly without one."""
+    room = getattr(player, 'room', None)
+    try:
+        dark = bool(room is not None and room.is_dark(getattr(getattr(player, 'world', None), 'game_time', None)))
+    except Exception:
+        dark = False
+    if not dark:
+        return {'dark': False}
+    try:
+        light = bool(player.has_light_source())
+        see = bool(player.can_see_in_dark())
+    except Exception:
+        light, see = False, False
+    return {'dark': True, 'light': light, 'see': see}
+
+
 def _charges(player):
     """Charges a class builds and spends beside its mana (a mage's arcane charges), for the pips
     by the portrait in /play; None for a class without."""
@@ -1194,6 +1213,7 @@ def build_combat_payload(player) -> dict:
         'vnum': room.vnum if room else None,
         'env': env,
         'in_combat': _in_combat(player),
+        'sight': _sight(player),
         'player': {
             'name': player.name,
             'momentum': getattr(player, 'momentum', 0),
@@ -2005,6 +2025,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'exp': getattr(player, 'exp', 0),
             'exp_floor': _exp_thresholds(player)[0],
             'exp_to_level': _exp_thresholds(player)[1],
+            'sight': _sight(player),
             'in_combat': _in_combat(player),
             'path': getattr(player, 'path', None),
             'path_active': _path_active(player),

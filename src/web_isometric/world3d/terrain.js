@@ -698,6 +698,18 @@ function makeHatch(key, cx, cz) {
   return g;
 }
 
+// where the hero stands and whether it is fighting (main.js sets them each frame): a passage's
+// name is clear near the hero and faint far off, and steps back during a fight (it was sitting on
+// top of the numbers over the hero) unless the hero stands at that very exit
+export const LABEL_FADE = { hero: new THREE.Vector3(), combat: false, on: false };
+const _lp = new THREE.Vector3();
+function labelOpacity(sp) {
+  if (!LABEL_FADE.on) return 1;
+  const d = sp.getWorldPosition(_lp).setY(0).distanceTo(LABEL_FADE.hero);
+  const far = d <= 8 ? 1 : d >= 18 ? 0.18 : 1 - 0.82 * (d - 8) / 10;
+  return LABEL_FADE.combat && d > 4 ? Math.min(far, 0.22) : far;
+}
+
 // a passage's name over it, in the HUD's style: engraved capitals on dark glass, a gilded
 // hairline, a diamond at each end (drawn at twice the size for crisp edges)
 function labelSprite(text, color, owned) {
@@ -724,6 +736,8 @@ function labelSprite(text, color, owned) {
   const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthWrite: false, transparent: true }));
   sp.scale.set(w / H * 0.62, 0.62, 1);
   sp.renderOrder = 5;
+  // eased toward how clear it should be, each time it is drawn
+  sp.onBeforeRender = () => { const m = sp.material; m.opacity += (labelOpacity(sp) - m.opacity) * 0.15; };
   return sp;
 }
 

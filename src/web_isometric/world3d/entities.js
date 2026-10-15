@@ -339,9 +339,11 @@ export class Entities {
     const cam = this.engine.camera, cv = this.engine.renderer.domElement;
     const w = cv.clientWidth, h = cv.clientHeight;
     for (const e of this.list.values()) {
-      if (!e.root) continue;
+      // (no body yet, its model still loading: its plate waits hidden, not in the corner)
+      if (!e.root) { if (e.plate) e.plate.style.display = 'none'; continue; }
       const dist = e.root.position.distanceTo(hero);
-      const show = dist < 26 || this.target === e.key;
+      // in the dark only what the hero can see has a name over it (main.js sets sightRadius)
+      const show = (dist < 26 && !(this.sightRadius && dist > this.sightRadius)) || this.target === e.key;
       if (!show) { e.plate.style.display = 'none'; continue; }
       this._v.copy(e.root.position).setY(e.root.position.y + (e.plateY || (e.plateY = plateHeight(e)))).project(cam);
       if (this._v.z > 1 || Math.abs(this._v.x) > 1.1 || Math.abs(this._v.y) > 1.1) { e.plate.style.display = 'none'; continue; }

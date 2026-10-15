@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { createEngine } from './engine.js';
 import { loadKit } from './assets.js';
 import { Zone, fetchZonemap, REV } from './zone.js';
-import { ROOM_W, ROOM_H } from './terrain.js';
+import { ROOM_W, ROOM_H, LABEL_FADE } from './terrain.js';
 import { Controller, findPath } from './controller.js';
 import { Sync } from './sync.js';
 import { Entities } from './entities.js';
@@ -154,6 +154,24 @@ async function runGame() {
   combat.onAilment = (ent, name, school) => hud.noteAilment(ent, name, school);
   combat.onFade = () => { if (MH.refreshState) setTimeout(() => MH.refreshState(), 200); };
   combat.onReward = (e, from) => hud.reward(e, from);
+  // ---- seeing in the dark (map_system._sight): a dark room is dark; a carried light makes a warm
+  // circle round the hero, infravision a dim grey sight, nothing at all a glimmer to feel by ----
+  engine.onTick(dt => {
+    // exit signs fade with distance and step back in a fight (terrain.js LABEL_FADE)
+    if (hero && hero.root) { LABEL_FADE.hero.set(hero.root.position.x, 0, hero.root.position.z); LABEL_FADE.on = true; }
+    LABEL_FADE.combat = !!MH.state.inCombat;
+    const s = (MH.state.player && MH.state.player.sight) || {};
+    const lit = s.dark && s.light, eyes = s.dark && !s.light && s.see, blind = s.dark && !s.see;
+    engine.darkness = !s.dark ? 0 : lit ? 0.6 : eyes ? 0.5 : 0.82;
+    ents.sightRadius = !s.dark ? 0 : lit ? 14 : eyes ? 12 : 5;
+    const L = engine.heroLight;
+    if (!L) return;
+    const want = lit ? 48 : blind ? 14 : 0;
+    L.color.setHex(lit ? 0xffb36a : 0x8a9ac8);
+    L.distance = lit ? 13 : 5;
+    L.intensity += (want - L.intensity) * Math.min(1, dt * 4);
+    if (hero && hero.root) L.position.set(hero.root.position.x, hero.root.position.y + 1.7, hero.root.position.z);
+  });
   // stepping out of a marked blow's ground: the server hears where you stand at once
   cues.onLeave = () => { posClock = 0; };
   combat.onTelegraphEnd = k => cues.telegraphEnd(k);
@@ -718,8 +736,12 @@ async function runGame() {
   MH.bus.on('hud.cycleTarget', () => {
     if (!hero) return;
     const p = hero.root.position;
-    const near = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.root.position.distanceTo(p) < 22)
+    // your own room first (the server fights room by room); the next room's only when yours has
+    // nothing, and then only what is close (a thief 16 m off through a wall is no target)
+    const all = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.root.position.distanceTo(p) < 22)
       .map(e => Object.assign(e, { dist: e.root.position.distanceTo(p) }));
+    const mine = heroRoom ? all.filter(e => e.vnum === heroRoom.vnum) : all;
+    const near = mine.length ? mine : all.filter(e => e.dist < 14);
     const corpses = [...loot.list.values()].filter(l => l.corpse && l.root && l.root.position.distanceTo(p) < 22)
       .map(l => ({ key: l.key, dist: l.root.position.distanceTo(p) }));
     const order = tabOrder(near, corpses);
