@@ -567,6 +567,12 @@ html.fallen #vignette { background: radial-gradient(ellipse at 50% 46%, rgba(30,
   text-shadow: 0 2px 0 #000, 0 0 6px rgba(0,0,0,.95), 1px 1px 0 #000, -1px -1px 0 #000; }
 .fct.crit { font-family: var(--title); font-weight: 700; letter-spacing: .02em; }
 .fct.small { font-size: 13px; }
+/* a spell's name over its number; a glow in the school of the blow (a fire hit on the hero) */
+.fct-l { display: block; font: 700 11px var(--label); letter-spacing: .06em; text-transform: uppercase; opacity: .85; margin-bottom: -2px; text-align: center; }
+.fct[style*="--edge"] { text-shadow: 0 2px 0 #000, 1px 1px 0 #000, -1px -1px 0 #000, 0 0 4px var(--edge), 0 0 1px var(--edge); }
+.fct.crit { -webkit-text-stroke: 1px rgba(0,0,0,.7); }
+/* the hero's column (fx.lane) */
+.fct.lane { font-weight: 800; }
 /* cast bar under the hero */
 #castbar { left: 50%; bottom: calc(160px * var(--ui)); transform: translateX(-50%); width: 260px; height: 16px; border-radius: 4px;
   background: rgba(0,0,0,.65); box-shadow: 0 0 0 1px #000, 0 0 0 2px rgba(216,180,106,.5); overflow: hidden; display: none; }

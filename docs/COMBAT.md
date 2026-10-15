@@ -161,6 +161,20 @@ has its animation and its rising number (`combat_events.py`), so the chat log do
   Arcane Mastery (the spell's count and Arcane Blast's used to disagree).
 - **Effects ending.** When a shield or blessing wears off, its name fades over your head and its icon
   goes.
+- **Scrolling combat text** (`world3d/sctlogic.js`, `fx.js` `lane`):
+  - **Over what you strike:** your numbers rise in the colour of their harm: fire orange, frost
+    ice-blue, lightning pale blue, arcane violet, holy gold, shadow purple, nature and poison green,
+    necrotic pale green, blood crimson. A physical blow is cream, or the element of your weapon once
+    it glows (tier 4 and up, like its trail). Crits are bigger, outlined and punched in with a
+    "!". A spell's or skill's name rides small above its first number ("PYROBLAST 508").
+  - **Over your hero:** a column of what happens to you, in order, each new line pushing the older
+    ones up:
+    - damage taken, in red, glowing in its harm's colour;
+    - heals in green, heals over time smaller;
+    - Dodge, Parry, Block, Resist and Miss;
+    - buffs gained ("+Combustion") and lost ("−Mana Shield");
+    - charges gained ("+1 Arcane Charge");
+    - control effects ("Stunned!").
 - **A kill's rewards** (`combat_hooks`: `xp`, `gold`, `rep` events), drawn, and their lines are filed
   with the fight's:
   - **Experience:** "+209 XP" rises in gold over the fallen creature. The XP bar fills, and the gain
