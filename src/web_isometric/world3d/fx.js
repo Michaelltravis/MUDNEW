@@ -299,10 +299,14 @@ export class FX {
   }
 
   // ---- floating combat text ----
-  text(pos, str, { color = '#ffffff', size = 18, crit = false, rise = 1.4, life = 1.1, side = 0 } = {}) {
+  // label: a small line above (the spell that did it); edge: a glow in another colour (the
+  // school of a blow that hurt the hero)
+  text(pos, str, { color = '#ffffff', size = 18, crit = false, rise = 1.4, life = 1.1, side = 0, label = '', edge = '' } = {}) {
     const d = document.createElement('div');
     d.className = 'fct' + (crit ? ' crit' : '');
-    d.textContent = str;
+    if (label) { const l = document.createElement('span'); l.className = 'fct-l'; l.textContent = label; d.append(l, str); }
+    else d.textContent = str;
+    if (edge) d.style.setProperty('--edge', edge);
     d.style.color = color;
     d.style.fontSize = `${crit ? size * 1.45 : size}px`;
     this.overlay.appendChild(d);
@@ -317,9 +321,45 @@ export class FX {
       .add(new THREE.Vector3(0, stack * 0.3, 0));
     this.texts.push({ d, p0: pos.clone(), p, t: 0, life, rise, crit });
   }
+  // ---- the hero's column (scrolling combat text): what happens to the hero rises over its head
+  // in the order it happens, each new line pushing the older ones up so nothing overlaps.
+  // laneAnchor() gives the hero's position (combat.js sets it) ----
+  lane(str, { color = '#ffffff', size = 17, crit = false, edge = '', life = 1.9 } = {}) {
+    if (!this.laneAnchor) return;
+    const d = document.createElement('div');
+    d.className = 'fct lane' + (crit ? ' crit' : '');
+    d.textContent = str;
+    d.style.color = color;
+    d.style.fontSize = `${crit ? size * 1.35 : size}px`;
+    if (edge) d.style.setProperty('--edge', edge);
+    this.overlay.appendChild(d);
+    this.laneItems = this.laneItems || [];
+    const step = (crit ? size * 1.35 : size) + 5;
+    for (const o of this.laneItems) o.want += step;              // older lines move up
+    this.laneItems.push({ d, t: 0, life, want: 0, y: -step * 0.6, crit });
+    while (this.laneItems.length > 9) this.laneItems.shift().d.remove();
+  }
+  updateLane(dt, cam, w, h) {
+    const items = this.laneItems;
+    if (!items || !items.length) return;
+    const at = this.laneAnchor && this.laneAnchor();
+    for (let i = items.length - 1; i >= 0; i--) {
+      const o = items[i];
+      o.t += dt;
+      if (o.t >= o.life || !at) { o.d.remove(); items.splice(i, 1); continue; }
+      o.y += (o.want - o.y) * Math.min(1, dt * 12);              // ease to its place in the column
+      const drift = o.t * 14;                                      // and keep rising slowly
+      _v.copy(at).setY(at.y + 2.5).project(cam);
+      const k = o.t / o.life;
+      const pop = o.crit ? 1 + Math.max(0, 0.5 - o.t * 3.5) : 1 + Math.max(0, 0.2 - o.t * 2);
+      o.d.style.transform = `translate(${((_v.x + 1) / 2 * w).toFixed(1)}px, ${((1 - _v.y) / 2 * h - o.y - drift).toFixed(1)}px) translate(-50%, -100%) scale(${pop.toFixed(2)})`;
+      o.d.style.opacity = k < 0.72 ? 1 : 1 - (k - 0.72) / 0.28;
+    }
+  }
   updateTexts(dt) {
     const cam = this.engine.camera, cv = this.engine.renderer.domElement;
     const w = cv.clientWidth, h = cv.clientHeight;
+    this.updateLane(dt, cam, w, h);
     for (let i = this.texts.length - 1; i >= 0; i--) {
       const x = this.texts[i];
       x.t += dt;

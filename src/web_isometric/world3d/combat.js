@@ -14,6 +14,7 @@ import { Director } from './fxdirector.js';
 import { LANDS } from './soundtable.js';
 import { swingClips, rangedBlow } from './gearlook.js';
 import { SCHOOL } from './fx.js';
+import { SCHOOL_CSS, titleOf, harmColour } from './sctlogic.js';
 
 // the ordinary swing, by class: for anyone without a look (gearlook.js swingClips picks it
 // from what the hand holds)
@@ -58,14 +59,17 @@ export class CombatView {
     this.director.onSound = (name, at, opts) => this.sfx(name, at, opts);
     this.onSound = null;              // (sound name, world position, {school, tier}) => void (audio.js)
     this._v = new THREE.Vector3();
+    // the hero's column of scrolling combat text rises from the hero (fx.lane)
+    this.fx.laneAnchor = () => { const h = this.getHero(); return h && h.actor && h.actor.root ? h.actor.root.position : null; };
   }
+  harmColour(e, src) { return harmColour(e.school, src && src.look); }
   // a sound where something happens (soundtable.js names)
   sfx(name, at, opts) { if (this.onSound && name) this.onSound(name, at && at.root ? at.root.position : at, opts); }
   pairKey(a, b) { return `${keyOf(a)}>${keyOf(b)}`; }
   // the next wound (or heal) from src to dst should appear when this action's blow lands
   expect(e, delayMs) {
     const k = this.pairKey(e.src, e.dst);
-    this.impacts.set(k, { at: performance.now() + delayMs, crit: e.res === 'crit' || e.crit, n: 0 });
+    this.impacts.set(k, { at: performance.now() + delayMs, crit: e.res === 'crit' || e.crit, n: 0, label: e.label || '', school: e.school || null });
   }
   // real-time combat: the hero's blow, shown the moment the key is pressed (the server's attack
   // event then finds it already swinging and doesn't swing twice)
@@ -162,7 +166,7 @@ export class CombatView {
       const d = (e.delay_ms || 0) + (e.k === 'attack' ? n * 420 : n * 300);
       if (reached.has(e)) {
         const at = d + this.landsIn(e) * 1000;
-        for (const dst of new Set([keyOf(e.dst), ...reached.get(e).map(keyOf)])) if (dst !== 'null') this.expect({ src: e.src, dst: JSON.parse(dst), res: e.res }, at);
+        for (const dst of new Set([keyOf(e.dst), ...reached.get(e).map(keyOf)])) if (dst !== 'null') this.expect({ src: e.src, dst: JSON.parse(dst), res: e.res, label: titleOf(e.spell || e.ability), school: e.school }, at);
         e._hits = reached.get(e);
       }
       if (d > 0) this.fx.after(d / 1000, () => this.event(e)); else this.event(e);
@@ -198,7 +202,8 @@ export class CombatView {
     const school = e.school && e.school !== 'physical' ? e.school : (e.k === 'heal' ? 'nature' : 'poison');
     const color = '#' + this.colorOf(school).toString(16).padStart(6, '0');
     const p = this.chest(dst);
-    this.fx.text(p, e.k === 'heal' ? `+${e.amt}` : `${e.amt}`, { color: e.k === 'heal' ? COLORS.heal : color, size: 13, rise: 0.9, life: 0.9, side: 0.6 });
+    if (dst.hero) this.fx.lane(e.k === 'heal' ? `+${e.amt}` : `-${e.amt}`, { color: e.k === 'heal' ? COLORS.heal : COLORS.dmgIn, edge: e.k === 'heal' ? '' : color, size: 13, life: 1.5 });
+    else this.fx.text(p, e.k === 'heal' ? `+${e.amt}` : `${e.amt}`, { color: e.k === 'heal' ? COLORS.heal : color, size: 13, rise: 0.9, life: 0.9, side: 0.6 });
     this.fx.p.emit(p, { count: 6, color: this.colorOf(school), speed: 0.5, up: 0.9, life: 0.6, size: 0.18, drag: 1.4 });
     if (this.onAilment && e.k !== 'heal' && dst.ent) this.onAilment(dst.ent, e.dot, school);
   }
@@ -208,10 +213,12 @@ export class CombatView {
     const k = this.pairKey(e.src, e.dst);
     const imp = this.impacts.get(k);
     const now = performance.now();
-    let delay = 0, crit = false;
+    let delay = 0, crit = false, label = '', school = e.school;
     if (imp && now < imp.at + 1800) {
       delay = Math.max(0, imp.at - now) + imp.n * 420;
       crit = imp.crit && imp.n === 0;
+      label = imp.n === 0 ? imp.label : '';
+      school = school || imp.school;
       imp.n++;
     }
     const show = () => {
@@ -222,7 +229,13 @@ export class CombatView {
       const killing = e.left != null ? e.left <= 0 : false;
       if (dst.ent && dst.ent.data && e.left != null) { dst.ent.data.hp = e.left; if (this.onWound) this.onWound(dst.ent); }
       const p = this.chest(dst);
-      this.fx.text(p, crit ? `${e.amt}!` : `${e.amt}`, { color: dst.hero ? COLORS.dmgIn : crit ? COLORS.crit : COLORS.dmgOut, crit, size: dst.hero ? 17 : 19 });
+      const src = this.resolve(e.src);
+      const hue = this.harmColour({ school }, src);
+      // what hurts the hero rises in its column, red edged with the harm's colour; the hero's (and
+      // everyone's) blows rise over what they struck, in the harm's colour, the spell named above
+      if (dst.hero) this.fx.lane(crit ? `-${e.amt}!` : `-${e.amt}`, { color: '#ff3d2e', edge: hue !== SCHOOL_CSS.physical ? hue : '', crit, size: 21 });
+      else this.fx.text(p, crit ? `${e.amt}!` : `${e.amt}`, { color: crit && hue === SCHOOL_CSS.physical ? COLORS.crit : hue, crit, size: 19,
+        label: src && !src.mob && label ? label : '' });
       if (!imp || imp.n > 1) { this.fx.flash(dst.root, dst.hero ? 0xff2a1a : 0xffe0c0, 0.12); if (e.school) this.fx.impact(p, e.school); }
       if (crit || (dst.hero && e.amt >= 15)) this.fx.shake(crit ? 0.22 : 0.14, 0.2);
       if (crit) { const src = this.resolve(e.src); if (src && !src.mob) this.director.react('crit', { ...dst, cls: src.cls }); }
@@ -251,7 +264,10 @@ export class CombatView {
       case 'proc': return this.proc(e);
       case 'fade': return this.fade(e);
       case 'xp': case 'gold': case 'rep': return this.reward(e);
-      case 'res': return this.onCharges && this.isHero(e.dst) && this.onCharges(e);
+      case 'res':
+        if (!this.isHero(e.dst)) return;
+        if (!e.spent && e.v > 0) this.fx.lane(`+1 ${e.name === 'arcane' ? 'Arcane Charge' : titleOf(e.name)}`, { color: SCHOOL_CSS.arcane, size: 13 });
+        return this.onCharges && this.onCharges(e);
       default: return null;
     }
   }
@@ -307,7 +323,8 @@ export class CombatView {
       if (dst.hero) this.getHero().ctl.swing(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B', true);
     } else {
       const word = { miss: 'Miss', dodge: 'Dodge', parry: 'Parry', block: 'Block', resist: 'Resist', immune: 'Immune' }[res] || res;
-      this.fx.text(p, word, { color: COLORS[res] || COLORS.miss, size: 15 });
+      if (heroHit) this.fx.lane(word, { color: COLORS[res] || COLORS.miss, size: 15 });
+      else this.fx.text(p, word, { color: COLORS[res] || COLORS.miss, size: 15 });
       if (res === 'parry' || res === 'block') { this.fx.sparks(p, 0xbfe0ff, 10); if (dst.actor && !dst.hero) dst.actor.once('Block_Hit', 0.05, 1.3); }
       if (res === 'dodge' && dst.actor && !dst.hero) dst.actor.once(Math.random() < 0.5 ? 'Dodge_Left' : 'Dodge_Right', 0.05, 1.4);
       if (res === 'dodge' && dst.hero) this.getHero().ctl.swing(Math.random() < 0.5 ? 'Dodge_Left' : 'Dodge_Right', true);
@@ -397,7 +414,7 @@ export class CombatView {
   fade(e) {
     const dst = this.resolve(e.dst);
     if (!dst || !dst.hero) return;
-    this.fx.text(this.chest(dst).setY(dst.root.position.y + 2.2), `${e.name} fades`, { color: '#a8a4b4', size: 12, rise: -0.4, life: 1.4 });
+    this.fx.lane(`−${titleOf(e.name)}`, { color: '#a8a4b4', size: 13 });
     if (this.onFade) this.onFade(e.name);
   }
   colorOf(school) { return ({ fire: 0xff7a2a, frost: 0x9fd8ff, lightning: 0xbfd8ff, arcane: 0xc87aff, holy: 0xffe8a0, shadow: 0x8a4ad0, necrotic: 0x7aff8a, nature: 0x9aff6a, poison: 0xb8ff5a, sound: 0xffb8ff, blood: 0xd02a2a })[school] || 0xffffff; }
@@ -419,7 +436,8 @@ export class CombatView {
         this.fx.swirl(dst.root, { school: e.school || 'holy', time: 0.8, count: 2 });
         this.fx.p.emit(this.chest(dst), { count: 10, color: 0x8dffa0, speed: 0.6, up: 1.4, life: 0.8, size: 0.2, drag: 1.2 });
       }
-      if (e.amt) this.fx.text(this.chest(dst), `+${e.amt}`, { color: COLORS.heal, size: 18 });
+      if (e.amt && dst.hero) this.fx.lane(`+${e.amt}`, { color: COLORS.heal, size: 18 });
+      else if (e.amt) this.fx.text(this.chest(dst), `+${e.amt}`, { color: COLORS.heal, size: 18 });
     });
   }
   buff(e) {
@@ -427,7 +445,8 @@ export class CombatView {
     if (!dst) return;
     this.sfx(e.k, dst);
     this.fx.swirl(dst.root, { school: e.school || (e.k === 'debuff' ? 'shadow' : 'holy'), time: 0.8, count: 2 });
-    if (e.name) this.fx.text(this.chest(dst).setY(dst.root.position.y + 2.4), e.name, { color: e.k === 'debuff' ? '#d8a8ff' : '#fff0b0', size: 13, rise: 0.8 });
+    if (e.name && dst.hero) this.fx.lane(e.k === 'debuff' ? titleOf(e.name) : `+${titleOf(e.name)}`, { color: e.k === 'debuff' ? '#d8a8ff' : '#fff0b0', size: 14 });
+    else if (e.name) this.fx.text(this.chest(dst).setY(dst.root.position.y + 2.4), e.name, { color: e.k === 'debuff' ? '#d8a8ff' : '#fff0b0', size: 13, rise: 0.8 });
   }
   stun(e) {
     const dst = this.resolve(e.dst);
@@ -443,7 +462,8 @@ export class CombatView {
       }
       return t < (e.secs || 1.6);
     } });
-    this.fx.text(top(), 'Stunned', { color: '#ffe066', size: 13, rise: 0.6 });
+    if (dst.hero) this.fx.lane('Stunned!', { color: '#ffe066', size: 15 });
+    else this.fx.text(top(), 'Stunned', { color: '#ffe066', size: 13, rise: 0.6 });
   }
 
   // a creature gathers itself for a big blow: the ground warns you
