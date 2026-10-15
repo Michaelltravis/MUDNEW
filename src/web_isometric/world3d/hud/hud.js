@@ -857,10 +857,12 @@ export function createHud() {
     els.settings.querySelectorAll('[data-set="xbars"] button').forEach(b => b.classList.toggle('on', +b.dataset.v === bars.count));
     // combat numbers (fx.js opts): where they show, how big, whether the view shakes
     const sct = ls.get('mh3d_sct') || 'all', ssz = ls.get('mh3d_sctsize') || '1', shk = ls.get('mh3d_shake') === 'off' ? 'off' : 'on';
+    const slf = ls.get('mh3d_sctlife') || '1';
+    els.settings.querySelectorAll('[data-set="sctlife"] button').forEach(b => b.classList.toggle('on', b.dataset.v === slf));
     els.settings.querySelectorAll('[data-set="sct"] button').forEach(b => b.classList.toggle('on', b.dataset.v === sct));
     els.settings.querySelectorAll('[data-set="sctsize"] button').forEach(b => b.classList.toggle('on', b.dataset.v === ssz));
     els.settings.querySelectorAll('[data-set="shake"] button').forEach(b => b.classList.toggle('on', b.dataset.v === shk));
-    MH.bus.emit('settings.sct', { sct, size: +ssz || 1, shake: shk === 'on' });
+    MH.bus.emit('settings.sct', { sct, size: +ssz || 1, shake: shk === 'on', life: +slf || 1 });
     const br = ls.get('mh3d_bright') || '1';
     els.settings.querySelectorAll('[data-set="bright"] button').forEach(b => b.classList.toggle('on', b.dataset.v === br));
     MH.bus.emit('settings.brightness', +br || 1);
@@ -870,7 +872,7 @@ export function createHud() {
     const cap = ls.get('mh3d_ambcap') === 'on' ? 'on' : 'off';
     els.settings.querySelectorAll('[data-set="ambcap"] button').forEach(b => b.classList.toggle('on', b.dataset.v === cap));
   };
-  for (const [key, store] of [['sct', 'mh3d_sct'], ['sctsize', 'mh3d_sctsize'], ['shake', 'mh3d_shake'], ['bright', 'mh3d_bright']]) {
+  for (const [key, store] of [['sct', 'mh3d_sct'], ['sctsize', 'mh3d_sctsize'], ['sctlife', 'mh3d_sctlife'], ['shake', 'mh3d_shake'], ['bright', 'mh3d_bright']]) {
     els.settings.querySelectorAll(`[data-set="${key}"] button`).forEach(b => b.addEventListener('click', () => { ls.set(store, b.dataset.v); syncSettings(); }));
   }
   // what each colour of number means

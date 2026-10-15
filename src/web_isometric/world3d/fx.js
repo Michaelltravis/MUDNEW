@@ -189,6 +189,11 @@ function geo(name) {
 }
 // a soft shell that glows at its rim (shields, domes)
 
+// how long combat numbers stay (the owner: "the text fades pretty fast"): longer than they were,
+// x Settings -> Number duration; past TEXT_MAX on screen the oldest fade out early, and the hero's
+// column keeps LANE_MAX lines
+const TEXT_LIFE = 1.45, LANE_LIFE = 1.35, TEXT_MAX = 14, LANE_MAX = 7;
+
 export class FX {
   constructor(engine, overlay) {
     this.engine = engine;
@@ -283,7 +288,7 @@ export class FX {
 
   // ---- screen feedback ----
   // the player's settings (hud settings -> main.js): numbers 'all' | 'you' | 'foes' | 'off', their size, shake
-  get opts() { return this._opts || (this._opts = { sct: 'all', size: 1, shake: true }); }
+  get opts() { return this._opts || (this._opts = { sct: 'all', size: 1, shake: true, life: 1 }); }
   set opts(o) { this._opts = { ...this.opts, ...o }; }
   shake(mag = 0.15, time = 0.22) {
     if (!this.opts.shake) return; this.shakeMag = Math.max(this.shakeMag * (this.shakeT > 0 ? 1 : 0), mag); this.shakeT = Math.max(this.shakeT, time); }
@@ -305,7 +310,7 @@ export class FX {
   // ---- floating combat text ----
   // label: a small line above (the spell that did it); edge: a glow in another colour (the
   // school of a blow that hurt the hero)
-  text(pos, str, { color = '#ffffff', size = 18, crit = false, rise = 1.4, life = 1.1, side = 0, label = '', edge = '' } = {}) {
+  text(pos, str, { color = '#ffffff', size = 18, crit = false, rise = 1.4, life = 1.1, side = 0, label = '', edge = '', exact = false } = {}) {
     const d = document.createElement('div');
     d.className = 'fct' + (crit ? ' crit' : '');
     if (label) { const l = document.createElement('span'); l.className = 'fct-l'; l.textContent = label; d.append(l, str); }
@@ -323,8 +328,13 @@ export class FX {
     const right = new THREE.Vector3(1, 0, 0).applyQuaternion(this.engine.camera.quaternion).setY(0).normalize();
     const p = pos.clone().addScaledVector(right, side + fan + (Math.random() - 0.5) * 0.3)
       .add(new THREE.Vector3(0, stack * 0.3, 0));
+    // long enough to read (Settings -> Number duration), a crit longer; small ticks stay quick
+    if (!exact) life *= TEXT_LIFE * (this.opts.life || 1) * (crit ? 1.3 : size <= 13 ? 0.8 : 1);   // (exact: timed to something, a wind-up)
     const entry = { d, p0: pos.clone(), p, t: 0, life, rise, crit };
     this.texts.push(entry);
+    // a crowd of numbers: the oldest ordinary ones fade out early rather than pile up
+    const live = this.texts.filter(o => o.t < o.life - 0.3);
+    for (let i = 0; i < live.length - TEXT_MAX; i++) if (!live[i].crit) live[i].t = Math.max(live[i].t, live[i].life - 0.3);
     return entry;
   }
   // ---- the hero's column (scrolling combat text): what happens to the hero rises over its head
@@ -332,6 +342,7 @@ export class FX {
   // laneAnchor() gives the hero's position (combat.js sets it) ----
   lane(str, { color = '#ffffff', size = 17, crit = false, edge = '', life = 1.9 } = {}) {
     if (!this.laneAnchor || this.opts.sct === 'off' || this.opts.sct === 'foes') return;
+    life *= LANE_LIFE * (this.opts.life || 1) * (crit ? 1.25 : size <= 13 ? 0.8 : 1);
     size *= this.opts.size;
     const d = document.createElement('div');
     d.className = 'fct lane' + (crit ? ' crit' : '');
@@ -344,7 +355,7 @@ export class FX {
     const step = (crit ? size * 1.35 : size) + 5;
     for (const o of this.laneItems) o.want += step;              // older lines move up
     this.laneItems.push({ d, t: 0, life, want: 0, y: -step * 0.6, crit });
-    while (this.laneItems.length > 9) this.laneItems.shift().d.remove();
+    while (this.laneItems.length > LANE_MAX) this.laneItems.shift().d.remove();
   }
   updateLane(dt, cam, w, h) {
     const items = this.laneItems;
@@ -360,7 +371,7 @@ export class FX {
       const k = o.t / o.life;
       const pop = o.crit ? 1 + Math.max(0, 0.5 - o.t * 3.5) : 1 + Math.max(0, 0.2 - o.t * 2);
       o.d.style.transform = `translate(${((_v.x + 1) / 2 * w).toFixed(1)}px, ${((1 - _v.y) / 2 * h - o.y - drift).toFixed(1)}px) translate(-50%, -100%) scale(${pop.toFixed(2)})`;
-      o.d.style.opacity = k < 0.72 ? 1 : 1 - (k - 0.72) / 0.28;
+      o.d.style.opacity = k < 0.78 ? 1 : 1 - (k - 0.78) / 0.22;
     }
   }
   updateTexts(dt) {
@@ -375,7 +386,7 @@ export class FX {
       _v.copy(x.p).setY(x.p.y + x.rise * (1 - Math.pow(1 - k, 2))).project(cam);
       const pop = x.crit ? 1 + Math.max(0, 0.6 - x.t * 4) : 1 + Math.max(0, 0.25 - x.t * 2);
       x.d.style.transform = `translate(${((_v.x + 1) / 2 * w).toFixed(1)}px, ${((1 - _v.y) / 2 * h).toFixed(1)}px) translate(-50%, -50%) scale(${pop.toFixed(2)})`;
-      x.d.style.opacity = k < 0.7 ? 1 : 1 - (k - 0.7) / 0.3;
+      x.d.style.opacity = k < 0.75 ? 1 : 1 - (k - 0.75) / 0.25;
     }
   }
 
