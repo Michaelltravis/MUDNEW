@@ -414,8 +414,15 @@ export class CombatView {
     const t = this.ents && this.ents.targeted;
     const kill = this.lastKill && performance.now() - this.lastKill.at < 6000 ? this.lastKill.pos
       : t && t.root && t.kind === 'mob' ? t.root.position.clone() : null;
+    // what you earn rises in the middle of the screen (the owner: not down by the bars): a kill's
+    // experience over the corpse, any other (a quest, a discovery) and gold in the hero's column
+    const bonus = Object.entries(e.bonus || {}).map(([k, v]) => ` · ${k[0].toUpperCase() + k.slice(1)} +${v}`).join('');
     if (e.k === 'xp' && e.src_kind === 'kill' && kill) {
-      this.fx.text(kill.clone().setY(kill.y + 1.6), `+${e.amt} XP`, { color: '#f3d27a', size: 20, rise: 1.6, life: 1.6 });
+      this.fx.text(kill.clone().setY(kill.y + 1.6), `+${e.amt} XP${bonus}`, { color: '#f3d27a', size: 20, rise: 1.6, life: 1.6 });
+    } else if (e.k === 'xp' && e.amt > 0) {
+      this.fx.lane(`+${e.amt} XP${bonus}`, { color: '#f3d27a', size: 18, life: 2.2 });
+    } else if (e.k === 'gold' && e.amt > 0) {
+      this.fx.lane(`+${e.amt} gold`, { color: '#ffd34a', size: 15, life: 2 });
     }
     if (this.onReward) this.onReward(e, kill ? this.screenOf(kill) : null);
   }

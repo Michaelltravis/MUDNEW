@@ -634,8 +634,7 @@ export function createHud() {
       const bar = $('#xpbar');
       if (e.next > e.floor) bar.querySelector('b').style.width = pct((e.exp || 0) - e.floor, e.next - e.floor);
       bar.classList.remove('gain'); void bar.offsetWidth; bar.classList.add('gain');
-      const chips = Object.entries(e.bonus || {}).map(([k, v]) => `<i>${esc(k[0].toUpperCase() + k.slice(1))} +${v}</i>`).join('');
-      floatOver(bar, 'rw-xp', `+${e.amt} XP${chips ? `<span>${chips}</span>` : ''}`);
+      // (the amount and its bonuses rise in the middle of the screen: combat.js reward)
       if (st.player) st.player.exp = e.exp;
     } else if (e.k === 'gold') {
       const bag = els.menu.querySelector('[data-act="inventory"]');
@@ -656,7 +655,7 @@ export function createHud() {
         ], { duration: 900 + i * 40, delay: i * 70, easing: 'cubic-bezier(.4,.1,.5,1)', fill: 'forwards' });
         a.onfinish = () => c.remove();
       }
-      setTimeout(() => { bag.classList.remove('rw-pop'); void bag.offsetWidth; bag.classList.add('rw-pop'); floatOver(bag, 'rw-gold', `+${e.amt}`, 1600); }, 900 + n * 70);
+      setTimeout(() => { bag.classList.remove('rw-pop'); void bag.offsetWidth; bag.classList.add('rw-pop'); }, 900 + n * 70);
       if (st.player && e.total != null) st.player.gold = e.total;
     } else if (e.k === 'rep') {
       const d = document.createElement('div');
