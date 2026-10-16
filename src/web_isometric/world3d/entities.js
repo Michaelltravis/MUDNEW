@@ -93,7 +93,7 @@ export class Entities {
     const room = this.zone.rooms.get(e.vnum);
     if (!room) return;
     const goal = new THREE.Vector3(room.ox + m.x, 0, room.oz + m.z);
-    if (!e.root || e.root.position.distanceTo(goal) > 0.15) e.goal = goal;
+    if (!e.root || e.root.position.distanceTo(goal) > 0.15) { e.goal = goal; e.then = null; }
   }
 
   // a creature or player changed rooms: walk there if the rooms open onto each other, else
@@ -119,6 +119,18 @@ export class Entities {
       if (this.onSnap) this.onSnap(e.root.position.clone(), e.goal.clone());
       e.root.position.copy(e.goal).setY(e.root.position.y);
       e.goal = null;
+      e.then = null;
+      return;
+    }
+    // a wanderer (no place from the server) goes through the opening between the two rooms,
+    // the middle of their shared side, then on to its spot: not through the wall between
+    e.then = null;
+    if (!known && joined && e.root && e.goal) {
+      const [dx, dz] = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] }[joined] || [0, 0];
+      const W = to.ox - from.ox || 24, H = to.oz - from.oz || 15;
+      const gate = new THREE.Vector3(from.ox + (dx ? (dx > 0 ? Math.abs(W) : 0) : Math.abs(W) / 2), 0,
+        from.oz + (dz ? (dz > 0 ? Math.abs(H) : 0) : Math.abs(H) / 2));
+      if (dx || dz) { e.then = e.goal; e.goal = gate; }
     }
   }
 
@@ -357,7 +369,8 @@ export class Entities {
       if (!held && e.holdUntil) e.holdUntil = 0;
       if (e.goal && !held) {
         const p = e.root.position, dx = e.goal.x - p.x, dz = e.goal.z - p.z, d = Math.hypot(dx, dz);
-        if (d < 0.1) { e.goal = null; e.rush = false; if (e.actor) e.actor.play(e.riding ? 'Idle' : isHostile(e) ? 'Idle_Combat' : e.actor.idle || 'Idle', 0.18, e.still ? 0 : 1); }
+        if (d < 0.1 && e.then) { e.goal = e.then; e.then = null; }
+        else if (d < 0.1) { e.goal = null; e.rush = false; if (e.actor) e.actor.play(e.riding ? 'Idle' : isHostile(e) ? 'Idle_Combat' : e.actor.idle || 'Idle', 0.18, e.still ? 0 : 1); }
         else {
           // (a creature charging over from next door runs)
           const speed = e.kind === 'player' ? Math.min(9 * (e.data.speed || 1), Math.max(3.2, d * 4)) : e.rush ? Math.min(7, Math.max(3.2, d * 1.6)) : 3.2;

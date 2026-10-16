@@ -514,6 +514,7 @@ async def main():
     check(followed >= 1, f'its own kind follows it ({followed} of 2)')
     for m in herd:
         m.room.characters.remove(m)
+    check('e.then = e.goal; e.goal = gate' in src('entities.js'), '/play: a wanderer goes through the opening between two rooms, not the wall')
 
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
