@@ -2548,6 +2548,7 @@ class CombatHandler:
         if random.randint(1, 100) <= flee_chance:
             direction = random.choice(available_exits)
             enemy = player.fighting
+            cls._got_away(player)
 
             await cls.end_combat(player, enemy)
 
@@ -2567,6 +2568,18 @@ class CombatHandler:
             await player.send(f"{c['yellow']}You lose {exp_loss} experience points.{c['reset']}")
         else:
             await player.send(f"{c['red']}You fail to flee ({flee_risk} risk)!{c['reset']}")
+
+    @staticmethod
+    def _got_away(player):
+        """Fled or escaped: the creatures fighting them let them go a while (reach.lost: they
+        do not spot them next door and charge straight back)."""
+        try:
+            import reach
+            for ch in list(getattr(player.room, 'characters', ()) or ()):
+                if not hasattr(ch, 'connection') and getattr(ch, 'fighting', None) is player:
+                    reach.lost(ch, player)
+        except Exception:
+            pass
 
     @staticmethod
     def _may_take(player, exit_data) -> bool:
@@ -2615,6 +2628,7 @@ class CombatHandler:
             return False
 
         enemy = player.fighting
+        cls._got_away(player)
         await cls.end_combat(player, enemy)
         await player.send(f"{c['green']}You escape {direction}!{c['reset']}")
         await player.room.send_to_room(
