@@ -413,6 +413,9 @@ async function runGame() {
   const castbar = createCastbar($('#castbar'));
   const ctxMenu = createContextMenu($('#ctx-menu'));
   let zone = null, hero = null, ctl = null, sync = null, heroRoom = null;
+  // (seamless borders: the zone maps in hand, by zone number; the compass steps)
+  const zmCache = new Map();
+  const CARDS = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
   let starting = null, slide = null, hop = null, lastPayload = null, leashToast = 0, doorToast = 0;
   // stairs and other passages: a gate keeps the ones you arrived beside quiet until you mean
   // them (passages.js); `climb` is the short step onto or off the stairs around a hop
@@ -511,8 +514,6 @@ async function runGame() {
   // ---- seamless borders (docs/OPEN_WORLD.md, phase 3) ----
   // The maps of the zones next door are fetched as a zone is entered, kept, and drawn past its
   // borders (zone.addGhost): crossing a border is then a step, not a load and a fade.
-  const zmCache = new Map();     // zone number -> its zone map
-  const CARDS = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
   async function nextDoor(z) {
     const seen = new Set();
     for (const room of z.rooms.values()) {
