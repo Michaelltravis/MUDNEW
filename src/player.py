@@ -1258,6 +1258,7 @@ class Player(Character):
             'skills': self.skills,
             'spells': self.spells,
             'talents': getattr(self, 'talents', {}),
+            'quest_tracking': dict(getattr(self, 'quest_tracking', None) or {}),
             'path': getattr(self, 'path', None),
             'path_switch_available': getattr(self, 'path_switch_available', False),
             'quests_completed': self.quests_completed,
@@ -1512,6 +1513,7 @@ class Player(Character):
                 if old_key in player.skills:
                     player.skills.setdefault(new_key, player.skills.pop(old_key))
             player.talents = data.get('talents', {})
+            player.quest_tracking = dict(data.get('quest_tracking', {}) or {})
             player.path = data.get('path', None)
             player.path_switch_available = data.get('path_switch_available', False)
             player.quests_completed = data.get('quests_completed', [])

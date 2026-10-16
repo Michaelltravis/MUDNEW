@@ -28,7 +28,7 @@ REFUSAL_RE = re.compile(
     r"Huh\?|Cast what|Use what|That (?:spell|skill|ability)|.*\bon cooldown\b|.*\bisn't ready\b)", re.I)
 # the fight's own lines when no action is open (ticks, procs, charges, a health bar)
 COMBAT_RE = re.compile(
-    r'(looks ill from |You take \d+ damage from |You heal \d+ HP from |The effect of .+ wears off|'
+    r'(looks ill from |You shudder from the poison|You take \d+ damage from |You heal \d+ HP from |The effect of .+ wears off|'
     r'Arcane charges? |\[Arcane Charges: |fizzles|STAGGERED|\[[█░▓▒ ]{5,}\]|\[\d+ damage\]|'
     r'\*\*\* CRITICAL|OBLITERATES|ANNIHILATES|DEVASTATES|MASSACRES|^[💥💤✨🔥❄⚡🩸☠🌀🛡]\s|'
     r'^[\w\' -]+ attacks (?:you|[A-Z]\w+)!$|^You attack .+!$)')

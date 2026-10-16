@@ -242,6 +242,14 @@ class CommandHandler:
             await cls.handle_olc_input(player, cmd, args)
             return
 
+        # a pull just refused (reach.webpull said why): the attack or ability the web client sent
+        # straight after it would only add "Cast the spell on whom?", so it is let go
+        refused = getattr(player, '_pull_refused', None)
+        if refused and not (cmd or '').startswith('web'):
+            player._pull_refused = None
+            if time.monotonic() - refused < 2.0:
+                return
+
         # Clear help pagination on any other input
         if hasattr(player, 'help_pagination'):
             player.help_pagination = None
@@ -1060,6 +1068,26 @@ class CommandHandler:
         from quests import QuestManager
         for c in cls.UI_SEEN.get((args or [''])[0].lower(), ()):
             await QuestManager.check_tutorial_progress(player, c)
+
+    @classmethod
+    async def cmd_webtrack(cls, player: 'Player', args: List[str]):
+        """Internal, for the 3D web client (/play): "webtrack hide|show <quest id>": whether the
+        quest tracker under the minimap follows a quest (quest_guide.tracked, player.quest_tracking). Saved with the
+        character; the quest itself is untouched (the journal still has it)."""
+        if len(args) < 2 or args[0] not in ('hide', 'show'):
+            return
+        qid = args[1]
+        if not any(q.quest_id == qid for q in getattr(player, 'active_quests', None) or []):
+            return
+        if getattr(player, 'quest_tracking', None) is None:
+            player.quest_tracking = {}
+        player.quest_tracking[qid] = args[0] == 'show'
+        wm = getattr(player.world, 'web_map', None)
+        if wm:
+            try:
+                await wm.notify_player(player)
+            except Exception:
+                pass
 
     @classmethod
     async def cmd_webpull(cls, player: 'Player', args: List[str]):
@@ -8104,8 +8132,13 @@ class CommandHandler:
         if player.char_class.lower() != 'thief':
             await player.send(f"{c['red']}Only thieves can use pocket sand!{c['reset']}")
             return
-        if not player.is_fighting:
-            await player.send(f"{c['red']}You must be fighting to use this!{c['reset']}")
+        # an opener too: thrown at a foe named (or the one fought), and the fight begins
+        target = player.find_target_in_room(' '.join(args)) if args else getattr(player, 'fighting', None)
+        if target is None or target is player:
+            await player.send(f"{c['yellow']}Throw sand at whom?{c['reset']}" if not args else f"{c['red']}You don't see '{args[0]}' here.{c['reset']}")
+            return
+        if not player.is_fighting and 'peaceful' in (player.room.flags or ()):
+            await player.send(f"{c['yellow']}You can't do that here.{c['reset']}")
             return
         now = time.time()
         if now < getattr(player, 'pocket_sand_cooldown', 0):
@@ -8122,7 +8155,6 @@ class CommandHandler:
             return
         player.luck_points -= cost
         player.pocket_sand_cooldown = now + 20
-        target = player.fighting
         blind_rounds = 2
         dirty_rank = TalentManager.get_talent_rank(player, 'dirty_fighting')
         blind_rounds += dirty_rank
@@ -8132,6 +8164,9 @@ class CommandHandler:
         if hasattr(target, 'send'):
             await target.send(f"{c['red']}{player.name} throws sand in your eyes! You can't see!{c['reset']}")
         await player.room.send_to_room(f"{player.name} throws sand in {target.name}'s face!", exclude=[player, target])
+        if not player.is_fighting and target.room is player.room:
+            from combat import CombatHandler
+            await CombatHandler.start_combat(player, target)
         # Vanishing act talent
         if TalentManager.has_talent(player, 'vanishing_act'):
             player.flags.add('hidden')

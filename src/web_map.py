@@ -1234,6 +1234,7 @@ class WebMapServer:
                             'id': q.quest_id, 'name': q.name, 'description': q.description,
                             'objectives': objs, 'rewards': q.rewards,
                             'complete': q.is_complete(), 'remaining_min': remaining,
+                            'tracked': __import__('quest_guide').tracked(player, q),
                         })
                     # available from NPCs present in the room
                     givers = []
