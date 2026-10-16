@@ -166,32 +166,72 @@ def pulled(mob, within=60.0):
     return _time.time() - (getattr(mob, 'pulled_at', 0) or 0) < within
 
 
-def pull(world, player, mob):
-    """Bring a creature struck from the next room into the hero's room, where it steps in at
-    the point nearest where it stood (a point inside the room is never further from anything
-    in it than the creature was). The move is made at once (the blow that follows finds it
-    here); the rooms are told, and the 3D clients shown, a moment later. True when it came."""
-    here, there = player.room, mob.room
-    d = joined(world, here, there)
+NOTICE = 16.0           # metres across an open way an aggressive creature notices a hero from
+
+
+def noticed(world, mob, spared=lambda ch: False):
+    """The hero next door an aggressive creature notices (docs/OPEN_WORLD.md, phase 4: creatures
+    see across the open land, not only into their own room): the nearest player with a position
+    in a room joined to its own by an open way, within NOTICE metres, not hiding, not spared;
+    never from or into a peaceful room or a room creatures keep out of. Else None."""
+    here = getattr(mob, 'room', None)
+    if here is None or getattr(mob, 'fighting', None) or hasattr(mob, 'connection'):
+        return None
+    flags = set(getattr(mob, 'flags', ()) or ())
+    if flags & {'sentinel', 'boss'} or getattr(mob, 'special', None) in SERVICE or getattr(mob, 'owner', None) is not None:
+        return None
+    if getattr(mob, 'position', '') == 'sleeping' or 'blind' in (getattr(mob, 'affect_flags', None) or ()):
+        return None
+    if 'peaceful' in (here.flags or ()):
+        return None
+    try:
+        from mobs import KEEP_OUT
+    except Exception:
+        KEEP_OUT = {'no_mob'}
+    best, best_d = None, NOTICE
+    for _d, room in neighbours(world, here):
+        if 'peaceful' in (room.flags or ()) or (KEEP_OUT & set(room.flags or ())):
+            continue
+        for ch in room.characters:
+            if not hasattr(ch, 'connection') or cr.pos_of(ch) is None or spared(ch):
+                continue
+            if {'hidden', 'sneaking'} & set(getattr(ch, 'flags', ()) or ()):
+                continue
+            if getattr(room, 'sector_type', '') == 'city' and getattr(mob, 'level', 0) - getattr(ch, 'level', 0) > 5:
+                continue
+            dist = distance(world, mob, ch)
+            if dist is not None and dist <= best_d:
+                best, best_d = ch, dist
+    return best
+
+
+def bring(world, mob, to_room, struck=False):
+    """Move a creature into the room next door (joined by an open way), stepping in at the point
+    nearest where it stood; the rooms are told, the 3D clients shown it running in. `struck`: it
+    was hit from afar (a pull: it calls no friends). True when it came."""
+    there = mob.room
+    d = joined(world, to_room, there)
     if d is None:
         return False
     wpos = world_pos(world, mob)
     import map_system
     back = map_system.REVERSE_DIR.get(d, d)
-    import time as _time
-    mob.pulled_at = _time.time()      # struck from afar: its friends saw nothing (no call for help)
+    if struck:
+        import time as _time
+        mob.pulled_at = _time.time()  # struck from afar: its friends saw nothing (no call for help)
     if mob in there.characters:
         there.characters.remove(mob)
-    mob.room = here
-    here.characters.append(mob)
+    mob.room = to_room
+    to_room.characters.append(mob)
     if wpos is not None:
-        x, z = _clamp_into(world, here, wpos)
+        x, z = _clamp_into(world, to_room, wpos)
         cr.set_pos(mob, x, z)
+
     async def tell():
         try:
-            await there.send_to_room(f"{mob.name} is struck from afar and charges off {back}!")
-            await here.send_to_room(f"{mob.name} charges in from the {d}!")
-            await mob._notify_move(there, here, back, d)
+            await there.send_to_room(f"{mob.name} {'is struck from afar and charges' if struck else 'charges'} off {back}!")
+            await to_room.send_to_room(f"{mob.name} charges in from the {d}!")
+            await mob._notify_move(there, to_room, back, d)
         except Exception:
             pass
     try:
@@ -200,6 +240,14 @@ def pull(world, player, mob):
     except RuntimeError:
         pass                                        # no loop (a test): the move stands
     return True
+
+
+def pull(world, player, mob):
+    """Bring a creature struck from the next room into the hero's room, where it steps in at
+    the point nearest where it stood (a point inside the room is never further from anything
+    in it than the creature was). The move is made at once (the blow that follows finds it
+    here); the rooms are told, and the 3D clients shown, a moment later. True when it came."""
+    return bring(world, mob, player.room, struck=True)
 
 
 async def webpull(player, args):

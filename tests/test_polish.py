@@ -460,6 +460,61 @@ async def main():
     check('room.zoneRef.wild' in src('terrain.js') and 'this.wild = !!zm.wild' in src('zone.js'),
           "/play: an opened zone's land runs on past its edge")
 
+    # a living world (phase 4): an aggressive creature sees a hero across an open way and comes;
+    # its own kind follows when it wanders
+    # (out in the open: a pair of the Plains' rooms joined by a new way, each 3 m from the edge)
+    hv, hd, tv = wild[0]
+    here, there = world.rooms[hv], world.rooms[tv]
+    edge = {'east': ((21.0, 7.5), (3.0, 7.5)), 'west': ((3.0, 7.5), (21.0, 7.5)),
+            'south': ((12.0, 12.0), (12.0, 3.0)), 'north': ((12.0, 3.0), (12.0, 12.0))}[hd]
+    seer = Player.create_new(name='Seen', password=None, race='human', char_class='warrior',
+                             stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    seer.world, seer.room, seer.connection, seer.level = world, here, object(), 30
+    seer.send = note
+    here.characters.append(seer)
+    seer.web_pos = (here.vnum, *edge[0])
+    wolf = create_mob_from_prototype(next(iter(world.mob_prototypes.values())), world)
+    wolf.flags = set(f for f in (wolf.flags or ()) if f not in ('sentinel', 'boss')) | {'aggressive'}
+    wolf.special, wolf.owner, wolf.fighting, wolf.level = None, None, None, 30
+    wolf.room = there
+    there.characters.append(wolf)
+    cr.set_pos(wolf, *edge[1])
+    world.npcs.append(wolf)
+    import mobs as _mobs
+    check(reach.noticed(world, wolf, spared=_mobs.spared) is seer, f'an aggressive creature sees a hero 6 m off across an open way ({hv} {hd} {tv})')
+    seer.flags.add('hidden')
+    check(reach.noticed(world, wolf) is None, 'not one hiding')
+    seer.flags.discard('hidden')
+    cr.set_pos(wolf, *(23.0 - edge[1][0], edge[1][1]) if hd in ('east', 'west') else (edge[1][0], 14.0 - edge[1][1]))
+    check(reach.noticed(world, wolf) is None, 'nor one too far off')
+    cr.set_pos(wolf, *edge[1])
+    came = await wolf._charge_next_door()
+    check(came and wolf.room is here and wolf.fighting is seer, 'it charges in and attacks')
+    for ch in (wolf, seer):
+        ch.fighting = None
+    here.characters.remove(wolf)
+    here.characters.remove(seer)
+    world.npcs.remove(wolf)
+    # a herd: its kind idling where it was may follow it
+    import random as _random
+    proto = next(iter(world.mob_prototypes.values()))
+    herd = [create_mob_from_prototype(proto, world) for _ in range(3)]
+    for m in herd:
+        m.flags = set(f for f in (m.flags or ()) if f != 'sentinel')
+        m.fighting, m.owner, m.room, m.home_zone = None, None, there, None
+        there.characters.append(m)
+    _state = _random.getstate()
+    _random.seed(1)
+    there.characters.remove(herd[0])
+    herd[0].room = here
+    here.characters.append(herd[0])
+    await herd[0]._herd_follows(there, 'west', here, 'east')
+    _random.setstate(_state)
+    followed = sum(1 for m in herd[1:] if m.room is here)
+    check(followed >= 1, f'its own kind follows it ({followed} of 2)')
+    for m in herd:
+        m.room.characters.remove(m)
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 
