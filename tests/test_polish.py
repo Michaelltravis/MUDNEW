@@ -442,8 +442,10 @@ async def main():
            and [cell[w[2]][0] - cell[w[0]][0], cell[w[2]][1] - cell[w[0]][1]] == list(wilds.STEP[w[1]])
            and world.rooms[w[2]].exits[wilds.BACK[w[1]]]['to_room'] == w[0])]
     check(not bad, f'each joins two outdoor rooms side by side on the map, both ways ({bad[:3]})')
-    check(not any(e.get('wild') for r in map_system.build_zonemap(world, 30)['rooms'] for e in r['exits'].values()),
-          'a zone not opened keeps its ways as written')
+    check(not any(e.get('wild') for z in wilds.CLOSED_ZONES for r in (map_system.build_zonemap(world, z) or {'rooms': []})['rooms']
+                  for e in r['exits'].values()), 'a zone kept closed (the God Rooms) keeps its ways as written')
+    opened = sum(1 for z in world.zones if (map_system.build_zonemap(world, z) or {}).get('wild'))
+    check(opened > 100, f'every zone is opened ({opened})')
     v, d, t = wild[0]
     check(reach.joined(world, world.rooms[v], world.rooms[t]) == d, 'reach and pulls follow a new way')
     walker = Player.create_new(name='Wanderer', password=None, race='human', char_class='warrior',
