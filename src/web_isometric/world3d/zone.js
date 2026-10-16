@@ -26,6 +26,7 @@ export class Zone {
     this.zm = zm;
     this.num = zm.zone;
     this.name = zm.name;
+    this.wild = !!zm.wild;       // an opened zone (wilds.py): its outdoor land runs on past its rooms
     this.rooms = new Map();
     this.dared = new Set();     // death traps the hero chose to walk into anyway (E at the edge)
     this.cells = new Map();

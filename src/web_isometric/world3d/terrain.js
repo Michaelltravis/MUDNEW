@@ -435,16 +435,21 @@ function fillerLand(c, theme) {
   const trees = (edge ? edge.trees : theme === 'swamp' ? ['DeadTree_1', 'DeadTree_2'].map(k => N.get(k))
     : ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'Pine_1', 'Pine_2'].map(k => N.get(k))).filter(Boolean);
   const rockOf = k => edge && edge.rock ? edge.rock(k) : N.get(k);
-  const HW = W / 2, HH = H / 2;
+  // half the empty cell (a room on its far side fills the other half); in an opened zone
+  // (wilds.py) the land at the zone's edge runs on a cell and a half, into the fog
+  const wild = !!room.zoneRef.wild;
+  const far = (dx, dy) => (wild && empty(2 * dx, 2 * dy) ? 1.5 : 0.5);
+  const HWx = dx => W * far(dx, 0), HHy = dy => H * far(0, dy);
   // the patches to fill, in world metres: [x0, z0, w, d, outward axis ('x'|'z'), outward sign]
   const patches = [];
-  if (empty(0, -1)) patches.push([ox, oz - HH, W, HH, 'z', -1]);
-  if (empty(0, 1)) patches.push([ox, oz + H, W, HH, 'z', 1]);
-  if (empty(-1, 0)) patches.push([ox - HW, oz, HW, H, 'x', -1]);
-  if (empty(1, 0)) patches.push([ox + W, oz, HW, H, 'x', 1]);
+  if (empty(0, -1)) patches.push([ox, oz - HHy(-1), W, HHy(-1), 'z', -1]);
+  if (empty(0, 1)) patches.push([ox, oz + H, W, HHy(1), 'z', 1]);
+  if (empty(-1, 0)) patches.push([ox - HWx(-1), oz, HWx(-1), H, 'x', -1]);
+  if (empty(1, 0)) patches.push([ox + W, oz, HWx(1), H, 'x', 1]);
   for (const [dx, dy] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
     if (empty(dx, dy) && empty(dx, 0) && empty(0, dy)) {
-      patches.push([dx < 0 ? ox - HW : ox + W, dy < 0 ? oz - HH : oz + H, HW, HH, 'c', 0]);
+      const cw = Math.min(HWx(dx), wild && empty(2 * dx, 2 * dy) ? HWx(dx) : W / 2), cd = Math.min(HHy(dy), wild && empty(2 * dx, 2 * dy) ? HHy(dy) : H / 2);
+      patches.push([dx < 0 ? ox - cw : ox + W, dy < 0 ? oz - cd : oz + H, cw, cd, 'c', 0]);
     }
   }
   if (!patches.length) return;

@@ -803,6 +803,13 @@ class World:
             setpieces.annotate(self)          # landmark and boss rooms laid out by hand
         except Exception as e:
             logger.warning(f"Failed to work out room looks: {e}")
+        # open ground (wilds.py): side-by-side outdoor rooms of the opened zones join up (after the
+        # looks: whether a room is open country is its look; before the tutorials' routes)
+        try:
+            import wilds
+            wilds.apply(self)
+        except Exception as e:
+            logger.error(f"open ground failed: {e}")
 
         # how many of each set's pieces one hero can wear (sets.py: every tier can be reached)
         try:

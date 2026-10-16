@@ -431,6 +431,33 @@ async def main():
     check('leapAcross(t, then)' in src('main.js') and "ab.shape === 'dash'" in src('hud/hud.js'),
           '/play leaps across an open way, and lights the leaps that reach')
 
+    # open ground (wilds.py): an opened zone's side-by-side outdoor rooms join up
+    import wilds
+    import map_system
+    zm60 = map_system.build_zonemap(world, 60)
+    wild = [(r['vnum'], d, e['to']) for r in zm60['rooms'] for d, e in r['exits'].items() if e.get('wild')]
+    check(zm60.get('wild') and len(wild) >= 20, f'the Plains are opened: {len(wild)} new ways between side-by-side outdoor rooms')
+    cell = {r['vnum']: r['cell'] for r in zm60['rooms']}
+    bad = [w for w in wild if not (wilds.open_ground(world.rooms[w[0]]) and wilds.open_ground(world.rooms[w[2]])
+           and [cell[w[2]][0] - cell[w[0]][0], cell[w[2]][1] - cell[w[0]][1]] == list(wilds.STEP[w[1]])
+           and world.rooms[w[2]].exits[wilds.BACK[w[1]]]['to_room'] == w[0])]
+    check(not bad, f'each joins two outdoor rooms side by side on the map, both ways ({bad[:3]})')
+    check(not any(e.get('wild') for r in map_system.build_zonemap(world, 30)['rooms'] for e in r['exits'].values()),
+          'a zone not opened keeps its ways as written')
+    v, d, t = wild[0]
+    check(reach.joined(world, world.rooms[v], world.rooms[t]) == d, 'reach and pulls follow a new way')
+    walker = Player.create_new(name='Wanderer', password=None, race='human', char_class='warrior',
+                               stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    walker.world, walker.room, walker.connection = world, world.rooms[v], object()
+    walker.send = note
+    world.rooms[v].characters.append(walker)
+    walker.move = walker.max_move = 500
+    await CommandHandler.execute(walker, 'webmove', [str(v), str(t), d])
+    check(walker.room is world.rooms[t], f'a player walks across it ({v} {d} -> {walker.room.vnum})')
+    walker.room.characters.remove(walker)
+    check('room.zoneRef.wild' in src('terrain.js') and 'this.wild = !!zm.wild' in src('zone.js'),
+          "/play: an opened zone's land runs on past its edge")
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 
