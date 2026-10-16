@@ -15,8 +15,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# the zones opened so far (owner: "go ahead with phase 1, you pick the zone")
-WILD_ZONES = {60}          # Plains: forest, fields and standing stones beyond Garathorm
+# the zones opened: every zone (owner: "finish all the other zones"), save any listed here as
+# kept to their written ways (None in WILD_ZONES: all of them)
+WILD_ZONES = None
+CLOSED_ZONES = {12}        # the God Rooms
 LAND = {'forest', 'darkforest', 'field', 'hills', 'desert', 'snow', 'swamp', 'stones', 'shore'}
 WALLED_FLAGS = {'death', 'imm_only', 'private', 'tunnel', 'indoors', 'no_wild', 'godroom'}
 STEP = {'north': (0, -1), 'south': (0, 1), 'east': (1, 0), 'west': (-1, 0)}
@@ -99,8 +101,9 @@ def join_zone(world, zone_num):
 
 def apply(world):
     total = 0
-    for z in sorted(WILD_ZONES):
-        if z in getattr(world, 'zones', {}):
+    zones = getattr(world, 'zones', {})
+    for z in sorted(zones if WILD_ZONES is None else WILD_ZONES):
+        if z in zones and z not in CLOSED_ZONES:
             total += len(join_zone(world, z))
     if total:
         logger.info(f"open ground: {total} ways between side-by-side outdoor rooms")

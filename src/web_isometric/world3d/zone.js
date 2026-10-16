@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { buildRoom, ROOM_W, ROOM_H, isIndoor } from './terrain.js';
 import { passageSpot, arrivalSpot, wantsPassage } from './passages.js';
 import { isDeadly } from './deathlogic.js';
+import { FarView } from './far.js';
 
 const FLOOR = 0, BLOCK = 1, WATER = 4;
 const LIGHTS = 6;
@@ -53,6 +54,10 @@ export class Zone {
       this.lights.push(l);
     }
     this._lightClock = 0;
+    // the rooms past the built ones, drawn cheaply, and the far hills (far.js)
+    this.far = new FarView(this);
+    // the zones next door, drawn past the border the same way (seamless borders: addGhost)
+    this.ghosts = [];
     this._releaseClock = 0;
   }
 
@@ -229,6 +234,33 @@ export class Zone {
       }
     }
     this.updateLights(dt, t, hero);
+    const here = this.roomAt(hero.x, hero.z);
+    const level = here ? here.data.level || 0 : 0;
+    this.far.update(dt, hero, level, this.engine.scene.fog && this.engine.scene.fog.color);
+    for (const g of this.ghosts) {
+      g.view.range = this.far.range;
+      g.view.update(dt, { x: hero.x - g.ox, z: hero.z - g.oz }, level === g.alevel ? g.blevel : NaN, null);
+    }
+  }
+
+  // A zone next door, from its map, drawn past the border where its way in says it lies: the
+  // room a 'zone' exit leads to sits in the cell beyond the exit's room (ocx, ocy: where its
+  // map's (0, 0) falls on ours). Only its stand-ins (far.js), none over our own rooms' ground.
+  addGhost(zm, ocx, ocy, alevel, blevel) {
+    if (this.ghosts.some(g => g.num === zm.zone) || zm.zone === this.num) return null;
+    const group = new THREE.Group();
+    group.position.set(ocx * ROOM_W, 0, ocy * ROOM_H);
+    this.group.add(group);
+    const rooms = new Map();
+    for (const r of zm.rooms) {
+      rooms.set(r.vnum, { data: r, vnum: r.vnum, cx: r.cell[0], cy: r.cell[1], ox: r.cell[0] * ROOM_W, oz: r.cell[1] * ROOM_H, built: null });
+    }
+    const view = new FarView({ num: zm.zone, rooms, group }, { horizon: false });
+    // (where one of its rooms would stand on one of ours, ours is drawn instead)
+    view.skip = r => this.cells.has(`${r.cx + ocx},${r.cy + ocy}`);
+    const g = { num: zm.zone, view, group, ocx, ocy, ox: ocx * ROOM_W, oz: ocy * ROOM_H, alevel, blevel };
+    this.ghosts.push(g);
+    return g;
   }
 
   updateLights(dt, t, hero) {
@@ -274,6 +306,9 @@ export class Zone {
 
   dispose() {
     for (const r of this.rooms.values()) this.release(r);
+    this.far.dispose();
+    for (const g of this.ghosts) { g.view.dispose(); this.group.remove(g.group); }
+    this.ghosts = [];
     this.engine.scene.remove(this.group);
   }
 

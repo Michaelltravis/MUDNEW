@@ -5,8 +5,9 @@
 // screen). Dragging right turns the view right (the camera swings the other way round).
 export const YAW_PER_PX = 0.0065;      // radians per pixel dragged sideways
 export const TILT_PER_PX = 0.15;       // degrees per pixel dragged up or down
-export const TILT_MIN = -12, TILT_MAX = 10;     // added to the zoom's own pitch
-export const PITCH_MIN = 26, PITCH_MAX = 66;    // the sun's shadow box still covers the view
+// (dragged low, the view looks out over the land to the far hills: far.js, docs/OPEN_WORLD.md)
+export const TILT_MIN = -26, TILT_MAX = 10;     // added to the zoom's own pitch
+export const PITCH_MIN = 14, PITCH_MAX = 66;    // past the sun's shadow box only the far land shows
 export const DRAG_PX = 5;              // less than this between press and release is a click
 export const CLICK_MS = 700;           // ...if it was also this quick
 const D2R = Math.PI / 180;

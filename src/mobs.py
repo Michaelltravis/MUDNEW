@@ -972,6 +972,8 @@ class Mobile(Character):
             targets.append(char)
 
         if not targets:
+            # none here: a hero in the open next door may be seen, and charged (reach.py)
+            await self._charge_next_door()
             return
 
         # Don't attack if room is peaceful
@@ -996,6 +998,22 @@ class Mobile(Character):
         from combat import CombatHandler
         await CombatHandler.start_combat(self, target)
         
+    async def _charge_next_door(self):
+        """An aggressive creature that sees a hero across an open way (reach.noticed) runs at
+        them and attacks (docs/OPEN_WORLD.md, phase 4: the land is one place)."""
+        import reach
+        world = getattr(self, 'world', None)
+        if world is None or getattr(self, 'patrol_route', None):
+            return False
+        target = reach.noticed(world, self, spared=spared)
+        if target is None or not reach.bring(world, self, target.room):
+            return False
+        c = self.config.COLORS
+        await self.room.send_to_room(f"{c['bright_red']}{self.name} spots {target.name} and attacks!{c['reset']}")
+        from combat import CombatHandler
+        await CombatHandler.start_combat(self, target)
+        return True
+
     def _lives_in_water(self) -> bool:
         """A creature of the water (flagged aquatic or swimming, or set in a water room): it may
         wander the water, where the rest keep to land."""
@@ -1066,6 +1084,29 @@ class Mobile(Character):
         opposite = self.config.DIRECTIONS.get(direction, {}).get('opposite', 'somewhere')
         await target_room.send_to_room(f"{self.name} arrives from the {opposite}.")
         await self._notify_move(old_room, target_room, direction, opposite)
+        await self._herd_follows(old_room, direction, target_room, opposite)
+
+    async def _herd_follows(self, old_room, direction, target_room, opposite):
+        """Its own kind (the same creature) idling in the room it left may go with it, a few at
+        most: a herd moves together, a pack roams together (docs/OPEN_WORLD.md, phase 4)."""
+        vnum = getattr(self, 'vnum', None)
+        if vnum is None or 'herd_no' in self.flags:
+            return
+        went = 0
+        for m in list(old_room.characters):
+            if went >= 3:
+                break
+            if (m is self or getattr(m, 'vnum', None) != vnum or hasattr(m, 'connection') or m.fighting
+                    or 'sentinel' in m.flags or getattr(m, 'patrol_route', None) or getattr(m, 'owner', None) is not None
+                    or getattr(m, 'home_zone', None) not in (None, zone_of(target_room)) or random.random() > 0.6):
+                continue
+            old_room.characters.remove(m)
+            m.room = target_room
+            target_room.characters.append(m)
+            await old_room.send_to_room(f"{m.name} follows {direction}.")
+            await target_room.send_to_room(f"{m.name} arrives from the {opposite}.")
+            await m._notify_move(old_room, target_room, direction, opposite)
+            went += 1
 
     async def patrol_ai(self) -> bool:
         """Step to the next room of the patrol route (there and back along it); True if it moved."""

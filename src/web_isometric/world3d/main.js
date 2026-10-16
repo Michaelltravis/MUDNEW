@@ -41,6 +41,7 @@ import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
 import { createWorldMap } from './hud/worldmap.js';
 import { createAmbient } from './hud/ambient.js';
 import { AimCircle, clampAim, aimCommand } from './aim.js';
+import { FAR, farKind } from './far.js';
 
 const $ = s => document.querySelector(s);
 const WATER_TILE = 4;   // zone.js / terrain.js tile kinds
@@ -412,6 +413,9 @@ async function runGame() {
   const castbar = createCastbar($('#castbar'));
   const ctxMenu = createContextMenu($('#ctx-menu'));
   let zone = null, hero = null, ctl = null, sync = null, heroRoom = null;
+  // (seamless borders: the zone maps in hand, by zone number; the compass steps)
+  const zmCache = new Map();
+  const CARDS = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
   let starting = null, slide = null, hop = null, lastPayload = null, leashToast = 0, doorToast = 0;
   // stairs and other passages: a gate keeps the ones you arrived beside quiet until you mean
   // them (passages.js); `climb` is the short step onto or off the stairs around a hop
@@ -504,6 +508,30 @@ async function runGame() {
     ents.setZone(zone);
     loot.clear();
     mm.setZone(zone);
+    zmCache.set(zm.zone, zm);
+    nextDoor(zone);
+  }
+  // ---- seamless borders (docs/OPEN_WORLD.md, phase 3) ----
+  // The maps of the zones next door are fetched as a zone is entered, kept, and drawn past its
+  // borders (zone.addGhost): crossing a border is then a step, not a load and a fade.
+  async function nextDoor(z) {
+    const seen = new Set();
+    for (const room of z.rooms.values()) {
+      for (const [d, e] of Object.entries(room.data.exits || {})) {
+        if (e.kind !== 'zone' || !CARDS[d] || e.zone == null || seen.has(e.zone)) continue;
+        seen.add(e.zone);
+        let zm = zmCache.get(e.zone);
+        if (!zm) {
+          try { zm = await fetchZonemap(`vnum=${e.to}`); } catch (_) { continue; }
+          if (zm) zmCache.set(zm.zone, zm);
+        }
+        if (!zm || zone !== z) { if (zone !== z) return; continue; }
+        const b = zm.rooms.find(r => r.vnum === e.to);
+        if (!b) continue;
+        const [dx, dy] = CARDS[d];
+        z.addGhost(zm, room.cx + dx - b.cell[0], room.cy + dy - b.cell[1], room.data.level || 0, b.level || 0);
+      }
+    }
   }
 
   // hero's body is blocked by walls, and by any crossing into another room that is not an
@@ -544,6 +572,7 @@ async function runGame() {
     sound.setZoneMusic(musicFor(look));
     sound.ambience(bedFor(look));
     stepSurface = surfaceFor(look);
+    applyFar(L);
     const hour = lastPayload && lastPayload.time ? lastPayload.time.hour : 12;
     // the room's look (room_looks.py): rock is darkest, then crypts and sewers; sand, snow and ash
     // colour the day
@@ -563,6 +592,16 @@ async function runGame() {
       const mix = (a, b, k) => new THREE.Color(a).lerp(new THREE.Color(b), k).getHex();
       if (m) engine.setMood({ sun: mix(m.sun, light, 0.55), sky: mix(m.sky, light, 0.3), fog: mix(m.fog, light, 0.12) });
     }
+  }
+
+  // how far the hero sees (far.js): the quality's reach, and the far hills under open sky
+  function applyFar(L) {
+    const f = FAR[engine.quality && engine.quality.name] || FAR.high;
+    engine.farSight = f.sight;
+    if (!zone || !zone.far) return;
+    zone.far.range = f.range;      // (the zones next door follow it: zone.update)
+    const kind = farKind(L && L.theme);
+    zone.far.outdoors = !!L && !L.dark && kind !== 'none' && kind !== 'roof';
   }
 
   // ---- walking between rooms ----
@@ -644,12 +683,15 @@ async function runGame() {
   function startHop(ps) {
     const spot = zone.passageWorld(heroRoom, ps.dir);
     const stairs = ps.dir === 'up' || ps.dir === 'down';
-    hop = { from: heroRoom, dir: ps.dir, to: ps.exit.to, kind: ps.exit.kind, at: performance.now() };
+    // (a zone next door whose map is in hand, across a compass side: walked into, not loaded)
+    const seamless = ps.exit.kind === 'zone' && !!CARDS[ps.dir] && zmCache.has(ps.exit.zone);
+    hop = { from: heroRoom, dir: ps.dir, to: ps.exit.to, kind: ps.exit.kind, zone: ps.exit.zone, seamless, at: performance.now() };
     ctl.halt();
-    sound.play(stairs ? stepSurface : 'hop');
+    if (!seamless) sound.play(stairs ? stepSurface : 'hop');
     sync.walked(heroRoom.vnum, ps.exit.to, ps.dir);
     // step onto the stairs (a little up, or down into the stairwell) while the screen dims
-    climb = { from: hero.root.position.clone(), to: spot.setY(stairs ? (ps.dir === 'up' ? 0.5 : -0.6) : 0), t: 0, dur: 0.35 };
+    climb = { from: hero.root.position.clone(), to: spot.setY(stairs ? (ps.dir === 'up' ? 0.5 : -0.6) : 0), t: 0, dur: seamless ? 0.2 : 0.35 };
+    if (seamless) return;
     const v = $('#vignette');
     v.style.transition = 'background .25s'; v.style.background = 'rgba(4,4,8,.9)';
   }
@@ -659,14 +701,16 @@ async function runGame() {
     h.loading = true;
     try {
       if (h.kind === 'zone' || !zone.rooms.get(v)) {
-        let zm = null;
-        try { zm = await fetchZonemap(`vnum=${v}`); } catch (_) {
-          try { zm = await fetchZonemap(`vnum=${v}`); } catch (err) { zm = null; }
+        let zm = h.zone != null ? zmCache.get(h.zone) : null;
+        if (!zm || !zm.rooms.some(r => r.vnum === v)) {
+          try { zm = await fetchZonemap(`vnum=${v}`); } catch (_) {
+            try { zm = await fetchZonemap(`vnum=${v}`); } catch (err) { zm = null; }
+          }
         }
         if (!zm) { hop = null; climb = null; return relocate(v); }
         enterZone(zm);
         const r = zone.rooms.get(v);
-        land(r, zone.arrival(r, h.from.vnum, h.dir), h.from.vnum);
+        land(r, zone.arrival(r, h.from.vnum, h.dir), h.from.vnum, h.seamless);
         hud.banner(r.name, zone.name);
         if (lastPayload) { ents.sync(lastPayload, MH.state.playerName); loot.sync(lastPayload); }
       } else {
@@ -682,7 +726,7 @@ async function runGame() {
     else travel = null;
   }
   // arrive: appear on the passage that leads back, then step off it to the arrival point
-  function land(room, at, fromVnum) {
+  function land(room, at, fromVnum, seamless = false) {
     zone.prebuild(room, 1);
     const side = Object.keys(room.data.exits).find(d => room.data.exits[d].to === fromVnum && room.data.exits[d].kind !== 'open');
     const from = side ? zone.passageWorld(room, side) : at.clone();
@@ -690,9 +734,9 @@ async function runGame() {
     ctl.halt();
     engine.rig.target.copy(at);
     engine.placeCamera(true);
-    climb = { from: from.setY(side === 'up' ? 0.5 : side === 'down' ? -0.6 : 0), to: at.clone(), t: 0, dur: 0.3 };
+    climb = { from: from.setY(side === 'up' ? 0.5 : side === 'down' ? -0.6 : 0), to: at.clone(), t: 0, dur: seamless ? 0.2 : 0.3 };
     hero.root.position.copy(climb.from);
-    flashDip();
+    if (!seamless) flashDip();          // (across a border into land already in sight: no dip)
     gate.landed(performance.now());
   }
 
@@ -1257,7 +1301,10 @@ async function runGame() {
     if (ent) menuFor({ kind: ent.kind === 'player' ? 'player' : 'mob', ent }, x, y);
   });
   // graphics quality from Settings, at once (only smoother edges wait for a reload)
-  MH.bus.on('hud.quality', q => { if (engine.setQuality(q)) hud.toast('Smoother edges come with the next reload'); });
+  MH.bus.on('hud.quality', q => {
+    if (engine.setQuality(q)) hud.toast('Smoother edges come with the next reload');
+    if (heroRoom) applyFar(zone.layoutOf(heroRoom));
+  });
 
   // ---- a marked blow coming at you: Q brace, E sidestep, X interrupt (reactions.js) ----
   const react = new ReactionPrompt();

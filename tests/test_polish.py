@@ -442,8 +442,10 @@ async def main():
            and [cell[w[2]][0] - cell[w[0]][0], cell[w[2]][1] - cell[w[0]][1]] == list(wilds.STEP[w[1]])
            and world.rooms[w[2]].exits[wilds.BACK[w[1]]]['to_room'] == w[0])]
     check(not bad, f'each joins two outdoor rooms side by side on the map, both ways ({bad[:3]})')
-    check(not any(e.get('wild') for r in map_system.build_zonemap(world, 30)['rooms'] for e in r['exits'].values()),
-          'a zone not opened keeps its ways as written')
+    check(not any(e.get('wild') for z in wilds.CLOSED_ZONES for r in (map_system.build_zonemap(world, z) or {'rooms': []})['rooms']
+                  for e in r['exits'].values()), 'a zone kept closed (the God Rooms) keeps its ways as written')
+    opened = sum(1 for z in world.zones if (map_system.build_zonemap(world, z) or {}).get('wild'))
+    check(opened > 100, f'every zone is opened ({opened})')
     v, d, t = wild[0]
     check(reach.joined(world, world.rooms[v], world.rooms[t]) == d, 'reach and pulls follow a new way')
     walker = Player.create_new(name='Wanderer', password=None, race='human', char_class='warrior',
@@ -457,6 +459,66 @@ async def main():
     walker.room.characters.remove(walker)
     check('room.zoneRef.wild' in src('terrain.js') and 'this.wild = !!zm.wild' in src('zone.js'),
           "/play: an opened zone's land runs on past its edge")
+
+    # a living world (phase 4): an aggressive creature sees a hero across an open way and comes;
+    # its own kind follows when it wanders
+    # (out in the open: a pair of the Plains' rooms joined by a new way, each 3 m from the edge)
+    hv, hd, tv = wild[0]
+    here, there = world.rooms[hv], world.rooms[tv]
+    edge = {'east': ((21.0, 7.5), (3.0, 7.5)), 'west': ((3.0, 7.5), (21.0, 7.5)),
+            'south': ((12.0, 12.0), (12.0, 3.0)), 'north': ((12.0, 3.0), (12.0, 12.0))}[hd]
+    seer = Player.create_new(name='Seen', password=None, race='human', char_class='warrior',
+                             stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    seer.world, seer.room, seer.connection, seer.level = world, here, object(), 30
+    seer.send = note
+    here.characters.append(seer)
+    seer.web_pos = (here.vnum, *edge[0])
+    wolf = create_mob_from_prototype(next(iter(world.mob_prototypes.values())), world)
+    wolf.flags = set(f for f in (wolf.flags or ()) if f not in ('sentinel', 'boss')) | {'aggressive'}
+    wolf.special, wolf.owner, wolf.fighting, wolf.level = None, None, None, 30
+    wolf.room = there
+    there.characters.append(wolf)
+    cr.set_pos(wolf, *edge[1])
+    world.npcs.append(wolf)
+    import mobs as _mobs
+    check(reach.noticed(world, wolf, spared=_mobs.spared) is seer, f'an aggressive creature sees a hero 6 m off across an open way ({hv} {hd} {tv})')
+    seer.flags.add('hidden')
+    check(reach.noticed(world, wolf) is None, 'not one hiding')
+    seer.flags.discard('hidden')
+    cr.set_pos(wolf, *(23.0 - edge[1][0], edge[1][1]) if hd in ('east', 'west') else (edge[1][0], 14.0 - edge[1][1]))
+    check(reach.noticed(world, wolf) is None, 'nor one too far off')
+    cr.set_pos(wolf, *edge[1])
+    came = await wolf._charge_next_door()
+    check(came and wolf.room is here and wolf.fighting is seer, 'it charges in and attacks')
+    for ch in (wolf, seer):
+        ch.fighting = None
+    here.characters.remove(wolf)
+    here.characters.remove(seer)
+    world.npcs.remove(wolf)
+    # a herd: its kind idling where it was may follow it
+    import random as _random
+    proto = next(iter(world.mob_prototypes.values()))
+    herd = [create_mob_from_prototype(proto, world) for _ in range(3)]
+    for m in herd:
+        m.flags = set(f for f in (m.flags or ()) if f != 'sentinel')
+        m.fighting, m.owner, m.room, m.home_zone = None, None, there, None
+        there.characters.append(m)
+    _state = _random.getstate()
+    _random.seed(1)
+    there.characters.remove(herd[0])
+    herd[0].room = here
+    here.characters.append(herd[0])
+    await herd[0]._herd_follows(there, 'west', here, 'east')
+    _random.setstate(_state)
+    followed = sum(1 for m in herd[1:] if m.room is here)
+    check(followed >= 1, f'its own kind follows it ({followed} of 2)')
+    for m in herd:
+        m.room.characters.remove(m)
+    check('e.then = e.goal; e.goal = gate' in src('entities.js'), '/play: a wanderer goes through the opening between two rooms, not the wall')
+    check('new FarView(this)' in src('zone.js') and 'farSight' in src('engine.js') and 'export const FAR' in src('far.js'),
+          '/play: rooms past the built ones are drawn cheaply, the haze lies further off outdoors')
+    check('addGhost(zm' in src('zone.js') and 'nextDoor(zone)' in src('main.js') and 'h.seamless' in src('main.js'),
+          '/play: the zones next door are drawn past the border and walked into without a load or a fade')
 
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)

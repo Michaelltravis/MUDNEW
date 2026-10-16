@@ -203,7 +203,10 @@ export function createEngine(container, opts = {}) {
     hemi.color.set(cur.sky); hemi.groundColor.set(cur.ground); hemi.intensity = cur.hemi * dim;
     sun.color.set(cur.sun); sun.intensity = cur.sunI * dim;
     scene.fog.color.set(cur.fog).multiplyScalar(1 - 0.85 * darkNow);
-    scene.fog.near = cur.near * (1 - 0.4 * gloomNow) * (1 - 0.5 * darkNow); scene.fog.far = cur.far * (1 - 0.5 * gloomNow) * (1 - 0.45 * darkNow);
+    // under open sky the haze lies further off (far.js draws what is out there; by quality)
+    const sight = (cur.bg ?? 0) >= 0.75 ? (api.farSight || 1) : 1;
+    scene.fog.near = cur.near * (1 + (sight - 1) * 0.5) * (1 - 0.4 * gloomNow) * (1 - 0.5 * darkNow);
+    scene.fog.far = cur.far * sight * (1 - 0.5 * gloomNow) * (1 - 0.45 * darkNow);
     // under open sky the distance fades into the haze itself; enclosed, into the dark
     scene.background.set(cur.fog).multiplyScalar(cur.bg ?? 0.35);
     if (darkNow > 0.01) scene.background.multiplyScalar(1 - 0.9 * darkNow);
