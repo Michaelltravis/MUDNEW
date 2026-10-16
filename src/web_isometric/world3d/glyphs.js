@@ -7,7 +7,7 @@
 // radius ~45, so a particle can spin without its corners being cut off.
 
 export const GLYPHS = ['dot', 'star', 'note', 'notes', 'skull', 'bone', 'cross', 'snow', 'bolt', 'leaf', 'feather',
-  'coin', 'die', 'rune', 'sun', 'drop', 'flame', 'petal', 'shard', 'dagger', 'eye', 'chevron', 'paw', 'wisp', 'ring'];
+  'coin', 'die', 'rune', 'sun', 'drop', 'flame', 'petal', 'shard', 'dagger', 'eye', 'chevron', 'paw', 'wisp', 'ring', 'bubble'];
 export const ATLAS_COLS = 5;
 export const CELL = 96;
 export const glyphIndex = name => Math.max(0, GLYPHS.indexOf(name));
@@ -137,6 +137,12 @@ export const DRAW = {
     disc(c, 0, 0, 7);
   },
   ring(c) { c.strokeStyle = '#fff'; c.lineWidth = 7; c.beginPath(); c.arc(0, 0, 36, 0, TAU); c.stroke(); },
+  // a bubble: a thin skin, a faint inside and a glint
+  bubble(c) {
+    c.fillStyle = 'rgba(255,255,255,0.16)'; c.beginPath(); c.arc(0, 0, 34, 0, TAU); c.fill();
+    c.strokeStyle = '#fff'; c.lineWidth = 4; c.beginPath(); c.arc(0, 0, 34, 0, TAU); c.stroke();
+    c.lineWidth = 6; c.lineCap = 'round'; c.beginPath(); c.arc(0, 0, 22, -2.6, -1.75); c.stroke();
+  },
 };
 
 function canvas(w, h) {
