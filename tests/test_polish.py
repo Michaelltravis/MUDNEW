@@ -575,6 +575,91 @@ async def main():
     hunter.room.characters.remove(hunter)
     far.characters.remove(runner)
 
+    # a refused pull says why once: the attack or spell the client sends straight after it is let go
+    from commands import CommandHandler
+    import time as _time
+    sayer = Player.create_new(name='Refused', password=None, race='human', char_class='mage',
+                              stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    sayer.world, sayer.room, sayer.connection = world, here, object()
+    here.characters.append(sayer)
+    heard = []
+
+    async def hear(m, *a, **k):
+        heard.append(m)
+    sayer.send = hear
+    sayer.web_pos = (here.vnum, 22.0, 7.5)
+    put(20.0)
+    await reach.webpull(sayer, ['#990001', 'attack'])
+    n = len(heard)
+    check(n == 1 and 'out of reach (' in heard[0] and beast.room is there, f'a refused pull says why, with the distance ({heard[-1:]})')
+    await CommandHandler.execute(sayer, 'kill', ['#990001'])
+    check(len(heard) == n, 'and the attack sent after it adds no "whom?" of its own')
+    await CommandHandler.execute(sayer, 'kill', ['nosuchthing'])
+    check(len(heard) > n, 'the next command after that is heard as ever')
+    sayer._pull_refused = _time.monotonic() - 5
+    n = len(heard)
+    await CommandHandler.execute(sayer, 'kill', ['nosuchthing'])
+    check(len(heard) > n, 'and a refusal long past swallows nothing')
+    here.characters.remove(sayer)
+
+    # Pocket Sand opens a fight (not only mid-fight)
+    field = world.rooms[6001]
+    rogue = Player.create_new(name='Sander', password=None, race='human', char_class='thief',
+                              stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    rogue.world, rogue.room, rogue.connection = world, field, None
+    rogue.send = hear
+    field.characters.append(rogue)
+    mark = create_mob_from_prototype(next(iter(world.mob_prototypes.values())), world)
+    mark.flags = set(f for f in (mark.flags or ()) if f not in ('sentinel', 'boss'))
+    mark.special, mark.owner, mark.fighting = None, None, None
+    mark.room = field
+    field.characters.append(mark)
+    rogue.luck_points = 5
+    await CommandHandler.cmd_pocket_sand(rogue, [mark.name.split()[0]])
+    check(getattr(mark, 'blinded_rounds', 0) >= 2 and rogue.fighting is mark,
+          f'Pocket Sand thrown out of a fight blinds the foe and starts the fight ({heard[-1][:50]})')
+    field.characters.remove(mark)
+    field.characters.remove(rogue)
+    rogue.fighting = None
+    check('if (known && joined && e.kind === \'mob\') e.charging = true;' in src('entities.js') and 'ents.onCharge' in src('main.js')
+          and "growl:" in src('soundtable.js') and 'growl:' in src('audio.js'),
+          'a creature charging in from next door snarls and kicks up dust as it sets off')
+
+    # the poison's ticks are fight lines (the Combat tab, not All)
+    import msgkind
+    check(msgkind.kind_of('\x1b[32mYou shudder from the poison in your veins! (5 damage)\x1b[0m') == 'combat',
+          'a poison tick goes to the Combat tab')
+
+    # the tracker: tutorials leave it past the first levels; Hide (or the journal) chooses
+    import quest_guide
+    from quests import QuestManager, QUEST_DEFINITIONS
+    vet = Player.create_new(name='Veteran', password=None, race='human', char_class='warrior',
+                            stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    vet.world, vet.room = world, world.rooms[3001]
+    vet.send = hear
+    vet.active_quests = []
+    other = next(k for k, d in QUEST_DEFINITIONS.items() if d.get('type') != 'tutorial' and not k.startswith('tutorial_')
+                 and d.get('objectives') and not d.get('chain_id') and not d.get('daily'))
+    await QuestManager.accept_quest(vet, 'tutorial_3_know_thyself')
+    vet.level = 3
+    b = quest_guide.guide_block(vet)
+    check(b and b['id'] == 'tutorial_3_know_thyself', 'a new hero is guided through the tutorial')
+    vet.level = 60
+    check(quest_guide.guide_block(vet) is None, 'a level-60 hero has no tutorial on the tracker')
+    await QuestManager.accept_quest(vet, other)
+    b = quest_guide.guide_block(vet)
+    check(b and b['id'] == other, f'the tracker follows their real quest instead ({other})')
+    await CommandHandler.execute(vet, 'webtrack', ['hide', other])
+    check(quest_guide.guide_block(vet) is None and vet.quest_tracking == {other: False}, 'Hide takes a quest off the tracker')
+    await CommandHandler.execute(vet, 'webtrack', ['show', 'tutorial_3_know_thyself'])
+    b = quest_guide.guide_block(vet)
+    check(b and b['id'] == 'tutorial_3_know_thyself', 'and the journal can put one back (even a tutorial)')
+    check('qt-hide' in src('hud/quest.js') and 'jr-track' in src('hud/journal.js'), 'the tracker has Hide, the journal Track / Hide')
+    check('#xbars .slot.empty .key { opacity: 0;' in open(os.path.join(WEB, 'hud', 'hud.css'), encoding='utf-8').read(),
+          "an extra bar's empty slots keep their key labels hidden until pointed at or dragged onto")
+    check('canReach: (e, id, r)' in src('main.js') and 'updateMarks(' in src('combatcues.js'),
+          'hovering an ability marks the creatures next door it would reach')
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 

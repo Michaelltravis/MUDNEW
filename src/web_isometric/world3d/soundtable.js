@@ -48,6 +48,7 @@ export const SOUNDS = {
   slam:         { synth: 'slam', vol: 0.75, pos: true },
   cancel:       { file: 'clang', vol: 0.55, pos: true },
   fizzle:       { synth: 'fizzle', vol: 0.35, pos: true },
+  growl:        { synth: 'growl', vol: 0.6, gap: 0.6, pos: true },
   // ---- skills and spells, by phase (school stings from the 2D client, fx-schools.js) ----
   charge:       { synth: 'charge', vol: 0.32, pos: true },
   travel:       { synth: 'whoosh', tier: 3, vol: 0.4, pos: true },

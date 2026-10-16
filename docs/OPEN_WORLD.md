@@ -72,6 +72,8 @@ dimming, no load, no flash (`hop.seamless`); the new zone is built round the her
   (`Mobile._herd_follows`): herds and packs roam together.
 - In /play a wanderer crossing to the next room walks through the opening between the two (the
   middle of their shared side), not through the wall (entities.js).
+- A creature running in from next door (pulled, or charging at a hero it saw) snarls and kicks up
+  dust as it sets off (entities.js `charging`, main.js `ents.onCharge`, the `growl` sound).
 
 ## Running away
 

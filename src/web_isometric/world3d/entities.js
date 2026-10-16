@@ -115,6 +115,9 @@ export class Entities {
       else { e.holdUntil = now + 1800; e.holdGuess = true; }
       e.pulledAt = now;
     }
+    // running in from next door (pulled, or seeing the hero across the open land: reach.py):
+    // a snarl and a kick of dust as it sets off (main.js onCharge)
+    if (known && joined && e.kind === 'mob') e.charging = true;
     if (e.root && e.goal && (!joined || e.root.position.distanceTo(e.goal) > 60)) {
       if (this.onSnap) this.onSnap(e.root.position.clone(), e.goal.clone());
       e.root.position.copy(e.goal).setY(e.root.position.y);
@@ -367,6 +370,7 @@ export class Entities {
       // the further behind, the faster they run)
       const held = e.holdUntil && performance.now() < e.holdUntil;
       if (!held && e.holdUntil) e.holdUntil = 0;
+      if (e.charging && !held) { e.charging = false; if (e.goal && this.onCharge) this.onCharge(e); }
       if (e.goal && !held) {
         const p = e.root.position, dx = e.goal.x - p.x, dz = e.goal.z - p.z, d = Math.hypot(dx, dz);
         if (d < 0.1 && e.then) { e.goal = e.then; e.then = null; }

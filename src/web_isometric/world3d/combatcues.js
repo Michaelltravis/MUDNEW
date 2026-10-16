@@ -1,7 +1,9 @@
 // Making a fight easy to read (owner: "Make it easy for players to fight mobs"):
 //   - a ring under your target (red for a foe, gold for anyone else, blue for a player)
 //   - your reach drawn around you while you hover an ability on the bar (green when your
-//     target is inside it, amber when you would have to close in)
+//     target is inside it, amber when you would have to close in), and a mark under each
+//     creature in the next room it would reach from where you stand (reach.py: pulled in, or
+//     leapt at)
 //   - STEP OUT: when a foe's marked blow is about to land where you stand, a call over your head
 //     and an arrow on the ground toward the safe side
 //   - STRIKE NOW: when a foe is staggered, a call, and the bar's heaviest ready attack glows
@@ -16,9 +18,10 @@ const ring = (inner, outer, color, opacity) => {
 };
 
 export class CombatCues {
-  // rangeOf(id) -> metres or null; onStrike() asks the HUD to light the strongest attack
-  constructor({ engine, ents, getHero, rangeOf, callout, onStrike }) {
-    this.engine = engine; this.ents = ents; this.getHero = getHero; this.rangeOf = rangeOf;
+  // rangeOf(id) -> metres or null; onStrike() asks the HUD to light the strongest attack;
+  // canReach(entity, id, metres) -> whether the ability reaches that creature next door
+  constructor({ engine, ents, getHero, rangeOf, canReach, callout, onStrike }) {
+    this.engine = engine; this.ents = ents; this.getHero = getHero; this.rangeOf = rangeOf; this.canReach = canReach;
     this.callout = callout; this.onStrike = onStrike;
     const scene = engine.scene;
     // the target ring: a bright edge, a soft fill, four ticks that turn
@@ -41,6 +44,11 @@ export class CombatCues {
     this.reach.visible = false;
     scene.add(this.reach);
     this.reachWant = null;
+    this.reachId = null;
+    // the creatures next door within that reach: a small mark under each (a pool, reused)
+    this.marks = [];
+    this.marked = [];
+    this._markClock = 0;
     // the way out of a marked blow
     const shape = new THREE.Shape();
     shape.moveTo(0, 0.9); shape.lineTo(0.5, 0.2); shape.lineTo(0.2, 0.2); shape.lineTo(0.2, -0.7); shape.lineTo(-0.2, -0.7); shape.lineTo(-0.2, 0.2); shape.lineTo(-0.5, 0.2); shape.closePath();
@@ -65,7 +73,33 @@ export class CombatCues {
     this.say('STRIKE NOW', 'Staggered — hit it with your heaviest blow', 'open', 2200);
     if (this.onStrike) this.onStrike();
   }
-  hoverAbility(id) { this.reachWant = id ? this.rangeOf(id) : null; }
+  hoverAbility(id) { this.reachWant = id ? this.rangeOf(id) : null; this.reachId = id || null; this._markClock = 0; }
+
+  // the marks under the creatures next door the hovered ability reaches
+  updateMarks(dt, t, r) {
+    if (r && this.canReach && (this._markClock -= dt) <= 0) {
+      this._markClock = 0.2;
+      this.marked = [];
+      for (const e of this.ents.list.values()) {
+        if (e.kind === 'mob' && e.root && e.alive !== false && this.canReach(e, this.reachId, r)) this.marked.push(e);
+        if (this.marked.length >= 12) break;
+      }
+    } else if (!r) this.marked = [];
+    while (this.marks.length < this.marked.length) {
+      const m = ring(0.5, 0.66, 0x7fe08a, 0.75);
+      m.visible = false;
+      this.engine.scene.add(m);
+      this.marks.push(m);
+    }
+    this.marks.forEach((m, i) => {
+      const e = this.marked[i];
+      m.visible = !!(e && e.root);
+      if (!m.visible) return;
+      const p = e.root.position, size = Math.max(0.7, Math.min(2.2, (e.plateY || 2) * 0.38));
+      m.position.set(p.x, 0.05, p.z);
+      m.scale.setScalar(size * (1 + Math.sin(t * 4 + i) * 0.06));
+    });
+  }
 
   say(title, sub, tone, ms) {
     const el = this.callout;
@@ -108,6 +142,7 @@ export class CombatCues {
       this.reach.material.opacity -= dt * 4;
       if (this.reach.material.opacity <= 0) this.reach.visible = false;
     }
+    this.updateMarks(dt, t, r);
     // standing where a marked blow will land?
     let danger = null;
     for (const [key, d] of this.dangers) {

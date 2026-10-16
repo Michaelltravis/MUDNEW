@@ -57,13 +57,16 @@ export function createQuest({ card, embark, tracker, toast, onMark }) {
     const hold = b.ritual ? `<div class="qt-hold"><span>Hold!</span><i class="qt-bar"><i style="animation-duration:${b.ritual.left}s;width:${Math.round(100 * b.ritual.left / b.ritual.seconds)}%"></i></i></div>` : '';
     const act = b.action ? `<button class="btn qt-act" data-cmd="${esc(b.action.cmd)}">${esc(b.action.label)}</button>` : '';
     tracker.innerHTML = `<div class="qt-head"><span class="qt-star">★</span><span class="qt-name">${esc(b.name)}</span>
-        <span class="qt-step">${b.stage || 0}/${b.of || 0}</span></div>
+        <span class="qt-step">${b.stage || 0}/${b.of || 0}</span>${b.kind === 'quest' ? '<button class="qt-hide" title="Hide it from the tracker (your Journal, L, can show it again)">✕</button>' : ''}</div>
       <div class="qt-title">${esc(b.title || '')}</div>
       ${b.text ? `<div class="qt-text">${esc(b.text)}</div>` : ''}
       ${objs ? `<ul class="qt-obj">${objs}</ul>` : ''}${trial}${hold}${act}
       <div class="qt-foot">${b.where && b.where.name ? `<span title="Marked on your minimap; the gold arrow by your feet points the way">◆ ${esc(b.where.name)}${b.where.steps ? ` · ${b.where.steps} room${b.where.steps > 1 ? 's' : ''}${b.where.dir ? ` ${esc(b.where.dir)}` : ''}` : b.where.steps === 0 ? ' · here' : ''}</span>` : ''}
         ${b.kind === 'quest' ? '' : b.party && b.party.length > 1 ? `<span title="It was made harder for each who embarked">⚔ ${b.party.length} embarked</span>` : '<span>alone</span>'}
         ${b.role === 'helper' ? `<span>helping ${esc(b.owner)}</span>` : ''}</div>`;
+    // hide this quest from the tracker (the server picks the next one to follow: quest_guide.tracked)
+    const hide = tracker.querySelector('.qt-hide');
+    if (hide) hide.addEventListener('click', () => { MH.sendCommand(`webtrack hide ${b.id}`, false); block = null; render(); });
     const btn = tracker.querySelector('.qt-act');
     if (btn) btn.addEventListener('click', () => { MH.sendCommand(btn.dataset.cmd); btn.disabled = true; });
   }

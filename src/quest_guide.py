@@ -164,9 +164,35 @@ def _giver_name(player, vnum):
     return name or (proto.get('name') if isinstance(proto, dict) else getattr(proto, 'name', None))
 
 
+# the tutorial is for the first levels: past this level its quests leave the tracker (they stay in
+# the journal); and the player's own choice (Hide on the tracker, Track / Hide in the journal:
+# player.quest_tracking {quest id: bool}) overrides either way
+TUTORIAL_UNTIL = 10
+
+
+def tutorial(q):
+    """Whether a quest (an active Quest) is one of the tutorial's."""
+    qid = str(getattr(q, 'quest_id', '') or '')
+    if qid.startswith('tutorial_'):
+        return True
+    try:
+        from quests import QUEST_DEFINITIONS
+        return (QUEST_DEFINITIONS.get(qid) or {}).get('type') == 'tutorial'
+    except Exception:
+        return False
+
+
+def tracked(player, q):
+    """Whether the tracker follows this quest."""
+    chosen = (getattr(player, 'quest_tracking', None) or {}).get(q.quest_id)
+    if chosen is not None:
+        return bool(chosen)
+    return not (tutorial(q) and (getattr(player, 'level', 1) or 1) > TUTORIAL_UNTIL)
+
+
 def guide_block(player):
     """The tracker block for the player's first unfinished ordinary quest (None: none)."""
-    quests = [q for q in getattr(player, 'active_quests', None) or [] if q.objectives]
+    quests = [q for q in getattr(player, 'active_quests', None) or [] if q.objectives and tracked(player, q)]
     if not quests:
         return None
     q = next((q for q in quests if not q.is_complete()), quests[0])

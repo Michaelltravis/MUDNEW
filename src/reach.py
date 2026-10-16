@@ -20,6 +20,7 @@ they could not answer). Melee, touch and cone abilities and charges still need t
 creature's room (the client walks there).
 """
 import math
+import time
 
 import combat_range as cr
 
@@ -287,6 +288,7 @@ async def webpull(player, args):
     c = player.config.COLORS
     reason = why_not(world, player, mob)
     if reason:
+        player._pull_refused = time.monotonic()
         await player.send(f"{c['yellow']}You can't reach {mob.name} from here ({reason}).{c['reset']}")
         return
     # where the hero's screen shows it ("@x,z", its room's metres): a creature the server has
@@ -304,6 +306,7 @@ async def webpull(player, args):
         return                                      # melee or touch: the hero walks in
     dist = distance(world, player, mob)
     if dist is None or dist > rng + MARGIN:
+        player._pull_refused = time.monotonic()
         await player.send(f"{c['yellow']}{mob.name} is out of reach ({dist or 0:.0f} m; it reaches {rng:g} m).{c['reset']}")
         return
     pull(world, player, mob)

@@ -165,6 +165,12 @@ async function runGame() {
   // ability, STEP OUT under a marked blow, STRIKE NOW at a staggered foe
   const cues = new CombatCues({ engine, ents, getHero: () => hero && { actor: hero, ctl }, callout: $('#callout'),
     rangeOf: id => { const r = rangeOf(id, (hud.player && (hud.player.spells || {})[id] != null)); return r || null; },
+    // next door, from where the hero stands: pulled in by a shot or a spell, or leapt at
+    canReach: (e, id, r) => {
+      if (!id || !heroRoom || !hero || !hero.root || e.vnum === heroRoom.vnum) return false;
+      const spell = !!(hud.player && (hud.player.spells || {})[id] != null);
+      return reachAcross(e, r, pullsOf(id, spell)) || (leapsOf(id) && reachAcross(e, r, false, true));
+    },
     onStrike: () => hud.suggestStrike() });
   // sound (audio.js): heard from where the camera looks, turned with it
   combat.onSound = (name, at, opts) => sound.play(name, { at, ...(opts || {}) });
@@ -328,6 +334,12 @@ async function runGame() {
   // creatures that take the stairs or a far passage leave and arrive in a puff of dust
   ents.onSnap = (from, to) => {
     for (const q of [from, to]) fx.p.emit(q.clone().setY(0.4), { count: 18, color: 0xd8d0c0, speed: 1.6, up: 0.6, life: 0.7, size: 0.4, grow: 0.5, drag: 1.5 });
+  };
+  // a creature charging in from next door: a snarl, and dust kicked up as it sets off
+  ents.onCharge = e => {
+    const at = e.root.position.clone();
+    sound.play('growl', { at });
+    fx.p.emit(at.clone().setY(0.25), { count: 14, color: 0xcabfa8, speed: 2.2, up: 0.4, life: 0.6, size: 0.35, grow: 0.6, drag: 2 });
   };
   const mmSmall = createMinimap($('#minimap'), room => travelTo(room), () => engine.snapNorth());
   // the big map (M): the same drawing, larger — the whole zone at a glance, click to walk there

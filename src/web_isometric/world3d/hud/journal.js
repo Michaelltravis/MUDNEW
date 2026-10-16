@@ -55,10 +55,13 @@ export function createJournal(root, { toast }) {
         <div class="jr-time">Stage ${q.stage} of ${q.of}</div>`
       : `<div class="jr-lab">reward</div><div class="jr-rew">${rewards(q.rewards) || '<span class="jr-none">The thanks of the hollow</span>'}</div>`}
       <div class="jr-acts">${q.complete ? `<button class="btn jr-done" data-id="${esc(q.id)}">Complete the quest</button>` : ''}
+        ${q.marquee ? '' : `<button class="btn alt jr-track" data-id="${esc(q.id)}" data-on="${q.tracked === false ? '' : '1'}">${q.tracked === false ? 'Show on the tracker' : 'Hide from the tracker'}</button>`}
         <button class="btn alt jr-drop" data-id="${esc(q.id)}" data-marquee="${q.marquee ? q.role : ''}">${q.marquee && q.role === 'helper' ? 'Stop helping' : 'Abandon'}</button></div>`
       : `<div class="jr-empty"><div class="jr-title">The journal is open</div><div class="jr-desc">Its pages wait for your story. Talk to those marked with a <b>!</b> above their heads — and keep your lantern lit.</div></div>`;
     const done = page.querySelector('.jr-done');
     if (done) done.addEventListener('click', () => { MH.sendCommand(`quest complete ${done.dataset.id}`); setTimeout(load, 700); });
+    const track = page.querySelector('.jr-track');
+    if (track) track.addEventListener('click', () => { MH.sendCommand(`webtrack ${track.dataset.on ? 'hide' : 'show'} ${track.dataset.id}`, false); setTimeout(load, 500); });
     const drop = page.querySelector('.jr-drop');
     if (drop) drop.addEventListener('click', () => {
       if (drop.dataset.armed) {
