@@ -256,8 +256,8 @@ export class Zone {
       rooms.set(r.vnum, { data: r, vnum: r.vnum, cx: r.cell[0], cy: r.cell[1], ox: r.cell[0] * ROOM_W, oz: r.cell[1] * ROOM_H, built: null });
     }
     const view = new FarView({ num: zm.zone, rooms, group }, { horizon: false });
-    const [w, h] = this.zm.size || [0, 0];
-    view.skip = r => { const x = r.cx + ocx, y = r.cy + ocy; return x >= 0 && y >= 0 && x < w && y < h; };
+    // (where one of its rooms would stand on one of ours, ours is drawn instead)
+    view.skip = r => this.cells.has(`${r.cx + ocx},${r.cy + ocy}`);
     const g = { num: zm.zone, view, group, ocx, ocy, ox: ocx * ROOM_W, oz: ocy * ROOM_H, alevel, blevel };
     this.ghosts.push(g);
     return g;
