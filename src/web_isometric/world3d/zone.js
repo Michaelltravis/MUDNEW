@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { buildRoom, ROOM_W, ROOM_H, isIndoor } from './terrain.js';
 import { passageSpot, arrivalSpot, wantsPassage } from './passages.js';
 import { isDeadly } from './deathlogic.js';
+import { FarView } from './far.js';
 
 const FLOOR = 0, BLOCK = 1, WATER = 4;
 const LIGHTS = 6;
@@ -53,6 +54,8 @@ export class Zone {
       this.lights.push(l);
     }
     this._lightClock = 0;
+    // the rooms past the built ones, drawn cheaply, and the far hills (far.js)
+    this.far = new FarView(this);
     this._releaseClock = 0;
   }
 
@@ -229,6 +232,8 @@ export class Zone {
       }
     }
     this.updateLights(dt, t, hero);
+    const here = this.roomAt(hero.x, hero.z);
+    this.far.update(dt, hero, here ? here.data.level || 0 : 0, this.engine.scene.fog && this.engine.scene.fog.color);
   }
 
   updateLights(dt, t, hero) {
@@ -274,6 +279,7 @@ export class Zone {
 
   dispose() {
     for (const r of this.rooms.values()) this.release(r);
+    this.far.dispose();
     this.engine.scene.remove(this.group);
   }
 

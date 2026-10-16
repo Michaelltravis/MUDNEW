@@ -41,6 +41,7 @@ import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
 import { createWorldMap } from './hud/worldmap.js';
 import { createAmbient } from './hud/ambient.js';
 import { AimCircle, clampAim, aimCommand } from './aim.js';
+import { FAR, farKind } from './far.js';
 
 const $ = s => document.querySelector(s);
 const WATER_TILE = 4;   // zone.js / terrain.js tile kinds
@@ -544,6 +545,7 @@ async function runGame() {
     sound.setZoneMusic(musicFor(look));
     sound.ambience(bedFor(look));
     stepSurface = surfaceFor(look);
+    applyFar(L);
     const hour = lastPayload && lastPayload.time ? lastPayload.time.hour : 12;
     // the room's look (room_looks.py): rock is darkest, then crypts and sewers; sand, snow and ash
     // colour the day
@@ -563,6 +565,16 @@ async function runGame() {
       const mix = (a, b, k) => new THREE.Color(a).lerp(new THREE.Color(b), k).getHex();
       if (m) engine.setMood({ sun: mix(m.sun, light, 0.55), sky: mix(m.sky, light, 0.3), fog: mix(m.fog, light, 0.12) });
     }
+  }
+
+  // how far the hero sees (far.js): the quality's reach, and the far hills under open sky
+  function applyFar(L) {
+    const f = FAR[engine.quality && engine.quality.name] || FAR.high;
+    engine.farSight = f.sight;
+    if (!zone || !zone.far) return;
+    zone.far.range = f.range;
+    const kind = farKind(L && L.theme);
+    zone.far.outdoors = !!L && !L.dark && kind !== 'none' && kind !== 'roof';
   }
 
   // ---- walking between rooms ----
@@ -1257,7 +1269,10 @@ async function runGame() {
     if (ent) menuFor({ kind: ent.kind === 'player' ? 'player' : 'mob', ent }, x, y);
   });
   // graphics quality from Settings, at once (only smoother edges wait for a reload)
-  MH.bus.on('hud.quality', q => { if (engine.setQuality(q)) hud.toast('Smoother edges come with the next reload'); });
+  MH.bus.on('hud.quality', q => {
+    if (engine.setQuality(q)) hud.toast('Smoother edges come with the next reload');
+    if (heroRoom) applyFar(zone.layoutOf(heroRoom));
+  });
 
   // ---- a marked blow coming at you: Q brace, E sidestep, X interrupt (reactions.js) ----
   const react = new ReactionPrompt();

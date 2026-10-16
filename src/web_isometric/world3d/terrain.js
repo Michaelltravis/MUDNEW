@@ -44,7 +44,7 @@ function vnoise(x, y) {
 }
 const fbm = (x, y) => vnoise(x, y) * 0.55 + vnoise(x * 2.1 + 17, y * 2.1 - 9) * 0.3 + vnoise(x * 4.3 - 5, y * 4.3 + 3) * 0.15;
 
-const GROUND = {
+export const GROUND = {
   forest: { a: 0x45682f, b: 0x6a8f3e, path: 0x7b6343, wet: 0x2f4a32 },
   field: { a: 0x6f9445, b: 0x9bb65a, path: 0x8f7650, wet: 0x3c5a3a },
   hills: { a: 0x66874a, b: 0x8fa35e, path: 0x8a7352, wet: 0x3c5a3a },
