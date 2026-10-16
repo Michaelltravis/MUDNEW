@@ -106,7 +106,8 @@ async def main():
             continue
         v = vn[a]
         for d, ex in W[v].exits.items():
-            if d not in r['exits'] and (v, d) not in allowed:
+            # (open ground joins side-by-side outdoor rooms of an opened zone: wilds.py)
+            if d not in r['exits'] and (v, d) not in allowed and not ex.get('wild'):
                 extra.append((v, d, ex.get('to_room')))
     check(not extra, f'no exit beyond the atlas without a reason ({len(extra)}: {extra[:3]})')
     check(not conn['still_cut_off'], f"the connection pass left nothing cut off ({conn['still_cut_off'][:5]})")
