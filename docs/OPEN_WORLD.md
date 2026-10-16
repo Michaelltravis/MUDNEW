@@ -72,3 +72,11 @@ dimming, no load, no flash (`hop.seamless`); the new zone is built round the her
   (`Mobile._herd_follows`): herds and packs roam together.
 - In /play a wanderer crossing to the next room walks through the opening between the two (the
   middle of their shared side), not through the wall (entities.js).
+
+## Running away
+
+- A creature a hero fled or escaped from leaves them alone for 30 s (`reach.lost`,
+  `reach.FLEE_GRACE`): it does not spot them in the room next door and charge straight back.
+- A hunter, tracker or boss chases only so far from where the chase began (`mobs.LEASH`: 3, 5 and
+  6 rooms by open ways). Past that it gives up ("gives up the chase and turns back"), heals to
+  full (no wearing it down by leading it about) and walks back to where it began.

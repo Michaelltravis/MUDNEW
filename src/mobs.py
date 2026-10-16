@@ -27,6 +27,9 @@ def zone_of(room):
 
 WATER_SECTORS = ('water_swim', 'water_noswim', 'water_surface')
 KEEP_OUT = {'no_mob', 'imm_only'}     # rooms creatures never step into (no creatures; the God Rooms)
+# how far (rooms from where the chase began) a hunter follows before it gives up, heals and
+# turns back home (the owner: "after a certain range they should stop chasing")
+LEASH = {'hunter': 3, 'tracker': 5, 'boss': 6}
 
 logger = logging.getLogger('Misthollow.Mobs')
 
@@ -523,6 +526,11 @@ class Mobile(Character):
         if self.is_fighting:
             return
 
+        # a chase it gave up: it walks back to where the chase began
+        if getattr(self, 'returning', None) is not None:
+            if await self._return_home():
+                return
+
         # Hunting AI - track players who attacked us
         if await self.hunting_ai():
             return
@@ -613,6 +621,8 @@ class Mobile(Character):
             if not self.hunting_target or not self.hunting_target.is_alive:
                 self.hunting_target = player
                 self.last_known_room = player.room
+                # the leash is measured from here (where the fight was picked)
+                self.chase_from = self.room
     
     def clear_grudge(self, player_name: str = None):
         """Clear grudge(s)."""
@@ -676,7 +686,15 @@ class Mobile(Character):
             return False
         
         target = self.hunting_target
-        
+
+        # the leash: past its reach from where the chase began, it gives up, heals and turns back
+        home = getattr(self, 'chase_from', None) or self.room
+        self.chase_from = home
+        reach = max([n for f, n in LEASH.items() if f in self.flags] or [LEASH['hunter']])
+        if target.room is not self.room and self._steps_between(home, target.room, reach) is None:
+            await self._give_up_chase(target)
+            return True
+
         # If target is in the same room, attack!
         if target.room == self.room:
             if not self.is_fighting:
@@ -730,6 +748,80 @@ class Mobile(Character):
 
         return False
     
+    def _steps_between(self, a, b, limit):
+        """Rooms from a to b by open ways (no closed doors), within `limit` steps, else None."""
+        if a is None or b is None:
+            return None
+        if a is b:
+            return 0
+        from collections import deque
+        seen, q = {a.vnum}, deque([(a, 0)])
+        while q:
+            room, n = q.popleft()
+            if n >= limit:
+                continue
+            for ex in (room.exits or {}).values():
+                to = ex.get('room') if isinstance(ex, dict) else None
+                if to is None or to.vnum in seen:
+                    continue
+                door = ex.get('door')
+                if isinstance(door, dict) and door.get('state') == 'closed':
+                    continue
+                if to is b:
+                    return n + 1
+                seen.add(to.vnum)
+                q.append((to, n + 1))
+        return None
+
+    async def _give_up_chase(self, target):
+        """Too far from home: drop the chase and the grudge, heal, and head back."""
+        c = self.config.COLORS
+        if self.room:
+            await self.room.send_to_room(f"{c['yellow']}{self.name} gives up the chase and turns back.{c['reset']}")
+        self.clear_grudge(getattr(target, 'name', None))
+        self.hunting_target = None
+        if getattr(self, 'fighting', None) is target:
+            self.fighting = None
+        self.hp = max(self.hp, getattr(self, 'max_hp', self.hp))   # (no wearing it down by leading it about)
+        home = getattr(self, 'chase_from', None)
+        self.returning = home if home is not None and home is not self.room else None
+        self.chase_from = None
+
+    async def _return_home(self):
+        """A step back toward where a given-up chase began (every few ticks); True if it moved."""
+        home = self.returning
+        if self.fighting or self.room is None or home is None or self.room is home:
+            self.returning = None
+            return False
+        self._home_clock = getattr(self, '_home_clock', 0) - 1
+        if self._home_clock > 0:
+            return False
+        self._home_clock = 15
+        for d, ex in (self.room.exits or {}).items():
+            to = ex.get('room') if isinstance(ex, dict) else None
+            if to is None or (KEEP_OUT & to.flags):
+                continue
+            door = ex.get('door')
+            if isinstance(door, dict) and door.get('state') == 'closed':
+                continue
+            here = self._steps_between(self.room, home, 12)
+            there = self._steps_between(to, home, 12)
+            if here is None or there is None or there >= here:
+                continue
+            old = self.room
+            await old.send_to_room(f"{self.name} heads back {d}.")
+            old.characters.remove(self)
+            self.room = to
+            to.characters.append(self)
+            opposite = self.config.DIRECTIONS.get(d, {}).get('opposite', 'somewhere')
+            await to.send_to_room(f"{self.name} arrives from the {opposite}.")
+            await self._notify_move(old, to, d, opposite)
+            if to is home:
+                self.returning = None
+            return True
+        self.returning = None             # (no way back: it stays where it is)
+        return False
+
     async def find_path_to_target(self, target: 'Character') -> list:
         """
         Find a path to the target using BFS.

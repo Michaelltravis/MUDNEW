@@ -167,6 +167,21 @@ def pulled(mob, within=60.0):
 
 
 NOTICE = 16.0           # metres across an open way an aggressive creature notices a hero from
+FLEE_GRACE = 30.0       # seconds a creature leaves alone a hero who fled or escaped from it
+
+
+def lost(mob, player, seconds=FLEE_GRACE):
+    """`player` got away from `mob` (fled, escaped): it does not come after them again at once."""
+    import time as _time
+    seen = getattr(mob, 'lost_quarry', None)
+    if seen is None:
+        seen = mob.lost_quarry = {}
+    seen[getattr(player, 'name', '')] = _time.time() + seconds
+
+
+def _now():
+    import time as _time
+    return _time.time()
 
 
 def noticed(world, mob, spared=lambda ch: False):
@@ -197,6 +212,8 @@ def noticed(world, mob, spared=lambda ch: False):
                 continue
             if {'hidden', 'sneaking'} & set(getattr(ch, 'flags', ()) or ()):
                 continue
+            if (getattr(mob, 'lost_quarry', None) or {}).get(getattr(ch, 'name', ''), 0) > _now():
+                continue                             # they just got away from it
             if getattr(room, 'sector_type', '') == 'city' and getattr(mob, 'level', 0) - getattr(ch, 'level', 0) > 5:
                 continue
             dist = distance(world, mob, ch)

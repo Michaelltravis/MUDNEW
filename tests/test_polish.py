@@ -520,6 +520,61 @@ async def main():
     check('addGhost(zm' in src('zone.js') and 'nextDoor(zone)' in src('main.js') and 'h.seamless' in src('main.js'),
           '/play: the zones next door are drawn past the border and walked into without a load or a fade')
 
+    # running away (the owner: "after a certain range they should stop chasing"): a creature fled
+    # from leaves the hero alone a while; a hunter goes only so far from where the chase began,
+    # then gives up, heals and walks back
+    here, there = world.rooms[hv], world.rooms[tv]
+    runner = Player.create_new(name='Runner', password=None, race='human', char_class='warrior',
+                               stats={s: 16 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    runner.world, runner.room, runner.connection, runner.level = world, here, object(), 30
+    runner.send = note
+    here.characters.append(runner)
+    runner.web_pos = (here.vnum, *edge[0])
+    wolf2 = create_mob_from_prototype(next(iter(world.mob_prototypes.values())), world)
+    wolf2.flags = set(f for f in (wolf2.flags or ()) if f not in ('sentinel', 'boss')) | {'aggressive'}
+    wolf2.special, wolf2.owner, wolf2.fighting, wolf2.level = None, None, None, 30
+    wolf2.room = there
+    there.characters.append(wolf2)
+    cr.set_pos(wolf2, *edge[1])
+    check(reach.noticed(world, wolf2) is runner, 'before: it sees the hero next door')
+    reach.lost(wolf2, runner)
+    check(reach.noticed(world, wolf2) is None, 'a hero who fled from it is left alone a while (no charging straight back)')
+    wolf2.lost_quarry = {}
+    there.characters.remove(wolf2)
+    here.characters.remove(runner)
+    # the leash: a hunter whose prey is 5 rooms from where the chase began gives up
+    import mobs as _m
+    start = world.rooms[6001]
+    far = next(r for r in (world.rooms[v] for v in sorted(world.rooms)) if r.zone is start.zone
+               and wolf2._steps_between(start, r, 5) == 5 and not (_m.KEEP_OUT & r.flags))
+    hunter = create_mob_from_prototype(next(iter(world.mob_prototypes.values())), world)
+    hunter.flags = set(f for f in (hunter.flags or ()) if f not in ('sentinel', 'boss', 'tracker')) | {'hunter'}
+    hunter.special, hunter.owner, hunter.fighting, hunter.home_zone = None, None, None, None
+    hunter.room = start
+    start.characters.append(hunter)
+    runner.room = far
+    far.characters.append(runner)
+    hunter.add_grudge(runner, 10)
+    hunter.hp = max(1, hunter.max_hp // 3)
+    took = await hunter.hunting_ai()
+    check(took and hunter.hunting_target is None and runner.name not in hunter.grudge_list,
+          f'past its leash ({_m.LEASH["hunter"]} rooms; the hero is 5 off) a hunter gives up the chase')
+    check(hunter.hp == hunter.max_hp, 'and heals (no wearing it down by leading it about)')
+    # it had already followed two rooms out: it walks back to where it began
+    step1 = next(ex['room'] for ex in start.exits.values() if isinstance(ex, dict) and ex.get('room') is not None
+                 and not (_m.KEEP_OUT & ex['room'].flags))
+    start.characters.remove(hunter)
+    hunter.room = step1
+    step1.characters.append(hunter)
+    hunter.returning, hunter._home_clock = start, 0
+    for _ in range(40):
+        await hunter._return_home()
+        if hunter.room is start:
+            break
+    check(hunter.room is start and hunter.returning is None, 'and walks back to where the chase began')
+    hunter.room.characters.remove(hunter)
+    far.characters.remove(runner)
+
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
 
