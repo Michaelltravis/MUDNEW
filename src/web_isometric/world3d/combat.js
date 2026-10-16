@@ -43,6 +43,9 @@ const COLORS = { dmgOut: '#ffe9a8', dmgIn: '#ff6a52', heal: '#7dff8f', miss: '#b
 const keyOf = ref => JSON.stringify(ref || null);
 const abilityId = e => String(e.ability || e.spell || '').toLowerCase().replace(/[\s']+/g, '_');
 
+// whether a wound over time is a poison's (its school, or its name: Knife Poison, Serpent Sting...)
+export const poisonTick = (e, school) => school === 'poison' || /poison|venom|sting|plague|toxin/i.test(String(e.dot || ''));
+
 export class CombatView {
   constructor({ engine, fx, ents, getHero, heroName, onOutOfRange, onWound, onAggro }) {
     this.engine = engine;
@@ -209,7 +212,22 @@ export class CombatView {
     if (dst.hero) this.fx.lane(e.k === 'heal' ? `+${e.amt}` : `-${e.amt}`, { color: e.k === 'heal' ? COLORS.heal : COLORS.dmgIn, edge: e.k === 'heal' ? '' : color, size: 13, life: 1.5 });
     else if (this.showsFoes()) this.fx.text(p, e.k === 'heal' ? `+${e.amt}` : `${e.amt}`, { color: e.k === 'heal' ? COLORS.heal : color, size: 13, rise: 0.9, life: 0.9, side: 0.6 });
     this.fx.p.emit(p, { count: 6, color: this.colorOf(school), speed: 0.5, up: 0.9, life: 0.6, size: 0.18, drag: 1.4 });
+    if (e.k !== 'heal' && poisonTick(e, school)) this.wince(dst, p);
     if (this.onAilment && e.k !== 'heal' && dst.ent) this.onAilment(dst.ent, e.dot, school);
+  }
+
+  // a poison biting: the body winces (a flinch, never rooting the hero) and coughs a puff of
+  // green gas; at most once a second and a half each, however many poisons tick together
+  wince(dst, p) {
+    const who = dst.hero ? 'hero' : dst.ent && dst.ent.key;
+    const now = performance.now();
+    this._winced = this._winced || new Map();
+    if (!who || now - (this._winced.get(who) || 0) < 1500) return;
+    this._winced.set(who, now);
+    if (dst.hero) this.getHero().ctl.swing('Hit_B', true, { speed: 0.9 });
+    else if (dst.actor && !(dst.ent && dst.ent.dying)) dst.actor.once('Hit_A', 0.08, 0.85);
+    this.fx.p.emit(p, { count: 7, color: 0x6aa83a, bright: 0.8, speed: 0.55, up: 0.45, life: 1.1, size: 0.38, grow: 0.6, drag: 1.6 });
+    this.fx.glyph(p, { glyph: 'bubble', count: 4, color: 0x9cff5a, bright: 1.4, speed: 0.5, up: 0.7, life: 0.9, size: 0.14, drag: 1.2 });
   }
 
   wound(e) {

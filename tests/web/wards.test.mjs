@@ -12,7 +12,7 @@ const THREE_URL = pathToFileURL(path.join(HERE, '../../src/web_isometric/vendor/
 register('data:text/javascript,' + encodeURIComponent(
   `export async function resolve(s, c, next) { return s === 'three' ? { url: ${JSON.stringify(THREE_URL)}, shortCircuit: true } : next(s, c); }`));
 const THREE = await import('three');
-const { WARDS, wardPlan, planKey, Wards } = await import('../../src/web_isometric/world3d/wards.js');
+const { WARDS, wardPlan, planKey, Wards, HAZE } = await import('../../src/web_isometric/world3d/wards.js');
 const { buffList } = await import('../../src/web_isometric/world3d/hud/buffs.js');
 
 test('a plan: the strongest shell, two orbits at most, a ring, motes, flying', () => {
@@ -42,7 +42,31 @@ const body = () => {
   scene.add(root);
   return { root, m };
 };
-const fx = { near: () => true, p: { emit() {} } };
+const fx = { near: () => true, p: { emit() {} }, glyph() {} };
+
+test('poisoned: green bubbles rise off the body and a haze hangs about it, for as long as it lasts', () => {
+  assert.equal(wardPlan(['poisoned']).poison, WARDS.poisoned.poison);
+  const seen = { bubbles: 0, haze: 0 };
+  const watch = { near: () => true, p: { emit: (_p, o) => { if (o.color === HAZE) seen.haze++; } }, glyph: (_p, o) => { if (o.glyph === 'bubble') seen.bubbles++; } };
+  const w = new Wards({ quality: { name: 'high' } }, watch);
+  const a = body();
+  const skin = a.m.material;
+  for (let i = 0; i < 30; i++) w.update(0.1, i * 0.1, a, ['poisoned']);
+  assert.ok(seen.bubbles > 10 && seen.haze > 5, `bubbles ${seen.bubbles}, haze ${seen.haze}`);
+  assert.ok(a.m.material !== skin && a.m.material.emissive.g > 0.5, 'the body glows a sickly green');
+  const slow = { bubbles: 0 };
+  const w2 = new Wards({ quality: { name: 'high' } }, { near: () => true, p: { emit() {} }, glyph: () => slow.bubbles++ });
+  const b2 = body();
+  for (let i = 0; i < 6; i++) w2.update(0.5, i * 0.5, b2, ['poisoned']);
+  assert.ok(slow.bubbles >= 12, `a slow machine (2 frames a second) sees the bubbles too (${slow.bubbles})`);
+  w.update(0.1, 4, a, []);
+  assert.equal(a.m.material, skin, 'its own skin back when the poison wears off');
+  const was = { ...seen };
+  for (let i = 0; i < 10; i++) w.update(0.1, 4 + i * 0.1, a, []);
+  assert.deepEqual(seen, was, 'and stops when it wears off');
+  const src = readFileSync(path.join(HERE, '../../src/web_isometric/world3d/combat.js'), 'utf8');
+  assert.match(src, /poisonTick\(e, school\)\) this\.wince\(dst, p\)/, 'each tick of it makes the body wince');
+});
 
 test('worn while it lasts: a shell and orbit on the body, flying lifts it, and all of it goes when the spell ends', () => {
   const w = new Wards({ quality: { name: 'high' } }, fx);
