@@ -51,7 +51,9 @@ const LAYERS = {
 };
 
 export class FarView {
-  constructor(zone) {
+  // zone: {num, rooms, group}: a Zone, or a neighbouring zone's map drawn past the border
+  // (zone.js addGhost: its group placed where the border puts it, no horizon of its own)
+  constructor(zone, { horizon = true } = {}) {
     this.zone = zone;
     this.group = new THREE.Group();
     this.group.name = `far_${zone.num}`;
@@ -101,8 +103,9 @@ export class FarView {
     for (const m of Object.values(this.meshes)) if (m.instanceColor) m.instanceColor.needsUpdate = true;
     for (const c of this.cells) this.show(c, false);
     zone.group.add(this.group);
-    this.horizon = makeHorizon();
-    zone.group.add(this.horizon);
+    this.skip = null;            // (room) => true: never shown (a neighbour's rooms over our own)
+    this.horizon = horizon ? makeHorizon() : null;
+    if (this.horizon) zone.group.add(this.horizon);
     this._clock = 0;
     this._key = '';
   }
@@ -127,10 +130,11 @@ export class FarView {
         const r = c.room;
         const far = Math.max(Math.abs(r.cx - cx), Math.abs(r.cy - cy));
         const drawn = r.built && r.built.group.visible;
-        this.show(c, c.level === level && far <= this.range && !drawn);
+        this.show(c, c.level === level && far <= this.range && !drawn && !(this.skip && this.skip(r)));
       }
     }
     const h = this.horizon;
+    if (!h) return;
     h.visible = this.outdoors;
     if (h.visible) {
       h.position.set(hero.x, -3, hero.z);
@@ -140,9 +144,8 @@ export class FarView {
 
   dispose() {
     for (const m of Object.values(this.meshes)) { m.geometry.dispose(); m.dispose(); }
-    this.horizon.geometry.dispose();
     this.zone.group.remove(this.group);
-    this.zone.group.remove(this.horizon);
+    if (this.horizon) { this.horizon.geometry.dispose(); this.zone.group.remove(this.horizon); }
   }
 }
 

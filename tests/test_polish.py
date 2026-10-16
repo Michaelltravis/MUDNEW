@@ -515,6 +515,10 @@ async def main():
     for m in herd:
         m.room.characters.remove(m)
     check('e.then = e.goal; e.goal = gate' in src('entities.js'), '/play: a wanderer goes through the opening between two rooms, not the wall')
+    check('new FarView(this)' in src('zone.js') and 'farSight' in src('engine.js') and 'export const FAR' in src('far.js'),
+          '/play: rooms past the built ones are drawn cheaply, the haze lies further off outdoors')
+    check('addGhost(zm' in src('zone.js') and 'nextDoor(zone)' in src('main.js') and 'h.seamless' in src('main.js'),
+          '/play: the zones next door are drawn past the border and walked into without a load or a fade')
 
     print(f"\n{'ALL OK' if not FAILED else f'{len(FAILED)} FAILED'}")
     sys.exit(1 if FAILED else 0)
